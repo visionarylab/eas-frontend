@@ -1,0 +1,45 @@
+$eas-chip-icon-width: 3.125rem;
+$eas-chip-min-height: 1.125rem;
+$eas-chip-padding: .375rem .5rem;
+$eas-chip-border: .0625rem #d6d6d6 solid;
+$eas-chip-background-color: #fff;
+$eas-chip-shadow: .375rem .375rem .375rem #888;
+
+$eas-chip-title-font-size: 1.125rem;
+$eas-chip-title-font-color: #6f6f6f;
+
+.Chip {
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: center;
+  align-items: center;
+
+  min-height: $eas-chip-min-height;
+  padding: $eas-chip-padding;
+  margin: 5px 0 5px;
+  background-color: $eas-chip-background-color;
+  -moz-border-radius: 15px;
+  border-radius: 8px;
+  border: $eas-chip-border;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: center;
+  box-shadow: $eas-chip-shadow;
+
+  &__icon {
+    width: $eas-chip-icon-width;
+    height: auto;
+  }
+
+  &__title {
+    flex: auto;
+    color: $eas-chip-title-font-color;
+    font-family: 'robotoregular', Helvetica, Arial, sans-serif;
+    font-size: $eas-chip-title-font-size;
+  }
+}
