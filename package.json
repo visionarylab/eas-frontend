@@ -4,16 +4,11 @@
   "private": true,
   "dependencies": {
     "material-ui": "^1.0.0-beta.17",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "typeface-roboto": "0.0.41"
   },
   "devDependencies": {
     "backpack-react-scripts": "4.0.8",
-    "bpk-component-button": "^1.6.63",
-    "bpk-component-code": "^1.0.23",
-    "bpk-component-grid": "^1.1.29",
-    "bpk-component-text": "^1.0.21",
-    "bpk-mixins": "^17.0.5",
-    "bpk-stylesheets": "^3.2.67",
     "react": "^15.6.2",
     "react-dom": "^15.6.2"
   },
