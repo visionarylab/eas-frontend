@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-const Draw = (props) => {
-  return <div>draw</div>;
-}
+import Number from './Number/Number';
+import Letter from './Letter/Letter';
+
+const Draw = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/number" component={props => <Number {...props} />} />
+      <Route path="/letter" component={props => <Letter {...props} />} />
+    </Switch>
+  </BrowserRouter>
+  );
 
 export default Draw;

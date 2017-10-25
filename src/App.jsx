@@ -17,7 +17,7 @@ const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <Grid container spacing={24}>
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <Typography type="display3" align="center">
             Échalo A Suerte
           </Typography>
@@ -29,8 +29,8 @@ const App = () => {
         </Grid>
         <BrowserRouter>
           <Switch>
-            <Route path="/" component={props => <Home {...props}/>}/>
-            <Route path="/draw" component={Draw}/>
+            <Route exact path="/" component={props => <Home {...props}/>}/>
+            <Draw/>
           </Switch>
         </BrowserRouter>
       </Grid>
