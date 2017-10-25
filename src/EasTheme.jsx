@@ -1,16 +1,25 @@
 import { createMuiTheme } from 'material-ui/styles';
+import {Colors, Spacing} from 'material-ui/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple, // Purple and green play nicely together.
+    primary: green, // Purple and green play nicely together.
     secondary: {
-      ...green,
+      ...purple,
       A400: '#00e677',
     },
     error: green,
   },
+  overrides:{
+    MuiFormControl: {
+      root: {
+        // Name of the rule
+        margin: 8,
+      },
+    },
+  }
 });
 
 export default theme;

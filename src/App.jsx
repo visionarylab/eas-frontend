@@ -22,11 +22,11 @@ const App = () => {
             Échalo A Suerte
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Button color="primary">Primary</Button>
-          <Button color="accent">Accent</Button>
-          <Button>hi material</Button>
-        </Grid>
+        {/*<Grid item xs={12}>*/}
+          {/*<Button color="primary">Primary</Button>*/}
+          {/*<Button color="accent">Accent</Button>*/}
+          {/*<Button>hi material</Button>*/}
+        {/*</Grid>*/}
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={props => <Home {...props}/>}/>
