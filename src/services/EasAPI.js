@@ -19,5 +19,5 @@ export const createDraw = () => {
     .catch(err => console.log(err));
 };
 
-export const tossDraw = () => Math.floor((Math.random() * 10) + 1);
+export const tossNumberDraw = (from, to) => Math.floor(Math.random() * (to - from + 1)) + from;
 
