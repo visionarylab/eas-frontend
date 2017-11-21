@@ -19,5 +19,19 @@ export const createDraw = () => {
     .catch(err => console.log(err));
 };
 
-export const tossNumberDraw = (from, to) => Math.floor(Math.random() * (to - from + 1)) + from;
+export const tossNumberDraw = (from, to, numberOfResults, allowRepeated) => {
+  let results = [];
+  if (allowRepeated){
+    while (results.size < numberOfResults) {
+      results.push(Math.floor(Math.random() * (to - from + 1)) + from)
+    }
+  } else {
+    results = new Set();
+    while (results.size < numberOfResults) {
+      results.add(Math.floor(Math.random() * (to - from + 1)) + from)
+    }
+    results = Array.from(results);
+  }
+  return results;
+};
 
