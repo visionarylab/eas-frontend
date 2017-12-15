@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from "react-translate"
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
@@ -69,10 +70,10 @@ class Number extends React.Component {
           <Icon>keyboard_arrow_left</Icon>
         <Grid item sm={8}>
 
-          <Typography type="display1">Generate random numbers</Typography>
+          <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
           <Grid item sm={12}>
             <TextField
-              label="From"
+              label={this.props.t('from')}
               placeholder="1"
               margin="normal"
               onChange={this.handleFromChange}
@@ -80,7 +81,7 @@ class Number extends React.Component {
               type="number"
             />
             <TextField
-              label="To"
+              label={this.props.t('to')}
               placeholder="9"
               margin="normal"
               onChange={this.handleToChange}
@@ -90,7 +91,7 @@ class Number extends React.Component {
           </Grid>
           <Grid item sm={12}>
             <TextField
-              label="Number of results"
+              label={this.props.t('numberResults')}
               placeholder="1"
               margin="normal"
               onChange={this.handleNumberOfResultsChange}
@@ -139,4 +140,4 @@ Number.defaultProps = {
   allowRepeated: false,
 };
 
-export default Number;
+export default translate('Number')(Number);
