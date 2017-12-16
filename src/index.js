@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'typeface-roboto';
+import 'typeface-roboto'; // eslint-disable-line import/extensions
 
 import App from './App';
 

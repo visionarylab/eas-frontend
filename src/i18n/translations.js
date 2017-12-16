@@ -1,15 +1,15 @@
-import en_gb from './en-GB'
-import es_es from './es-ES'
+import engbStrings from './en-GB';
+import esesStrings from './es-ES';
 
 
 const translations = (locale) => {
   switch (locale) {
     case 'en-GB':
-      return en_gb;
+      return engbStrings;
     case 'es-ES':
-      return es_es;
+      return esesStrings;
     default:
-      return en_gb;
+      return engbStrings;
   }
 };
 

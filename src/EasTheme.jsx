@@ -1,5 +1,4 @@
 import { createMuiTheme } from 'material-ui/styles';
-import {Colors, Spacing} from 'material-ui/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 

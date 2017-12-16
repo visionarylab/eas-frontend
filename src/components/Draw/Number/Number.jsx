@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from "react-translate"
+import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
@@ -12,7 +12,7 @@ import Checkbox from 'material-ui/Checkbox';
 import { tossNumberDraw } from '../../../services/EasAPI';
 
 class Number extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.handleToss = this.handleToss.bind(this);
@@ -22,37 +22,37 @@ class Number extends React.Component {
     this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
 
     this.state = {
-      results: null,
       from: props.from,
       to: props.to,
       numberOfResults: props.numberOfResults,
       allowRepeated: props.allowRepeated,
-    }
+      results: props.results,
+    };
   }
 
   handleToss() {
-    const {from, to, numberOfResults, allowRepeated} = this.state;
+    const { from, to, numberOfResults, allowRepeated } = this.state;
     const results = tossNumberDraw(from, to, numberOfResults, allowRepeated);
     this.setState({
-      results: results,
+      results,
     });
   }
 
   handleFromChange(event) {
     this.setState({
-      from: parseInt(event.target.value),
+      from: parseInt(event.target.value, 10),
     });
   }
 
   handleToChange(event) {
     this.setState({
-      to: parseInt(event.target.value),
+      to: parseInt(event.target.value, 10),
     });
   }
 
   handleNumberOfResultsChange(event) {
     this.setState({
-      numberOfResults: parseInt(event.target.value),
+      numberOfResults: parseInt(event.target.value, 10),
     });
   }
 
@@ -65,7 +65,7 @@ class Number extends React.Component {
   render() {
     return (
       <Grid container justify="center">
-          {/* Add this arrow in the left side of the form to go back (change color and size) */}
+        {/* Add this arrow in the left side of the form to go back (change color and size) */}
         <Grid item sm={8}>
 
           <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
@@ -89,7 +89,7 @@ class Number extends React.Component {
           </Grid>
           <Grid item sm={12}>
             <TextField
-              label={this.props.t('numberResults')}
+              label={this.props.t('number_of_results')}
               placeholder="1"
               margin="normal"
               onChange={this.handleNumberOfResultsChange}
@@ -105,12 +105,12 @@ class Number extends React.Component {
                   onChange={this.handleAllowRepeatedChange}
                 />
               }
-              label="Allow repeated"
+              label={this.props.t('allow_repeated')}
             />
           </FormGroup>
           <Grid item xs={12}>
             <Button raised color="primary" onClick={this.handleToss} >
-              Toss
+              {this.props.t('generate_numbers')}
             </Button>
           </Grid>
         </Grid>
@@ -125,7 +125,7 @@ class Number extends React.Component {
 Number.propTypes = {
   from: PropTypes.number,
   to: PropTypes.number,
-  results: PropTypes.array,
+  results: PropTypes.arrayOf(PropTypes.number),
   numberOfResults: PropTypes.number,
   allowRepeated: PropTypes.bool,
 };

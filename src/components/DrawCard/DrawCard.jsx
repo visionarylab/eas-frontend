@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Paper from 'material-ui/Paper';
@@ -9,7 +9,7 @@ import STYLE from './DrawCard.scss';
 const DrawCard = props => (
   <NavLink to={props.href}>
     <Paper className={STYLE.DrawCard}>
-      <img className={STYLE.DrawCard__icon} src={props.icon} alt={props.children}/>
+      <img className={STYLE.DrawCard__icon} src={props.icon} alt={props.children} />
       <Typography type="subheading">
         {props.children}
       </Typography>
