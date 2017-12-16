@@ -29,3 +29,12 @@
     margin-bottom: $bpk-spacing-sm;
   }
 }
+
+// Needed to have higher specificity over Material UI
+.App__draw .App {
+  &__back_arrow {
+    font-size: 10em;
+    margin-top: .5em;
+    color: green;
+  }
+}

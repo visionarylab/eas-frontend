@@ -7,7 +7,6 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
-import Icon from 'material-ui/Icon';
 
 
 import { tossNumberDraw } from '../../../services/EasAPI';
@@ -67,7 +66,6 @@ class Number extends React.Component {
     return (
       <Grid container justify="center">
           {/* Add this arrow in the left side of the form to go back (change color and size) */}
-          <Icon>keyboard_arrow_left</Icon>
         <Grid item sm={8}>
 
           <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
