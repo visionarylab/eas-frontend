@@ -35,3 +35,11 @@ export const tossNumberDraw = (from, to, numberOfResults, allowRepeated) => {
   return results;
 };
 
+export const tossLetterDraw = (numberOfResults) => {
+  const alphabet = ['a', 'b', 'c'];
+  const results = new Set();
+  while (results.size < numberOfResults) {
+    results.add(alphabet[Math.floor(Math.random() * alphabet.length)]);
+  }
+  return Array.from(results);
+};

@@ -19,6 +19,11 @@ const translations = {
       'You have {{n}} messages',
     ],
   },
+  Letter: {
+    random_letter_default_title: 'Generate random letters',
+    number_of_letters: 'Number of letters',
+    generate_letters: 'Generate letters',
+  },
   TranslationsSwitch: {
     change_language: 'Change language',
   },

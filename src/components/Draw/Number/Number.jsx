@@ -66,8 +66,7 @@ class Number extends React.Component {
     return (
       <Grid container justify="center">
         {/* Add this arrow in the left side of the form to go back (change color and size) */}
-        <Grid item sm={8}>
-
+        <Grid item sm={12}>
           <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
           <Grid item sm={12}>
             <TextField
@@ -114,7 +113,7 @@ class Number extends React.Component {
             </Button>
           </Grid>
         </Grid>
-        <Grid item sm={8}>
+        <Grid item sm={12}>
           {this.state.results}
         </Grid>
       </Grid>

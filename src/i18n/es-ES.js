@@ -19,9 +19,23 @@ const translations = {
       'You have {{n}} messages',
     ],
   },
+  Letter: {
+    random_letter_default_title: 'Generar letras aleatorias',
+    number_of_letters: 'Número de letras',
+    generate_letters: 'Generar letras',
+  },
   TranslationsSwitch: {
     change_language: 'Cambiar idioma',
   },
 };
+
+// Number: {
+//   from: 'Desde',
+//   KEY_WITH_PARAMS: 'Hello {{name}}',
+//   KEY_WITH_PLURAL: [
+//     'You have {{n}} message',
+//     'You have {{n}} messages',
+//   ],
+// },
 
 export default translations;
