@@ -11,6 +11,8 @@ import translations from './i18n/translations';
 import Draw, { urls } from './components/Draw/Draw';
 import Header from './components/Header/Header';
 
+import STYLES from './App.scss';
+
 class App extends Component {
   constructor(props) {
     super(props);
