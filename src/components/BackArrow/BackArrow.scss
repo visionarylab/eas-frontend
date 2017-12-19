@@ -1,0 +1,8 @@
+// Needed to have higher specificity over Material UI
+.BackArrow .BackArrow {
+  &__icon {
+    font-size: 10em;
+    margin-top: .5em;
+    color: green;
+  }
+}
