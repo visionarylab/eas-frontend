@@ -65,7 +65,7 @@ class Number extends React.Component {
 
   render() {
     return (
-      <Grid container>
+      <Grid container className={STYLES.Number}>
         <Grid item sm={12}>
           <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
           <Grid item sm={12}>

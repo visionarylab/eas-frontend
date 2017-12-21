@@ -9,14 +9,12 @@ import BackArrow from '../BackArrow/BackArrow';
 import STYLES from './Draw.scss';
 
 const Draw = () => (
-  <Grid container className={STYLES.Draw}>
-    <Grid item sm={2}>
-      <BackArrow />
-    </Grid>
-    <Grid item sm={8}>
+  <Grid container>
+    <BackArrow />
+    <div className={STYLES.Draw}>
       <Route path="/number" component={props => <Number {...props} />} />
       <Route path="/letter" component={props => <Letter {...props} />} />
-    </Grid>
+    </div>
   </Grid>
 );
 

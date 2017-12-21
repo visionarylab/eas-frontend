@@ -29,12 +29,13 @@ class App extends Component {
 
   render() {
     return (
+      <div className={STYLES.App}>
       <TranslatorProvider translations={this.state.translations}>
         <MuiThemeProvider theme={theme}>
           <BrowserRouter>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <Header />
+                <Header onLanguageChange={l => this.changeLanguage(l)} />
               </Grid>
               <Grid item xs={12}>
                 <Switch>
@@ -48,6 +49,7 @@ class App extends Component {
           </BrowserRouter>
         </MuiThemeProvider>
       </TranslatorProvider>
+      </div>
     );
   }
 }

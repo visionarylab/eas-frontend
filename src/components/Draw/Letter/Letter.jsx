@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, TextField, Button } from 'material-ui';
+import { TextField, Button } from 'material-ui';
+import Typography from 'material-ui/Typography';
 import { translate } from 'react-translate';
 
 import { tossLetterDraw } from '../../../services/EasAPI';
+
+import STYLES from './Letter.scss';
 
 class Letter extends React.Component {
   constructor(props) {
@@ -33,7 +36,8 @@ class Letter extends React.Component {
 
   render() {
     return (
-      <Grid>
+      <div>
+        <Typography type="display1">{this.props.t('random_letter_default_title')}</Typography>
         <TextField
           label={this.props.t('number_of_letters')}
           placeholder="1"
@@ -48,9 +52,9 @@ class Letter extends React.Component {
           </Button>
         </div>
         <div>
-          {this.state.results}
+          <span className={STYLES.Letter__result}>{this.state.results}</span>
         </div>
-      </Grid>
+      </div>
     );
   }
 }

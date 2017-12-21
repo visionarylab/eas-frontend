@@ -7,7 +7,6 @@ import STYLES from './BackArrow.scss';
 const BackArrow = () => (
   <Link to={'/'} className={STYLES.BackArrow}>
     <Icon className={STYLES.BackArrow__icon}>keyboard_arrow_left</Icon>
-    <Icon color="action">add_circle</Icon>
   </Link>
 );
 
