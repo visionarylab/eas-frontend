@@ -30,25 +30,25 @@ class App extends Component {
   render() {
     return (
       <div className={STYLES.App}>
-      <TranslatorProvider translations={this.state.translations}>
-        <MuiThemeProvider theme={theme}>
-          <BrowserRouter>
-            <Grid container spacing={24}>
-              <Grid item xs={12}>
-                <Header onLanguageChange={l => this.changeLanguage(l)} />
+        <TranslatorProvider translations={this.state.translations}>
+          <MuiThemeProvider theme={theme}>
+            <BrowserRouter>
+              <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  <Header onLanguageChange={l => this.changeLanguage(l)} />
+                </Grid>
+                <Grid item xs={12}>
+                  <Switch>
+                    <Route exact path="/" component={props => <Home {...props} />} />
+                    <Route exact path="/about" component={About} />
+                    <Route exact path={urls} component={props => <Draw {...props} />} />
+                    <Route render={() => <div>Not found</div>} />
+                  </Switch>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Switch>
-                  <Route exact path="/" component={props => <Home {...props} />} />
-                  <Route exact path="/about" component={About} />
-                  <Route exact path={urls} component={props => <Draw {...props} />} />
-                  <Route render={() => <div>Not found</div>} />
-                </Switch>
-              </Grid>
-            </Grid>
-          </BrowserRouter>
-        </MuiThemeProvider>
-      </TranslatorProvider>
+            </BrowserRouter>
+          </MuiThemeProvider>
+        </TranslatorProvider>
       </div>
     );
   }

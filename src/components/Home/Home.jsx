@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-translate';
 import Grid from 'material-ui/Grid';
 
@@ -14,5 +15,9 @@ const Home = ({ t }) => (
     </Grid>
   </Grid>
   );
+
+Home.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 export default translate('Home')(Home);

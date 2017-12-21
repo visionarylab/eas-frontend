@@ -24,6 +24,7 @@ const TranslationsSwitch = ({ available, onChange, t }) => (
 TranslationsSwitch.propTypes = {
   available: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default translate('TranslationsSwitch')(TranslationsSwitch);

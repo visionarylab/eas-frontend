@@ -62,6 +62,7 @@ class Letter extends React.Component {
 Letter.propTypes = {
   numberOfLetters: PropTypes.number,
   results: PropTypes.arrayOf(PropTypes.string),
+  t: PropTypes.func.isRequired,
 };
 
 Letter.defaultProps = {

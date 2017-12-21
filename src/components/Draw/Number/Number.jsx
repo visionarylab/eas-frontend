@@ -128,6 +128,7 @@ Number.propTypes = {
   results: PropTypes.arrayOf(PropTypes.number),
   numberOfResults: PropTypes.number,
   allowRepeated: PropTypes.bool,
+  t: PropTypes.func.isRequired,
 };
 
 Number.defaultProps = {
