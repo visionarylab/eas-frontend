@@ -1,10 +1,12 @@
 import React from 'react';
 import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Send from 'material-ui-icons/Send';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -66,56 +68,66 @@ class Number extends React.Component {
   render() {
     return (
       <Grid container className={STYLES.Number}>
-        <Grid item sm={12}>
-          <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
+        <Helmet>
+          <title>{this.props.t('random_number_default_title')}</title>
+        </Helmet>
+        <Grid item xs={8}>
           <Grid item sm={12}>
-            <TextField
-              label={this.props.t('from')}
-              placeholder="1"
-              margin="normal"
-              onChange={this.handleFromChange}
-              value={this.state.from}
-              type="number"
-            />
-            <TextField
-              label={this.props.t('to')}
-              placeholder="9"
-              margin="normal"
-              onChange={this.handleToChange}
-              value={this.state.to}
-              type="number"
-            />
-          </Grid>
-          <Grid item sm={12}>
-            <TextField
-              label={this.props.t('number_of_results')}
-              placeholder="1"
-              margin="normal"
-              onChange={this.handleNumberOfResultsChange}
-              value={this.state.numberOfResults}
-              type="number"
-            />
-          </Grid>
-          <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={this.state.allowRepeated}
-                  onChange={this.handleAllowRepeatedChange}
-                />
-              }
-              label={this.props.t('allow_repeated')}
-            />
-          </FormGroup>
-          <Grid item xs={12}>
-            <Button raised color="primary" onClick={this.handleToss} >
-              {this.props.t('generate_numbers')}
-            </Button>
+            <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
+            <Grid item sm={12}>
+              <TextField
+                label={this.props.t('from')}
+                placeholder="1"
+                margin="normal"
+                onChange={this.handleFromChange}
+                value={this.state.from}
+                type="number"
+              />
+              <TextField
+                label={this.props.t('to')}
+                placeholder="9"
+                margin="normal"
+                onChange={this.handleToChange}
+                value={this.state.to}
+                type="number"
+              />
+            </Grid>
+            <Grid item sm={12}>
+              <TextField
+                label={this.props.t('number_of_results')}
+                placeholder="1"
+                margin="normal"
+                onChange={this.handleNumberOfResultsChange}
+                value={this.state.numberOfResults}
+                type="number"
+              />
+            </Grid>
+            <FormGroup row>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.allowRepeated}
+                    onChange={this.handleAllowRepeatedChange}
+                  />
+                }
+                label={this.props.t('allow_repeated')}
+              />
+            </FormGroup>
+            <Grid item xs={12}>
+              <Button raised color="primary" onClick={this.handleToss} >
+                {this.props.t('generate_numbers')}
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
         <Grid item sm={12}>
           <span className={STYLES.Number__result}>{this.state.results}</span>
-
+        </Grid>
+        <Grid item xs={4}>
+          <Button raised color="primary">
+          Send
+          <Send />
+          </Button>
         </Grid>
       </Grid>
     );
