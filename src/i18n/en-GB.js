@@ -13,6 +13,8 @@ const translations = {
     random_number_default_title: 'Generate random numbers',
     generate_numbers: 'Generate numbers',
     allow_repeated: 'Allow repeated numbers',
+    make_public: 'Make this draw public',
+    random_number_description: 'Generate random numbers for anything you need',
     KEY_WITH_PARAMS: 'Hello {{name}}',
     KEY_WITH_PLURAL: [
       'You have {{n}} message',

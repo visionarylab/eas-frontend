@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      translations: translations('es-ES'),
+      translations: translations('en-GB'),
     };
   }
 

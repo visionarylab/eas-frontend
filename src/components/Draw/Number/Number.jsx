@@ -3,10 +3,11 @@ import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import Send from 'material-ui-icons/Send';
+import Public from 'material-ui-icons/Public';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -119,15 +120,22 @@ class Number extends React.Component {
               </Button>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item sm={12}>
-          <span className={STYLES.Number__result}>{this.state.results}</span>
+          <Grid item sm={12}>
+            <span className={STYLES.Number__result}>{this.state.results}</span>
+          </Grid>
         </Grid>
         <Grid item xs={4}>
-          <Button raised color="primary">
-          Send
-          <Send />
-          </Button>
+          <Grid container spacing={16} direction="row" alignItems="center">
+            <Grid item xs={10}>
+              <Paper>{this.props.t('random_number_description')}</Paper>
+            </Grid>
+            <Grid item xs={10}>
+              <Button raised color="primary">
+                {this.props.t('make_public')}
+                <Public />
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     );
