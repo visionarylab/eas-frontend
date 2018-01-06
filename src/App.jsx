@@ -41,7 +41,7 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={props => <Home {...props} />} />
                     <Route exact path="/about" component={About} />
-                    <Route exact path={urls} component={props => <Draw {...props} />} />
+                    <Route path={urls} component={props => <Draw {...props} />} />
                     <Route render={() => <div>Not found</div>} />
                   </Switch>
                 </Grid>

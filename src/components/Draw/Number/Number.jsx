@@ -72,7 +72,7 @@ class Number extends React.Component {
         <Helmet>
           <title>{this.props.t('random_number_default_title')}</title>
         </Helmet>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Grid item sm={12}>
             <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
             <Grid item sm={12}>
@@ -124,7 +124,7 @@ class Number extends React.Component {
             <span className={STYLES.Number__result}>{this.state.results}</span>
           </Grid>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Grid container spacing={16} direction="row" alignItems="center">
             <Grid item xs={10}>
               <Paper>{this.props.t('random_number_description')}</Paper>

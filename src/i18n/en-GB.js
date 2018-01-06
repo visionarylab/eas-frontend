@@ -21,6 +21,11 @@ const translations = {
       'You have {{n}} messages',
     ],
   },
+  NumberDisplay: {
+    setup_description: '{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.',
+    repeated_results_allowed: 'Numbers can be repeated in the results.',
+    repeated_results_not_allowed: 'Numbers can not be repeated in the results.',
+  },
   Letter: {
     random_letter_default_title: 'Generate random letters',
     number_of_letters: 'Number of letters',

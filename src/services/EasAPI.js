@@ -43,3 +43,12 @@ export const tossLetterDraw = (numberOfResults) => {
   }
   return Array.from(results);
 };
+
+export const getNumberDraw = drawId => (drawId ? {
+  title: 'Generate Random Numbers',
+  from: 0,
+  to: 10,
+  numberOfResults: 1,
+  allowRepeated: false,
+  results: [],
+} : '');
