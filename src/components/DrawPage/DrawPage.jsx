@@ -2,17 +2,17 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Grid } from 'material-ui';
 
-import Number from './Number/Number';
-import NumberDisplay from './Number/NumberDisplay';
-import Letter from './Letter/Letter';
+import Number from '../Draw/Number/Number';
+import NumberDisplay from '../Draw/Number/NumberDisplay';
+import Letter from '../Draw/Letter/Letter';
 import BackArrow from '../BackArrow/BackArrow';
 
-import STYLES from './Draw.scss';
+import STYLES from './DrawPage.scss';
 
-const Draw = () => (
+const DrawPage = () => (
   <Grid container>
     <BackArrow />
-    <div className={STYLES.Draw}>
+    <div className={STYLES.DrawPage}>
       <Route exact path="/number" component={props => <Number {...props} />} />
       <Route exact path="/letter" component={props => <Letter {...props} />} />
       <Route path="/number/:drawId" component={props => <NumberDisplay {...props} />} />
@@ -20,6 +20,6 @@ const Draw = () => (
   </Grid>
 );
 
-export default Draw;
+export default DrawPage;
 
 export const urls = '/(number|letter)?';

@@ -8,7 +8,7 @@ import About from './components/About/About';
 import theme from './EasTheme';
 import translations from './i18n/translations';
 
-import Draw, { urls } from './components/Draw/Draw';
+import DrawPage, { urls } from './components/DrawPage/DrawPage';
 import Header from './components/Header/Header';
 
 import STYLES from './App.scss';
@@ -41,7 +41,7 @@ class App extends Component {
                   <Switch>
                     <Route exact path="/" component={props => <Home {...props} />} />
                     <Route exact path="/about" component={About} />
-                    <Route path={urls} component={props => <Draw {...props} />} />
+                    <Route path={urls} component={props => <DrawPage {...props} />} />
                     <Route render={() => <div>Not found</div>} />
                   </Switch>
                 </Grid>
