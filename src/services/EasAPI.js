@@ -32,7 +32,31 @@ export const tossNumberDraw = (from, to, numberOfResults, allowRepeated) => {
     }
     results = Array.from(results);
   }
-  return results;
+
+  const draw = {
+    id: '0000000001',
+    setup: {
+      from,
+      to,
+      numberOfResults,
+      allowRepeated,
+    },
+    results,
+  };
+  return draw;
+};
+
+export const createPublicNumberDraw = (from, to, numberOfResults, allowRepeated) => {
+  const draw = {
+    id: '0000000001',
+    setup: {
+      from,
+      to,
+      numberOfResults,
+      allowRepeated,
+    },
+  };
+  return draw;
 };
 
 export const tossLetterDraw = (numberOfResults) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
@@ -13,7 +14,7 @@ import Checkbox from 'material-ui/Checkbox';
 
 import STYLES from './Number.scss';
 
-import { tossNumberDraw } from '../../../services/EasAPI';
+import { tossNumberDraw, createPublicNumberDraw } from '../../../services/EasAPI';
 
 class Number extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Number extends React.Component {
     this.handleToChange = this.handleToChange.bind(this);
     this.handleNumberOfResultsChange = this.handleNumberOfResultsChange.bind(this);
     this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
+    this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
 
     this.state = {
       from: props.from,
@@ -36,9 +38,9 @@ class Number extends React.Component {
 
   handleToss() {
     const { from, to, numberOfResults, allowRepeated } = this.state;
-    const results = tossNumberDraw(from, to, numberOfResults, allowRepeated);
+    const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
     this.setState({
-      results,
+      results: draw.results,
     });
   }
 
@@ -64,6 +66,12 @@ class Number extends React.Component {
     this.setState({
       allowRepeated: event.target.checked,
     });
+  }
+
+  handleMakeDrawPublic(event) {
+    const { from, to, numberOfResults, allowRepeated } = this.state;
+    const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
+    // Redirect to the public draw
   }
 
   render() {
@@ -130,9 +138,9 @@ class Number extends React.Component {
               <Paper>{this.props.t('random_number_description')}</Paper>
             </Grid>
             <Grid item xs={10}>
-              <Button raised color="primary">
-                {this.props.t('make_public')}
+              <Button raised color="primary" onClick={this.handleMakeDrawPublic}>
                 <Public />
+                {this.props.t('make_public')}
               </Button>
             </Grid>
           </Grid>
