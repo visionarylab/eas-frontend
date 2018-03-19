@@ -10,7 +10,7 @@ const DrawCard = props => (
   <NavLink to={props.href}>
     <Paper className={STYLE.DrawCard}>
       <img className={STYLE.DrawCard__icon} src={props.icon} alt={props.children} />
-      <Typography type="subheading">
+      <Typography variant="subheading">
         {props.children}
       </Typography>
     </Paper>

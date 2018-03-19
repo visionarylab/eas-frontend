@@ -24,6 +24,8 @@ const translations = {
   NumberPublicDraw: {
     title: 'Título de la tirada',
     title_placeholder: 'Sorteo de Navidad',
+    description: 'Descripción',
+    description_placeholder: 'Descripcioón del sorteo, bases del concurso, etc.',
     from: 'Desde',
     to: 'Hasta',
     number_of_results: 'Número de resultados',

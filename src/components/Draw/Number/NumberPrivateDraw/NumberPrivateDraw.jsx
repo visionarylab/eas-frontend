@@ -82,7 +82,7 @@ class NumberPrivateDraw extends React.Component {
         </Helmet>
         <Grid item xs={6}>
           <Grid item sm={12}>
-            <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
+            <Typography variant="display1">{this.props.t('random_number_default_title')}</Typography>
             <Grid item sm={12}>
               <TextField
                 label={this.props.t('from')}

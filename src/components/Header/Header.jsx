@@ -7,7 +7,7 @@ import available from '../../i18n/available';
 
 const Header = ({ onLanguageChange }) => (
   <div>
-    <Typography type="display3" align="center">
+    <Typography variant="display3" align="center">
       Échalo A Suerte
     </Typography>
     <TranslationsSwitch

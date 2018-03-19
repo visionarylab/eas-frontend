@@ -89,7 +89,7 @@ class NumberPublicDraw extends React.Component {
         </Helmet>
         <Grid item xs={6}>
           <Grid item sm={12}>
-            <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
+            <Typography variant="display1">{this.props.t('random_number_default_title')}</Typography>
             <Grid item sm={12}>
               <TextField
                 label={this.props.t('title')}
@@ -99,6 +99,14 @@ class NumberPublicDraw extends React.Component {
                 value={this.state.title}
                 fullWidth
                 type="text"
+              />
+              <TextField
+                label={this.props.t('description')}
+                multiline
+                fullWidth
+                rows="4"
+                placeholder={this.props.t('description_placeholder')}
+                margin="normal"
               />
             </Grid>
             <Grid item sm={12}>
@@ -169,6 +177,8 @@ class NumberPublicDraw extends React.Component {
 }
 
 NumberPublicDraw.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
   from: PropTypes.number,
   to: PropTypes.number,
   results: PropTypes.arrayOf(PropTypes.number),
@@ -178,6 +188,8 @@ NumberPublicDraw.propTypes = {
 };
 
 NumberPublicDraw.defaultProps = {
+  title: '',
+  description: '',
   from: 1,
   to: 10,
   results: [],

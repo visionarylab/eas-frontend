@@ -24,7 +24,7 @@ class NumberDisplay extends React.Component {
         </Helmet>
         <Grid item xs={6}>
           <Grid item sm={12}>
-            <Typography type="display1">{this.state.title}</Typography>
+            <Typography variant="display1">{this.state.title}</Typography>
             <div>
               {this.props.t('setup_description',
                 { numberOfResults: this.state.numberOfResults,

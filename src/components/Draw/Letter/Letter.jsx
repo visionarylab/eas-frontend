@@ -37,7 +37,7 @@ class Letter extends React.Component {
   render() {
     return (
       <div>
-        <Typography type="display1">{this.props.t('random_letter_default_title')}</Typography>
+        <Typography variant="display1">{this.props.t('random_letter_default_title')}</Typography>
         <TextField
           label={this.props.t('number_of_letters')}
           placeholder="1"
