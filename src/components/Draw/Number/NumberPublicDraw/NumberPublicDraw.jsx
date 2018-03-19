@@ -16,165 +16,101 @@ import STYLES from './NumberPublicDraw.scss';
 
 import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
 
-class NumberPublicDraw extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleToss = this.handleToss.bind(this);
-    this.handleFromChange = this.handleFromChange.bind(this);
-    this.handleToChange = this.handleToChange.bind(this);
-    this.handleNumberOfResultsChange = this.handleNumberOfResultsChange.bind(this);
-    this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
-    this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
-
-    this.state = {
-      title: '',
-      from: props.from,
-      to: props.to,
-      numberOfResults: props.numberOfResults,
-      allowRepeated: props.allowRepeated,
-      results: props.results,
-    };
-  }
-
-  handleToss() {
-    const { from, to, numberOfResults, allowRepeated } = this.state;
-    const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
-    this.setState({
-      results: draw.results,
-    });
-  }
-
-  handleTitleChange(event) {
-    this.setState({
-      title: event.target.value,
-    });
-  }
-
-  handleFromChange(event) {
-    this.setState({
-      from: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleToChange(event) {
-    this.setState({
-      to: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleNumberOfResultsChange(event) {
-    this.setState({
-      numberOfResults: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleAllowRepeatedChange(event) {
-    this.setState({
-      allowRepeated: event.target.checked,
-    });
-  }
-
-  handleMakeDrawPublic(event) {
-    const { from, to, numberOfResults, allowRepeated } = this.state;
-    const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
-    // Redirect to the public draw
-  }
-
-  render() {
-    return (
-      <Grid container className={STYLES.NumberPublicDraw}>
-        <Helmet>
-          <title>{this.props.t('random_number_default_title')}</title>
-        </Helmet>
-        <Grid item xs={6}>
+const NumberPublicDraw = (props) => {
+  return (
+    <Grid container className={STYLES.NumberPublicDraw}>
+      <Helmet>
+        <title>{props.t('random_number_default_title')}</title>
+      </Helmet>
+      <Grid item xs={6}>
+        <Grid item sm={12}>
+          <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
           <Grid item sm={12}>
-            <Typography variant="display1">{this.props.t('random_number_default_title')}</Typography>
-            <Grid item sm={12}>
-              <TextField
-                label={this.props.t('title')}
-                placeholder={this.props.t('title_placeholder')}
-                margin="normal"
-                onChange={this.handleTitleChange}
-                value={this.state.title}
-                fullWidth
-                type="text"
-              />
-              <TextField
-                label={this.props.t('description')}
-                multiline
-                fullWidth
-                rows="4"
-                placeholder={this.props.t('description_placeholder')}
-                margin="normal"
-              />
-            </Grid>
-            <Grid item sm={12}>
-              <TextField
-                label={this.props.t('from')}
-                placeholder="1"
-                margin="normal"
-                onChange={this.handleFromChange}
-                value={this.state.from}
-                type="number"
-              />
-              <TextField
-                label={this.props.t('to')}
-                placeholder="9"
-                margin="normal"
-                onChange={this.handleToChange}
-                value={this.state.to}
-                type="number"
-              />
-            </Grid>
-            <Grid item sm={12}>
-              <TextField
-                label={this.props.t('number_of_results')}
-                placeholder="1"
-                margin="normal"
-                onChange={this.handleNumberOfResultsChange}
-                value={this.state.numberOfResults}
-                type="number"
-              />
-            </Grid>
-            <FormGroup row>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={this.state.allowRepeated}
-                    onChange={this.handleAllowRepeatedChange}
-                  />
-                }
-                label={this.props.t('allow_repeated')}
-              />
-            </FormGroup>
-            <Grid item xs={12}>
-              <Button raised color="primary" onClick={this.handleToss} >
-                {this.props.t('generate_numbers')}
-              </Button>
-            </Grid>
+            <TextField
+              label={props.t('title')}
+              placeholder={props.t('title_placeholder')}
+              margin="normal"
+              onChange={props.handleTitleChange}
+              value={props.title}
+              fullWidth
+              type="text"
+            />
+            <TextField
+              label={props.t('description')}
+              onChange={props.handleDescriptionChange}
+              multiline
+              fullWidth
+              rows="4"
+              placeholder={props.t('description_placeholder')}
+              value={props.description}
+              margin="normal"
+            />
           </Grid>
           <Grid item sm={12}>
-            <span className={STYLES.NumberPublicDraw__result}>{this.state.results}</span>
+            <TextField
+              label={props.t('from')}
+              placeholder="1"
+              margin="normal"
+              onChange={props.handleFromChange}
+              value={props.from}
+              type="number"
+            />
+            <TextField
+              label={props.t('to')}
+              placeholder="9"
+              margin="normal"
+              onChange={props.handleToChange}
+              value={props.to}
+              type="number"
+            />
+          </Grid>
+          <Grid item sm={12}>
+            <TextField
+              label={props.t('number_of_results')}
+              placeholder="1"
+              margin="normal"
+              onChange={props.handleNumberOfResultsChange}
+              value={props.numberOfResults}
+              type="number"
+            />
+          </Grid>
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={props.allowRepeated}
+                  onChange={props.handleAllowRepeatedChange}
+                />
+              }
+              label={props.t('allow_repeated')}
+            />
+          </FormGroup>
+          <Grid item xs={12}>
+            <Button raised color="primary" onClick={props.handleToss} >
+              {props.t('generate_numbers')}
+            </Button>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Grid container spacing={16} direction="row" alignItems="center">
-            <Grid item xs={10}>
-              <Paper>{this.props.t('random_number_description')}</Paper>
-            </Grid>
-            <Grid item xs={10}>
-              <Button raised color="primary" onClick={this.handleMakeDrawPublic}>
-                <Public />
-                {this.props.t('make_public')}
-              </Button>
-            </Grid>
+        <Grid item sm={12}>
+          <span className={STYLES.NumberPublicDraw__result}>{props.results}</span>
+        </Grid>
+      </Grid>
+      <Grid item xs={6}>
+        <Grid container spacing={16} direction="row" alignItems="center">
+          <Grid item xs={10}>
+            <Paper>{props.t('random_number_description')}</Paper>
+          </Grid>
+          <Grid item xs={10}>
+            <Button raised color="primary" onClick={props.handleMakeDrawPublic}>
+              <Public />
+              {props.t('make_public')}
+            </Button>
           </Grid>
         </Grid>
       </Grid>
-    );
-  }
-}
+    </Grid>
+  );
+};
 
 NumberPublicDraw.propTypes = {
   title: PropTypes.string,
@@ -184,6 +120,14 @@ NumberPublicDraw.propTypes = {
   results: PropTypes.arrayOf(PropTypes.number),
   numberOfResults: PropTypes.number,
   allowRepeated: PropTypes.bool,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  handleFromChange: PropTypes.func.isRequired,
+  handleToChange: PropTypes.func.isRequired,
+  handleAllowRepeatedChange: PropTypes.func.isRequired,
+  handleNumberOfResultsChange: PropTypes.func.isRequired,
+  handleMakeDrawPublic: PropTypes.func.isRequired,
+  handleToss: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
