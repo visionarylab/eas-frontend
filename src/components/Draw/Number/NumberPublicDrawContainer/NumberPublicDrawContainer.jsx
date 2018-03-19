@@ -75,6 +75,7 @@ class NumberPublicDrawContainer extends React.Component {
   handleMakeDrawPublic(event) {
     this.setState({
       public: true,
+      results: [],
     });
     // const { from, to, numberOfResults, allowRepeated } = this.state;
     // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
