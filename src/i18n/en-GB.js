@@ -6,7 +6,7 @@ const translations = {
     random_number_title: 'Generate random numbers',
     random_letter_title: 'Generate random letters',
   },
-  Number: {
+  NumberPrivateDraw: {
     from: 'From',
     to: 'To',
     number_of_results: 'Number of results',
@@ -20,6 +20,16 @@ const translations = {
       'You have {{n}} message',
       'You have {{n}} messages',
     ],
+  },
+  NumberPublicDraw: {
+    from: 'From',
+    to: 'To',
+    number_of_results: 'Number of results',
+    random_number_default_title: 'Generate random numbers',
+    generate_numbers: 'Generate numbers',
+    allow_repeated: 'Allow repeated numbers',
+    make_public: 'Make this draw public',
+    random_number_description: 'Generate random numbers for anything you need',
   },
   NumberDisplay: {
     setup_description: '{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.',

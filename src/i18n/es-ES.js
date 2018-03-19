@@ -6,7 +6,7 @@ const translations = {
     random_number_title: 'Generar números aleatorios',
     random_letter_title: 'Generar letras aleatorias',
   },
-  Number: {
+  NumberPrivateDraw: {
     from: 'Desde',
     to: 'Hasta',
     number_of_results: 'Número de resultados',

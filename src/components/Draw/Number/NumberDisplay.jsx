@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
-import STYLES from './Number.scss';
+import STYLES from './NumberPrivateDraw/NumberPrivateDraw.scss';
 
 import { getNumberDraw } from '../../../services/EasAPI';
 

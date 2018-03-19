@@ -12,11 +12,11 @@ import Public from 'material-ui-icons/Public';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-import STYLES from './Number.scss';
+import STYLES from './NumberPrivateDraw.scss';
 
-import { tossNumberDraw, createPublicNumberDraw } from '../../../services/EasAPI';
+import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
 
-class Number extends React.Component {
+class NumberPrivateDraw extends React.Component {
   constructor(props) {
     super(props);
 
@@ -150,7 +150,7 @@ class Number extends React.Component {
   }
 }
 
-Number.propTypes = {
+NumberPrivateDraw.propTypes = {
   from: PropTypes.number,
   to: PropTypes.number,
   results: PropTypes.arrayOf(PropTypes.number),
@@ -159,7 +159,7 @@ Number.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-Number.defaultProps = {
+NumberPrivateDraw.defaultProps = {
   from: 1,
   to: 10,
   results: [],
@@ -167,4 +167,4 @@ Number.defaultProps = {
   allowRepeated: false,
 };
 
-export default translate('Number')(Number);
+export default translate('NumberPrivateDraw')(NumberPrivateDraw);
