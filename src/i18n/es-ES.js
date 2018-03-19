@@ -21,6 +21,18 @@ const translations = {
       'You have {{n}} messages',
     ],
   },
+  NumberPublicDraw: {
+    title: 'Título de la tirada',
+    title_placeholder: 'Sorteo de Navidad',
+    from: 'Desde',
+    to: 'Hasta',
+    number_of_results: 'Número de resultados',
+    random_number_default_title: 'Generar números aleatorios',
+    generate_numbers: 'Generar números',
+    allow_repeated: 'Permitir números repetidos',
+    make_public: 'Haz esta tirada publica',
+    random_number_description: 'Genera números aleatorios al azar',
+  },
   Letter: {
     random_letter_default_title: 'Generar letras aleatorias',
     number_of_letters: 'Número de letras',

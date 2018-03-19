@@ -16,7 +16,7 @@ import STYLES from './NumberPublicDraw.scss';
 
 import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
 
-class Number extends React.Component {
+class NumberPublicDraw extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,6 +28,7 @@ class Number extends React.Component {
     this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
 
     this.state = {
+      title: '',
       from: props.from,
       to: props.to,
       numberOfResults: props.numberOfResults,
@@ -41,6 +42,12 @@ class Number extends React.Component {
     const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
     this.setState({
       results: draw.results,
+    });
+  }
+
+  handleTitleChange(event) {
+    this.setState({
+      title: event.target.value,
     });
   }
 
@@ -76,13 +83,24 @@ class Number extends React.Component {
 
   render() {
     return (
-      <Grid container className={STYLES.Number}>
+      <Grid container className={STYLES.NumberPublicDraw}>
         <Helmet>
           <title>{this.props.t('random_number_default_title')}</title>
         </Helmet>
         <Grid item xs={6}>
           <Grid item sm={12}>
             <Typography type="display1">{this.props.t('random_number_default_title')}</Typography>
+            <Grid item sm={12}>
+              <TextField
+                label={this.props.t('title')}
+                placeholder={this.props.t('title_placeholder')}
+                margin="normal"
+                onChange={this.handleTitleChange}
+                value={this.state.title}
+                fullWidth
+                type="text"
+              />
+            </Grid>
             <Grid item sm={12}>
               <TextField
                 label={this.props.t('from')}
@@ -129,7 +147,7 @@ class Number extends React.Component {
             </Grid>
           </Grid>
           <Grid item sm={12}>
-            <span className={STYLES.Number__result}>{this.state.results}</span>
+            <span className={STYLES.NumberPublicDraw__result}>{this.state.results}</span>
           </Grid>
         </Grid>
         <Grid item xs={6}>
@@ -150,7 +168,7 @@ class Number extends React.Component {
   }
 }
 
-Number.propTypes = {
+NumberPublicDraw.propTypes = {
   from: PropTypes.number,
   to: PropTypes.number,
   results: PropTypes.arrayOf(PropTypes.number),
@@ -159,7 +177,7 @@ Number.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-Number.defaultProps = {
+NumberPublicDraw.defaultProps = {
   from: 1,
   to: 10,
   results: [],
@@ -167,4 +185,4 @@ Number.defaultProps = {
   allowRepeated: false,
 };
 
-export default translate('Number')(Number);
+export default translate('NumberPublicDraw')(NumberPublicDraw);
