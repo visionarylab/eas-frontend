@@ -23,9 +23,7 @@ const translations = {
   },
   NumberPublicDraw: {
     title: 'Título de la tirada',
-    title_placeholder: 'Sorteo de Navidad',
     description: 'Descripción',
-    description_placeholder: 'Descripcioón del sorteo, bases del concurso, etc.',
     from: 'Desde',
     to: 'Hasta',
     number_of_results: 'Número de resultados',
@@ -34,6 +32,12 @@ const translations = {
     allow_repeated: 'Permitir números repetidos',
     make_public: 'Haz esta tirada publica',
     random_number_description: 'Genera números aleatorios al azar',
+  },
+  PublicDetails: {
+    title_placeholder: 'Sorteo de Navidad',
+    description_placeholder: 'Descripcioón del sorteo, bases del concurso, etc.',
+    title_label: 'Título',
+    description_label: 'Descripción',
   },
   Letter: {
     random_letter_default_title: 'Generar letras aleatorias',

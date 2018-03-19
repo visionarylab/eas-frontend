@@ -1,16 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { translate } from 'react-translate';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Public from 'material-ui-icons/Public';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
 
 import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
 import NumberPublicDraw from '../NumberPublicDraw/NumberPublicDraw';
@@ -36,6 +24,7 @@ class NumberPublicDrawContainer extends React.Component {
       numberOfResults: 1,
       allowRepeated: false,
       results: [],
+      public: false,
     };
   }
 
@@ -84,8 +73,11 @@ class NumberPublicDrawContainer extends React.Component {
   }
 
   handleMakeDrawPublic(event) {
-    const { from, to, numberOfResults, allowRepeated } = this.state;
-    const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
+    this.setState({
+      public: true,
+    });
+    // const { from, to, numberOfResults, allowRepeated } = this.state;
+    // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
     // Redirect to the public draw
   }
 
@@ -99,6 +91,7 @@ class NumberPublicDrawContainer extends React.Component {
         results={this.state.results}
         numberOfResults={this.state.numberOfResults}
         allowRepeated={this.state.allowRepeated}
+        public={this.state.public}
         handleTitleChange={this.handleTitleChange}
         handleDescriptionChange={this.handleDescriptionChange}
         handleFromChange={this.handleFromChange}

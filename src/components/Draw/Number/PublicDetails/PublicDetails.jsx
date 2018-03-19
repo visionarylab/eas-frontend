@@ -1,0 +1,44 @@
+import React from 'react';
+import Grid from 'material-ui/Grid';
+import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
+import { translate } from 'react-translate';
+
+const PublicDetails = props => (
+  <Grid item sm={12}>
+    <TextField
+      label={props.t('title_label')}
+      placeholder={props.t('title_placeholder')}
+      margin="normal"
+      onChange={props.handleTitleChange}
+      value={props.title}
+      fullWidth
+      type="text"
+    />
+    <TextField
+      label={props.t('description_label')}
+      onChange={props.handleDescriptionChange}
+      multiline
+      fullWidth
+      rows="4"
+      placeholder={props.t('description_placeholder')}
+      value={props.description}
+      margin="normal"
+    />
+  </Grid>
+);
+
+PublicDetails.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
+PublicDetails.defaultProps = {
+  title: '',
+  description: '',
+};
+
+export default translate('PublicDetails')(PublicDetails);

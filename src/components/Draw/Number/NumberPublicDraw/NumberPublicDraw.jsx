@@ -13,8 +13,7 @@ import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
 import STYLES from './NumberPublicDraw.scss';
-
-import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
+import PublicDetails from '../PublicDetails/PublicDetails';
 
 const NumberPublicDraw = (props) => {
   return (
@@ -25,27 +24,15 @@ const NumberPublicDraw = (props) => {
       <Grid item xs={6}>
         <Grid item sm={12}>
           <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
-          <Grid item sm={12}>
-            <TextField
-              label={props.t('title')}
-              placeholder={props.t('title_placeholder')}
-              margin="normal"
-              onChange={props.handleTitleChange}
-              value={props.title}
-              fullWidth
-              type="text"
-            />
-            <TextField
-              label={props.t('description')}
-              onChange={props.handleDescriptionChange}
-              multiline
-              fullWidth
-              rows="4"
-              placeholder={props.t('description_placeholder')}
-              value={props.description}
-              margin="normal"
-            />
-          </Grid>
+          { props.public ?
+              <PublicDetails 
+                title={props.title}
+                description={props.description}
+                handleTitleChange={props.handleTitleChange}
+                handleDescriptionChange={props.handleDescriptionChange}
+              />
+            : 
+              null }
           <Grid item sm={12}>
             <TextField
               label={props.t('from')}
@@ -120,6 +107,7 @@ NumberPublicDraw.propTypes = {
   results: PropTypes.arrayOf(PropTypes.number),
   numberOfResults: PropTypes.number,
   allowRepeated: PropTypes.bool,
+  public: PropTypes.bool.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleFromChange: PropTypes.func.isRequired,
