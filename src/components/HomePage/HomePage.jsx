@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 
 import Chip from './../DrawCard/DrawCard';
 
-const Home = ({ t }) => (
+const HomePage = ({ t }) => (
   <Grid container justify="center">
     <Helmet>
       <title>Échalo A Suerte</title>
@@ -30,8 +30,8 @@ const Home = ({ t }) => (
   </Grid>
 );
 
-Home.propTypes = {
+HomePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('Home')(Home);
+export default translate('HomePage')(HomePage);

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
-import NumberPublicDraw from '../NumberPublicDraw/NumberPublicDraw';
+import NumberDraw from '../NumberDraw/NumberDraw';
 
-class NumberPublicDrawContainer extends React.Component {
+class NumberDrawContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -84,7 +84,7 @@ class NumberPublicDrawContainer extends React.Component {
 
   render() {
     return (
-      <NumberPublicDraw
+      <NumberDraw
         title={this.state.title}
         description={this.state.description}
         from={this.state.from}
@@ -106,4 +106,4 @@ class NumberPublicDrawContainer extends React.Component {
   }
 }
 
-export default NumberPublicDrawContainer;
+export default NumberDrawContainer;

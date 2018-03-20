@@ -10,11 +10,11 @@ import Button from 'material-ui/Button';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-import STYLES from './NumberPublicDraw.scss';
-import PublicDetails from '../PublicDetails/PublicDetails';
-import MakeDrawPublicButton from '../MakeDrawPublicButton/MakeDrawPublicButton';
+import STYLES from './NumberDraw.scss';
+import PublicDetails from '../../../PublicDetails/PublicDetails';
+import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
 
-const NumberPublicDraw = props => (
+const NumberDraw = props => (
   <Grid container className={STYLES.NumberPublicDraw}>
     <Helmet>
       <title>{props.t('random_number_default_title')}</title>
@@ -89,7 +89,7 @@ const NumberPublicDraw = props => (
   </Grid>
 );
 
-NumberPublicDraw.propTypes = {
+NumberDraw.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   from: PropTypes.number,
@@ -109,7 +109,7 @@ NumberPublicDraw.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-NumberPublicDraw.defaultProps = {
+NumberDraw.defaultProps = {
   title: '',
   description: '',
   from: 1,
@@ -119,4 +119,4 @@ NumberPublicDraw.defaultProps = {
   allowRepeated: false,
 };
 
-export default translate('NumberPublicDraw')(NumberPublicDraw);
+export default translate('NumberDraw')(NumberDraw);

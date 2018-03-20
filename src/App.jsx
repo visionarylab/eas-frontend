@@ -3,7 +3,7 @@ import { TranslatorProvider } from 'react-translate';
 import Grid from 'material-ui/Grid';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from './components/Home/Home';
+import HomePage from './components/HomePage/HomePage';
 import About from './components/About/About';
 import theme from './EasTheme';
 import translations from './i18n/translations';
@@ -39,7 +39,7 @@ class App extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <Switch>
-                    <Route exact path="/" component={props => <Home {...props} />} />
+                    <Route exact path="/" component={props => <HomePage {...props} />} />
                     <Route exact path="/about" component={About} />
                     <Route path={urls} component={props => <DrawPage {...props} />} />
                     <Route render={() => <div>Not found</div>} />
