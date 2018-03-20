@@ -5,9 +5,9 @@
   so please refer to [it's documentation](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
   for more usage information.
 
-# [_Put your project name here_]
+# EchaloASuerte
 
-[_Add a brief description of your project here._]
+Echalo A Suerte in React
 
 ## npm script commands
 
@@ -22,27 +22,6 @@ npm scripts:
   and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
   Your app is ready to be deployed!
 - `npm run lint`: Lints all javascript using [`eslint-config-skyscanner`](https://www.npmjs.com/package/eslint-config-skyscanner).
-
-## Excluding React / ReactDOM from the output bundle
-
-Sometimes you need to exclude React (or any module) from your app's bundle for performance / code sharing reasons
-(i.e. if it's on the page already). To do this, add the following to your `package.json`:
-
-```json
-{
-  ...
-  "backpack-react-scripts": {
-    "externals": {
-      "react": "React",
-      "react-dom": "ReactDOM"
-    }
-  }
-}
-```
-
-Now when you run `npm run build`, every `'react'` / `'react-dom'` import is replaced with `window.React` / `window.ReactDOM`.
-You'll also notice that the output bundle size is dramatically smaller. *Note:* You are responsible for ensuring that React is
-loaded before your app is!
 
 ## Server Side Rendering (SSR)
 
@@ -127,67 +106,3 @@ reasons (i.e. if it's beign required elsewhere and is already in memory) you can
   }
 }
 ```
-
-## Compiling `node_modules` dependencies
-
-By default, modules imported from your app's `node_modules` directory will not get compiled by Babel. This is mostly for webpack
-performance reasons but also because 3rd party dependencies published to npm typically only expose precompiled ES5 code.
-Publishing non ES5 code is not advised as there is no reliable way for the consumer to know what ES2015 features you are using.
-That being said there are some exceptions, particularly when you want to share React components that import CSS stylesheets.
-For this purpose you can add the following to your `package.json`:
-
-```json
-{
-  ...
-  "backpack-react-scripts": {
-    "babelIncludePrefixes": [
-      "my-module-prefix-",
-      "some-module"
-    ]
-  }
-}
-```
-
-The above example assumes that the module you want to compile is named with the prefix `my-module-prefix-` and a module
-with the name `some-module`. All entries in this array act as prefixes. It is used by all webpack configurations
-as well as the Jest configuration — if you want to avoid compiling a dependency in tests, you should mock it.
-
-## CSS Modules
-
-All Sass files are by default treated as [CSS Modules](https://github.com/css-modules/css-modules). You can opt out of this behaviour using the following config option:
-
-```
-"backpack-react-scripts": {
-  "cssModules": false
-}
-```
-
-If you decide to opt out, Sass files will not be treated as CSS Modules by default. However, you can opt-in on a per-file basis using the naming convention: `*.module.scss`.
-
-For example, with `cssModules` set to `false`:
-- The file `App.scss` will not be treated as CSS Module
-- The file `App.module.scss` _will_ be treated as CSS Module
-
-This allows you to upgrade your project file by file to CSS Modules.
-
-> Backpack components will _always_ be treated as CSS Modules, even if you opt out
-
-## Upgrading `backpack-react-scripts`
-
-The [Backpack team](mailto:backpack@skyscanner.net) provide ongoing maintenance and bugfixes to `backpack-react-scripts`. Please refer to
-[it's changelog](https://github.com/Skyscanner/backpack-react-scripts/tree/master/packages/react-scripts/CHANGELOG.md) for upgrade guides.
-
-## Adding your own custom build configuration
-
-If you're finding the need to customise the configuration of `backpack-react-scripts`, then please get in touch with
-the [Backpack team](mailto:backpack@skyscanner.net) - we are open to contributions.
-
-If this is unsuitable, then you can always run `npm run eject` which copies all the configuration files and the transitive
-dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. Commands like
-`npm start` and `npm run build` will still work, but they will point to the copied scripts so you can tweak them. At this
-point, you’re on your own.
-
-**Note: this is a one-way operation - once you eject, you can’t go back!**
-
-Please don't do this if you don't have to - the curated feature set is there to promote standardisation across Skyscanner's
-front-end stack.
