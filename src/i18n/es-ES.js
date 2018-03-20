@@ -10,6 +10,8 @@ const translations = {
     random_number_default_title: 'Generar números aleatorios',
     random_number_description: 'Genera números aleatorios al azar',
     generate_numbers: 'Generar números',
+    publish_draw: 'Generar resultados ahora',
+    schedule_draw: 'Programar la tirada',
   },
   NumberDrawForm: {
     from: 'Desde',

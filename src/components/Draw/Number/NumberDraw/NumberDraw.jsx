@@ -10,6 +10,7 @@ import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicBu
 import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
 import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
 import GenerateResultsButton from '../../../GenerateResultsButton/GenerateResultsButton';
+import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 
 const NumberDraw = props => (
   <Grid container>
@@ -38,10 +39,17 @@ const NumberDraw = props => (
           handleNumberOfResultsChange={props.handleNumberOfResultsChange}
         />
         <Grid item xs={12}>
-          <GenerateResultsButton
-            label={props.t('generate_numbers')}
-            handleToss={props.handleToss}
-          />
+          {props.public ? (
+            <PublishDrawOptions
+              label_publish={props.t('publish_draw')}
+              handlePublish={props.handlePublish}
+            />
+          ) : (
+            <GenerateResultsButton
+              label={props.t('generate_numbers')}
+              handleToss={props.handleToss}
+            />
+          )}
         </Grid>
       </Grid>
       <Grid item sm={12}>
@@ -78,6 +86,7 @@ NumberDraw.propTypes = {
   handleNumberOfResultsChange: PropTypes.func.isRequired,
   handleMakeDrawPublic: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
+  handlePublish: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

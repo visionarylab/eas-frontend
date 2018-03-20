@@ -15,6 +15,7 @@ class NumberDrawContainer extends React.Component {
     this.handleNumberOfResultsChange = this.handleNumberOfResultsChange.bind(this);
     this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
     this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
+    this.handlePublish = this.handlePublish.bind(this);
 
     this.state = {
       title: '',
@@ -34,6 +35,13 @@ class NumberDrawContainer extends React.Component {
     this.setState({
       results: draw.results,
     });
+  }
+
+  handlePublish() {
+    // Publish the draw
+    // const { from, to, numberOfResults, allowRepeated } = this.state;
+    // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
+    // Redirect to the public draw
   }
 
   handleTitleChange(event) {
@@ -77,9 +85,6 @@ class NumberDrawContainer extends React.Component {
       public: true,
       results: [],
     });
-    // const { from, to, numberOfResults, allowRepeated } = this.state;
-    // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
-    // Redirect to the public draw
   }
 
   render() {
@@ -101,6 +106,7 @@ class NumberDrawContainer extends React.Component {
         handleNumberOfResultsChange={this.handleNumberOfResultsChange}
         handleMakeDrawPublic={this.handleMakeDrawPublic}
         handleToss={this.handleToss}
+        handlePublish={this.handlePublish}
       />
     );
   }
