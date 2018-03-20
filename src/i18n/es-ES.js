@@ -7,21 +7,21 @@ const translations = {
     random_letter_title: 'Generar letras aleatorias',
   },
   NumberDraw: {
-    title: 'Título de la tirada',
-    description: 'Descripción',
+    random_number_default_title: 'Generar números aleatorios',
+    random_number_description: 'Genera números aleatorios al azar',
+    generate_numbers: 'Generar números',
+  },
+  NumberDrawForm: {
     from: 'Desde',
     to: 'Hasta',
     number_of_results: 'Número de resultados',
-    random_number_default_title: 'Generar números aleatorios',
-    generate_numbers: 'Generar números',
     allow_repeated: 'Permitir números repetidos',
-    random_number_description: 'Genera números aleatorios al azar',
   },
   PublicDetails: {
-    title_placeholder: 'Sorteo de Navidad',
-    description_placeholder: 'Descripcioón del sorteo, bases del concurso, etc.',
     title_label: 'Título',
+    title_placeholder: 'Sorteo de Navidad',
     description_label: 'Descripción',
+    description_placeholder: 'Descripción del sorteo, bases del concurso, etc.',
   },
   MakeDrawPublicButton: {
     make_public: 'Haz esta tirada publica',

@@ -7,15 +7,14 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
 
 import STYLES from './NumberDraw.scss';
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
+import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
 
 const NumberDraw = props => (
-  <Grid container className={STYLES.NumberPublicDraw}>
+  <Grid container className={STYLES.NumberDraw}>
     <Helmet>
       <title>{props.t('random_number_default_title')}</title>
     </Helmet>
@@ -30,42 +29,16 @@ const NumberDraw = props => (
             handleDescriptionChange={props.handleDescriptionChange}
           />
         ) : null}
-        <Grid item sm={12}>
-          <TextField
-            label={props.t('from')}
-            placeholder="1"
-            margin="normal"
-            onChange={props.handleFromChange}
-            value={props.from}
-            type="number"
-          />
-          <TextField
-            label={props.t('to')}
-            placeholder="9"
-            margin="normal"
-            onChange={props.handleToChange}
-            value={props.to}
-            type="number"
-          />
-        </Grid>
-        <Grid item sm={12}>
-          <TextField
-            label={props.t('number_of_results')}
-            placeholder="1"
-            margin="normal"
-            onChange={props.handleNumberOfResultsChange}
-            value={props.numberOfResults}
-            type="number"
-          />
-        </Grid>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox checked={props.allowRepeated} onChange={props.handleAllowRepeatedChange} />
-            }
-            label={props.t('allow_repeated')}
-          />
-        </FormGroup>
+        <NumberDrawForm
+          from={props.from}
+          to={props.to}
+          numberOfResults={props.numberOfResults}
+          allowRepeated={props.allowRepeated}
+          handleFromChange={props.handleFromChange}
+          handleToChange={props.handleToChange}
+          handleAllowRepeatedChange={props.handleAllowRepeatedChange}
+          handleNumberOfResultsChange={props.handleNumberOfResultsChange}
+        />
         <Grid item xs={12}>
           <Button raised color="primary" onClick={props.handleToss}>
             {props.t('generate_numbers')}
@@ -73,7 +46,7 @@ const NumberDraw = props => (
         </Grid>
       </Grid>
       <Grid item sm={12}>
-        <span className={STYLES.NumberPublicDraw__result}>{props.results}</span>
+        <span className={STYLES.NumberDraw__result}>{props.results}</span>
       </Grid>
     </Grid>
     <Grid item xs={6}>
