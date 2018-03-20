@@ -36,7 +36,7 @@ class NumberDisplay extends React.Component {
             </div>
           </Grid>
           <Grid item sm={12}>
-          <NumberDrawResults results={this.props.results} />
+            <NumberDrawResults results={this.props.results} />
           </Grid>
         </Grid>
         <Grid item xs={6}>

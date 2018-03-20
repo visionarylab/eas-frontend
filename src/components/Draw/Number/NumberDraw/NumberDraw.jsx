@@ -5,11 +5,11 @@ import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
 import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
 import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
+import GenerateResultsButton from '../../../GenerateResultsButton/GenerateResultsButton';
 
 const NumberDraw = props => (
   <Grid container>
@@ -38,9 +38,10 @@ const NumberDraw = props => (
           handleNumberOfResultsChange={props.handleNumberOfResultsChange}
         />
         <Grid item xs={12}>
-          <Button raised color="primary" onClick={props.handleToss}>
-            {props.t('generate_numbers')}
-          </Button>
+          <GenerateResultsButton
+            label={props.t('generate_numbers')}
+            handleToss={props.handleToss}
+          />
         </Grid>
       </Grid>
       <Grid item sm={12}>
