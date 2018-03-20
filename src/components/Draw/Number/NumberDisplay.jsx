@@ -5,9 +5,8 @@ import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
-import STYLES from './NumberDraw/NumberDraw.scss';
-
 import { getNumberDraw } from '../../../services/EasAPI';
+import NumberDrawResults from './NumberDrawResults/NumberDrawResults';
 
 class NumberDisplay extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class NumberDisplay extends React.Component {
 
   render() {
     return (
-      <Grid container className={STYLES.Number}>
+      <Grid container>
         <Helmet>
           <title>{this.state.title}</title>
         </Helmet>
@@ -37,7 +36,7 @@ class NumberDisplay extends React.Component {
             </div>
           </Grid>
           <Grid item sm={12}>
-            <span className={STYLES.Number__result}>{this.state.results}</span>
+          <NumberDrawResults results={this.props.results} />
           </Grid>
         </Grid>
         <Grid item xs={6}>
@@ -54,6 +53,7 @@ class NumberDisplay extends React.Component {
 
 NumberDisplay.propTypes = {
   t: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.number),
   match: PropTypes.shape({
     params: PropTypes.shape({
       drawId: PropTypes.string,

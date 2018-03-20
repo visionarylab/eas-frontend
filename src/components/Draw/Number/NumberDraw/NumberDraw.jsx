@@ -4,17 +4,15 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-
-import STYLES from './NumberDraw.scss';
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
 import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
+import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
 
 const NumberDraw = props => (
-  <Grid container className={STYLES.NumberDraw}>
+  <Grid container>
     <Helmet>
       <title>{props.t('random_number_default_title')}</title>
     </Helmet>
@@ -46,7 +44,7 @@ const NumberDraw = props => (
         </Grid>
       </Grid>
       <Grid item sm={12}>
-        <span className={STYLES.NumberDraw__result}>{props.results}</span>
+        <NumberDrawResults results={props.results} />
       </Grid>
     </Grid>
     <Grid item xs={6}>
