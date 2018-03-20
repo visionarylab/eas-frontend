@@ -16,10 +16,7 @@ const translations = {
     make_public: 'Haz esta tirada publica',
     random_number_description: 'Genera números aleatorios al azar',
     KEY_WITH_PARAMS: 'Hello {{name}}',
-    KEY_WITH_PLURAL: [
-      'You have {{n}} message',
-      'You have {{n}} messages',
-    ],
+    KEY_WITH_PLURAL: ['You have {{n}} message', 'You have {{n}} messages'],
   },
   NumberPublicDraw: {
     title: 'Título de la tirada',
@@ -30,7 +27,6 @@ const translations = {
     random_number_default_title: 'Generar números aleatorios',
     generate_numbers: 'Generar números',
     allow_repeated: 'Permitir números repetidos',
-    make_public: 'Haz esta tirada publica',
     random_number_description: 'Genera números aleatorios al azar',
   },
   PublicDetails: {
@@ -38,6 +34,9 @@ const translations = {
     description_placeholder: 'Descripcioón del sorteo, bases del concurso, etc.',
     title_label: 'Título',
     description_label: 'Descripción',
+  },
+  MakeDrawPublicButton: {
+    make_public: 'Haz esta tirada publica',
   },
   Letter: {
     random_letter_default_title: 'Generar letras aleatorias',

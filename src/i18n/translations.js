@@ -1,8 +1,7 @@
 import engbStrings from './en-GB';
 import esesStrings from './es-ES';
 
-
-const translations = (locale) => {
+const translations = locale => {
   switch (locale) {
     case 'en-GB':
       return engbStrings;
@@ -14,4 +13,3 @@ const translations = (locale) => {
 };
 
 export default translations;
-

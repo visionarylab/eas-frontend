@@ -15,7 +15,8 @@ export const createDraw = () => {
     method: 'POST',
     body: JSON.stringify(body),
     mode: 'no-cors',
-  }).then(response => console.log(response))
+  })
+    .then(response => console.log(response))
     .catch(err => console.log(err));
 };
 
@@ -23,12 +24,12 @@ export const tossNumberDraw = (from, to, numberOfResults, allowRepeated) => {
   let results = [];
   if (allowRepeated) {
     while (results.size < numberOfResults) {
-      results.push(Math.floor(Math.random() * ((to - from) + 1)) + from);
+      results.push(Math.floor(Math.random() * (to - from + 1)) + from);
     }
   } else {
     results = new Set();
     while (results.size < numberOfResults) {
-      results.add(Math.floor(Math.random() * ((to - from) + 1)) + from);
+      results.add(Math.floor(Math.random() * (to - from + 1)) + from);
     }
     results = Array.from(results);
   }
@@ -59,7 +60,7 @@ export const createPublicNumberDraw = (from, to, numberOfResults, allowRepeated)
   return draw;
 };
 
-export const tossLetterDraw = (numberOfResults) => {
+export const tossLetterDraw = numberOfResults => {
   const alphabet = ['a', 'b', 'c'];
   const results = new Set();
   while (results.size < numberOfResults) {
@@ -68,11 +69,14 @@ export const tossLetterDraw = (numberOfResults) => {
   return Array.from(results);
 };
 
-export const getNumberDraw = drawId => (drawId ? {
-  title: 'Generate Random Numbers',
-  from: 0,
-  to: 10,
-  numberOfResults: 1,
-  allowRepeated: false,
-  results: [],
-} : '');
+export const getNumberDraw = drawId =>
+  drawId
+    ? {
+        title: 'Generate Random Numbers',
+        from: 0,
+        to: 10,
+        numberOfResults: 1,
+        allowRepeated: false,
+        results: [],
+      }
+    : '';

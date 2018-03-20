@@ -2,21 +2,14 @@ import React from 'react';
 import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
 
-
 const createOnChangeHandler = (available, onChange) => ({ currentTarget }) =>
   onChange(available[currentTarget.selectedIndex]);
 
 const TranslationsSwitch = ({ available, onChange, t }) => (
   <div>
-    <span>
-      {t('change_language')}
-    </span>
+    <span>{t('change_language')}</span>
     <select onChange={createOnChangeHandler(available, onChange)}>
-      {available.map(item =>
-        <option key={item}>
-          {item}
-        </option>,
-      )}
+      {available.map(item => <option key={item}>{item}</option>)}
     </select>
   </div>
 );

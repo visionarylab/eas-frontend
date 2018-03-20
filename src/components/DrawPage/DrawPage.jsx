@@ -15,7 +15,11 @@ const DrawPage = () => (
     <BackArrow />
     <div className={STYLES.DrawPage}>
       <Route exact path="/number" component={props => <NumberPrivateDraw {...props} />} />
-      <Route exact path="/public/number" component={props => <NumberPublicDrawContainer {...props} />} />
+      <Route
+        exact
+        path="/public/number"
+        component={props => <NumberPublicDrawContainer {...props} />}
+      />
       <Route exact path="/letter" component={props => <Letter {...props} />} />
       <Route path="/number/:drawId" component={props => <NumberDisplay {...props} />} />
     </div>

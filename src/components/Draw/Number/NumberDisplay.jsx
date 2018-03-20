@@ -26,15 +26,14 @@ class NumberDisplay extends React.Component {
           <Grid item sm={12}>
             <Typography variant="display1">{this.state.title}</Typography>
             <div>
-              {this.props.t('setup_description',
-                { numberOfResults: this.state.numberOfResults,
-                  from: this.state.from,
-                  to: this.state.to,
-                })
-              }
-              {this.state.allowRepeated ?
-              this.props.t('repeated_results_allowed') :
-              this.props.t('repeated_results_not_allowed')}
+              {this.props.t('setup_description', {
+                numberOfResults: this.state.numberOfResults,
+                from: this.state.from,
+                to: this.state.to,
+              })}
+              {this.state.allowRepeated
+                ? this.props.t('repeated_results_allowed')
+                : this.props.t('repeated_results_not_allowed')}
             </div>
           </Grid>
           <Grid item sm={12}>

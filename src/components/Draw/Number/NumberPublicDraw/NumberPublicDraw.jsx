@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { translate } from 'react-translate';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
@@ -8,12 +7,12 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import Public from 'material-ui-icons/Public';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
 import STYLES from './NumberPublicDraw.scss';
 import PublicDetails from '../PublicDetails/PublicDetails';
+import MakeDrawPublicButton from '../MakeDrawPublicButton/MakeDrawPublicButton';
 
 const NumberPublicDraw = props => (
   <Grid container className={STYLES.NumberPublicDraw}>
@@ -23,15 +22,14 @@ const NumberPublicDraw = props => (
     <Grid item xs={6}>
       <Grid item sm={12}>
         <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
-        { props.public ?
+        {props.public ? (
           <PublicDetails
             title={props.title}
             description={props.description}
             handleTitleChange={props.handleTitleChange}
             handleDescriptionChange={props.handleDescriptionChange}
           />
-            :
-              null }
+        ) : null}
         <Grid item sm={12}>
           <TextField
             label={props.t('from')}
@@ -63,16 +61,13 @@ const NumberPublicDraw = props => (
         <FormGroup row>
           <FormControlLabel
             control={
-              <Checkbox
-                checked={props.allowRepeated}
-                onChange={props.handleAllowRepeatedChange}
-              />
-              }
+              <Checkbox checked={props.allowRepeated} onChange={props.handleAllowRepeatedChange} />
+            }
             label={props.t('allow_repeated')}
           />
         </FormGroup>
         <Grid item xs={12}>
-          <Button raised color="primary" onClick={props.handleToss} >
+          <Button raised color="primary" onClick={props.handleToss}>
             {props.t('generate_numbers')}
           </Button>
         </Grid>
@@ -87,15 +82,12 @@ const NumberPublicDraw = props => (
           <Paper>{props.t('random_number_description')}</Paper>
         </Grid>
         <Grid item xs={10}>
-          <Button raised color="primary" onClick={props.handleMakeDrawPublic}>
-            <Public />
-            {props.t('make_public')}
-          </Button>
+          <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />
         </Grid>
       </Grid>
     </Grid>
   </Grid>
-  );
+);
 
 NumberPublicDraw.propTypes = {
   title: PropTypes.string,

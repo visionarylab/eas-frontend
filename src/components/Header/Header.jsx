@@ -10,10 +10,7 @@ const Header = ({ onLanguageChange }) => (
     <Typography variant="display3" align="center">
       Échalo A Suerte
     </Typography>
-    <TranslationsSwitch
-      onChange={l => onLanguageChange(l)}
-      available={Object.keys(available)}
-    />
+    <TranslationsSwitch onChange={l => onLanguageChange(l)} available={Object.keys(available)} />
   </div>
 );
 

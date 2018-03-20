@@ -82,7 +82,9 @@ class NumberPrivateDraw extends React.Component {
         </Helmet>
         <Grid item xs={6}>
           <Grid item sm={12}>
-            <Typography variant="display1">{this.props.t('random_number_default_title')}</Typography>
+            <Typography variant="display1">
+              {this.props.t('random_number_default_title')}
+            </Typography>
             <Grid item sm={12}>
               <TextField
                 label={this.props.t('from')}
@@ -123,7 +125,7 @@ class NumberPrivateDraw extends React.Component {
               />
             </FormGroup>
             <Grid item xs={12}>
-              <Button raised color="primary" onClick={this.handleToss} >
+              <Button raised color="primary" onClick={this.handleToss}>
                 {this.props.t('generate_numbers')}
               </Button>
             </Grid>

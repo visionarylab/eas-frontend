@@ -68,7 +68,6 @@ AddPublicDrawDetails.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-AddPublicDrawDetails.defaultProps = {
-};
+AddPublicDrawDetails.defaultProps = {};
 
 export default translate('AddPublicDrawDetails')(AddPublicDrawDetails);

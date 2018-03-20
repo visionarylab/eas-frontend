@@ -12,13 +12,23 @@ const Home = ({ t }) => (
       <title>Échalo A Suerte</title>
     </Helmet>
     <Grid item sm={4}>
-      <Chip icon="https://echaloasuerte.com/static/img/draw_icons/raffle.ecc02d7cd162.png" href="/number">{t('random_number_title')}</Chip>
+      <Chip
+        icon="https://echaloasuerte.com/static/img/draw_icons/raffle.ecc02d7cd162.png"
+        href="/number"
+      >
+        {t('random_number_title')}
+      </Chip>
     </Grid>
     <Grid item sm={4}>
-      <Chip icon="https://echaloasuerte.com/static/img/draw_icons/random_letter.07b9689f39d4.png" href="/letter">{t('random_letter_title')}</Chip>
+      <Chip
+        icon="https://echaloasuerte.com/static/img/draw_icons/random_letter.07b9689f39d4.png"
+        href="/letter"
+      >
+        {t('random_letter_title')}
+      </Chip>
     </Grid>
   </Grid>
-  );
+);
 
 Home.propTypes = {
   t: PropTypes.func.isRequired,

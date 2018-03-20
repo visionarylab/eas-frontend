@@ -16,10 +16,7 @@ const translations = {
     make_public: 'Make this draw public',
     random_number_description: 'Generate random numbers for anything you need',
     KEY_WITH_PARAMS: 'Hello {{name}}',
-    KEY_WITH_PLURAL: [
-      'You have {{n}} message',
-      'You have {{n}} messages',
-    ],
+    KEY_WITH_PLURAL: ['You have {{n}} message', 'You have {{n}} messages'],
   },
   NumberPublicDraw: {
     from: 'From',
@@ -32,7 +29,8 @@ const translations = {
     random_number_description: 'Generate random numbers for anything you need',
   },
   NumberDisplay: {
-    setup_description: '{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.',
+    setup_description:
+      '{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.',
     repeated_results_allowed: 'Numbers can be repeated in the results.',
     repeated_results_not_allowed: 'Numbers can not be repeated in the results.',
   },

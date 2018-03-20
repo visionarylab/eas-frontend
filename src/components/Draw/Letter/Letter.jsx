@@ -47,7 +47,7 @@ class Letter extends React.Component {
           type="number"
         />
         <div>
-          <Button raised color="primary" onClick={this.handleToss} >
+          <Button raised color="primary" onClick={this.handleToss}>
             {this.props.t('generate_letters')}
           </Button>
         </div>
