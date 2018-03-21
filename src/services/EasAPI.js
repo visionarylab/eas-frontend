@@ -72,11 +72,11 @@ export const tossLetterDraw = numberOfResults => {
 export const getNumberDraw = drawId =>
   drawId
     ? {
-        title: 'Generate Random Numbers',
+        title: 'Sorteo de Navidad',
         from: 0,
         to: 10,
         numberOfResults: 1,
         allowRepeated: false,
-        results: [],
+        results: [2, 6],
       }
     : '';

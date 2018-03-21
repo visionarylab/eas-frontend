@@ -7,6 +7,8 @@ import Typography from 'material-ui/Typography';
 
 import { getNumberDraw } from '../../../services/EasAPI';
 import NumberDrawResults from './NumberDrawResults/NumberDrawResults';
+import Results from '../../Results/Results';
+import PublicNumberDrawDetails from '../../Draw/Number/PublicNumberDrawDetails/PublicNumberDrawDetails';
 
 class NumberDisplay extends React.Component {
   constructor(props) {
@@ -24,16 +26,13 @@ class NumberDisplay extends React.Component {
         <Grid item xs={6}>
           <Grid item sm={12}>
             <Typography variant="display1">{this.state.title}</Typography>
-            <div>
-              {this.props.t('setup_description', {
-                numberOfResults: this.state.numberOfResults,
-                from: this.state.from,
-                to: this.state.to,
-              })}
-              {this.state.allowRepeated
-                ? this.props.t('repeated_results_allowed')
-                : this.props.t('repeated_results_not_allowed')}
-            </div>
+            <Results results={this.state.results} />
+            <PublicNumberDrawDetails
+              from={this.state.from}
+              to={this.state.to}
+              numberOfResults={this.state.numberOfResults}
+              allowRepeated={this.state.allowRepeated}
+            />
           </Grid>
           <Grid item sm={12}>
             <NumberDrawResults results={this.props.results} />

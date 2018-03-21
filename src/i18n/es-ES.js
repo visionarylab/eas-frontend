@@ -19,6 +19,12 @@ const translations = {
     number_of_results: 'Número de resultados',
     allow_repeated: 'Permitir números repetidos',
   },
+  PublicNumberDrawDetails: {
+    setup_description:
+      '{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.',
+    repeated_results_allowed: 'Numbers can be repeated in the results.',
+    repeated_results_not_allowed: 'Numbers can not be repeated in the results.',
+  },
   PublicDetails: {
     title_label: 'Título',
     title_placeholder: 'Sorteo de Navidad',
