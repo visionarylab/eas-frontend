@@ -47,6 +47,34 @@ export const tossNumberDraw = (from, to, numberOfResults, allowRepeated) => {
   return draw;
 };
 
+export const tossRaffleDraw = (from, to, numberOfResults, allowRepeated) => {
+  let results = [];
+  if (allowRepeated) {
+    while (results.size < numberOfResults) {
+      results.push(Math.floor(Math.random() * (to - from + 1)) + from);
+    }
+  } else {
+    results = new Set();
+    while (results.size < numberOfResults) {
+      results.add(Math.floor(Math.random() * (to - from + 1)) + from);
+    }
+    results = Array.from(results);
+  }
+
+  const draw = {
+    id: '0000000001',
+    setup: {
+      from,
+      to,
+      numberOfResults,
+      allowRepeated,
+    },
+    results,
+  };
+  return draw;
+};
+
+
 export const createPublicNumberDraw = (from, to, numberOfResults, allowRepeated) => {
   const draw = {
     id: '0000000001',

@@ -34,10 +34,28 @@ const translations = {
   MakeDrawPublicButton: {
     make_public: 'Haz esta tirada publica',
   },
+  PublishDrawOptions: {
+    when_show_winners: 'Cuándo quieres mostrar los resultados?',
+    show_now: 'Mostrar ahora',
+    choose_date: 'Elegir la fecha',
+  },
   Letter: {
     random_letter_default_title: 'Generar letras aleatorias',
     number_of_letters: 'Número de letras',
     generate_letters: 'Generar letras',
+  },
+  RaffleDrawForm: {
+    title: 'Título del sorteo',
+    description: 'Descripcion',
+    participants: 'Participantes',
+    number_of_winners: 'Número de ganadores',
+  },
+  RaffleDraw: {
+    // random_number_default_title: 'Generar números aleatorios',
+    // random_number_description: 'Genera números aleatorios al azar',
+    // generate_numbers: 'Generar números',
+    publish_draw: 'Realizar sorteo ahora',
+    schedule_draw: 'Programar la tirada',
   },
   TranslationsSwitch: {
     change_language: 'Cambiar idioma',
