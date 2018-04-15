@@ -15,7 +15,7 @@ import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 const PublishDrawOptions = props => (
   <div>
     <div>
-      <Typography variant="display3">{props.t('when_show_winners')}</Typography>
+      <Typography variant="title">{props.t('when_show_winners')}</Typography>
       <FormControl component="fieldset" required>
         <RadioGroup
           aria-label="schedule"
@@ -35,20 +35,21 @@ const PublishDrawOptions = props => (
           />
         </RadioGroup>
 
-        {props.whenResultShown ? 'asd':'bbb'        }
-         {/* <DateTimePicker
-            value={new Date()}
-            disablePast
-            // onChange={this.handleDateChange}
-            label="With Today Button"
-            showTodayButton
-          /> */}
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker
-          value={new Date()}
-          onChange={this.handleDateChange}
-        />
-      </MuiPickersUtilsProvider>
+        {props.whenResultShown === 'schedule' ? (
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DateTimePicker
+              value={new Date()}
+              onChange={this.handleDateChange}
+              autoOk
+              ampm={false}
+              disableFuture
+              label="24h clock"
+              showTodayButton
+            />
+          </MuiPickersUtilsProvider>
+        ) : (
+          ''
+        )}
       </FormControl>
     </div>
     <div>
@@ -71,6 +72,6 @@ PublishDrawOptions.propTypes = {
 
 PublishDrawOptions.defaultProps = {
   handleDateChange: () => {},
-}
+};
 
 export default translate('PublishDrawOptions')(PublishDrawOptions);

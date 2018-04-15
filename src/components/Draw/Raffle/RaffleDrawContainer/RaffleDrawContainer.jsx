@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import RaffleDraw from '../RaffleDraw/RaffleDraw';
-import { tossRaffleDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
+import {
+  tossRaffleDraw,
+  createPublicNumberDraw,
+  publishRaffleDraw,
+} from '../../../../services/EasAPI';
 
 class RaffleDrawContainer extends Component {
   constructor(props) {
@@ -17,7 +22,7 @@ class RaffleDrawContainer extends Component {
     this.handleWhenResultShown = this.handleWhenResultShown.bind(this);
 
     this.state = {
-      title: '',
+      title: 'test title',
       description: '',
       participants: [],
       numberOfWinners: 1,
@@ -36,13 +41,30 @@ class RaffleDrawContainer extends Component {
 
   handlePublish() {
     // Publish the draw
-    // const { from, to, numberOfResults, allowRepeated } = this.state;
     // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
     // Redirect to the public draw
+    const {
+      title,
+      description,
+      participants,
+      numberOfWinners,
+      whenResultShown,
+      dateResultsShown,
+    } = this.state;
+    const draw = publishRaffleDraw(
+      title,
+      description,
+      participants,
+      numberOfWinners,
+      whenResultShown,
+      dateResultsShown,
+    );
+    this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
+    console.log(draw);
   }
 
   handleTitleChange(event) {
-    console.log('title changed')
+    console.log('title changed');
     this.setState({
       title: event.target.value,
     });
@@ -92,5 +114,10 @@ class RaffleDrawContainer extends Component {
     );
   }
 }
+
+RaffleDrawContainer.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+};
 
 export default RaffleDrawContainer;

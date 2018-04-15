@@ -54,8 +54,11 @@ const translations = {
     // random_number_default_title: 'Generar números aleatorios',
     // random_number_description: 'Genera números aleatorios al azar',
     // generate_numbers: 'Generar números',
-    publish_draw: 'Realizar sorteo ahora',
+    publish_draw: 'Publicar sorteo',
     schedule_draw: 'Programar la tirada',
+  },
+  PublishedRaffle: {
+    winners: 'Ganadores',
   },
   TranslationsSwitch: {
     change_language: 'Cambiar idioma',

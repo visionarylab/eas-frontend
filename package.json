@@ -19,7 +19,8 @@
     "prettier": "^1.11.1",
     "prop-types": "^15.6.0",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "react-router-prop-types": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
