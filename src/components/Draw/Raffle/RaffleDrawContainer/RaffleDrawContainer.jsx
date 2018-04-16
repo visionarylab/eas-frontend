@@ -20,6 +20,7 @@ class RaffleDrawContainer extends Component {
     this.handleNumberOfWinnersChange = this.handleNumberOfWinnersChange.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
     this.handleWhenResultShown = this.handleWhenResultShown.bind(this);
+    this.handleScheduleDateChange = this.handleScheduleDateChange.bind(this);
 
     this.state = {
       title: 'test title',
@@ -28,6 +29,7 @@ class RaffleDrawContainer extends Component {
       numberOfWinners: 1,
       winners: [],
       whenResultShown: 'now',
+      dateScheduled: Date(),
     };
   }
 
@@ -94,6 +96,12 @@ class RaffleDrawContainer extends Component {
     });
   }
 
+  handleScheduleDateChange(date) {
+    this.setState({
+      dateScheduled: date,
+    });
+  }
+
   render() {
     return (
       <RaffleDraw
@@ -103,11 +111,13 @@ class RaffleDrawContainer extends Component {
         winners={this.state.winners}
         numberOfWinners={this.state.numberOfWinners}
         whenResultShown={this.state.whenResultShown}
+        dateScheduled={this.state.dateScheduled}
         handleTitleChange={this.handleTitleChange}
         handleDescriptionChange={this.handleDescriptionChange}
         handleParticipantsChange={this.handleParticipantsChange}
         handleNumberOfWinnersChange={this.handleNumberOfWinnersChange}
         handleWhenResultShown={this.handleWhenResultShown}
+        handleScheduleDateChange={this.handleScheduleDateChange}
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}
       />

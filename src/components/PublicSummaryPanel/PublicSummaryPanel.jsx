@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ResultsPanel = props => {
+const PublicSummaryPanel = props => {
   return (
     <div>
       {props.children}
@@ -9,8 +9,8 @@ const ResultsPanel = props => {
   );
 };
 
-ResultsPanel.propTypes = {
+PublicSummaryPanel.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ResultsPanel;
+export default PublicSummaryPanel;

@@ -38,13 +38,13 @@ const PublishDrawOptions = props => (
         {props.whenResultShown === 'schedule' ? (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DateTimePicker
-              value={new Date()}
-              onChange={this.handleDateChange}
+              value={props.dateScheduled}
+              onChange={props.handleScheduleDateChange}
               autoOk
               ampm={false}
               disableFuture
               label="24h clock"
-              showTodayButton
+              // showTodayButton
             />
           </MuiPickersUtilsProvider>
         ) : (
@@ -64,14 +64,15 @@ const PublishDrawOptions = props => (
 PublishDrawOptions.propTypes = {
   whenResultShown: PropTypes.string.isRequired,
   labelPublish: PropTypes.string.isRequired,
+  dateScheduled: PropTypes.instanceOf(Date),
   handlePublish: PropTypes.func.isRequired,
   handleWhenResultShown: PropTypes.func.isRequired,
-  handleDateChange: PropTypes.func,
+  handleScheduleDateChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
 PublishDrawOptions.defaultProps = {
-  handleDateChange: () => {},
+  dateScheduled: Date(),
 };
 
 export default translate('PublishDrawOptions')(PublishDrawOptions);
