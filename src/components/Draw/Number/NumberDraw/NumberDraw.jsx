@@ -41,8 +41,12 @@ const NumberDraw = props => (
         <Grid item xs={12}>
           {props.public ? (
             <PublishDrawOptions
-              label_publish={props.t('publish_draw')}
+              whenResultShown={props.whenResultShown}
+              labelPublish={props.t('publish_draw')}
+              dateScheduled={props.dateScheduled}
+              handleScheduleDateChange={props.handleScheduleDateChange}
               handlePublish={props.handlePublish}
+              handleWhenResultShown={props.handleWhenResultShown}
             />
           ) : (
             <GenerateResultsButton
@@ -78,6 +82,8 @@ NumberDraw.propTypes = {
   numberOfResults: PropTypes.number,
   allowRepeated: PropTypes.bool,
   public: PropTypes.bool.isRequired,
+  whenResultShown: PropTypes.string.isRequired,
+  dateScheduled: PropTypes.string,
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleFromChange: PropTypes.func.isRequired,
@@ -87,6 +93,8 @@ NumberDraw.propTypes = {
   handleMakeDrawPublic: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
+  handleWhenResultShown: PropTypes.func.isRequired,
+  handleScheduleDateChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
@@ -98,6 +106,7 @@ NumberDraw.defaultProps = {
   results: [],
   numberOfResults: 1,
   allowRepeated: false,
+  dateScheduled: Date(),
 };
 
 export default translate('NumberDraw')(NumberDraw);

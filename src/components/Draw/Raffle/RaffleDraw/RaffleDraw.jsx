@@ -34,7 +34,7 @@ RaffleDraw.propTypes = {
   participants: PropTypes.arrayOf(PropTypes.string).isRequired,
   numberOfWinners: PropTypes.number.isRequired,
   whenResultShown: PropTypes.string.isRequired,
-  dateScheduled: PropTypes.instanceOf(Date),
+  dateScheduled: PropTypes.string,
   handleWhenResultShown: PropTypes.func.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
@@ -47,6 +47,6 @@ RaffleDraw.propTypes = {
 
 RaffleDraw.defaultPropTypes = {
   dateScheduled: Date(),
-}
+};
 
 export default translate('RaffleDraw')(RaffleDraw);

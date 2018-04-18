@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 
 const GenerateResultsButton = props => (
-  <Button raised color="primary" onClick={props.handleToss}>
+  <Button color="primary" onClick={props.handleToss}>
     {props.label}
   </Button>
 );

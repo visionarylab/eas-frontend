@@ -54,7 +54,7 @@ const PublishDrawOptions = props => (
     </div>
     <div>
       {/* TODO do stuff here about inmediate publish or scheduled draw */}
-      <Button raised color="primary" onClick={props.handlePublish}>
+      <Button color="primary" onClick={props.handlePublish}>
         {props.labelPublish}
       </Button>
     </div>
@@ -64,7 +64,7 @@ const PublishDrawOptions = props => (
 PublishDrawOptions.propTypes = {
   whenResultShown: PropTypes.string.isRequired,
   labelPublish: PropTypes.string.isRequired,
-  dateScheduled: PropTypes.instanceOf(Date),
+  dateScheduled: PropTypes.string,
   handlePublish: PropTypes.func.isRequired,
   handleWhenResultShown: PropTypes.func.isRequired,
   handleScheduleDateChange: PropTypes.func.isRequired,

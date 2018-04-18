@@ -16,6 +16,9 @@ class NumberDrawContainer extends React.Component {
     this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
     this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
+    this.handleWhenResultShown = this.handleWhenResultShown.bind(this);
+    this.handleScheduleDateChange = this.handleScheduleDateChange.bind(this);
+
 
     this.state = {
       title: '',
@@ -26,6 +29,8 @@ class NumberDrawContainer extends React.Component {
       allowRepeated: false,
       results: [],
       public: false,
+      whenResultShown: 'now',
+      dateScheduled: Date(),
     };
   }
 
@@ -87,6 +92,18 @@ class NumberDrawContainer extends React.Component {
     });
   }
 
+  handleWhenResultShown(event) {
+    this.setState({
+      whenResultShown: event.target.value,
+    });
+  }
+
+  handleScheduleDateChange(date) {
+    this.setState({
+      dateScheduled: date,
+    });
+  }
+
   render() {
     return (
       <NumberDraw
@@ -98,6 +115,8 @@ class NumberDrawContainer extends React.Component {
         numberOfResults={this.state.numberOfResults}
         allowRepeated={this.state.allowRepeated}
         public={this.state.public}
+        whenResultShown={this.state.whenResultShown}
+        dateScheduled={this.state.dateScheduled}
         handleTitleChange={this.handleTitleChange}
         handleDescriptionChange={this.handleDescriptionChange}
         handleFromChange={this.handleFromChange}
@@ -107,6 +126,8 @@ class NumberDrawContainer extends React.Component {
         handleMakeDrawPublic={this.handleMakeDrawPublic}
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}
+        handleWhenResultShown={this.handleWhenResultShown}
+        handleScheduleDateChange={this.handleScheduleDateChange}
       />
     );
   }
