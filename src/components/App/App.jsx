@@ -3,13 +3,13 @@ import { TranslatorProvider } from 'react-translate';
 import Grid from 'material-ui/Grid';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import HomePage from './components/HomePage/HomePage';
-import About from './components/About/About';
+import HomePage from '../HomePage/HomePage';
+import About from '../About/About';
 import theme from './EasTheme';
-import translations from './i18n/translations';
+import translations from '../../i18n/translations';
 
-import DrawPage, { urls } from './components/DrawPage/DrawPage';
-import Header from './components/Header/Header';
+import DrawPage, { urls } from '../DrawPage/DrawPage';
+import Header from '../Header/Header';
 
 import STYLES from './App.scss';
 
