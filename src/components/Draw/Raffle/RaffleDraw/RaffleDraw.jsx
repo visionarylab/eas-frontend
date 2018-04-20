@@ -6,14 +6,7 @@ import RaffleDrawForm from '../RaffleDrawForm/RaffleDrawForm';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 
 const RaffleDraw = props => {
-  const {
-    title,
-    description,
-    participants,
-    numberOfWinners,
-    whenResultShown,
-    dateScheduled,
-  } = props.values;
+  const { title, description, participants, numberOfWinners, dateScheduled } = props.values;
   return (
     <div>
       <RaffleDrawForm
@@ -24,7 +17,6 @@ const RaffleDraw = props => {
         onFieldChange={props.onFieldChange}
       />
       <PublishDrawOptions
-        whenResultShown={whenResultShown}
         labelPublish={props.t('publish_draw')}
         dateScheduled={dateScheduled}
         onFieldChange={props.onFieldChange}
@@ -40,7 +32,6 @@ RaffleDraw.propTypes = {
     description: PropTypes.string.isRequired,
     participants: PropTypes.arrayOf(PropTypes.string).isRequired,
     numberOfWinners: PropTypes.number.isRequired,
-    whenResultShown: PropTypes.string.isRequired,
     dateScheduled: PropTypes.string,
   }).isRequired,
   t: PropTypes.func.isRequired,

@@ -21,8 +21,7 @@ class NumberDrawContainer extends React.Component {
         allowRepeated: false,
         results: [],
         isPublic: false,
-        whenResultShown: 'now',
-        dateScheduled: Date(),
+        dateScheduled: null,
       },
     };
   }

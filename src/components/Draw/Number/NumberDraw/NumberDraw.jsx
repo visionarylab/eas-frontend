@@ -21,7 +21,6 @@ const NumberDraw = props => {
     to,
     allowRepeated,
     numberOfResults,
-    whenResultShown,
     dateScheduled,
     isPublic,
     results,
@@ -52,7 +51,6 @@ const NumberDraw = props => {
             <Grid item xs={12}>
               {isPublic ? (
                 <PublishDrawOptions
-                  whenResultShown={whenResultShown}
                   labelPublish={props.t('publish_draw')}
                   dateScheduled={dateScheduled}
                   handlePublish={props.handlePublish}
@@ -96,7 +94,6 @@ NumberDraw.propTypes = {
     numberOfResults: PropTypes.number,
     allowRepeated: PropTypes.bool,
     isPublic: PropTypes.bool.isRequired,
-    whenResultShown: PropTypes.string,
     dateScheduled: PropTypes.string,
   }).isRequired,
   handleMakeDrawPublic: PropTypes.func.isRequired,
@@ -115,7 +112,7 @@ NumberDraw.defaultProps = {
     results: [],
     numberOfResults: 1,
     allowRepeated: false,
-    dateScheduled: Date(),
+    dateScheduled: null,
   },
 };
 

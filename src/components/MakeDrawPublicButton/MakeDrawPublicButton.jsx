@@ -5,7 +5,7 @@ import Public from 'material-ui-icons/Public';
 import { translate } from 'react-translate';
 
 const MakeDrawPublicButton = ({ handleMakeDrawPublic, t }) => (
-  <Button color="primary" onClick={handleMakeDrawPublic}>
+  <Button variant="raised" color="primary" onClick={handleMakeDrawPublic}>
     <Public />
     {t('make_public')}
   </Button>

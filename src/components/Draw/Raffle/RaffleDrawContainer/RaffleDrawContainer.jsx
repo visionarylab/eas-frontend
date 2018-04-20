@@ -16,20 +16,12 @@ class RaffleDrawContainer extends Component {
     this.handlePublish = this.handlePublish.bind(this);
 
     this.state = {
-      title: 'test title',
-      description: '',
-      participants: [],
-      numberOfWinners: 1,
-      winners: [],
-      whenResultShown: 'now',
-      dateScheduled: Date(),
       values: {
         title: 'test title',
         description: '',
         participants: [],
         numberOfWinners: 1,
         winners: [],
-        whenResultShown: 'now',
         dateScheduled: Date(),
       },
     };
@@ -47,20 +39,12 @@ class RaffleDrawContainer extends Component {
     // Publish the draw
     // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
     // Redirect to the public draw
-    const {
-      title,
-      description,
-      participants,
-      numberOfWinners,
-      whenResultShown,
-      dateResultsShown,
-    } = this.state;
+    const { title, description, participants, numberOfWinners, dateResultsShown } = this.state;
     const draw = publishRaffleDraw(
       title,
       description,
       participants,
       numberOfWinners,
-      whenResultShown,
       dateResultsShown,
     );
     this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
