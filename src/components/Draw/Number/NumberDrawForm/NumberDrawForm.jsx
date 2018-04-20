@@ -10,6 +10,7 @@ const NumberDrawForm = props => (
   <div>
     <Grid item sm={12}>
       <TextField
+        id="from"
         name="from"
         label={props.t('from')}
         placeholder="1"

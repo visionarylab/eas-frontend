@@ -11,6 +11,7 @@ import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
 import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
 import GenerateResultsButton from '../../../GenerateResultsButton/GenerateResultsButton';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
+import DrawPanel from '../../../DrawPanel/DrawPanel';
 
 const NumberDraw = props => {
   const {
@@ -31,43 +32,46 @@ const NumberDraw = props => {
         <title>{props.t('random_number_default_title')}</title>
       </Helmet>
       <Grid item xs={6}>
-        <Grid item sm={12}>
-          <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
-          {isPublic ? (
-            <PublicDetails
-              title={title}
-              description={description}
-              onFieldChange={props.onFieldChange}
-            />
-          ) : null}
-          <NumberDrawForm
-            from={from}
-            to={to}
-            numberOfResults={numberOfResults}
-            allowRepeated={allowRepeated}
-            onFieldChange={props.onFieldChange}
-          />
-          <Grid item xs={12}>
+        <DrawPanel>
+          <Grid item sm={12}>
+            <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
             {isPublic ? (
-              <PublishDrawOptions
-                whenResultShown={whenResultShown}
-                labelPublish={props.t('publish_draw')}
-                dateScheduled={dateScheduled}
-                handlePublish={props.handlePublish}
+              <PublicDetails
+                title={title}
+                description={description}
                 onFieldChange={props.onFieldChange}
               />
-            ) : (
-              <GenerateResultsButton
-                label={props.t('generate_numbers')}
-                handleToss={props.handleToss}
-              />
-            )}
+            ) : null}
+            <NumberDrawForm
+              from={from}
+              to={to}
+              numberOfResults={numberOfResults}
+              allowRepeated={allowRepeated}
+              onFieldChange={props.onFieldChange}
+            />
+            <Grid item xs={12}>
+              {isPublic ? (
+                <PublishDrawOptions
+                  whenResultShown={whenResultShown}
+                  labelPublish={props.t('publish_draw')}
+                  dateScheduled={dateScheduled}
+                  handlePublish={props.handlePublish}
+                  onFieldChange={props.onFieldChange}
+                />
+              ) : (
+                <GenerateResultsButton
+                  label={props.t('generate_numbers')}
+                  handleToss={props.handleToss}
+                />
+              )}
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item sm={12}>
-          <NumberDrawResults results={results} />
-        </Grid>
+          <Grid item sm={12}>
+            <NumberDrawResults results={results} />
+          </Grid>
+        </DrawPanel>
       </Grid>
+
       <Grid item xs={6}>
         <Grid container spacing={16} direction="row" alignItems="center">
           <Grid item xs={10}>
@@ -102,15 +106,17 @@ NumberDraw.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-// NumberDraw.defaultProps = {
-//   title: '',
-//   description: '',
-//   from: 1,
-//   to: 10,
-//   results: [],
-//   numberOfResults: 1,
-//   allowRepeated: false,
-//   dateScheduled: Date(),
-// };
+NumberDraw.defaultProps = {
+  values: {
+    title: '',
+    description: '',
+    from: 1,
+    to: 10,
+    results: [],
+    numberOfResults: 1,
+    allowRepeated: false,
+    dateScheduled: Date(),
+  },
+};
 
 export default translate('NumberDraw')(NumberDraw);

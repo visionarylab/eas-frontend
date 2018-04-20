@@ -46,17 +46,30 @@ class NumberDrawContainer extends React.Component {
   }
 
   handleMakeDrawPublic() {
-    this.setState({
+    this.setState(previousState => ({
       values: {
+        ...previousState.values,
         isPublic: true,
         results: [],
       },
-    });
+    }));
   }
 
+  getValue = e => {
+    const { value, type, checked } = e.target;
+    switch (type) {
+      case 'number':
+        return parseInt(value, 10);
+      case 'checkbox':
+        return checked;
+      default:
+        return value;
+    }
+  };
+
   onFieldChange = e => {
-    const { name, type } = e.target;
-    const value = type === 'number' ? parseInt(e.target.value, 10) : e.target.value;
+    const { name } = e.target;
+    const value = this.getValue(e);
     this.setState(previousState => ({
       values: {
         ...previousState.values,
