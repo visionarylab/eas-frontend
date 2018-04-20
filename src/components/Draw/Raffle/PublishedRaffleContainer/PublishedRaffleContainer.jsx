@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import PublishedRaffle from '../PublishedRaffle/PublishedRaffle';
 import { getRaffleDraw } from '../../../../services/EasAPI';

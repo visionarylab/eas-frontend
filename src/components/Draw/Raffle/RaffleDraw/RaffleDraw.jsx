@@ -4,11 +4,12 @@ import { translate } from 'react-translate';
 
 import RaffleDrawForm from '../RaffleDrawForm/RaffleDrawForm';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
+import DrawPanel from '../../../DrawPanel/DrawPanel';
 
 const RaffleDraw = props => {
   const { title, description, participants, numberOfWinners, dateScheduled } = props.values;
   return (
-    <div>
+    <DrawPanel>
       <RaffleDrawForm
         title={title}
         description={description}
@@ -22,7 +23,7 @@ const RaffleDraw = props => {
         onFieldChange={props.onFieldChange}
         handlePublish={props.handlePublish}
       />
-    </div>
+    </DrawPanel>
   );
 };
 

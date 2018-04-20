@@ -32,7 +32,7 @@ export const tossRaffleDraw = (
   return draw;
 };
 
-export const publishRaffleDraw = (...raffleDetails) => {
+export const publishRaffleDraw = () => {
   // Call the API to publish the draw
   const draw = {
     id: '123_raffle',

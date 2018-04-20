@@ -26,6 +26,18 @@ class NumberDrawContainer extends React.Component {
     };
   }
 
+  getValue = e => {
+    const { value, type, checked } = e.target;
+    switch (type) {
+      case 'number':
+        return parseInt(value, 10);
+      case 'checkbox':
+        return checked;
+      default:
+        return value;
+    }
+  };
+
   handleToss() {
     const { from, to, numberOfResults, allowRepeated } = this.state.values;
     const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
@@ -53,18 +65,6 @@ class NumberDrawContainer extends React.Component {
       },
     }));
   }
-
-  getValue = e => {
-    const { value, type, checked } = e.target;
-    switch (type) {
-      case 'number':
-        return parseInt(value, 10);
-      case 'checkbox':
-        return checked;
-      default:
-        return value;
-    }
-  };
 
   onFieldChange = e => {
     const { name } = e.target;

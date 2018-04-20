@@ -67,7 +67,7 @@ const PublishDrawOptions = props => {
       </div>
       <div>
         {/* TODO do stuff here about inmediate publish or scheduled draw */}
-        <Button color="primary" onClick={handlePublish}>
+        <Button variant="raised" color="primary" onClick={handlePublish}>
           {labelPublish}
         </Button>
       </div>

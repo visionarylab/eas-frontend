@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import RaffleDraw from '../RaffleDraw/RaffleDraw';
-import {
-  tossRaffleDraw,
-  createPublicNumberDraw,
-  publishRaffleDraw,
-} from '../../../../services/EasAPI';
+import { publishRaffleDraw } from '../../../../services/EasAPI';
 
 class RaffleDrawContainer extends Component {
   constructor(props) {
@@ -17,23 +12,27 @@ class RaffleDrawContainer extends Component {
 
     this.state = {
       values: {
-        title: 'test title',
-        description: '',
+        title: null,
+        description: null,
         participants: [],
         numberOfWinners: 1,
         winners: [],
-        dateScheduled: Date(),
+        dateScheduled: null,
       },
     };
   }
 
-  handleToss() {
-    const { from, to, numberOfResults, allowRepeated } = this.state;
-    const draw = tossRaffleDraw(from, to, numberOfResults, allowRepeated);
-    this.setState({
-      results: draw.results,
-    });
-  }
+  onFieldChange = e => {
+    const { name, value } = e.target;
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        ...{
+          [name]: value,
+        },
+      },
+    }));
+  };
 
   handlePublish() {
     // Publish the draw
@@ -50,18 +49,6 @@ class RaffleDrawContainer extends Component {
     this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
     console.log(draw);
   }
-
-  onFieldChange = e => {
-    const { name, value } = e.target;
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        ...{
-          [name]: value,
-        },
-      },
-    }));
-  };
 
   render() {
     return (

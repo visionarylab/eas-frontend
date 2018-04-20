@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from 'material-ui/Typography';
 import { translate } from 'react-translate';
 
@@ -32,7 +31,8 @@ const PublishedRaffle = props => (
             <Typography variant="display1">Extra details</Typography>
             <div>Number of winners: {props.numberOfWinners}</div>
             <div>Participants: {props.participants.join(', ')}</div>
-            <div>Descripcion:
+            <div>
+              Descripcion:
               <p>{props.description}</p>
             </div>
           </div>
@@ -48,8 +48,11 @@ PublishedRaffle.propTypes = {
   participants: PropTypes.arrayOf(PropTypes.string).isRequired,
   numberOfWinners: PropTypes.number.isRequired,
   results: PropTypes.arrayOf(PropTypes.object),
-  match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
+};
+
+PublishedRaffle.defaultProps = {
+  results: [],
 };
 
 export default translate('PublishedRaffle')(PublishedRaffle);
