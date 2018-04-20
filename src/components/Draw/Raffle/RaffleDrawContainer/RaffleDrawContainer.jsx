@@ -13,14 +13,7 @@ class RaffleDrawContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleToss = this.handleToss.bind(this);
-    this.handleParticipantsChange = this.handleParticipantsChange.bind(this);
-    this.handleNumberOfWinnersChange = this.handleNumberOfWinnersChange.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
-    this.handleWhenResultShown = this.handleWhenResultShown.bind(this);
-    this.handleScheduleDateChange = this.handleScheduleDateChange.bind(this);
 
     this.state = {
       title: 'test title',
@@ -30,6 +23,15 @@ class RaffleDrawContainer extends Component {
       winners: [],
       whenResultShown: 'now',
       dateScheduled: Date(),
+      values: {
+        title: 'test title',
+        description: '',
+        participants: [],
+        numberOfWinners: 1,
+        winners: [],
+        whenResultShown: 'now',
+        dateScheduled: Date(),
+      },
     };
   }
 
@@ -65,60 +67,23 @@ class RaffleDrawContainer extends Component {
     console.log(draw);
   }
 
-  handleTitleChange(event) {
-    console.log('title changed');
-    this.setState({
-      title: event.target.value,
-    });
-  }
-
-  handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value,
-    });
-  }
-
-  handleParticipantsChange(event) {
-    this.setState({
-      participants: event.target.value,
-    });
-  }
-
-  handleNumberOfWinnersChange(event) {
-    this.setState({
-      numberOfWinners: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleWhenResultShown(event) {
-    this.setState({
-      whenResultShown: event.target.value,
-    });
-  }
-
-  handleScheduleDateChange(date) {
-    this.setState({
-      dateScheduled: date,
-    });
-  }
+  onFieldChange = e => {
+    const { name, value } = e.target;
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        ...{
+          [name]: value,
+        },
+      },
+    }));
+  };
 
   render() {
     return (
       <RaffleDraw
-        title={this.state.title}
-        description={this.state.description}
-        participants={this.state.participants}
-        winners={this.state.winners}
-        numberOfWinners={this.state.numberOfWinners}
-        whenResultShown={this.state.whenResultShown}
-        dateScheduled={this.state.dateScheduled}
-        handleTitleChange={this.handleTitleChange}
-        handleDescriptionChange={this.handleDescriptionChange}
-        handleParticipantsChange={this.handleParticipantsChange}
-        handleNumberOfWinnersChange={this.handleNumberOfWinnersChange}
-        handleWhenResultShown={this.handleWhenResultShown}
-        handleScheduleDateChange={this.handleScheduleDateChange}
-        handleToss={this.handleToss}
+        values={this.state.values}
+        onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
       />
     );

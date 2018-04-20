@@ -7,17 +7,19 @@ import { translate } from 'react-translate';
 const PublicDetails = props => (
   <Grid item sm={12}>
     <TextField
+      name="publicTitle"
       label={props.t('title_label')}
       placeholder={props.t('title_placeholder')}
       margin="normal"
-      onChange={props.handleTitleChange}
+      onChange={props.onFieldChange}
       value={props.title}
       fullWidth
       type="text"
     />
     <TextField
+      name="publicDescription"
       label={props.t('description_label')}
-      onChange={props.handleDescriptionChange}
+      onChange={props.onFieldChange}
       multiline
       fullWidth
       rows="4"
@@ -31,8 +33,7 @@ const PublicDetails = props => (
 PublicDetails.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  handleTitleChange: PropTypes.func.isRequired,
-  handleDescriptionChange: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

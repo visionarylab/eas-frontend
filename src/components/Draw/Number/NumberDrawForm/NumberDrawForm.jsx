@@ -10,28 +10,31 @@ const NumberDrawForm = props => (
   <div>
     <Grid item sm={12}>
       <TextField
+        name="from"
         label={props.t('from')}
         placeholder="1"
         margin="normal"
-        onChange={props.handleFromChange}
+        onChange={props.onFieldChange}
         value={props.from}
         type="number"
       />
       <TextField
+        name="to"
         label={props.t('to')}
         placeholder="9"
         margin="normal"
-        onChange={props.handleToChange}
+        onChange={props.onFieldChange}
         value={props.to}
         type="number"
       />
     </Grid>
     <Grid item sm={12}>
       <TextField
+        name="numberOfResults"
         label={props.t('number_of_results')}
         placeholder="1"
         margin="normal"
-        onChange={props.handleNumberOfResultsChange}
+        onChange={props.onFieldChange}
         value={props.numberOfResults}
         type="number"
       />
@@ -39,7 +42,11 @@ const NumberDrawForm = props => (
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox checked={props.allowRepeated} onChange={props.handleAllowRepeatedChange} />
+          <Checkbox
+            name="allowRepeated"
+            checked={props.allowRepeated}
+            onChange={props.onFieldChange}
+          />
         }
         label={props.t('allow_repeated')}
       />
@@ -52,10 +59,7 @@ NumberDrawForm.propTypes = {
   to: PropTypes.number.isRequired,
   numberOfResults: PropTypes.number.isRequired,
   allowRepeated: PropTypes.bool.isRequired,
-  handleFromChange: PropTypes.func.isRequired,
-  handleToChange: PropTypes.func.isRequired,
-  handleNumberOfResultsChange: PropTypes.func.isRequired,
-  handleAllowRepeatedChange: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

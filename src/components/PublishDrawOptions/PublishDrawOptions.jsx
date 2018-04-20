@@ -21,7 +21,7 @@ const PublishDrawOptions = props => (
           aria-label="schedule"
           name="schedule"
           value={props.whenResultShown}
-          onChange={props.handleWhenResultShown}
+          onChange={props.onFieldChange}
         >
           <FormControlLabel
             value="now"
@@ -38,8 +38,9 @@ const PublishDrawOptions = props => (
         {props.whenResultShown === 'schedule' ? (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DateTimePicker
+              name="dateScheduled"
               value={props.dateScheduled}
-              onChange={props.handleScheduleDateChange}
+              onChange={props.onFieldChange}
               autoOk
               ampm={false}
               disableFuture
@@ -65,9 +66,8 @@ PublishDrawOptions.propTypes = {
   whenResultShown: PropTypes.string.isRequired,
   labelPublish: PropTypes.string.isRequired,
   dateScheduled: PropTypes.string,
+  onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
-  handleWhenResultShown: PropTypes.func.isRequired,
-  handleScheduleDateChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

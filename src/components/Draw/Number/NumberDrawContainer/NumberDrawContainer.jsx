@@ -7,39 +7,35 @@ class NumberDrawContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleToss = this.handleToss.bind(this);
-    this.handleFromChange = this.handleFromChange.bind(this);
-    this.handleToChange = this.handleToChange.bind(this);
-    this.handleNumberOfResultsChange = this.handleNumberOfResultsChange.bind(this);
-    this.handleAllowRepeatedChange = this.handleAllowRepeatedChange.bind(this);
     this.handleMakeDrawPublic = this.handleMakeDrawPublic.bind(this);
     this.handlePublish = this.handlePublish.bind(this);
-    this.handleWhenResultShown = this.handleWhenResultShown.bind(this);
-    this.handleScheduleDateChange = this.handleScheduleDateChange.bind(this);
-
+    this.handleToss = this.handleToss.bind(this);
 
     this.state = {
-      title: '',
-      description: '',
-      from: 1,
-      to: 10,
-      numberOfResults: 1,
-      allowRepeated: false,
-      results: [],
-      public: false,
-      whenResultShown: 'now',
-      dateScheduled: Date(),
+      values: {
+        title: '',
+        description: '',
+        from: 1,
+        to: 10,
+        numberOfResults: 1,
+        allowRepeated: false,
+        results: [],
+        isPublic: false,
+        whenResultShown: 'now',
+        dateScheduled: Date(),
+      },
     };
   }
 
   handleToss() {
-    const { from, to, numberOfResults, allowRepeated } = this.state;
+    const { from, to, numberOfResults, allowRepeated } = this.state.values;
     const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
-    this.setState({
-      results: draw.results,
-    });
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        results: draw.results,
+      },
+    }));
   }
 
   handlePublish() {
@@ -49,85 +45,36 @@ class NumberDrawContainer extends React.Component {
     // Redirect to the public draw
   }
 
-  handleTitleChange(event) {
+  handleMakeDrawPublic() {
     this.setState({
-      title: event.target.value,
+      values: {
+        isPublic: true,
+        results: [],
+      },
     });
   }
 
-  handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value,
-    });
-  }
-
-  handleFromChange(event) {
-    this.setState({
-      from: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleToChange(event) {
-    this.setState({
-      to: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleNumberOfResultsChange(event) {
-    this.setState({
-      numberOfResults: parseInt(event.target.value, 10),
-    });
-  }
-
-  handleAllowRepeatedChange(event) {
-    this.setState({
-      allowRepeated: event.target.checked,
-    });
-  }
-
-  handleMakeDrawPublic(event) {
-    this.setState({
-      public: true,
-      results: [],
-    });
-  }
-
-  handleWhenResultShown(event) {
-    this.setState({
-      whenResultShown: event.target.value,
-    });
-  }
-
-  handleScheduleDateChange(date) {
-    this.setState({
-      dateScheduled: date,
-    });
-  }
+  onFieldChange = e => {
+    const { name, type } = e.target;
+    const value = type === 'number' ? parseInt(e.target.value, 10) : e.target.value;
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        ...{
+          [name]: value,
+        },
+      },
+    }));
+  };
 
   render() {
     return (
       <NumberDraw
-        title={this.state.title}
-        description={this.state.description}
-        from={this.state.from}
-        to={this.state.to}
-        results={this.state.results}
-        numberOfResults={this.state.numberOfResults}
-        allowRepeated={this.state.allowRepeated}
-        public={this.state.public}
-        whenResultShown={this.state.whenResultShown}
-        dateScheduled={this.state.dateScheduled}
-        handleTitleChange={this.handleTitleChange}
-        handleDescriptionChange={this.handleDescriptionChange}
-        handleFromChange={this.handleFromChange}
-        handleToChange={this.handleToChange}
-        handleAllowRepeatedChange={this.handleAllowRepeatedChange}
-        handleNumberOfResultsChange={this.handleNumberOfResultsChange}
-        handleMakeDrawPublic={this.handleMakeDrawPublic}
+        values={this.state.values}
+        onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}
-        handleWhenResultShown={this.handleWhenResultShown}
-        handleScheduleDateChange={this.handleScheduleDateChange}
+        handleMakeDrawPublic={this.handleMakeDrawPublic}
       />
     );
   }
