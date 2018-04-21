@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import { translate } from 'react-translate';
+import { translate } from "react-i18next";
 import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';

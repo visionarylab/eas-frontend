@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 import PropTypes from 'prop-types';
-import { translate } from 'react-translate';
+import { translate } from 'react-i18next';
 
 const PublicDetails = props => (
   <Grid item sm={12}>

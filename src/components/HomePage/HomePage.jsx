@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { translate } from 'react-translate';
+import { translate } from 'react-i18next';
 import Grid from 'material-ui/Grid';
 
 import Chip from './../DrawCard/DrawCard';

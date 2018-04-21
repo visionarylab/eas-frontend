@@ -1,7 +1,4 @@
 const translations = {
-  // the `locale` parameter is mandatory, it enables react-translate to use
-  // the right rules for singular and plural
-  locale: 'es-ES',
   HomePage: {
     random_number_title: 'Generar números aleatorios',
     random_letter_title: 'Generar letras aleatorias',
@@ -66,14 +63,5 @@ const translations = {
     change_language: 'Cambiar idioma',
   },
 };
-
-// Number: {
-//   from: 'Desde',
-//   KEY_WITH_PARAMS: 'Hello {{name}}',
-//   KEY_WITH_PLURAL: [
-//     'You have {{n}} message',
-//     'You have {{n}} messages',
-//   ],
-// },
 
 export default translations;

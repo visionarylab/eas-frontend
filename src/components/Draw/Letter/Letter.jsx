@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Button } from 'material-ui';
 import Typography from 'material-ui/Typography';
-import { translate } from 'react-translate';
+import { translate } from "react-i18next";
 
 import { tossLetterDraw } from '../../../services/EasAPI';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
-import { translate } from 'react-translate';
+import { translate } from "react-i18next";
 
 import PublicResultsPanel from '../../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../../PublicSummaryPanel/PublicSummaryPanel';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-translate';
+import { translate } from 'react-i18next';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';

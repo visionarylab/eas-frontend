@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import { translate } from 'react-translate';
+import { translate } from 'react-i18next';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 

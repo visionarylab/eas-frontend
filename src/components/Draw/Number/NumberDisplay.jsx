@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-translate';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';

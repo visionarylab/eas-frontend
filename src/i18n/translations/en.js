@@ -1,10 +1,8 @@
 const translations = {
-  // the `locale` parameter is mandatory, it enables react-translate to use
-  // the right rules for singular and plural
-  locale: 'en-GB',
-  Home: {
+  HomePage: {
     random_number_title: 'Generate random numbers',
     random_letter_title: 'Generate random letters',
+    raffle_title: 'Make a raffle',
   },
   NumberPrivateDraw: {
     from: 'From',
