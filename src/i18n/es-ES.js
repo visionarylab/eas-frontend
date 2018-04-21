@@ -8,7 +8,8 @@ const translations = {
     raffle_title: 'Realizar Sorteo',
   },
   NumberDraw: {
-    raffle_html_title: 'Generar números aleatorios',
+    random_number_html_title: 'Generar números aleatorios',
+    random_number_seo_description: 'Generar números aleatorios',
     random_number_default_title: 'Generar números aleatorios',
     random_number_description: 'Genera números aleatorios al azar',
     generate_numbers: 'Generar números',
@@ -54,6 +55,7 @@ const translations = {
   },
   RaffleDraw: {
     raffle_html_title: 'Organizar sorteo',
+    raffle_seo_description: '<div>Organiza sorteos publicos</div>',
     publish_draw: 'Publicar sorteo',
     schedule_draw: 'Programar la tirada',
   },

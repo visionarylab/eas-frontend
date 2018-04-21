@@ -73,7 +73,7 @@ const NumberDraw = props => {
       <Grid item xs={6}>
         <Grid container spacing={16} direction="row" alignItems="center">
           <Grid item xs={10}>
-            <Paper>{props.t('random_number_description')}</Paper>
+            <Paper>{props.t('random_number_seo_description')}</Paper>
           </Grid>
           <Grid item xs={10}>
             <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />
