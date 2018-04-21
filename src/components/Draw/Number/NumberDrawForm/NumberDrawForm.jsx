@@ -40,18 +40,22 @@ const NumberDrawForm = props => (
         type="number"
       />
     </Grid>
-    <FormGroup row>
-      <FormControlLabel
-        control={
-          <Checkbox
-            name="allowRepeated"
-            checked={props.allowRepeated}
-            onChange={props.onFieldChange}
-          />
-        }
-        label={props.t('allow_repeated')}
-      />
-    </FormGroup>
+    {props.numberOfResults > 1 ? (
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              name="allowRepeated"
+              checked={props.allowRepeated}
+              onChange={props.onFieldChange}
+            />
+          }
+          label={props.t('allow_repeated')}
+        />
+      </FormGroup>
+    ) : (
+      ''
+    )}
   </div>
 );
 

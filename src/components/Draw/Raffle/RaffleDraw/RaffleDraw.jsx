@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { translate } from 'react-translate';
 
@@ -9,21 +10,26 @@ import DrawPanel from '../../../DrawPanel/DrawPanel';
 const RaffleDraw = props => {
   const { title, description, participants, numberOfWinners, dateScheduled } = props.values;
   return (
-    <DrawPanel>
-      <RaffleDrawForm
-        title={title}
-        description={description}
-        participants={participants}
-        numberOfWinners={numberOfWinners}
-        onFieldChange={props.onFieldChange}
-      />
-      <PublishDrawOptions
-        labelPublish={props.t('publish_draw')}
-        dateScheduled={dateScheduled}
-        onFieldChange={props.onFieldChange}
-        handlePublish={props.handlePublish}
-      />
-    </DrawPanel>
+    <Fragment>
+      <Helmet>
+        <title>{props.t('raffle_html_title')}</title>
+      </Helmet>
+      <DrawPanel>
+        <RaffleDrawForm
+          title={title}
+          description={description}
+          participants={participants}
+          numberOfWinners={numberOfWinners}
+          onFieldChange={props.onFieldChange}
+        />
+        <PublishDrawOptions
+          labelPublish={props.t('publish_draw')}
+          dateScheduled={dateScheduled}
+          onFieldChange={props.onFieldChange}
+          handlePublish={props.handlePublish}
+        />
+      </DrawPanel>
+    </Fragment>
   );
 };
 

@@ -5,8 +5,10 @@ const translations = {
   HomePage: {
     random_number_title: 'Generar números aleatorios',
     random_letter_title: 'Generar letras aleatorias',
+    raffle_title: 'Realizar Sorteo',
   },
   NumberDraw: {
+    raffle_html_title: 'Generar números aleatorios',
     random_number_default_title: 'Generar números aleatorios',
     random_number_description: 'Genera números aleatorios al azar',
     generate_numbers: 'Generar números',
@@ -51,9 +53,7 @@ const translations = {
     number_of_winners: 'Número de ganadores',
   },
   RaffleDraw: {
-    // random_number_default_title: 'Generar números aleatorios',
-    // random_number_description: 'Genera números aleatorios al azar',
-    // generate_numbers: 'Generar números',
+    raffle_html_title: 'Organizar sorteo',
     publish_draw: 'Publicar sorteo',
     schedule_draw: 'Programar la tirada',
   },

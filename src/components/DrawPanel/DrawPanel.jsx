@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import STYLES from './DrawPanel.scss';
+import TransparentPanel from '../TransparentPanel/TransparentPanel';
 
-const c = className => STYLES[className];
-
-const DrawPanel = props => <div className={c('DrawPanel')}>{props.children}</div>;
+const DrawPanel = props => <TransparentPanel>{props.children}</TransparentPanel>;
 
 DrawPanel.propTypes = {
   children: PropTypes.node.isRequired,

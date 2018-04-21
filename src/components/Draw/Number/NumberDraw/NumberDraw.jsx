@@ -28,7 +28,7 @@ const NumberDraw = props => {
   return (
     <Grid container>
       <Helmet>
-        <title>{props.t('random_number_default_title')}</title>
+        <title>{props.t('random_number_html_title')}</title>
       </Helmet>
       <Grid item xs={6}>
         <DrawPanel>
