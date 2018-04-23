@@ -50,7 +50,7 @@
   },
   "RaffleDraw":{
      "raffle_html_title":"Organizar sorteo",
-     "raffle_seo_description":"<div>Organiza sorteos publicos</div>",
+     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
      "publish_draw":"Publicar sorteo",
      "schedule_draw":"Programar la tirada"
   },
