@@ -50,7 +50,7 @@
   },
   "RaffleDraw":{
      "raffle_html_title":"Organise a raffle",
-     "raffle_seo_description":"Organise public raffles",
+     "raffle_seo_description":"<div>Organise public raffles</div>",
      "publish_draw":"Publish raffle",
      "schedule_draw":"Schedule the raffle"
   },

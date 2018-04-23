@@ -38,7 +38,9 @@ const RaffleDraw = props => {
         <Grid item xs={6}>
           <TransparentPanel>
             <Paper>
-              <Trans i18nKey="raffle_seo_description">Hello</Trans>
+              <Trans i18nKey="raffle_seo_description">
+                <div>Organiza sorteos publicos</div>
+              </Trans>
             </Paper>
           </TransparentPanel>
         </Grid>
