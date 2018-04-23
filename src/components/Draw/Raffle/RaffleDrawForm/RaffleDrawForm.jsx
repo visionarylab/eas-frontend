@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from "react-i18next";
+import { translate } from 'react-i18next';
 import TextField from 'material-ui/TextField';
 
 const RaffleDrawForm = props => {
@@ -63,12 +63,19 @@ const RaffleDrawForm = props => {
 };
 
 RaffleDrawForm.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-  numberOfWinners: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  participants: PropTypes.arrayOf(PropTypes.string),
+  numberOfWinners: PropTypes.number,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+};
+
+RaffleDrawForm.defaultProps = {
+  title: '',
+  description: '',
+  participants: [],
+  numberOfWinners: 1,
 };
 
 export default translate('RaffleDrawForm')(RaffleDrawForm);
