@@ -12,8 +12,8 @@ class RaffleDrawContainer extends Component {
 
     this.state = {
       values: {
-        title: null,
-        description: null,
+        title: '',
+        description: '',
         participants: [],
         numberOfWinners: 1,
         winners: [],
