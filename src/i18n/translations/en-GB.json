@@ -1,43 +1,61 @@
 {
   "HomePage":{
-     "random_number_title":"Generate random numbers",
-     "random_letter_title":"Generate random letters",
-     "raffle_title":"Make a raffle"
+     "random_number_title":"Generate Random Numbers",
+     "random_letter_title":"Generate Random Letters",
+     "raffle_title":"Make a Raffle"
   },
-  "NumberPrivateDraw":{
+  "NumberDraw":{
+     "random_number_html_title":"Generate random numbers",
+     "random_number_seo_description":"Generate randon numbers online. Select Random numbers from a range, etc.",
+     "random_number_default_title":"Generate random numbers",
+     "generate_numbers":"Generate numbers",
+     "publish_draw":"Publish results",
+     "schedule_draw":"Schedule toss"
+  },
+  "NumberDrawForm":{
      "from":"From",
      "to":"To",
      "number_of_results":"Number of results",
-     "random_number_default_title":"Generate random numbers",
-     "generate_numbers":"Generate numbers",
-     "allow_repeated":"Allow repeated numbers",
-     "make_public":"Make this draw public",
-     "random_number_description":"Generate random numbers for anything you need",
-     "KEY_WITH_PARAMS":"Hello {{name}}",
-     "KEY_WITH_PLURAL":[
-        "You have {{n}} message",
-        "You have {{n}} messages"
-     ]
+     "allow_repeated":"Allow repeated numbers"
   },
-  "NumberPublicDraw":{
-     "from":"From",
-     "to":"To",
-     "number_of_results":"Number of results",
-     "random_number_default_title":"Generate random numbers",
-     "generate_numbers":"Generate numbers",
-     "allow_repeated":"Allow repeated numbers",
-     "make_public":"Make this draw public",
-     "random_number_description":"Generate random numbers for anything you need"
-  },
-  "NumberDisplay":{
+  "PublicNumberDrawDetails":{
      "setup_description":"{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.",
      "repeated_results_allowed":"Numbers can be repeated in the results.",
      "repeated_results_not_allowed":"Numbers can not be repeated in the results."
+  },
+  "PublicDetails":{
+     "title_label":"Title",
+     "title_placeholder":"Christmas raffle",
+     "description_label":"Description",
+     "description_placeholder":"Raffle description, rules, etc."
+  },
+  "MakeDrawPublicButton":{
+     "make_public":"Publish an online draw"
+  },
+  "PublishDrawOptions":{
+     "when_show_winners":"When do you want to show the results?",
+     "show_now":"Show now",
+     "choose_date":"Choose a date"
   },
   "Letter":{
      "random_letter_default_title":"Generate random letters",
      "number_of_letters":"Number of letters",
      "generate_letters":"Generate letters"
+  },
+  "RaffleDrawForm":{
+     "title":"Raffle Title",
+     "description":"Description",
+     "participants":"Participants",
+     "number_of_winners":"Number of winners"
+  },
+  "RaffleDraw":{
+     "raffle_html_title":"Organise a raffle",
+     "raffle_seo_description":"Organise public raffles",
+     "publish_draw":"Publish raffle",
+     "schedule_draw":"Schedule the raffle"
+  },
+  "PublishedRaffle":{
+     "winners":"Winners"
   },
   "TranslationsSwitch":{
      "change_language":"Change language"
