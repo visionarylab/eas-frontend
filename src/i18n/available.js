@@ -1,10 +1,8 @@
-const translations = require.context('./translations/', true, /\.\/(\w+)\.js$/);
-// debugger
-console.log(translations.keys());
+const translations = require.context('./translations/', true, /\.\/(\w+-\w+)\.json$/);
 export default translations.keys().reduce(
   (acc, item) => ({
     ...acc,
-    [item.replace(/\.\/(\w+)\.js$/, '$1')]: true,
+    [item.replace(/\.\/(\w+-\w+)\.json$/, '$1')]: true,
   }),
   {},
 );

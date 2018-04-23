@@ -1,11 +1,12 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 
 const createOnChangeHandler = (available, onChange) => ({ currentTarget }) =>
   onChange(available[currentTarget.selectedIndex]);
 
-const TranslationsSwitch = ({ available, onChange, t, i18n}) => (
+const TranslationsSwitch = ({ available, onChange, t, i18n }) => (
   <div>
     <span>{t('change_language')}</span>
     <select value={i18n.language} onChange={createOnChangeHandler(available, onChange)}>
