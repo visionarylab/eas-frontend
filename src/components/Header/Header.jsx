@@ -2,11 +2,11 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 
 const Header = () => (
-  <div>
+  <header>
     <Typography variant="display3" align="center">
       Échalo A Suerte
     </Typography>
-  </div>
+  </header>
 );
 
 export default Header;

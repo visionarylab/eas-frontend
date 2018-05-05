@@ -25,6 +25,8 @@ const PublishedNumberDraw = props => (
             <Typography variant="display1">{props.t('draw_details')}</Typography>
             <div>From: {props.from}</div>
             <div>To: {props.to}</div>
+            <div>Number of results: {props.numberOfResults}</div>
+            <div>Allow repeated: {props.allowRepeated}</div>
             <div>
               Descripcion:
               <p>{props.description}</p>

@@ -4,31 +4,29 @@ $eas-chip-padding: .375rem .5rem;
 $eas-chip-border: .0625rem #d6d6d6 solid;
 $eas-chip-background-color: #fff;
 $eas-chip-shadow: .375rem .375rem .375rem #888;
-
 $eas-chip-title-font-size: 1.125rem;
 $eas-chip-title-font-color: #6f6f6f;
 
 .DrawCard {
   display: flex;
+  display: flex;
+  display: -webkit-flex;
+  min-height: $eas-chip-min-height;
+  margin: 5px 0;
+  padding: $eas-chip-padding;
+  -webkit-flex-direction: row;
   -webkit-flex-direction: row;
   flex-direction: row;
-  justify-content: flex-start;
   -webkit-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
   -webkit-align-items: center;
   align-items: center;
-
-  min-height: $eas-chip-min-height;
-  padding: $eas-chip-padding;
-  margin: 5px 0 5px;
-  background-color: $eas-chip-background-color;
+  border: $eas-chip-border;
   -moz-border-radius: 15px;
   border-radius: 8px;
-  border: $eas-chip-border;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -webkit-justify-content: flex-start;
-  -webkit-align-items: center;
+  background-color: $eas-chip-background-color;
   box-shadow: $eas-chip-shadow;
 
   &__icon {
