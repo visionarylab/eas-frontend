@@ -36,6 +36,7 @@ class NumberDrawContainer extends React.Component {
     const { name } = e.target;
     const value = this.getValue(e);
     this.setState(previousState => ({
+      drawId: null,
       values: {
         ...previousState.values,
         ...{
