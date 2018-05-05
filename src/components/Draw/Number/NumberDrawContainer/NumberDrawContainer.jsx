@@ -1,6 +1,7 @@
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { tossNumberDraw, createPublicNumberDraw } from '../../../../services/EasAPI';
+import { tossNumberDraw, publishNumberDraw } from '../../../../services/EasAPI';
 import NumberDraw from '../NumberDraw/NumberDraw';
 
 class NumberDrawContainer extends React.Component {
@@ -25,6 +26,19 @@ class NumberDrawContainer extends React.Component {
       },
     };
   }
+
+  onFieldChange = e => {
+    const { name } = e.target;
+    const value = this.getValue(e);
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        ...{
+          [name]: value,
+        },
+      },
+    }));
+  };
 
   getValue = e => {
     const { value, type, checked } = e.target;
@@ -51,9 +65,17 @@ class NumberDrawContainer extends React.Component {
 
   handlePublish() {
     // Publish the draw
-    // const { from, to, numberOfResults, allowRepeated } = this.state;
     // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
     // Redirect to the public draw
+    const { title, description, participants, numberOfWinners, dateResultsShown } = this.state;
+    const draw = publishNumberDraw(
+      title,
+      description,
+      participants,
+      numberOfWinners,
+      dateResultsShown,
+    );
+    this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
   }
 
   handleMakeDrawPublic() {
@@ -65,19 +87,6 @@ class NumberDrawContainer extends React.Component {
       },
     }));
   }
-
-  onFieldChange = e => {
-    const { name } = e.target;
-    const value = this.getValue(e);
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        ...{
-          [name]: value,
-        },
-      },
-    }));
-  };
 
   render() {
     return (
@@ -91,5 +100,10 @@ class NumberDrawContainer extends React.Component {
     );
   }
 }
+
+NumberDrawContainer.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+};
 
 export default NumberDrawContainer;

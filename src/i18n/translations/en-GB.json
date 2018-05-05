@@ -49,8 +49,10 @@
      "number_of_winners":"Number of winners"
   },
   "RaffleDraw":{
+     "basic_about_info_raffle": "General details about the raffle",
+     "raffle_configuration": "Raffle configuration",
      "raffle_html_title":"Organise a raffle",
-     "raffle_seo_description":"<0>Organise public raffles</0>",
+     "raffle_seo_description":"<div>Organise <0>public</0> raffles</div>",
      "publish_draw":"Publish raffle",
      "schedule_draw":"Schedule the raffle"
   },

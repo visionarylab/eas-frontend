@@ -1,0 +1,13 @@
+.PublishedNumberDraw {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+  &__results-panel {
+    flex-basis: 70%;
+  }
+
+  &__summary-panel {
+    text-align: left;
+  }
+}

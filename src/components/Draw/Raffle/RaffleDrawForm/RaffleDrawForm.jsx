@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
+
+import SectionPanel from '../../../SectionPanel/SectionPanel';
 
 const RaffleDrawForm = props => {
   const onParticipantsChange = e => {
@@ -11,7 +14,8 @@ const RaffleDrawForm = props => {
 
   return (
     <div>
-      <div>
+      <SectionPanel>
+        <Typography variant="title">{props.t('basic_about_info_raffle')}</Typography>
         <TextField
           name="title"
           label={props.t('title')}
@@ -32,31 +36,33 @@ const RaffleDrawForm = props => {
           value={props.description}
           fullWidth
         />
-      </div>
+      </SectionPanel>
 
-      {/* <Grid item sm={12}> */}
+      <SectionPanel>
+        <Typography variant="title">{props.t('raffle_configuration')}</Typography>
 
-      <TextField
-        name="participants"
-        label={props.t('participants')}
-        placeholder="David"
-        margin="normal"
-        onChange={onParticipantsChange}
-        value={props.participants}
-        type="text"
-        fullWidth
-      />
-      {/* </Grid> */}
-      {/* <Grid item sm={12}> */}
-      <TextField
-        name="numberOfWinners"
-        label={props.t('number_of_winners')}
-        placeholder="1"
-        margin="normal"
-        onChange={props.onFieldChange}
-        value={props.numberOfWinners}
-        type="number"
-      />
+        <TextField
+          name="participants"
+          label={props.t('participants')}
+          placeholder="David"
+          margin="normal"
+          onChange={onParticipantsChange}
+          value={props.participants}
+          type="text"
+          fullWidth
+        />
+        {/* </Grid> */}
+        {/* <Grid item sm={12}> */}
+        <TextField
+          name="numberOfWinners"
+          label={props.t('number_of_winners')}
+          placeholder="1"
+          margin="normal"
+          onChange={props.onFieldChange}
+          value={props.numberOfWinners}
+          type="number"
+        />
+      </SectionPanel>
       {/* </Grid> */}
     </div>
   );

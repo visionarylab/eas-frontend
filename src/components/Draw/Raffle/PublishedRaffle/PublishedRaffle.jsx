@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
-import { translate } from "react-i18next";
+import { translate } from 'react-i18next';
 
 import PublicResultsPanel from '../../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../../PublicSummaryPanel/PublicSummaryPanel';
-import STYLES from './PubishedRaffle.scss';
+import STYLES from './PublishedRaffle.scss';
 
 const c = className => STYLES[className];
 

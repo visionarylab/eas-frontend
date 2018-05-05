@@ -4,6 +4,10 @@
      "random_letter_title":"Generar letras aleatorias",
      "raffle_title":"Realizar Sorteo"
   },
+  "PublishedNumberDraw":{
+    "chosen_numbers": "Números elegidos",
+    "draw_details": "Detalles del sorteo"
+  },
   "NumberDraw":{
      "random_number_html_title":"Generar números aleatorios",
      "random_number_seo_description":"Generar números aleatorios",
@@ -43,6 +47,8 @@
      "generate_letters":"Generar letras"
   },
   "RaffleDrawForm":{
+     "basic_about_info_raffle": "Detalles generales sobre el sorteo",
+     "raffle_configuration": "Configuración del sorteo",
      "title":"Título del sorteo",
      "description":"Descripcion",
      "participants":"Participantes",

@@ -39,7 +39,7 @@ const RaffleDraw = props => {
           <TransparentPanel>
             <Paper>
               <Trans i18nKey="raffle_seo_description">
-                <div>Organiza sorteos publicos</div>
+                <span>Organiza sorteos publicos</span>
               </Trans>
             </Paper>
           </TransparentPanel>

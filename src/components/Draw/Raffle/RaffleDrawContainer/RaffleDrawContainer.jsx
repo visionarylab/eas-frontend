@@ -47,7 +47,6 @@ class RaffleDrawContainer extends Component {
       dateResultsShown,
     );
     this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
-    console.log(draw);
   }
 
   render() {

@@ -62,7 +62,7 @@ export const getRaffleDraw = drawId => ({
 //                        Number Draw
 // *************************************************************
 
-export const createPublicNumberDraw = (from, to, numberOfResults, allowRepeated) => {
+export const publishNumberDraw = (from, to, numberOfResults, allowRepeated) => {
   const draw = {
     id: '0000000001',
     setup: {

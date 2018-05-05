@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import { translate } from "react-i18next";
+import { translate } from 'react-i18next';
 import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+import SectionPanel from '../SectionPanel/SectionPanel';
 
 const PublishDrawOptions = props => {
   const onScheduleChange = e => {
@@ -26,7 +27,7 @@ const PublishDrawOptions = props => {
   const { dateScheduled, labelPublish, handlePublish, t } = props;
   return (
     <div>
-      <div>
+      <SectionPanel>
         <Typography variant="title">{t('when_show_winners')}</Typography>
         <FormControl component="fieldset" required>
           <RadioGroup
@@ -64,7 +65,7 @@ const PublishDrawOptions = props => {
             ''
           )}
         </FormControl>
-      </div>
+      </SectionPanel>
       <div>
         {/* TODO do stuff here about inmediate publish or scheduled draw */}
         <Button variant="raised" color="primary" onClick={handlePublish}>
