@@ -11,11 +11,11 @@ class PublishedNumberDrawContainer extends Component {
     this.state = {
       title: '',
       description: '',
-      from: 0,
-      to: 10,
-      numberOfResults: 1,
-      allowRepeated: false,
-      results: [2, 6],
+      from: null,
+      to: null,
+      numberOfResults: null,
+      allowRepeated: null,
+      results: [],
     };
   }
 
