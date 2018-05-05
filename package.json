@@ -16,7 +16,6 @@
     "eslint-plugin-prettier": "^2.6.0",
     "i18next": "^11.2.3",
     "i18next-browser-languagedetector": "^2.2.0",
-    "i18next-locize-backend": "^1.4.2",
     "material-ui-pickers": "^1.0.0-rc.6",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.0",

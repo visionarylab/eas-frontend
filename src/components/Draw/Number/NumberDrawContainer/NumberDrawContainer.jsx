@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { tossNumberDraw, publishNumberDraw } from '../../../../services/EasAPI';
+import { publishNumberDraw } from '../../../../services/EasAPI';
 import NumberDraw from '../NumberDraw/NumberDraw';
+import ApiClient from '../../../../services/api/EASApi';
+
+const { DrawApi, RandomNumber } = ApiClient;
+const drawApi = new DrawApi();
 
 class NumberDrawContainer extends React.Component {
   constructor(props) {
@@ -13,6 +17,7 @@ class NumberDrawContainer extends React.Component {
     this.handleToss = this.handleToss.bind(this);
 
     this.state = {
+      drawId: null,
       values: {
         title: '',
         description: '',
@@ -52,13 +57,26 @@ class NumberDrawContainer extends React.Component {
     }
   };
 
-  handleToss() {
+  async handleToss() {
     const { from, to, numberOfResults, allowRepeated } = this.state.values;
-    const draw = tossNumberDraw(from, to, numberOfResults, allowRepeated);
+    const randomNumberDraw = RandomNumber.constructFromObject({
+      range_min: from,
+      range_max: to,
+    });
+    let tossDrawResponse;
+    try {
+      if (!this.state.drawId) {
+        const createDrawResponse = await drawApi.createRandomNumber(randomNumberDraw);
+        this.setState({ drawId: createDrawResponse.id });
+      }
+      tossDrawResponse = await drawApi.putRandomNumber(this.state.drawId);
+    } catch (err) {
+      alert(err);
+    }
     this.setState(previousState => ({
       values: {
         ...previousState.values,
-        results: draw.results,
+        results: tossDrawResponse.results[0].value,
       },
     }));
   }
