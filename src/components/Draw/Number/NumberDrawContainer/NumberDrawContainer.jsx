@@ -59,8 +59,10 @@ class NumberDrawContainer extends React.Component {
   };
 
   async createDraw() {
-    const { from, to, numberOfResults, allowRepeated } = this.state.values;
+    const { title, description, from, to, numberOfResults, allowRepeated } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
+      title,
+      description,
       range_min: from,
       range_max: to,
     });

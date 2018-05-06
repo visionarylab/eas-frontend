@@ -7,7 +7,7 @@ import { translate } from 'react-i18next';
 const PublicDetails = props => (
   <Grid item sm={12}>
     <TextField
-      name="publicTitle"
+      name="title"
       label={props.t('title_label')}
       placeholder={props.t('title_placeholder')}
       margin="normal"
@@ -17,7 +17,7 @@ const PublicDetails = props => (
       type="text"
     />
     <TextField
-      name="publicDescription"
+      name="description"
       label={props.t('description_label')}
       onChange={props.onFieldChange}
       multiline
