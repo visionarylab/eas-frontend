@@ -3,6 +3,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { getNumberDraw } from '../../../../services/EasAPI';
 import PublishedNumberDraw from '../PublishedNumberDraw/PublishedNumberDraw';
+import ApiClient from '../../../../services/api/EASApi';
+
+const { DrawApi, RandomNumber } = ApiClient;
+const drawApi = new DrawApi();
 
 class PublishedNumberDrawContainer extends Component {
   constructor(props) {
@@ -23,17 +27,16 @@ class PublishedNumberDrawContainer extends Component {
     this.loadData();
   }
 
-  loadData() {
-    const drawId = parseInt(this.props.match.params.drawId, 10);
-    const numberDraw = getNumberDraw(drawId);
-    const { title, description, from, to, numberOfResults, allowRepeated, results } = numberDraw;
+  async loadData() {
+    const drawId = this.props.match.params.drawId;
+
+    const draw = await drawApi.getRandomNumber(drawId);
+    const { title, description, results } = draw;
     this.setState({
       title,
       description,
-      from,
-      to,
-      numberOfResults,
-      allowRepeated,
+      from: draw.range_min,
+      to: draw.range_max,
       results,
     });
   }
@@ -48,7 +51,7 @@ class PublishedNumberDrawContainer extends Component {
         to={to}
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
-        results={results}
+        results={results.map(result => result.value)}
       />
     );
   }

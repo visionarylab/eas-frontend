@@ -58,18 +58,27 @@ class NumberDrawContainer extends React.Component {
     }
   };
 
-  async handleToss() {
+  async createDraw() {
     const { from, to, numberOfResults, allowRepeated } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
       range_min: from,
       range_max: to,
     });
+    try {
+      return await drawApi.createRandomNumber(randomNumberDraw);
+    } catch (err) {
+      alert(err);
+      return null;
+    }
+  }
+
+  async handleToss() {
+    if (!this.state.drawId) {
+      const draw = await this.createDraw();
+      this.setState({ drawId: draw.id });
+    }
     let tossDrawResponse;
     try {
-      if (!this.state.drawId) {
-        const createDrawResponse = await drawApi.createRandomNumber(randomNumberDraw);
-        this.setState({ drawId: createDrawResponse.id });
-      }
       tossDrawResponse = await drawApi.putRandomNumber(this.state.drawId);
     } catch (err) {
       alert(err);
@@ -82,18 +91,9 @@ class NumberDrawContainer extends React.Component {
     }));
   }
 
-  handlePublish() {
-    // Publish the draw
-    // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
-    // Redirect to the public draw
-    const { title, description, participants, numberOfWinners, dateResultsShown } = this.state;
-    const draw = publishNumberDraw(
-      title,
-      description,
-      participants,
-      numberOfWinners,
-      dateResultsShown,
-    );
+  async handlePublish() {
+    const draw = await this.createDraw();
+    await drawApi.putRandomNumber(draw.id);
     this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
   }
 
