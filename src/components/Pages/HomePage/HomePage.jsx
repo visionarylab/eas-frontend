@@ -4,8 +4,8 @@ import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
 import Grid from 'material-ui/Grid';
 
-import Chip from './../DrawCard/DrawCard';
-import TransparentPanel from '../TransparentPanel/TransparentPanel';
+import Chip from './../../DrawCard/DrawCard';
+import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 
 const HomePage = ({ t }) => (
   <Grid container justify="center">

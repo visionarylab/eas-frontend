@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from 'material-ui/Typography';
 import { Link } from 'react-router-dom';
 
 import STYLES from './Header.scss';

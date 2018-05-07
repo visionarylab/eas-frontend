@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Grid } from 'material-ui';
 
-import NumberDrawContainer from '../Draw/Number/NumberDrawContainer/NumberDrawContainer';
-import RaffleDrawContainer from '../Draw/Raffle/RaffleDrawContainer/RaffleDrawContainer';
-import PublishedRaffleContainer from '../Draw/Raffle/PublishedRaffleContainer/PublishedRaffleContainer';
-import PublishedNumberDrawContainer from '../Draw/Number/PublishedNumberDrawContainer/PublishedNumberDrawContainer';
-import Letter from '../Draw/Letter/Letter';
-import BackArrow from '../BackArrow/BackArrow';
+import NumberDrawContainer from '../../Draw/Number/NumberDrawContainer/NumberDrawContainer';
+import RaffleDrawContainer from '../../Draw/Raffle/RaffleDrawContainer/RaffleDrawContainer';
+import PublishedRaffleContainer from '../../Draw/Raffle/PublishedRaffleContainer/PublishedRaffleContainer';
+import PublishedNumberDrawContainer from '../../Draw/Number/PublishedNumberDrawContainer/PublishedNumberDrawContainer';
+import Letter from '../../Draw/Letter/Letter';
+import BackArrow from '../../BackArrow/BackArrow';
 
 import STYLES from './DrawPage.scss';
 

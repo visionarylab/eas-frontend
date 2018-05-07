@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-import i18n from '../i18n/i18n';
+import i18n from '../../i18n/i18n';
 
 const createOnChangeHandler = (available, onChange) => ({ currentTarget }) =>
   onChange(available[currentTarget.selectedIndex]);

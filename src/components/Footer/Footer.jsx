@@ -1,7 +1,7 @@
 import React from 'react';
 import i18n from '../../i18n/i18n'; // initialized i18next instance
 
-import TranslationsSwitch from '../TranslationsSwitch';
+import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch';
 import available from '../../i18n/available';
 import STYLES from './Footer.scss';
 
