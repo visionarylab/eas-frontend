@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PublicResultsPanel = props => <div>{props.children}</div>;
+import TransparentPanel from '../TransparentPanel/TransparentPanel';
 
+const PublicResultsPanel = props => (
+  <div>
+    <TransparentPanel>{props.children}</TransparentPanel>
+  </div>
+);
 PublicResultsPanel.propTypes = {
   children: PropTypes.node.isRequired,
 };
