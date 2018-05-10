@@ -5,10 +5,10 @@ import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 
 import SectionPanel from '../../../SectionPanel/SectionPanel';
+import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
 
 const RaffleDrawForm = props => {
-  const onParticipantsChange = e => {
-    const participants = e.target.value.split(',');
+  const onParticipantsChange = participants => {
     props.onFieldChange({ target: { name: 'participants', value: participants } });
   };
 
@@ -37,22 +37,15 @@ const RaffleDrawForm = props => {
           fullWidth
         />
       </SectionPanel>
-
       <SectionPanel>
         <Typography variant="title">{props.t('raffle_configuration')}</Typography>
-
-        <TextField
+        <MultiValueInput
           name="participants"
           label={props.t('participants')}
+          values={props.participants}
           placeholder="David"
-          margin="normal"
           onChange={onParticipantsChange}
-          value={props.participants}
-          type="text"
-          fullWidth
         />
-        {/* </Grid> */}
-        {/* <Grid item sm={12}> */}
         <TextField
           name="numberOfWinners"
           label={props.t('number_of_winners')}
@@ -63,7 +56,6 @@ const RaffleDrawForm = props => {
           type="number"
         />
       </SectionPanel>
-      {/* </Grid> */}
     </div>
   );
 };
