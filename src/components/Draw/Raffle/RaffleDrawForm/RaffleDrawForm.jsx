@@ -11,6 +11,9 @@ const RaffleDrawForm = props => {
   const onParticipantsChange = participants => {
     props.onFieldChange({ target: { name: 'participants', value: participants } });
   };
+  const onPrizesChange = prizes => {
+    props.onFieldChange({ target: { name: 'prizes', value: prizes } });
+  };
 
   return (
     <div>
@@ -46,6 +49,13 @@ const RaffleDrawForm = props => {
           placeholder="David"
           onChange={onParticipantsChange}
         />
+        <MultiValueInput
+          name="prizes"
+          label={props.t('prizes')}
+          values={props.prizes}
+          placeholder="PS4"
+          onChange={onPrizesChange}
+        />
         <TextField
           name="numberOfWinners"
           label={props.t('number_of_winners')}
@@ -64,6 +74,7 @@ RaffleDrawForm.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   participants: PropTypes.arrayOf(PropTypes.string),
+  prizes: PropTypes.arrayOf(PropTypes.string),
   numberOfWinners: PropTypes.number,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -73,6 +84,7 @@ RaffleDrawForm.defaultProps = {
   title: '',
   description: '',
   participants: [],
+  prizes: [],
   numberOfWinners: 1,
 };
 

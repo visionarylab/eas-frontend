@@ -11,7 +11,7 @@ import DrawPanel from '../../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
 
 const RaffleDraw = props => {
-  const { title, description, participants, numberOfWinners, dateScheduled } = props.values;
+  const { title, description, participants, prizes, numberOfWinners, dateScheduled } = props.values;
   return (
     <Fragment>
       <Helmet>
@@ -24,6 +24,7 @@ const RaffleDraw = props => {
               title={title}
               description={description}
               participants={participants}
+              prizes={prizes}
               numberOfWinners={numberOfWinners}
               onFieldChange={props.onFieldChange}
             />
@@ -54,6 +55,7 @@ RaffleDraw.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
+    prizes: PropTypes.arrayOf(PropTypes.string),
     numberOfWinners: PropTypes.number,
     dateScheduled: PropTypes.string,
   }).isRequired,

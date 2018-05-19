@@ -15,6 +15,7 @@ class RaffleDrawContainer extends Component {
         title: '',
         description: '',
         participants: [],
+        prizes: [],
         numberOfWinners: 1,
         winners: [],
         dateScheduled: null,
