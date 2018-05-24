@@ -14,7 +14,14 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.Server.defaults({
+  port: 5000,
+  delay: 100,
+  force404: true,
+  enable: true,
+});
