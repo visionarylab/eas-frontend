@@ -60,6 +60,18 @@
      "publish_draw":"Publicar sorteo",
      "schedule_draw":"Programar la tirada"
   },
+  "FacebookDraw":{
+    "facebook_draw_html_title":"Organizar eb Facebook",
+    "facebook_draw_seo_description":"<0>Organiza sorteos en Facebook</0>",
+    "post_or_photo_url": "Url de la foto o post",
+    "check_participants": "Ver participantes",
+    "number_of_winners": "Número de ganadores",
+    "publish_draw":"Publicar sorteo",
+    "schedule_draw":"Programar la tirada"
+  },
+  "PublishedFadebookDraw": {
+    "winners": "Ganadores"
+  },
   "PublishedRaffle":{
      "winners":"Ganadores"
   },

@@ -59,6 +59,17 @@
   "PublishedRaffle":{
      "winners":"Winners"
   },
+  "FacebookDraw":{
+    "facebook_draw_html_title":"Facebook Raffle",
+    "facebook_draw_seo_description":"Organise a raffle in Facebook",
+    "post_or_photo_url": "URL of the post or photo",
+    "check_participants": "Get participants",
+    "number_of_winners": "Number of winners",
+    "publish_draw":"Publish raffle"
+  },
+  "PublishedFadebookDraw": {
+    "winners": "Winners"
+  },
   "TranslationsSwitch":{
      "change_language":"Change language"
   }
