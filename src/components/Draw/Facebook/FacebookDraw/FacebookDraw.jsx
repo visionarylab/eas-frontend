@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
@@ -13,103 +13,107 @@ import DrawPanel from '../../../DrawPanel/DrawPanel';
 import SectionPanel from '../../../SectionPanel/SectionPanel';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
 import MultiValueDisplay from '../../../MultiValueDisplay/MultiValueDisplay';
+import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
 import STYLES from './FacebookDraw.scss';
 
 const c = classNames.bind(STYLES);
 
 const FacebookDraw = props => {
-  console.log('asd');
-
   const { values, isLoggedInFB, ownedPages, onGetLikes, onFieldChange, handlePublish, t } = props;
 
   return (
-    <Grid container>
+    <Fragment>
       <Helmet>
         <title>{t('facebook_draw_html_title')}</title>
       </Helmet>
-      <Grid item xs={6}>
-        <DrawPanel>
-          <Grid item sm={12}>
-            <SectionPanel>
-              {isLoggedInFB ? (
-                <Fragment>
-                  You are logged in. These are the pages were we got access:
-                  <ul>{ownedPages.map(page => <li>{page.pageName}</li>)}</ul>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <Typography variant="body1" gutterBottom>
-                    Login with facebook so we can automatically get the participants from the people
-                    who liked a particular post or photo you published
-                  </Typography>
-                  <div className={c('FacebookDraw__facebook-button')}>
-                    <div
-                      className="fb-login-button"
-                      data-max-rows="1"
-                      data-size="large"
-                      data-button-type="continue_with"
-                      data-show-faces="false"
-                      data-auto-logout-link="false"
-                      data-use-continue-as="false"
-                      data-scope="manage_pages"
-                    />
-                  </div>
-                </Fragment>
-              )}
-            </SectionPanel>
-            <SectionPanel>
-              Now paste here the link to the post you want to check
-              <TextField
-                label={t('post_or_photo_url')}
-                margin="normal"
-                onChange={e => onFieldChange('url', e.target.value)}
-                value={values.url}
-                type="text"
-                fullWidth
-                disabled={!isLoggedInFB}
-              />
-              <Button
-                variant="raised"
-                color="primary"
-                onClick={onGetLikes}
-                disabled={!isLoggedInFB}
-              >
-                {t('check_participants')}
-              </Button>
-            </SectionPanel>
-            <SectionPanel>
-              <MultiValueDisplay
-                name="participants"
-                label={props.t('participants')}
-                values={values.participants}
-                placeholder="David"
-              />
-              <TextField
-                label={props.t('number_of_winners')}
-                placeholder="1"
-                margin="normal"
-                onChange={e => onFieldChange('numberOfWinners', e.target.value)}
-                value={values.numberOfWinners}
-                type="number"
-              />
-            </SectionPanel>
-            <div>
-              {/* TODO do stuff here about inmediate publish or scheduled draw */}
-              <Button variant="raised" color="primary" onClick={handlePublish}>
-                {props.t('publish_draw')}
-              </Button>
-            </div>
-          </Grid>
-        </DrawPanel>
-      </Grid>
-      <Grid item xs={6}>
-        <Grid container spacing={16} direction="row" alignItems="center">
-          <Grid item xs={10}>
-            <Paper>{t('facebook_draw_seo_description')}</Paper>
-          </Grid>
+      <Grid container spacing={16}>
+        <Grid item xs={6}>
+          <DrawPanel>
+            <Grid item sm={12}>
+              <SectionPanel>
+                {isLoggedInFB ? (
+                  <Fragment>
+                    You are logged in. These are the pages were we got access:
+                    <ul>{ownedPages.map(page => <li>{page.pageName}</li>)}</ul>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <Typography variant="body1" gutterBottom>
+                      Organise a raffle among the people who liked a post or photo in your page
+                      <br />
+                      Login with facebook so we can automatically get the participants for the
+                      raffle
+                    </Typography>
+                    <div className={c('FacebookDraw__facebook-button')}>
+                      <div
+                        className="fb-login-button"
+                        data-max-rows="1"
+                        data-size="large"
+                        data-button-type="continue_with"
+                        data-show-faces="false"
+                        data-auto-logout-link="false"
+                        data-use-continue-as="false"
+                        data-scope="manage_pages"
+                      />
+                    </div>
+                  </Fragment>
+                )}
+              </SectionPanel>
+              <SectionPanel>
+                Now paste here the link to the post you want to check
+                <TextField
+                  label={t('post_or_photo_url')}
+                  margin="normal"
+                  onChange={e => onFieldChange('url', e.target.value)}
+                  value={values.url}
+                  type="text"
+                  fullWidth
+                  disabled={!isLoggedInFB}
+                />
+                <Button
+                  variant="raised"
+                  color="primary"
+                  onClick={onGetLikes}
+                  disabled={!isLoggedInFB}
+                >
+                  {t('check_participants')}
+                </Button>
+              </SectionPanel>
+              <SectionPanel>
+                <MultiValueDisplay
+                  name="participants"
+                  label={props.t('participants')}
+                  values={values.participants}
+                  placeholder="David"
+                />
+                <TextField
+                  label={props.t('number_of_winners')}
+                  placeholder="1"
+                  margin="normal"
+                  onChange={e => onFieldChange('numberOfWinners', e.target.value)}
+                  value={values.numberOfWinners}
+                  type="number"
+                />
+              </SectionPanel>
+              <div>
+                <Button variant="raised" color="primary" onClick={handlePublish}>
+                  {props.t('publish_draw')}
+                </Button>
+              </div>
+            </Grid>
+          </DrawPanel>
+        </Grid>
+        <Grid item xs={6}>
+          <TransparentPanel>
+            <Paper>
+              <Trans i18nKey="facebook_draw_seo_description">
+                <span>Organize raffles in your Facebook page</span>
+              </Trans>
+            </Paper>
+          </TransparentPanel>
         </Grid>
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
 

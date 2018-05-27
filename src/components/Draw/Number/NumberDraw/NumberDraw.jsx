@@ -1,5 +1,5 @@
-import React from 'react';
-import { translate } from 'react-i18next';
+import React, { Fragment } from 'react';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Grid from 'material-ui/Grid';
@@ -12,6 +12,7 @@ import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
 import GenerateResultsButton from '../../../GenerateResultsButton/GenerateResultsButton';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../../DrawPanel/DrawPanel';
+import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
 
 const NumberDraw = props => {
   const {
@@ -26,61 +27,62 @@ const NumberDraw = props => {
     results,
   } = props.values;
   return (
-    <Grid container>
+    <Fragment>
       <Helmet>
         <title>{props.t('random_number_html_title')}</title>
       </Helmet>
-      <Grid item xs={6}>
-        <DrawPanel>
-          <Grid item sm={12}>
-            <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
-            {isPublic ? (
-              <PublicDetails
-                title={title}
-                description={description}
-                onFieldChange={props.onFieldChange}
-              />
-            ) : null}
-            <NumberDrawForm
-              from={from}
-              to={to}
-              numberOfResults={numberOfResults}
-              allowRepeated={allowRepeated}
-              onFieldChange={props.onFieldChange}
-            />
-            <Grid item xs={12}>
+      <Grid container spacing={16}>
+        <Grid item xs={6}>
+          <DrawPanel>
+            <Grid item sm={12}>
+              <Typography variant="display1">{props.t('random_number_default_title')}</Typography>
               {isPublic ? (
-                <PublishDrawOptions
-                  labelPublish={props.t('publish_draw')}
-                  dateScheduled={dateScheduled}
-                  handlePublish={props.handlePublish}
+                <PublicDetails
+                  title={title}
+                  description={description}
                   onFieldChange={props.onFieldChange}
                 />
-              ) : (
-                <GenerateResultsButton
-                  label={props.t('generate_numbers')}
-                  handleToss={props.handleToss}
-                />
-              )}
+              ) : null}
+              <NumberDrawForm
+                from={from}
+                to={to}
+                numberOfResults={numberOfResults}
+                allowRepeated={allowRepeated}
+                onFieldChange={props.onFieldChange}
+              />
+              <Grid item xs={12}>
+                {isPublic ? (
+                  <PublishDrawOptions
+                    labelPublish={props.t('publish_draw')}
+                    dateScheduled={dateScheduled}
+                    handlePublish={props.handlePublish}
+                    onFieldChange={props.onFieldChange}
+                  />
+                ) : (
+                  <GenerateResultsButton
+                    label={props.t('generate_numbers')}
+                    handleToss={props.handleToss}
+                  />
+                )}
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid item sm={12}>
-            <NumberDrawResults results={results} />
-          </Grid>
-        </DrawPanel>
-      </Grid>
+            <Grid item sm={12}>
+              <NumberDrawResults results={results} />
+            </Grid>
+          </DrawPanel>
+        </Grid>
 
-      <Grid item xs={6}>
-        <Grid container spacing={16} direction="row" alignItems="center">
-          <Grid item xs={10}>
-            <Paper>{props.t('random_number_seo_description')}</Paper>
-          </Grid>
-          <Grid item xs={10}>
-            <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />
-          </Grid>
+        <Grid item xs={6}>
+          <TransparentPanel>
+            <Paper>
+              <Trans i18nKey="number_draw_seo_description">
+                <span>Organiza sorteos publicos</span>
+              </Trans>
+            </Paper>
+          </TransparentPanel>
         </Grid>
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
 
