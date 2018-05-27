@@ -2,7 +2,8 @@
   "HomePage":{
      "random_number_title":"Generate Random Numbers",
      "random_letter_title":"Generate Random Letters",
-     "raffle_title":"Make a Raffle"
+     "raffle_title":"Make a Raffle",
+     "facebook_draw_title": "Facebook Raffle"
   },
   "NumberDraw":{
      "random_number_html_title":"Generate random numbers",

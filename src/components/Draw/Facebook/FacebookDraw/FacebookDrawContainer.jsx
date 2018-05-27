@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import FacebookDraw from './FacebookDraw';
-import { fbAsyncInit, getFacebookPages, onGetLikes } from '../../../../services/facebookAPI';
+import {
+  fbAsyncInit,
+  getFacebookPages,
+  onGetLikes,
+  getObjectIdFromUrl,
+} from '../../../../services/FacebookAPI/FacebookAPI';
 
 class FacebookDrawContainer extends Component {
   constructor(props) {
@@ -49,6 +54,13 @@ class FacebookDrawContainer extends Component {
   }
 
   onFieldChange = (fieldName, value) => {
+    if (fieldName === 'url') {
+      try {
+        getObjectIdFromUrl(this.state.values.url);
+      } catch (error) {
+        console.log('INVALID URL');
+      }
+    }
     this.setState(previousState => ({
       values: {
         ...previousState.values,
@@ -60,7 +72,9 @@ class FacebookDrawContainer extends Component {
   };
 
   onGetLikes = async () => {
-    const objectId = '1775681819145291_1775711522475654';
+    // const objectId = '1775681819145291_1775711522475654';
+    // const objectId = '1775681819145291';
+    const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
     this.state.ownedPages.map(page => page.accessToken).forEach(async pageAccessToken => {
       const participants = await onGetLikes(objectId, pageAccessToken);

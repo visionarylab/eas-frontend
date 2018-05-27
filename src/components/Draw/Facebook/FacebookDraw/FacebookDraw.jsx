@@ -32,10 +32,10 @@ const FacebookDraw = props => {
           <Grid item sm={12}>
             <SectionPanel>
               {isLoggedInFB ? (
-                <Paper>
+                <Fragment>
                   You are logged in. These are the pages were we got access:
                   <ul>{ownedPages.map(page => <li>{page.pageName}</li>)}</ul>
-                </Paper>
+                </Fragment>
               ) : (
                 <Fragment>
                   <Typography variant="body1" gutterBottom>

@@ -74,3 +74,38 @@ export const onGetLikes = async (objectId, accessToken = null) => {
   return participants;
   // this.onFieldChange('participants', participants);
 };
+
+function getUrlParams(search) {
+  const hashes = search.slice(search.indexOf('?') + 1).split('&');
+  return hashes.reduce((params, hash) => {
+    const [key, val] = hash.split('=');
+    return Object.assign(params, { [key]: decodeURIComponent(val) });
+  }, {});
+}
+
+export const getObjectIdFromUrl = urlString => {
+  console.log('url:', urlString);
+  const url = new URL(urlString);
+  const path = url.pathname.replace(/\/$/, '');
+  const searchParams = getUrlParams(url.search);
+  let parcialObjectId = searchParams.story_fbid;
+  let pageId = searchParams.id;
+  if (pageId && parcialObjectId) {
+    return `${pageId}_${parcialObjectId}`;
+  }
+
+  const PageRegex = /\/([0-9]+)/;
+  const pageIdResults = path.match(PageRegex);
+  if (!pageIdResults || pageIdResults.length <= 1) {
+    throw Error('URL not valid');
+  }
+  pageId = pageIdResults[1];
+
+  const objectRegex = /\/([0-9]+)(?=[^/]*$)/;
+  const parcialObjectIdResults = path.match(objectRegex);
+  if (!parcialObjectIdResults || parcialObjectIdResults.length <= 1) {
+    throw Error('URL not valid');
+  }
+  parcialObjectId = parcialObjectIdResults[1];
+  return `${pageId}_${parcialObjectId}`;
+};
