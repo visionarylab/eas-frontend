@@ -7,12 +7,15 @@ import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
-// import { FB, Facebook, FacebookApiException } from 'fb';
+import classNames from 'classnames/bind';
 
 import DrawPanel from '../../../DrawPanel/DrawPanel';
 import SectionPanel from '../../../SectionPanel/SectionPanel';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
 import MultiValueDisplay from '../../../MultiValueDisplay/MultiValueDisplay';
+import STYLES from './FacebookDraw.scss';
+
+const c = classNames.bind(STYLES);
 
 const FacebookDraw = props => {
   console.log('asd');
@@ -39,7 +42,7 @@ const FacebookDraw = props => {
                     Login with facebook so we can automatically get the participants from the people
                     who liked a particular post or photo you published
                   </Typography>
-                  <div className={}>
+                  <div className={c('FacebookDraw__facebook-button')}>
                     <div
                       className="fb-login-button"
                       data-max-rows="1"
@@ -51,7 +54,6 @@ const FacebookDraw = props => {
                       data-scope="manage_pages"
                     />
                   </div>
-          
                 </Fragment>
               )}
             </SectionPanel>
