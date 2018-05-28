@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChevronLeft from 'material-ui-icons/ChevronLeft';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
 import STYLES from './BackArrow.scss';
 

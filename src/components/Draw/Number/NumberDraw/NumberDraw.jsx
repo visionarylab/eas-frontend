@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
 import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
@@ -79,6 +79,7 @@ const NumberDraw = props => {
                 <span>Organiza sorteos publicos</span>
               </Trans>
             </Paper>
+            <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />
           </TransparentPanel>
         </Grid>
       </Grid>

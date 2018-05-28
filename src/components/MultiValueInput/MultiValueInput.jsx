@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { WithContext as ReactTags } from 'react-tag-input';
-import Paper from 'material-ui/Paper';
-import Chip from 'material-ui/Chip';
-import TextField from 'material-ui/TextField';
+import Paper from '@material-ui/core/Paper';
+import Chip from '@material-ui/core/Chip';
+import TextField from '@material-ui/core/TextField';
 
 import STYLES from './MultiValueInput.scss';
 

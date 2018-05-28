@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Grid } from 'material-ui';
+import { Grid } from '@material-ui/core/Grid';
 
 import NumberDrawContainer from '../../Draw/Number/NumberDraw/NumberDrawContainer';
 import RaffleDrawContainer from '../../Draw/Raffle/RaffleDrawContainer/RaffleDrawContainer';

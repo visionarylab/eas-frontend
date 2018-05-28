@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 import RaffleDrawForm from '../RaffleDrawForm/RaffleDrawForm';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';

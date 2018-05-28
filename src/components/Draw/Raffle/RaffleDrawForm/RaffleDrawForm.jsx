@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 import SectionPanel from '../../../SectionPanel/SectionPanel';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';

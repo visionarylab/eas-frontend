@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const GenerateResultsButton = props => (
   <Button variant="raised" color="primary" onClick={props.handleToss}>

@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames/bind';
 
 import DrawPanel from '../../../DrawPanel/DrawPanel';
@@ -14,6 +14,7 @@ import SectionPanel from '../../../SectionPanel/SectionPanel';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
 import MultiValueDisplay from '../../../MultiValueDisplay/MultiValueDisplay';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
+import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
 import STYLES from './FacebookDraw.scss';
 
 const c = classNames.bind(STYLES);
@@ -94,6 +95,7 @@ const FacebookDraw = props => {
                   value={values.numberOfWinners}
                   type="number"
                 />
+                <PrizeSelector onFieldChange={onFieldChange} />
               </SectionPanel>
               <div>
                 <Button variant="raised" color="primary" onClick={handlePublish}>

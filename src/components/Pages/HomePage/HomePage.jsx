@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 
 import Chip from './../../DrawCard/DrawCard';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
