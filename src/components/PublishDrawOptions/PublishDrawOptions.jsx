@@ -7,9 +7,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
-import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+// import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+// import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+// import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 import SectionPanel from '../SectionPanel/SectionPanel';
 
 const PublishDrawOptions = props => {
@@ -50,22 +50,22 @@ const PublishDrawOptions = props => {
             />
           </RadioGroup>
 
-          {dateScheduled ? (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <DateTimePicker
-                name="dateScheduled"
-                value={dateScheduled}
-                onChange={onDateScheduledChange}
-                autoOk
-                ampm={false}
-                disableFuture
-                label="24h clock"
-                // showTodayButton
-              />
-            </MuiPickersUtilsProvider>
-          ) : (
-            ''
-          )}
+          {dateScheduled
+            ? // TODO Commented out until they are compatible with material UI 1.1
+              // <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              //   <DateTimePicker
+              //     name="dateScheduled"
+              //     value={dateScheduled}
+              //     onChange={onDateScheduledChange}
+              //     autoOk
+              //     ampm={false}
+              //     disableFuture
+              //     label="24h clock"
+              //     // showTodayButton
+              //   />
+              // </MuiPickersUtilsProvider>
+              ''
+            : ''}
         </FormControl>
       </SectionPanel>
       <div>
