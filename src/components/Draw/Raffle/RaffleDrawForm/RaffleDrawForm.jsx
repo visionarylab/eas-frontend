@@ -6,69 +6,51 @@ import Typography from '@material-ui/core/Typography';
 
 import SectionPanel from '../../../SectionPanel/SectionPanel';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
+import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
 
-const RaffleDrawForm = props => {
-  const onParticipantsChange = participants => {
-    props.onFieldChange({ target: { name: 'participants', value: participants } });
-  };
-  const onPrizesChange = prizes => {
-    props.onFieldChange({ target: { name: 'prizes', value: prizes } });
-  };
-
-  return (
-    <div>
-      <SectionPanel>
-        <Typography variant="title">{props.t('basic_about_info_raffle')}</Typography>
-        <TextField
-          name="title"
-          label={props.t('title')}
-          placeholder="Sorte de Navidad"
-          margin="normal"
-          onChange={props.onFieldChange}
-          value={props.title}
-          type="text"
-          fullWidth
-        />
-        <TextField
-          id="multiline-static"
-          name="description"
-          label={props.t('description')}
-          multiline
-          rows="4"
-          onChange={props.onFieldChange}
-          value={props.description}
-          fullWidth
-        />
-      </SectionPanel>
-      <SectionPanel>
-        <Typography variant="title">{props.t('raffle_configuration')}</Typography>
-        <MultiValueInput
-          name="participants"
-          label={props.t('participants')}
-          values={props.participants}
-          placeholder="David"
-          onChange={onParticipantsChange}
-        />
-        <MultiValueInput
-          name="prizes"
-          label={props.t('prizes')}
-          values={props.prizes}
-          placeholder="PS4"
-          onChange={onPrizesChange}
-        />
-        <TextField
-          name="numberOfWinners"
-          label={props.t('number_of_winners')}
-          placeholder="1"
-          margin="normal"
-          onChange={props.onFieldChange}
-          value={props.numberOfWinners}
-          type="number"
-        />
-      </SectionPanel>
-    </div>
-  );
-};
+const RaffleDrawForm = props => (
+  <div>
+    <SectionPanel>
+      <Typography variant="title">{props.t('basic_about_info_raffle')}</Typography>
+      <TextField
+        name="title"
+        label={props.t('title')}
+        placeholder="Sorte de Navidad"
+        margin="normal"
+        onChange={e => props.onFieldChange('title', e.target.value)}
+        value={props.title}
+        type="text"
+        fullWidth
+      />
+      <TextField
+        id="multiline-static"
+        name="description"
+        label={props.t('description')}
+        multiline
+        rows="4"
+        onChange={e => props.onFieldChange('description', e.target.value)}
+        value={props.description}
+        fullWidth
+      />
+    </SectionPanel>
+    <SectionPanel>
+      <Typography variant="title">{props.t('raffle_configuration')}</Typography>
+      <MultiValueInput
+        name="participants"
+        label={props.t('participants')}
+        values={props.participants}
+        placeholder="David"
+        onChange={participants => props.onFieldChange('participants', participants)}
+        fullWidth
+      />
+      <PrizeSelector
+        numberOfWinners={props.numberOfWinners}
+        prizes={props.prizes}
+        onFieldChange={props.onFieldChange}
+      />
+    </SectionPanel>
+  </div>
+);
 
 RaffleDrawForm.propTypes = {
   title: PropTypes.string,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
@@ -55,18 +55,16 @@ class MultiValueInput extends Component {
   };
 
   render() {
-    const { label, name, placeholder, values } = this.props;
+    const { values, ...rest } = this.props;
+    const { delimiters, onChange, ...extra } = rest;
     return (
-      <div className={c('MultiValueInput')}>
+      <Fragment>
         <TextField
-          name={name}
-          label={label}
-          placeholder={placeholder}
           onChange={this.onCurrentValueChange}
           onKeyPress={this.onKeyPress}
           value={this.state.currentValue}
           type="text"
-          fullWidth
+          {...extra}
         />
         {Boolean(values.length) && (
           <Paper>
@@ -75,7 +73,7 @@ class MultiValueInput extends Component {
             ))}
           </Paper>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

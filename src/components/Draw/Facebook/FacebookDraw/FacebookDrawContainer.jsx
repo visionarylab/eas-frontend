@@ -61,6 +61,7 @@ class FacebookDrawContainer extends Component {
         console.log('INVALID URL');
       }
     }
+    console.log('onfliedChange', fieldName, value);
     this.setState(previousState => ({
       values: {
         ...previousState.values,

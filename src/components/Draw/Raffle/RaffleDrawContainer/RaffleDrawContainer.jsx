@@ -23,13 +23,12 @@ class RaffleDrawContainer extends Component {
     };
   }
 
-  onFieldChange = e => {
-    const { name, value } = e.target;
+  onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
       values: {
         ...previousState.values,
         ...{
-          [name]: value,
+          [fieldName]: value,
         },
       },
     }));

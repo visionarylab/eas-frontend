@@ -79,23 +79,19 @@ const FacebookDraw = props => {
                 >
                   {t('check_participants')}
                 </Button>
-              </SectionPanel>
-              <SectionPanel>
                 <MultiValueDisplay
                   name="participants"
                   label={props.t('participants')}
                   values={values.participants}
                   placeholder="David"
                 />
-                <TextField
-                  label={props.t('number_of_winners')}
-                  placeholder="1"
-                  margin="normal"
-                  onChange={e => onFieldChange('numberOfWinners', e.target.value)}
-                  value={values.numberOfWinners}
-                  type="number"
+              </SectionPanel>
+              <SectionPanel>
+                <PrizeSelector
+                  numberOfWinners={values.numberOfWinners}
+                  prizes={values.prizes}
+                  onFieldChange={onFieldChange}
                 />
-                <PrizeSelector onFieldChange={onFieldChange} />
               </SectionPanel>
               <div>
                 <Button variant="raised" color="primary" onClick={handlePublish}>

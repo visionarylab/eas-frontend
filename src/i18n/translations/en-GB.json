@@ -71,6 +71,11 @@
   "PublishedFadebookDraw": {
     "winners": "Winners"
   },
+  "PrizeSelector":{
+    "number_of_winners": "Number of winners",
+    "prizes": "Prizes",
+    "specify_prizes": "Specify prizes"
+  },
   "TranslationsSwitch":{
      "change_language":"Change language"
   }

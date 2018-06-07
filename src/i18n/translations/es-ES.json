@@ -69,6 +69,11 @@
     "publish_draw":"Publicar sorteo",
     "schedule_draw":"Programar la tirada"
   },
+  "PrizeSelector":{
+    "number_of_winners": "Número de ganadores",
+    "prizes": "Premios",
+    "specify_prizes": "Especificar premios"
+  },
   "PublishedFadebookDraw": {
     "winners": "Ganadores"
   },
