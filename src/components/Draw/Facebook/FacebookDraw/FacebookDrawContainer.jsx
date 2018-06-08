@@ -26,6 +26,7 @@ class FacebookDrawContainer extends Component {
         dateScheduled: null,
       },
       isLoggedInFB: false,
+      participantsFetched: false,
       ownedPages: [],
     };
   }
@@ -82,6 +83,7 @@ class FacebookDrawContainer extends Component {
       if (participants) {
         this.onFieldChange('participants', participants);
       }
+      this.setState({ participantsFetched: true });
     });
   };
 
@@ -95,11 +97,12 @@ class FacebookDrawContainer extends Component {
   };
 
   render() {
-    const { isLoggedInFB, ownedPages, values } = this.state;
+    const { isLoggedInFB, ownedPages, values, participantsFetched } = this.state;
     return (
       <div>
         <FacebookDraw
           isLoggedInFB={isLoggedInFB}
+          participantsFetched={participantsFetched}
           ownedPages={ownedPages}
           values={values}
           onGetLikes={this.onGetLikes}

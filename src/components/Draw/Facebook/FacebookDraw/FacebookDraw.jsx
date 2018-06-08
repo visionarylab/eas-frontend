@@ -20,7 +20,16 @@ import STYLES from './FacebookDraw.scss';
 const c = classNames.bind(STYLES);
 
 const FacebookDraw = props => {
-  const { values, isLoggedInFB, ownedPages, onGetLikes, onFieldChange, handlePublish, t } = props;
+  const {
+    values,
+    participantsFetched,
+    isLoggedInFB,
+    ownedPages,
+    onGetLikes,
+    onFieldChange,
+    handlePublish,
+    t,
+  } = props;
 
   return (
     <Fragment>
@@ -79,12 +88,14 @@ const FacebookDraw = props => {
                 >
                   {t('check_participants')}
                 </Button>
-                <MultiValueDisplay
-                  name="participants"
-                  label={props.t('participants')}
-                  values={values.participants}
-                  placeholder="David"
-                />
+                {participantsFetched && (
+                  <MultiValueDisplay
+                    name="participants"
+                    label={props.t('participants')}
+                    values={values.participants}
+                    placeholder="David"
+                  />
+                )}
               </SectionPanel>
               <SectionPanel>
                 <PrizeSelector
@@ -125,6 +136,7 @@ FacebookDraw.propTypes = {
     numberOfWinners: PropTypes.number,
     dateScheduled: PropTypes.string,
   }).isRequired,
+  participantsFetched: PropTypes.bool.isRequired,
   isLoggedInFB: PropTypes.bool,
   ownedPages: PropTypes.arrayOf(
     PropTypes.shape({
