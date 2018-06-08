@@ -1,0 +1,124 @@
+swagger: "2.0"
+info:
+  description: "API definition for EAS web services"
+  version: "1.0.0"
+  title: "Echalo A Suerte"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "mariocj89@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/api/v1"
+tags:
+- name: "draw"
+  description: "Draw Creation and manipulation"
+schemes:
+- "http"
+paths:
+  /random_number:
+    post:
+      tags:
+      - "draw"
+      summary: "Creates a new draw"
+      description: "Createa a new draw of type random_numer"
+      operationId: "createRandomNumber"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Draw object to create"
+        required: true
+        schema:
+          $ref: "#/definitions/RandomNumber"
+      responses:
+        '200':
+          description: "Returns the created draw"
+          schema:
+            $ref: '#/definitions/RandomNumber'
+        '405':
+          description: "Invalid input"
+  /random_number/{id_}:
+    get:
+      tags:
+      - "pet"
+      summary: "Find draw by private or public id"
+      description: "Returns a single draw"
+      operationId: "getRandomNumber"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_"
+        in: "path"
+        description: "ID of draw to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RandomNumber"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Pet not found"
+    put:
+      tags:
+      - "pet"
+      summary: "Generates a result for an existing Draw"
+      description: ""
+      operationId: "putRandomNumber"
+      parameters:
+      - name: "id_"
+        in: "path"
+        description: "ID of draw to toss"
+        required: true
+        type: "string"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Draw not found"
+        405:
+          description: "Validation exception"
+definitions:
+  RandomNumber:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      private_id:
+        type: "string"
+      created:
+        type: "string"
+      last_updated:
+        type: "string"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      range_min:
+        type: "number"
+      range_max:
+        type: "number"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/RandomNumberResult"
+  RandomNumberResult:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      created:
+        type: "string"
+      value:
+        type: "object"
