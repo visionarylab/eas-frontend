@@ -43,12 +43,6 @@
      "number_of_letters":"Number of letters",
      "generate_letters":"Generate letters"
   },
-  "RaffleDrawForm":{
-     "title":"Raffle Title",
-     "description":"Description",
-     "participants":"Participants",
-     "number_of_winners":"Number of winners"
-  },
   "RaffleDraw":{
      "basic_about_info_raffle": "General details about the raffle",
      "raffle_configuration": "Raffle configuration",

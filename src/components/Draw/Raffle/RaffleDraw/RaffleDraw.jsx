@@ -6,11 +6,14 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-import RaffleDrawForm from '../RaffleDrawForm/RaffleDrawForm';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../../SectionPanel/SectionPanel';
+import PublicDetails from '../../../PublicDetails/PublicDetails';
+import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
+import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
+import TossButton from '../../../TossButton/TossButton';
 
 const RaffleDraw = props => {
   const {
@@ -21,6 +24,7 @@ const RaffleDraw = props => {
     numberOfWinners,
     whenToToss,
     dateScheduled,
+    handlePublish,
   } = props.values;
   return (
     <Fragment>
@@ -30,14 +34,30 @@ const RaffleDraw = props => {
       <Grid container spacing={16}>
         <Grid item xs={6}>
           <DrawPanel>
-            <RaffleDrawForm
-              title={title}
-              description={description}
-              participants={participants}
-              prizes={prizes}
-              numberOfWinners={numberOfWinners}
-              onFieldChange={props.onFieldChange}
-            />
+            <SectionPanel title={props.t('general_details_raffle')}>
+              <PublicDetails
+                title={title}
+                description={description}
+                onFieldChange={props.onFieldChange}
+              />
+            </SectionPanel>
+            <SectionPanel title={props.t('who_will_participate')}>
+              <MultiValueInput
+                name="participants"
+                label={props.t('participants')}
+                values={participants}
+                placeholder="David"
+                onChange={p => props.onFieldChange('participants', p)}
+                fullWidth
+              />
+            </SectionPanel>
+            <SectionPanel title={props.t('detail_about_winners')}>
+              <PrizeSelector
+                numberOfWinners={numberOfWinners}
+                prizes={prizes}
+                onFieldChange={props.onFieldChange}
+              />
+            </SectionPanel>
             <SectionPanel title={props.t('when_to_toss')}>
               <PublishDrawOptions
                 whenToToss={whenToToss}
@@ -46,11 +66,7 @@ const RaffleDraw = props => {
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            <div>
-              <Button variant="raised" color="primary" onClick={props.handlePublish}>
-                {props.t('publish_draw')}
-              </Button>
-            </div>
+            <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
           </DrawPanel>
         </Grid>
         <Grid item xs={6}>

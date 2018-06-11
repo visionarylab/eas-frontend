@@ -47,19 +47,15 @@
      "number_of_letters":"Número de letras",
      "generate_letters":"Generar letras"
   },
-  "RaffleDrawForm":{
-     "basic_about_info_raffle": "Detalles generales sobre el sorteo",
-     "raffle_configuration": "Configuración del sorteo",
-     "title":"Título del sorteo",
-     "description":"Descripcion",
-     "participants":"Participantes",
-     "number_of_winners":"Número de ganadores"
-  },
   "RaffleDraw":{
-     "raffle_html_title":"Organizar sorteo",
-     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
-     "publish_draw":"Publicar sorteo",
-     "schedule_draw":"Programar la tirada"
+    "general_details_raffle": "Detalles generales sobre el sorteo",
+    "who_will_participate": "¿Quién participará en el sorteo?",
+    "detail_about_winners": "Detalles sobre los ganadores",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?",
+    "raffle_html_title":"Organizar sorteo",
+    "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
+    "publish_raffle":"Publicar sorteo",
+    "schedule_draw":"Programar la tirada"
   },
   "FacebookDraw":{
     "facebook_draw_html_title":"Organizar eb Facebook",

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 
 import NumberDrawContainer from '../../Draw/Number/NumberDraw/NumberDrawContainer';
-import RaffleDrawContainer from '../../Draw/Raffle/RaffleDrawContainer/RaffleDrawContainer';
+import RaffleDrawContainer from '../../Draw/Raffle/RaffleDraw/RaffleDrawContainer';
 import PublishedRaffleContainer from '../../Draw/Raffle/PublishedRaffle/PublishedRaffleContainer';
 import PublishedNumberDrawContainer from '../../Draw/Number/PublishedNumberDraw/PublishedNumberDrawContainer';
 import FacebookLoginDrawContainer from '../../Draw/FacebookLogin/FacebookLoginDraw/FacebookLoginDrawContainer';
