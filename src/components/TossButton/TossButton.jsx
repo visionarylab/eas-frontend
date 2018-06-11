@@ -5,9 +5,9 @@ import classNames from 'classnames/bind';
 import STYLES from './TossButton.scss';
 
 const c = classNames.bind(STYLES);
-const TossButton = ({ label, handlePublish }) => (
+const TossButton = ({ label, onClick }) => (
   <div className={c('TossButton')}>
-    <Button variant="raised" color="primary" onClick={handlePublish}>
+    <Button variant="raised" color="primary" onClick={onClick}>
       {label}
     </Button>
   </div>
@@ -15,7 +15,7 @@ const TossButton = ({ label, handlePublish }) => (
 
 TossButton.propTypes = {
   label: PropTypes.string.isRequired,
-  handlePublish: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default TossButton;

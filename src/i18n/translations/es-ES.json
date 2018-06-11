@@ -9,23 +9,18 @@
     "draw_details": "Detalles del sorteo"
   },
   "NumberDraw":{
+    "from":"Desde",
+     "to":"Hasta",
+     "number_of_results":"Número de resultados",
+     "allow_repeated":"Permitir números repetidos",
+     "general_details_draw": "Información general",
+    "draw_configuration": "Detalles de la tirada",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?",
      "random_number_html_title":"Generar números aleatorios",
      "random_number_seo_description":"Generar números aleatorios",
      "random_number_default_title":"Generar números aleatorios",
      "generate_numbers":"Generar números",
-     "publish_draw":"Generar resultados ahora",
-     "schedule_draw":"Programar la tirada"
-  },
-  "NumberDrawForm":{
-     "from":"Desde",
-     "to":"Hasta",
-     "number_of_results":"Número de resultados",
-     "allow_repeated":"Permitir números repetidos"
-  },
-  "PublicNumberDrawDetails":{
-     "setup_description":"{{numberOfResults}} numbers will be selected randomly between {{from}} and {{to}} both included.",
-     "repeated_results_allowed":"Numbers can be repeated in the results.",
-     "repeated_results_not_allowed":"Numbers can not be repeated in the results."
+     "publish_draw":"Publicar tirada"
   },
   "PublicDetails":{
      "title_label":"Título",
@@ -54,8 +49,7 @@
     "when_to_toss": "Cuándo quieres mostrar los resultados?",
     "raffle_html_title":"Organizar sorteo",
     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
-    "publish_raffle":"Publicar sorteo",
-    "schedule_draw":"Programar la tirada"
+    "publish_raffle":"Publicar sorteo"
   },
   "FacebookDraw":{
     "facebook_draw_html_title":"Organizar eb Facebook",
@@ -63,12 +57,12 @@
     "post_or_photo_url": "Url de la foto o post",
     "check_participants": "Ver participantes",
     "number_of_winners": "Número de ganadores",
-    "publish_draw":"Publicar sorteo",
-    "schedule_draw":"Programar la tirada"
+    "publish_draw":"Publicar sorteo"
   },
   "FacebookLoginDraw":{
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "info_about_winners": "Información sobre los ganadores",
+    "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo y compartirlo en Facebook para inscribirse.",
     "when_to_toss": "Cuándo quieres mostrar los resultados?",
     "publish_raffle": "Publicar sorteo"
   },

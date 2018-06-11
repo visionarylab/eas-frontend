@@ -32,15 +32,12 @@ class NumberDrawContainer extends React.Component {
     };
   }
 
-  onFieldChange = e => {
-    const { name } = e.target;
-    const value = this.getValue(e);
+  onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
-      drawId: null,
       values: {
         ...previousState.values,
         ...{
-          [name]: value,
+          [fieldName]: value,
         },
       },
     }));
