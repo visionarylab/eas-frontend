@@ -4,14 +4,24 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import RaffleDrawForm from '../RaffleDrawForm/RaffleDrawForm';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
+import SectionPanel from '../../../SectionPanel/SectionPanel';
 
 const RaffleDraw = props => {
-  const { title, description, participants, prizes, numberOfWinners, dateScheduled } = props.values;
+  const {
+    title,
+    description,
+    participants,
+    prizes,
+    numberOfWinners,
+    whenToToss,
+    dateScheduled,
+  } = props.values;
   return (
     <Fragment>
       <Helmet>
@@ -28,12 +38,19 @@ const RaffleDraw = props => {
               numberOfWinners={numberOfWinners}
               onFieldChange={props.onFieldChange}
             />
-            <PublishDrawOptions
-              labelPublish={props.t('publish_draw')}
-              dateScheduled={dateScheduled}
-              onFieldChange={props.onFieldChange}
-              handlePublish={props.handlePublish}
-            />
+            <SectionPanel title={props.t('when_to_toss')}>
+              <PublishDrawOptions
+                whenToToss={whenToToss}
+                options={['now', 'manual', 'schedule']}
+                dateScheduled={dateScheduled}
+                onFieldChange={props.onFieldChange}
+              />
+            </SectionPanel>
+            <div>
+              <Button variant="raised" color="primary" onClick={props.handlePublish}>
+                {props.t('publish_draw')}
+              </Button>
+            </div>
           </DrawPanel>
         </Grid>
         <Grid item xs={6}>

@@ -1,25 +1,22 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 
 const PublicDetails = props => (
-  <Grid item sm={12}>
+  <Fragment>
     <TextField
-      name="title"
       label={props.t('title_label')}
       placeholder={props.t('title_placeholder')}
       margin="normal"
-      onChange={props.onFieldChange}
+      onChange={e => props.onFieldChange('title', e.target.value)}
       value={props.title}
       fullWidth
       type="text"
     />
     <TextField
-      name="description"
       label={props.t('description_label')}
-      onChange={props.onFieldChange}
+      onChange={e => props.onFieldChange('description', e.target.value)}
       multiline
       fullWidth
       rows="4"
@@ -27,7 +24,7 @@ const PublicDetails = props => (
       value={props.description}
       margin="normal"
     />
-  </Grid>
+  </Fragment>
 );
 
 PublicDetails.propTypes = {

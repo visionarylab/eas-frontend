@@ -56,9 +56,6 @@ export default class RandomNumberResult {
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
-            }
             if (data.hasOwnProperty('created')) {
                 obj['created'] = ApiClient.convertToType(data['created'], 'String');
             }
@@ -69,10 +66,6 @@ export default class RandomNumberResult {
         return obj;
     }
 
-    /**
-    * @member {String} id
-    */
-    id = undefined;
     /**
     * @member {String} created
     */

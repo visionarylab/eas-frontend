@@ -4,18 +4,19 @@ import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
   palette: {
-    primary1Color: '#2196f3',
-    primary: purple, // Purple and green play nicely together.
-    secondary: {
-      ...purple,
-      A400: '#00e677',
-    },
+    primary: purple,
+    secondary: green,
     error: green,
   },
   overrides: {
     MuiFormControl: {
       root: {
         margin: 10,
+      },
+    },
+    MuiPaper: {
+      root: {
+        padding: '0.125rem 1rem',
       },
     },
     //   MuiButton: {

@@ -39,7 +39,8 @@
   "PublishDrawOptions":{
      "when_show_winners":"Cuándo quieres mostrar los resultados?",
      "show_now":"Mostrar ahora",
-     "choose_date":"Elegir la fecha"
+     "schedule_toss":"Progamar el sorteo para una fecha en el futuro",
+     "manual_toss":"Realizar el sorteo manualmente"
   },
   "Letter":{
      "random_letter_default_title":"Generar letras aleatorias",
@@ -68,6 +69,12 @@
     "number_of_winners": "Número de ganadores",
     "publish_draw":"Publicar sorteo",
     "schedule_draw":"Programar la tirada"
+  },
+  "FacebookLoginDraw":{
+    "general_details_raffle": "Detalles generales sobre el sorteo",
+    "info_about_winners": "Información sobre los ganadores",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?",
+    "publish_raffle": "Publicar sorteo"
   },
   "PrizeSelector":{
     "number_of_winners": "Número de ganadores",
