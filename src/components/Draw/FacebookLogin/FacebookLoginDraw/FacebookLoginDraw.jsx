@@ -18,6 +18,8 @@ import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 import TossButton from '../../../TossButton/TossButton';
+import BackArrow from '../../../BackArrow/BackArrow';
+import Page from '../../../Page/Page';
 import STYLES from './FacebookLoginDraw.scss';
 
 const c = classNames.bind(STYLES);
@@ -26,11 +28,11 @@ const FacebookLoginDraw = props => {
   const { values, onFieldChange, handlePublish, t } = props;
 
   return (
-    <Fragment>
-      <Helmet>
-        <title>{t('facebook_draw_html_title')}</title>
-      </Helmet>
+    <Page htmlTitle={t('facebook_draw_html_title')}>
       <Grid container spacing={16}>
+        <Grid item sm={3}>
+          <BackArrow />
+        </Grid>
         <Grid item xs={6}>
           <DrawPanel>
             <SectionPanel title={t('general_details_raffle')}>
@@ -67,7 +69,7 @@ const FacebookLoginDraw = props => {
             <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
           </DrawPanel>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           <TransparentPanel>
             <Paper>
               <Trans i18nKey="facebook_draw_seo_description">
@@ -77,7 +79,7 @@ const FacebookLoginDraw = props => {
           </TransparentPanel>
         </Grid>
       </Grid>
-    </Fragment>
+    </Page>
   );
 };
 

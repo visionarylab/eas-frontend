@@ -10,12 +10,9 @@ import Page from '../../Page/Page';
 import facebookIcon from './facebook.png';
 
 const HomePage = ({ t }) => (
-  <Page>
+  <Page htmlTitle={'Échalo A Suerte'}>
     <Grid container justify="center">
       <Grid item sm={8}>
-        <Helmet>
-          <title>Échalo A Suerte</title>
-        </Helmet>
         <TransparentPanel>
           <Grid container justify="center">
             <Grid item sm={6}>

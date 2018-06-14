@@ -14,6 +14,8 @@ import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
 import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
 import TossButton from '../../../TossButton/TossButton';
+import BackArrow from '../../../BackArrow/BackArrow';
+import Page from '../../../Page/Page';
 
 const RaffleDraw = props => {
   const {
@@ -27,11 +29,11 @@ const RaffleDraw = props => {
     handlePublish,
   } = props.values;
   return (
-    <Fragment>
-      <Helmet>
-        <title>{props.t('raffle_html_title')}</title>
-      </Helmet>
+    <Page htmlTitle={props.t('raffle_html_title')}>
       <Grid container spacing={16}>
+        <Grid item sm={3}>
+          <BackArrow />
+        </Grid>
         <Grid item xs={6}>
           <DrawPanel>
             <SectionPanel title={props.t('general_details_raffle')}>
@@ -69,7 +71,7 @@ const RaffleDraw = props => {
             <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
           </DrawPanel>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           <TransparentPanel>
             <Paper>
               <Trans i18nKey="raffle_seo_description">
@@ -79,7 +81,7 @@ const RaffleDraw = props => {
           </TransparentPanel>
         </Grid>
       </Grid>
-    </Fragment>
+    </Page>
   );
 };
 

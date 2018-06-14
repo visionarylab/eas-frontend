@@ -91,6 +91,7 @@ class NumberDrawContainer extends React.Component {
   }
 
   async handlePublish() {
+    console.log('publish');
     const draw = await this.createDraw();
     await drawApi.putRandomNumber(draw.private_id);
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);

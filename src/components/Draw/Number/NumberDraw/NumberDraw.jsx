@@ -18,6 +18,8 @@ import DrawPanel from '../../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../../SectionPanel/SectionPanel';
 import TossButton from '../../../TossButton/TossButton';
+import BackArrow from '../../../BackArrow/BackArrow';
+import Page from '../../../Page/Page';
 
 const NumberDraw = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
@@ -33,14 +35,14 @@ const NumberDraw = props => {
     results,
   } = values;
   return (
-    <Fragment>
-      <Helmet>
-        <title>{t('random_number_html_title')}</title>
-      </Helmet>
+    <Page htmlTitle={t('random_number_html_title')}>
       <Grid container spacing={16}>
+        <Grid item sm={3}>
+          <BackArrow />
+        </Grid>
         <Grid item xs={6}>
           <DrawPanel>
-            <Grid item sm={12}>
+            <div>
               <Typography variant="display1">{t('random_number_default_title')}</Typography>
               {isPublic && (
                 <SectionPanel title={t('general_details_draw')}>
@@ -105,14 +107,14 @@ const NumberDraw = props => {
                 label={props.t(isPublic ? 'publish_draw' : 'generate_numbers')}
                 onClick={isPublic ? handlePublish : handleToss}
               />
-            </Grid>
-            <Grid item sm={12}>
+            </div>
+            <div>
               <NumberDrawResults results={results} />
-            </Grid>
+            </div>
           </DrawPanel>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           <TransparentPanel>
             <Paper>
               <Trans i18nKey="number_draw_seo_description">
@@ -123,7 +125,7 @@ const NumberDraw = props => {
           </TransparentPanel>
         </Grid>
       </Grid>
-    </Fragment>
+    </Page>
   );
 };
 
