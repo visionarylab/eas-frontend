@@ -46,6 +46,7 @@ const FacebookLoginDraw = props => {
                 prizes={values.prizes}
                 onFieldChange={onFieldChange}
               />
+              <br />
               <Paper>
                 <p>
                   <Trans i18nKey="how_to_participate">

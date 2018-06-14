@@ -22,6 +22,7 @@ class PrizeSelector extends Component {
 
   render() {
     const { props } = this;
+    const { specifyPrizes } = this.state;
     console.log('numberOfWinners', props.numberOfWinners);
     return (
       <div>
@@ -32,14 +33,15 @@ class PrizeSelector extends Component {
             placeholder="1"
             margin="normal"
             onChange={e => props.onFieldChange('numberOfWinners', parseInt(e.target.value, 10))}
-            value={props.numberOfWinners}
+            value={specifyPrizes ? props.prizes.length : props.numberOfWinners}
             type="number"
+            disabled={specifyPrizes}
           />
           <FormControlLabel
             control={
               <Checkbox
                 name="specifyPrizes"
-                checked={this.state.specifyPrizes}
+                checked={specifyPrizes}
                 onChange={this.onSpecifyPrizesChange}
               />
             }
@@ -50,8 +52,9 @@ class PrizeSelector extends Component {
           <MultiValueInput
             name="prizes"
             label={props.t('prizes')}
-            values={props.prizes}
             placeholder="PS4"
+            messageEmpty={props.t('no_prizes_selected')}
+            values={props.prizes}
             onChange={prizes => props.onFieldChange('prizes', prizes)}
           />
         )}

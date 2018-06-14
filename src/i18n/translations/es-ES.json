@@ -4,10 +4,6 @@
      "random_letter_title":"Generar letras aleatorias",
      "raffle_title":"Realizar Sorteo"
   },
-  "PublishedNumberDraw":{
-    "chosen_numbers": "Números elegidos",
-    "draw_details": "Detalles del sorteo"
-  },
   "NumberDraw":{
     "from":"Desde",
      "to":"Hasta",
@@ -22,20 +18,9 @@
      "generate_numbers":"Generar números",
      "publish_draw":"Publicar tirada"
   },
-  "PublicDetails":{
-     "title_label":"Título",
-     "title_placeholder":"Sorteo de Navidad",
-     "description_label":"Descripción",
-     "description_placeholder":"Descripción del sorteo, bases del concurso, etc."
-  },
-  "MakeDrawPublicButton":{
-     "make_public":"Haz esta tirada publica"
-  },
-  "PublishDrawOptions":{
-     "when_show_winners":"Cuándo quieres mostrar los resultados?",
-     "show_now":"Mostrar ahora",
-     "schedule_toss":"Progamar el sorteo para una fecha en el futuro",
-     "manual_toss":"Realizar el sorteo manualmente"
+  "PublishedNumberDraw":{
+    "chosen_numbers": "Números elegidos",
+    "draw_details": "Detalles del sorteo"
   },
   "Letter":{
      "random_letter_default_title":"Generar letras aleatorias",
@@ -51,6 +36,9 @@
     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
     "publish_raffle":"Publicar sorteo"
   },
+  "PublishedRaffle":{
+     "winners":"Ganadores"
+  },
   "FacebookDraw":{
     "facebook_draw_html_title":"Organizar eb Facebook",
     "facebook_draw_seo_description":"<0>Organiza sorteos en tu página de Facebook</0>",
@@ -58,6 +46,9 @@
     "check_participants": "Ver participantes",
     "number_of_winners": "Número de ganadores",
     "publish_draw":"Publicar sorteo"
+  },
+  "PublishedFadebookDraw": {
+    "winners": "Ganadores"
   },
   "FacebookLoginDraw":{
     "general_details_raffle": "Detalles generales sobre el sorteo",
@@ -69,15 +60,25 @@
   "PrizeSelector":{
     "number_of_winners": "Número de ganadores",
     "prizes": "Premios",
-    "specify_prizes": "Especificar premios"
-  },
-  "PublishedFadebookDraw": {
-    "winners": "Ganadores"
-  },
-  "PublishedRaffle":{
-     "winners":"Ganadores"
+    "specify_prizes": "Especificar premios",
+    "no_prizes_selected": "Añade premios en la caja de arriba."
   },
   "TranslationsSwitch":{
      "change_language":"Cambiar idioma"
+  },
+  "PublicDetails":{
+     "title_label":"Título",
+     "title_placeholder":"Sorteo de Navidad",
+     "description_label":"Descripción",
+     "description_placeholder":"Descripción del sorteo, bases del concurso, etc."
+  },
+  "MakeDrawPublicButton":{
+     "make_public":"Haz esta tirada publica"
+  },
+  "PublishDrawOptions":{
+     "when_show_winners":"Cuándo quieres mostrar los resultados?",
+     "show_now":"Mostrar ahora",
+     "schedule_toss":"Progamar el sorteo para una fecha en el futuro",
+     "manual_toss":"Realizar el sorteo manualmente"
   }
 }

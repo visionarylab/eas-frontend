@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 
 import STYLES from './MultiValueInput.scss';
 
-const c = className => STYLES[className];
+const c = classNames.bind(STYLES);
 
 class MultiValueInput extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class MultiValueInput extends Component {
   };
 
   render() {
-    const { values, ...rest } = this.props;
+    const { values, messageEmpty, ...rest } = this.props;
     const { delimiters, onChange, ...extra } = rest;
     return (
       <Fragment>
@@ -66,13 +67,13 @@ class MultiValueInput extends Component {
           type="text"
           {...extra}
         />
-        {Boolean(values.length) && (
-          <Paper>
-            {values.map(value => (
-              <Chip key={value} label={value} onDelete={this.onValueDelete(value)} />
-            ))}
-          </Paper>
-        )}
+        <div className={c('MultiValueInput__prizes-box')}>
+          {values.length
+            ? values.map(value => (
+                <Chip key={value} label={value} onDelete={this.onValueDelete(value)} />
+              ))
+            : messageEmpty}
+        </div>
       </Fragment>
     );
   }
@@ -82,6 +83,7 @@ MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  messageEmpty: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,

@@ -12,9 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import PublicDetails from '../../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
-import NumberDrawForm from '../NumberDrawForm/NumberDrawForm';
 import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
-import GenerateResultsButton from '../../../GenerateResultsButton/GenerateResultsButton';
 import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../../TransparentPanel/TransparentPanel';

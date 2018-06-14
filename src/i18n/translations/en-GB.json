@@ -12,12 +12,6 @@
      "generate_numbers":"Generate numbers",
      "publish_draw":"Publish results"
   },
-  "NumberDrawForm":{
-     "from":"From",
-     "to":"To",
-     "number_of_results":"Number of results",
-     "allow_repeated":"Allow repeated numbers"
-  },
   "PublicDetails":{
      "title_label":"Title",
      "title_placeholder":"Christmas raffle",
@@ -61,7 +55,8 @@
   "PrizeSelector":{
     "number_of_winners": "Number of winners",
     "prizes": "Prizes",
-    "specify_prizes": "Specify prizes"
+    "specify_prizes": "Specify prizes",
+    "no_prizes_selected": "Add prizes in the box below"
   },
   "TranslationsSwitch":{
      "change_language":"Change language"
