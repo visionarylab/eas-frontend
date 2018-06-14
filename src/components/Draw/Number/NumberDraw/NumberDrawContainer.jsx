@@ -74,7 +74,7 @@ class NumberDrawContainer extends React.Component {
   async handleToss() {
     if (!this.state.drawId) {
       const draw = await this.createDraw();
-      this.setState({ drawId: draw.id });
+      this.setState({ drawId: draw.private_id });
     }
     let tossDrawResponse;
     try {
@@ -92,8 +92,8 @@ class NumberDrawContainer extends React.Component {
 
   async handlePublish() {
     const draw = await this.createDraw();
-    await drawApi.putRandomNumber(draw.id);
-    this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
+    await drawApi.putRandomNumber(draw.private_id);
+    this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   }
 
   handleMakeDrawPublic() {
