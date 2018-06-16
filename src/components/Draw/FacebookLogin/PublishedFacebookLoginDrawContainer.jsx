@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { getNumberDraw } from '../../../services/EasAPI';
 import PublishedFacebookLoginDraw from './PublishedFacebookLoginDraw';
 import ApiClient from '../../../services/api/EASApi';
-import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
+import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
 const { DrawApi } = ApiClient;
 const drawApi = new DrawApi();
@@ -19,6 +20,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
       participants: [],
       prizes: [],
       results: [],
+      userRegisteredInRaffle: false,
     };
   }
 
@@ -32,7 +34,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
     // const draw = await drawApi.getRandomNumber(drawId);
     const draw = {
       title: 'Sorteo de Navidad',
-      description: 'This is a complete descriotion',
+      description: 'This is a complete description',
       results: [],
       participants: ['David', 'Mario', 'Pedro'],
       prizes: ['PS4'],
@@ -42,8 +44,22 @@ class PublishedFacebookLoginDrawContainer extends Component {
     });
   }
 
+  onRegisterInRaffle = () => {
+    // Call EAS API to participate
+    console.log('register!!');
+    this.setState({ userRegisteredInRaffle: true });
+  };
+
   render() {
-    const { title, description, participants, prizes, results } = this.state;
+    const {
+      title,
+      description,
+      participants,
+      prizes,
+      results,
+      userRegisteredInRaffle,
+    } = this.state;
+    const { isLoggedInFB, getUserName } = this.props.facebookContext;
     return (
       <PublishedFacebookLoginDraw
         title={title}
@@ -51,12 +67,20 @@ class PublishedFacebookLoginDrawContainer extends Component {
         participants={participants}
         prizes={prizes}
         results={results.map(result => result.value)}
+        isLoggedInFB={isLoggedInFB}
+        userName={getUserName()}
+        userRegisteredInRaffle={userRegisteredInRaffle}
+        onRegisterInRaffle={this.onRegisterInRaffle}
       />
     );
   }
 }
 
 PublishedFacebookLoginDrawContainer.propTypes = {
+  facebookContext: PropTypes.shape({
+    isLoggedInFB: PropTypes.bool.isRequired,
+    getUserName: PropTypes.func.isRequired,
+  }).isRequired,
   match: ReactRouterPropTypes.match.isRequired,
 };
 

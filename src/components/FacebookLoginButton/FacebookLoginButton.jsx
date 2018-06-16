@@ -6,7 +6,7 @@ import STYLES from './FacebookLoginButton.scss';
 
 const c = classNames.bind(STYLES);
 
-const FacebookLoginButton = props => (
+const FacebookLoginButton = ({ permissions }) => (
   <div className={c('FacebookLoginButton')}>
     <div
       className="fb-login-button"
@@ -16,11 +16,17 @@ const FacebookLoginButton = props => (
       data-show-faces="false"
       data-auto-logout-link="false"
       data-use-continue-as="false"
-      data-scope="manage_pages"
+      data-scope={permissions}
     />
   </div>
 );
 
-FacebookLoginButton.propTypes = {};
+FacebookLoginButton.propTypes = {
+  permissions: PropTypes.string,
+};
+
+FacebookLoginButton.defaultProps = {
+  permissions: '',
+};
 
 export default FacebookLoginButton;

@@ -5,10 +5,12 @@
  */
 export const fbAsyncInit = onStatusChange => {
   window.fbAsyncInit = () => {
+    console.log('init FB');
     window.FB.init({
       appId: '413351792206207',
       autoLogAppEvents: true,
       xfbml: true,
+      status: true,
       version: 'v3.0',
     });
     window.FB.Event.subscribe('auth.statusChange', onStatusChange);
@@ -41,6 +43,20 @@ const apiCall = async (endpoint, accessToken = null) =>
     }
     return reject(response);
   });
+
+/**
+ * Get the current user's name
+ * @return {string} - Facebook pages names their AccessTokens
+ * @throws {Exception}
+ */
+export const getUserName = async () => {
+  const response = await apiCall('/me?fields=name');
+  if (response && !response.error) {
+    console.log(response);
+    return response.name;
+  }
+  return 'error';
+};
 
 /**
  * Get the Facebook pages that the current user has granted access to
