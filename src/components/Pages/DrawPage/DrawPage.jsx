@@ -6,8 +6,9 @@ import NumberDrawContainer from '../../Draw/Number/NumberDraw/NumberDrawContaine
 import RaffleDrawContainer from '../../Draw/Raffle/RaffleDraw/RaffleDrawContainer';
 import PublishedRaffleContainer from '../../Draw/Raffle/PublishedRaffle/PublishedRaffleContainer';
 import PublishedNumberDrawContainer from '../../Draw/Number/PublishedNumberDraw/PublishedNumberDrawContainer';
-import FacebookLoginDrawContainer from '../../Draw/FacebookLogin/FacebookLoginDraw/FacebookLoginDrawContainer';
-import PublishedFacebookDrawContainer from '../../Draw/Facebook/PublishedFacebookDraw/PublishedFacebookDrawContainer';
+import FacebookLoginDrawContainer from '../../Draw/FacebookLogin/FacebookLoginDrawContainer';
+import FacebookDrawContainer from '../../Draw/Facebook/FacebookDraw/FacebookDrawContainer';
+import PublishedFacebookLoginDrawContainer from '../../Draw/FacebookLogin/PublishedFacebookLoginDrawContainer';
 import Letter from '../../Draw/Letter/Letter';
 import Page from '../../Page/Page';
 import BackArrow from '../../BackArrow/BackArrow';
@@ -18,6 +19,7 @@ const DrawPage = () => (
   <div className={STYLES.DrawPage}>
     <Route exact path="/number" component={props => <NumberDrawContainer {...props} />} />
     <Route exact path="/raffle" component={props => <RaffleDrawContainer {...props} />} />
+    <Route exact path="/facebookphoto" component={props => <FacebookDrawContainer {...props} />} />
     <Route exact path="/facebook" component={props => <FacebookLoginDrawContainer {...props} />} />
     <Route exact path="/letter" component={props => <Letter {...props} />} />
     <Route path="/raffle/:drawId" component={props => <PublishedRaffleContainer {...props} />} />
@@ -27,7 +29,7 @@ const DrawPage = () => (
     />
     <Route
       path="/facebook/:drawId"
-      component={props => <PublishedFacebookDrawContainer {...props} />}
+      component={props => <PublishedFacebookLoginDrawContainer {...props} />}
     />
   </div>
 );

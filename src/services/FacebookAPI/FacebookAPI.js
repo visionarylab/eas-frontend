@@ -1,21 +1,18 @@
-const debug = true;
-
 /**
  * Set up the FB SDK
  * @param {function} onStatusChange - Login/logout callback.
  * @return {undefined}
  */
 export const fbAsyncInit = onStatusChange => {
-  console.log('facebook');
-  window.FB.init({
-    appId: '239321593490183',
-    autoLogAppEvents: true,
-    xfbml: true,
-    version: 'v3.0',
-  });
-  window.FB.Event.subscribe('auth.statusChange', onStatusChange);
+  window.fbAsyncInit = () => {
+    window.FB.init({
+      appId: '413351792206207',
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: 'v3.0',
+    });
+    window.FB.Event.subscribe('auth.statusChange', onStatusChange);
 
-  if (debug) {
     window.FB.Event.subscribe('auth.statusChange', response => {
       if (response.authResponse) {
         console.log('logged in');
@@ -23,7 +20,7 @@ export const fbAsyncInit = onStatusChange => {
         console.log('logged out');
       }
     });
-  }
+  };
 };
 
 /**

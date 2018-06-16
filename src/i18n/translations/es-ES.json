@@ -57,6 +57,9 @@
     "when_to_toss": "Cuándo quieres mostrar los resultados?",
     "publish_raffle": "Publicar sorteo"
   },
+  "PublishedFacebookLoginDraw": {
+    "winners": "Ganadores del sorteo"
+  },
   "PrizeSelector":{
     "number_of_winners": "Número de ganadores",
     "prizes": "Premios",

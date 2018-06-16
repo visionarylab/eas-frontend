@@ -29,7 +29,7 @@
     "superagent": "^3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
