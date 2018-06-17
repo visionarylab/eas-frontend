@@ -72,7 +72,7 @@ PublishedFacebookLoginDraw.propTypes = {
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   results: PropTypes.arrayOf(PropTypes.object),
   isLoggedInFB: PropTypes.bool.isRequired,
-  userName: PropTypes.string.isRequired,
+  userName: PropTypes.string,
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -80,6 +80,7 @@ PublishedFacebookLoginDraw.propTypes = {
 
 PublishedFacebookLoginDraw.defaultProps = {
   results: [],
+  userName: null,
 };
 
 export default translate('PublishedFacebookLoginDraw')(PublishedFacebookLoginDraw);

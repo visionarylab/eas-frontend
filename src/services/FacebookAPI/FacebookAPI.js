@@ -52,7 +52,6 @@ const apiCall = async (endpoint, accessToken = null) =>
 export const getUserName = async () => {
   const response = await apiCall('/me?fields=name');
   if (response && !response.error) {
-    console.log(response);
     return response.name;
   }
   return 'error';

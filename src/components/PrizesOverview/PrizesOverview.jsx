@@ -15,7 +15,7 @@ const PrizesOverview = ({ prizes, t }) => (
     <ul className={c('PrizesOverview__prizes-list')}>
       {prizes.map((prize, i) => (
         <li>
-          <Chip key={i} label={prize} />
+          <Chip key={`prize${i}`} label={prize} />
         </li>
       ))}
     </ul>

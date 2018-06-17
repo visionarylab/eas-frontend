@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Helmet from 'react-helmet';
+import withGoogleAnalyticsTracker from '../withGoogleAnalyticsTracker/withGoogleAnalyticsTracker';
 
 import STYLES from './Page.scss';
 
@@ -26,4 +27,4 @@ Page.defaultProps = {
   className: null,
 };
 
-export default Page;
+export default withGoogleAnalyticsTracker(Page);

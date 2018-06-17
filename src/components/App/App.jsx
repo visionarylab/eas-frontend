@@ -7,6 +7,7 @@ import theme from './EasTheme';
 import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell';
 import FacebookProvider from './../FacebookProvider/FacebookProvider';
+import withGoogleAnalytics from './../withGoogleAnalytics/withGoogleAnalytics';
 
 const App = () => (
   <I18nextProvider i18n={i18n}>
@@ -20,4 +21,4 @@ const App = () => (
   </I18nextProvider>
 );
 
-export default App;
+export default withGoogleAnalytics(App);
