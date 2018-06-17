@@ -83,5 +83,8 @@
      "show_now":"Mostrar ahora",
      "schedule_toss":"Progamar el sorteo para una fecha en el futuro",
      "manual_toss":"Realizar el sorteo manualmente"
+  },
+  "PrizesOverview":{
+    "prizes": "Premios"
   }
 }
