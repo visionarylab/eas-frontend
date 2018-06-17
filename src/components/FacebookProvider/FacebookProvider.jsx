@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { fbAsyncInit, getUserName } from '../../services/FacebookAPI/FacebookAPI';
+import { fbAsyncInit, getUserDetails } from '../../services/FacebookAPI/FacebookAPI';
 
 export const FacebookContext = React.createContext();
 
@@ -11,6 +11,7 @@ class FacebookProvider extends Component {
 
     this.state = {
       isLoggedInFB: false,
+      userID: null,
       userName: null,
     };
   }
@@ -33,21 +34,23 @@ class FacebookProvider extends Component {
 
   onStatusChange = response => this.setState({ isLoggedInFB: !!response.authResponse });
 
-  queryUserName = async () => {
-    const userName = await getUserName();
-    this.setState({ userName });
+  getUserDetails = () => {
+    if (!this.state.userID) {
+      this.queryUserDetails();
+    }
+    const { userID, userName } = this.state;
+    return { userID, userName };
   };
 
-  getUserName = () => {
-    if (!this.state.userName && this.state.isLoggedInFB) {
-      this.queryUserName();
-    }
-    return this.state.userName;
+  queryUserDetails = async () => {
+    const { userID, userName } = await getUserDetails();
+    this.setState({ userID, userName });
   };
+
   render() {
     const context = {
       ...this.state,
-      getUserName: this.getUserName,
+      getUserDetails: this.getUserDetails,
     };
     return (
       <FacebookContext.Provider value={context}>{this.props.children}</FacebookContext.Provider>

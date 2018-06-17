@@ -45,14 +45,14 @@ const apiCall = async (endpoint, accessToken = null) =>
   });
 
 /**
- * Get the current user's name
+ * Get the current user's name and id
  * @return {string} - Facebook pages names their AccessTokens
  * @throws {Exception}
  */
-export const getUserName = async () => {
-  const response = await apiCall('/me?fields=name');
+export const getUserDetails = async () => {
+  const response = await apiCall('/me');
   if (response && !response.error) {
-    return response.name;
+    return { userID: response.id, userName: response.name };
   }
   return 'error';
 };

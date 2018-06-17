@@ -46,7 +46,8 @@ class PublishedFacebookLoginDrawContainer extends Component {
 
   onRegisterInRaffle = () => {
     // Call EAS API to participate
-    console.log('register!!');
+    const { userName, userID } = this.props.facebookContext.getUserDetails();
+    console.log('Register as', userName, userID);
     this.setState({ userRegisteredInRaffle: true });
   };
 
@@ -59,7 +60,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
       results,
       userRegisteredInRaffle,
     } = this.state;
-    const { isLoggedInFB, getUserName } = this.props.facebookContext;
+    const { isLoggedInFB, getUserDetails } = this.props.facebookContext;
     return (
       <PublishedFacebookLoginDraw
         title={title}
@@ -68,7 +69,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
         prizes={prizes}
         results={results.map(result => result.value)}
         isLoggedInFB={isLoggedInFB}
-        userName={getUserName()}
+        userName={isLoggedInFB ? getUserDetails().userName : null}
         userRegisteredInRaffle={userRegisteredInRaffle}
         onRegisterInRaffle={this.onRegisterInRaffle}
       />
@@ -79,7 +80,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
 PublishedFacebookLoginDrawContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
-    getUserName: PropTypes.func.isRequired,
+    getUserDetails: PropTypes.func.isRequired,
   }).isRequired,
   match: ReactRouterPropTypes.match.isRequired,
 };
