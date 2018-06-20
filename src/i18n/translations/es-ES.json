@@ -22,10 +22,15 @@
     "chosen_numbers": "Números elegidos",
     "draw_details": "Detalles del sorteo"
   },
-  "Letter":{
-     "random_letter_default_title":"Generar letras aleatorias",
-     "number_of_letters":"Número de letras",
-     "generate_letters":"Generar letras"
+  "LetterDrawPage":{
+    "letter_draw_title": "Generar letras aleatorias",
+    "letter_draw_html_title":"Generar letras aleatorias",
+    "general_details_draw": "Detalles generales de la tirada",
+    "draw_configuration": "Configuración de la tirada",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?",
+    "number_of_letters": "Número de letras",
+    "generate_letters": "Generar letras",
+    "publish_draw": "Publicar tidada"
   },
   "RaffleDraw":{
     "general_details_raffle": "Detalles generales sobre el sorteo",

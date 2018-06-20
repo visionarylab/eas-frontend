@@ -26,10 +26,15 @@
      "show_now":"Show now",
      "choose_date":"Choose a date"
   },
-  "Letter":{
-     "random_letter_default_title":"Generate random letters",
-     "number_of_letters":"Number of letters",
-     "generate_letters":"Generate letters"
+  "LetterDrawPage":{
+    "letter_draw_title": "Generate random letters",
+    "letter_draw_html_title":"Generate random letters",
+    "general_details_draw": "General draw details",
+    "draw_configuration": "Draw configuration",
+    "when_to_toss": "When do you want to show the results?",
+    "number_of_letters": "Number of letters",
+    "generate_letters": "Generate letters",
+    "publish_draw": "Publish draw"
   },
   "RaffleDraw":{
      "basic_about_info_raffle": "General details about the raffle",

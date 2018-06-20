@@ -9,9 +9,7 @@ import PublishedNumberDrawContainer from '../../Draw/Number/PublishedNumberDraw/
 import FacebookLoginDrawContainer from '../../Draw/FacebookLogin/FacebookLoginDrawContainer';
 import FacebookDrawContainer from '../../Draw/Facebook/FacebookDraw/FacebookDrawContainer';
 import PublishedFacebookLoginDrawContainer from '../../Draw/FacebookLogin/PublishedFacebookLoginDrawContainer';
-import Letter from '../../Draw/Letter/Letter';
-import Page from '../../Page/Page';
-import BackArrow from '../../BackArrow/BackArrow';
+import LetterDrawPageContainer from '../../Pages/LetterDrawPage/LetterDrawPageContainer';
 
 import STYLES from './DrawPage.scss';
 
@@ -21,7 +19,7 @@ const DrawPage = () => (
     <Route exact path="/raffle" component={props => <RaffleDrawContainer {...props} />} />
     <Route exact path="/facebookphoto" component={props => <FacebookDrawContainer {...props} />} />
     <Route exact path="/facebook" component={props => <FacebookLoginDrawContainer {...props} />} />
-    <Route exact path="/letter" component={props => <Letter {...props} />} />
+    <Route exact path="/letter" component={LetterDrawPageContainer} />
     <Route path="/raffle/:drawId" component={props => <PublishedRaffleContainer {...props} />} />
     <Route
       path="/number/:drawId"
