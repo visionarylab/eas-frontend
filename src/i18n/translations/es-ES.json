@@ -4,7 +4,7 @@
      "random_letter_title":"Generar letras aleatorias",
      "raffle_title":"Realizar Sorteo"
   },
-  "NumberDraw":{
+  "RandomNumberPage":{
     "from":"Desde",
      "to":"Hasta",
      "number_of_results":"Número de resultados",
@@ -18,7 +18,7 @@
      "generate_numbers":"Generar números",
      "publish_draw":"Publicar tirada"
   },
-  "PublishedNumberDraw":{
+  "PublishedRandomNumberPage":{
     "chosen_numbers": "Números elegidos",
     "draw_details": "Detalles del sorteo"
   },
@@ -32,7 +32,7 @@
     "generate_letters": "Generar letras",
     "publish_draw": "Publicar tidada"
   },
-  "RaffleDraw":{
+  "RafflePage":{
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "who_will_participate": "¿Quién participará en el sorteo?",
     "detail_about_winners": "Detalles sobre los ganadores",
@@ -41,7 +41,7 @@
     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
     "publish_raffle":"Publicar sorteo"
   },
-  "PublishedRaffle":{
+  "PublishedRafflePage":{
      "winners":"Ganadores"
   },
   "FacebookDraw":{

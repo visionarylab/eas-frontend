@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import RaffleDraw from '../RaffleDraw/RaffleDraw';
-import { publishRaffleDraw } from '../../../../services/EasAPI';
+import RaffleDraw from '../RafflePage/RafflePage';
+import { publishRaffleDraw } from '../../../services/EasAPI';
 
-class RaffleDrawContainer extends Component {
+class RafflePageContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -60,9 +60,9 @@ class RaffleDrawContainer extends Component {
   }
 }
 
-RaffleDrawContainer.propTypes = {
+RafflePageContainer.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default RaffleDrawContainer;
+export default RafflePageContainer;

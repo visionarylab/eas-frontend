@@ -1,23 +1,21 @@
-import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 
-import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
-import DrawPanel from '../../../DrawPanel/DrawPanel';
-import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
-import SectionPanel from '../../../SectionPanel/SectionPanel';
-import PublicDetails from '../../../PublicDetails/PublicDetails';
-import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
-import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
-import TossButton from '../../../TossButton/TossButton';
-import BackArrow from '../../../BackArrow/BackArrow';
-import Page from '../../../Page/Page';
+import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
+import DrawPanel from '../../DrawPanel/DrawPanel';
+import TransparentPanel from '../../TransparentPanel/TransparentPanel';
+import SectionPanel from '../../SectionPanel/SectionPanel';
+import PublicDetails from '../../PublicDetails/PublicDetails';
+import MultiValueInput from '../../MultiValueInput/MultiValueInput';
+import PrizeSelector from '../../PrizeSelector/PrizeSelector';
+import TossButton from '../../TossButton/TossButton';
+import BackArrow from '../../BackArrow/BackArrow';
+import Page from '../../Page/Page';
 
-const RaffleDraw = props => {
+const RafflePage = props => {
   const {
     title,
     description,
@@ -85,7 +83,7 @@ const RaffleDraw = props => {
   );
 };
 
-RaffleDraw.propTypes = {
+RafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -99,8 +97,8 @@ RaffleDraw.propTypes = {
   handlePublish: PropTypes.func.isRequired,
 };
 
-RaffleDraw.defaultPropTypes = {
+RafflePage.defaultPropTypes = {
   dateScheduled: Date(),
 };
 
-export default translate('RaffleDraw')(RaffleDraw);
+export default translate('RafflePage')(RafflePage);

@@ -1,9 +1,12 @@
 /* eslint-disable func-names, prefer-arrow-callback */
 
-describe('Create Actions Page', () => {
-  describe('My First Test', function() {
-    it('Visits the Kitchen Sink', function() {
+// TODO Mock GA, Facebook
+
+describe('Number Draw Page', () => {
+  describe('It should be possible to generate random numbers ', function() {
+    it('', function() {
       cy.visit('/number');
+      cy.getComponent('SubmitDrawButton').should('be.visible');
     });
   });
 });

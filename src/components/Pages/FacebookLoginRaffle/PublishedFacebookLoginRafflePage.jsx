@@ -10,23 +10,23 @@ import Page from '../../Page/Page';
 import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview';
-import STYLES from './PublishedFacebookLoginDraw.scss';
+import STYLES from './PublishedFacebookLoginRafflePage.scss';
 
 const c = className => STYLES[className];
 
-const PublishedFacebookLoginDraw = props => (
-  <Page htmlTitle={props.title} className={c('PublishedFacebookLoginDraw')}>
+const PublishedFacebookLoginRafflePage = props => (
+  <Page htmlTitle={props.title} className={c('PublishedFacebookLoginRafflePage')}>
     <PublicDrawContent>
       <Typography variant="display2">{props.title}</Typography>
       {props.results.length ? (
         <Fragment>
-          <section className={c('PublishedFacebookLoginDraw__results-panel')}>
+          <section className={c('PublishedFacebookLoginRafflePage__results-panel')}>
             <PublicResultsPanel>
               <Typography variant="display1">{props.t('winners')}</Typography>
               <div>{props.results.map(result => <div>{result}</div>)}</div>
             </PublicResultsPanel>
           </section>
-          <section className={c('PublishedFacebookLoginDraw__summary-panel')}>
+          <section className={c('PublishedFacebookLoginRafflePage__summary-panel')}>
             <PublicSummaryPanel>
               <div>
                 <Typography variant="display1">{props.t('draw_details')}</Typography>
@@ -65,7 +65,7 @@ const PublishedFacebookLoginDraw = props => (
   </Page>
 );
 
-PublishedFacebookLoginDraw.propTypes = {
+PublishedFacebookLoginRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   participants: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -78,9 +78,9 @@ PublishedFacebookLoginDraw.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-PublishedFacebookLoginDraw.defaultProps = {
+PublishedFacebookLoginRafflePage.defaultProps = {
   results: [],
   userName: null,
 };
 
-export default translate('PublishedFacebookLoginDraw')(PublishedFacebookLoginDraw);
+export default translate('PublishedFacebookLoginRafflePage')(PublishedFacebookLoginRafflePage);

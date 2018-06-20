@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import FacebookLoginDraw from './FacebookLoginDraw';
 
-class FacebookLoginDrawContainer extends Component {
+class FacebookLoginRafflePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,8 +47,8 @@ class FacebookLoginDrawContainer extends Component {
   }
 }
 
-FacebookLoginDrawContainer.propTypes = {
+FacebookLoginRafflePageContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default FacebookLoginDrawContainer;
+export default FacebookLoginRafflePageContainer;

@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { getNumberDraw } from '../../../services/EasAPI';
-import PublishedFacebookLoginDraw from './PublishedFacebookLoginDraw';
+import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage';
 import ApiClient from '../../../services/api/EASApi';
 import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
 const { DrawApi } = ApiClient;
-const drawApi = new DrawApi();
+// const drawApi = new DrawApi();
 
-class PublishedFacebookLoginDrawContainer extends Component {
+class PublishedFacebookLoginRafflePageContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -62,7 +61,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
     } = this.state;
     const { isLoggedInFB, getUserDetails } = this.props.facebookContext;
     return (
-      <PublishedFacebookLoginDraw
+      <PublishedFacebookLoginRafflePage
         title={title}
         description={description}
         participants={participants}
@@ -77,7 +76,7 @@ class PublishedFacebookLoginDrawContainer extends Component {
   }
 }
 
-PublishedFacebookLoginDrawContainer.propTypes = {
+PublishedFacebookLoginRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
@@ -85,4 +84,4 @@ PublishedFacebookLoginDrawContainer.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
 
-export default withFacebookSDK(PublishedFacebookLoginDrawContainer);
+export default withFacebookSDK(PublishedFacebookLoginRafflePageContainer);

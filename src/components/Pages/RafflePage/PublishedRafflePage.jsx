@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 
-import PublicResultsPanel from '../../../PublicResultsPanel/PublicResultsPanel';
-import PublicSummaryPanel from '../../../PublicSummaryPanel/PublicSummaryPanel';
-import STYLES from './PublishedRaffle.scss';
+import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
+import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
+import STYLES from './PublishedRafflePage.scss';
 
 const c = className => STYLES[className];
 
-const PublishedRaffle = props => (
+const PublishedRafflePage = props => (
   <div>
-    <div className={c('PubishedRaffle')}>
-      <section className={c('PubishedRaffle__results-panel')}>
+    <div className={c('PublishedRafflePage')}>
+      <section className={c('PublishedRafflePage__results-panel')}>
         <Typography variant="display2">{props.title}</Typography>
         <PublicResultsPanel>
           <Typography variant="display1">{props.t('winners')}</Typography>
@@ -25,7 +25,7 @@ const PublishedRaffle = props => (
           </div>
         </PublicResultsPanel>
       </section>
-      <section className={c('PubishedRaffle__summary-panel')}>
+      <section className={c('PublishedRafflePage__summary-panel')}>
         <PublicSummaryPanel>
           <div>
             <Typography variant="display1">Extra details</Typography>
@@ -42,7 +42,7 @@ const PublishedRaffle = props => (
   </div>
 );
 
-PublishedRaffle.propTypes = {
+PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   participants: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -51,8 +51,8 @@ PublishedRaffle.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-PublishedRaffle.defaultProps = {
+PublishedRafflePage.defaultProps = {
   results: [],
 };
 
-export default translate('PublishedRaffle')(PublishedRaffle);
+export default translate('PublishedRafflePage')(PublishedRafflePage);

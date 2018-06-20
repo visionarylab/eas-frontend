@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { publishNumberDraw } from '../../../../services/EasAPI';
-import NumberDraw from '../NumberDraw/NumberDraw';
-import ApiClient from '../../../../services/api/EASApi';
+import { publishNumberDraw } from '../../../services/EasAPI';
+import RandomNumberPage from './RandomNumberPage';
+import ApiClient from '../../../services/api/EASApi';
 
 const { DrawApi, RandomNumber } = ApiClient;
 const drawApi = new DrawApi();
 
-class NumberDrawContainer extends React.Component {
+class RandomNumberPageContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,12 +21,13 @@ class NumberDrawContainer extends React.Component {
       values: {
         title: '',
         description: '',
-        from: 1,
-        to: 10,
+        rangeMin: 1,
+        rangeMax: 10,
         numberOfResults: 1,
         allowRepeated: false,
         results: [],
         isPublic: false,
+        whenToToss: 'now',
         dateScheduled: null,
       },
     };
@@ -56,12 +57,19 @@ class NumberDrawContainer extends React.Component {
   };
 
   async createDraw() {
-    const { title, description, from, to, numberOfResults, allowRepeated } = this.state.values;
+    const {
+      title,
+      description,
+      rangeMin,
+      rangeMax,
+      numberOfResults,
+      allowRepeated,
+    } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
       title,
       description,
-      range_min: from,
-      range_max: to,
+      range_min: rangeMin,
+      range_max: rangeMax,
     });
     try {
       return await drawApi.createRandomNumber(randomNumberDraw);
@@ -91,9 +99,10 @@ class NumberDrawContainer extends React.Component {
   }
 
   async handlePublish() {
-    console.log('publish');
     const draw = await this.createDraw();
-    await drawApi.putRandomNumber(draw.private_id);
+    if (!this.state.whenToToss === 'now') {
+      await drawApi.putRandomNumber(draw.private_id);
+    }
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   }
 
@@ -109,7 +118,7 @@ class NumberDrawContainer extends React.Component {
 
   render() {
     return (
-      <NumberDraw
+      <RandomNumberPage
         values={this.state.values}
         onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
@@ -120,9 +129,9 @@ class NumberDrawContainer extends React.Component {
   }
 }
 
-NumberDrawContainer.propTypes = {
+RandomNumberPageContainer.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default NumberDrawContainer;
+export default RandomNumberPageContainer;

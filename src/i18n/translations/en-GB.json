@@ -5,12 +5,16 @@
      "raffle_title":"Make a Raffle",
      "facebook_draw_title": "Facebook Raffle"
   },
-  "NumberDraw":{
+  "RandomNumberPage":{
      "random_number_html_title":"Generate random numbers",
      "random_number_seo_description":"Generate randon numbers online. Select Random numbers from a range, etc.",
      "random_number_default_title":"Generate random numbers",
      "generate_numbers":"Generate numbers",
      "publish_draw":"Publish results"
+  },
+  "PublishedRandomNumberPage":{
+    "chosen_numbers": "Números elegidos",
+    "draw_details": "Detalles del sorteo"
   },
   "PublicDetails":{
      "title_label":"Title",
@@ -36,14 +40,14 @@
     "generate_letters": "Generate letters",
     "publish_draw": "Publish draw"
   },
-  "RaffleDraw":{
+  "RafflePage":{
      "basic_about_info_raffle": "General details about the raffle",
      "raffle_configuration": "Raffle configuration",
      "raffle_html_title":"Organise a raffle",
      "raffle_seo_description":"<div>Organise <0>public</0> raffles</div>",
      "publish_draw":"Publish raffle"
   },
-  "PublishedRaffle":{
+  "PublishedRafflePage":{
      "winners":"Winners"
   },
   "FacebookDraw":{

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { getNumberDraw } from '../../../../services/EasAPI';
-import PublishedNumberDraw from '../PublishedNumberDraw/PublishedNumberDraw';
-import ApiClient from '../../../../services/api/EASApi';
+import { getNumberDraw } from '../../../services/EasAPI';
+import PublishedRandomNumberPage from './PublishedRandomNumberPage';
+import ApiClient from '../../../services/api/EASApi';
 
 const { DrawApi, RandomNumber } = ApiClient;
 const drawApi = new DrawApi();
 
-class PublishedNumberDrawContainer extends Component {
+class PublishedRandomNumberPageContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       title: '',
       description: '',
-      from: null,
-      to: null,
+      rangeMin: null,
+      rangeMax: null,
       numberOfResults: null,
       allowRepeated: null,
       results: [],
@@ -31,24 +31,32 @@ class PublishedNumberDrawContainer extends Component {
     const drawId = this.props.match.params.drawId;
 
     const draw = await drawApi.getRandomNumber(drawId);
-    const { title, description, results } = draw;
+    const { title, description, range_min: rangeMin, range_max: rangeMax, results } = draw;
     this.setState({
       title,
       description,
-      from: draw.range_min,
-      to: draw.range_max,
+      rangeMin,
+      rangeMax,
       results,
     });
   }
 
   render() {
-    const { title, description, from, to, numberOfResults, allowRepeated, results } = this.state;
+    const {
+      title,
+      description,
+      rangeMin,
+      rangeMax,
+      numberOfResults,
+      allowRepeated,
+      results,
+    } = this.state;
     return (
-      <PublishedNumberDraw
+      <PublishedRandomNumberPage
         title={title}
         description={description}
-        from={from}
-        to={to}
+        rangeMin={rangeMin}
+        rangeMax={rangeMax}
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
         results={results.map(result => result.value)}
@@ -57,8 +65,8 @@ class PublishedNumberDrawContainer extends Component {
   }
 }
 
-PublishedNumberDrawContainer.propTypes = {
+PublishedRandomNumberPageContainer.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
 
-export default PublishedNumberDrawContainer;
+export default PublishedRandomNumberPageContainer;

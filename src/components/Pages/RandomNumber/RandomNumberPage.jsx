@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import classNames from 'classnames/bind';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -10,30 +10,23 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import PublicDetails from '../../../PublicDetails/PublicDetails';
-import MakeDrawPublicButton from '../../../MakeDrawPublicButton/MakeDrawPublicButton';
-import NumberDrawResults from '../NumberDrawResults/NumberDrawResults';
-import PublishDrawOptions from '../../../PublishDrawOptions/PublishDrawOptions';
-import DrawPanel from '../../../DrawPanel/DrawPanel';
-import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
-import SectionPanel from '../../../SectionPanel/SectionPanel';
-import TossButton from '../../../TossButton/TossButton';
-import BackArrow from '../../../BackArrow/BackArrow';
-import Page from '../../../Page/Page';
+import PublicDetails from '../../PublicDetails/PublicDetails';
+import MakeDrawPublicButton from '../../MakeDrawPublicButton/MakeDrawPublicButton';
+import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
+import DrawPanel from '../../DrawPanel/DrawPanel';
+import TransparentPanel from '../../TransparentPanel/TransparentPanel';
+import SectionPanel from '../../SectionPanel/SectionPanel';
+import TossButton from '../../TossButton/TossButton';
+import BackArrow from '../../BackArrow/BackArrow';
+import Page from '../../Page/Page';
 
-const NumberDraw = props => {
+import STYLES from './RandomNumberPage.scss';
+
+const c = classNames.bind(STYLES);
+
+const RandomNumberPage = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
-  const {
-    title,
-    description,
-    from,
-    to,
-    allowRepeated,
-    numberOfResults,
-    dateScheduled,
-    isPublic,
-    results,
-  } = values;
+  const { isPublic } = values;
   return (
     <Page htmlTitle={t('random_number_html_title')}>
       <Grid container spacing={16}>
@@ -47,8 +40,8 @@ const NumberDraw = props => {
               {isPublic && (
                 <SectionPanel title={t('general_details_draw')}>
                   <PublicDetails
-                    title={title}
-                    description={description}
+                    title={values.title}
+                    description={values.description}
                     onFieldChange={onFieldChange}
                   />
                 </SectionPanel>
@@ -59,14 +52,14 @@ const NumberDraw = props => {
                     label={t('from')}
                     placeholder="1"
                     onChange={e => onFieldChange('from', parseInt(e.target.value, 10))}
-                    value={values.from}
+                    value={values.rangeMin}
                     type="number"
                   />
                   <TextField
                     label={t('to')}
                     placeholder="9"
                     onChange={e => onFieldChange('to', parseInt(e.target.value, 10))}
-                    value={values.to}
+                    value={values.rangeMax}
                     type="number"
                   />
                 </div>
@@ -109,7 +102,7 @@ const NumberDraw = props => {
               />
             </div>
             <div>
-              <NumberDrawResults results={results} />
+              <span className={c('RandomNumberPage__results')}>{values.results}</span>
             </div>
           </DrawPanel>
         </Grid>
@@ -129,16 +122,17 @@ const NumberDraw = props => {
   );
 };
 
-NumberDraw.propTypes = {
+RandomNumberPage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    from: PropTypes.number,
-    to: PropTypes.number,
+    rangeMin: PropTypes.number,
+    rangeMax: PropTypes.number,
     results: PropTypes.arrayOf(PropTypes.number),
     numberOfResults: PropTypes.number,
     allowRepeated: PropTypes.bool,
     isPublic: PropTypes.bool.isRequired,
+    whenToToss: PropTypes.string.isRequired,
     dateScheduled: PropTypes.string,
   }).isRequired,
   handleMakeDrawPublic: PropTypes.func.isRequired,
@@ -148,12 +142,12 @@ NumberDraw.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-NumberDraw.defaultProps = {
+RandomNumberPage.defaultProps = {
   values: {
     title: '',
     description: '',
-    from: 1,
-    to: 10,
+    rangeMin: 1,
+    rangeMax: 10,
     results: [],
     numberOfResults: 1,
     allowRepeated: false,
@@ -161,4 +155,4 @@ NumberDraw.defaultProps = {
   },
 };
 
-export default translate('NumberDraw')(NumberDraw);
+export default translate('RandomNumberPage')(RandomNumberPage);

@@ -1,33 +1,32 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
 
-import NumberDrawContainer from '../../Draw/Number/NumberDraw/NumberDrawContainer';
-import RaffleDrawContainer from '../../Draw/Raffle/RaffleDraw/RaffleDrawContainer';
-import PublishedRaffleContainer from '../../Draw/Raffle/PublishedRaffle/PublishedRaffleContainer';
-import PublishedNumberDrawContainer from '../../Draw/Number/PublishedNumberDraw/PublishedNumberDrawContainer';
-import FacebookLoginDrawContainer from '../../Draw/FacebookLogin/FacebookLoginDrawContainer';
+import PublishedRandomNumberPageContainer from '../../Pages/RandomNumber/PublishedRandomNumberPageContainer';
+import RafflePageContainer from '../../Pages/RafflePage/RafflePageContainer';
+import PublishedRafflePageContainer from '../../Pages/RafflePage/PublishedRafflePageContainer';
+import RandomNumberPageContainer from '../../Pages/RandomNumber/RandomNumberPageContainer';
+import FacebookLoginRafflePageContainer from '../../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer';
 import FacebookDrawContainer from '../../Draw/Facebook/FacebookDraw/FacebookDrawContainer';
-import PublishedFacebookLoginDrawContainer from '../../Draw/FacebookLogin/PublishedFacebookLoginDrawContainer';
+import PublishedFacebookLoginRafflePageContainer from '../../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer';
 import LetterDrawPageContainer from '../../Pages/LetterDrawPage/LetterDrawPageContainer';
 
 import STYLES from './DrawPage.scss';
 
 const DrawPage = () => (
   <div className={STYLES.DrawPage}>
-    <Route exact path="/number" component={props => <NumberDrawContainer {...props} />} />
-    <Route exact path="/raffle" component={props => <RaffleDrawContainer {...props} />} />
+    <Route exact path="/number" component={RandomNumberPageContainer} />
+    <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
     <Route exact path="/facebookphoto" component={props => <FacebookDrawContainer {...props} />} />
-    <Route exact path="/facebook" component={props => <FacebookLoginDrawContainer {...props} />} />
+    <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
     <Route exact path="/letter" component={LetterDrawPageContainer} />
-    <Route path="/raffle/:drawId" component={props => <PublishedRaffleContainer {...props} />} />
     <Route
-      path="/number/:drawId"
-      component={props => <PublishedNumberDrawContainer {...props} />}
+      path="/raffle/:drawId"
+      component={props => <PublishedRafflePageContainer {...props} />}
     />
+    <Route path="/number/:drawId" component={PublishedRandomNumberPageContainer} />
     <Route
       path="/facebook/:drawId"
-      component={props => <PublishedFacebookLoginDrawContainer {...props} />}
+      component={props => <PublishedFacebookLoginRafflePageContainer {...props} />}
     />
   </div>
 );

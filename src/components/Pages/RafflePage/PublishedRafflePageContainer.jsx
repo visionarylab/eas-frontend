@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import PublishedRaffle from '../PublishedRaffle/PublishedRaffle';
-import { getRaffleDraw } from '../../../../services/EasAPI';
+import PublishedRaffle from './PublishedRafflePage';
+import { getRaffleDraw } from '../../../services/EasAPI';
 
-class PublishedRaffleContainer extends Component {
+class PublishedRafflePageContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -47,8 +47,8 @@ class PublishedRaffleContainer extends Component {
   }
 }
 
-PublishedRaffleContainer.propTypes = {
+PublishedRafflePageContainer.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
 
-export default PublishedRaffleContainer;
+export default PublishedRafflePageContainer;

@@ -6,7 +6,7 @@ import STYLES from './TossButton.scss';
 
 const c = classNames.bind(STYLES);
 const TossButton = ({ label, onClick }) => (
-  <div className={c('TossButton')}>
+  <div data-component={'SubmitDrawButton'} className={c('TossButton')}>
     <Button variant="raised" color="primary" onClick={onClick}>
       {label}
     </Button>
