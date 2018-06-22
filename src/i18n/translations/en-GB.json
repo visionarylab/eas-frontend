@@ -69,5 +69,9 @@
   },
   "TranslationsSwitch":{
      "change_language":"Change language"
-  }
+  },
+  "ResultsNotGeneratedYet": {
+    "message_manual_toss": "Results have not been generated yet",
+    "message_scheduled_toss": "Results will be generated in"
+  } 
 }

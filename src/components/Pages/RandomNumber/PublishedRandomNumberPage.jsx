@@ -8,6 +8,7 @@ import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
 import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
+import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGeneratedYet';
 import STYLES from './PublishedRandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -15,31 +16,28 @@ const c = classNames.bind(STYLES);
 const PublishedRandomNumberPage = props => {
   const { results } = props;
   return (
-    <Page htmlTitle={props.title} className={c('PublishedRandomNumberPage')}>
+    <Page htmlTitle={props.title}>
       <PublicDrawContent>
         <Typography variant="display2">{props.title}</Typography>
-        {results.length ? null : null}
-        <section className={c('PublishedRandomNumberPage__results-panel')}>
+        {results.length ? (
           <PublicResultsPanel>
             <Typography variant="display1">{props.t('chosen_numbers')}</Typography>
-            <div>{props.results.map(result => <div>{result}</div>)}</div>
+            {props.results.map(result => <div>{result}</div>)}
           </PublicResultsPanel>
-        </section>
-        <section className={c('PublishedRandomNumberPage__summary-panel')}>
-          <PublicSummaryPanel>
-            <div>
-              <Typography variant="display1">{props.t('draw_details')}</Typography>
-              <div>From: {props.rangeMin}</div>
-              <div>To: {props.rangeMax}</div>
-              <div>Number of results: {props.numberOfResults}</div>
-              <div>Allow repeated: {props.allowRepeated}</div>
-              <div>
-                Descripcion:
-                <p>{props.description}</p>
-              </div>
-            </div>
-          </PublicSummaryPanel>
-        </section>
+        ) : (
+          <ResultsNotGeneratedYet />
+        )}
+        <PublicSummaryPanel>
+          <Typography variant="display1">{props.t('draw_details')}</Typography>
+          <div>From: {props.rangeMin}</div>
+          <div>To: {props.rangeMax}</div>
+          <div>Number of results: {props.numberOfResults}</div>
+          <div>Allow repeated: {props.allowRepeated}</div>
+          <div>
+            Descripcion:
+            <p>{props.description}</p>
+          </div>
+        </PublicSummaryPanel>
       </PublicDrawContent>
     </Page>
   );

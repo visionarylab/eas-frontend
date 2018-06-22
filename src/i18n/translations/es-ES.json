@@ -91,5 +91,9 @@
   },
   "PrizesOverview":{
     "prizes": "Premios"
-  }
+  },
+  "ResultsNotGeneratedYet": {
+    "message_manual_toss": "Los resultados todavía no se han generado",
+    "message_scheduled_toss": "Los resultados se generarán en"
+  } 
 }
