@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { getNumberDraw } from '../../../services/EasAPI';
 import PublishedRandomNumberPage from './PublishedRandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
-const { DrawApi, RandomNumber } = ApiClient;
+const { DrawApi } = ApiClient;
 const drawApi = new DrawApi();
 
 class PublishedRandomNumberPageContainer extends Component {

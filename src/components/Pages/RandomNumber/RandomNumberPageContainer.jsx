@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { publishNumberDraw } from '../../../services/EasAPI';
 import RandomNumberPage from './RandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
@@ -130,7 +129,6 @@ class RandomNumberPageContainer extends React.Component {
 }
 
 RandomNumberPageContainer.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 

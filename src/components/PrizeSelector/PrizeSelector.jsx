@@ -21,19 +21,18 @@ class PrizeSelector extends Component {
   };
 
   render() {
-    const { props } = this;
+    const { prizes, numberOfWinners, onFieldChange, t } = this.props;
     const { specifyPrizes } = this.state;
-    console.log('numberOfWinners', props.numberOfWinners);
     return (
       <div>
         <FormGroup row>
           <TextField
             name="numberOfWinners"
-            label={props.t('number_of_winners')}
+            label={t('number_of_winners')}
             placeholder="1"
             margin="normal"
-            onChange={e => props.onFieldChange('numberOfWinners', parseInt(e.target.value, 10))}
-            value={specifyPrizes ? props.prizes.length : props.numberOfWinners}
+            onChange={e => onFieldChange('numberOfWinners', parseInt(e.target.value, 10))}
+            value={specifyPrizes ? prizes.length : numberOfWinners}
             type="number"
             disabled={specifyPrizes}
           />
@@ -45,17 +44,17 @@ class PrizeSelector extends Component {
                 onChange={this.onSpecifyPrizesChange}
               />
             }
-            label={props.t('specify_prizes')}
+            label={t('specify_prizes')}
           />
         </FormGroup>
         {this.state.specifyPrizes && (
           <MultiValueInput
             name="prizes"
-            label={props.t('prizes')}
+            label={t('prizes')}
             placeholder="PS4"
-            messageEmpty={props.t('no_prizes_selected')}
-            values={props.prizes}
-            onChange={prizes => props.onFieldChange('prizes', prizes)}
+            messageEmpty={t('no_prizes_selected')}
+            values={prizes}
+            onChange={prizes_ => onFieldChange('prizes', prizes_)}
           />
         )}
       </div>

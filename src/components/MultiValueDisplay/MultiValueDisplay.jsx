@@ -1,9 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { WithContext as ReactTags } from 'react-tag-input';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
 
 import STYLES from './MultiValueDisplay.scss';
 
@@ -40,16 +38,12 @@ class MultiValueDisplay extends Component {
 
 MultiValueDisplay.propTypes = {
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  delimiters: PropTypes.arrayOf(PropTypes.string),
   allowDelete: PropTypes.bool,
   onDelete: PropTypes.func,
 };
 
 MultiValueDisplay.defaultProps = {
-  delimiters: ['Enter', ',', '.'],
   allowDelete: false,
   onDelete: () => {},
 };

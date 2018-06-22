@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 

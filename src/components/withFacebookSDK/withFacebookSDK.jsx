@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
-
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import { FacebookContext } from './../FacebookProvider/FacebookProvider';
 
 const withFacebookSDK = WrappedComponent => {
-  class WithFacebookSDK extends Component {
-    render() {
-      return (
-        <FacebookContext.Consumer>
-          {context => <WrappedComponent {...this.props} facebookContext={context} />}
-        </FacebookContext.Consumer>
-      );
-    }
-  }
+  const WithFacebookSDK = props => (
+    <FacebookContext.Consumer>
+      {context => <WrappedComponent {...props} facebookContext={context} />}
+    </FacebookContext.Consumer>
+  );
+
   WithFacebookSDK.propTypes = {};
+
   return WithFacebookSDK;
 };
 

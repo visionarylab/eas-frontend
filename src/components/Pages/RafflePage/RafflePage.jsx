@@ -24,7 +24,6 @@ const RafflePage = props => {
     numberOfWinners,
     whenToToss,
     dateScheduled,
-    handlePublish,
   } = props.values;
   return (
     <Page htmlTitle={props.t('raffle_html_title')}>
@@ -66,7 +65,7 @@ const RafflePage = props => {
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
+            <TossButton label={props.t('publish_raffle')} handlePublish={props.handlePublish} />
           </DrawPanel>
         </Grid>
         <Grid item xs={3}>

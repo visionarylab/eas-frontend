@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
-import classNames from 'classnames/bind';
 
 import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
 import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
 import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGeneratedYet';
-import STYLES from './PublishedRandomNumberPage.scss';
-
-const c = classNames.bind(STYLES);
 
 const PublishedRandomNumberPage = props => {
   const { results } = props;

@@ -20,25 +20,19 @@ const PublishedFacebookLoginRafflePage = props => (
       <Typography variant="display2">{props.title}</Typography>
       {props.results.length ? (
         <Fragment>
-          <section className={c('PublishedFacebookLoginRafflePage__results-panel')}>
-            <PublicResultsPanel>
-              <Typography variant="display1">{props.t('winners')}</Typography>
-              <div>{props.results.map(result => <div>{result}</div>)}</div>
-            </PublicResultsPanel>
-          </section>
-          <section className={c('PublishedFacebookLoginRafflePage__summary-panel')}>
-            <PublicSummaryPanel>
-              <div>
-                <Typography variant="display1">{props.t('draw_details')}</Typography>
-                <div>Participants: {props.participants.join(', ')}</div>
-                <div>prizes: {props.prizes}</div>
-                <div>
-                  Descripcion:
-                  <p>{props.description}</p>
-                </div>
-              </div>
-            </PublicSummaryPanel>
-          </section>
+          <PublicResultsPanel>
+            <Typography variant="display1">{props.t('winners')}</Typography>
+            {props.results.map(result => <div>{result}</div>)}
+          </PublicResultsPanel>
+          <PublicSummaryPanel>
+            <Typography variant="display1">{props.t('draw_details')}</Typography>
+            <div>Participants: {props.participants.join(', ')}</div>
+            <div>prizes: {props.prizes}</div>
+            <div>
+              Descripcion:
+              <p>{props.description}</p>
+            </div>
+          </PublicSummaryPanel>
         </Fragment>
       ) : (
         <Fragment>

@@ -1,18 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames/bind';
 
 import DrawPanel from '../../DrawPanel/DrawPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput';
-import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import PublicDetails from '../../PublicDetails/PublicDetails';
@@ -20,9 +13,6 @@ import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import TossButton from '../../TossButton/TossButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
-import STYLES from './FacebookLoginDraw.scss';
-
-const c = classNames.bind(STYLES);
 
 const FacebookLoginDraw = props => {
   const { values, onFieldChange, handlePublish, t } = props;

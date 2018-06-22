@@ -28,6 +28,7 @@ export const fbAsyncInit = onStatusChange => {
 /**
  * Set up the FB SDK
  * @param {string} endpoint - Endpoint to hit. E.g '/123123213/likes'
+ * @param {string} accessToken - Access token used to make the request '/123123213/likes'
  * @return {Promise} - Response from the API
  */
 const apiCall = async (endpoint, accessToken = null) =>
@@ -76,12 +77,12 @@ export const getFacebookPages = async () => {
 
 /**
  * Get the people who liked a given facebook object
- * @param {string} pageAccessToken - Page Access Token'
  * @param {string} objectId - Facebook object to check
+ * @param {string} pageAccessToken - Page Access Token'
  * @return {Array} - People who liked the given object
  */
-export const onGetLikes = async (objectId, accessToken = null) => {
-  const response = await apiCall(`${objectId}/likes`, accessToken);
+export const onGetLikes = async (objectId, pageAccessToken = null) => {
+  const response = await apiCall(`${objectId}/likes`, pageAccessToken);
   const participants = response.data.map(item => item.name);
   return participants;
   // this.onFieldChange('participants', participants);

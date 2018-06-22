@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import ReactGA from 'react-ga';
 
 import HomePage from '../Pages/HomePage/HomePage';
 import AboutPage from '../Pages/AboutPage/AboutPage';

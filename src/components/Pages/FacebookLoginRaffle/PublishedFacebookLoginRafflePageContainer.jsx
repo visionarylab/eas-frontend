@@ -7,7 +7,6 @@ import ApiClient from '../../../services/api/EASApi';
 import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
 const { DrawApi } = ApiClient;
-// const drawApi = new DrawApi();
 
 class PublishedFacebookLoginRafflePageContainer extends Component {
   constructor(props) {
