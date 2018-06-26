@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 
-import PublicResultsPanel from '../../../PublicResultsPanel/PublicResultsPanel';
-import PublicSummaryPanel from '../../../PublicSummaryPanel/PublicSummaryPanel';
-import STYLES from './PublishedFacebookDraw.scss';
+import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
+import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
+import STYLES from './PublishedFacebookPhotoRafflePage.scss';
 
 const c = className => STYLES[className];
 
-const PublishedFacebookDraw = props => (
+const PublishedFacebookPhotoRafflePage = props => (
   <div>
-    <div className={c('PublishedFacebookDraw')}>
+    <div className={c('PublishedFacebookPhotoRafflePage')}>
       <section className={c('PublishedFacebookDraw__results-panel')}>
         <Typography variant="display2">{props.title}</Typography>
         <PublicResultsPanel>
@@ -35,7 +35,7 @@ const PublishedFacebookDraw = props => (
   </div>
 );
 
-PublishedFacebookDraw.propTypes = {
+PublishedFacebookPhotoRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   numberOfWinners: PropTypes.number.isRequired,
@@ -43,8 +43,8 @@ PublishedFacebookDraw.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-PublishedFacebookDraw.defaultProps = {
+PublishedFacebookPhotoRafflePage.defaultProps = {
   results: [],
 };
 
-export default translate('PublishedFacebookDraw')(PublishedFacebookDraw);
+export default translate('PublishedFacebookPhotoRafflePage')(PublishedFacebookPhotoRafflePage);

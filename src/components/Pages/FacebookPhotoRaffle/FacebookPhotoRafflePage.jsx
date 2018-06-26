@@ -9,17 +9,21 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames/bind';
 
-import DrawPanel from '../../../DrawPanel/DrawPanel';
-import SectionPanel from '../../../SectionPanel/SectionPanel';
-import MultiValueInput from '../../../MultiValueInput/MultiValueInput';
-import MultiValueDisplay from '../../../MultiValueDisplay/MultiValueDisplay';
-import TransparentPanel from '../../../TransparentPanel/TransparentPanel';
-import PrizeSelector from '../../../PrizeSelector/PrizeSelector';
-import STYLES from './FacebookDraw.scss';
+import DrawPanel from '../../DrawPanel/DrawPanel';
+import SectionPanel from '../../SectionPanel/SectionPanel';
+import MultiValueInput from '../../MultiValueInput/MultiValueInput';
+import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay';
+import TransparentPanel from '../../TransparentPanel/TransparentPanel';
+import PrizeSelector from '../../PrizeSelector/PrizeSelector';
+import BackArrow from '../../BackArrow/BackArrow';
+import Page from '../../Page/Page';
+import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
+
+import STYLES from './FacebookPhotoRafflePage.scss';
 
 const c = classNames.bind(STYLES);
 
-const FacebookDraw = props => {
+const FacebookPhotoRafflePage = props => {
   const {
     values,
     participantsFetched,
@@ -32,11 +36,11 @@ const FacebookDraw = props => {
   } = props;
 
   return (
-    <Fragment>
-      <Helmet>
-        <title>{t('facebook_draw_html_title')}</title>
-      </Helmet>
+    <Page htmlTitle={t('facebook_photo_raffle_html_title')}>
       <Grid container spacing={16}>
+        <Grid item sm={3}>
+          <BackArrow />
+        </Grid>
         <Grid item xs={6}>
           <DrawPanel>
             <Grid item sm={12}>
@@ -54,18 +58,7 @@ const FacebookDraw = props => {
                       Login with facebook so we can automatically get the participants for the
                       raffle
                     </Typography>
-                    <div className={c('FacebookDraw__facebook-button')}>
-                      <div
-                        className="fb-login-button"
-                        data-max-rows="1"
-                        data-size="large"
-                        data-button-type="continue_with"
-                        data-show-faces="false"
-                        data-auto-logout-link="false"
-                        data-use-continue-as="false"
-                        data-scope="manage_pages"
-                      />
-                    </div>
+                    <FacebookLoginButton permissions="manage_pages" />
                   </Fragment>
                 )}
               </SectionPanel>
@@ -112,21 +105,21 @@ const FacebookDraw = props => {
             </Grid>
           </DrawPanel>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           <TransparentPanel>
             <Paper>
-              <Trans i18nKey="facebook_draw_seo_description">
+              <Trans i18nKey="facebook_photo_raffle_seo_description">
                 <span>Organize raffles in your Facebook page</span>
               </Trans>
             </Paper>
           </TransparentPanel>
         </Grid>
       </Grid>
-    </Fragment>
+    </Page>
   );
 };
 
-FacebookDraw.propTypes = {
+FacebookPhotoRafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -150,9 +143,9 @@ FacebookDraw.propTypes = {
   handlePublish: PropTypes.func.isRequired,
 };
 
-FacebookDraw.defaultProps = {
+FacebookPhotoRafflePage.defaultProps = {
   isLoggedInFB: false,
   ownedPages: [],
 };
 
-export default translate('FacebookDraw')(FacebookDraw);
+export default translate('FacebookPhotoRafflePage')(FacebookPhotoRafflePage);

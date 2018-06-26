@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { fbAsyncInit, getUserDetails } from '../../services/FacebookAPI/FacebookAPI';
+import { apiCall, fbAsyncInit } from '../../services/FacebookAPI/FacebookAPI';
 
 export const FacebookContext = React.createContext();
 
@@ -13,6 +13,7 @@ class FacebookProvider extends Component {
       isLoggedInFB: false,
       userID: null,
       userName: null,
+      userPages: [],
     };
   }
 
@@ -42,15 +43,38 @@ class FacebookProvider extends Component {
     return { userID, userName };
   };
 
+  getUserPages = () => {
+    if (!this.state.userPages.length) {
+      this.queryFacebookPages();
+    }
+    return this.state.userPages;
+  };
+
+  queryFacebookPages = async () => {
+    const response = await apiCall('/me/accounts');
+    if (response && !response.error) {
+      const userPages = response.data.map(page => ({
+        pageName: page.name,
+        accessToken: page.access_token,
+      }));
+      // if (pages.length) {
+      this.setState({ userPages });
+      // }
+    }
+  };
+
   queryUserDetails = async () => {
-    const { userID, userName } = await getUserDetails();
-    this.setState({ userID, userName });
+    const response = await apiCall('/me');
+    if (response && !response.error) {
+      this.setState({ userID: response.id, userName: response.name });
+    }
   };
 
   render() {
     const context = {
       ...this.state,
       getUserDetails: this.getUserDetails,
+      getUserPages: this.getUserPages,
     };
     return (
       <FacebookContext.Provider value={context}>{this.props.children}</FacebookContext.Provider>

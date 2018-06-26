@@ -7,7 +7,7 @@ export const fbAsyncInit = onStatusChange => {
   window.fbAsyncInit = () => {
     console.log('init FB');
     window.FB.init({
-      appId: '413351792206207',
+      appId: '239321593490183',
       autoLogAppEvents: true,
       xfbml: true,
       status: true,
@@ -31,7 +31,7 @@ export const fbAsyncInit = onStatusChange => {
  * @param {string} accessToken - Access token used to make the request '/123123213/likes'
  * @return {Promise} - Response from the API
  */
-const apiCall = async (endpoint, accessToken = null) =>
+export const apiCall = async (endpoint, accessToken = null) =>
   new Promise(async (accept, reject) => {
     console.log(`Facebook API call: ${endpoint} (Access Token: ${accessToken}`);
     const response = await new Promise(callback => {

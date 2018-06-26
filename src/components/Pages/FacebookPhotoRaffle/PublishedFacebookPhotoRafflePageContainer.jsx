@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import PublishedFacebookDraw from './PublishedFacebookDraw';
+import PublishedFacebookPhotoRafflePage from './PublishedFacebookPhotoRafflePage';
 
-class PublishedFacebookDrawContainer extends Component {
+class PublishedFacebookPhotoRafflePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ class PublishedFacebookDrawContainer extends Component {
 
     return (
       <div>
-        <PublishedFacebookDraw
+        <PublishedFacebookPhotoRafflePage
           title={title}
           description={description}
           numberOfWinners={numberOfWinners}
@@ -53,8 +53,8 @@ class PublishedFacebookDrawContainer extends Component {
   }
 }
 
-PublishedFacebookDrawContainer.propTypes = {
+PublishedFacebookPhotoRafflePageContainer.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
 
-export default PublishedFacebookDrawContainer;
+export default PublishedFacebookPhotoRafflePageContainer;

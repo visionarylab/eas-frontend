@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import FacebookDraw from './FacebookDraw';
+import FacebookPhotoRafflePage from './FacebookPhotoRafflePage';
+import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
+
 import {
-  fbAsyncInit,
   getFacebookPages,
   onGetLikes,
   getObjectIdFromUrl,
-} from '../../../../services/FacebookAPI/FacebookAPI';
+} from '../../../services/FacebookAPI/FacebookAPI';
 
-class FacebookDrawContainer extends Component {
+class FacebookPhotoRafflePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,29 +30,6 @@ class FacebookDrawContainer extends Component {
       participantsFetched: false,
       ownedPages: [],
     };
-  }
-
-  componentDidMount() {
-    window.fbAsyncInit = () => {
-      const onStatusChange = response => {
-        if (response.authResponse) {
-          this.setState({ isLoggedInFB: true });
-          this.getOwnedPages();
-        }
-      };
-      fbAsyncInit(onStatusChange);
-    };
-
-    (function(d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      const js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
   }
 
   onFieldChange = (fieldName, value) => {
@@ -74,11 +52,12 @@ class FacebookDrawContainer extends Component {
   };
 
   onGetLikes = async () => {
-    // const objectId = '1775681819145291_1775711522475654';
+    const objectId = '1775681819145291_1775711522475654';
     // const objectId = '1775681819145291';
-    const objectId = getObjectIdFromUrl(this.state.values.url);
+    // const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
-    this.state.ownedPages.map(page => page.accessToken).forEach(async pageAccessToken => {
+    const userPages = this.props.facebookContext.getUserPages();
+    userPages.map(page => page.accessToken).forEach(async pageAccessToken => {
       const participants = await onGetLikes(objectId, pageAccessToken);
       if (participants) {
         this.onFieldChange('participants', participants);
@@ -97,11 +76,15 @@ class FacebookDrawContainer extends Component {
   };
 
   render() {
-    const { isLoggedInFB, ownedPages, values, participantsFetched } = this.state;
+    const { ownedPages, values, participantsFetched } = this.state;
+    const { isLoggedInFB, getUserPages } = this.props.facebookContext;
+    const userPages = isLoggedInFB ? getUserPages() : null;
+    console.log('pages', userPages);
     return (
       <div>
-        <FacebookDraw
+        <FacebookPhotoRafflePage
           isLoggedInFB={isLoggedInFB}
+          // userPages={isLoggedInFB ? getuserPages() : null}
           participantsFetched={participantsFetched}
           ownedPages={ownedPages}
           values={values}
@@ -114,8 +97,13 @@ class FacebookDrawContainer extends Component {
   }
 }
 
-FacebookDrawContainer.propTypes = {
+FacebookPhotoRafflePageContainer.propTypes = {
+  facebookContext: PropTypes.shape({
+    isLoggedInFB: PropTypes.bool.isRequired,
+    getUserDetails: PropTypes.func.isRequired,
+    getUserPages: PropTypes.func.isRequired,
+  }).isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default FacebookDrawContainer;
+export default withFacebookSDK(FacebookPhotoRafflePageContainer);
