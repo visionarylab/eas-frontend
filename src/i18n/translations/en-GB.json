@@ -10,7 +10,8 @@
      "random_number_seo_description":"Generate randon numbers online. Select Random numbers from a range, etc.",
      "random_number_default_title":"Generate random numbers",
      "generate_numbers":"Generate numbers",
-     "publish_draw":"Publish results"
+     "publish_draw":"Publish results",
+     "number_draw_seo_description": "Create this draw publicly so everyone can see the results at the same time"
   },
   "PublishedRandomNumberPage":{
     "chosen_numbers": "Números elegidos",

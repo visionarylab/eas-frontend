@@ -111,7 +111,7 @@ const RandomNumberPage = props => {
           <TransparentPanel>
             <Paper>
               <Trans i18nKey="number_draw_seo_description">
-                <span>Organiza sorteos publicos</span>
+                Create this draw publicly so everyone can see the results at the same time
               </Trans>
             </Paper>
             <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />

@@ -16,7 +16,8 @@
      "random_number_seo_description":"Generar números aleatorios",
      "random_number_default_title":"Generar números aleatorios",
      "generate_numbers":"Generar números",
-     "publish_draw":"Publicar tirada"
+     "publish_draw":"Publicar tirada",
+     "number_draw_seo_description": "Crea una tirada publica para que todo el mundo pueda ver el resultado a la vez"
   },
   "PublishedRandomNumberPage":{
     "chosen_numbers": "Números elegidos",
