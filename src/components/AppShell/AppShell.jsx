@@ -5,6 +5,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import AboutPage from '../Pages/AboutPage/AboutPage';
 import DrawPage, { urls } from '../Pages/DrawPage/DrawPage';
 import Header from '../Header/Header';
+import RafflesSectionPage from '../Pages/RafflesSectionPage/RafflesSectionPage';
 import Footer from '../Footer/Footer';
 import STYLES from './AppShell.scss';
 
@@ -17,6 +18,7 @@ const AppShell = () => (
       <Switch>
         <Route exact path="/" component={props => <HomePage {...props} />} />
         <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/raffles" component={RafflesSectionPage} />
         <Route path={urls} component={props => <DrawPage {...props} />} />
         <Route render={() => <div>Not found</div>} />
       </Switch>

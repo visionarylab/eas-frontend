@@ -7,6 +7,7 @@ import Chip from './../../DrawCard/DrawCard';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import Page from '../../Page/Page';
 import facebookIcon from './facebook.png';
+import rafflesIcon from './raffles.png';
 
 const HomePage = ({ t }) => (
   <Page htmlTitle={'Échalo A Suerte'}>
@@ -41,6 +42,11 @@ const HomePage = ({ t }) => (
                 href="/raffle"
               >
                 {t('raffle_title')}
+              </Chip>
+            </Grid>
+            <Grid item sm={6}>
+              <Chip icon={rafflesIcon} href="/raffles">
+                {t('raffles_section')}
               </Chip>
             </Grid>
           </Grid>

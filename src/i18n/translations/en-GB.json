@@ -5,6 +5,11 @@
      "raffle_title":"Make a Raffle",
      "facebook_draw_title": "Facebook Raffle"
   },
+  "RafflesSectionPage": {
+    "facebook_login_raffle_title": "Facebook raffle",
+    "facebook_photo_raffle_title": "Facebook likes raffle",
+    "raffle_title": "Raffle"
+  },
   "RandomNumberPage":{
      "random_number_html_title":"Generate random numbers",
      "random_number_seo_description":"Generate randon numbers online. Select Random numbers from a range, etc.",
