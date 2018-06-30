@@ -5,7 +5,7 @@
      "raffle_title":"Realizar Sorteo"
   },
   "RafflesSectionPage": {
-    "facebook_login_raffle_title": "Sorteo en Facebook",
+    "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",
     "facebook_photo_raffle_title": "Sorteo entre 'likes' en Facebook",
     "raffle_title": "Sorteo"
   },
@@ -61,12 +61,13 @@
   "PublishedFadebookDraw": {
     "winners": "Ganadores"
   },
-  "FacebookLoginDraw":{
+  "FacebookLoginRafflePage":{
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "info_about_winners": "Información sobre los ganadores",
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo y compartirlo en Facebook para inscribirse.",
     "when_to_toss": "Cuándo quieres mostrar los resultados?",
-    "publish_raffle": "Publicar sorteo"
+    "publish_raffle": "Publicar sorteo",
+    "facebook_login_raffle_default_title": "Sorteo entre usuarios de Facebook"
   },
   "PublishedFacebookLoginDraw": {
     "winners": "Ganadores del sorteo"

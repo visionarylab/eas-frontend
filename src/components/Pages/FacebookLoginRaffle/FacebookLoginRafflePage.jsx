@@ -3,6 +3,7 @@ import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import DrawPanel from '../../DrawPanel/DrawPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
@@ -14,7 +15,7 @@ import TossButton from '../../TossButton/TossButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 
-const FacebookLoginDraw = props => {
+const FacebookLoginRafflePage = props => {
   const { values, onFieldChange, handlePublish, t } = props;
 
   return (
@@ -25,6 +26,7 @@ const FacebookLoginDraw = props => {
         </Grid>
         <Grid item xs={6}>
           <DrawPanel>
+            <Typography variant="display1">{t('facebook_login_raffle_default_title')}</Typography>
             <SectionPanel title={t('general_details_raffle')}>
               <PublicDetails
                 title={values.title}
@@ -73,7 +75,7 @@ const FacebookLoginDraw = props => {
   );
 };
 
-FacebookLoginDraw.propTypes = {
+FacebookLoginRafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -87,9 +89,9 @@ FacebookLoginDraw.propTypes = {
   handlePublish: PropTypes.func.isRequired,
 };
 
-FacebookLoginDraw.defaultProps = {
+FacebookLoginRafflePage.defaultProps = {
   isLoggedInFB: false,
   ownedPages: [],
 };
 
-export default translate('FacebookLoginDraw')(FacebookLoginDraw);
+export default translate('FacebookLoginRafflePage')(FacebookLoginRafflePage);

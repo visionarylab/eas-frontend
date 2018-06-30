@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import FacebookLoginDraw from './FacebookLoginDraw';
+import FacebookLoginRafflePage from './FacebookLoginRafflePage';
 
 class FacebookLoginRafflePageContainer extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class FacebookLoginRafflePageContainer extends Component {
   render() {
     return (
       <div>
-        <FacebookLoginDraw
+        <FacebookLoginRafflePage
           values={this.state.values}
           onFieldChange={this.onFieldChange}
           handlePublish={this.handlePublish}
