@@ -64,10 +64,12 @@
   "FacebookLoginRafflePage":{
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "info_about_winners": "Información sobre los ganadores",
-    "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo y compartirlo en Facebook para inscribirse.",
-    "when_to_toss": "Cuándo quieres mostrar los resultados?",
+    "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
+    "when_to_toss": "Cuándo quieres que se generen los resultados?",
     "publish_raffle": "Publicar sorteo",
-    "facebook_login_raffle_default_title": "Sorteo entre usuarios de Facebook"
+    "facebook_login_raffle_default_title": "Sorteo entre usuarios de Facebook",
+    "raffle_explanation": "Los usuarios se registrarán en el sorteo con su cuenta de Facebook, de esta manera te asegurarás de que cada usuario solo se regista una vez.",
+    "raffle_when_to_toss_explanation": "El sorteo sera público en el momento en que hagas click en \"{{toss_button_label}}\". Los resultados sin embargo se generarán mas tarde, a continuación puedes elegir cuándo y cómo quieres que eso suceda."
   },
   "PublishedFacebookLoginDraw": {
     "winners": "Ganadores del sorteo"
@@ -91,10 +93,9 @@
      "make_public":"Haz esta tirada publica"
   },
   "PublishDrawOptions":{
-     "when_show_winners":"Cuándo quieres mostrar los resultados?",
      "show_now":"Mostrar ahora",
-     "schedule_toss":"Progamar el sorteo para una fecha en el futuro",
-     "manual_toss":"Realizar el sorteo manualmente"
+     "schedule_toss":"Progamar el sorteo para una fecha determinada",
+     "manual_toss":"Realizar el sorteo en el futuro manualmente"
   },
   "PrizesOverview":{
     "prizes": "Premios"

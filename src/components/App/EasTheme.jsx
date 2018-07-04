@@ -3,6 +3,18 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif',
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    color: green,
+    body1: {
+      lineHeight: `1.5rem`,
+    },
+  },
   palette: {
     primary: purple,
     secondary: green,

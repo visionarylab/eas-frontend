@@ -13,7 +13,6 @@ const PublishDrawOptions = props => {
   const { whenToToss, options, dateScheduled, onFieldChange, t } = props;
   return (
     <div>
-      {/* <Typography variant="title">{t('when_show_winners')}</Typography> */}
       <FormControl component="fieldset" required>
         <RadioGroup value={whenToToss} onChange={e => onFieldChange('whenToToss', e.target.value)}>
           {options.includes('now') && (

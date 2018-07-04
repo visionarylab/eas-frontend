@@ -14,6 +14,7 @@ import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import TossButton from '../../TossButton/TossButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
+import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 
 const FacebookLoginRafflePage = props => {
   const { values, onFieldChange, handlePublish, t } = props;
@@ -27,6 +28,7 @@ const FacebookLoginRafflePage = props => {
         <Grid item xs={6}>
           <DrawPanel>
             <Typography variant="display1">{t('facebook_login_raffle_default_title')}</Typography>
+            <BannerAlert title={t('raffle_explanation')} type={ALERT_TYPES.NEUTRAL} />
             <SectionPanel title={t('general_details_raffle')}>
               <PublicDetails
                 title={values.title}
@@ -41,14 +43,15 @@ const FacebookLoginRafflePage = props => {
                 onFieldChange={onFieldChange}
               />
               <br />
-              <Paper>
+              <BannerAlert title={t('how_to_participate')} type={ALERT_TYPES.NEUTRAL} />
+              {/* <Paper>
                 <p>
                   <Trans i18nKey="how_to_participate">
                     Once you publish the raffle, you will get a link that you will be able to share
                     it with others. To participate, they will need to login with facebook.
                   </Trans>
                 </p>
-              </Paper>
+              </Paper> */}
             </SectionPanel>
             <SectionPanel title={t('when_to_toss')}>
               <PublishDrawOptions
@@ -56,6 +59,12 @@ const FacebookLoginRafflePage = props => {
                 options={['manual', 'schedule']}
                 dateScheduled={values.dateScheduled}
                 onFieldChange={props.onFieldChange}
+              />
+              <BannerAlert
+                title={t('raffle_when_to_toss_explanation', {
+                  toss_button_label: props.t('publish_raffle'),
+                })}
+                type={ALERT_TYPES.NEUTRAL}
               />
             </SectionPanel>
             <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
