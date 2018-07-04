@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { apiCall, fbAsyncInit } from '../../services/FacebookAPI/FacebookAPI';
+import i18n from '../../i18n/i18n';
 
 export const FacebookContext = React.createContext();
 
@@ -27,8 +28,8 @@ class FacebookProvider extends Component {
       }
       const js = d.createElement(s);
       js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      // js.src = 'https://connect.facebook.net/en_US/sdk/debug.js';
+      const locale = i18n.language.replace('-', '_');
+      js.src = `https://connect.facebook.net/${locale}/sdk.js`;
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
   }

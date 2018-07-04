@@ -10,12 +10,12 @@ import STYLES from './PrizesOverview.scss';
 const c = classNames.bind(STYLES);
 
 const PrizesOverview = ({ prizes, t }) => (
-  <div>
+  <div className={c('PrizesOverview')}>
     <Typography variant="display1">{t('prizes')}</Typography>
     <ul className={c('PrizesOverview__prizes-list')}>
       {prizes.map((prize, i) => (
-        <li>
-          <Chip key={`prize${i}`} label={prize} />
+        <li key={`prize-${i}`}>
+          <Chip label={prize} />
         </li>
       ))}
     </ul>

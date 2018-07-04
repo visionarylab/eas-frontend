@@ -21,11 +21,11 @@ const theme = createMuiTheme({
     error: green,
   },
   overrides: {
-    MuiFormControl: {
-      root: {
-        margin: 10,
-      },
-    },
+    // MuiFormControl: {
+    //   root: {
+    //     margin: 10,
+    //   },
+    // },
     // MuiPaper: {
     //   root: {
     //     padding: '0.125rem 1rem',

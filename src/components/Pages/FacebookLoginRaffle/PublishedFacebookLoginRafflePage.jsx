@@ -37,22 +37,30 @@ const PublishedFacebookLoginRafflePage = props => (
       ) : (
         <Fragment>
           <PrizesOverview prizes={props.prizes} />
-          {props.isLoggedInFB ? (
-            <div>
-              {props.userRegisteredInRaffle ? (
-                <p>You are registered in the raffle as {props.userName}</p>
-              ) : (
-                <Button variant="raised" color="primary" onClick={props.onRegisterInRaffle}>
-                  Participate as {props.userName}
-                </Button>
-              )}
-            </div>
-          ) : (
-            <div>
-              The registration is open! <br /> Login in Facebook to participante
-              <FacebookLoginButton />
-            </div>
-          )}
+          <div className={c('PublishedFacebookLoginRafflePage__participate-with-facebook')}>
+            {props.userRegisteredInRaffle ? (
+              <Typography variant="title">
+                You are registered in the raffle as {props.userName}
+              </Typography>
+            ) : (
+              <Fragment>
+                <Typography variant="title">{props.t('registration_is_open')}</Typography>
+                <br />
+                {props.isLoggedInFB ? (
+                  <Button variant="raised" color="primary" onClick={props.onRegisterInRaffle}>
+                    {props.t('participate_as', { username: props.userName })}
+                  </Button>
+                ) : (
+                  <div>
+                    <Typography variant="body2">
+                      {props.t('login_with_facebook_to_participate')}
+                    </Typography>
+                    <FacebookLoginButton />
+                  </div>
+                )}
+              </Fragment>
+            )}
+          </div>
         </Fragment>
       )}
     </PublicDrawContent>

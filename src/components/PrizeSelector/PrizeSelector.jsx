@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -25,28 +26,32 @@ class PrizeSelector extends Component {
     const { specifyPrizes } = this.state;
     return (
       <div>
-        <FormGroup row>
-          <TextField
-            name="numberOfWinners"
-            label={t('number_of_winners')}
-            placeholder="1"
-            margin="normal"
-            onChange={e => onFieldChange('numberOfWinners', parseInt(e.target.value, 10))}
-            value={specifyPrizes ? prizes.length : numberOfWinners}
-            type="number"
-            disabled={specifyPrizes}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="specifyPrizes"
-                checked={specifyPrizes}
-                onChange={this.onSpecifyPrizesChange}
-              />
-            }
-            label={t('specify_prizes')}
-          />
-        </FormGroup>
+        <Grid container spacing={8}>
+          <Grid item sm={6}>
+            <TextField
+              name="numberOfWinners"
+              label={t('number_of_winners')}
+              placeholder="1"
+              margin="normal"
+              onChange={e => onFieldChange('numberOfWinners', parseInt(e.target.value, 10))}
+              value={specifyPrizes ? prizes.length : numberOfWinners}
+              type="number"
+              disabled={specifyPrizes}
+            />
+          </Grid>
+          <Grid item sm={6}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="specifyPrizes"
+                  checked={specifyPrizes}
+                  onChange={this.onSpecifyPrizesChange}
+                />
+              }
+              label={t('specify_prizes')}
+            />
+          </Grid>
+        </Grid>
         {this.state.specifyPrizes && (
           <MultiValueInput
             name="prizes"

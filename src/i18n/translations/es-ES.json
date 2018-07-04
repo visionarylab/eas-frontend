@@ -71,8 +71,11 @@
     "raffle_explanation": "Los usuarios se registrarán en el sorteo con su cuenta de Facebook, de esta manera te asegurarás de que cada usuario solo se regista una vez.",
     "raffle_when_to_toss_explanation": "El sorteo sera público en el momento en que hagas click en \"{{toss_button_label}}\". Los resultados sin embargo se generarán mas tarde, a continuación puedes elegir cuándo y cómo quieres que eso suceda."
   },
-  "PublishedFacebookLoginDraw": {
-    "winners": "Ganadores del sorteo"
+  "PublishedFacebookLoginRafflePage": {
+    "winners": "Ganadores del sorteo",
+    "registration_is_open": "El registro en el sorteo esta abierto!",
+    "login_with_facebook_to_participate": "Accede con Facebook para participar",
+    "participate_as": "Participar como {{username}}"
   },
   "PrizeSelector":{
     "number_of_winners": "Número de ganadores",

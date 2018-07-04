@@ -6,10 +6,10 @@ import STYLES from './SectionPanel.scss';
 
 const c = className => STYLES[className];
 
-const SectionPanel = props => (
+const SectionPanel = ({ title, children }) => (
   <div className={c('SectionPanel')}>
-    <Typography variant="title">{props.title}</Typography>
-    {props.children}
+    <Typography variant="title">{title}</Typography>
+    {children}
   </div>
 );
 
