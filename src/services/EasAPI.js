@@ -45,15 +45,18 @@ export const getRaffleDraw = drawId => ({
   title: 'Sorteo de Navidad',
   description: 'This is for bla bla',
   participants: ['david', 'pedro', 'mario'],
-  numberOfWinners: 1,
+  numberOfWinners: 2,
+  prizes: ['PS4'],
   results: [
     {
       position: 1,
-      participant: 'david',
+      winnerName: 'David',
+      prize: 'PS4',
     },
     {
       position: 2,
-      participant: 'pedro',
+      winnerName: 'Pedro',
+      prize: 'Xbox',
     },
   ],
 });

@@ -64,9 +64,10 @@ class MultiValueInput extends Component {
           onKeyPress={this.onKeyPress}
           value={this.state.currentValue}
           type="text"
+          margin="normal"
           {...extra}
         />
-        <div className={c('MultiValueInput__prizes-box')}>
+        <div className={c('MultiValueInput__values-box')}>
           {values.length
             ? values.map(value => (
                 <Chip key={value} label={value} onDelete={this.onValueDelete(value)} />

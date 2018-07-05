@@ -12,6 +12,7 @@ class PublishedRafflePageContainer extends Component {
       description: '',
       participants: [],
       numberOfWinners: 1,
+      prizes: [],
       results: [],
     };
   }
@@ -23,18 +24,23 @@ class PublishedRafflePageContainer extends Component {
   loadData() {
     const drawId = parseInt(this.props.match.params.drawId, 10);
     const raffle = getRaffleDraw(drawId);
-    const { title, description, participants, numberOfWinners, results } = raffle;
+    const { title, description, participants, numberOfWinners, prizes } = raffle;
+    const results = raffle.results.map(result => ({
+      winnerName: result.winnerName,
+      extraData: result.prize || result.position,
+    }));
     this.setState({
       title,
       description,
       participants,
       numberOfWinners,
+      prizes,
       results,
     });
   }
 
   render() {
-    const { title, description, participants, numberOfWinners, results } = this.state;
+    const { title, description, participants, numberOfWinners, prizes, results } = this.state;
     return (
       <PublishedRaffle
         title={title}
@@ -42,6 +48,7 @@ class PublishedRafflePageContainer extends Component {
         participants={participants}
         numberOfWinners={numberOfWinners}
         results={results}
+        prizes={prizes}
       />
     );
   }

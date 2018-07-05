@@ -1,0 +1,24 @@
+$winner-chip-border-color: #797979;
+$winner-chip-leftside-background-color: #77dd77;
+
+.WinnerChip {
+  margin-top: .25rem;
+  // padding: .25rem;
+  border-style: solid;
+  border-radius: .25rem;
+  border-width: 1px;
+  border-color: $winner-chip-border-color;
+  overflow: hidden;
+  display: flex;
+  
+  &__leftside-box {
+    padding: .25rem;
+    background-color: $winner-chip-leftside-background-color;
+    border-right: 1px solid $winner-chip-border-color;
+  }
+  
+  
+  &__rigthside-box {
+    padding: .25rem;
+  }
+}

@@ -39,16 +39,23 @@
     "publish_draw": "Publicar tidada"
   },
   "RafflePage":{
-    "general_details_raffle": "Detalles generales sobre el sorteo",
-    "who_will_participate": "¿Quién participará en el sorteo?",
-    "detail_about_winners": "Detalles sobre los ganadores",
-    "when_to_toss": "Cuándo quieres mostrar los resultados?",
     "raffle_html_title":"Organizar sorteo",
     "raffle_seo_description":"<0>Organiza sorteos publicos</0>",
+    "raffle_default_title": "Sorteo con lista de participantes cerrada",
+    "general_details_raffle": "Detalles generales sobre el sorteo",
+    "who_will_participate": "¿Quién participará en el sorteo?",
+    "participants": "Participantes",
+    "you_havent_add_any_participants": "Todavia no has añadido ningun participante",
+    "detail_about_winners": "Detalles sobre los ganadores",
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "publish_raffle":"Publicar sorteo"
   },
   "PublishedRafflePage":{
-     "winners":"Ganadores"
+     "winners":"Ganadores",
+     "raffle_details": "Detalles del sorteo",
+     "number_of_participants": "Número de participantes:",
+     "number_of_winners": "Número de ganadores:",
+     "description": "Descripción"
   },
   "FacebookDraw":{
     "facebook_draw_html_title":"Organizar eb Facebook",

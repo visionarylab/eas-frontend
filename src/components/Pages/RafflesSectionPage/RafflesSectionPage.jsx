@@ -15,23 +15,23 @@ const RafflesSectionPage = ({ t }) => (
     <Grid container justify="center">
       <Grid item sm={8}>
         <TransparentPanel>
-          <Grid container justify="center">
-            <Grid item sm={6}>
-              <Chip icon={facebookIcon} href="/facebook_login">
-                {t('facebook_login_raffle_title')}
-              </Chip>
-            </Grid>
-            <Grid item sm={6}>
-              <Chip icon={likeIcon} href="/facebook_photo">
-                {t('facebook_photo_raffle_title')}
-              </Chip>
-            </Grid>
-            <Grid item sm={6}>
-              <Chip icon={raffleIcon} href="/raffle">
-                {t('raffle_title')}
-              </Chip>
-            </Grid>
+          {/* <Grid container justify="center"> */}
+          <Grid item sm={6}>
+            <Chip icon={facebookIcon} href="/facebook_login">
+              {t('facebook_login_raffle_title')}
+            </Chip>
           </Grid>
+          <Grid item sm={6}>
+            <Chip icon={likeIcon} href="/facebook_photo">
+              {t('facebook_photo_raffle_title')}
+            </Chip>
+          </Grid>
+          <Grid item sm={6}>
+            <Chip icon={raffleIcon} href="/raffle">
+              {t('raffle_title')}
+            </Chip>
+          </Grid>
+          {/* </Grid> */}
         </TransparentPanel>
       </Grid>
     </Grid>

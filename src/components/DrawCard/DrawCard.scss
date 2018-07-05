@@ -39,5 +39,10 @@ $eas-chip-title-font-color: #6f6f6f;
     color: $eas-chip-title-font-color;
     // font-family: 'robotoregular', Helvetica, Arial, sans-serif;
     font-size: $eas-chip-title-font-size;
+    padding-left: 1rem;
+  }
+  
+  &__link {
+    text-decoration: none;
   }
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../DrawPanel/DrawPanel';
@@ -33,6 +34,7 @@ const RafflePage = props => {
         </Grid>
         <Grid item xs={6}>
           <DrawPanel>
+            <Typography variant="display1">{props.t('raffle_default_title')}</Typography>
             <SectionPanel title={props.t('general_details_raffle')}>
               <PublicDetails
                 title={title}
@@ -45,8 +47,9 @@ const RafflePage = props => {
                 name="participants"
                 label={props.t('participants')}
                 values={participants}
-                placeholder="David"
+                placeholder="David, María, ..."
                 onChange={p => props.onFieldChange('participants', p)}
+                messageEmpty={props.t('you_havent_add_any_participants')}
                 fullWidth
               />
             </SectionPanel>
