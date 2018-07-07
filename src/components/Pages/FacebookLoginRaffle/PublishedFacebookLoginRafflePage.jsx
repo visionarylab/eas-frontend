@@ -15,7 +15,7 @@ import STYLES from './PublishedFacebookLoginRafflePage.scss';
 const c = className => STYLES[className];
 
 const PublishedFacebookLoginRafflePage = props => (
-  <Page htmlTitle={props.title} className={c('PublishedFacebookLoginRafflePage')}>
+  <Page htmlTitle={props.title} className={c('PublishedFacebookLoginRafflePage')} noIndex>
     <PublicDrawContent>
       <Typography variant="display2">{props.title}</Typography>
       {props.results.length ? (

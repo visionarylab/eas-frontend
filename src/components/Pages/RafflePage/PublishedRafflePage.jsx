@@ -16,7 +16,7 @@ const c = className => STYLES[className];
 const PublishedRafflePage = props => {
   const { title, participants, numberOfWinners, prizes, description, results, t } = props;
   return (
-    <Page htmlTitle={title} className={c('PublishedRafflePage')}>
+    <Page htmlTitle={title} noIndex className={c('PublishedRafflePage')}>
       <PublicDrawContent>
         <Typography variant="display2">{title}</Typography>
         {results.length ? (

@@ -12,7 +12,7 @@ import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGener
 const PublishedRandomNumberPage = props => {
   const { results } = props;
   return (
-    <Page htmlTitle={props.title}>
+    <Page htmlTitle={props.title} noIndex>
       <PublicDrawContent>
         <Typography variant="display2">{props.title}</Typography>
         {results.length ? (

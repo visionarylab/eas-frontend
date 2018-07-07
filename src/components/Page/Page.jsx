@@ -12,6 +12,7 @@ const Page = props => (
   <Fragment>
     <Helmet>
       <title>{props.htmlTitle}</title>
+      {props.noIndex && <meta name="robots" content="noindex" />}
     </Helmet>
     <div className={c('Page', props.className)}>{props.children}</div>
   </Fragment>
@@ -21,10 +22,12 @@ Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  noIndex: PropTypes.bool,
 };
 
 Page.defaultProps = {
   className: null,
+  noIndex: false,
 };
 
 export default withGoogleAnalyticsTracker(Page);
