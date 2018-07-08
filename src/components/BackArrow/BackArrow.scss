@@ -1,9 +1,11 @@
+$back-arrow-color: green;
+
 // Needed to have higher specificity over Material UI
 .BackArrow .BackArrow {
   &__icon {
     width: 8em;
     height: 8em;
     margin: 2em;
-    color: green;
+    color: $back-arrow-color;
   }
 }

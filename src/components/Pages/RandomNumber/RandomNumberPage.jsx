@@ -1,7 +1,6 @@
 import React from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -19,10 +18,6 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
-
-import STYLES from './RandomNumberPage.scss';
-
-const c = classNames.bind(STYLES);
 
 const RandomNumberPage = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
@@ -101,9 +96,7 @@ const RandomNumberPage = props => {
                 onClick={isPublic ? handlePublish : handleToss}
               />
             </div>
-            <div>
-              <span className={c('RandomNumberPage__results')}>{values.results}</span>
-            </div>
+            <div>{values.results}</div>
           </DrawPanel>
         </Grid>
 

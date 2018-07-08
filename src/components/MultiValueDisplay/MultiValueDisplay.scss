@@ -1,8 +1,14 @@
+$one-pixel-rem: .0625rem;
+$spacing-md: 1.125rem;
+$spacing-lg: 1.875rem;
+$border-radius: .2rem;
+$border-color-gray: #797979;
+
 .MultiValueDisplay {
-  margin-top: 1rem;
-  padding: 1rem;
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border-width: $one-pixel-rem;
   border-style: solid;
-  border-radius: .25rem;
-  border-width: 1px;
-  border-color: #797979;
+  border-radius: $border-radius;
+  border-color: $border-color-gray;
 }

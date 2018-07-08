@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 
 import STYLES from './MultiValueDisplay.scss';
@@ -19,7 +18,7 @@ class MultiValueDisplay extends Component {
     const { values, label, allowDelete, messageEmpty } = this.props;
     return (
       <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
-        {/* <div>{label}</div> */}
+        {label && <div>{label}</div>}
         {values.length
           ? values.map(value => (
               <Chip
@@ -36,7 +35,7 @@ class MultiValueDisplay extends Component {
 }
 
 MultiValueDisplay.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
   allowDelete: PropTypes.bool,
   messageEmpty: PropTypes.string,
@@ -44,6 +43,7 @@ MultiValueDisplay.propTypes = {
 };
 
 MultiValueDisplay.defaultProps = {
+  label: null,
   allowDelete: false,
   messageEmpty: '',
   onChange: () => {},

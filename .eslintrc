@@ -4,13 +4,15 @@
     "prettier",
     "prettier/react"
   ],
-  "env": {
-    "browser": true,
-    "jest": true
-  },
   "plugins": [
+    "cypress",
     "prettier"
   ],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "cypress/globals": true
+  },
   "rules": {
     "prettier/prettier": "error",
     "import/no-extraneous-dependencies": [0]

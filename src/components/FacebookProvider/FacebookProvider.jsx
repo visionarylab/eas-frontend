@@ -21,6 +21,7 @@ class FacebookProvider extends Component {
   componentDidMount() {
     fbAsyncInit(this.onStatusChange);
 
+    // eslint-disable-next-line func-names
     (function(d, s, id) {
       const fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {

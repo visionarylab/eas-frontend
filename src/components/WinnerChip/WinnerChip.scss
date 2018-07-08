@@ -1,24 +1,24 @@
 $winner-chip-border-color: #797979;
-$winner-chip-leftside-background-color: #77dd77;
+$winner-chip-leftside-background-color: #7d7;
+$one-pixel-rem: .0625rem;
+$spacing-xs: .375rem;
 
 .WinnerChip {
-  margin-top: .25rem;
-  // padding: .25rem;
+  display: flex;
+  margin-top: $spacing-xs;
+  border-width: $one-pixel-rem;
   border-style: solid;
-  border-radius: .25rem;
-  border-width: 1px;
+  border-radius: $spacing-xs;
   border-color: $winner-chip-border-color;
   overflow: hidden;
-  display: flex;
-  
+
   &__leftside-box {
-    padding: .25rem;
+    padding: $spacing-xs;
+    border-right: $one-pixel-rem solid $winner-chip-border-color;
     background-color: $winner-chip-leftside-background-color;
-    border-right: 1px solid $winner-chip-border-color;
   }
-  
-  
+
   &__rigthside-box {
-    padding: .25rem;
+    padding: $spacing-xs;
   }
 }

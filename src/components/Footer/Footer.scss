@@ -1,7 +1,11 @@
+$footer-background-color: rgba(136, 136, 136, .5);
+$spacing-sm: .75rem;
+$spacing-lg: 1.875rem;
+
 .Footer {
-  margin-left: 10%;
   margin-right: 10%;
-  padding: 12px 0 25px;
-  background: rgba(136, 136, 136, .5);
+  margin-left: 10%;
+  padding: $spacing-sm 0 $spacing-lg;
+  background: $footer-background-color;
   text-align: center;
 }

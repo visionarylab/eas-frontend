@@ -1,3 +1,8 @@
+$published-results-background-color: white;
+$border-radius: .2rem;
+$spacing-md: 1.125rem;
+$spacing-lg: 1.875rem;
+
 .PublishedRafflePage {
   display: flex;
   flex-direction: row;
@@ -6,11 +11,11 @@
   &__results-panel {
     width: 50%;
     margin: 0 auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 2rem;
-    border-radius: .2rem;
-    background-color: white;
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-md;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    background-color: $published-results-background-color;
   }
 
   &__summary-panel {
