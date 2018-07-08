@@ -14,46 +14,48 @@
 
 import ApiClient from '../ApiClient';
 import DrawMetadata from './DrawMetadata';
+import Participant from './Participant';
+import Prize from './Prize';
 
 
 
 
 
 /**
-* The RandomNumber model module.
-* @module model/RandomNumber
+* The Raffle model module.
+* @module model/Raffle
 * @version v1
 */
-export default class RandomNumber {
+export default class Raffle {
     /**
-    * Constructs a new <code>RandomNumber</code>.
-    * @alias module:model/RandomNumber
+    * Constructs a new <code>Raffle</code>.
+    * @alias module:model/Raffle
     * @class
-    * @param rangeMin {Number} 
-    * @param rangeMax {Number} 
+    * @param prizes {Array.<module:model/Prize>} 
+    * @param participants {Array.<module:model/Participant>} 
     */
 
-    constructor(rangeMin, rangeMax) {
+    constructor(prizes, participants) {
         
 
         
         
 
-        this['range_min'] = rangeMin;this['range_max'] = rangeMax;
+        this['prizes'] = prizes;this['participants'] = participants;
 
         
     }
 
     /**
-    * Constructs a <code>RandomNumber</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>Raffle</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/RandomNumber} obj Optional instance to populate.
-    * @return {module:model/RandomNumber} The populated <code>RandomNumber</code> instance.
+    * @param {module:model/Raffle} obj Optional instance to populate.
+    * @return {module:model/Raffle} The populated <code>Raffle</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new RandomNumber();
+            obj = obj || new Raffle();
 
             
             
@@ -80,11 +82,11 @@ export default class RandomNumber {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], [DrawMetadata]);
             }
-            if (data.hasOwnProperty('range_min')) {
-                obj['range_min'] = ApiClient.convertToType(data['range_min'], 'Number');
+            if (data.hasOwnProperty('prizes')) {
+                obj['prizes'] = ApiClient.convertToType(data['prizes'], [Prize]);
             }
-            if (data.hasOwnProperty('range_max')) {
-                obj['range_max'] = ApiClient.convertToType(data['range_max'], 'Number');
+            if (data.hasOwnProperty('participants')) {
+                obj['participants'] = ApiClient.convertToType(data['participants'], [Participant]);
             }
         }
         return obj;
@@ -119,13 +121,13 @@ export default class RandomNumber {
     */
     metadata = undefined;
     /**
-    * @member {Number} range_min
+    * @member {Array.<module:model/Prize>} prizes
     */
-    range_min = undefined;
+    prizes = undefined;
     /**
-    * @member {Number} range_max
+    * @member {Array.<module:model/Participant>} participants
     */
-    range_max = undefined;
+    participants = undefined;
 
 
 

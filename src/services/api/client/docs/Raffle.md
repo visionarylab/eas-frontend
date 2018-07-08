@@ -1,4 +1,4 @@
-# EchaloasuerteApi.RandomNumber
+# EchaloasuerteApi.Raffle
 
 ## Properties
 Name | Type | Description | Notes
@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **results** | **String** |  | [optional] 
 **metadata** | [**[DrawMetadata]**](DrawMetadata.md) |  | [optional] 
-**rangeMin** | **Number** |  | 
-**rangeMax** | **Number** |  | 
+**prizes** | [**[Prize]**](Prize.md) |  | 
+**participants** | [**[Participant]**](Participant.md) |  | 
 
 

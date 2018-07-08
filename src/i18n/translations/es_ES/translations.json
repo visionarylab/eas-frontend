@@ -51,7 +51,7 @@
     "title_placeholder": "Sorteo de Navidad"
   },
   "PublishDrawOptions": {
-    "manual_toss": "Realizar el sorteo en el futuro manualmente",
+    "manual_toss": "Publicar el sorteo sin resultados",
     "schedule_toss": "Progamar el sorteo para una fecha determinada",
     "show_now": "Mostrar ahora"
   },
@@ -90,7 +90,7 @@
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",
     "facebook_photo_raffle_title": "Sorteo entre 'likes' en Facebook",
-    "raffle_title": "Sorteo"
+    "raffle_title": "Sorteo con lista cerrada de participantes"
   },
   "RandomNumberPage": {
     "allow_repeated": "Permitir números repetidos",

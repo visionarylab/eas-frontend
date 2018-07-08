@@ -29,10 +29,10 @@ const RafflePage = props => {
   return (
     <Page htmlTitle={props.t('raffle_html_title')}>
       <Grid container spacing={16}>
-        <Grid item sm={3}>
+        <Grid item sm={2}>
           <BackArrow />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <DrawPanel>
             <Typography variant="display1">{props.t('raffle_default_title')}</Typography>
             <SectionPanel title={props.t('general_details_raffle')}>
@@ -61,25 +61,16 @@ const RafflePage = props => {
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            <SectionPanel title={props.t('when_to_toss')}>
+            {/* <SectionPanel title={props.t('when_to_toss')}>
               <PublishDrawOptions
                 whenToToss={whenToToss}
                 options={['manual', 'schedule']}
                 dateScheduled={dateScheduled}
                 onFieldChange={props.onFieldChange}
               />
-            </SectionPanel>
+            </SectionPanel> */}
             <SubmitButton label={props.t('publish_raffle')} handlePublish={props.handlePublish} />
           </DrawPanel>
-        </Grid>
-        <Grid item xs={3}>
-          <TransparentPanel>
-            <Paper>
-              <Trans i18nKey="raffle_seo_description">
-                <span>Organiza sorteos publicos</span>
-              </Trans>
-            </Paper>
-          </TransparentPanel>
         </Grid>
       </Grid>
     </Page>

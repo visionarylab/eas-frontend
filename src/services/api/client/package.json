@@ -1,8 +1,8 @@
 {
   "name": "echaloasuerte-api",
-  "version": "1.0.0",
-  "description": "API_definition_for_EAS_web_services",
-  "license": "Apache 2.0",
+  "version": "v1",
+  "description": "Test_description",
+  "license": "BSD License",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive"

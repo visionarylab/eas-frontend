@@ -27,4 +27,4 @@ yarn-error.log*
 .vscode
 
 # API code, delete this we have it as a npm package
-src/services/api/client
+# src/services/api/client

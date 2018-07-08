@@ -4,8 +4,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import RandomNumberPage from './RandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
-const { DrawApi, RandomNumber } = ApiClient;
-const drawApi = new DrawApi();
+const { RandomNumberApi, RandomNumber } = ApiClient;
+const randomNumberApi = new RandomNumberApi();
+console.log('ApiClient', ApiClient);
+console.log('randomNumberApi', randomNumberApi.randomNumberCreate);
 
 class RandomNumberPageContainer extends React.Component {
   constructor(props) {
@@ -71,7 +73,7 @@ class RandomNumberPageContainer extends React.Component {
       range_max: rangeMax,
     });
     try {
-      return await drawApi.createRandomNumber(randomNumberDraw);
+      return await randomNumberApi.createRandomNumber(randomNumberDraw);
     } catch (err) {
       alert(err);
       return null;
@@ -85,7 +87,7 @@ class RandomNumberPageContainer extends React.Component {
     }
     let tossDrawResponse;
     try {
-      tossDrawResponse = await drawApi.putRandomNumber(this.state.drawId);
+      tossDrawResponse = await randomNumberApi.putRandomNumber(this.state.drawId);
     } catch (err) {
       alert(err);
     }
@@ -100,7 +102,7 @@ class RandomNumberPageContainer extends React.Component {
   async handlePublish() {
     const draw = await this.createDraw();
     if (!this.state.whenToToss === 'now') {
-      await drawApi.putRandomNumber(draw.private_id);
+      await randomNumberApi.putRandomNumber(draw.private_id);
     }
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   }

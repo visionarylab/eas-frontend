@@ -4,8 +4,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import PublishedRandomNumberPage from './PublishedRandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
-const { DrawApi } = ApiClient;
-const drawApi = new DrawApi();
+const { RaffleApi } = ApiClient;
+const drawApi = new RaffleApi();
 
 class PublishedRandomNumberPageContainer extends Component {
   constructor(props) {
