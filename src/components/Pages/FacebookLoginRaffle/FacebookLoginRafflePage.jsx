@@ -11,7 +11,7 @@ import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import PublicDetails from '../../PublicDetails/PublicDetails';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
-import TossButton from '../../TossButton/TossButton';
+import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
@@ -67,7 +67,7 @@ const FacebookLoginRafflePage = props => {
                 type={ALERT_TYPES.NEUTRAL}
               />
             </SectionPanel>
-            <TossButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
+            <SubmitButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
           </DrawPanel>
         </Grid>
         <Grid item xs={3}>

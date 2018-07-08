@@ -37,6 +37,7 @@ class PrizeSelector extends Component {
               value={specifyPrizes ? prizes.length : numberOfWinners}
               type="number"
               disabled={specifyPrizes}
+              inputProps={{ 'data-component': 'PrizeSelector__number-of-winners' }}
             />
           </Grid>
           <Grid item sm={6}>

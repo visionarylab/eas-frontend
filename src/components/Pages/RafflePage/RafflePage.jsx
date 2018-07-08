@@ -12,7 +12,7 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import PublicDetails from '../../PublicDetails/PublicDetails';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
-import TossButton from '../../TossButton/TossButton';
+import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 
@@ -51,6 +51,7 @@ const RafflePage = props => {
                 onChange={p => props.onFieldChange('participants', p)}
                 messageEmpty={props.t('you_havent_add_any_participants')}
                 fullWidth
+                inputProps={{ 'data-component': 'ParticipantsInput' }}
               />
             </SectionPanel>
             <SectionPanel title={props.t('detail_about_winners')}>
@@ -68,7 +69,7 @@ const RafflePage = props => {
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            <TossButton label={props.t('publish_raffle')} handlePublish={props.handlePublish} />
+            <SubmitButton label={props.t('publish_raffle')} handlePublish={props.handlePublish} />
           </DrawPanel>
         </Grid>
         <Grid item xs={3}>

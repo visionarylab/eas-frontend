@@ -16,7 +16,7 @@ import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-import TossButton from '../../TossButton/TossButton';
+import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 
@@ -96,7 +96,7 @@ const RandomNumberPage = props => {
                   />
                 </SectionPanel>
               )}
-              <TossButton
+              <SubmitButton
                 label={props.t(isPublic ? 'publish_draw' : 'generate_numbers')}
                 onClick={isPublic ? handlePublish : handleToss}
               />

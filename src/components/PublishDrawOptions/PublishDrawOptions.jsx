@@ -18,21 +18,27 @@ const PublishDrawOptions = props => {
           {options.includes('now') && (
             <FormControlLabel
               value="now"
-              control={<Radio color="primary" />}
+              control={
+                <Radio color="primary" inputProps={{ 'data-component': 'WhenToToss__now' }} />
+              }
               label={t('show_now')}
             />
           )}
           {options.includes('manual') && (
             <FormControlLabel
               value="manual"
-              control={<Radio color="primary" />}
+              control={
+                <Radio color="primary" inputProps={{ 'data-component': 'WhenToToss__manual' }} />
+              }
               label={t('manual_toss')}
             />
           )}
           {options.includes('schedule') && (
             <FormControlLabel
               value="schedule"
-              control={<Radio color="primary" />}
+              control={
+                <Radio color="primary" inputProps={{ 'data-component': 'WhenToToss__schedule' }} />
+              }
               label={t('schedule_toss')}
             />
           )}

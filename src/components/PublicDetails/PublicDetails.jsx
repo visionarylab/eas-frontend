@@ -8,21 +8,22 @@ const PublicDetails = props => (
     <TextField
       label={props.t('title_label')}
       placeholder={props.t('title_placeholder')}
-      margin="normal"
-      onChange={e => props.onFieldChange('title', e.target.value)}
       value={props.title}
+      margin="normal"
       fullWidth
-      type="text"
+      onChange={e => props.onFieldChange('title', e.target.value)}
+      inputProps={{ 'data-component': 'TitleInput' }}
     />
     <TextField
       label={props.t('description_label')}
-      onChange={e => props.onFieldChange('description', e.target.value)}
-      multiline
-      fullWidth
-      rows="4"
       placeholder={props.t('description_placeholder')}
       value={props.description}
+      fullWidth
+      multiline
+      rows="4"
       margin="normal"
+      onChange={e => props.onFieldChange('description', e.target.value)}
+      inputProps={{ 'data-component': 'DescriptionInput' }}
     />
   </Fragment>
 );

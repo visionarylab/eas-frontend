@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames/bind';
-import STYLES from './TossButton.scss';
+import STYLES from './SubmitButton.scss';
 
 const c = classNames.bind(STYLES);
-const TossButton = ({ label, onClick }) => (
-  <div data-component={'SubmitDrawButton'} className={c('TossButton')}>
+const SubmitButton = ({ label, onClick }) => (
+  <div data-component={'SubmitDrawButton'} className={c('SubmitButton')}>
     <Button variant="raised" color="primary" onClick={onClick}>
       {label}
     </Button>
   </div>
 );
 
-TossButton.propTypes = {
+SubmitButton.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default TossButton;
+export default SubmitButton;

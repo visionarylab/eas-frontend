@@ -13,7 +13,7 @@ import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-import TossButton from '../../TossButton/TossButton';
+import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 
@@ -60,7 +60,7 @@ const LetterDrawPage = props => {
                   />
                 </SectionPanel>
               )}
-              <TossButton
+              <SubmitButton
                 label={props.t(values.isPublic ? 'publish_draw' : 'generate_letters')}
                 onClick={values.isPublic ? handlePublish : handleToss}
               />

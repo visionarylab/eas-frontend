@@ -70,7 +70,12 @@ class MultiValueInput extends Component {
         <div className={c('MultiValueInput__values-box')}>
           {values.length
             ? values.map(value => (
-                <Chip key={value} label={value} onDelete={this.onValueDelete(value)} />
+                <Chip
+                  key={value}
+                  label={value}
+                  onDelete={this.onValueDelete(value)}
+                  component-data={'MultiValueInput__chip'}
+                />
               ))
             : messageEmpty}
         </div>
