@@ -4,10 +4,6 @@ $spacing-md: 1.125rem;
 $spacing-lg: 1.875rem;
 
 .PublishedRafflePage {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-
   &__results-panel {
     width: 50%;
     margin: 0 auto;

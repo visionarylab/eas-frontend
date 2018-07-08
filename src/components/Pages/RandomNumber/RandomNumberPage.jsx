@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
+import classNames from 'classnames/bind';
 
 import PublicDetails from '../../PublicDetails/PublicDetails';
 import MakeDrawPublicButton from '../../MakeDrawPublicButton/MakeDrawPublicButton';
@@ -18,6 +19,10 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
+
+import STYLES from './RandomNumberPage.scss';
+
+const c = classNames.bind(STYLES);
 
 const RandomNumberPage = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
@@ -42,28 +47,36 @@ const RandomNumberPage = props => {
                 </SectionPanel>
               )}
               <SectionPanel title={t('draw_configuration')}>
-                <div>
-                  <TextField
-                    label={t('from')}
-                    placeholder="1"
-                    onChange={e => onFieldChange('from', parseInt(e.target.value, 10))}
-                    value={values.rangeMin}
-                    type="number"
-                  />
-                  <TextField
-                    label={t('to')}
-                    placeholder="9"
-                    onChange={e => onFieldChange('to', parseInt(e.target.value, 10))}
-                    value={values.rangeMax}
-                    type="number"
-                  />
-                </div>
+                <Grid container spacing={16}>
+                  <Grid item xs={6}>
+                    <TextField
+                      label={t('from')}
+                      placeholder="1"
+                      onChange={e => onFieldChange('rangeMin', parseInt(e.target.value, 10))}
+                      value={values.rangeMin}
+                      type="number"
+                      margin="normal"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      label={t('to')}
+                      placeholder="9"
+                      onChange={e => onFieldChange('rangeMax', parseInt(e.target.value, 10))}
+                      value={values.rangeMax}
+                      margin="normal"
+                      type="number"
+                    />
+                  </Grid>
+                </Grid>
                 <div>
                   <TextField
                     label={t('number_of_results')}
                     placeholder="1"
                     onChange={e => onFieldChange('numberOfResults', parseInt(e.target.value, 10))}
                     value={values.numberOfResults}
+                    margin="normal"
                     type="number"
                   />
                   {values.numberOfResults > 1 && (
@@ -96,7 +109,7 @@ const RandomNumberPage = props => {
                 onClick={isPublic ? handlePublish : handleToss}
               />
             </div>
-            <div>{values.results}</div>
+            <div className={c('RandomNumberPage__results')}>{values.results}</div>
           </DrawPanel>
         </Grid>
 

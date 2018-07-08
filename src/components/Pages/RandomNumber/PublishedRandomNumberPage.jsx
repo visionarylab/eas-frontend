@@ -10,11 +10,13 @@ import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
 import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGeneratedYet';
 
 const PublishedRandomNumberPage = props => {
-  const { results } = props;
+  const { title, results } = props;
   return (
     <Page htmlTitle={props.title} noIndex>
       <PublicDrawContent>
-        <Typography variant="display2">{props.title}</Typography>
+        <Typography variant="display2" data-component={'PublishedRandomNumberPage__Title'}>
+          {title}
+        </Typography>
         {results.length ? (
           <PublicResultsPanel>
             <Typography variant="display1">{props.t('chosen_numbers')}</Typography>

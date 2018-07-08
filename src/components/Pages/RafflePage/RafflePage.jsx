@@ -64,7 +64,7 @@ const RafflePage = props => {
             <SectionPanel title={props.t('when_to_toss')}>
               <PublishDrawOptions
                 whenToToss={whenToToss}
-                options={['now', 'manual', 'schedule']}
+                options={['manual', 'schedule']}
                 dateScheduled={dateScheduled}
                 onFieldChange={props.onFieldChange}
               />
