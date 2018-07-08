@@ -1,15 +1,22 @@
 import React from 'react';
-import i18n from '../../i18n/i18n'; // initialized i18next instance
+import i18n from '../../i18n/i18n';
 
 import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch';
-import available from '../../i18n/available';
 import STYLES from './Footer.scss';
 
 const c = className => STYLES[className];
 
+const availableLocales = ['es-ES', 'en-GB'];
+
 const Footer = () => (
   <footer className={c('Footer')}>
-    <TranslationsSwitch onChange={l => i18n.changeLanguage(l)} available={Object.keys(available)} />
+    <TranslationsSwitch
+      onChange={l => {
+        console.log(l);
+        i18n.changeLanguage(l);
+      }}
+      available={availableLocales}
+    />
   </footer>
 );
 

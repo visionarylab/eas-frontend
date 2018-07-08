@@ -1,0 +1,117 @@
+{
+  "FacebookDraw": {
+    "check_participants": "Ver participantes",
+    "facebook_draw_html_title": "Organizar eb Facebook",
+    "facebook_draw_seo_description": "<0>Organiza sorteos en tu página de Facebook</0>",
+    "number_of_winners": "Número de ganadores",
+    "post_or_photo_url": "Url de la foto o post",
+    "publish_draw": "Publicar sorteo"
+  },
+  "FacebookLoginRafflePage": {
+    "facebook_login_raffle_default_title": "Sorteo entre usuarios de Facebook",
+    "general_details_raffle": "Detalles generales sobre el sorteo",
+    "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
+    "info_about_winners": "Información sobre los ganadores",
+    "publish_raffle": "Publicar sorteo",
+    "raffle_explanation": "Los usuarios se registrarán en el sorteo con su cuenta de Facebook, de esta manera te asegurarás de que cada usuario solo se regista una vez.",
+    "raffle_when_to_toss_explanation": "El sorteo sera público en el momento en que hagas click en \"{{toss_button_label}}\". Los resultados sin embargo se generarán mas tarde, a continuación puedes elegir cuándo y cómo quieres que eso suceda.",
+    "when_to_toss": "Cuándo quieres que se generen los resultados?"
+  },
+  "HomePage": {
+    "raffle_title": "Realizar Sorteo",
+    "random_letter_title": "Generar letras aleatorias",
+    "random_number_title": "Generar números aleatorios"
+  },
+  "LetterDrawPage": {
+    "draw_configuration": "Configuración de la tirada",
+    "general_details_draw": "Detalles generales de la tirada",
+    "generate_letters": "Generar letras",
+    "letter_draw_html_title": "Generar letras aleatorias",
+    "letter_draw_title": "Generar letras aleatorias",
+    "number_of_letters": "Número de letras",
+    "publish_draw": "Publicar tidada",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?"
+  },
+  "MakeDrawPublicButton": {
+    "make_public": "Haz esta tirada publica"
+  },
+  "PrizeSelector": {
+    "no_prizes_selected": "Añade premios en la caja de arriba.",
+    "number_of_winners": "Número de ganadores",
+    "prizes": "Premios",
+    "specify_prizes": "Especificar premios"
+  },
+  "PrizesOverview": {
+    "prizes": "Premios"
+  },
+  "PublicDetails": {
+    "description_label": "Descripción",
+    "description_placeholder": "Descripción del sorteo, bases del concurso, etc.",
+    "title_label": "Título",
+    "title_placeholder": "Sorteo de Navidad"
+  },
+  "PublishDrawOptions": {
+    "manual_toss": "Realizar el sorteo en el futuro manualmente",
+    "schedule_toss": "Progamar el sorteo para una fecha determinada",
+    "show_now": "Mostrar ahora"
+  },
+  "PublishedFacebookLoginRafflePage": {
+    "login_with_facebook_to_participate": "Accede con Facebook para participar",
+    "participate_as": "Participar como {{username}}",
+    "registration_is_open": "El registro en el sorteo esta abierto!",
+    "winners": "Ganadores del sorteo"
+  },
+  "PublishedFadebookDraw": {
+    "winners": "Ganadores"
+  },
+  "PublishedRafflePage": {
+    "description": "Descripción",
+    "number_of_participants": "Número de participantes:",
+    "number_of_winners": "Número de ganadores:",
+    "raffle_details": "Detalles del sorteo",
+    "winners": "Ganadores"
+  },
+  "PublishedRandomNumberPage": {
+    "chosen_numbers": "Números elegidos",
+    "draw_details": "Detalles del sorteo"
+  },
+  "RafflePage": {
+    "detail_about_winners": "Detalles sobre los ganadores",
+    "general_details_raffle": "Detalles generales sobre el sorteo",
+    "participants": "Participantes",
+    "publish_raffle": "Publicar sorteo",
+    "raffle_default_title": "Sorteo con lista de participantes cerrada",
+    "raffle_html_title": "Organizar sorteo",
+    "raffle_seo_description": "<0>Organiza sorteos publicos</0>",
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
+    "who_will_participate": "¿Quién participará en el sorteo?",
+    "you_havent_add_any_participants": "Todavia no has añadido ningun participante"
+  },
+  "RafflesSectionPage": {
+    "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",
+    "facebook_photo_raffle_title": "Sorteo entre 'likes' en Facebook",
+    "raffle_title": "Sorteo"
+  },
+  "RandomNumberPage": {
+    "allow_repeated": "Permitir números repetidos",
+    "draw_configuration": "Detalles de la tirada",
+    "from": "Desde",
+    "general_details_draw": "Información general",
+    "generate_numbers": "Generar números",
+    "number_draw_seo_description": "Crea una tirada publica para que todo el mundo pueda ver el resultado a la vez",
+    "number_of_results": "Número de resultados",
+    "publish_draw": "Publicar tirada",
+    "random_number_default_title": "Generar números aleatorios",
+    "random_number_html_title": "Generar números aleatorios",
+    "random_number_seo_description": "Generar números aleatorios",
+    "to": "Hasta",
+    "when_to_toss": "Cuándo quieres mostrar los resultados?"
+  },
+  "ResultsNotGeneratedYet": {
+    "message_manual_toss": "Los resultados todavía no se han generado",
+    "message_scheduled_toss": "Los resultados se generarán en"
+  },
+  "TranslationsSwitch": {
+    "change_language": "Cambiar idioma"
+  }
+}
