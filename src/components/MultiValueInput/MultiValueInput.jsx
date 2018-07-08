@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 
-import STYLES from './MultiValueInput.scss';
-
-const c = classNames.bind(STYLES);
+import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay';
 
 class MultiValueInput extends Component {
   constructor(props) {
@@ -41,13 +37,6 @@ class MultiValueInput extends Component {
     }
   };
 
-  onValueDelete = value => () => {
-    const values = this.props.values;
-    const indexToDelete = values.indexOf(value);
-    values.splice(indexToDelete, 1);
-    this.props.onChange(values);
-  };
-
   addValues = newValues => {
     const { values } = this.props;
     this.props.onChange(values.concat(newValues));
@@ -67,18 +56,12 @@ class MultiValueInput extends Component {
           margin="normal"
           {...extra}
         />
-        <div className={c('MultiValueInput__values-box')}>
-          {values.length
-            ? values.map(value => (
-                <Chip
-                  key={value}
-                  label={value}
-                  onDelete={this.onValueDelete(value)}
-                  component-data={'MultiValueInput__chip'}
-                />
-              ))
-            : messageEmpty}
-        </div>
+        <MultiValueDisplay
+          values={values}
+          messageEmpty={messageEmpty}
+          allowDelete
+          onChange={this.props.onChange}
+        />
       </Fragment>
     );
   }
@@ -95,7 +78,7 @@ MultiValueInput.propTypes = {
 };
 
 MultiValueInput.defaultProps = {
-  delimiters: ['Enter', ',', '.'],
+  delimiters: ['Enter', ','],
 };
 
 export default MultiValueInput;

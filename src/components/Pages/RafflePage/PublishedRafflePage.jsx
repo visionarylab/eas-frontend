@@ -18,7 +18,9 @@ const PublishedRafflePage = props => {
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedRafflePage')}>
       <PublicDrawContent>
-        <Typography variant="display2">{title}</Typography>
+        <Typography variant="display2" data-component={'PublishedRafflePage__Title'}>
+          {title}
+        </Typography>
         {results.length ? (
           <Fragment>
             <section className={c('PublishedRafflePage__results-panel')}>

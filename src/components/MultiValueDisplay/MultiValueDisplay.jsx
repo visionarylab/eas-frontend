@@ -12,25 +12,24 @@ class MultiValueDisplay extends Component {
     const values = this.props.values;
     const indexToDelete = values.indexOf(value);
     values.splice(indexToDelete, 1);
-    this.props.onDelete(values);
+    this.props.onChange(values);
   };
 
   render() {
-    const { values, label, allowDelete } = this.props;
+    const { values, label, allowDelete, messageEmpty } = this.props;
     return (
-      <div className={c('MultiValueDisplay')}>
-        <div>{label}</div>
-        {Boolean(values.length) && (
-          <Paper className={c('MultiValueDisplay__items-container')}>
-            {values.map(value => (
+      <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
+        {/* <div>{label}</div> */}
+        {values.length
+          ? values.map(value => (
               <Chip
                 key={value}
                 label={value}
                 onDelete={allowDelete ? this.onValueDelete(value) : null}
+                data-component={'MultiValueDisplay__chip'}
               />
-            ))}
-          </Paper>
-        )}
+            ))
+          : messageEmpty}
       </div>
     );
   }
@@ -40,12 +39,14 @@ MultiValueDisplay.propTypes = {
   label: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
   allowDelete: PropTypes.bool,
-  onDelete: PropTypes.func,
+  messageEmpty: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 MultiValueDisplay.defaultProps = {
   allowDelete: false,
-  onDelete: () => {},
+  messageEmpty: '',
+  onChange: () => {},
 };
 
 export default MultiValueDisplay;
