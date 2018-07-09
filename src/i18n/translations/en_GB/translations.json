@@ -27,6 +27,7 @@
     "make_public": "Publish an online draw"
   },
   "PrizeSelector": {
+    "list_of_prizes": "List of prizes",
     "no_prizes_selected": "Add prizes in the box below",
     "number_of_winners": "Number of winners",
     "prizes": "Prizes",
@@ -57,8 +58,9 @@
     "draw_details": "Detalles del sorteo"
   },
   "RafflePage": {
-    "detail_about_winners": "Details about the winners",
+    "detail_about_winners": "Details about the prizes",
     "general_details_raffle": "General details about the raffle",
+    "list_of_participants": "List of participants",
     "participants": "Participants",
     "publish_raffle": "Publish raffle",
     "raffle_default_title": "Raffled with closed list of participants",

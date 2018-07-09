@@ -1,14 +1,32 @@
 $one-pixel-rem: .0625rem;
+$spacing-xs: .375rem;
+$spacing-sm: .75rem;
 $spacing-md: 1.125rem;
 $spacing-lg: 1.875rem;
+$gray-color: #949494;
+
 $border-radius: .2rem;
-$border-color-gray: #797979;
 
 .MultiValueDisplay {
   margin-top: $spacing-md;
-  padding: $spacing-md;
   border-width: $one-pixel-rem;
   border-style: solid;
   border-radius: $border-radius;
-  border-color: $border-color-gray;
+  border-color: $gray-color;
+  padding: $spacing-xs;
+  
+  &__label {
+    margin-top: $spacing-xs;
+    margin-left: $spacing-xs;
+    color: $gray-color;
+  }
+  
+  &__values-list {
+    padding: $spacing-sm;
+  }
+
+  &__empty-message {
+    color: $gray-color;
+  }
+
 }

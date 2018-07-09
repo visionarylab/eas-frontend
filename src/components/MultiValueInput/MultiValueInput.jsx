@@ -44,7 +44,7 @@ class MultiValueInput extends Component {
   };
 
   render() {
-    const { values, messageEmpty, ...rest } = this.props;
+    const { values, labelDisplayList, messageEmpty, ...rest } = this.props;
     const { delimiters, onChange, ...extra } = rest;
     return (
       <Fragment>
@@ -57,6 +57,7 @@ class MultiValueInput extends Component {
           {...extra}
         />
         <MultiValueDisplay
+          label={labelDisplayList}
           values={values}
           messageEmpty={messageEmpty}
           allowDelete
@@ -69,6 +70,7 @@ class MultiValueInput extends Component {
 
 MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
+  labelDisplayList: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
 import MultiValueInput from '../MultiValueInput/MultiValueInput';
 
@@ -21,12 +17,12 @@ class PrizeSelector extends Component {
   };
 
   render() {
-    const { prizes, numberOfWinners, onFieldChange, t } = this.props;
-    const { specifyPrizes } = this.state;
+    const { prizes, numberOfWinners, onFieldChange, t } = this.props; // eslint-disable-line no-unused-vars
+    const { specifyPrizes } = this.state; // eslint-disable-line no-unused-vars
     return (
       <div>
-        <Grid container spacing={8}>
-          <Grid item sm={6}>
+        {/* <Grid container spacing={8}> */}
+        {/* <Grid item sm={6}>
             <TextField
               name="numberOfWinners"
               label={t('number_of_winners')}
@@ -52,16 +48,17 @@ class PrizeSelector extends Component {
             />
           </Grid>
         </Grid>
-        {this.state.specifyPrizes && (
-          <MultiValueInput
-            name="prizes"
-            label={t('prizes')}
-            placeholder="PS4"
-            messageEmpty={t('no_prizes_selected')}
-            values={prizes}
-            onChange={prizes_ => onFieldChange('prizes', prizes_)}
-          />
-        )}
+        {this.state.specifyPrizes && ( */}
+        <MultiValueInput
+          name="prizes"
+          label={t('prizes')}
+          labelDisplayList={t('list_of_prizes')}
+          placeholder="PS4"
+          messageEmpty={t('no_prizes_selected')}
+          values={prizes}
+          onChange={prizes_ => onFieldChange('prizes', prizes_)}
+        />
+        {/* )} */}
       </div>
     );
   }

@@ -4,10 +4,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import RandomNumberPage from './RandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
+console.log(ApiClient);
+
 const { RandomNumberApi, RandomNumber } = ApiClient;
 const randomNumberApi = new RandomNumberApi();
-console.log('ApiClient', ApiClient);
-console.log('randomNumberApi', randomNumberApi.randomNumberCreate);
 
 class RandomNumberPageContainer extends React.Component {
   constructor(props) {
@@ -20,8 +20,8 @@ class RandomNumberPageContainer extends React.Component {
     this.state = {
       drawId: null,
       values: {
-        title: '',
-        description: '',
+        title: null,
+        description: 'Nice description',
         rangeMin: 1,
         rangeMax: 10,
         numberOfResults: 1,
@@ -67,13 +67,19 @@ class RandomNumberPageContainer extends React.Component {
       allowRepeated,
     } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
-      title,
-      description,
-      range_min: rangeMin,
-      range_max: rangeMax,
+      description: 'asd',
+      metadata: [
+        {
+          client: 'string',
+          key: 'string',
+          value: 'string',
+        },
+      ],
+      range_min: 0,
+      range_max: 0,
     });
     try {
-      return await randomNumberApi.createRandomNumber(randomNumberDraw);
+      return await randomNumberApi.randomNumberCreate(randomNumberDraw);
     } catch (err) {
       alert(err);
       return null;
@@ -83,20 +89,23 @@ class RandomNumberPageContainer extends React.Component {
   async handleToss() {
     if (!this.state.drawId) {
       const draw = await this.createDraw();
-      this.setState({ drawId: draw.private_id });
+      console.log('draw', draw);
+
+      this.setState({ drawId: draw.id });
     }
     let tossDrawResponse;
     try {
-      tossDrawResponse = await randomNumberApi.putRandomNumber(this.state.drawId);
+      tossDrawResponse = await randomNumberApi.randomNumberToss(this.state.drawId, {});
+      console.log('result', tossDrawResponse);
+      this.setState(previousState => ({
+        values: {
+          ...previousState.values,
+          results: tossDrawResponse.results[0].value,
+        },
+      }));
     } catch (err) {
       alert(err);
     }
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        results: tossDrawResponse.results[0].value,
-      },
-    }));
   }
 
   async handlePublish() {

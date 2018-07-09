@@ -17,6 +17,7 @@ import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 
 const RafflePage = props => {
+  const { t } = props;
   const {
     title,
     description,
@@ -27,41 +28,42 @@ const RafflePage = props => {
     dateScheduled,
   } = props.values;
   return (
-    <Page htmlTitle={props.t('raffle_html_title')}>
+    <Page htmlTitle={t('raffle_html_title')}>
       <Grid container spacing={16}>
         <Grid item sm={2}>
           <BackArrow />
         </Grid>
         <Grid item xs={8}>
           <DrawPanel>
-            <Typography variant="display1">{props.t('raffle_default_title')}</Typography>
-            <SectionPanel title={props.t('general_details_raffle')}>
+            <Typography variant="display1">{t('raffle_default_title')}</Typography>
+            <SectionPanel title={t('general_details_raffle')}>
               <PublicDetails
                 title={title}
                 description={description}
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            <SectionPanel title={props.t('who_will_participate')}>
+            <SectionPanel title={t('who_will_participate')}>
               <MultiValueInput
                 name="participants"
-                label={props.t('participants')}
+                label={t('participants')}
+                labelDisplayList={t('list_of_participants')}
                 values={participants}
                 placeholder="David, María, ..."
                 onChange={p => props.onFieldChange('participants', p)}
-                messageEmpty={props.t('you_havent_add_any_participants')}
+                messageEmpty={t('you_havent_add_any_participants')}
                 fullWidth
                 inputProps={{ 'data-component': 'ParticipantsInput' }}
               />
             </SectionPanel>
-            <SectionPanel title={props.t('detail_about_winners')}>
+            <SectionPanel title={t('detail_about_winners')}>
               <PrizeSelector
                 numberOfWinners={numberOfWinners}
                 prizes={prizes}
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel>
-            {/* <SectionPanel title={props.t('when_to_toss')}>
+            {/* <SectionPanel title={t('when_to_toss')}>
               <PublishDrawOptions
                 whenToToss={whenToToss}
                 options={['manual', 'schedule']}
@@ -69,7 +71,7 @@ const RafflePage = props => {
                 onFieldChange={props.onFieldChange}
               />
             </SectionPanel> */}
-            <SubmitButton label={props.t('publish_raffle')} handlePublish={props.handlePublish} />
+            <SubmitButton label={t('publish_raffle')} handlePublish={props.handlePublish} />
           </DrawPanel>
         </Grid>
       </Grid>

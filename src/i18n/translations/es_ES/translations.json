@@ -36,7 +36,8 @@
     "make_public": "Haz esta tirada publica"
   },
   "PrizeSelector": {
-    "no_prizes_selected": "Añade premios en la caja de arriba.",
+    "list_of_prizes": "Lista de premios",
+    "no_prizes_selected": "Todavía no has añadido ningún premio",
     "number_of_winners": "Número de ganadores",
     "prizes": "Premios",
     "specify_prizes": "Especificar premios"
@@ -76,8 +77,9 @@
     "draw_details": "Detalles del sorteo"
   },
   "RafflePage": {
-    "detail_about_winners": "Detalles sobre los ganadores",
+    "detail_about_winners": "¿Cuáles serán los premios?",
     "general_details_raffle": "Detalles generales sobre el sorteo",
+    "list_of_participants": "Lista de participantes",
     "participants": "Participantes",
     "publish_raffle": "Publicar sorteo",
     "raffle_default_title": "Sorteo con lista de participantes cerrada",
@@ -85,7 +87,7 @@
     "raffle_seo_description": "<0>Organiza sorteos publicos</0>",
     "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "who_will_participate": "¿Quién participará en el sorteo?",
-    "you_havent_add_any_participants": "Todavia no has añadido ningun participante"
+    "you_havent_add_any_participants": "Todavía no has añadido ningun participante"
   },
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",

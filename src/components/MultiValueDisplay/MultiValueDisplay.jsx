@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
+import Typography from '@material-ui/core/Typography';
 
 import STYLES from './MultiValueDisplay.scss';
 
@@ -18,9 +19,11 @@ class MultiValueDisplay extends Component {
     const { values, label, allowDelete, messageEmpty } = this.props;
     return (
       <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
-        {label && <div>{label}</div>}
-        {values.length
-          ? values.map(value => (
+        {/* {label && <div className={c('MultiValueDisplay__label')}>{label}</div>} */}
+        {label && <Typography variant="caption">{label}</Typography>}
+        <div className={c('MultiValueDisplay__values-list')}>
+          {values.length ? (
+            values.map(value => (
               <Chip
                 key={value}
                 label={value}
@@ -28,7 +31,12 @@ class MultiValueDisplay extends Component {
                 data-component={'MultiValueDisplay__chip'}
               />
             ))
-          : messageEmpty}
+          ) : (
+            <Typography variant="body1" className={c('MultiValueDisplay__empty-message')}>
+              {messageEmpty}
+            </Typography>
+          )}
+        </div>
       </div>
     );
   }

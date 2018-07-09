@@ -28,3 +28,9 @@ yarn-error.log*
 
 # API code, delete this we have it as a npm package
 # src/services/api/client
+
+# Metadata for i18n-editor
+src/i18n/translations/.i18n-editor-metadata
+
+# Unnecessary stuff from the SDK
+/src/services/api/client/test
