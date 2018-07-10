@@ -70,6 +70,7 @@
     "number_of_participants": "Número de participantes:",
     "number_of_winners": "Número de ganadores:",
     "raffle_details": "Detalles del sorteo",
+    "results_not_generated_yet": "Los resultados del sorteo todavía no se han publicado",
     "winners": "Ganadores"
   },
   "PublishedRandomNumberPage": {

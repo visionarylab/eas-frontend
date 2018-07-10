@@ -51,6 +51,10 @@
     "winners": "Winners"
   },
   "PublishedRafflePage": {
+    "description": "Description",
+    "number_of_participants": "Number of participants:",
+    "number_of_winners": "Number of winners:",
+    "raffle_details": "Raffle details",
     "winners": "Winners"
   },
   "PublishedRandomNumberPage": {

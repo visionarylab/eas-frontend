@@ -1,5 +1,7 @@
+
+$spacing-lg: 1.875rem;
+
 .PublicDrawContent {
-  width: 80%;
-  margin: 0 auto;
+  padding: $spacing-lg;
   text-align: center;
 }

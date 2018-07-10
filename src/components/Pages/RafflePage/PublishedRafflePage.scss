@@ -5,7 +5,7 @@ $spacing-lg: 1.875rem;
 
 .PublishedRafflePage {
   &__results-panel {
-    width: 50%;
+    min-width: 50%;
     margin: 0 auto;
     margin-top: $spacing-md;
     margin-bottom: $spacing-md;
@@ -16,5 +16,15 @@ $spacing-lg: 1.875rem;
 
   &__summary-panel {
     text-align: left;
+  }
+
+  &__trumpet-icon {
+    height: 2rem;
+    display: inline-block;
+  
+  &--flipped {
+    transform: scaleX(-1);
+    filter: FlipH;
+  }
   }
 }

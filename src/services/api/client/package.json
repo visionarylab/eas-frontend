@@ -1,8 +1,8 @@
 {
   "name": "echaloasuerte-api",
   "version": "v1",
-  "description": "Test_description",
-  "license": "BSD License",
+  "description": "ERROR_UNKNOWN",
+  "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive"
