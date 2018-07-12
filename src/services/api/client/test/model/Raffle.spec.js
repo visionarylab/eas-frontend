@@ -96,6 +96,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property privateId (base name: "private_id")', function() {
+      // uncomment below and update the code to test the property privateId
+      //var instane = new EchaloasuerteApi.Raffle();
+      //expect(instance).to.be();
+    });
+
     it('should have the property prizes (base name: "prizes")', function() {
       // uncomment below and update the code to test the property prizes
       //var instane = new EchaloasuerteApi.Raffle();

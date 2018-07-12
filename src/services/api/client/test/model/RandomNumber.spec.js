@@ -96,6 +96,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property privateId (base name: "private_id")', function() {
+      // uncomment below and update the code to test the property privateId
+      //var instane = new EchaloasuerteApi.RandomNumber();
+      //expect(instance).to.be();
+    });
+
     it('should have the property rangeMin (base name: "range_min")', function() {
       // uncomment below and update the code to test the property rangeMin
       //var instane = new EchaloasuerteApi.RandomNumber();

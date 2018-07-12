@@ -82,6 +82,9 @@ export default class Raffle {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], [DrawMetadata]);
             }
+            if (data.hasOwnProperty('private_id')) {
+                obj['private_id'] = ApiClient.convertToType(data['private_id'], 'String');
+            }
             if (data.hasOwnProperty('prizes')) {
                 obj['prizes'] = ApiClient.convertToType(data['prizes'], [Prize]);
             }
@@ -120,6 +123,10 @@ export default class Raffle {
     * @member {Array.<module:model/DrawMetadata>} metadata
     */
     metadata = undefined;
+    /**
+    * @member {String} private_id
+    */
+    private_id = undefined;
     /**
     * @member {Array.<module:model/Prize>} prizes
     */

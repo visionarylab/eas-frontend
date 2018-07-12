@@ -18,7 +18,7 @@ class RandomNumberPageContainer extends React.Component {
     this.handleToss = this.handleToss.bind(this);
 
     this.state = {
-      drawId: null,
+      drawPrivateId: null,
       values: {
         title: null,
         description: 'Nice description',
@@ -87,20 +87,22 @@ class RandomNumberPageContainer extends React.Component {
   }
 
   async handleToss() {
-    if (!this.state.drawId) {
+    if (!this.state.drawPrivateId) {
       const draw = await this.createDraw();
       console.log('draw', draw);
 
-      this.setState({ drawId: draw.id });
+      this.setState({ drawPrivateId: draw.private_id });
     }
     let tossDrawResponse;
+    let readDrawResponse;
     try {
-      tossDrawResponse = await randomNumberApi.randomNumberToss(this.state.drawId, {});
-      console.log('result', tossDrawResponse);
+      tossDrawResponse = await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
+      readDrawResponse = await randomNumberApi.randomNumberRead(this.state.drawPrivateId);
+      console.log('result', readDrawResponse.results);
       this.setState(previousState => ({
         values: {
           ...previousState.values,
-          results: tossDrawResponse.results[0].value,
+          results: readDrawResponse.results[0].value,
         },
       }));
     } catch (err) {

@@ -80,6 +80,9 @@ export default class RandomNumber {
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], [DrawMetadata]);
             }
+            if (data.hasOwnProperty('private_id')) {
+                obj['private_id'] = ApiClient.convertToType(data['private_id'], 'String');
+            }
             if (data.hasOwnProperty('range_min')) {
                 obj['range_min'] = ApiClient.convertToType(data['range_min'], 'Number');
             }
@@ -118,6 +121,10 @@ export default class RandomNumber {
     * @member {Array.<module:model/DrawMetadata>} metadata
     */
     metadata = undefined;
+    /**
+    * @member {String} private_id
+    */
+    private_id = undefined;
     /**
     * @member {Number} range_min
     */

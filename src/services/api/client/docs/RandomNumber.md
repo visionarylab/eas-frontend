@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **results** | **String** |  | [optional] 
 **metadata** | [**[DrawMetadata]**](DrawMetadata.md) |  | [optional] 
+**privateId** | **String** |  | [optional] 
 **rangeMin** | **Number** |  | 
 **rangeMax** | **Number** |  | 
 
