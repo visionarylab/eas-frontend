@@ -7,7 +7,7 @@ import classNames from 'classnames/bind';
 
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
-import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
+import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview';
 import WinnersList from '../../WinnersList/WinnersList';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
@@ -51,11 +51,10 @@ const SpectatorWithoutResults = props => (
   <Grid container spacing={16} direction={'column'} alignItems={'center'}>
     <PrizesOverview prizes={props.prizes} />{' '}
     <BannerAlert title={props.t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} />
-    <SummaryRaffle {...props} />
   </Grid>
 );
 
-const SpectatorWithResults = ({ results, t, ...rest }) => (
+const SpectatorWithResults = ({ results, t }) => (
   <Grid container spacing={16} direction={'column'} alignItems={'center'}>
     <Grid item>
       <section className={c('PublishedRafflePage__results-panel')}>
@@ -69,8 +68,6 @@ const SpectatorWithResults = ({ results, t, ...rest }) => (
         <WinnersList winners={results} />
       </section>
     </Grid>
-    <SummaryRaffle t={t} {...rest} />
-    <Grid item />
   </Grid>
 );
 
@@ -86,17 +83,33 @@ const PublishedRafflePage = props => {
   const { title, results } = props;
   return (
     <Page htmlTitle={title} noIndex>
-      <Grid container justify={'center'}>
-        <PublicDrawContent>
-          <Typography variant="display2" data-component={'PublishedRafflePage__Title'}>
-            {title}
-          </Typography>
-          {results.length ? (
-            <SpectatorWithResults {...props} />
-          ) : (
-            <SpectatorWithoutResults {...props} />
-          )}
-        </PublicDrawContent>
+      <Grid container direction={'row'} justify={'center'}>
+        <Grid item sm={10}>
+          <TransparentPanel>
+            <Grid
+              container
+              direction={'column'}
+              spacing={8}
+              justify={'center'}
+              alignItems={'center'}
+            >
+              <Grid item />
+              <Typography variant="display2" data-component={'PublishedRafflePage__Title'}>
+                {title}
+              </Typography>
+              <Grid item>
+                {results.length ? (
+                  <SpectatorWithResults {...props} />
+                ) : (
+                  <SpectatorWithoutResults {...props} />
+                )}
+              </Grid>
+              <Grid item>
+                <SummaryRaffle {...props} />
+              </Grid>
+            </Grid>
+          </TransparentPanel>
+        </Grid>
       </Grid>
     </Page>
   );

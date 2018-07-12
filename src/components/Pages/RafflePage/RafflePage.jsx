@@ -35,43 +35,51 @@ const RafflePage = props => {
         </Grid>
         <Grid item xs={8}>
           <DrawPanel>
-            <Typography variant="display1">{t('raffle_default_title')}</Typography>
-            <SectionPanel title={t('general_details_raffle')}>
-              <PublicDetails
-                title={title}
-                description={description}
-                onFieldChange={props.onFieldChange}
-              />
-            </SectionPanel>
-            <SectionPanel title={t('who_will_participate')}>
-              <MultiValueInput
-                name="participants"
-                label={t('participants')}
-                labelDisplayList={t('list_of_participants')}
-                values={participants}
-                placeholder="David, María, ..."
-                onChange={p => props.onFieldChange('participants', p)}
-                messageEmpty={t('you_havent_add_any_participants')}
-                fullWidth
-                inputProps={{ 'data-component': 'ParticipantsInput' }}
-              />
-            </SectionPanel>
-            <SectionPanel title={t('detail_about_winners')}>
-              <PrizeSelector
-                numberOfWinners={numberOfWinners}
-                prizes={prizes}
-                onFieldChange={props.onFieldChange}
-              />
-            </SectionPanel>
-            {/* <SectionPanel title={t('when_to_toss')}>
+            <Grid container direction={'column'} spacing={8}>
+              <Grid item>
+                <Typography variant="display1">{t('raffle_default_title')}</Typography>
+              </Grid>
+              <Grid item>
+                <SectionPanel title={t('general_details_raffle')}>
+                  <PublicDetails
+                    title={title}
+                    description={description}
+                    onFieldChange={props.onFieldChange}
+                  />
+                </SectionPanel>
+              </Grid>
+              <Grid item>
+                <SectionPanel title={t('who_will_participate')}>
+                  <MultiValueInput
+                    name="participants"
+                    label={t('participants')}
+                    labelDisplayList={t('list_of_participants')}
+                    values={participants}
+                    placeholder="David, María, ..."
+                    onChange={p => props.onFieldChange('participants', p)}
+                    messageEmpty={t('you_havent_add_any_participants')}
+                    fullWidth
+                    inputProps={{ 'data-component': 'ParticipantsInput' }}
+                  />
+                </SectionPanel>
+                <SectionPanel title={t('detail_about_winners')}>
+                  <PrizeSelector
+                    numberOfWinners={numberOfWinners}
+                    prizes={prizes}
+                    onFieldChange={props.onFieldChange}
+                  />
+                </SectionPanel>
+                {/* <SectionPanel title={t('when_to_toss')}>
               <PublishDrawOptions
-                whenToToss={whenToToss}
-                options={['manual', 'schedule']}
+              whenToToss={whenToToss}
+              options={['manual', 'schedule']}
                 dateScheduled={dateScheduled}
                 onFieldChange={props.onFieldChange}
-              />
-            </SectionPanel> */}
-            <SubmitButton label={t('publish_raffle')} handlePublish={props.handlePublish} />
+                />
+              </SectionPanel> */}
+                <SubmitButton label={t('publish_raffle')} handlePublish={props.handlePublish} />
+              </Grid>
+            </Grid>
           </DrawPanel>
         </Grid>
       </Grid>
