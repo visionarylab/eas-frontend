@@ -19,15 +19,15 @@ class RandomNumberPageContainer extends React.Component {
 
     this.state = {
       drawPrivateId: null,
+      isPublic: true,
       values: {
-        title: null,
+        title: 'Cool title',
         description: 'Nice description',
         rangeMin: 1,
         rangeMax: 10,
         numberOfResults: 1,
         allowRepeated: false,
         results: [],
-        isPublic: false,
         whenToToss: 'now',
         dateScheduled: null,
       },
@@ -67,7 +67,8 @@ class RandomNumberPageContainer extends React.Component {
       allowRepeated,
     } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
-      description: 'asd',
+      title,
+      description,
       metadata: [
         {
           client: 'string',
@@ -75,8 +76,8 @@ class RandomNumberPageContainer extends React.Component {
           value: 'string',
         },
       ],
-      range_min: 0,
-      range_max: 0,
+      range_min: rangeMin,
+      range_max: rangeMax,
     });
     try {
       return await randomNumberApi.randomNumberCreate(randomNumberDraw);
@@ -93,12 +94,10 @@ class RandomNumberPageContainer extends React.Component {
 
       this.setState({ drawPrivateId: draw.private_id });
     }
-    let tossDrawResponse;
     let readDrawResponse;
     try {
-      tossDrawResponse = await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
+      await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
       readDrawResponse = await randomNumberApi.randomNumberRead(this.state.drawPrivateId);
-      console.log('result', readDrawResponse.results);
       this.setState(previousState => ({
         values: {
           ...previousState.values,
@@ -112,26 +111,27 @@ class RandomNumberPageContainer extends React.Component {
 
   async handlePublish() {
     const draw = await this.createDraw();
-    if (!this.state.whenToToss === 'now') {
-      await randomNumberApi.putRandomNumber(draw.private_id);
+    if (this.state.values.whenToToss === 'now') {
+      try {
+        await randomNumberApi.randomNumberToss(draw.private_id, {});
+      } catch (err) {
+        alert(err);
+      }
     }
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   }
 
   handleMakeDrawPublic() {
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        isPublic: true,
-        results: [],
-      },
-    }));
+    this.setState({
+      isPublic: true,
+    });
   }
 
   render() {
     return (
       <RandomNumberPage
         values={this.state.values}
+        isPublic={this.state.isPublic}
         onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}

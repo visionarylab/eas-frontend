@@ -18,7 +18,11 @@ import DrawTossPayload from './model/DrawTossPayload';
 import Participant from './model/Participant';
 import Prize from './model/Prize';
 import Raffle from './model/Raffle';
+import RaffleResult from './model/RaffleResult';
+import RaffleResultValue from './model/RaffleResultValue';
+import RaffleResultValuePrize from './model/RaffleResultValuePrize';
 import RandomNumber from './model/RandomNumber';
+import RandomNumberResult from './model/RandomNumberResult';
 import RaffleApi from './api/RaffleApi';
 import RandomNumberApi from './api/RandomNumberApi';
 
@@ -92,10 +96,34 @@ export {
     Raffle,
 
     /**
+     * The RaffleResult model constructor.
+     * @property {module:model/RaffleResult}
+     */
+    RaffleResult,
+
+    /**
+     * The RaffleResultValue model constructor.
+     * @property {module:model/RaffleResultValue}
+     */
+    RaffleResultValue,
+
+    /**
+     * The RaffleResultValuePrize model constructor.
+     * @property {module:model/RaffleResultValuePrize}
+     */
+    RaffleResultValuePrize,
+
+    /**
      * The RandomNumber model constructor.
      * @property {module:model/RandomNumber}
      */
     RandomNumber,
+
+    /**
+     * The RandomNumberResult model constructor.
+     * @property {module:model/RandomNumberResult}
+     */
+    RandomNumberResult,
 
     /**
     * The RaffleApi service constructor.

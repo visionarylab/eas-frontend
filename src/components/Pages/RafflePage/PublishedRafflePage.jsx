@@ -29,21 +29,23 @@ const TrumpetIcon = ({ inverted }) => (
 
 const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
   <section className={c('PublishedRafflePage__summary-panel')}>
-    <PublicSummaryPanel>
-      <div>
-        <Typography variant="display1">{t('raffle_details')}</Typography>
+    <Grid container spacing={16} direction={'row'} justify={'center'}>
+      <Grid item>
         <div>
-          {t('number_of_participants')} {participants.length}
+          <Typography variant="display1">{t('raffle_details')}</Typography>
+          <div>
+            {t('number_of_participants')} {participants.length}
+          </div>
+          <div>
+            {t('number_of_winners')} {numberOfWinners}
+          </div>
+          <div>
+            {t('description')}
+            <p>{description}</p>
+          </div>
         </div>
-        <div>
-          {t('number_of_winners')} {numberOfWinners}
-        </div>
-        <div>
-          {t('description')}
-          <p>{description}</p>
-        </div>
-      </div>
-    </PublicSummaryPanel>
+      </Grid>
+    </Grid>
   </section>
 );
 
@@ -54,21 +56,37 @@ const SpectatorWithoutResults = props => (
   </Grid>
 );
 
-const SpectatorWithResults = ({ results, t }) => (
-  <Grid container spacing={16} direction={'column'} alignItems={'center'}>
+const WinnersTitle = ({ winnersLabel }) => (
+  <Grid container direction={'row'}>
     <Grid item>
-      <section className={c('PublishedRafflePage__results-panel')}>
-        <Grid container spacing={4} direction={'row'}>
-          <TrumpetIcon inverted />
-          <Typography variant="display1" component={'p'}>
-            {t('winners')}
-          </Typography>
-          <TrumpetIcon />
-        </Grid>
-        <WinnersList winners={results} />
-      </section>
+      <TrumpetIcon inverted />
+    </Grid>
+    <Grid item>
+      <Typography variant="display1" component={'p'}>
+        {winnersLabel}
+      </Typography>
+    </Grid>
+    <Grid item>
+      <TrumpetIcon />
     </Grid>
   </Grid>
+);
+
+const SpectatorWithResults = ({ results, t }) => (
+  // <Grid container spacing={16} direction={'row'} justify={'center'}>
+  // <Grid item md={6}>
+  <section className={c('PublishedRafflePage__results-panel')}>
+    <Grid container spacing={16} direction={'column'} alignItems={'center'}>
+      <Grid item>
+        <WinnersTitle winnersLabel={t('winners')} />
+      </Grid>
+      <Grid item>
+        <WinnersList winners={results} />
+      </Grid>
+    </Grid>
+  </section>
+  // </Grid>
+  // </Grid>
 );
 
 SpectatorWithResults.propTypes = {
@@ -86,18 +104,17 @@ const PublishedRafflePage = props => {
       <Grid container direction={'row'} justify={'center'}>
         <Grid item sm={10}>
           <TransparentPanel>
-            <Grid
-              container
-              direction={'column'}
-              spacing={8}
-              justify={'center'}
-              alignItems={'center'}
-            >
-              <Grid item />
-              <Typography variant="display2" data-component={'PublishedRafflePage__Title'}>
-                {title}
-              </Typography>
+            <Grid container direction={'column'} spacing={8}>
               <Grid item>
+                <Typography
+                  variant="display2"
+                  align={'center'}
+                  data-component={'PublishedRafflePage__Title'}
+                >
+                  {title}
+                </Typography>
+              </Grid>
+              <Grid item md={6}>
                 {results.length ? (
                   <SpectatorWithResults {...props} />
                 ) : (

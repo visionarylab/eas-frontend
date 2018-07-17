@@ -1,42 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { translate } from 'react-i18next';
 
-import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
-import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
-import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
+import DrawContent from '../../DrawContent/DrawContent';
+import ResultsBox from '../../ResultsBox/ResultsBox';
 import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGeneratedYet';
+
+const SummaryRaffle = ({ rangeMin, rangeMax, description, t }) => (
+  <Grid container spacing={16} direction={'row'} justify={'center'}>
+    <Grid item>
+      <div>
+        <Typography variant="display1">{t('draw_details')}</Typography>
+        <div>
+          {t('From')} {rangeMin}
+        </div>
+        <div>
+          {t('To')} {rangeMax}
+        </div>
+        <div>
+          {t('description')}
+          <p>{description}</p>
+        </div>
+      </div>
+    </Grid>
+  </Grid>
+);
 
 const PublishedRandomNumberPage = props => {
   const { title, results } = props;
   return (
-    <Page htmlTitle={props.title} noIndex>
-      <PublicDrawContent>
-        <Typography variant="display2" data-component={'PublishedRandomNumberPage__Title'}>
-          {title}
-        </Typography>
-        {results.length ? (
-          <PublicResultsPanel>
-            <Typography variant="display1">{props.t('chosen_numbers')}</Typography>
-            {props.results.map(result => <div>{result}</div>)}
-          </PublicResultsPanel>
-        ) : (
-          <ResultsNotGeneratedYet />
-        )}
-        <PublicSummaryPanel>
-          <Typography variant="display1">{props.t('draw_details')}</Typography>
-          <div>From: {props.rangeMin}</div>
-          <div>To: {props.rangeMax}</div>
-          <div>Number of results: {props.numberOfResults}</div>
-          <div>Allow repeated: {props.allowRepeated}</div>
-          <div>
-            Descripcion:
-            <p>{props.description}</p>
-          </div>
-        </PublicSummaryPanel>
-      </PublicDrawContent>
+    <Page htmlTitle={title} noIndex>
+      <Grid container direction={'row'} justify={'center'}>
+        <Grid item sm={10}>
+          <DrawContent title={title} footer={<SummaryRaffle {...props} />}>
+            {results.length ? (
+              <Grid container direction={'row'} justify={'center'}>
+                <Grid item sm={6}>
+                  <ResultsBox title={props.t('generated_numbers')}>
+                    {props.results.map(result => (
+                      <Typography variant="display3" component={'p'}>
+                        {result}
+                      </Typography>
+                    ))}
+                  </ResultsBox>
+                </Grid>
+              </Grid>
+            ) : (
+              <ResultsNotGeneratedYet />
+            )}
+          </DrawContent>
+        </Grid>
+      </Grid>
     </Page>
   );
 };

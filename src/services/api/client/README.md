@@ -70,13 +70,6 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var EchaloasuerteApi = require('echaloasuerte-api');
 
-var defaultClient = EchaloasuerteApi.ApiClient.instance;
-
-// Configure HTTP basic authorization: basic
-var basic = defaultClient.authentications['basic'];
-basic.username = 'YOUR USERNAME'
-basic.password = 'YOUR PASSWORD'
-
 var api = new EchaloasuerteApi.RaffleApi()
 
 var data = new EchaloasuerteApi.Raffle(); // {Raffle} 
@@ -92,7 +85,7 @@ api.raffleCreate(data).then(function(data) {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://127.0.0.1:8000/api*
+All URIs are relative to *https://localhost/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -111,13 +104,14 @@ Class | Method | HTTP request | Description
  - [EchaloasuerteApi.Participant](docs/Participant.md)
  - [EchaloasuerteApi.Prize](docs/Prize.md)
  - [EchaloasuerteApi.Raffle](docs/Raffle.md)
+ - [EchaloasuerteApi.RaffleResult](docs/RaffleResult.md)
+ - [EchaloasuerteApi.RaffleResultValue](docs/RaffleResultValue.md)
+ - [EchaloasuerteApi.RaffleResultValuePrize](docs/RaffleResultValuePrize.md)
  - [EchaloasuerteApi.RandomNumber](docs/RandomNumber.md)
+ - [EchaloasuerteApi.RandomNumberResult](docs/RandomNumberResult.md)
 
 
 ## Documentation for Authorization
 
-
-### basic
-
-- **Type**: HTTP basic authentication
+ All endpoints do not require authorization.
 

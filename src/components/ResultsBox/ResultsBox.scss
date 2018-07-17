@@ -4,7 +4,7 @@ $border-radius: .2rem;
 $spacing-md: 1.125rem;
 $spacing-lg: 1.875rem;
 
-.PublishedRafflePage {
+.ResultsBox {
   &__results-panel {
     min-width: 50%;
     margin: 0 auto;
@@ -13,13 +13,6 @@ $spacing-lg: 1.875rem;
     padding: $spacing-lg;
     border-radius: $border-radius;
     background-color: $published-results-background-color;
-  }
-
-  &__summary-panel {
-    text-align: left;
-    background-color: $summary-panel-background-color;
-    margin: 0 -1rem -.5rem -1rem;
-    padding: 1rem;
   }
 
   &__trumpet-icon {

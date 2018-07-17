@@ -25,8 +25,7 @@ import STYLES from './RandomNumberPage.scss';
 const c = classNames.bind(STYLES);
 
 const RandomNumberPage = props => {
-  const { values, onFieldChange, handleToss, handlePublish, t } = props;
-  const { isPublic } = values;
+  const { values, isPublic, onFieldChange, handleToss, handlePublish, t } = props;
   return (
     <Page htmlTitle={t('random_number_html_title')}>
       <Grid container spacing={16}>
@@ -137,10 +136,10 @@ RandomNumberPage.propTypes = {
     results: PropTypes.arrayOf(PropTypes.number),
     numberOfResults: PropTypes.number,
     allowRepeated: PropTypes.bool,
-    isPublic: PropTypes.bool.isRequired,
     whenToToss: PropTypes.string.isRequired,
     dateScheduled: PropTypes.string,
   }).isRequired,
+  isPublic: PropTypes.bool.isRequired,
   handleMakeDrawPublic: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,

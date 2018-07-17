@@ -14,6 +14,7 @@
 
 import ApiClient from '../ApiClient';
 import DrawMetadata from './DrawMetadata';
+import RandomNumberResult from './RandomNumberResult';
 
 
 
@@ -75,7 +76,7 @@ export default class RandomNumber {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
             if (data.hasOwnProperty('results')) {
-                obj['results'] = ApiClient.convertToType(data['results'], 'String');
+                obj['results'] = ApiClient.convertToType(data['results'], [RandomNumberResult]);
             }
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], [DrawMetadata]);
@@ -114,7 +115,7 @@ export default class RandomNumber {
     */
     description = undefined;
     /**
-    * @member {String} results
+    * @member {Array.<module:model/RandomNumberResult>} results
     */
     results = undefined;
     /**

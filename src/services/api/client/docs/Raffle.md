@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **updatedAt** | **Date** |  | [optional] 
 **title** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
-**results** | **String** |  | [optional] 
+**results** | [**[RaffleResult]**](RaffleResult.md) |  | [optional] 
 **metadata** | [**[DrawMetadata]**](DrawMetadata.md) |  | [optional] 
 **privateId** | **String** |  | [optional] 
 **prizes** | [**[Prize]**](Prize.md) |  | 

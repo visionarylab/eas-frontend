@@ -4,8 +4,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import PublishedRandomNumberPage from './PublishedRandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
-const { RaffleApi } = ApiClient;
-const drawApi = new RaffleApi();
+const { RandomNumberApi, RandomNumber } = ApiClient;
+const randomNumberApi = new RandomNumberApi();
 
 class PublishedRandomNumberPageContainer extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class PublishedRandomNumberPageContainer extends Component {
   async loadData() {
     const drawId = this.props.match.params.drawId;
 
-    const draw = await drawApi.getRandomNumber(drawId);
+    const draw = await randomNumberApi.randomNumberRead(drawId);
     const { title, description, range_min: rangeMin, range_max: rangeMax, results } = draw;
     this.setState({
       title,

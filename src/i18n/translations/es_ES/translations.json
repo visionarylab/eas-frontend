@@ -74,8 +74,8 @@
     "winners": "Ganadores"
   },
   "PublishedRandomNumberPage": {
-    "chosen_numbers": "Números elegidos",
-    "draw_details": "Detalles del sorteo"
+    "draw_details": "Detalles del sorteo",
+    "generated_numbers": "Números generados"
   },
   "RafflePage": {
     "detail_about_winners": "¿Cuáles serán los premios?",

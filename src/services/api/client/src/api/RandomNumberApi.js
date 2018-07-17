@@ -15,6 +15,7 @@
 import ApiClient from "../ApiClient";
 import DrawTossPayload from '../model/DrawTossPayload';
 import RandomNumber from '../model/RandomNumber';
+import RandomNumberResult from '../model/RandomNumberResult';
 
 /**
 * RandomNumber service.
@@ -37,7 +38,6 @@ export default class RandomNumberApi {
 
 
     /**
-     * 
      * @param {module:model/RandomNumber} data 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RandomNumber} and HTTP response
      */
@@ -59,7 +59,7 @@ export default class RandomNumberApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = RandomNumber;
@@ -72,7 +72,6 @@ export default class RandomNumberApi {
     }
 
     /**
-     * 
      * @param {module:model/RandomNumber} data 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RandomNumber}
      */
@@ -85,8 +84,7 @@ export default class RandomNumberApi {
 
 
     /**
-     * 
-     * @param {String} id A unique value identifying this random number.
+     * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RandomNumber} and HTTP response
      */
     randomNumberReadWithHttpInfo(id) {
@@ -108,7 +106,7 @@ export default class RandomNumberApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = RandomNumber;
@@ -121,8 +119,7 @@ export default class RandomNumberApi {
     }
 
     /**
-     * 
-     * @param {String} id A unique value identifying this random number.
+     * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RandomNumber}
      */
     randomNumberRead(id) {
@@ -134,10 +131,9 @@ export default class RandomNumberApi {
 
 
     /**
-     * 
-     * @param {String} id A unique value identifying this random number.
+     * @param {String} id 
      * @param {module:model/DrawTossPayload} data 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DrawTossPayload} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RandomNumberResult} and HTTP response
      */
     randomNumberTossWithHttpInfo(id, data) {
       let postBody = data;
@@ -163,10 +159,10 @@ export default class RandomNumberApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = DrawTossPayload;
+      let returnType = RandomNumberResult;
 
       return this.apiClient.callApi(
         '/random_number/{id}/toss/', 'POST',
@@ -176,10 +172,9 @@ export default class RandomNumberApi {
     }
 
     /**
-     * 
-     * @param {String} id A unique value identifying this random number.
+     * @param {String} id 
      * @param {module:model/DrawTossPayload} data 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DrawTossPayload}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RandomNumberResult}
      */
     randomNumberToss(id, data) {
       return this.randomNumberTossWithHttpInfo(id, data)

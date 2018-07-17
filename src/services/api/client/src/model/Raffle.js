@@ -16,6 +16,7 @@ import ApiClient from '../ApiClient';
 import DrawMetadata from './DrawMetadata';
 import Participant from './Participant';
 import Prize from './Prize';
+import RaffleResult from './RaffleResult';
 
 
 
@@ -77,7 +78,7 @@ export default class Raffle {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
             if (data.hasOwnProperty('results')) {
-                obj['results'] = ApiClient.convertToType(data['results'], 'String');
+                obj['results'] = ApiClient.convertToType(data['results'], [RaffleResult]);
             }
             if (data.hasOwnProperty('metadata')) {
                 obj['metadata'] = ApiClient.convertToType(data['metadata'], [DrawMetadata]);
@@ -116,7 +117,7 @@ export default class Raffle {
     */
     description = undefined;
     /**
-    * @member {String} results
+    * @member {Array.<module:model/RaffleResult>} results
     */
     results = undefined;
     /**

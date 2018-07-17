@@ -15,6 +15,7 @@
 import ApiClient from "../ApiClient";
 import DrawTossPayload from '../model/DrawTossPayload';
 import Raffle from '../model/Raffle';
+import RaffleResult from '../model/RaffleResult';
 
 /**
 * Raffle service.
@@ -37,7 +38,6 @@ export default class RaffleApi {
 
 
     /**
-     * 
      * @param {module:model/Raffle} data 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Raffle} and HTTP response
      */
@@ -59,7 +59,7 @@ export default class RaffleApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = Raffle;
@@ -72,7 +72,6 @@ export default class RaffleApi {
     }
 
     /**
-     * 
      * @param {module:model/Raffle} data 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Raffle}
      */
@@ -85,8 +84,7 @@ export default class RaffleApi {
 
 
     /**
-     * 
-     * @param {String} id A unique value identifying this raffle.
+     * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/Raffle} and HTTP response
      */
     raffleReadWithHttpInfo(id) {
@@ -108,7 +106,7 @@ export default class RaffleApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = Raffle;
@@ -121,8 +119,7 @@ export default class RaffleApi {
     }
 
     /**
-     * 
-     * @param {String} id A unique value identifying this raffle.
+     * @param {String} id 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/Raffle}
      */
     raffleRead(id) {
@@ -134,10 +131,9 @@ export default class RaffleApi {
 
 
     /**
-     * 
-     * @param {String} id A unique value identifying this raffle.
+     * @param {String} id 
      * @param {module:model/DrawTossPayload} data 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/DrawTossPayload} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/RaffleResult} and HTTP response
      */
     raffleTossWithHttpInfo(id, data) {
       let postBody = data;
@@ -163,10 +159,10 @@ export default class RaffleApi {
       let formParams = {
       };
 
-      let authNames = ['basic'];
+      let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = DrawTossPayload;
+      let returnType = RaffleResult;
 
       return this.apiClient.callApi(
         '/raffle/{id}/toss/', 'POST',
@@ -176,10 +172,9 @@ export default class RaffleApi {
     }
 
     /**
-     * 
-     * @param {String} id A unique value identifying this raffle.
+     * @param {String} id 
      * @param {module:model/DrawTossPayload} data 
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/DrawTossPayload}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/RaffleResult}
      */
     raffleToss(id, data) {
       return this.raffleTossWithHttpInfo(id, data)

@@ -1,6 +1,6 @@
 # EchaloasuerteApi.RaffleApi
 
-All URIs are relative to *http://127.0.0.1:8000/api*
+All URIs are relative to *https://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,17 +15,9 @@ Method | HTTP request | Description
 
 
 
-
-
 ### Example
 ```javascript
 import EchaloasuerteApi from 'echaloasuerte-api';
-let defaultClient = EchaloasuerteApi.ApiClient.instance;
-
-// Configure HTTP basic authorization: basic
-let basic = defaultClient.authentications['basic'];
-basic.username = 'YOUR USERNAME';
-basic.password = 'YOUR PASSWORD';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
 
@@ -51,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basic](../README.md#basic)
+No authorization required
 
 ### HTTP request headers
 
@@ -64,21 +56,13 @@ Name | Type | Description  | Notes
 
 
 
-
-
 ### Example
 ```javascript
 import EchaloasuerteApi from 'echaloasuerte-api';
-let defaultClient = EchaloasuerteApi.ApiClient.instance;
-
-// Configure HTTP basic authorization: basic
-let basic = defaultClient.authentications['basic'];
-basic.username = 'YOUR USERNAME';
-basic.password = 'YOUR PASSWORD';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
 
-let id = "id_example"; // String | A unique value identifying this raffle.
+let id = "id_example"; // String | 
 
 apiInstance.raffleRead(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -92,7 +76,7 @@ apiInstance.raffleRead(id).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| A unique value identifying this raffle. | 
+ **id** | **String**|  | 
 
 ### Return type
 
@@ -100,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basic](../README.md#basic)
+No authorization required
 
 ### HTTP request headers
 
@@ -109,25 +93,17 @@ Name | Type | Description  | Notes
 
 <a name="raffleToss"></a>
 # **raffleToss**
-> DrawTossPayload raffleToss(id, data)
-
-
+> RaffleResult raffleToss(id, data)
 
 
 
 ### Example
 ```javascript
 import EchaloasuerteApi from 'echaloasuerte-api';
-let defaultClient = EchaloasuerteApi.ApiClient.instance;
-
-// Configure HTTP basic authorization: basic
-let basic = defaultClient.authentications['basic'];
-basic.username = 'YOUR USERNAME';
-basic.password = 'YOUR PASSWORD';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
 
-let id = "id_example"; // String | A unique value identifying this raffle.
+let id = "id_example"; // String | 
 
 let data = new EchaloasuerteApi.DrawTossPayload(); // DrawTossPayload | 
 
@@ -143,16 +119,16 @@ apiInstance.raffleToss(id, data).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| A unique value identifying this raffle. | 
+ **id** | **String**|  | 
  **data** | [**DrawTossPayload**](DrawTossPayload.md)|  | 
 
 ### Return type
 
-[**DrawTossPayload**](DrawTossPayload.md)
+[**RaffleResult**](RaffleResult.md)
 
 ### Authorization
 
-[basic](../README.md#basic)
+No authorization required
 
 ### HTTP request headers
 
