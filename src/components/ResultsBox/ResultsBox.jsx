@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 
-import WinnersList from '../WinnersList/WinnersList';
 import trumpetIcon from './trumpet.png';
 import STYLES from './ResultsBox.scss';
 
@@ -16,12 +15,16 @@ const TrumpetIcon = ({ inverted }) => (
     className={c('ResultsBox__trumpet-icon', {
       'ResultsBox__trumpet-icon--flipped': inverted,
     })}
-    alt={inverted}
+    alt={'Trumpet icon'}
   />
 );
 
+TrumpetIcon.propTypes = {
+  inverted: PropTypes.string.isRequired,
+};
+
 const WinnersTitle = ({ winnersLabel }) => (
-  <Grid container direction={'row'}>
+  <Grid container direction={'row'} justify={'center'}>
     <Grid item>
       <TrumpetIcon inverted />
     </Grid>
@@ -36,17 +39,24 @@ const WinnersTitle = ({ winnersLabel }) => (
   </Grid>
 );
 
+WinnersTitle.propTypes = {
+  winnersLabel: PropTypes.string.isRequired,
+};
+
 const ResultsBox = ({ title, children }) => (
   <section className={c('ResultsBox__results-panel')}>
-    <Grid container spacing={16} direction={'column'} alignItems={'center'}>
-      <Grid item>
-        <WinnersTitle winnersLabel={title} />
-      </Grid>
+    <div>
+      <WinnersTitle winnersLabel={title} />
+    </div>
+    <div>
       <Grid item>{children}</Grid>
-    </Grid>
+    </div>
   </section>
 );
 
-ResultsBox.propTypes = {};
+ResultsBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default ResultsBox;

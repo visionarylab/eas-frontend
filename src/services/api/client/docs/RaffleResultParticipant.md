@@ -1,4 +1,4 @@
-# EchaloasuerteApi.RaffleResultValuePrize
+# EchaloasuerteApi.RaffleResultParticipant
 
 ## Properties
 Name | Type | Description | Notes

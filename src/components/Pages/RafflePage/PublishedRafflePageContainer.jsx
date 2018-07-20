@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import PublishedRaffle from './PublishedRafflePage';
-import { getRaffleDraw } from '../../../services/EasAPI';
+import ApiClient from '../../../services/api/EASApi';
+
+const { RaffleApi } = ApiClient;
+const raffleApi = new RaffleApi();
 
 class PublishedRafflePageContainer extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class PublishedRafflePageContainer extends Component {
       numberOfWinners: 1,
       prizes: [],
       results: [],
+      isOwner: false,
     };
   }
 
@@ -21,26 +25,40 @@ class PublishedRafflePageContainer extends Component {
     this.loadData();
   }
 
-  loadData() {
-    const drawId = parseInt(this.props.match.params.drawId, 10);
-    const raffle = getRaffleDraw(drawId);
-    const { title, description, participants, numberOfWinners, prizes } = raffle;
-    const results = raffle.results.map(result => ({
-      winnerName: result.winnerName,
-      extraData: result.prize || result.position,
-    }));
+  onToss = async () => {
+    const drawId = this.props.match.params.drawId;
+    try {
+      await raffleApi.raffleToss(drawId, {});
+      this.loadData();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  async loadData() {
+    const drawId = this.props.match.params.drawId;
+    const draw = await raffleApi.raffleRead(drawId);
+    const { private_id: privateId, title, description, participants, prizes, results } = draw;
     this.setState({
+      title,
+      description,
+      participants: participants.map(participant => participant.name),
+      prizes: prizes.map(prize => prize.name),
+      results: results.length ? results[0].value : [],
+      isOwner: Boolean(privateId),
+    });
+  }
+
+  render() {
+    const {
       title,
       description,
       participants,
       numberOfWinners,
       prizes,
       results,
-    });
-  }
-
-  render() {
-    const { title, description, participants, numberOfWinners, prizes, results } = this.state;
+      isOwner,
+    } = this.state;
     return (
       <PublishedRaffle
         title={title}
@@ -49,6 +67,8 @@ class PublishedRafflePageContainer extends Component {
         numberOfWinners={numberOfWinners}
         results={results}
         prizes={prizes}
+        onToss={this.onToss}
+        isOwner={isOwner}
       />
     );
   }

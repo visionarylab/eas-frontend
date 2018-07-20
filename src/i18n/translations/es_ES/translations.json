@@ -18,9 +18,11 @@
     "when_to_toss": "Cuándo quieres que se generen los resultados?"
   },
   "HomePage": {
+    "facebook_draw_title": "Sorteo en Facebook",
     "raffle_title": "Realizar Sorteo",
     "random_letter_title": "Generar letras aleatorias",
-    "random_number_title": "Generar números aleatorios"
+    "random_number_title": "Generar números aleatorios",
+    "raffle_section_title": "Seccion de sorteos"
   },
   "LetterDrawPage": {
     "draw_configuration": "Configuración de la tirada",
@@ -67,6 +69,7 @@
   },
   "PublishedRafflePage": {
     "description": "Descripción",
+    "generate_resuts": "Genenrar resultados",
     "number_of_participants": "Número de participantes:",
     "number_of_winners": "Número de ganadores:",
     "raffle_details": "Detalles del sorteo",
@@ -108,7 +111,7 @@
     "random_number_html_title": "Generar números aleatorios",
     "random_number_seo_description": "Generar números aleatorios",
     "to": "Hasta",
-    "when_to_toss": "Cuándo quieres mostrar los resultados?"
+    "when_to_toss": "Cuándo quieres generar los números?"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",

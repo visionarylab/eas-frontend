@@ -11,9 +11,9 @@ const c = classNames.bind(STYLES);
 
 const DrawContent = ({ title, footer, children }) => (
   <TransparentPanel noPadding>
-    <Grid container direction={'column'} justify={'center'}>
+    <div>
       {title && (
-        <Grid item>
+        <div>
           <Typography
             variant="display2"
             align={'center'}
@@ -21,16 +21,15 @@ const DrawContent = ({ title, footer, children }) => (
           >
             {title}
           </Typography>
-        </Grid>
+        </div>
       )}
-
-      <Grid item>{children}</Grid>
+      <div>{children}</div>
       {footer && (
-        <Grid item className={c('DrawContent__footer')}>
+        <div className={c('DrawContent__footer')}>
           <section>{footer}</section>
-        </Grid>
+        </div>
       )}
-    </Grid>
+    </div>
   </TransparentPanel>
 );
 

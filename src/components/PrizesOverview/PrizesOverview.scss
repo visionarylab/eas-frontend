@@ -9,6 +9,7 @@ $spacing-lg: 1.875rem;
   padding: $spacing-lg;
   border-radius: $border-radius;
   background-color: $prize-overview-background-color;
+  display: inline-block;
 
   &__prizes-list {
     list-style-type: none;

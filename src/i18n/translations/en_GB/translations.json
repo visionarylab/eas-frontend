@@ -52,14 +52,16 @@
   },
   "PublishedRafflePage": {
     "description": "Description",
+    "generate_resuts": "Generate results",
     "number_of_participants": "Number of participants:",
     "number_of_winners": "Number of winners:",
     "raffle_details": "Raffle details",
+    "results_not_generated_yet": "The result of the raffle hasn't been published yet",
     "winners": "Winners"
   },
   "PublishedRandomNumberPage": {
-    "chosen_numbers": "Números elegidos",
-    "draw_details": "Detalles del sorteo"
+    "draw_details": "Detalles del sorteo",
+    "generated_numbers": "Generated numbers"
   },
   "RafflePage": {
     "detail_about_winners": "Details about the prizes",
@@ -77,15 +79,23 @@
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Raffle between Facebook users",
     "facebook_photo_raffle_title": "Raffle bettwen 'likes' in Facebook",
-    "raffle_title": "Raffle with closed list of participants"
+    "raffle_title": "Raffle with closed list of participants",
+    "raffle_section_title": "Raffles section"
   },
   "RandomNumberPage": {
+    "allow_repeated": "Allow repeated",
+    "draw_configuration": "Draw details",
+    "from": "From",
+    "general_details_draw": "General details",
     "generate_numbers": "Generate numbers",
     "number_draw_seo_description": "Create this draw publicly so everyone can see the results at the same time",
+    "number_of_results": "Number of results",
     "publish_draw": "Publish results",
     "random_number_default_title": "Generate random numbers",
     "random_number_html_title": "Generate random numbers",
-    "random_number_seo_description": "Generate randon numbers online. Select Random numbers from a range, etc."
+    "random_number_seo_description": "Generate randon numbers online. Select Random numbers from a range, etc.",
+    "to": "To",
+    "when_to_toss": "When do you want to generate the numbers?"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Results have not been generated yet",

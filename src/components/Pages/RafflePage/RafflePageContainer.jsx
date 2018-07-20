@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import RaffleDraw from '../RafflePage/RafflePage';
-import { publishRaffleDraw } from '../../../services/EasAPI';
+import RafflePage from '../RafflePage/RafflePage';
+import ApiClient from '../../../services/api/EASApi';
+
+const { RaffleApi, Raffle } = ApiClient;
+const raffleApi = new RaffleApi();
 
 class RafflePageContainer extends Component {
   constructor(props) {
@@ -34,24 +37,37 @@ class RafflePageContainer extends Component {
     }));
   };
 
-  handlePublish() {
-    // Publish the draw
-    // const draw = createPublicNumberDraw(from, to, numberOfResults, allowRepeated);
-    // Redirect to the public draw
-    const { title, description, participants, numberOfWinners, dateResultsShown } = this.state;
-    const draw = publishRaffleDraw(
+  async createDraw() {
+    const { title, description, participants, prizes } = this.state.values;
+    const randomNumberDraw = Raffle.constructFromObject({
       title,
       description,
-      participants,
-      numberOfWinners,
-      dateResultsShown,
-    );
-    this.props.history.push(`${this.props.location.pathname}/${draw.id}`);
+      metadata: [
+        {
+          client: 'string',
+          key: 'string',
+          value: 'string',
+        },
+      ],
+      participants: participants.map(participant => ({ name: participant })),
+      prizes: prizes.map(prize => ({ name: prize })),
+    });
+    try {
+      return await raffleApi.raffleCreate(randomNumberDraw);
+    } catch (err) {
+      alert(err);
+      return null;
+    }
+  }
+
+  async handlePublish() {
+    const draw = await this.createDraw();
+    this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   }
 
   render() {
     return (
-      <RaffleDraw
+      <RafflePage
         values={this.state.values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -61,7 +77,6 @@ class RafflePageContainer extends Component {
 }
 
 RafflePageContainer.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 

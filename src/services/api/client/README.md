@@ -105,8 +105,9 @@ Class | Method | HTTP request | Description
  - [EchaloasuerteApi.Prize](docs/Prize.md)
  - [EchaloasuerteApi.Raffle](docs/Raffle.md)
  - [EchaloasuerteApi.RaffleResult](docs/RaffleResult.md)
+ - [EchaloasuerteApi.RaffleResultParticipant](docs/RaffleResultParticipant.md)
+ - [EchaloasuerteApi.RaffleResultPrize](docs/RaffleResultPrize.md)
  - [EchaloasuerteApi.RaffleResultValue](docs/RaffleResultValue.md)
- - [EchaloasuerteApi.RaffleResultValuePrize](docs/RaffleResultValuePrize.md)
  - [EchaloasuerteApi.RandomNumber](docs/RandomNumber.md)
  - [EchaloasuerteApi.RandomNumberResult](docs/RandomNumberResult.md)
 

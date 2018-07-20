@@ -10,7 +10,7 @@ $banner-alert-error-color: rgb(255, 84, 82) !default;
 $banner-background-color: white;
 
 .BannerAlert {
-  display: flex;
+  display: inline-flex;
   padding: $banner-alert-padding-y $banner-alert-padding-x;
   flex-direction: row;
   border-radius: $spacing-xs;

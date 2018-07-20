@@ -4,8 +4,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import RandomNumberPage from './RandomNumberPage';
 import ApiClient from '../../../services/api/EASApi';
 
-console.log(ApiClient);
-
 const { RandomNumberApi, RandomNumber } = ApiClient;
 const randomNumberApi = new RandomNumberApi();
 

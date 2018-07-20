@@ -13,76 +13,24 @@ import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import DrawPanel from '../../DrawPanel/DrawPanel';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import BackArrow from '../../BackArrow/BackArrow';
-import Page from '../../Page/Page';
+import ResultsBox from '../../ResultsBox/ResultsBox';
+import DrawContent from '../../DrawContent/DrawContent';
+import trumpetIcon from '../../Pages/RafflePage/trumpet.png';
 
 const LetterDrawPage = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
 
   return (
-    <Page htmlTitle={t('letter_draw_html_title')}>
-      <Grid container spacing={16}>
-        <Grid item sm={3}>
-          <BackArrow />
-        </Grid>
-        <Grid item xs={6}>
-          <DrawPanel>
-            <div>
-              <Typography variant="display1">{t('letter_draw_title')}</Typography>
-              {values.isPublic && (
-                <SectionPanel title={t('general_details_draw')}>
-                  <PublicDetails
-                    title={values.title}
-                    description={values.description}
-                    onFieldChange={onFieldChange}
-                  />
-                </SectionPanel>
-              )}
-              <SectionPanel title={t('draw_configuration')}>
-                <div>
-                  <TextField
-                    label={t('number_of_letters')}
-                    placeholder="1"
-                    onChange={e => onFieldChange('numberOfLetters', parseInt(e.target.value, 10))}
-                    value={values.numberOfLetters}
-                    type="number"
-                  />
-                </div>
-              </SectionPanel>
-              {values.isPublic && (
-                <SectionPanel title={t('when_to_toss')}>
-                  <PublishDrawOptions
-                    whenToToss={values.whenToToss}
-                    options={['now', 'manual', 'schedule']}
-                    dateScheduled={values.dateScheduled}
-                    onFieldChange={props.onFieldChange}
-                  />
-                </SectionPanel>
-              )}
-              <SubmitButton
-                label={props.t(values.isPublic ? 'publish_draw' : 'generate_letters')}
-                onClick={values.isPublic ? handlePublish : handleToss}
-              />
-            </div>
-            <div>
-              <span>{values.results}</span>
-            </div>
-          </DrawPanel>
-        </Grid>
-
-        <Grid item xs={3}>
-          <TransparentPanel>
-            <Paper>
-              <Trans i18nKey="letter_draw_seo_description">
-                <span>Organiza sorteos publicos</span>
-              </Trans>
-            </Paper>
-            <MakeDrawPublicButton handleMakeDrawPublic={props.handleMakeDrawPublic} />
-          </TransparentPanel>
+    <Grid container wrap="nowrap" direction={'column'} style={{ 'background-color': 'red' }}>
+      <Grid item>
+        <Grid container direction={'row'} style={{ 'background-color': 'blue' }}>
+          <Grid item xs={8} style={{ 'background-color': 'purple' }}>
+            <img src={trumpetIcon} />
+            <img src={trumpetIcon} />
+          </Grid>
         </Grid>
       </Grid>
-    </Page>
+    </Grid>
   );
 };
 

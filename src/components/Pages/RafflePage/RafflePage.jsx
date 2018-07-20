@@ -77,7 +77,7 @@ const RafflePage = props => {
                 onFieldChange={props.onFieldChange}
                 />
               </SectionPanel> */}
-                <SubmitButton label={t('publish_raffle')} handlePublish={props.handlePublish} />
+                <SubmitButton label={t('publish_raffle')} onClick={props.handlePublish} />
               </Grid>
             </Grid>
           </DrawPanel>

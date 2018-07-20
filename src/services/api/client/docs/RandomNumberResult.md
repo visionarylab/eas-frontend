@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
 **createdAt** | **Date** |  | [optional] 
-**value** | **Number** |  | [optional] 
+**scheduleDate** | **Date** |  | [optional] 
+**value** | **[Number]** |  | [optional] 
 
 

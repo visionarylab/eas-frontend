@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Chip from './../../DrawCard/DrawCard';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import Page from '../../Page/Page';
-import facebookIcon from './facebook.png';
 import rafflesIcon from './raffles.png';
 
 const HomePage = ({ t }) => (
@@ -32,21 +31,8 @@ const HomePage = ({ t }) => (
               </Chip>
             </Grid>
             <Grid item sm={6}>
-              <Chip icon={facebookIcon} href="/facebook">
-                {t('facebook_draw_title')}
-              </Chip>
-            </Grid>
-            <Grid item sm={6}>
-              <Chip
-                icon="https://echaloasuerte.com/static/img/draw_icons/raffle.ecc02d7cd162.png"
-                href="/raffle"
-              >
-                {t('raffle_title')}
-              </Chip>
-            </Grid>
-            <Grid item sm={6}>
               <Chip icon={rafflesIcon} href="/raffles">
-                {t('raffles_section')}
+                {t('raffle_section_title')}
               </Chip>
             </Grid>
           </Grid>

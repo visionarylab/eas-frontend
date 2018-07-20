@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import WinnerChip from '../WinnerChip/WinnerChip';
+import ApiClient from '../../services/api/EASApi';
 import STYLES from './WinnersList.scss';
 
+const { RaffleResultPrize, RaffleResultParticipant } = ApiClient;
 const c = classNames.bind(STYLES);
 
 const WinnersList = ({ winners }) => (
@@ -16,8 +18,8 @@ const WinnersList = ({ winners }) => (
 WinnersList.propTypes = {
   winners: PropTypes.arrayOf(
     PropTypes.shape({
-      extraData: PropTypes.string.isRequired,
-      winnerName: PropTypes.string,
+      prize: PropTypes.instanceOf(RaffleResultPrize).isRequired,
+      participant: PropTypes.instanceOf(RaffleResultParticipant).isRequired,
     }),
   ).isRequired,
 };

@@ -54,6 +54,12 @@
       //expect(instance).to.be.a(EchaloasuerteApi.DrawTossPayload);
     });
 
+    it('should have the property scheduleDate (base name: "schedule_date")', function() {
+      // uncomment below and update the code to test the property scheduleDate
+      //var instane = new EchaloasuerteApi.DrawTossPayload();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

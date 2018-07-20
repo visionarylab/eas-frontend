@@ -14,44 +14,35 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The Participant model module.
- * @module model/Participant
+ * The RaffleResultPrize model module.
+ * @module model/RaffleResultPrize
  * @version v1
  */
-export default class Participant {
+export default class RaffleResultPrize {
   /**
-   * Constructs a new <code>Participant</code>.
-   * @alias module:model/Participant
+   * Constructs a new <code>RaffleResultPrize</code>.
+   * @alias module:model/RaffleResultPrize
    * @class
-   * @param name {String}
    */
 
-  constructor(name) {
-    this.name = name;
-  }
+  constructor() {}
 
   /**
-   * Constructs a <code>Participant</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>RaffleResultPrize</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Participant} obj Optional instance to populate.
-   * @return {module:model/Participant} The populated <code>Participant</code> instance.
+   * @param {module:model/RaffleResultPrize} obj Optional instance to populate.
+   * @return {module:model/RaffleResultPrize} The populated <code>RaffleResultPrize</code> instance.
    */
   static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new Participant();
+      obj = obj || new RaffleResultPrize();
 
       if (data.hasOwnProperty('id')) {
         obj.id = ApiClient.convertToType(data.id, 'String');
       }
-      if (data.hasOwnProperty('created_at')) {
-        obj.created_at = ApiClient.convertToType(data.created_at, 'Date');
-      }
       if (data.hasOwnProperty('name')) {
         obj.name = ApiClient.convertToType(data.name, 'String');
-      }
-      if (data.hasOwnProperty('facebook_id')) {
-        obj.facebook_id = ApiClient.convertToType(data.facebook_id, 'String');
       }
     }
     return obj;
@@ -62,15 +53,7 @@ export default class Participant {
    */
   id = undefined;
   /**
-   * @member {Date} created_at
-   */
-  created_at = undefined;
-  /**
    * @member {String} name
    */
   name = undefined;
-  /**
-   * @member {String} facebook_id
-   */
-  facebook_id = undefined;
 }
