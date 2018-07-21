@@ -19,6 +19,7 @@ class PublishedRandomNumberPageContainer extends Component {
       numberOfResults: null,
       allowRepeated: null,
       results: [],
+      isOwner: false,
     };
   }
 
@@ -26,17 +27,35 @@ class PublishedRandomNumberPageContainer extends Component {
     this.loadData();
   }
 
+  onToss = async () => {
+    const drawId = this.props.match.params.drawId;
+    try {
+      await randomNumberApi.randomNumberToss(drawId, {});
+      this.loadData();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   async loadData() {
     const drawId = this.props.match.params.drawId;
 
     const draw = await randomNumberApi.randomNumberRead(drawId);
-    const { title, description, range_min: rangeMin, range_max: rangeMax, results } = draw;
+    const {
+      private_id: privateId,
+      title,
+      description,
+      range_min: rangeMin,
+      range_max: rangeMax,
+      results,
+    } = draw;
     this.setState({
       title,
       description,
       rangeMin,
       rangeMax,
       results,
+      isOwner: Boolean(privateId),
     });
   }
 
@@ -49,6 +68,7 @@ class PublishedRandomNumberPageContainer extends Component {
       numberOfResults,
       allowRepeated,
       results,
+      isOwner,
     } = this.state;
     return (
       <PublishedRandomNumberPage
@@ -59,6 +79,8 @@ class PublishedRandomNumberPageContainer extends Component {
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
         results={results.map(result => result.value)}
+        isOwner={isOwner}
+        onToss={this.onToss}
       />
     );
   }

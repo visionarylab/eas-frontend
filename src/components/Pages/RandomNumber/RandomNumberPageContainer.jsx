@@ -8,7 +8,7 @@ class RandomNumberPageContainer extends React.Component {
     super(props);
 
     this.state = {
-      isPublic: true,
+      isPublic: false,
       results: [],
     };
   }
