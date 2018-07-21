@@ -7,7 +7,7 @@ import STYLES from './SubmitButton.scss';
 const c = classNames.bind(STYLES);
 const SubmitButton = ({ label, onClick }) => (
   <div data-component={'SubmitDrawButton'} className={c('SubmitButton')}>
-    <Button variant="raised" color="primary" onClick={onClick}>
+    <Button type="submit" variant="raised" color="primary" onClick={onClick}>
       {label}
     </Button>
   </div>
@@ -15,7 +15,11 @@ const SubmitButton = ({ label, onClick }) => (
 
 SubmitButton.propTypes = {
   label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+};
+
+SubmitButton.defaultProps = {
+  onClick: () => {},
 };
 
 export default SubmitButton;

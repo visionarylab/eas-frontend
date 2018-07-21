@@ -69,14 +69,6 @@ const RafflePage = props => {
                     onFieldChange={props.onFieldChange}
                   />
                 </SectionPanel>
-                {/* <SectionPanel title={t('when_to_toss')}>
-              <PublishDrawOptions
-              whenToToss={whenToToss}
-              options={['manual', 'schedule']}
-                dateScheduled={dateScheduled}
-                onFieldChange={props.onFieldChange}
-                />
-              </SectionPanel> */}
                 <SubmitButton label={t('publish_raffle')} onClick={props.handlePublish} />
               </Grid>
             </Grid>

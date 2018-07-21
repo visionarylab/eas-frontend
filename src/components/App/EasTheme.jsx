@@ -18,7 +18,7 @@ const theme = createMuiTheme({
   palette: {
     primary: purple,
     secondary: green,
-    error: green,
+    // error: green,
   },
   overrides: {
     // MuiFormControl: {

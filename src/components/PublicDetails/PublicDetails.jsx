@@ -1,11 +1,23 @@
 import React, { Fragment } from 'react';
+import { translate } from 'react-i18next';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+
+import withFieldValidation from '../withValidation/withFieldValidation';
+
+const ValidatedTextField = withFieldValidation(TextField);
+
+const required = value => {
+  if (!value.toString().trim().length) {
+    // We can return string or jsx as the 'error' prop for the validated Component
+    return 'require';
+  }
+};
 
 const PublicDetails = props => (
   <Fragment>
-    <TextField
+    <ValidatedTextField
+      name="title"
       label={props.t('title_label')}
       placeholder={props.t('title_placeholder')}
       value={props.title}
@@ -13,8 +25,11 @@ const PublicDetails = props => (
       fullWidth
       onChange={e => props.onFieldChange('title', e.target.value)}
       inputProps={{ 'data-component': 'TitleInput' }}
+      required
     />
-    <TextField
+
+    <ValidatedTextField
+      name="description"
       label={props.t('description_label')}
       placeholder={props.t('description_placeholder')}
       value={props.description}
@@ -24,6 +39,7 @@ const PublicDetails = props => (
       margin="normal"
       onChange={e => props.onFieldChange('description', e.target.value)}
       inputProps={{ 'data-component': 'DescriptionInput' }}
+      required
     />
   </Fragment>
 );

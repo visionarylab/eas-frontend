@@ -19,13 +19,14 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
+import RandomNumberFormContainer from './RandomNumberFormContainer';
 
 import STYLES from './RandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);
 
 const RandomNumberPage = props => {
-  const { values, isPublic, onFieldChange, handleToss, handlePublish, t } = props;
+  const { isPublic, results, t } = props;
   return (
     <Page htmlTitle={t('random_number_html_title')}>
       <Grid container spacing={16}>
@@ -34,81 +35,8 @@ const RandomNumberPage = props => {
         </Grid>
         <Grid item xs={6}>
           <DrawPanel>
-            <div>
-              <Typography variant="display1">{t('random_number_default_title')}</Typography>
-              {isPublic && (
-                <SectionPanel title={t('general_details_draw')}>
-                  <PublicDetails
-                    title={values.title}
-                    description={values.description}
-                    onFieldChange={onFieldChange}
-                  />
-                </SectionPanel>
-              )}
-              <SectionPanel title={t('draw_configuration')}>
-                <Grid container spacing={16}>
-                  <Grid item xs={6}>
-                    <TextField
-                      label={t('from')}
-                      placeholder="1"
-                      onChange={e => onFieldChange('rangeMin', parseInt(e.target.value, 10))}
-                      value={values.rangeMin}
-                      type="number"
-                      margin="normal"
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TextField
-                      label={t('to')}
-                      placeholder="9"
-                      onChange={e => onFieldChange('rangeMax', parseInt(e.target.value, 10))}
-                      value={values.rangeMax}
-                      margin="normal"
-                      type="number"
-                    />
-                  </Grid>
-                </Grid>
-                <div>
-                  <TextField
-                    label={t('number_of_results')}
-                    placeholder="1"
-                    onChange={e => onFieldChange('numberOfResults', parseInt(e.target.value, 10))}
-                    value={values.numberOfResults}
-                    margin="normal"
-                    type="number"
-                  />
-                  {values.numberOfResults > 1 && (
-                    <FormGroup row>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={values.allowRepeated}
-                            onChange={e => onFieldChange('allowRepeated', e.target.checked)}
-                          />
-                        }
-                        label={props.t('allow_repeated')}
-                      />
-                    </FormGroup>
-                  )}
-                </div>
-              </SectionPanel>
-              {isPublic && (
-                <SectionPanel title={t('when_to_toss')}>
-                  <PublishDrawOptions
-                    whenToToss={values.whenToToss}
-                    options={['now', 'manual', 'schedule']}
-                    dateScheduled={values.dateScheduled}
-                    onFieldChange={props.onFieldChange}
-                  />
-                </SectionPanel>
-              )}
-              <SubmitButton
-                label={props.t(isPublic ? 'publish_draw' : 'generate_numbers')}
-                onClick={isPublic ? handlePublish : handleToss}
-              />
-            </div>
-            <div className={c('RandomNumberPage__results')}>{values.results}</div>
+            <RandomNumberFormContainer isPublic={isPublic} onToss={props.onToss} />
+            <div className={c('RandomNumberPage__results')}>{results}</div>
           </DrawPanel>
         </Grid>
 
@@ -128,36 +56,15 @@ const RandomNumberPage = props => {
 };
 
 RandomNumberPage.propTypes = {
-  values: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    rangeMin: PropTypes.number,
-    rangeMax: PropTypes.number,
-    results: PropTypes.arrayOf(PropTypes.number),
-    numberOfResults: PropTypes.number,
-    allowRepeated: PropTypes.bool,
-    whenToToss: PropTypes.string.isRequired,
-    dateScheduled: PropTypes.string,
-  }).isRequired,
   isPublic: PropTypes.bool.isRequired,
+  results: PropTypes.arrayOf(PropTypes.number),
   handleMakeDrawPublic: PropTypes.func.isRequired,
-  handleToss: PropTypes.func.isRequired,
-  handlePublish: PropTypes.func.isRequired,
-  onFieldChange: PropTypes.func.isRequired,
+  onToss: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
 RandomNumberPage.defaultProps = {
-  values: {
-    title: '',
-    description: '',
-    rangeMin: 1,
-    rangeMax: 10,
-    results: [],
-    numberOfResults: 1,
-    allowRepeated: false,
-    dateScheduled: null,
-  },
+  results: [],
 };
 
 export default translate('RandomNumberPage')(RandomNumberPage);

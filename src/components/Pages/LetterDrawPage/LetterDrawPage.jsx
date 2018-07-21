@@ -16,21 +16,37 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import ResultsBox from '../../ResultsBox/ResultsBox';
 import DrawContent from '../../DrawContent/DrawContent';
 import trumpetIcon from '../../Pages/RafflePage/trumpet.png';
+import ValidationTextField from '../../withValidation/ValidationTextField';
+import ValidationForm from '../../withValidation/ValidationForm';
+import withFormValidation from '../../withValidation/withFormValidation';
+import Page from '../../Page/Page';
+
+const ValidatedForm = withFormValidation();
 
 const LetterDrawPage = props => {
   const { values, onFieldChange, handleToss, handlePublish, t } = props;
 
   return (
-    <Grid container wrap="nowrap" direction={'column'} style={{ 'background-color': 'red' }}>
-      <Grid item>
-        <Grid container direction={'row'} style={{ 'background-color': 'blue' }}>
-          <Grid item xs={8} style={{ 'background-color': 'purple' }}>
-            <img src={trumpetIcon} />
-            <img src={trumpetIcon} />
-          </Grid>
+    <Page htmlTitle={t('raffle_html_title')}>
+      <Grid container spacing={16}>
+        <Grid item xs={8}>
+          <DrawPanel>
+            <ValidationForm>
+              <ValidationTextField
+                label="label"
+                placeholder="placeholder"
+                value="title"
+                margin="normal"
+                fullWidth
+                onChange={e => {}}
+                inputProps={{ 'data-component': 'TitleInput' }}
+                required
+              />
+            </ValidationForm>
+          </DrawPanel>
         </Grid>
       </Grid>
-    </Grid>
+    </Page>
   );
 };
 
