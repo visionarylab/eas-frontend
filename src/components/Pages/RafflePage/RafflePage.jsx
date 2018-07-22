@@ -30,8 +30,6 @@ RafflePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-RafflePage.defaultPropTypes = {
-  dateScheduled: Date(),
-};
+RafflePage.defaultPropTypes = {};
 
 export default translate('RafflePage')(RafflePage);

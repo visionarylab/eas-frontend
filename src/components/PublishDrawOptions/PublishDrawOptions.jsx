@@ -48,7 +48,9 @@ const PublishDrawOptions = props => {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DateTimePicker
               value={dateScheduled}
-              onChange={datetime => onFieldChange('dateScheduled', datetime)}
+              onChange={datetime => {
+                onFieldChange('dateScheduled', datetime);
+              }}
               autoOk
               // ampm={false}
               disablePast
@@ -71,7 +73,7 @@ PublishDrawOptions.propTypes = {
 };
 
 PublishDrawOptions.defaultProps = {
-  dateScheduled: Date(),
+  dateScheduled: '',
   options: ['now'],
 };
 

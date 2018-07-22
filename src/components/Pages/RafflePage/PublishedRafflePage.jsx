@@ -10,6 +10,8 @@ import PrizesOverview from '../../PrizesOverview/PrizesOverview';
 import WinnersList from '../../WinnersList/WinnersList';
 import ResultsBox from '../../ResultsBox/ResultsBox';
 import SubmitButton from '../../SubmitButton/SubmitButton';
+import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
+import SectionPanel from '../../SectionPanel/SectionPanel';
 
 import STYLES from './PublishedRafflePage.scss';
 
@@ -33,14 +35,26 @@ const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
   </div>
 );
 
-const WithoutResults = ({ prizes, isOwner, onToss, t }) => (
+const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) => (
   <Fragment>
     <div className={c('PublishedRafflePage__results-box')}>
       <PrizesOverview prizes={prizes} />
     </div>
     <div>
       {/* <BannerAlert title={t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} /> */}
-      {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
+      {isOwner && (
+        <Fragment>
+          <SectionPanel title={t('when_to_toss')}>
+            <PublishDrawOptions
+              whenToToss={values.whenToToss}
+              options={['manual', 'schedule']}
+              dateScheduled={values.dateScheduled}
+              onFieldChange={onFieldChange}
+            />
+          </SectionPanel>
+          <SubmitButton label={t('generate_resuts')} onClick={onToss} />
+        </Fragment>
+      )}
     </div>
   </Fragment>
 );
@@ -52,10 +66,10 @@ WithoutResults.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const WithResults = ({ results, t }) => (
+const WithResults = ({ result, t }) => (
   <div className={c('PublishedRafflePage__results')}>
     <ResultsBox title={t('winners')}>
-      <WinnersList winners={results} />
+      <WinnersList winners={result.value} />
     </ResultsBox>
   </div>
 );
@@ -66,12 +80,17 @@ WithResults.propTypes = {
 };
 
 const PublishedRafflePage = props => {
-  const { title, results } = props;
+  const { title, result } = props;
+  console.log('resultssss', result);
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
         <DrawContent title={title} footer={<SummaryRaffle {...props} />}>
-          {results.length ? <WithResults {...props} /> : <WithoutResults {...props} />}
+          {result && result.value && result.value.length ? (
+            <WithResults {...props} />
+          ) : (
+            <WithoutResults {...props} />
+          )}
         </DrawContent>
       </div>
     </Page>
@@ -80,11 +99,11 @@ const PublishedRafflePage = props => {
 
 PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
-  results: PropTypes.arrayOf(PropTypes.object),
+  // result: PropTypes.arrayOf(PropTypes.object),
 };
 
 PublishedRafflePage.defaultProps = {
-  results: [],
+  result: null,
 };
 
 export default translate('PublishedRafflePage')(PublishedRafflePage);

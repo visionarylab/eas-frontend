@@ -20,7 +20,11 @@ const TrumpetIcon = ({ inverted }) => (
 );
 
 TrumpetIcon.propTypes = {
-  inverted: PropTypes.string.isRequired,
+  inverted: PropTypes.bool,
+};
+
+TrumpetIcon.defaultProps = {
+  inverted: false,
 };
 
 const WinnersTitle = ({ winnersLabel }) => (

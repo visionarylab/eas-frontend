@@ -69,7 +69,7 @@
   },
   "PublishedRafflePage": {
     "description": "Descripción",
-    "generate_resuts": "Genenrar resultados",
+    "generate_resuts": "Generar resultados",
     "number_of_participants": "Número de participantes:",
     "number_of_winners": "Número de ganadores:",
     "raffle_details": "Detalles del sorteo",
