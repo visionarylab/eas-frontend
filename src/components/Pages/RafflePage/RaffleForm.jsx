@@ -61,7 +61,7 @@ const RaffleForm = props => {
               onFieldChange={onFieldChange}
             />
           </SectionPanel>
-          <SubmitButton label={t('publish_raffle')} onClick={handlePublish} />
+          <SubmitButton type="submit" label={t('publish_raffle')} />
         </Grid>
       </Grid>
     </ValidatedForm>
