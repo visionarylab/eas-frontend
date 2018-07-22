@@ -46,7 +46,9 @@ const WithoutResults = ({ prizes, isOwner, onToss, t }) => (
 );
 
 WithoutResults.propTypes = {
-  prizes: PropTypes.arrayOf(PropTypes.object),
+  prizes: PropTypes.arrayOf(PropTypes.string),
+  isOwner: PropTypes.bool.isRequired,
+  onToss: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
