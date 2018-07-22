@@ -283,28 +283,17 @@ definitions:
         type: string
         format: date-time
       value:
-        type: array
-        items: 
-          type: object
-          properties:
-            participant:
-              $ref: '#/definitions/RaffleResultParticipant'
-            prize:
-              $ref: '#/definitions/RaffleResultPrize'
-  RaffleResultParticipant:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-  RaffleResultPrize:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
+        type: object
+        properties:
+          prize:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+          participant:
+            type: object
   RandomNumberResult:
     type: object
     properties:
