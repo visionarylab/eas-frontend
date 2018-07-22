@@ -23,33 +23,28 @@ const withFormValidation = WrappedComponent => {
       };
     }
 
-    isFormValid = () => {
-      const validations = Object.values(this.state.validations);
-      return validations.every(Boolean);
-    };
-
     onSubmit = e => {
-      console.log('submitting');
-
       if (!this.isFormValid()) {
-        console.log('no ok', this.state.validations);
         e.preventDefault();
       } else {
         this.setState({
           formSubmitted: true,
         });
-        console.log('ok');
         this.props.onSubmit(e);
       }
     };
 
-    onFieldChange = (e, name, valid) => {
+    onFieldChange = (name, valid) => {
       this.updateFieldValidationState(name, valid);
       this.updateFieldChangedState(name);
     };
 
+    isFormValid = () => {
+      const validations = Object.values(this.state.validations);
+      return validations.every(Boolean);
+    };
+
     registerValidatedField(name, valid, value) {
-      console.log('register_field', name, valid, value);
       this.updateFieldValidationState(name, valid);
 
       if (value) {
@@ -122,7 +117,6 @@ const withFormValidation = WrappedComponent => {
 
     render() {
       const { onSubmit, onFieldDeregister, onValidationChange, ...props } = this.props;
-      console.log('formSubmitted', this.state.formSubmitted);
       // Note we're passing onFieldChange to the child component. You then need to manually wire up the change event.
       // For example <WithFieldValidationInput onChange={prop.onFieldChange} />
       return <WrappedComponent {...props} onSubmit={this.onSubmit} />;

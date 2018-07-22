@@ -69,11 +69,8 @@ class RandomNumberFormContainer extends Component {
   };
 
   handleToss = async () => {
-    console.log('tossing');
     if (!this.state.drawPrivateId) {
       const draw = await this.createDraw();
-      console.log('draw', draw);
-
       this.setState({ drawPrivateId: draw.private_id });
     }
     let readDrawResponse;

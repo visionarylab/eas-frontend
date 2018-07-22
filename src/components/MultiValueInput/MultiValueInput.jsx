@@ -7,7 +7,6 @@ import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay';
 class MultiValueInput extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentValue: '',
     };
@@ -38,22 +37,22 @@ class MultiValueInput extends Component {
   };
 
   addValues = newValues => {
-    const { values } = this.props;
+    const { value: values } = this.props;
     this.props.onChange(values.concat(newValues));
     this.setState({ currentValue: '' });
   };
 
   render() {
-    const { values, labelDisplayList, messageEmpty, ...rest } = this.props;
+    const { value: values, labelDisplayList, messageEmpty, ...rest } = this.props;
     const { delimiters, onChange, ...extra } = rest;
     return (
       <Fragment>
         <TextField
           onChange={this.onCurrentValueChange}
           onKeyPress={this.onKeyPress}
-          value={this.state.currentValue}
           type="text"
           margin="normal"
+          value={this.state.currentValue}
           {...extra}
         />
         <MultiValueDisplay
@@ -74,7 +73,7 @@ MultiValueInput.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.arrayOf(PropTypes.string).isRequired,
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 };

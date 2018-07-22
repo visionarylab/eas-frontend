@@ -3,6 +3,9 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import MultiValueInput from '../MultiValueInput/MultiValueInput';
+import withFieldValidation from '../withValidation/withFieldValidation';
+
+const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 
 class PrizeSelector extends Component {
   constructor(props) {
@@ -49,14 +52,15 @@ class PrizeSelector extends Component {
           </Grid>
         </Grid>
         {this.state.specifyPrizes && ( */}
-        <MultiValueInput
+        <ValidatedMultiValueInput
           name="prizes"
           label={t('prizes')}
           labelDisplayList={t('list_of_prizes')}
           placeholder="PS4"
           messageEmpty={t('no_prizes_selected')}
-          values={prizes}
+          value={prizes}
           onChange={prizes_ => onFieldChange('prizes', prizes_)}
+          required
         />
         {/* )} */}
       </div>

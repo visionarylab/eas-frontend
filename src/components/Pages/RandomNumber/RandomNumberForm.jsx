@@ -1,24 +1,17 @@
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
-import classNames from 'classnames/bind';
 
 import PublicDetails from '../../PublicDetails/PublicDetails';
-import MakeDrawPublicButton from '../../MakeDrawPublicButton/MakeDrawPublicButton';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
-import DrawPanel from '../../DrawPanel/DrawPanel';
-import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import SubmitButton from '../../SubmitButton/SubmitButton';
-import BackArrow from '../../BackArrow/BackArrow';
-import Page from '../../Page/Page';
 import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
 
@@ -28,7 +21,6 @@ const ValidatedTextField = withFieldValidation(TextField);
 const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, handleToss, t }) => (
   <ValidatedForm
     onSubmit={e => {
-      console.log('submit');
       e.preventDefault();
       if (isPublic) {
         handlePublish();
@@ -111,13 +103,24 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
         />
       </SectionPanel>
     )}
-    <SubmitButton
-      label={t(isPublic ? 'publish_draw' : 'generate_numbers')}
-      // onClick={isPublic ? handlePublish : handleToss}
-    />
+    <SubmitButton label={t(isPublic ? 'publish_draw' : 'generate_numbers')} />
   </ValidatedForm>
 );
 
-RandomNumberForm.propTypes = {};
+RandomNumberForm.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    numberOfWinners: PropTypes.number.isRequired,
+    winners: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  isPublic: PropTypes.bool.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  handleToss: PropTypes.func.isRequired,
+  handlePublish: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
 
 export default translate('RandomNumberPage')(RandomNumberForm);

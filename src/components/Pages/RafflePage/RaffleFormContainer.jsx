@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router';
 
-import RafflePage from '../RafflePage/RafflePage';
+import RaffleForm from './RaffleForm';
 import ApiClient from '../../../services/api/EASApi';
 
 const { RaffleApi, Raffle } = ApiClient;
 const raffleApi = new RaffleApi();
 
-class RafflePageContainer extends Component {
+class RaffleFormContainer extends Component {
   constructor(props) {
     super(props);
-
-    this.handlePublish = this.handlePublish.bind(this);
-
     this.state = {
+      privateId: null,
       values: {
-        title: '',
-        description: '',
-        participants: [],
-        prizes: [],
+        title: 'the title',
+        description: 'desc',
+        participants: ['aa', 'bb'],
+        prizes: ['11'],
         numberOfWinners: 1,
         winners: [],
         dateScheduled: null,
@@ -37,7 +36,7 @@ class RafflePageContainer extends Component {
     }));
   };
 
-  async createDraw() {
+  createDraw = async () => {
     const { title, description, participants, prizes } = this.state.values;
     const randomNumberDraw = Raffle.constructFromObject({
       title,
@@ -58,16 +57,16 @@ class RafflePageContainer extends Component {
       alert(err);
       return null;
     }
-  }
+  };
 
-  async handlePublish() {
+  handlePublish = async () => {
     const draw = await this.createDraw();
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
-  }
+  };
 
   render() {
     return (
-      <RafflePage
+      <RaffleForm
         values={this.state.values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -76,8 +75,8 @@ class RafflePageContainer extends Component {
   }
 }
 
-RafflePageContainer.propTypes = {
+RaffleFormContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default RafflePageContainer;
+export default withRouter(RaffleFormContainer);

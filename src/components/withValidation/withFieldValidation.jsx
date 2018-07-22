@@ -20,7 +20,6 @@ const validateValue = (rules, value, props) =>
 const withFieldValidation = WrappedComponent => {
   class WithFieldValidation extends Component {
     componentDidMount() {
-      console.log('cdm');
       const valid = this.validateWithProvider(this.props.value);
       this.context.registerValidatedField(this.props.name, valid, this.props.value);
     }
@@ -31,7 +30,6 @@ const withFieldValidation = WrappedComponent => {
         this.validateWithProvider(this.props.value) !== this.validateWithProvider(prevProps.value)
       ) {
         const valid = this.validateWithProvider(this.props.value);
-        console.log(prevProps.value, this.props.value, valid);
         this.context.updateFieldValidationState(this.props.name, valid);
         this.context.updateFieldChangedState(this.props.name);
       }
@@ -45,8 +43,8 @@ const withFieldValidation = WrappedComponent => {
       if (this.props.onChange) {
         this.props.onChange(e);
       }
-      const valid = this.validateWithProvider(e.target.value);
-      this.context.onFieldChange(e, this.props.name, valid);
+      const valid = this.validateWithProvider(e);
+      this.context.onFieldChange(this.props.name, valid);
     };
 
     validateWithProvider(value) {
@@ -67,7 +65,11 @@ const withFieldValidation = WrappedComponent => {
 
   WithFieldValidation.propTypes = {
     onChange: PropTypes.func,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     name: PropTypes.string.isRequired,
     required: PropTypes.bool,
     pattern: PropTypes.string,
