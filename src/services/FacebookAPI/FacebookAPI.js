@@ -1,3 +1,5 @@
+const DEBUG = false;
+const log = message => DEBUG && console.log(message);
 /**
  * Set up the FB SDK
  * @param {function} onStatusChange - Login/logout callback.
@@ -5,7 +7,7 @@
  */
 export const fbAsyncInit = onStatusChange => {
   window.fbAsyncInit = () => {
-    console.log('init FB');
+    log('init FB');
     window.FB.init({
       appId: '239321593490183',
       autoLogAppEvents: true,
@@ -17,9 +19,9 @@ export const fbAsyncInit = onStatusChange => {
 
     window.FB.Event.subscribe('auth.statusChange', response => {
       if (response.authResponse) {
-        console.log('logged in');
+        log('logged in');
       } else {
-        console.log('logged out');
+        log('logged out');
       }
     });
   };
@@ -33,12 +35,12 @@ export const fbAsyncInit = onStatusChange => {
  */
 export const apiCall = async (endpoint, accessToken = null) =>
   new Promise(async (accept, reject) => {
-    console.log(`Facebook API call: ${endpoint} (Access Token: ${accessToken}`);
+    log(`Facebook API call: ${endpoint} (Access Token: ${accessToken}`);
     const response = await new Promise(callback => {
       const options = accessToken ? { access_token: accessToken } : {};
       FB.api(endpoint, options, callback);
     });
-    console.log('Response:', response);
+    log('Response:', response);
     if (response && !response.error) {
       return accept(response);
     }
@@ -97,7 +99,7 @@ function getUrlParams(search) {
 }
 
 export const getObjectIdFromUrl = urlString => {
-  console.log('url:', urlString);
+  log('url:', urlString);
   const url = new URL(urlString);
   const path = url.pathname.replace(/\/$/, '');
   const searchParams = getUrlParams(url.search);
