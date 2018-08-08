@@ -39,11 +39,11 @@ const withFieldValidation = WrappedComponent => {
       this.context.deregisterValidatedField(this.props.name);
     }
 
-    onFieldChange = e => {
+    onFieldChange = value => {
       if (this.props.onChange) {
-        this.props.onChange(e);
+        this.props.onChange(value);
       }
-      const valid = this.validateWithProvider(e);
+      const valid = this.validateWithProvider(value);
       this.context.onFieldChange(this.props.name, valid);
     };
 

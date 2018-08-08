@@ -1,27 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Grid from '@material-ui/core/Grid';
-import DrawPanel from '../../DrawPanel/DrawPanel';
-
-import BackArrow from '../../BackArrow/BackArrow';
+import classNames from 'classnames/bind';
 import Page from '../../Page/Page';
 import RaffleFormContainer from './RaffleFormContainer';
+
+import STYLES from './RafflePage.scss';
+
+const c = classNames.bind(STYLES);
 
 const RafflePage = props => {
   const { t } = props;
   return (
     <Page htmlTitle={t('raffle_html_title')}>
-      <Grid container spacing={16}>
-        <Grid item sm={2}>
-          <BackArrow />
-        </Grid>
-        <Grid item xs={8}>
-          <DrawPanel>
-            <RaffleFormContainer />
-          </DrawPanel>
-        </Grid>
-      </Grid>
+      <div className={c('RafflePage__container')}>
+        <RaffleFormContainer />
+      </div>
     </Page>
   );
 };

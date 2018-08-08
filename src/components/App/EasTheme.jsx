@@ -1,6 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+
+// Example of theme creation
+// https://github.com/mui-org/material-ui/issues/1915#issuecomment-310849153
 
 const theme = createMuiTheme({
   typography: {
@@ -10,15 +11,22 @@ const theme = createMuiTheme({
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
-    color: green,
+    color: '#8bc34a',
     body1: {
       lineHeight: `1.5rem`,
     },
+    display1: {
+      // fontSize: 60,
+    },
   },
   palette: {
-    primary: purple,
-    secondary: green,
-    // error: green,
+    type: 'light',
+    primary: {
+      main: '#4caf50',
+    },
+    secondary: {
+      main: '#f44336',
+    },
   },
   overrides: {
     // MuiFormControl: {

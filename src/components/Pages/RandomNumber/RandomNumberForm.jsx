@@ -15,7 +15,7 @@ import SubmitButton from '../../SubmitButton/SubmitButton';
 import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
 
-const ValidatedForm = withFormValidation(props => <form noValidate {...props} />);
+const ValidatedForm = withFormValidation(props => <form {...props} />);
 const ValidatedTextField = withFieldValidation(TextField);
 
 const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, handleToss, t }) => (
@@ -29,7 +29,9 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
       }
     }}
   >
-    <Typography variant="display1">{t('random_number_default_title')}</Typography>
+    <Typography color="primary" variant="display1">
+      {t('random_number_default_title')}
+    </Typography>
     {isPublic && (
       <SectionPanel title={t('general_details_draw')}>
         <PublicDetails

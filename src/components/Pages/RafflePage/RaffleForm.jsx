@@ -11,60 +11,103 @@ import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
+import Wizard from '../../Wizard/Wizard';
 
-const ValidatedForm = withFormValidation(props => <form noValidate {...props} />);
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
+
+const GeneralDetailsSection = ({ values, onFieldChange, t }) => (
+  <SectionPanel title={t('general_details_raffle')}>
+    <PublicDetails
+      title={values.title}
+      description={values.description}
+      onFieldChange={onFieldChange}
+    />
+  </SectionPanel>
+);
+const ParticipantsSection = ({ participants, onFieldChange, t }) => (
+  <SectionPanel title={t('who_will_participate')}>
+    <ValidatedMultiValueInput
+      name="participants"
+      label={t('participants')}
+      labelDisplayList={t('list_of_participants')}
+      value={participants}
+      placeholder="David, María, ..."
+      onChange={p => {
+        console.log('p', p);
+        onFieldChange('participants', p);
+      }}
+      messageEmpty={t('you_havent_add_any_participants')}
+      fullWidth
+      inputProps={{ 'data-component': 'ParticipantsInput' }}
+      required
+    />
+  </SectionPanel>
+);
+const PrizesSection = ({ numberOfWinners, prizes, onFieldChange, t }) => (
+  <SectionPanel title={t('detail_about_winners')}>
+    <PrizeSelector
+      numberOfWinners={numberOfWinners}
+      prizes={prizes}
+      onFieldChange={onFieldChange}
+    />
+  </SectionPanel>
+);
+const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
+const ParticipantsForm = withFormValidation(ParticipantsSection);
+const PrizesForm = withFormValidation(PrizesSection);
 
 const RaffleForm = props => {
   const { values, onFieldChange, handlePublish, t } = props;
+
+  const steps = [
+    {
+      label: 'Detalles generales',
+      render: wizardProps => (
+        <GeneralDetailsForm
+          values={values}
+          onFieldChange={props.onFieldChange}
+          t={props.t}
+          {...wizardProps}
+        />
+      ),
+    },
+    {
+      label: 'Elegir participantes',
+      render: wizardProps => (
+        <ParticipantsForm
+          participants={values.participants}
+          onFieldChange={props.onFieldChange}
+          t={props.t}
+          {...wizardProps}
+        />
+      ),
+    },
+    {
+      label: 'Cuándo se realizara el sorteo?',
+      render: wizardProps => (
+        <PrizesForm
+          numberOfWinners={values.numberOfWinners}
+          prizes={values.prizes}
+          onFieldChange={onFieldChange}
+          t={t}
+          {...wizardProps}
+        />
+      ),
+    },
+  ];
+
   return (
-    <ValidatedForm
-      onSubmit={e => {
-        e.preventDefault();
-        handlePublish();
-      }}
-    >
-      <Grid container direction={'column'} spacing={8}>
-        <Grid item>
-          <Typography variant="display1">{t('raffle_default_title')}</Typography>
-        </Grid>
-        <Grid item>
-          <SectionPanel title={t('general_details_raffle')}>
-            <PublicDetails
-              title={values.title}
-              description={values.description}
-              onFieldChange={onFieldChange}
-            />
-          </SectionPanel>
-        </Grid>
-        <Grid item>
-          <SectionPanel title={t('who_will_participate')}>
-            <ValidatedMultiValueInput
-              name="participants"
-              label={t('participants')}
-              labelDisplayList={t('list_of_participants')}
-              value={values.participants}
-              placeholder="David, María, ..."
-              onChange={p => {
-                onFieldChange('participants', p);
-              }}
-              messageEmpty={t('you_havent_add_any_participants')}
-              fullWidth
-              inputProps={{ 'data-component': 'ParticipantsInput' }}
-              required
-            />
-          </SectionPanel>
-          <SectionPanel title={t('detail_about_winners')}>
-            <PrizeSelector
-              numberOfWinners={values.numberOfWinners}
-              prizes={values.prizes}
-              onFieldChange={onFieldChange}
-            />
-          </SectionPanel>
-          <SubmitButton type="submit" label={t('publish_raffle')} />
-        </Grid>
+    <Grid container direction={'column'} spacing={8}>
+      <Grid item>
+        <Typography color="primary" variant="display1">
+          {t('raffle_default_title')}
+        </Typography>
+        <Wizard steps={steps} onSubmit={handlePublish} />
       </Grid>
-    </ValidatedForm>
+      <Grid item>
+        <SubmitButton type="submit" label={t('publish_raffle')} />
+      </Grid>
+    </Grid>
   );
 };
 

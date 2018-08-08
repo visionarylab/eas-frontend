@@ -1,4 +1,9 @@
 .RandomNumberPage {
+  &__container {
+    width: 50%;
+    margin: auto;
+  }
+
   &__results {
     text-align: center;
     font-size: 10rem;

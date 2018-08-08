@@ -1,6 +1,4 @@
-$spacing-xs: .375rem;
-$spacing-md: 1.125rem;
-$one-pixel-rem: .0625rem;
+@import '../variables';
 
 $eas-chip-icon-width: 3.125rem;
 $eas-chip-padding: $spacing-xs .5rem;
@@ -25,13 +23,11 @@ $eas-chip-title-font-color: #6f6f6f;
   &__icon {
     width: $eas-chip-icon-width;
     height: auto;
+    // filter: grayscale(100%);
   }
 
   &__title {
     padding-left: $spacing-md;
-    flex: auto;
-    color: $eas-chip-title-font-color;
-    font-size: $eas-chip-title-font-size;
   }
 
   &__link {

@@ -1,12 +1,5 @@
-$section-panel-background-color: white;
-$spacing-md: 1.125rem;
-$spacing-lg: 1.875rem;
-$border-radius: .2rem;
+@import '../variables';
 
 .SectionPanel {
-  margin-top: $spacing-md;
-  margin-bottom: $spacing-md;
   padding: $spacing-lg;
-  border-radius: $border-radius;
-  background-color: $section-panel-background-color;
 }
