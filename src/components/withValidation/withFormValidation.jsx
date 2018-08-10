@@ -10,10 +10,6 @@ const withFormValidation = WrappedComponent => {
         validations: {},
         changedFields: [],
       };
-      console.log('const');
-    }
-    componentDidMount() {
-      console.log('cdm');
     }
 
     getChildContext() {
@@ -33,9 +29,7 @@ const withFormValidation = WrappedComponent => {
         this.setState({
           formSubmitted: true,
         });
-        console.log('Form Invalid');
       } else {
-        console.log('Form Valid');
         this.props.onSubmit(e);
       }
     };

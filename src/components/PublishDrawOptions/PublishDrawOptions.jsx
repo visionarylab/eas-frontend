@@ -56,6 +56,7 @@ const PublishDrawOptions = props => {
               disablePast
               label="24h clock"
               showTodayButton
+              minDateMessage={t('past_date_not_valid')}
             />
           </MuiPickersUtilsProvider>
         )}

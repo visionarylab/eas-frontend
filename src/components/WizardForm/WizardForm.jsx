@@ -10,15 +10,24 @@ class WizardForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: 1,
-      stepValidations: props.steps.map(() => false), // eslint-disable-line react/no-unused-state
+      activeStep: 0,
+      stepValidations: props.steps.map(() => undefined),
     };
 
     this.stepRefs = props.steps.map(() => React.createRef());
   }
   onStepSubmit = e => {
-    console.log('onStepSubmit');
     this.setStep(this.state.requestedStep, e);
+  };
+
+  onValidationChange = valid => {
+    this.setState(previousState => {
+      const stepValidations = previousState.stepValidations.slice();
+      stepValidations[this.state.activeStep] = valid;
+      return {
+        stepValidations,
+      };
+    });
   };
 
   setStep = (stepIndex, e) => {
@@ -32,10 +41,6 @@ class WizardForm extends Component {
 
   handleNext = () => {
     this.requestStep(this.state.activeStep + 1);
-    // const { activeStep } = this.state;
-    // this.setState({
-    //   activeStep: activeStep + 1,
-    // });
   };
 
   handleBack = () => {
@@ -48,18 +53,6 @@ class WizardForm extends Component {
   handleReset = () => {
     this.setState({
       activeStep: 0,
-    });
-  };
-
-  onValidationChange = valid => {
-    console.log('onValidationChange', valid);
-    this.setState(previousState => {
-      const stepValidations = previousState.stepValidations.slice();
-      stepValidations[this.state.step] = valid;
-      return {
-        stepValidations,
-        // isValid: this.areAllFormsValid(stepValidations),
-      };
     });
   };
 
@@ -84,16 +77,19 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { steps } = this.props;
+    const { steps, submitButtonLabel } = this.props;
     const stepLabels = steps.map(step => step.label);
-    const { activeStep } = this.state;
+    const { activeStep, stepValidations } = this.state;
 
     return (
       <Fragment>
         <Stepper activeStep={activeStep}>
-          {stepLabels.map(label => {
+          {stepLabels.map((label, index) => {
             const props = {};
             const labelProps = {};
+            if (stepValidations[index] === false) {
+              labelProps.error = true;
+            }
             return (
               <Step key={label} {...props}>
                 <StepLabel {...labelProps}>{label}</StepLabel>
@@ -121,7 +117,7 @@ class WizardForm extends Component {
                   Back
                 </Button>
                 <Button variant="contained" color="primary" onClick={this.handleNext}>
-                  {activeStep === stepLabels.length - 1 ? 'Finish' : 'Next'}
+                  {activeStep === stepLabels.length - 1 ? submitButtonLabel : 'Next'}
                 </Button>
               </div>
             </div>
@@ -139,6 +135,7 @@ WizardForm.propTypes = {
       render: PropTypes.func.isRequired,
     }),
   ).isRequired,
+  submitButtonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

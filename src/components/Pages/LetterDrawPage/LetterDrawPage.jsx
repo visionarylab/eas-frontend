@@ -6,35 +6,40 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { translate, Trans } from 'react-i18next';
+import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import TimePicker from 'material-ui-pickers/TimePicker';
+import DatePicker from 'material-ui-pickers/DatePicker';
+import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 
-import Wizard from '../../Wizard/Wizard';
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
 
 const ValidatedForm = withFormValidation();
 
-const LetterDrawPage = props => {
-  const { values, onFieldChange, handleToss, handlePublish, t } = props;
-  const steps = [
-    {
-      label: 'Detalles generales',
-      content: <div>asd</div>,
-    },
-    {
-      label: 'Elegir participantes',
-      content: <div>asd</div>,
-    },
-    {
-      label: 'Cuándo se realizara el sorteo?',
-      content: <div>asd</div>,
-    },
-  ];
-  return (
-    <Page htmlTitle={t('raffle_html_title')}>
-      <Wizard steps={steps} />
-    </Page>
-  );
-};
+class LetterDrawPage extends React.Component {
+  state = {
+    selectedDate: new Date(),
+  };
+
+  handleDateChange = date => {
+    this.setState({ selectedDate: date });
+  };
+
+  render() {
+    const { selectedDate } = this.state;
+
+    return (
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <DatePicker value={selectedDate} onChange={this.handleDateChange} />
+
+        <TimePicker value={selectedDate} onChange={this.handleDateChange} />
+
+        <DateTimePicker value={selectedDate} onChange={this.handleDateChange} />
+      </MuiPickersUtilsProvider>
+    );
+  }
+}
 
 LetterDrawPage.propTypes = {
   values: PropTypes.shape({

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 
-import RaffleForm from './RaffleForm';
+import RafflePage from './RafflePage';
 import ApiClient from '../../../services/api/EASApi';
 
 const { RaffleApi, Raffle } = ApiClient;
 const raffleApi = new RaffleApi();
 
-class RaffleFormContainer extends Component {
+class RafflePageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,7 +66,7 @@ class RaffleFormContainer extends Component {
 
   render() {
     return (
-      <RaffleForm
+      <RafflePage
         values={this.state.values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -75,8 +75,8 @@ class RaffleFormContainer extends Component {
   }
 }
 
-RaffleFormContainer.propTypes = {
+RafflePageContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default withRouter(RaffleFormContainer);
+export default withRouter(RafflePageContainer);

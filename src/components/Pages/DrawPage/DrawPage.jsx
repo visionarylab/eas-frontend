@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import PublishedRandomNumberPageContainer from '../../Pages/RandomNumber/PublishedRandomNumberPageContainer';
-import RafflePage from '../../Pages/RafflePage/RafflePage';
+import RafflePageContainer from '../../Pages/RafflePage/RafflePageContainer';
 import PublishedRafflePageContainer from '../../Pages/RafflePage/PublishedRafflePageContainer';
 import RandomNumberPageContainer from '../../Pages/RandomNumber/RandomNumberPageContainer';
 import FacebookLoginRafflePageContainer from '../../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer';
@@ -16,7 +16,7 @@ import STYLES from './DrawPage.scss';
 const DrawPage = () => (
   <div className={STYLES.DrawPage}>
     <Route exact path="/number" component={RandomNumberPageContainer} />
-    <Route exact path="/raffle" component={props => <RafflePage {...props} />} />
+    <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
     <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
     <Route exact path="/facebook_login" component={FacebookLoginRafflePageContainer} />
     <Route exact path="/letter" component={LetterDrawPageContainer} />

@@ -56,7 +56,8 @@
   "PublishDrawOptions": {
     "manual_toss": "Publicar el sorteo sin resultados",
     "schedule_toss": "Progamar el sorteo para una fecha determinada",
-    "show_now": "Mostrar ahora"
+    "show_now": "Mostrar ahora",
+    "past_date_not_valid": "Debes elegir una fecha en el futuro"
   },
   "PublishedFacebookLoginRafflePage": {
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
