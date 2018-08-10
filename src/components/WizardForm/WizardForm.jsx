@@ -4,7 +4,11 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { translate } from 'react-i18next';
+import classnames from 'classnames/bind';
+import STYLES from './WizardForm.scss';
+
+const c = classnames.bind(STYLES);
 
 class WizardForm extends Component {
   constructor(props) {
@@ -77,7 +81,7 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { steps, submitButtonLabel } = this.props;
+    const { steps, submitButtonLabel, t } = this.props;
     const stepLabels = steps.map(step => step.label);
     const { activeStep, stepValidations } = this.state;
 
@@ -98,30 +102,30 @@ class WizardForm extends Component {
           })}
         </Stepper>
         <div>
-          {activeStep === stepLabels.length ? (
-            <div>
-              <Typography>All steps completed - you&quot;re finished</Typography>
-              <Button onClick={this.handleReset}>Reset</Button>
-            </div>
-          ) : (
-            <div>
-              <Typography component="div">
-                {steps[activeStep].render({
-                  ref: this.stepRefs[this.state.activeStep],
-                  onValidationChange: this.onValidationChange,
-                  onSubmit: this.onStepSubmit,
-                })}
-              </Typography>
-              <div>
-                <Button disabled={activeStep === 0} onClick={this.handleBack}>
-                  Back
-                </Button>
-                <Button variant="contained" color="primary" onClick={this.handleNext}>
-                  {activeStep === stepLabels.length - 1 ? submitButtonLabel : 'Next'}
-                </Button>
-              </div>
-            </div>
-          )}
+          <div>
+            {steps[activeStep].render({
+              ref: this.stepRefs[this.state.activeStep],
+              onValidationChange: this.onValidationChange,
+              onSubmit: this.onStepSubmit,
+            })}
+          </div>
+          <div className={c('WizardForm__buttons-row')}>
+            <Button
+              className={c('WizardForm__step-button')}
+              disabled={activeStep === 0}
+              onClick={this.handleBack}
+            >
+              {t('back')}
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={c('WizardForm__step-button')}
+              onClick={this.handleNext}
+            >
+              {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
+            </Button>
+          </div>
         </div>
       </Fragment>
     );
@@ -137,6 +141,7 @@ WizardForm.propTypes = {
   ).isRequired,
   submitButtonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default WizardForm;
+export default translate('WizardForm')(WizardForm);

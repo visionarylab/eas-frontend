@@ -126,5 +126,9 @@
     "cancel": "Cancelar",
     "ok": "Ok",
     "today": "Hoy"
+  },
+  "WizardForm": {
+    "next": "Siguiente",
+    "back": "Atrás"
   }
 }
