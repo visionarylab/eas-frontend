@@ -3,9 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**createdAt** | **Date** |  | [optional] 
-**scheduleDate** | **Date** |  | [optional] 
-**value** | **[Number]** |  | [optional] 
+**value** | **Number** |  | [optional] 
 
 

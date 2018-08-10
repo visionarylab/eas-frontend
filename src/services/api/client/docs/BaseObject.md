@@ -1,9 +1,9 @@
-# EchaloasuerteApi.RaffleResultParticipant
+# EchaloasuerteApi.BaseObject
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
+**createdAt** | **Date** |  | [optional] 
 
 

@@ -58,6 +58,16 @@
         done();
       });
     });
+    describe('raffleParticipantsAdd', function() {
+      it('should call raffleParticipantsAdd successfully', function(done) {
+        //uncomment below and update the code to test raffleParticipantsAdd
+        //instance.raffleParticipantsAdd(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('raffleRead', function() {
       it('should call raffleRead successfully', function(done) {
         //uncomment below and update the code to test raffleRead

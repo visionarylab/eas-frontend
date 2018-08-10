@@ -9,7 +9,7 @@ import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import Page from '../../Page/Page';
 import likeIcon from './like.jpg';
 import facebookIcon from './facebook.png';
-import raffleIcon from './raffle.png';
+import raffleIcon from './raffle.svg';
 
 import STYLES from './RafflesSectionPage.scss';
 

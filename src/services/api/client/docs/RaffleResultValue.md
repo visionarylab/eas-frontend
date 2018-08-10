@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**participant** | [**RaffleResultParticipant**](RaffleResultParticipant.md) |  | [optional] 
-**prize** | [**RaffleResultPrize**](RaffleResultPrize.md) |  | [optional] 
+**participant** | [**BaseObject**](BaseObject.md) |  | [optional] 
+**prize** | [**BaseObject**](BaseObject.md) |  | [optional] 
 
 

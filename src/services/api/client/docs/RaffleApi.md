@@ -1,17 +1,18 @@
 # EchaloasuerteApi.RaffleApi
 
-All URIs are relative to *https://localhost/api*
+All URIs are relative to *http://127.0.0.1:8000/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**raffleCreate**](RaffleApi.md#raffleCreate) | **POST** /raffle/ | 
+[**raffleParticipantsAdd**](RaffleApi.md#raffleParticipantsAdd) | **POST** /raffle/{id}/participants/ | 
 [**raffleRead**](RaffleApi.md#raffleRead) | **GET** /raffle/{id}/ | 
 [**raffleToss**](RaffleApi.md#raffleToss) | **POST** /raffle/{id}/toss/ | 
 
 
 <a name="raffleCreate"></a>
 # **raffleCreate**
-> Raffle raffleCreate(data)
+> Raffle raffleCreate(raffle)
 
 
 
@@ -20,10 +21,8 @@ Method | HTTP request | Description
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
-
-let data = new EchaloasuerteApi.Raffle(); // Raffle | 
-
-apiInstance.raffleCreate(data).then((data) => {
+let raffle = new EchaloasuerteApi.Raffle(); // Raffle | 
+apiInstance.raffleCreate(raffle).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -35,7 +34,7 @@ apiInstance.raffleCreate(data).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Raffle**](Raffle.md)|  | 
+ **raffle** | [**Raffle**](Raffle.md)|  | 
 
 ### Return type
 
@@ -50,6 +49,47 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="raffleParticipantsAdd"></a>
+# **raffleParticipantsAdd**
+> raffleParticipantsAdd(id, participant)
+
+
+
+### Example
+```javascript
+import EchaloasuerteApi from 'echaloasuerte-api';
+
+let apiInstance = new EchaloasuerteApi.RaffleApi();
+let id = "id_example"; // String | 
+let participant = new EchaloasuerteApi.Participant(); // Participant | 
+apiInstance.raffleParticipantsAdd(id, participant).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | 
+ **participant** | [**Participant**](Participant.md)|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
 <a name="raffleRead"></a>
 # **raffleRead**
 > Raffle raffleRead(id)
@@ -61,9 +101,7 @@ No authorization required
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
-
 let id = "id_example"; // String | 
-
 apiInstance.raffleRead(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -88,12 +126,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="raffleToss"></a>
 # **raffleToss**
-> RaffleResult raffleToss(id, data)
+> RaffleResult raffleToss(id, drawTossPayload)
 
 
 
@@ -102,12 +140,9 @@ No authorization required
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RaffleApi();
-
 let id = "id_example"; // String | 
-
-let data = new EchaloasuerteApi.DrawTossPayload(); // DrawTossPayload | 
-
-apiInstance.raffleToss(id, data).then((data) => {
+let drawTossPayload = new EchaloasuerteApi.DrawTossPayload(); // DrawTossPayload | 
+apiInstance.raffleToss(id, drawTossPayload).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -120,7 +155,7 @@ apiInstance.raffleToss(id, data).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
- **data** | [**DrawTossPayload**](DrawTossPayload.md)|  | 
+ **drawTossPayload** | [**DrawTossPayload**](DrawTossPayload.md)|  | 
 
 ### Return type
 

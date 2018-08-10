@@ -1,6 +1,6 @@
 # EchaloasuerteApi.RandomNumberApi
 
-All URIs are relative to *https://localhost/api*
+All URIs are relative to *http://127.0.0.1:8000/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="randomNumberCreate"></a>
 # **randomNumberCreate**
-> RandomNumber randomNumberCreate(data)
+> RandomNumber randomNumberCreate(randomNumber)
 
 
 
@@ -20,10 +20,8 @@ Method | HTTP request | Description
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RandomNumberApi();
-
-let data = new EchaloasuerteApi.RandomNumber(); // RandomNumber | 
-
-apiInstance.randomNumberCreate(data).then((data) => {
+let randomNumber = new EchaloasuerteApi.RandomNumber(); // RandomNumber | 
+apiInstance.randomNumberCreate(randomNumber).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -35,7 +33,7 @@ apiInstance.randomNumberCreate(data).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**RandomNumber**](RandomNumber.md)|  | 
+ **randomNumber** | [**RandomNumber**](RandomNumber.md)|  | 
 
 ### Return type
 
@@ -61,9 +59,7 @@ No authorization required
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RandomNumberApi();
-
 let id = "id_example"; // String | 
-
 apiInstance.randomNumberRead(id).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
@@ -88,12 +84,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="randomNumberToss"></a>
 # **randomNumberToss**
-> RandomNumberResult randomNumberToss(id, data)
+> RandomNumberResult randomNumberToss(id, drawTossPayload)
 
 
 
@@ -102,12 +98,9 @@ No authorization required
 import EchaloasuerteApi from 'echaloasuerte-api';
 
 let apiInstance = new EchaloasuerteApi.RandomNumberApi();
-
 let id = "id_example"; // String | 
-
-let data = new EchaloasuerteApi.DrawTossPayload(); // DrawTossPayload | 
-
-apiInstance.randomNumberToss(id, data).then((data) => {
+let drawTossPayload = new EchaloasuerteApi.DrawTossPayload(); // DrawTossPayload | 
+apiInstance.randomNumberToss(id, drawTossPayload).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -120,7 +113,7 @@ apiInstance.randomNumberToss(id, data).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
- **data** | [**DrawTossPayload**](DrawTossPayload.md)|  | 
+ **drawTossPayload** | [**DrawTossPayload**](DrawTossPayload.md)|  | 
 
 ### Return type
 

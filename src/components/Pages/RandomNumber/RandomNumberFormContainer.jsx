@@ -39,6 +39,7 @@ class RandomNumberFormContainer extends Component {
   };
 
   createDraw = async () => {
+    console.log('create');
     const {
       title,
       description,
@@ -75,7 +76,9 @@ class RandomNumberFormContainer extends Component {
     }
     let readDrawResponse;
     try {
+      console.log('1');
       await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
+      console.log('2');
       readDrawResponse = await randomNumberApi.randomNumberRead(this.state.drawPrivateId);
       this.props.onToss(readDrawResponse.results[0].value);
     } catch (err) {
