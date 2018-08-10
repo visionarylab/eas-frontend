@@ -11,6 +11,7 @@ import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsPr
 import TimePicker from 'material-ui-pickers/TimePicker';
 import DatePicker from 'material-ui-pickers/DatePicker';
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
@@ -30,7 +31,7 @@ class LetterDrawPage extends React.Component {
     const { selectedDate } = this.state;
 
     return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
         <DatePicker value={selectedDate} onChange={this.handleDateChange} />
 
         <TimePicker value={selectedDate} onChange={this.handleDateChange} />

@@ -20,7 +20,7 @@ class PublishedRafflePageContainer extends Component {
       isOwner: false,
       values: {
         whenToToss: 'schedule',
-        dateScheduled: 'Sun Jul 22 2018 21:17:22 GMT+0200 (Central European Summer Time)',
+        dateScheduled: Date(),
       },
     };
   }

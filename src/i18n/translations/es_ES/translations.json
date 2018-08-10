@@ -120,5 +120,11 @@
   },
   "TranslationsSwitch": {
     "change_language": "Cambiar idioma"
+  },
+  "DateTimePicker": {
+    "only_future_date_valid": "Tienes que elegir una fecha en el futuro",
+    "cancel": "Cancelar",
+    "ok": "Ok",
+    "today": "Hoy"
   }
 }

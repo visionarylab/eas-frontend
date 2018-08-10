@@ -5,9 +5,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
-import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+import DateTimePicker from '../DateTimePicker/DateTimePicker';
 
 const PublishDrawOptions = props => {
   const { whenToToss, options, dateScheduled, onFieldChange, t } = props;
@@ -45,7 +45,7 @@ const PublishDrawOptions = props => {
         </RadioGroup>
 
         {whenToToss === 'schedule' && (
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
             <DateTimePicker
               value={dateScheduled}
               onChange={datetime => {
