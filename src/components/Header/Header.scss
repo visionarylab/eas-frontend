@@ -1,21 +1,26 @@
 @import '../variables';
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One');
 
+@import '../variables';
+
 .Header {
-  padding: .3rem 1rem;
-  display: inline-block;
-  font-family: 'Fredoka One', cursive;
+  padding: $spacing-xs $spacing-lg;
   background-color: $color-primary;
 
+  & &__title {
+    display: inline;
+    vertical-align:middle;
+    margin-left: $spacing-xs;
+  }
+
   &__link {
-    color: white;
     text-decoration: none;
+  }
+  &__link:visited {
+    color: white;
   }
   &__logo {
     height: 2rem;
-    display: inline-block;
     vertical-align: middle;
-    fill: #618833;
-
   }
 }
