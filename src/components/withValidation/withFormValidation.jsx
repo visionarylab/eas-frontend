@@ -47,7 +47,8 @@ const withFormValidation = WrappedComponent => {
     registerValidatedField(name, valid, value) {
       this.updateFieldValidationState(name, valid);
 
-      if (value) {
+      const isEmptyAtRegister = (Array.isArray(value) && !value.length) || value === '';
+      if (!isEmptyAtRegister) {
         this.updateFieldChangedState(name);
       } else if (this.state.changedFields.indexOf(name) !== -1) {
         const changedFields = this.state.changedFields.slice();
@@ -117,8 +118,6 @@ const withFormValidation = WrappedComponent => {
 
     render() {
       const { onSubmit, onFieldDeregister, onValidationChange, ...props } = this.props;
-      // Note we're passing onFieldChange to the child component. You then need to manually wire up the change event.
-      // For example <WithFieldValidationInput onChange={prop.onFieldChange} />
       return <WrappedComponent {...props} onSubmit={this.onSubmit} />;
     }
   }

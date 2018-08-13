@@ -47,7 +47,7 @@ const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) =
           <SectionPanel title={t('when_to_toss')}>
             <PublishDrawOptions
               whenToToss={values.whenToToss}
-              options={['manual', 'schedule']}
+              options={['now', 'schedule']}
               dateScheduled={values.dateScheduled}
               onFieldChange={onFieldChange}
             />

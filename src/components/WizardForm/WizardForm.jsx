@@ -16,6 +16,7 @@ class WizardForm extends Component {
     this.state = {
       activeStep: 0,
       stepValidations: props.steps.map(() => undefined),
+      submittedSteps: props.steps.map(() => false),
     };
 
     this.stepRefs = props.steps.map(() => React.createRef());
@@ -83,15 +84,14 @@ class WizardForm extends Component {
   render() {
     const { steps, submitButtonLabel, t } = this.props;
     const stepLabels = steps.map(step => step.label);
-    const { activeStep, stepValidations } = this.state;
-
+    const { activeStep, stepValidations, submittedSteps } = this.state;
     return (
       <Fragment>
         <Stepper activeStep={activeStep}>
           {stepLabels.map((label, index) => {
             const props = {};
             const labelProps = {};
-            if (stepValidations[index] === false) {
+            if (submittedSteps[index] && !stepValidations[index]) {
               labelProps.error = true;
             }
             return (

@@ -9,11 +9,12 @@ import STYLES from './WinnersList.scss';
 const { RaffleResultPrize, RaffleResultParticipant } = ApiClient;
 const c = classNames.bind(STYLES);
 
-const WinnersList = ({ winners }) => (
-  <div className={c('WinnersList')}>
-    {winners.map((winner, i) => <WinnerChip key={`winner-${i}`} {...winner} />)}
-  </div>
-);
+const WinnersList = ({ winners }) =>
+  console.log('b', winners) || (
+    <div className={c('WinnersList')}>
+      {winners.map((winner, i) => <WinnerChip key={`winner-${i}`} {...winner} />)}
+    </div>
+  );
 
 WinnersList.propTypes = {
   winners: PropTypes.arrayOf(
