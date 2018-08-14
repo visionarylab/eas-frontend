@@ -19,7 +19,7 @@ class PublishedRafflePageContainer extends Component {
       result: null,
       isOwner: false,
       values: {
-        whenToToss: 'schedule',
+        whenToToss: 'now',
         dateScheduled: Date(),
       },
     };
@@ -71,6 +71,7 @@ class PublishedRafflePageContainer extends Component {
         result = lastToss;
       }
     }
+    console.log('resultt', result);
     this.setState({
       title,
       description,

@@ -24,6 +24,7 @@ const withFormValidation = WrappedComponent => {
     }
 
     onSubmit = e => {
+      console.log('onSubmit');
       if (!this.isFormValid()) {
         e.preventDefault();
         this.setState({
@@ -86,8 +87,8 @@ const withFormValidation = WrappedComponent => {
     }
 
     isFieldValid(name) {
-      const { changedFields, validations } = this.state;
-      return changedFields.includes(name) ? validations[name] : undefined;
+      const { changedFields, validations, formSubmitted } = this.state;
+      return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;
     }
 
     triggerValidationChange() {

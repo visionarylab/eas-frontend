@@ -81,7 +81,6 @@ WithResults.propTypes = {
 
 const PublishedRafflePage = props => {
   const { title, result } = props;
-  console.log('resultssss', result);
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
