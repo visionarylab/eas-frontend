@@ -25,7 +25,7 @@ class MultiValueDisplay extends Component {
           {values.length ? (
             values.map(value => (
               <Chip
-                key={value}
+                key={Math.random()}
                 label={value}
                 onDelete={allowDelete ? this.onValueDelete(value) : null}
                 data-component={'MultiValueDisplay__chip'}
