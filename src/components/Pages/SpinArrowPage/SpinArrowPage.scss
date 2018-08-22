@@ -1,0 +1,31 @@
+@import '../../variables';
+
+.SpinArrowPage {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    align-items: center;
+    
+    &__container {
+        flex:1;
+        display: flex;
+    }
+
+    &__button {
+        background-color: Transparent;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+    }
+
+    &__arrow {
+        height: auto;
+        max-height: 50vh;
+        width: auto;
+        max-width: 100%;
+        transition: all 3s cubic-bezier(0.2, 0.1, 0.25, 1);
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 
 import PublishedRandomNumberPageContainer from '../../Pages/RandomNumber/PublishedRandomNumberPageContainer';
@@ -10,21 +10,22 @@ import PublishedFacebookLoginRafflePageContainer from '../../Pages/FacebookLogin
 import FacebookPhotoRafflePageContainer from '../../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer';
 import PublishedFacebookPhotoRafflePageContainer from '../../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer';
 import LetterDrawPageContainer from '../../Pages/LetterDrawPage/LetterDrawPageContainer';
-
-import STYLES from './DrawPage.scss';
+import SpinArrowPageContainer from '../../Pages/SpinArrowPage/SpinArrowPageContainer';
 
 const DrawPage = () => (
-  <div className={STYLES.DrawPage}>
+  <Fragment>
     <Route exact path="/number" component={RandomNumberPageContainer} />
     <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
     <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
     <Route exact path="/facebook_login" component={FacebookLoginRafflePageContainer} />
     <Route exact path="/letter" component={LetterDrawPageContainer} />
+    <Route exact path="/arrow" component={SpinArrowPageContainer} />
+
     <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
     <Route path="/number/:drawId" component={PublishedRandomNumberPageContainer} />
     <Route path="/facebook_login/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
     <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
-  </div>
+  </Fragment>
 );
 
 export default DrawPage;

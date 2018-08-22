@@ -9,6 +9,7 @@ import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import Page from '../../Page/Page';
 import rafflesIcon from './raffles.svg';
 import randomNumber from './random_number.png';
+import arrowIcon from './arrow.svg';
 import randomLetter from './random_letter.png';
 
 import STYLES from './HomePage.scss';
@@ -17,7 +18,6 @@ const c = classNames.bind(STYLES);
 
 const HomePage = ({ t }) => (
   <Page htmlTitle={'Échalo A Suerte'} className={c('HomePage')}>
-    {/* <TransparentPanel className={c('HomePage__container')}> */}
     <Typography variant="display1">Sorteos online</Typography>
     <div className={c('HomePage__draw-chips-list')}>
       <DrawCard icon={rafflesIcon} href="/raffles">
@@ -33,7 +33,12 @@ const HomePage = ({ t }) => (
         {t('random_letter_title')}
       </DrawCard>
     </div>
-    {/* </TransparentPanel> */}
+    <Typography variant="display1">Otros</Typography>
+    <div className={c('HomePage__draw-chips-list')}>
+      <DrawCard icon={arrowIcon} href="/arrow">
+        {t('arrow_title')}
+      </DrawCard>
+    </div>
   </Page>
 );
 

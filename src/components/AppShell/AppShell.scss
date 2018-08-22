@@ -5,16 +5,10 @@
 
   &__content {
     flex: 1;
+    display: flex;
   }
 }
 
-/* stylelint-disable-next-line selector-max-type */
 body {
   margin: 0;
-  background-color: white; 
-  // background-image: url(./background_image.jpg);
-  // background-repeat: no-repeat;
-  // background-position: center center;
-  // background-size: cover;
-  // background-attachment: fixed;
 }
