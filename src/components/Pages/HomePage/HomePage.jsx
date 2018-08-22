@@ -36,7 +36,7 @@ const HomePage = ({ t }) => (
     <Typography variant="display1">Otros</Typography>
     <div className={c('HomePage__draw-chips-list')}>
       <DrawCard icon={arrowIcon} href="/arrow">
-        {t('arrow_title')}
+        {t('spin_arrow_title')}
       </DrawCard>
     </div>
   </Page>

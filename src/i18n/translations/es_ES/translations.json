@@ -22,7 +22,8 @@
     "raffle_title": "Realizar Sorteo",
     "random_letter_title": "Generar letras aleatorias",
     "random_number_title": "Generar números aleatorios",
-    "raffle_section_title": "Seccion de sorteos"
+    "raffle_section_title": "Seccion de sorteos",
+    "spin_arrow_title": "Girar una flecha"
   },
   "LetterDrawPage": {
     "draw_configuration": "Configuración de la tirada",

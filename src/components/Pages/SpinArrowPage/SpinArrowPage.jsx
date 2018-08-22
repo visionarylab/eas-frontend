@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Page from '../../Page/Page';
 import STYLES from './SpinArrowPage.scss';
 import ArrowImage from './arrow.svg';
-import anotherIcon from '../../Pages/HomePage/random_letter.png';
 
 const c = classnames.bind(STYLES);
 

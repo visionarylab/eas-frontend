@@ -11,8 +11,8 @@ class ArrowPageContainer extends Component {
   }
 
   handleToss = () => {
-    const angle = 100;
-    const randomInitialSpin = Math.floor(Math.random() * 10 + 5) * 360;
+    const angle = Math.floor(Math.random() * 360);
+    const randomInitialSpin = Math.floor(Math.random() * 5 + 8) * 360;
     this.setState(previousState => {
       const currentAngle = previousState.angle;
       const degreesUntilZero = 360 - (currentAngle % 360);
