@@ -7,6 +7,7 @@ import DrawPage, { urls } from '../Pages/DrawPage/DrawPage';
 import Header from '../Header/Header';
 import RafflesSectionPage from '../Pages/RafflesSectionPage/RafflesSectionPage';
 import Footer from '../Footer/Footer';
+import Typographies from '../Pages/Typographies/Typographies';
 import STYLES from './AppShell.scss';
 
 const c = className => STYLES[className];
@@ -18,6 +19,7 @@ const AppShell = () => (
       <Switch>
         <Route exact path="/" component={props => <HomePage {...props} />} />
         <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/typography" component={Typographies} />
         <Route exact path="/raffles" component={RafflesSectionPage} />
         <Route path={urls} component={props => <DrawPage {...props} />} />
         <Route render={() => <div>Not found</div>} />
