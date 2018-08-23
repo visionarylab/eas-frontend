@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import Helmet from 'react-helmet';
 import withGoogleAnalyticsTracker from '../withGoogleAnalyticsTracker/withGoogleAnalyticsTracker';
 
+import config from '../../config/config';
 import STYLES from './Page.scss';
 
 const c = classNames.bind(STYLES);
@@ -12,7 +13,7 @@ const Page = props => (
   <Fragment>
     <Helmet>
       <title>{props.htmlTitle}</title>
-      {props.noIndex && <meta name="robots" content="noindex" />}
+      {(config.noIndexAllPages || props.noIndex) && <meta name="robots" content="noindex" />}
     </Helmet>
     <div className={c('Page', props.className)}>{props.children}</div>
   </Fragment>
