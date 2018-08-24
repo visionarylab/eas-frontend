@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage';
-import ApiClient from '../../../services/api/EASApi';
+// import ApiClient from '../../../services/api/EASApi';
 import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
-const { DrawApi } = ApiClient;
+// const { DrawApi } = ApiClient;
 
 class PublishedFacebookLoginRafflePageContainer extends Component {
   constructor(props) {
@@ -26,8 +26,15 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     this.loadData();
   }
 
-  async loadData() {
-    const drawId = this.props.match.params.drawId;
+  onRegisterInRaffle = () => {
+    // Call EAS API to participate
+    const { userName, userID } = this.props.facebookContext.getUserDetails();
+    console.log('Register as', userName, userID);
+    this.setState({ userRegisteredInRaffle: true });
+  };
+
+  loadData() {
+    // const drawId = this.props.match.params.drawId;
 
     // const draw = await drawApi.getRandomNumber(drawId);
     const draw = {
@@ -41,13 +48,6 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
       ...draw,
     });
   }
-
-  onRegisterInRaffle = () => {
-    // Call EAS API to participate
-    const { userName, userID } = this.props.facebookContext.getUserDetails();
-    console.log('Register as', userName, userID);
-    this.setState({ userRegisteredInRaffle: true });
-  };
 
   render() {
     const {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames/bind';
 
 import Chip from './../../DrawCard/DrawCard';

@@ -4,7 +4,7 @@ import white from '@material-ui/core/colors/red';
 // Example of theme creation
 // https://github.com/mui-org/material-ui/issues/1915#issuecomment-310849153
 
-let theme = createMuiTheme({
+const themeBase = createMuiTheme({
   typography: {
     fontFamily:
       '"Montserrat", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif',
@@ -51,58 +51,58 @@ let theme = createMuiTheme({
 const fontFamilySecondary =
   '"Fredoka One", -apple-system, BlinkMacSystemFont, "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif';
 const fontHeader = {
-  color: theme.palette.primary.main,
+  color: themeBase.palette.primary.main,
   fontFamily: fontFamilySecondary,
 };
 
-theme = {
-  ...theme,
+const theme = {
+  ...themeBase,
   typography: {
-    ...theme.typography,
+    ...themeBase.typography,
     fontFamilySecondary,
     display4: {
-      ...theme.typography.display4,
+      ...themeBase.typography.display4,
       ...fontHeader,
       color: white,
       lineHeight: 1,
       fontSize: 20,
     },
     display3: {
-      ...theme.typography.display3,
+      ...themeBase.typography.display3,
       ...fontHeader,
       fontSize: 48,
     },
     display2: {
-      ...theme.typography.display2,
+      ...themeBase.typography.display2,
       ...fontHeader,
       fontSize: 42,
     },
     display1: {
-      ...theme.typography.display1,
+      ...themeBase.typography.display1,
       ...fontHeader,
       // fontSize: 36,
     },
     headline: {
-      ...theme.typography.headline,
+      ...themeBase.typography.headline,
       fontSize: 20,
-      fontWeight: theme.typography.fontWeightLight,
+      fontWeight: themeBase.typography.fontWeightLight,
     },
     title: {
-      ...theme.typography.title,
+      ...themeBase.typography.title,
       ...fontHeader,
       fontSize: 18,
     },
     subheading: {
-      ...theme.typography.subheading,
+      ...themeBase.typography.subheading,
       fontSize: 18,
     },
     body2: {
-      ...theme.typography.body2,
-      fontWeight: theme.typography.fontWeightRegular,
+      ...themeBase.typography.body2,
+      fontWeight: themeBase.typography.fontWeightRegular,
       fontSize: 16,
     },
     body1: {
-      ...theme.typography.body1,
+      ...themeBase.typography.body1,
       fontSize: 14,
     },
   },

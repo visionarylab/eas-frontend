@@ -19,7 +19,7 @@ class PublishedFacebookPhotoRafflePageContainer extends Component {
   }
 
   async loadData() {
-    const drawId = this.props.match.params.drawId;
+    // const drawId = this.props.match.params.drawId;
 
     // const draw = await drawApi.getRandomNumber(drawId);
     const draw = {

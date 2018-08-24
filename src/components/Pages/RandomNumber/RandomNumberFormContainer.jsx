@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import ApiClient from '../../../services/api/EASApi';
-
 import RandomNumberForm from './RandomNumberForm';
 
 const { RandomNumberApi, RandomNumber } = ApiClient;
@@ -101,6 +102,9 @@ class RandomNumberFormContainer extends Component {
   }
 }
 
-RandomNumberFormContainer.propTypes = {};
+RandomNumberFormContainer.propTypes = {
+  isPublic: PropTypes.bool.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+};
 
 export default withRouter(RandomNumberFormContainer);

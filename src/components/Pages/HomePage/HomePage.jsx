@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 
 import DrawCard from './../../DrawCard/DrawCard';
-import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import Page from '../../Page/Page';
 import rafflesIcon from './raffles.svg';
 import randomNumber from './random_number.png';

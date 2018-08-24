@@ -34,6 +34,13 @@ const SummaryRaffle = ({ rangeMin, rangeMax, description, t }) => (
   </Grid>
 );
 
+SummaryRaffle.propTypes = {
+  rangeMin: PropTypes.number.isRequired,
+  rangeMax: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
 const PublishedRandomNumberPage = props => {
   const { title, results, isOwner, onToss, t } = props;
   return (
@@ -59,40 +66,11 @@ const PublishedRandomNumberPage = props => {
         </DrawContent>
       </div>
     </Page>
-
-    // <Page htmlTitle={title} noIndex>
-    //   <Grid container direction={'row'} justify={'center'}>
-    //     <Grid item sm={10}>
-    //       <DrawContent title={title} footer={<SummaryRaffle {...props} />}>
-    //         {results.length ? (
-    //           <Grid container direction={'row'} justify={'center'}>
-    //             <Grid item sm={6}>
-    //               <ResultsBox title={props.t('generated_numbers')}>
-    //                 {props.results.map(result => (
-    //                   <Typography variant="display3" component={'p'}>
-    //                     {result}
-    //                   </Typography>
-    //                 ))}
-    //               </ResultsBox>
-    //             </Grid>
-    //           </Grid>
-    //         ) : (
-    //           <ResultsNotGeneratedYet />
-    //         )}
-    //       </DrawContent>
-    //     </Grid>
-    //   </Grid>
-    // </Page>
   );
 };
 
 PublishedRandomNumberPage.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
-  rangeMin: PropTypes.number,
-  rangeMax: PropTypes.number,
-  numberOfResults: PropTypes.number,
-  allowRepeated: PropTypes.bool,
   results: PropTypes.arrayOf(PropTypes.object),
   isOwner: PropTypes.bool,
   onToss: PropTypes.func,
@@ -101,11 +79,6 @@ PublishedRandomNumberPage.propTypes = {
 
 PublishedRandomNumberPage.defaultProps = {
   title: '',
-  description: '',
-  rangeMin: null,
-  rangeMax: null,
-  numberOfResults: null,
-  allowRepeated: null,
   results: [],
   isOwner: false,
   onToss: () => {},
