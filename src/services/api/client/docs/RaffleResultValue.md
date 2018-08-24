@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**participant** | [**BaseObject**](BaseObject.md) |  | [optional] 
-**prize** | [**BaseObject**](BaseObject.md) |  | [optional] 
+**participant** | [**Participant**](Participant.md) |  | [optional] 
+**prize** | [**Prize**](Prize.md) |  | [optional] 
 
 

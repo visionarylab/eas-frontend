@@ -12,7 +12,8 @@
  */
 
 import ApiClient from '../ApiClient';
-import BaseObject from './BaseObject';
+import Participant from './Participant';
+import Prize from './Prize';
 
 /**
  * The RaffleResultValue model module.
@@ -49,10 +50,10 @@ class RaffleResultValue {
             obj = obj || new RaffleResultValue();
 
             if (data.hasOwnProperty('participant')) {
-                obj['participant'] = ApiClient.convertToType(data['participant'], BaseObject);
+                obj['participant'] = Participant.constructFromObject(data['participant']);
             }
             if (data.hasOwnProperty('prize')) {
-                obj['prize'] = ApiClient.convertToType(data['prize'], BaseObject);
+                obj['prize'] = Prize.constructFromObject(data['prize']);
             }
         }
         return obj;
@@ -62,12 +63,12 @@ class RaffleResultValue {
 }
 
 /**
- * @member {module:model/BaseObject} participant
+ * @member {module:model/Participant} participant
  */
 RaffleResultValue.prototype['participant'] = undefined;
 
 /**
- * @member {module:model/BaseObject} prize
+ * @member {module:model/Prize} prize
  */
 RaffleResultValue.prototype['prize'] = undefined;
 

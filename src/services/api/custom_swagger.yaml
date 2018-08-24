@@ -727,7 +727,9 @@ components:
           properties:
             value:
               nullable: true
-              type: integer
+              type: array
+              items:
+                type: integer
     LetterResult:
       allOf:
         - $ref: '#/components/schemas/BaseResult'
@@ -737,10 +739,7 @@ components:
               nullable: true
               type: array
               items:
-                type: array
-                nullable: true
-                items:
-                  type: string
+                type: string
     SpinnerResult:
       allOf:
         - $ref: '#/components/schemas/BaseResult'

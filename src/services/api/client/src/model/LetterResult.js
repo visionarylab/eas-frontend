@@ -53,7 +53,7 @@ class LetterResult {
             BaseResult.constructFromObject(data, obj);
 
             if (data.hasOwnProperty('value')) {
-                obj['value'] = ApiClient.convertToType(data['value'], [['String']]);
+                obj['value'] = ApiClient.convertToType(data['value'], ['String']);
             }
         }
         return obj;
@@ -63,7 +63,7 @@ class LetterResult {
 }
 
 /**
- * @member {Array.<Array.<String>>} value
+ * @member {Array.<String>} value
  */
 LetterResult.prototype['value'] = undefined;
 

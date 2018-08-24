@@ -53,7 +53,7 @@ class RandomNumberResult {
             BaseResult.constructFromObject(data, obj);
 
             if (data.hasOwnProperty('value')) {
-                obj['value'] = ApiClient.convertToType(data['value'], 'Number');
+                obj['value'] = ApiClient.convertToType(data['value'], ['Number']);
             }
         }
         return obj;
@@ -63,7 +63,7 @@ class RandomNumberResult {
 }
 
 /**
- * @member {Number} value
+ * @member {Array.<Number>} value
  */
 RandomNumberResult.prototype['value'] = undefined;
 
