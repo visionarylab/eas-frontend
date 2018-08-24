@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm lint
+  - npm test
+on:
+  branch: [master, development]
