@@ -4,23 +4,6 @@ import white from '@material-ui/core/colors/red';
 // Example of theme creation
 // https://github.com/mui-org/material-ui/issues/1915#issuecomment-310849153
 
-const primary = {
-  // custom
-};
-
-const accent = {
-  // custom
-};
-
-const palette = {
-  primary: {
-    main: '#4caf50', // green
-  },
-  secondary: {
-    main: '#f44336', // red
-  },
-};
-
 let theme = createMuiTheme({
   typography: {
     fontFamily:

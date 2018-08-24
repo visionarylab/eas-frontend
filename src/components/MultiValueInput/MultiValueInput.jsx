@@ -37,7 +37,6 @@ class MultiValueInput extends Component {
   };
 
   addValues = newValues => {
-    console.log('addValues', newValues);
     const { value: values } = this.props;
     this.props.onChange(values.concat(newValues));
     this.setState({ currentValue: '' });

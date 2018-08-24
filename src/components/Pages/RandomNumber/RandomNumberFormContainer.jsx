@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import ApiClient from '../../../services/api/EASApi';
@@ -39,15 +38,7 @@ class RandomNumberFormContainer extends Component {
   };
 
   createDraw = async () => {
-    console.log('create');
-    const {
-      title,
-      description,
-      rangeMin,
-      rangeMax,
-      numberOfResults,
-      allowRepeated,
-    } = this.state.values;
+    const { title, description, rangeMin, rangeMax } = this.state.values;
     const randomNumberDraw = RandomNumber.constructFromObject({
       title,
       description,
@@ -76,9 +67,7 @@ class RandomNumberFormContainer extends Component {
     }
     let readDrawResponse;
     try {
-      console.log('1');
       await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
-      console.log('2');
       readDrawResponse = await randomNumberApi.randomNumberRead(this.state.drawPrivateId);
       this.props.onToss(readDrawResponse.results[0].value);
     } catch (err) {

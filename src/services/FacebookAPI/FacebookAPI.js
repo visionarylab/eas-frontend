@@ -1,5 +1,5 @@
 const DEBUG = false;
-const log = message => DEBUG && console.log(message);
+const log = message => DEBUG && console.log(message); // eslint-disable-line no-console
 /**
  * Set up the FB SDK
  * @param {function} onStatusChange - Login/logout callback.
@@ -38,7 +38,7 @@ export const apiCall = async (endpoint, accessToken = null) =>
     log(`Facebook API call: ${endpoint} (Access Token: ${accessToken}`);
     const response = await new Promise(callback => {
       const options = accessToken ? { access_token: accessToken } : {};
-      FB.api(endpoint, options, callback);
+      FB.api(endpoint, options, callback); // eslint-disable-line no-undef
     });
     log('Response:', response);
     if (response && !response.error) {

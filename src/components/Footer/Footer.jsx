@@ -12,7 +12,6 @@ const Footer = () => (
   <footer className={c('Footer')}>
     <TranslationsSwitch
       onChange={l => {
-        console.log('locale', l);
         i18n.changeLanguage(l);
       }}
       available={availableLocales}

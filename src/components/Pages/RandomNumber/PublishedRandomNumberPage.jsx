@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,6 @@ import classNames from 'classnames/bind';
 import Page from '../../Page/Page';
 import DrawContent from '../../DrawContent/DrawContent';
 import ResultsBox from '../../ResultsBox/ResultsBox';
-import ResultsNotGeneratedYet from '../../ResultsNotGeneratedYet/ResultsNotGeneratedYet';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import STYLES from './PublishedRandomNumberPage.scss';

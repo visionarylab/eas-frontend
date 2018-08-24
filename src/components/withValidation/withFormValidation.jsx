@@ -24,7 +24,6 @@ const withFormValidation = WrappedComponent => {
     }
 
     onSubmit = e => {
-      console.log('onSubmit');
       if (!this.isFormValid()) {
         e.preventDefault();
         this.setState({

@@ -8,12 +8,10 @@ describe('Raffle', () => {
       cy.getComponent('MultiValueDisplay').within(() => {
         cy.get('[data-component="MultiValueDisplay__chip"]:contains("David")');
         cy.get('[data-component="MultiValueDisplay__chip"]:contains("Mario")');
-        cy
-          .get('[data-component="MultiValueDisplay__chip"]:contains("Cristina")')
+        cy.get('[data-component="MultiValueDisplay__chip"]:contains("Cristina")')
           .find('svg')
           .click();
-        cy
-          .getComponent('MultiValueDisplay__chip')
+        cy.getComponent('MultiValueDisplay__chip')
           .contains('Cristina')
           .should('not.exist');
       });

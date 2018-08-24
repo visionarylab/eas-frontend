@@ -33,4 +33,4 @@ yarn-error.log*
 src/i18n/translations/.i18n-editor-metadata
 
 # Unnecessary stuff from the SDK
-/src/services/api/client/test
+/src/services/api/client
