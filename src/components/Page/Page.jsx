@@ -1,29 +1,43 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import classNames from 'classnames/bind';
 import Helmet from 'react-helmet';
-import withGoogleAnalyticsTracker from '../withGoogleAnalyticsTracker/withGoogleAnalyticsTracker';
+import ReactGA from 'react-ga';
+import { withRouter } from 'react-router';
 
 import config from '../../config/config';
 import STYLES from './Page.scss';
 
 const c = classNames.bind(STYLES);
 
-const Page = props => (
-  <Fragment>
-    <Helmet>
-      <title>{props.htmlTitle}</title>
-      {(config.noIndexAllPages || props.noIndex) && <meta name="robots" content="noindex" />}
-    </Helmet>
-    <div className={c('Page', props.className)}>{props.children}</div>
-  </Fragment>
-);
+class Page extends Component {
+  constructor(props) {
+    super(props);
+
+    const page = props.location.pathname;
+    ReactGA.pageview(page);
+  }
+  render() {
+    const { htmlTitle, noIndex, className, children } = this.props;
+    return (
+      <Fragment>
+        <Helmet>
+          <title>{htmlTitle}</title>
+          {(config.noIndexAllPages || noIndex) && <meta name="robots" content="noindex" />}
+        </Helmet>
+        <div className={c('Page', className)}>{children}</div>
+      </Fragment>
+    );
+  }
+}
 
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
 Page.defaultProps = {
@@ -31,4 +45,4 @@ Page.defaultProps = {
   noIndex: false,
 };
 
-export default withGoogleAnalyticsTracker(Page);
+export default withRouter(Page);
