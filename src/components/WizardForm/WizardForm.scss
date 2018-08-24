@@ -1,10 +1,11 @@
 @import '../variables';
 
 .WizardForm {
-    &__buttons-row {
-        text-align: center;
-    }
-    &__buttons-row &__step-button {
-        margin: $spacing-md;
-    }
+  &__buttons-row {
+    text-align: center;
+  }
+
+  &__buttons-row &__step-button {
+    margin: $spacing-md;
+  }
 }

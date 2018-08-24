@@ -1,8 +1,8 @@
 @import '../variables';
 
 .TranslationsSwitch {
-    & &__label {
-        display: inline-block;
-        margin-right: $spacing-xs;
-    }
+  & &__label {
+    display: inline-block;
+    margin-right: $spacing-xs;
+  }
 }

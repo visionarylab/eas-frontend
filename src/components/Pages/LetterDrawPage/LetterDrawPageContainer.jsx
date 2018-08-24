@@ -36,20 +36,20 @@ class LetterDrawPageContainer extends Component {
     }));
   };
 
-  async createDraw() {
-    // const { title, description, numberOfLetters } = this.state.values;
-    // const randomNumberDraw = RandomNumber.constructFromObject({
-    //   title,
-    //   description,
-    //   numberOfLetters,
-    // });
-    // try {
-    //   return await drawApi.createRandomNumber(randomNumberDraw);
-    // } catch (err) {
-    //   alert(err);
-    //   return null;
-    // }
-  }
+  // async createDraw() {
+  // const { title, description, numberOfLetters } = this.state.values;
+  // const randomNumberDraw = RandomNumber.constructFromObject({
+  //   title,
+  //   description,
+  //   numberOfLetters,
+  // });
+  // try {
+  //   return await drawApi.createRandomNumber(randomNumberDraw);
+  // } catch (err) {
+  //   alert(err);
+  //   return null;
+  // }
+  // }
 
   async handleToss() {
     // if (!this.state.drawId) {
@@ -87,7 +87,6 @@ class LetterDrawPageContainer extends Component {
   }
 
   render() {
-    console.log('valuessss', this.state.values);
     return (
       <LetterDrawPage
         values={this.state.values}

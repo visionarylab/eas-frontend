@@ -1,5 +1,5 @@
 $published-results-background-color: white;
-$summary-panel-background-color: rgba(0, 0, 0, 0.09);
+$summary-panel-background-color: rgba(0, 0, 0, .09);
 $border-radius: .2rem;
 $spacing-md: 1.125rem;
 $spacing-lg: 1.875rem;
@@ -18,10 +18,10 @@ $spacing-lg: 1.875rem;
   &__trumpet-icon {
     height: 2rem;
     // display: inline-block;
-  
-  &--flipped {
-    transform: scaleX(-1);
-    filter: FlipH;
-  }
+
+    &--flipped {
+      transform: scaleX(-1);
+      filter: FlipH;
+    }
   }
 }

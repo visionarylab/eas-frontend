@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage';
 // import ApiClient from '../../../services/api/EASApi';
@@ -80,7 +79,6 @@ PublishedFacebookLoginRafflePageContainer.propTypes = {
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
   }).isRequired,
-  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default withFacebookSDK(PublishedFacebookLoginRafflePageContainer);

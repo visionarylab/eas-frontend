@@ -6,22 +6,17 @@ import WinnerChip from '../WinnerChip/WinnerChip';
 import ApiClient from '../../services/api/EASApi';
 import STYLES from './WinnersList.scss';
 
-const { RaffleResultPrize, RaffleResultParticipant } = ApiClient;
+const { RaffleResultValue } = ApiClient;
 const c = classNames.bind(STYLES);
 
 const WinnersList = ({ winners }) => (
   <div className={c('WinnersList')}>
-    {winners.map((winner, i) => <WinnerChip key={`winner-${i}`} prize={winner} {...winner} />)}
+    {winners.map(winner => <WinnerChip key={winner.prize.id} prize={winner} {...winner} />)}
   </div>
 );
 
 WinnersList.propTypes = {
-  winners: PropTypes.arrayOf(
-    PropTypes.shape({
-      prize: PropTypes.instanceOf(RaffleResultPrize).isRequired,
-      participant: PropTypes.instanceOf(RaffleResultParticipant).isRequired,
-    }),
-  ).isRequired,
+  winners: PropTypes.arrayOf(RaffleResultValue).isRequired,
 };
 
 export default WinnersList;

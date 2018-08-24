@@ -12,9 +12,10 @@ import ResultsBox from '../../ResultsBox/ResultsBox';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-
 import STYLES from './PublishedRafflePage.scss';
+import ApiClient from '../../../services/api/EASApi';
 
+const { RaffleResult } = ApiClient;
 const c = classNames.bind(STYLES);
 
 const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
@@ -34,6 +35,13 @@ const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
     </div>
   </div>
 );
+
+SummaryRaffle.propTypes = {
+  participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+  numberOfWinners: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
+};
 
 const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) => (
   <Fragment>
@@ -60,9 +68,14 @@ const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) =
 );
 
 WithoutResults.propTypes = {
-  prizes: PropTypes.arrayOf(PropTypes.string),
+  values: PropTypes.shape({
+    whenToToss: PropTypes.string.isRequired,
+    dateScheduled: PropTypes.instanceOf(Date).isRequired,
+  }).isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   isOwner: PropTypes.bool.isRequired,
   onToss: PropTypes.func.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
@@ -75,12 +88,13 @@ const WithResults = ({ result, t }) => (
 );
 
 WithResults.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.instanceOf(RaffleResult).isRequired,
   t: PropTypes.func.isRequired,
 };
 
 const PublishedRafflePage = props => {
   const { title, result } = props;
+  console.log('props', props);
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
@@ -98,7 +112,7 @@ const PublishedRafflePage = props => {
 
 PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
-  // result: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.arrayOf(PropTypes.object),
 };
 
 PublishedRafflePage.defaultProps = {

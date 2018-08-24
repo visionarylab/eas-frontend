@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 
 import PublishedFacebookPhotoRafflePage from './PublishedFacebookPhotoRafflePage';
 
@@ -53,8 +52,6 @@ class PublishedFacebookPhotoRafflePageContainer extends Component {
   }
 }
 
-PublishedFacebookPhotoRafflePageContainer.propTypes = {
-  match: ReactRouterPropTypes.match.isRequired,
-};
+PublishedFacebookPhotoRafflePageContainer.propTypes = {};
 
 export default PublishedFacebookPhotoRafflePageContainer;

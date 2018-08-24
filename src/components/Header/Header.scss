@@ -1,7 +1,4 @@
 @import '../variables';
-@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
-
-@import '../variables';
 
 .Header {
   padding: $spacing-xs $spacing-lg;
@@ -9,16 +6,18 @@
 
   & &__title {
     display: inline;
-    vertical-align:middle;
     margin-left: $spacing-xs;
+    vertical-align: middle;
   }
 
   &__link {
     text-decoration: none;
   }
+
   &__link:visited {
-    color: white;
+    color: $color-white;
   }
+
   &__logo {
     height: 2rem;
     vertical-align: middle;

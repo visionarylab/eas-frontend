@@ -1,31 +1,31 @@
 @import '../../variables';
 
 .SpinArrowPage {
+  display: flex;
+  padding-right: 10%;
+  padding-left: 10%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__container {
     display: flex;
-    flex-direction: column;
-    padding-left: 10%;
-    padding-right: 10%;
-    text-align: center;
-    align-items: center;
-    
-    &__container {
-        flex:1;
-        display: flex;
-    }
+    flex: 1;
+  }
 
-    &__button {
-        background-color: Transparent;
-        border: none;
-        cursor:pointer;
-        overflow: hidden;
-        outline:none;
-    }
+  &__button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    overflow: hidden;
+  }
 
-    &__arrow {
-        height: auto;
-        max-height: 50vh;
-        width: auto;
-        max-width: 100%;
-        transition: all 3s cubic-bezier(0.18, 0.27, 0.34, 1);
-    }
+  &__arrow {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 50vh;
+    transition: all 3s cubic-bezier(.18, .27, .34, 1);
+  }
 }
