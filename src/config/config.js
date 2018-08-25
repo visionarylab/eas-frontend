@@ -1,9 +1,10 @@
-// import config from './local';
+let config = {};
+try {
+  const environment = process.env.REACT_APP_ENV;
+  console.log(`Loading application config for environment: ${environment}`);
+  config = Object.assign({}, { environment }, require(`./${environment}`));  // eslint-disable-line
+} catch (e) {
+  console.log('No application config could be found.', e);
+}
 
-const environment = process.env.NODE_ENV;
-
-const config = require(`./${environment}`).default; // eslint-disable-line import/no-dynamic-require
-
-config.environment = process.env.NODE_ENV;
-
-export default config;
+module.exports = config;

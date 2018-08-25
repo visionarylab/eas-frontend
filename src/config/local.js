@@ -1,8 +1,8 @@
 const config = {
   noIndexAllPages: true,
   googleAnalyticsID: 'UA-62791775-3',
-  enableGoogleAnalytics: true,
-  enableSentry: true,
+  enableGoogleAnalytics: false,
+  enableSentry: false,
 };
 
 export default config;
