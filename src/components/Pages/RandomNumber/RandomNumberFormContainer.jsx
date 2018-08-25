@@ -42,13 +42,6 @@ class RandomNumberFormContainer extends Component {
     const randomNumberDraw = RandomNumber.constructFromObject({
       title,
       description,
-      metadata: [
-        {
-          client: 'string',
-          key: 'string',
-          value: 'string',
-        },
-      ],
       range_min: rangeMin,
       range_max: rangeMax,
     });

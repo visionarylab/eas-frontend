@@ -12,6 +12,7 @@ import withFieldValidation from '../../withValidation/withFieldValidation';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import WizardForm from '../../WizardForm/WizardForm';
+import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 
 const c = classnames.bind(STYLES);
 
@@ -69,16 +70,36 @@ PrizesSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
+const WhenToTossSection = ({ dateScheduled, onFieldChange, t }) => (
+  <SectionPanel title={t('when_to_toss')}>
+    <PublishDrawOptions
+      options={['now', 'schedule']}
+      dateScheduled={dateScheduled}
+      onFieldChange={onFieldChange}
+    />
+  </SectionPanel>
+);
+WhenToTossSection.propTypes = {
+  dateScheduled: PropTypes.instanceOf(Date),
+  onFieldChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
+WhenToTossSection.defaultProps = {
+  dateScheduled: null,
+};
+
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const ParticipantsForm = withFormValidation(ParticipantsSection);
 const PrizesForm = withFormValidation(PrizesSection);
+const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const RafflePage = props => {
   const { values, onFieldChange, handlePublish, t } = props;
 
   const steps = [
     {
-      label: 'Detalles generales',
+      label: t('step_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
           title={values.title}
@@ -90,7 +111,7 @@ const RafflePage = props => {
       ),
     },
     {
-      label: 'Elegir participantes',
+      label: t('step_participants'),
       render: wizardProps => (
         <ParticipantsForm
           participants={values.participants}
@@ -101,11 +122,22 @@ const RafflePage = props => {
       ),
     },
     {
-      label: 'Cuándo se realizara el sorteo?',
+      label: t('step_prizes'),
       render: wizardProps => (
         <PrizesForm
           numberOfWinners={values.numberOfWinners}
           prizes={values.prizes}
+          onFieldChange={onFieldChange}
+          t={t}
+          {...wizardProps}
+        />
+      ),
+    },
+    {
+      label: t('step_when_to_toss'),
+      render: wizardProps => (
+        <WhenToTossForm
+          dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}
           {...wizardProps}
@@ -119,7 +151,12 @@ const RafflePage = props => {
       <Typography color="primary" variant="display1">
         {t('raffle_default_title')}
       </Typography>
-      <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_raffle')} />
+      <WizardForm
+        steps={steps}
+        initialStep={3}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_raffle')}
+      />
     </Page>
   );
 };
@@ -132,6 +169,7 @@ RafflePage.propTypes = {
     prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
     numberOfWinners: PropTypes.number.isRequired,
     winners: PropTypes.arrayOf(PropTypes.string).isRequired,
+    dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,

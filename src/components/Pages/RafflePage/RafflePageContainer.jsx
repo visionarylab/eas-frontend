@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
-import { RaffleApi, Raffle } from 'echaloasuerte-js-sdk';
+import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
+import moment from 'moment';
 
 import RafflePage from './RafflePage';
 
@@ -13,13 +14,13 @@ class RafflePageContainer extends Component {
     this.state = {
       privateId: null,
       values: {
-        title: '',
-        description: '',
-        participants: [],
-        prizes: [],
+        title: 'title',
+        description: 'desc',
+        participants: ['as'],
+        prizes: ['bb'],
         numberOfWinners: 1,
         winners: [],
-        dateScheduled: null,
+        dateScheduled: new Date('2019-01-01T00:00:00.000Z'),
       },
     };
   }
@@ -40,13 +41,6 @@ class RafflePageContainer extends Component {
     const randomNumberDraw = Raffle.constructFromObject({
       title,
       description,
-      metadata: [
-        {
-          client: 'string',
-          key: 'string',
-          value: 'string',
-        },
-      ],
       participants: participants.map(participant => ({ name: participant })),
       prizes: prizes.map(prize => ({ name: prize })),
     });
@@ -60,6 +54,9 @@ class RafflePageContainer extends Component {
 
   handlePublish = async () => {
     const draw = await this.createDraw();
+    const { dateScheduled } = this.state.values;
+    const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
+    await raffleApi.raffleToss(draw.private_id, drawTossPayload);
     this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   };
 

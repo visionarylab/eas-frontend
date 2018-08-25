@@ -10,9 +10,8 @@ import DrawContent from '../../DrawContent/DrawContent';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview';
 import WinnersList from '../../WinnersList/WinnersList';
 import ResultsBox from '../../ResultsBox/ResultsBox';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
-import SectionPanel from '../../SectionPanel/SectionPanel';
+import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
+
 import STYLES from './PublishedRafflePage.scss';
 
 const c = classNames.bind(STYLES);
@@ -42,50 +41,13 @@ SummaryRaffle.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) => (
-  <Fragment>
-    <div className={c('PublishedRafflePage__results-box')}>
-      <PrizesOverview prizes={prizes} />
-    </div>
-    <div>
-      {/* <BannerAlert title={t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} /> */}
-      {isOwner && (
-        <Fragment>
-          <SectionPanel title={t('when_to_toss')}>
-            <PublishDrawOptions
-              whenToToss={values.whenToToss}
-              options={['now', 'schedule']}
-              dateScheduled={values.dateScheduled}
-              onFieldChange={onFieldChange}
-            />
-          </SectionPanel>
-          <SubmitButton label={t('generate_resuts')} onClick={onToss} />
-        </Fragment>
-      )}
-    </div>
-  </Fragment>
+const WithResults = ({ result, t }) => (
+  <div className={c('PublishedRafflePage__results')}>
+    <ResultsBox title={t('winners')}>
+      <WinnersList winners={result.value} />
+    </ResultsBox>
+  </div>
 );
-
-WithoutResults.propTypes = {
-  values: PropTypes.shape({
-    whenToToss: PropTypes.string.isRequired,
-    dateScheduled: PropTypes.string.isRequired,
-  }).isRequired,
-  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isOwner: PropTypes.bool.isRequired,
-  onToss: PropTypes.func.isRequired,
-  onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-};
-
-const WithResults = ({ result, t }) =>
-  console.log('result', result) || (
-    <div className={c('PublishedRafflePage__results')}>
-      <ResultsBox title={t('winners')}>
-        <WinnersList winners={result.value} />
-      </ResultsBox>
-    </div>
-  );
 
 WithResults.propTypes = {
   result: PropTypes.instanceOf(RaffleResult).isRequired,
@@ -93,7 +55,7 @@ WithResults.propTypes = {
 };
 
 const PublishedRafflePage = props => {
-  const { title, result } = props;
+  const { title, prizes, result, t } = props;
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
@@ -101,7 +63,13 @@ const PublishedRafflePage = props => {
           {result && result.value && result.value.length ? (
             <WithResults {...props} />
           ) : (
-            <WithoutResults {...props} />
+            <Fragment>
+              <PrizesOverview prizes={prizes} />
+              <BannerAlert
+                title={t('results_generated_on', { date: 'result.scheduleDate' })}
+                type={ALERT_TYPES.NEUTRAL}
+              />
+            </Fragment>
           )}
         </DrawContent>
       </div>
@@ -111,7 +79,9 @@ const PublishedRafflePage = props => {
 
 PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   result: PropTypes.instanceOf(RaffleResult),
+  t: PropTypes.func.isRequired,
 };
 
 PublishedRafflePage.defaultProps = {

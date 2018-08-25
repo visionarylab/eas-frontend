@@ -9,14 +9,14 @@ import moment from 'moment';
 import 'moment/locale/es';
 import i18n from '../../i18n/i18n';
 
-const DateTimePicker = ({ t, ...rest }) => {
+const DateTimePicker = ({ t, ...props }) => {
+  const { tReady, ...rest } = props; // eslint-disable-line react/prop-types
   const locale = i18n.language;
 
   const localeMap = {
     'en-GB': 'en',
     'es-ES': 'es',
   };
-
   moment.locale(localeMap[locale]);
 
   return (

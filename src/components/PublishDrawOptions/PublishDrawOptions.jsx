@@ -10,11 +10,19 @@ import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsPr
 import DateTimePicker from '../DateTimePicker/DateTimePicker';
 
 const PublishDrawOptions = props => {
-  const { whenToToss, options, dateScheduled, onFieldChange, t } = props;
+  const onWhenToTossChange = e => {
+    if (e.target.value === 'now') {
+      props.onFieldChange('dateScheduled', null);
+    } else {
+      props.onFieldChange('dateScheduled', new Date());
+    }
+  };
+  const { options, dateScheduled, onFieldChange, t } = props;
+  const whenToToss = dateScheduled ? 'schedule' : 'now';
   return (
     <div>
       <FormControl component="fieldset" required>
-        <RadioGroup value={whenToToss} onChange={e => onFieldChange('whenToToss', e.target.value)}>
+        <RadioGroup value={whenToToss} onChange={onWhenToTossChange}>
           {options.includes('now') && (
             <FormControlLabel
               value="now"
@@ -44,21 +52,19 @@ const PublishDrawOptions = props => {
           )}
         </RadioGroup>
 
-        {whenToToss === 'schedule' && (
-          <MuiPickersUtilsProvider utils={MomentUtils}>
-            <DateTimePicker
-              value={dateScheduled}
-              onChange={datetime => {
-                onFieldChange('dateScheduled', datetime);
-              }}
-              autoOk
-              // ampm={false}
-              disablePast
-              label="24h clock"
-              showTodayButton
-              minDateMessage={t('past_date_not_valid')}
-            />
-          </MuiPickersUtilsProvider>
+        {dateScheduled && (
+          <DateTimePicker
+            value={dateScheduled}
+            onChange={datetime => {
+              onFieldChange('dateScheduled', datetime);
+            }}
+            autoOk
+            // ampm={false}
+            disablePast
+            label="24h clock"
+            showTodayButton
+            minDateMessage={t('past_date_not_valid')}
+          />
         )}
       </FormControl>
     </div>
@@ -66,15 +72,14 @@ const PublishDrawOptions = props => {
 };
 
 PublishDrawOptions.propTypes = {
-  whenToToss: PropTypes.string.isRequired,
-  dateScheduled: PropTypes.string,
+  dateScheduled: PropTypes.instanceOf(Date),
   onFieldChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string),
   t: PropTypes.func.isRequired,
 };
 
 PublishDrawOptions.defaultProps = {
-  dateScheduled: '',
+  dateScheduled: null,
   options: ['now'],
 };
 

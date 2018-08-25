@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import DateTimePicker from '../../DateTimePicker/DateTimePicker';
 
 class LetterDrawPage extends React.Component {
   state = {
@@ -12,7 +15,30 @@ class LetterDrawPage extends React.Component {
   };
 
   render() {
-    return <div />;
+    return (
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        {/* <DateTimePicker
+      value={dateScheduled}
+      onChange={datetime => {
+        onFieldChange('dateScheduled', datetime);
+      }}
+      autoOk
+      // ampm={false}
+      disablePast
+      label="24h clock"
+      showTodayButton
+      minDateMessage={t('past_date_not_valid')}
+    /> */}
+        <DateTimePicker
+          autoOk
+          ampm={false}
+          disableFuture
+          value={new Date('2018-01-01T00:00:00.000Z')}
+          onChange={this.handleDateChange}
+          label="24h clock"
+        />
+      </MuiPickersUtilsProvider>
+    );
   }
 }
 

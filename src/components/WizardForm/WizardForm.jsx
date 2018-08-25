@@ -14,7 +14,7 @@ class WizardForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: 0,
+      activeStep: props.initialStep,
       stepValidations: props.steps.map(() => undefined),
       submittedSteps: props.steps.map(() => false),
     };
@@ -139,9 +139,14 @@ WizardForm.propTypes = {
       render: PropTypes.func.isRequired,
     }),
   ).isRequired,
+  initialStep: PropTypes.number,
   submitButtonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+};
+
+WizardForm.defaultProps = {
+  initialStep: 0,
 };
 
 export default translate('WizardForm')(WizardForm);

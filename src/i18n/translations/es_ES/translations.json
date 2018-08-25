@@ -93,7 +93,11 @@
     "raffle_seo_description": "<0>Organiza sorteos publicos</0>",
     "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "who_will_participate": "¿Quién participará en el sorteo?",
-    "you_havent_add_any_participants": "Todavía no has añadido ningun participante"
+    "you_havent_add_any_participants": "Todavía no has añadido ningun participante",
+    "step_general_details": "Detalles generales",
+    "step_participants": "Elegir participantes",
+    "step_prizes": "Elegir premios",
+    "step_when_to_toss": "Cuándo se realizara el sorteo?"
   },
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",

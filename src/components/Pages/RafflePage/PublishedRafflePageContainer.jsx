@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { RaffleApi, DrawTossPayload } from 'echaloasuerte-js-sdk';
+import { RaffleApi } from 'echaloasuerte-js-sdk';
 import PublishedRafflePage from './PublishedRafflePage';
 
 const raffleApi = new RaffleApi();
@@ -17,44 +17,12 @@ class PublishedRafflePageContainer extends Component {
       prizes: [],
       result: null,
       isOwner: false,
-      values: {
-        whenToToss: 'now',
-        dateScheduled: Date(),
-      },
     };
   }
 
   componentDidMount() {
     this.loadData();
   }
-
-  onToss = async () => {
-    const drawId = this.props.match.params.drawId;
-    const { whenToToss, dateScheduled } = this.state.values;
-    let payload = {};
-    if (whenToToss === 'schedule') {
-      payload = DrawTossPayload.constructFromObject({
-        schedule_date: new Date(dateScheduled).toISOString(),
-      });
-    }
-    try {
-      await raffleApi.raffleToss(drawId, payload);
-      this.loadData();
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  onFieldChange = (fieldName, value) => {
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        ...{
-          [fieldName]: value,
-        },
-      },
-    }));
-  };
 
   async loadData() {
     const drawId = this.props.match.params.drawId;
@@ -89,7 +57,6 @@ class PublishedRafflePageContainer extends Component {
       prizes,
       result,
       isOwner,
-      values,
     } = this.state;
     return (
       <PublishedRafflePage
@@ -101,7 +68,6 @@ class PublishedRafflePageContainer extends Component {
         prizes={prizes}
         onToss={this.onToss}
         isOwner={isOwner}
-        values={values}
         onFieldChange={this.onFieldChange}
       />
     );
