@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { RandomNumberApi } from 'echaloasuerte-js-sdk';
 
 import PublishedRandomNumberPage from './PublishedRandomNumberPage';
-import ApiClient from '../../../services/api/EASApi';
 
-const { RandomNumberApi } = ApiClient;
 const randomNumberApi = new RandomNumberApi();
 
 class PublishedRandomNumberPageContainer extends Component {

@@ -14,6 +14,7 @@
     "backpack-react-scripts": "4.0.8",
     "classnames": "^2.2.5",
     "cypress": "^3.0.2",
+    "echaloasuerte-js-sdk": "0.0.4",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-prettier": "^2.6.0",

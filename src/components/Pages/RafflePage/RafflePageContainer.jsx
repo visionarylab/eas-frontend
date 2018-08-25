@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
+import { RaffleApi, Raffle } from 'echaloasuerte-js-sdk';
 
 import RafflePage from './RafflePage';
-import ApiClient from '../../../services/api/EASApi';
 
-const { RaffleApi, Raffle } = ApiClient;
 const raffleApi = new RaffleApi();
 
 class RafflePageContainer extends Component {

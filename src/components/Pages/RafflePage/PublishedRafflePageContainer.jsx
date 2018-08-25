@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import PublishedRaffle from './PublishedRafflePage';
-import ApiClient from '../../../services/api/EASApi';
+import { RaffleApi, DrawTossPayload } from 'echaloasuerte-js-sdk';
+import PublishedRafflePage from './PublishedRafflePage';
 
-const { RaffleApi, DrawTossPayload } = ApiClient;
 const raffleApi = new RaffleApi();
 
 class PublishedRafflePageContainer extends Component {
@@ -71,7 +70,6 @@ class PublishedRafflePageContainer extends Component {
         result = lastToss;
       }
     }
-    console.log('resultt', result);
     this.setState({
       title,
       description,
@@ -94,7 +92,7 @@ class PublishedRafflePageContainer extends Component {
       values,
     } = this.state;
     return (
-      <PublishedRaffle
+      <PublishedRafflePage
         title={title}
         description={description}
         participants={participants}

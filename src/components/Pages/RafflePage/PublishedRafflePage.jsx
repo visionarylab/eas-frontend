@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
+import { RaffleResult } from 'echaloasuerte-js-sdk';
 
 import Page from '../../Page/Page';
 import DrawContent from '../../DrawContent/DrawContent';
@@ -13,9 +14,7 @@ import SubmitButton from '../../SubmitButton/SubmitButton';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import STYLES from './PublishedRafflePage.scss';
-import ApiClient from '../../../services/api/EASApi';
 
-const { RaffleResult } = ApiClient;
 const c = classNames.bind(STYLES);
 
 const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
@@ -70,7 +69,7 @@ const WithoutResults = ({ prizes, isOwner, onToss, values, onFieldChange, t }) =
 WithoutResults.propTypes = {
   values: PropTypes.shape({
     whenToToss: PropTypes.string.isRequired,
-    dateScheduled: PropTypes.instanceOf(Date).isRequired,
+    dateScheduled: PropTypes.string.isRequired,
   }).isRequired,
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   isOwner: PropTypes.bool.isRequired,
@@ -79,13 +78,14 @@ WithoutResults.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const WithResults = ({ result, t }) => (
-  <div className={c('PublishedRafflePage__results')}>
-    <ResultsBox title={t('winners')}>
-      <WinnersList winners={result.value} />
-    </ResultsBox>
-  </div>
-);
+const WithResults = ({ result, t }) =>
+  console.log('result', result) || (
+    <div className={c('PublishedRafflePage__results')}>
+      <ResultsBox title={t('winners')}>
+        <WinnersList winners={result.value} />
+      </ResultsBox>
+    </div>
+  );
 
 WithResults.propTypes = {
   result: PropTypes.instanceOf(RaffleResult).isRequired,
@@ -94,7 +94,6 @@ WithResults.propTypes = {
 
 const PublishedRafflePage = props => {
   const { title, result } = props;
-  console.log('props', props);
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
@@ -112,7 +111,7 @@ const PublishedRafflePage = props => {
 
 PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
-  result: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.instanceOf(RaffleResult),
 };
 
 PublishedRafflePage.defaultProps = {

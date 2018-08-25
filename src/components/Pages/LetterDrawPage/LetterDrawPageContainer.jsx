@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import LetterDrawPage from './LetterDrawPage';
-import { tossLetterDraw } from '../../../services/EasAPI'; // Remove when the real API is implemented
 
 class LetterDrawPageContainer extends Component {
   constructor(props) {
@@ -65,7 +64,7 @@ class LetterDrawPageContainer extends Component {
     this.setState(previousState => ({
       values: {
         ...previousState.values,
-        results: tossLetterDraw(this.state.values.numberOfLetters),
+        results: [],
       },
     }));
   }
