@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/etcaterva/eas-frontend.svg?branch=master)](https://travis-ci.org/etcaterva/eas-frontend)
+
 EAS Frontend
 
 ## Working locally
