@@ -8,5 +8,6 @@ cache:
 script:
   - npm run lint
   - npm test
+  - npm run test:integration:ci
 on:
   branch: [master, development]

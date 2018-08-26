@@ -6,7 +6,8 @@ describe('Number Draw Page', () => {
   describe('It should be possible to generate random numbers ', function() {
     it('', function() {
       cy.visit('/number');
-      cy.getComponent('SubmitDrawButton').should('be.visible');
+      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('RandomNumber__result').should('be.visible');
     });
   });
 });

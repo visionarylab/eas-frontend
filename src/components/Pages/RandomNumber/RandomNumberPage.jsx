@@ -15,7 +15,9 @@ const RandomNumberPage = props => {
     <Page htmlTitle={t('random_number_html_title')}>
       <div className={c('RandomNumberPage__container')}>
         <RandomNumberFormContainer isPublic={isPublic} onToss={props.onToss} />
-        <div className={c('RandomNumberPage__results')}>{results}</div>
+        <div className={c('RandomNumberPage__results')} data-component={'RandomNumber__result'}>
+          {results}
+        </div>
       </div>
     </Page>
   );
