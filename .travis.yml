@@ -8,6 +8,7 @@ cache:
 script:
   - npm run lint
   - npm test
-  - npm run test:integration:ci
+  - npm start -- --silent &
+  - $(npm bin)/cypress run -- --record --parallel
 on:
   branch: [master, development]
