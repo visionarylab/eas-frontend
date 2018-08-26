@@ -1,0 +1,29 @@
+[
+  {
+    "path": "/api/random_number",
+    "method": "POST",
+    "response": {
+      "allow_repeated_results": true,
+      "created_at": "2018-08-26T00:54:09.331846Z",
+      "description": "Nice description",
+      "id": "ebdb2628-9fef-438d-9395-de1a4d7bc789",
+      "metadata": [],
+      "number_of_results": 1,
+      "private_id": "6ce5042f-f931-4a79-a716-dfadccc978d0",
+      "range_max": 10,
+      "range_min": 1,
+      "results": [],
+      "title": "Cool title",
+      "updated_at": "2018-08-26T00:54:09.331883Z"
+    }
+  },
+  {
+    "path": "/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss",
+    "method": "POST",
+    "response": {
+      "created_at": "2018-08-26T00:54:09.374848Z",
+      "schedule_date": null,
+      "value": [7]
+    }
+  }
+]

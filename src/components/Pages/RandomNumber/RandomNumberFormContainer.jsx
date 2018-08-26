@@ -58,11 +58,9 @@ class RandomNumberFormContainer extends Component {
       const draw = await this.createDraw();
       this.setState({ drawPrivateId: draw.private_id });
     }
-    let readDrawResponse;
     try {
-      await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
-      readDrawResponse = await randomNumberApi.randomNumberRead(this.state.drawPrivateId);
-      this.props.onToss(readDrawResponse.results[0].value);
+      const tossResponse = await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
+      this.props.onToss(tossResponse.value);
     } catch (err) {
       alert(err);
     }
