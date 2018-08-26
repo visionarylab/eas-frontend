@@ -54,6 +54,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
             margin="normal"
             fullWidth
             required
+            inputProps={{ 'data-component': 'RandomNumber__from-input' }}
           />
         </Grid>
         <Grid item xs={6}>
@@ -66,6 +67,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
             margin="normal"
             type="number"
             required
+            inputProps={{ 'data-component': 'RandomNumber__to-input' }}
           />
         </Grid>
       </Grid>
@@ -79,6 +81,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
           margin="normal"
           type="number"
           required
+          inputProps={{ 'data-component': 'RandomNumber__number-of-results-input' }}
         />
         {values.numberOfResults > 1 && (
           <FormGroup row>

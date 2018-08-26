@@ -3,41 +3,41 @@
 // TODO Mock GA, Facebook
 
 describe('Number Draw Page', () => {
-  describe('It should be possible to generate random numbers ', function() {
-    it('', function() {
-      cy.server();
-      cy.fixture('RandomNumber').then(json => {
-        const createRequest = json.find(
-          fixtureRequest =>
-            fixtureRequest.method === 'POST' && fixtureRequest.path === '/api/random_number',
-        );
-        const tossRequest = json.find(
-          fixtureRequest =>
-            fixtureRequest.method === 'POST' &&
-            fixtureRequest.path === '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
-        );
-        cy.route('POST', '/api/random_number', createRequest.response).as('Create');
-        cy.route(
-          'POST',
-          '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
-          tossRequest.response,
-        ).as('Toss');
+  beforeEach(() => {
+    cy.server();
+    cy.mockFixture('RandomNumber');
+  });
+
+  it('Results are shown', function() {
+    cy.visit('/number');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.mockedRequestWait('POST', '/api/random_number');
+    cy.mockedRequestWait('POST', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss');
+    cy.getComponent('RandomNumber__result').should('be.visible');
+  });
+
+  it('Request sent contains the right data', function() {
+    cy.visit('/number');
+    cy.getComponent('RandomNumber__from-input')
+      .clear()
+      .type(3);
+    cy.getComponent('RandomNumber__to-input')
+      .clear()
+      .type(100);
+    cy.getComponent('RandomNumber__number-of-results-input')
+      .clear()
+      .type(1);
+    cy.getComponent('SubmitDrawButton').click();
+
+    cy.mockedRequestWait('POST', '/api/random_number')
+      .its('requestBody')
+      .should('deep.eq', {
+        allow_repeated_results: true,
+        description: 'Nice description',
+        number_of_results: 1,
+        range_max: 100,
+        range_min: 3,
+        title: 'Cool title',
       });
-      // cy.route({
-      //   method: 'POST',
-      //   url: '/api/random_number',
-      //   status: 200,
-      //   response: {
-      //     action_id: 1,
-      //     message: 'action created',
-      //     status: 200,
-      //   },
-      // }).as('addAction');
-      cy.visit('/number');
-      cy.getComponent('SubmitDrawButton').click();
-      cy.wait('@Create');
-      cy.wait('@Toss');
-      cy.getComponent('RandomNumber__result').should('be.visible');
-    });
   });
 });
