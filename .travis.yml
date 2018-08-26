@@ -3,7 +3,8 @@ node_js:
   - "stable"
 cache:
   directories:
-    - node_modules
+    - ~/.npm
+    - ~/.cache
 script:
   - npm run lint
   - npm test
