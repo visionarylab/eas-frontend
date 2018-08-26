@@ -17,6 +17,7 @@ class PublishedRafflePageContainer extends Component {
       prizes: [],
       result: null,
       isOwner: false,
+      isLoading: true,
     };
   }
 
@@ -45,6 +46,7 @@ class PublishedRafflePageContainer extends Component {
       prizes: prizes.map(prize => prize.name),
       result,
       isOwner: Boolean(privateId),
+      isLoading: false,
     });
   }
 
@@ -57,9 +59,11 @@ class PublishedRafflePageContainer extends Component {
       prizes,
       result,
       isOwner,
+      isLoading,
     } = this.state;
     return (
       <PublishedRafflePage
+        isLoading={isLoading}
         title={title}
         description={description}
         participants={participants}

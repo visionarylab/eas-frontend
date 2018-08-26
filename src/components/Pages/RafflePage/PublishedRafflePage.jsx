@@ -11,7 +11,8 @@ import PrizesOverview from '../../PrizesOverview/PrizesOverview';
 import WinnersList from '../../WinnersList/WinnersList';
 import ResultsBox from '../../ResultsBox/ResultsBox';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
-
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
+import { getDate, getTime } from '../../../services/datetime';
 import STYLES from './PublishedRafflePage.scss';
 
 const c = classNames.bind(STYLES);
@@ -55,7 +56,11 @@ WithResults.propTypes = {
 };
 
 const PublishedRafflePage = props => {
-  const { title, prizes, result, t } = props;
+  const { isLoading, title, prizes, result, t } = props;
+  if (isLoading) {
+    return <LoadingSpinner fullpage />;
+  }
+  console.log('result', result.schedule_date);
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRafflePage__content')}>
@@ -64,11 +69,18 @@ const PublishedRafflePage = props => {
             <WithResults {...props} />
           ) : (
             <Fragment>
-              <PrizesOverview prizes={prizes} />
-              <BannerAlert
-                title={t('results_generated_on', { date: 'result.scheduleDate' })}
-                type={ALERT_TYPES.NEUTRAL}
-              />
+              <div>
+                <PrizesOverview prizes={prizes} />
+              </div>
+              <div>
+                <BannerAlert
+                  title={t('results_generated_on', {
+                    date: getDate(result.schedule_date),
+                    time: getTime(result.schedule_date),
+                  })}
+                  type={ALERT_TYPES.NEUTRAL}
+                />
+              </div>
             </Fragment>
           )}
         </DrawContent>
@@ -78,6 +90,7 @@ const PublishedRafflePage = props => {
 };
 
 PublishedRafflePage.propTypes = {
+  isLoading: PropTypes.bool,
   title: PropTypes.string.isRequired,
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   result: PropTypes.instanceOf(RaffleResult),
@@ -85,6 +98,7 @@ PublishedRafflePage.propTypes = {
 };
 
 PublishedRafflePage.defaultProps = {
+  isLoading: false,
   result: null,
 };
 

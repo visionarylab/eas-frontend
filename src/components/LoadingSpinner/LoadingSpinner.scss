@@ -1,0 +1,9 @@
+.LoadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--fullpage {
+    width: 100%;
+  }
+}

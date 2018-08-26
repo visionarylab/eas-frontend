@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
-import moment from 'moment';
 
 import RafflePage from './RafflePage';
 

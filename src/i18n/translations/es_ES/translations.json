@@ -76,7 +76,8 @@
     "number_of_winners": "Número de ganadores:",
     "raffle_details": "Detalles del sorteo",
     "results_not_generated_yet": "Los resultados del sorteo todavía no se han publicado",
-    "winners": "Ganadores"
+    "winners": "Ganadores",
+    "results_generated_on": "Los resultados seran generados el {{date}} a las {{time}}"
   },
   "PublishedRandomNumberPage": {
     "draw_details": "Detalles del sorteo",
