@@ -26,15 +26,12 @@ const SpinArrowPage = ({ angle, animate, handleToss, t }) => {
       <Typography variant="subheading">{t('click_the_arrow_to_spin_it')}</Typography>
 
       <div className={c('SpinArrowPage__container')}>
-        <button
-          className={c('SpinArrowPage__button')}
-          onClick={handleToss}
-          data-component="SpinArrow__arrow"
-        >
+        <button className={c('SpinArrowPage__button')} onClick={handleToss}>
           <img
             className={c('SpinArrowPage__arrow')}
             style={arrowCss}
             src={ArrowImage}
+            data-component="SpinArrow__arrow"
             alt="Arrow"
           />
         </button>

@@ -1,11 +1,11 @@
 /* eslint-disable func-names, prefer-arrow-callback */
 
-// TODO Mock GA, Facebook
-
 describe('Spin Arrow Page', () => {
-  it('Clicking the arrow should make it spint', function() {
+  it.only('Clicking the arrow should make it spin', function() {
     cy.visit('/arrow');
     cy.getComponent('SpinArrow__arrow').click();
-    // Check that it spins
+    cy.getComponent('SpinArrow__arrow')
+      .should('have.css', 'transform')
+      .and('contain', 'matrix');
   });
 });
