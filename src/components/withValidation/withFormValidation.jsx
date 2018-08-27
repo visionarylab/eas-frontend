@@ -17,7 +17,7 @@ const withFormValidation = WrappedComponent => {
         registerValidatedField: this.registerValidatedField.bind(this),
         deregisterValidatedField: this.deregisterValidatedField.bind(this),
         onFieldChange: this.onFieldChange.bind(this),
-        isFieldValid: this.isFieldValid.bind(this),
+        getFieldErrors: this.getFieldErrors.bind(this),
         updateFieldValidationState: this.updateFieldValidationState.bind(this),
         updateFieldChangedState: this.updateFieldChangedState.bind(this),
       };
@@ -35,13 +35,19 @@ const withFormValidation = WrappedComponent => {
     };
 
     onFieldChange = (name, valid) => {
-      this.updateFieldValidationState(name, valid);
-      this.updateFieldChangedState(name);
+      // TODO not sure why this is needed, remove if after a while doesn't cause problems
+      // this.updateFieldValidationState(name, valid);
+      // this.updateFieldChangedState(name);
     };
+
+    getFieldErrors(name) {
+      const { changedFields, validations, formSubmitted } = this.state;
+      return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;
+    }
 
     isFormValid = () => {
       const validations = Object.values(this.state.validations);
-      return validations.every(Boolean);
+      return !validations.some(Boolean);
     };
 
     registerValidatedField(name, valid, value) {
@@ -85,18 +91,12 @@ const withFormValidation = WrappedComponent => {
       );
     }
 
-    isFieldValid(name) {
-      const { changedFields, validations, formSubmitted } = this.state;
-      return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;
-    }
-
-    triggerValidationChange() {
+    triggerValidationChange = () => {
       if (this.props.onValidationChange) {
-        const validations = Object.values(this.state.validations);
-        const isValid = validations.every(Boolean);
+        const isValid = this.isFormValid();
         this.props.onValidationChange(isValid);
       }
-    }
+    };
 
     deregisterValidatedField(name) {
       this.setState(
@@ -137,7 +137,7 @@ const withFormValidation = WrappedComponent => {
     registerValidatedField: PropTypes.func,
     deregisterValidatedField: PropTypes.func,
     onFieldChange: PropTypes.func,
-    isFieldValid: PropTypes.func,
+    getFieldErrors: PropTypes.func,
     updateFieldValidationState: PropTypes.func,
     updateFieldChangedState: PropTypes.func,
   };

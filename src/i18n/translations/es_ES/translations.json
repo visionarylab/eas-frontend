@@ -118,7 +118,8 @@
     "random_number_html_title": "Generar números aleatorios",
     "random_number_seo_description": "Generar números aleatorios",
     "to": "Hasta",
-    "when_to_toss": "Cuándo quieres generar los números?"
+    "when_to_toss": "Cuándo quieres generar los números?",
+    "error_message_min_results": "Debes generar al menos 1 resultado"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",
@@ -141,5 +142,9 @@
     "spin_arrow_html_tittle": "Girar una flecha online",
     "spin_arrow_title": "Girar la flecha online",
     "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)"
+  },
+  "WithFieldValidation": {
+    "default_message_required_field": "Este campo es obligatorio",
+    "default_message_min": "Tiene que ser mayor que {{min}}"
   }
 }

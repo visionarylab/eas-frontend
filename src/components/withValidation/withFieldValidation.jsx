@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 
-const VALID_RULES = ['required', 'oneOf', 'pattern', 'min'];
-
-const validateValue = (value, validators) =>
-  Object.entries(validators).every(rule => {
-    switch (rule[0]) {
+const getErrors = (value, validators) =>
+  validators.find(validator => {
+    switch (validator.rule) {
       case 'required':
-        return Boolean(String(value).trim());
+        return !String(value).trim();
       case 'min':
-        return value >= validators.min;
-      case 'oneOf':
-        return validators.oneOf.includes(value);
-      case 'pattern':
-        return new RegExp(validators.pattern).test(String(value));
-      case 'validate':
-        return validators.validate();
+        return value < validator.value;
+      //   case 'oneOf':
+      //     return validators.oneOf.includes(value);
+      //   case 'pattern':
+      //     return new RegExp(validators.pattern).test(String(value));
+      //   case 'validate':
+      //     return validators.validate();
       default:
-        return false;
+        return true;
     }
   });
 
 const withFieldValidation = WrappedComponent => {
   class WithFieldValidation extends Component {
     componentDidMount() {
-      const valid = this.validateWithProvider(this.props.value);
-      this.context.registerValidatedField(this.props.name, valid, this.props.value);
+      const errors = getErrors(this.props.value, this.props.validators);
+      this.context.registerValidatedField(this.props.name, errors, this.props.value);
     }
 
     componentDidUpdate(prevProps) {
       if (
         prevProps.value !== this.props.value ||
-        this.validateWithProvider(this.props.value) !== this.validateWithProvider(prevProps.value)
+        this.isValid(this.props.value) !== this.isValid(prevProps.value)
       ) {
-        const valid = this.validateWithProvider(this.props.value);
-        this.context.updateFieldValidationState(this.props.name, valid);
+        const errors = getErrors(this.props.value, this.props.validators);
+        this.context.updateFieldValidationState(this.props.name, errors);
         this.context.updateFieldChangedState(this.props.name);
       }
     }
@@ -47,25 +47,42 @@ const withFieldValidation = WrappedComponent => {
       if (this.props.onChange) {
         this.props.onChange(value);
       }
-      const valid = this.validateWithProvider(value);
+      const valid = this.isValid(value);
       this.context.onFieldChange(this.props.name, valid);
     };
 
-    validateWithProvider(value) {
-      return this.isValid(value);
-    }
+    getDefaultErrorMessage = error => {
+      const { t } = this.props;
+      switch (error.rule) {
+        case 'required':
+          return t('default_message_required_field');
+        case 'min':
+          return t('default_message_min', { min: error.value });
+        default:
+          return '';
+      }
+    };
 
     isValid = value => {
-      const rules = VALID_RULES.filter(rule => this.props.validators[rule]);
-      // const rules = Object.keys()
-      console.log('value, this.props', value, this.props.validators);
-      return validateValue(value, this.props.validators);
+      const error = getErrors(value, this.props.validators);
+      return error === undefined;
     };
 
     render() {
-      const { validators, ...props } = this.props;
-      const valid = 'valid' in props ? props.valid : this.context.isFieldValid(this.props.name);
-      return <WrappedComponent {...props} error={valid === false} onChange={this.onFieldChange} />;
+      const { validators, t, ...props } = this.props;
+      const error = 'valid' in props ? props.valid : this.context.getFieldErrors(this.props.name);
+      let message;
+      if (error) {
+        message = error.message || this.getDefaultErrorMessage(error);
+      }
+      return (
+        <WrappedComponent
+          {...props}
+          error={Boolean(error)}
+          helperText={message}
+          onChange={this.onFieldChange}
+        />
+      );
     }
   }
 
@@ -79,18 +96,17 @@ const withFieldValidation = WrappedComponent => {
     name: PropTypes.string.isRequired,
     validators: PropTypes.arrayOf(
       PropTypes.shape({
-        required: PropTypes.bool,
-        pattern: PropTypes.string,
-        oneOf: PropTypes.arrayOf(PropTypes.string),
-        positiveNumber: PropTypes.bool,
-        validate: PropTypes.func,
+        rule: PropTypes.string.isRequired,
+        value: PropTypes.any.isRequired,
+        message: PropTypes.string,
       }),
     ),
+    t: PropTypes.func.isRequired,
   };
 
   WithFieldValidation.defaultProps = {
     onChange: null,
-    validators: {},
+    validators: [],
     value: '',
   };
 
@@ -98,12 +114,12 @@ const withFieldValidation = WrappedComponent => {
     registerValidatedField: PropTypes.func.isRequired,
     deregisterValidatedField: PropTypes.func.isRequired,
     onFieldChange: PropTypes.func.isRequired,
-    isFieldValid: PropTypes.func.isRequired,
+    getFieldErrors: PropTypes.func.isRequired,
     updateFieldValidationState: PropTypes.func.isRequired,
     updateFieldChangedState: PropTypes.func.isRequired,
   };
 
-  return WithFieldValidation;
+  return translate('WithFieldValidation')(WithFieldValidation);
 };
 
 export default withFieldValidation;
