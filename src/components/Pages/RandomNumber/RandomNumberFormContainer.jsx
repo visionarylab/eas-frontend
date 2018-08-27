@@ -38,12 +38,22 @@ class RandomNumberFormContainer extends Component {
   };
 
   createDraw = async () => {
-    const { title, description, rangeMin, rangeMax } = this.state.values;
+    const {
+      title,
+      description,
+      rangeMin,
+      rangeMax,
+      numberOfResults,
+      allowRepeated,
+    } = this.state.values;
+    console.log('allowRepeated', allowRepeated);
     const randomNumberDraw = RandomNumber.constructFromObject({
       title,
       description,
       range_min: rangeMin,
       range_max: rangeMax,
+      number_of_results: numberOfResults,
+      allow_repeated_results: allowRepeated,
     });
     try {
       return await randomNumberApi.randomNumberCreate(randomNumberDraw);

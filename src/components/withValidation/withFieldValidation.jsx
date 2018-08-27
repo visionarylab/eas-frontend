@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const VALID_RULES = ['required', 'oneOf', 'pattern'];
+const VALID_RULES = ['required', 'oneOf', 'pattern', 'min'];
 
-const validateValue = (rules, value, props) =>
-  rules.every(rule => {
-    switch (rule) {
+const validateValue = (value, validators) =>
+  Object.entries(validators).every(rule => {
+    switch (rule[0]) {
       case 'required':
         return Boolean(String(value).trim());
+      case 'min':
+        return value >= validators.min;
       case 'oneOf':
-        return props.oneOf.includes(value);
+        return validators.oneOf.includes(value);
       case 'pattern':
-        return new RegExp(props.pattern).test(String(value));
+        return new RegExp(validators.pattern).test(String(value));
+      case 'validate':
+        return validators.validate();
       default:
         return false;
     }
@@ -48,16 +52,18 @@ const withFieldValidation = WrappedComponent => {
     };
 
     validateWithProvider(value) {
-      return (this.props.validate || this.isValid)(value);
+      return this.isValid(value);
     }
 
     isValid = value => {
-      const rules = VALID_RULES.filter(rule => this.props[rule]);
-      return validateValue(rules, value, this.props);
+      const rules = VALID_RULES.filter(rule => this.props.validators[rule]);
+      // const rules = Object.keys()
+      console.log('value, this.props', value, this.props.validators);
+      return validateValue(value, this.props.validators);
     };
 
     render() {
-      const { required, oneOf, pattern, validate, ...props } = this.props;
+      const { validators, ...props } = this.props;
       const valid = 'valid' in props ? props.valid : this.context.isFieldValid(this.props.name);
       return <WrappedComponent {...props} error={valid === false} onChange={this.onFieldChange} />;
     }
@@ -71,19 +77,21 @@ const withFieldValidation = WrappedComponent => {
       PropTypes.arrayOf(PropTypes.string),
     ]),
     name: PropTypes.string.isRequired,
-    required: PropTypes.bool,
-    pattern: PropTypes.string,
-    oneOf: PropTypes.arrayOf(PropTypes.string),
-    validate: PropTypes.func,
+    validators: PropTypes.arrayOf(
+      PropTypes.shape({
+        required: PropTypes.bool,
+        pattern: PropTypes.string,
+        oneOf: PropTypes.arrayOf(PropTypes.string),
+        positiveNumber: PropTypes.bool,
+        validate: PropTypes.func,
+      }),
+    ),
   };
 
   WithFieldValidation.defaultProps = {
     onChange: null,
+    validators: {},
     value: '',
-    required: false,
-    oneOf: null,
-    pattern: '',
-    validate: null,
   };
 
   WithFieldValidation.contextTypes = {
