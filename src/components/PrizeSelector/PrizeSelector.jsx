@@ -60,7 +60,7 @@ class PrizeSelector extends Component {
           messageEmpty={t('no_prizes_selected')}
           value={prizes}
           onChange={prizes_ => onFieldChange('prizes', prizes_)}
-          required
+          validators={[{ rule: 'required' }]}
         />
         {/* )} */}
       </div>

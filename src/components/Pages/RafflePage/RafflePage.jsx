@@ -44,7 +44,7 @@ const ParticipantsSection = ({ participants, onFieldChange, t }) => (
       messageEmpty={t('you_havent_add_any_participants')}
       fullWidth
       inputProps={{ 'data-component': 'ParticipantsInput' }}
-      required
+      validators={[{ rule: 'required' }]}
     />
   </SectionPanel>
 );
@@ -153,7 +153,7 @@ const RafflePage = props => {
       </Typography>
       <WizardForm
         steps={steps}
-        initialStep={3}
+        // initialStep={3}
         onSubmit={handlePublish}
         submitButtonLabel={t('publish_raffle')}
       />

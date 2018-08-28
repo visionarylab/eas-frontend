@@ -8,6 +8,7 @@ const withFormValidation = WrappedComponent => {
       this.state = {
         formSubmitted: false,
         validations: {},
+        formError: 'the is an error',
         changedFields: [],
       };
     }
@@ -18,7 +19,8 @@ const withFormValidation = WrappedComponent => {
         deregisterValidatedField: this.deregisterValidatedField.bind(this),
         onFieldChange: this.onFieldChange.bind(this),
         getFieldErrors: this.getFieldErrors.bind(this),
-        updateFieldValidationState: this.updateFieldValidationState.bind(this),
+        getFormError: this.getFormError.bind(this),
+        updateErrors: this.updateErrors.bind(this),
         updateFieldChangedState: this.updateFieldChangedState.bind(this),
       };
     }
@@ -36,22 +38,29 @@ const withFormValidation = WrappedComponent => {
 
     onFieldChange = (name, valid) => {
       // TODO not sure why this is needed, remove if after a while doesn't cause problems
-      // this.updateFieldValidationState(name, valid);
+      // this.updateErrors(name, valid);
       // this.updateFieldChangedState(name);
     };
 
     getFieldErrors(name) {
       const { changedFields, validations, formSubmitted } = this.state;
-      return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;
+      // return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;  //don't rememeber why formSubmitted was needed here
+      return changedFields.includes(name) ? validations[name] : undefined;
+    }
+
+    getFormError() {
+      return this.state.formError;
     }
 
     isFormValid = () => {
       const validations = Object.values(this.state.validations);
-      return !validations.some(Boolean);
+      const fieldsValid = !validations.some(Boolean);
+      const formValid = !this.state.formError;
+      return fieldsValid && formValid;
     };
 
     registerValidatedField(name, valid, value) {
-      this.updateFieldValidationState(name, valid);
+      this.updateErrors(name, valid);
 
       const isEmptyAtRegister = (Array.isArray(value) && !value.length) || value === '';
       if (!isEmptyAtRegister) {
@@ -75,13 +84,21 @@ const withFormValidation = WrappedComponent => {
       }
     }
 
-    updateFieldValidationState(name, valid) {
+    updateErrors(name, errors) {
+      let formError;
+      console.log('name, valid', name, errors);
+      if (!errors) {
+        // Only update form errors if field is valid
+        formError = this.props.checkErrors();
+      }
+      console.log('formError', formError);
       this.setState(
         previousState => ({
+          formError,
           validations: {
             ...previousState.validations,
             ...{
-              [name]: valid,
+              [name]: errors,
             },
           },
         }),
@@ -126,11 +143,13 @@ const withFormValidation = WrappedComponent => {
     onSubmit: PropTypes.func.isRequired,
     onFieldDeregister: PropTypes.func,
     onValidationChange: PropTypes.func,
+    checkErrors: PropTypes.func,
   };
 
   WithFormValidation.defaultProps = {
     onFieldDeregister: null,
     onValidationChange: null,
+    checkErrors: () => {},
   };
 
   WithFormValidation.childContextTypes = {
@@ -138,7 +157,8 @@ const withFormValidation = WrappedComponent => {
     deregisterValidatedField: PropTypes.func,
     onFieldChange: PropTypes.func,
     getFieldErrors: PropTypes.func,
-    updateFieldValidationState: PropTypes.func,
+    getFormError: PropTypes.func,
+    updateErrors: PropTypes.func,
     updateFieldChangedState: PropTypes.func,
   };
 

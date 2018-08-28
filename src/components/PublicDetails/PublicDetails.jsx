@@ -18,7 +18,7 @@ const PublicDetails = props => (
       fullWidth
       onChange={e => props.onFieldChange('title', e.target.value)}
       inputProps={{ 'data-component': 'TitleInput' }}
-      required
+      validators={[{ rule: 'required' }]}
     />
 
     <ValidatedTextField
@@ -32,7 +32,7 @@ const PublicDetails = props => (
       margin="normal"
       onChange={e => props.onFieldChange('description', e.target.value)}
       inputProps={{ 'data-component': 'DescriptionInput' }}
-      required
+      validators={[{ rule: 'required' }]}
     />
   </Fragment>
 );

@@ -119,7 +119,8 @@
     "random_number_seo_description": "Generar números aleatorios",
     "to": "Hasta",
     "when_to_toss": "Cuándo quieres generar los números?",
-    "error_message_min_results": "Debes generar al menos 1 resultado"
+    "error_message_min_results": "Debes generar al menos 1 resultado",
+    "error_in_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",

@@ -34,7 +34,7 @@ const withFieldValidation = WrappedComponent => {
         this.isValid(this.props.value) !== this.isValid(prevProps.value)
       ) {
         const errors = getErrors(this.props.value, this.props.validators);
-        this.context.updateFieldValidationState(this.props.name, errors);
+        this.context.updateErrors(this.props.name, errors);
         this.context.updateFieldChangedState(this.props.name);
       }
     }
@@ -115,7 +115,7 @@ const withFieldValidation = WrappedComponent => {
     deregisterValidatedField: PropTypes.func.isRequired,
     onFieldChange: PropTypes.func.isRequired,
     getFieldErrors: PropTypes.func.isRequired,
-    updateFieldValidationState: PropTypes.func.isRequired,
+    updateErrors: PropTypes.func.isRequired,
     updateFieldChangedState: PropTypes.func.isRequired,
   };
 
