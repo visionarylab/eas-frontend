@@ -12,7 +12,7 @@ const ValidationFeedback = ({ error }) => {
     return null;
   }
   return (
-    <div className={c('ValidationFeedback')}>
+    <div className={c('ValidationFeedback')} data-component={'ValidationFeedback'}>
       <BannerAlert title={error} type={ALERT_TYPES.ERROR} />
     </div>
   );

@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('getComponent', component => cy.get(`[data-component="${component}"]`));
+Cypress.Commands.add('getError', () => cy.get(`[data-hasError]`));
 
 const automockFixturePath = fixtureName => `${fixtureName}`;
 

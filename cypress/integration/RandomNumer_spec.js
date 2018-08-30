@@ -40,4 +40,48 @@ describe('Number Draw Page', () => {
         title: 'Cool title',
       });
   });
+
+  describe('Invalid configurations', function() {
+    it('Should show error when any required field is empty', function() {
+      cy.visit('/number');
+      cy.getComponent('RandomNumber__from-field').within(() => {
+        cy.getComponent('RandomNumber__from-input').clear();
+        cy.getError().should('be.visible');
+        cy.getComponent('RandomNumber__from-input').type(2);
+        cy.getError().should('not.exist');
+      });
+
+      cy.getComponent('RandomNumber__to-field').within(() => {
+        cy.getComponent('RandomNumber__to-input').clear();
+        cy.getError().should('be.visible');
+        cy.getComponent('RandomNumber__to-input').type(10);
+        cy.getError().should('not.exist');
+      });
+
+      cy.getComponent('RandomNumber__number-of-results-field').within(() => {
+        cy.getComponent('RandomNumber__number-of-results-input').clear();
+        cy.getError().should('be.visible');
+        cy.getComponent('RandomNumber__number-of-results-input').type(2);
+        cy.getError().should('not.exist');
+      });
+    });
+
+    it('Should show error when range is invalid', function() {
+      cy.visit('/number');
+      cy.getComponent('RandomNumber__from-input')
+        .clear()
+        .type(12);
+      cy.getComponent('ValidationFeedback').should('be.visible');
+    });
+
+    // it.only('Should show error when range is too small', function() {
+    //   cy.visit('/number');
+    //   cy.getComponent('RandomNumber__number-of-results-input')
+    //     .clear()
+    //     .type(12);
+    //   cy.getComponent('ValidationFeedback').should('be.visible');
+    //   cy.getComponent('RandomNumber__allow-repated-input').check();
+    //   cy.getComponent('ValidationFeedback').should('not.exist');
+    // });
+  });
 });

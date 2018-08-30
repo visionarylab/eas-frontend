@@ -78,6 +78,7 @@ const withFieldValidation = WrappedComponent => {
       return (
         <WrappedComponent
           {...props}
+          FormHelperTextProps={{ 'data-hasError': true }}
           error={Boolean(error)}
           helperText={message}
           onChange={this.onFieldChange}

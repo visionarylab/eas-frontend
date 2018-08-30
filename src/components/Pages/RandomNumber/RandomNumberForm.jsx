@@ -30,8 +30,11 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
       }
     }}
     checkErrors={() => {
-      if (values.rangeMin >= values.rangeMax) {
-        return t('error_in_ranges', { min: values.rangeMin, max: values.rangeMax });
+      if (parseInt(values.rangeMin, 10) >= parseInt(values.rangeMax, 10)) {
+        return t('error_in_ranges', {
+          min: values.rangeMin,
+          max: values.rangeMax,
+        });
       } else if (
         !values.allowRepeated &&
         values.numberOfResults > values.rangeMax - values.rangeMin
@@ -66,6 +69,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
             margin="normal"
             fullWidth
             validators={[{ rule: 'required' }]}
+            data-component="RandomNumber__from-field"
             inputProps={{ 'data-component': 'RandomNumber__from-input' }}
           />
         </Grid>
@@ -79,6 +83,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
             margin="normal"
             type="number"
             validators={[{ rule: 'required' }]}
+            data-component="RandomNumber__to-field"
             inputProps={{ 'data-component': 'RandomNumber__to-input' }}
           />
         </Grid>
@@ -96,7 +101,8 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
             { rule: 'required', value: true },
             { rule: 'min', value: 1, message: t('error_message_min_results', { min: 1 }) },
           ]}
-          inputProps={{ 'data-component': 'RandomNumber__number-of-results-input', min: 1 }}
+          data-component="RandomNumber__number-of-results-field"
+          inputProps={{ 'data-component': 'RandomNumber__number-of-results-input' }}
         />
         {values.numberOfResults > 1 && (
           <FormGroup row>
@@ -105,6 +111,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
                 <Checkbox
                   checked={values.allowRepeated}
                   onChange={e => onFieldChange('allowRepeated', e.target.checked)}
+                  inputProps={{ 'data-component': 'RandomNumber__allow-repated-input' }}
                 />
               }
               label={t('allow_repeated')}
