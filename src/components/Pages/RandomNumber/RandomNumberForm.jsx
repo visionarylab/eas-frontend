@@ -18,6 +18,7 @@ import ValidationFeedback from '../../withValidation/ValidationFeedback';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 const ValidatedTextField = withFieldValidation(TextField);
+const ValidatedCheckbox = withFieldValidation(Checkbox);
 
 const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, handleToss, t }) => (
   <ValidatedForm
@@ -30,15 +31,15 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
       }
     }}
     checkErrors={() => {
-      if (parseInt(values.rangeMin, 10) >= parseInt(values.rangeMax, 10)) {
+      const rangeMin = parseInt(values.rangeMin, 10);
+      const rangeMax = parseInt(values.rangeMax, 10);
+      const numberOfResults = parseInt(values.numberOfResults, 10);
+      if (rangeMin >= rangeMax) {
         return t('error_in_ranges', {
           min: values.rangeMin,
           max: values.rangeMax,
         });
-      } else if (
-        !values.allowRepeated &&
-        values.numberOfResults > values.rangeMax - values.rangeMin
-      ) {
+      } else if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
         return t('range_not_big_enough');
       }
       return undefined;
@@ -108,7 +109,8 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
           <FormGroup row>
             <FormControlLabel
               control={
-                <Checkbox
+                <ValidatedCheckbox
+                  name="allowRepeated"
                   checked={values.allowRepeated}
                   onChange={e => onFieldChange('allowRepeated', e.target.checked)}
                   inputProps={{ 'data-component': 'RandomNumber__allow-repated-input' }}

@@ -46,7 +46,6 @@ class RandomNumberFormContainer extends Component {
       numberOfResults,
       allowRepeated,
     } = this.state.values;
-    console.log('allowRepeated', allowRepeated);
     const randomNumberDraw = RandomNumber.constructFromObject({
       title,
       description,

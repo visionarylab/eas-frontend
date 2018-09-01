@@ -25,6 +25,16 @@ const withFormValidation = WrappedComponent => {
       };
     }
 
+    componentDidUpdate = (previousProps, previousState) => {
+      // Check global form errors
+      const formError = this.props.checkErrors();
+      if (previousState.formError !== formError) {
+        this.setState({
+          formError,
+        });
+      }
+    };
+
     onSubmit = e => {
       if (!this.isFormValid()) {
         e.preventDefault();
@@ -85,13 +95,7 @@ const withFormValidation = WrappedComponent => {
     }
 
     updateErrors(name, errors) {
-      let formError;
-      console.log('name, valid', name, errors);
-      if (!errors) {
-        // Only update form errors if field is valid
-        formError = this.props.checkErrors();
-      }
-      console.log('formError', formError);
+      const formError = this.props.checkErrors();
       this.setState(
         previousState => ({
           formError,

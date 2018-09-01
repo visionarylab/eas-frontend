@@ -29,6 +29,9 @@ const withFieldValidation = WrappedComponent => {
     }
 
     componentDidUpdate(prevProps) {
+      if (this.props.name === undefined) {
+        console.log('This validated field is missing the "name" prop');
+      }
       if (
         prevProps.value !== this.props.value ||
         this.isValid(this.props.value) !== this.isValid(prevProps.value)
@@ -43,12 +46,13 @@ const withFieldValidation = WrappedComponent => {
       this.context.deregisterValidatedField(this.props.name);
     }
 
-    onFieldChange = value => {
+    onFieldChange = e => {
       if (this.props.onChange) {
-        this.props.onChange(value);
+        this.props.onChange(e);
       }
-      const valid = this.isValid(value);
-      this.context.onFieldChange(this.props.name, valid);
+      // const valid = this.isValid(value);
+      // this.context.onFieldChange(this.props.name, valid);
+      this.context.onFieldChange(this.props.name, true);
     };
 
     getDefaultErrorMessage = error => {
@@ -64,6 +68,7 @@ const withFieldValidation = WrappedComponent => {
     };
 
     isValid = value => {
+      // console.log('is valid: value', value);
       const error = getErrors(value, this.props.validators);
       return error === undefined;
     };
