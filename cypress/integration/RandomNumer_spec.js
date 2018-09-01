@@ -32,7 +32,7 @@ describe('Number Draw Page', () => {
     cy.mockedRequestWait('POST', '/api/random_number')
       .its('requestBody')
       .should('deep.eq', {
-        allow_repeated_results: true,
+        allow_repeated_results: false,
         description: 'Nice description',
         number_of_results: 1,
         range_max: 100,
