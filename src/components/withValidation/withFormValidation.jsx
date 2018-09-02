@@ -46,6 +46,7 @@ const withFormValidation = WrappedComponent => {
       }
     };
 
+    // eslint-disable-next-line no-unused-vars
     onFieldChange = (name, valid) => {
       // TODO not sure why this is needed, remove if after a while doesn't cause problems
       // this.updateErrors(name, valid);
@@ -53,7 +54,7 @@ const withFormValidation = WrappedComponent => {
     };
 
     getFieldErrors(name) {
-      const { changedFields, validations, formSubmitted } = this.state;
+      const { changedFields, validations, formSubmitted } = this.state; // eslint-disable-line no-unused-vars
       // return formSubmitted || changedFields.includes(name) ? validations[name] : undefined;  //don't rememeber why formSubmitted was needed here
       return changedFields.includes(name) ? validations[name] : undefined;
     }

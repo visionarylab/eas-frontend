@@ -29,22 +29,6 @@ Cypress.Commands.add('getError', () => cy.get(`[data-hasError]`));
 
 const automockFixturePath = fixtureName => `${fixtureName}`;
 
-Cypress.Commands.add('mockFixtures', fixture => {
-  //   cy.fixture('RandomNumber').then(json => {
-  //     const createRequest = json.find(
-  //       fixtureRequest => fixtureRequest.method === method && fixtureRequest.path === path,
-  //     );
-  //     cy.route(method, path, createRequest.response).as('Create');
-  //   });
-  cy.automockFixture('RandomNumber').then(testcaseFixtureRequests => {
-    testcaseFixtureRequests.forEach(request => {
-      cy.route(request.method, request.path, request.response || '').as(
-        `wait${request.method}${request.path}`,
-      );
-    });
-  });
-});
-
 Cypress.Commands.add('mockFixture', fixtureName => {
   cy.fixture(fixtureName).then(testcaseFixtureRequests => {
     testcaseFixtureRequests.forEach(request => {

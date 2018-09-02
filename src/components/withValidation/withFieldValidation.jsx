@@ -30,7 +30,7 @@ const withFieldValidation = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       if (this.props.name === undefined) {
-        console.log('This validated field is missing the "name" prop');
+        console.log('This validated field is missing the "name" prop'); // eslint-disable-line no-console
       }
       if (
         prevProps.value !== this.props.value ||
