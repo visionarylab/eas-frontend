@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { RandomNumberApi, RandomNumber } from 'echaloasuerte-js-sdk';
 import ReactGA from 'react-ga';
+import EASApi from '../../../services/EASApi';
+// import { RandomNumberApi, RandomNumber } from 'echaloasuerte-js-sdk';
 
 import RandomNumberForm from './RandomNumberForm';
 
-const randomNumberApi = new RandomNumberApi();
+const randomNumberApi = new EASApi.RandomNumberApi();
 
 class RandomNumberFormContainer extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class RandomNumberFormContainer extends Component {
         ...publicDetails,
       };
     }
-    const randomNumberDraw = RandomNumber.constructFromObject(drawData);
+    const randomNumberDraw = EASApi.RandomNumber.constructFromObject(drawData);
     try {
       return await randomNumberApi.randomNumberCreate(randomNumberDraw);
     } catch (err) {
