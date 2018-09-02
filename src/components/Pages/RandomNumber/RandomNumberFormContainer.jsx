@@ -48,14 +48,25 @@ class RandomNumberFormContainer extends Component {
       numberOfResults,
       allowRepeated,
     } = this.state.values;
-    const randomNumberDraw = RandomNumber.constructFromObject({
+
+    const publicDetails = {
       title,
       description,
+    };
+    let drawData = {
       range_min: rangeMin,
       range_max: rangeMax,
       number_of_results: numberOfResults,
       allow_repeated_results: allowRepeated,
-    });
+    };
+
+    if (this.props.isPublic) {
+      drawData = {
+        ...drawData,
+        ...publicDetails,
+      };
+    }
+    const randomNumberDraw = RandomNumber.constructFromObject(drawData);
     try {
       return await randomNumberApi.randomNumberCreate(randomNumberDraw);
     } catch (err) {

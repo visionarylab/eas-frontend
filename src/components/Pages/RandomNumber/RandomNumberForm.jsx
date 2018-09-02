@@ -126,7 +126,7 @@ const RandomNumberForm = ({ values, isPublic, onFieldChange, handlePublish, hand
       <SectionPanel title={t('when_to_toss')}>
         <PublishDrawOptions
           whenToToss={values.whenToToss}
-          options={['now', 'manual', 'schedule']}
+          options={['now', 'schedule']}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
         />
@@ -142,10 +142,14 @@ RandomNumberForm.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
-    numberOfWinners: PropTypes.number.isRequired,
-    winners: PropTypes.arrayOf(PropTypes.string).isRequired,
+    rangeMax: PropTypes.string.isRequired,
+    rangeMin: PropTypes.string.isRequired,
+    numberOfResults: PropTypes.string.isRequired,
+    allowRepeated: PropTypes.bool.isRequired,
+    // participants: PropTypes.arrayOf(PropTypes.string).isRequired, // --
+    // prizes: PropTypes.arrayOf(PropTypes.string).isRequired, // --
+    // numberOfWinners: PropTypes.number.isRequired,
+    // winners: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   isPublic: PropTypes.bool.isRequired,
   onFieldChange: PropTypes.func.isRequired,

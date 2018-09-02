@@ -9,7 +9,7 @@ const getErrors = (value, validators) =>
       case 'required':
         return !String(value).trim();
       case 'min':
-        return value < validator.value;
+        return value < parseInt(validator.value, 10);
       //   case 'oneOf':
       //     return validators.oneOf.includes(value);
       //   case 'pattern':
@@ -74,7 +74,7 @@ const withFieldValidation = WrappedComponent => {
     };
 
     render() {
-      const { validators, t, ...props } = this.props;
+      const { validators, t, tReady, ...props } = this.props; // eslint-disable-line react/prop-types
       const error = 'valid' in props ? props.valid : this.context.getFieldErrors(this.props.name);
       let message;
       if (error) {
@@ -83,7 +83,7 @@ const withFieldValidation = WrappedComponent => {
       return (
         <WrappedComponent
           {...props}
-          FormHelperTextProps={{ 'data-hasError': true }}
+          FormHelperTextProps={{ 'data-has-error': true }}
           error={Boolean(error)}
           helperText={message}
           onChange={this.onFieldChange}
@@ -103,7 +103,7 @@ const withFieldValidation = WrappedComponent => {
     validators: PropTypes.arrayOf(
       PropTypes.shape({
         rule: PropTypes.string.isRequired,
-        value: PropTypes.any.isRequired,
+        value: PropTypes.any,
         message: PropTypes.string,
       }),
     ),
