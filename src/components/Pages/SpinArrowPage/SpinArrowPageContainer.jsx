@@ -11,7 +11,7 @@ class ArrowPageContainer extends Component {
   }
 
   handleToss = () => {
-    ReactGA.event({ category: 'Toss', action: 'Spin Arrow', label: 'local' });
+    ReactGA.event({ category: 'Toss', action: 'Spin Arrow', label: 'Local' });
     const angle = Math.floor(Math.random() * 360);
     const randomInitialSpin = Math.floor(Math.random() * 5 + 8) * 360;
     this.setState(previousState => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { RandomNumberApi, RandomNumber } from 'echaloasuerte-js-sdk';
+import ReactGA from 'react-ga';
 
 import RandomNumberForm from './RandomNumberForm';
 
@@ -74,6 +75,7 @@ class RandomNumberFormContainer extends Component {
     }
     try {
       const tossResponse = await randomNumberApi.randomNumberToss(this.state.privateId, {});
+      ReactGA.event({ category: 'Toss', action: 'Random Number', label: 'Local' });
       this.props.onToss(tossResponse.value);
     } catch (err) {
       alert(err);
@@ -85,11 +87,11 @@ class RandomNumberFormContainer extends Component {
     if (this.state.values.whenToToss === 'now') {
       try {
         await randomNumberApi.randomNumberToss(draw.private_id, {});
+        this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
       } catch (err) {
         alert(err);
       }
     }
-    this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
   };
 
   render() {
