@@ -28,6 +28,7 @@ class RandomNumberFormContainer extends Component {
 
   onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
+      privateId: null,
       values: {
         ...previousState.values,
         ...{
@@ -63,12 +64,16 @@ class RandomNumberFormContainer extends Component {
   };
 
   handleToss = async () => {
-    if (!this.state.drawPrivateId) {
+    let privateId;
+    if (this.state.privateId) {
+      privateId = this.state.privateId;
+    } else {
       const draw = await this.createDraw();
-      this.setState({ drawPrivateId: draw.private_id });
+      privateId = draw.private_id;
+      this.setState({ privateId });
     }
     try {
-      const tossResponse = await randomNumberApi.randomNumberToss(this.state.drawPrivateId, {});
+      const tossResponse = await randomNumberApi.randomNumberToss(this.state.privateId, {});
       this.props.onToss(tossResponse.value);
     } catch (err) {
       alert(err);

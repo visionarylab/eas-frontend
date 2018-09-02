@@ -26,7 +26,7 @@ describe('Number Draw Page', () => {
       .type(100);
     cy.getComponent('RandomNumber__number-of-results-input')
       .clear()
-      .type(1);
+      .type(2);
     cy.getComponent('SubmitDrawButton').click();
 
     cy.mockedRequestWait('POST', '/api/random_number')
@@ -34,11 +34,33 @@ describe('Number Draw Page', () => {
       .should('deep.eq', {
         allow_repeated_results: false,
         description: 'Nice description',
-        number_of_results: 1,
+        number_of_results: 2,
         range_max: 100,
         range_min: 3,
         title: 'Cool title',
       });
+  });
+
+  it('Changing data after toss should create a new draw', function() {
+    cy.visit('/number');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.mockedRequestWait('POST', '/api/random_number')
+      .its('requestBody')
+      .should('contain', {
+        number_of_results: 1,
+      });
+    cy.mockedRequestWait('POST', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss');
+    cy.getComponent('RandomNumber__result').should('be.visible');
+    cy.getComponent('RandomNumber__number-of-results-input')
+      .clear()
+      .type(3);
+    cy.getComponent('SubmitDrawButton').click();
+    cy.mockedRequestWait('POST', '/api/random_number')
+      .its('requestBody')
+      .should('contain', {
+        number_of_results: 3,
+      });
+    cy.mockedRequestWait('POST', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss');
   });
 
   describe('Invalid configurations', function() {

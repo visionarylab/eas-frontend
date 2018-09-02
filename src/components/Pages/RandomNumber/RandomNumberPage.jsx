@@ -16,7 +16,7 @@ const RandomNumberPage = props => {
       <div className={c('RandomNumberPage__container')}>
         <RandomNumberFormContainer isPublic={isPublic} onToss={props.onToss} />
         <div className={c('RandomNumberPage__results')} data-component={'RandomNumber__result'}>
-          {results}
+          {results.join(', ')}
         </div>
       </div>
     </Page>
