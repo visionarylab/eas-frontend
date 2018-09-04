@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 const getErrors = (value, validators) =>
   validators.find(validator => {
+    console.log('value, validators', value, validators);
     switch (validator.rule) {
       case 'required':
         return !String(value).trim();
@@ -36,9 +37,7 @@ const withFieldValidation = WrappedComponent => {
         prevProps.value !== this.props.value ||
         this.isValid(this.props.value) !== this.isValid(prevProps.value)
       ) {
-        const errors = getErrors(this.props.value, this.props.validators);
-        this.context.updateErrors(this.props.name, errors);
-        this.context.updateFieldChangedState(this.props.name);
+        this.getAndUpdateErrors();
       }
     }
 
@@ -50,9 +49,13 @@ const withFieldValidation = WrappedComponent => {
       if (this.props.onChange) {
         this.props.onChange(e);
       }
-      // const valid = this.isValid(value);
-      // this.context.onFieldChange(this.props.name, valid);
-      this.context.onFieldChange(this.props.name, true);
+      this.getAndUpdateErrors();
+    };
+
+    getAndUpdateErrors = () => {
+      const errors = getErrors(this.props.value, this.props.validators);
+      this.context.updateErrors(this.props.name, errors);
+      this.context.updateFieldChangedState(this.props.name);
     };
 
     getDefaultErrorMessage = error => {

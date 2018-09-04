@@ -106,6 +106,22 @@ class RandomNumberFormContainer extends Component {
     }
   };
 
+  checkErrorsInConfiguration = t => {
+    const { values } = this.state;
+    const rangeMin = parseInt(values.rangeMin, 10);
+    const rangeMax = parseInt(values.rangeMax, 10);
+    const numberOfResults = parseInt(values.numberOfResults, 10);
+    if (rangeMin >= rangeMax) {
+      return t('error_in_ranges', {
+        min: values.rangeMin,
+        max: values.rangeMax,
+      });
+    } else if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
+      return t('range_not_big_enough');
+    }
+    return undefined;
+  };
+
   render() {
     return (
       <RandomNumberForm
@@ -115,6 +131,7 @@ class RandomNumberFormContainer extends Component {
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}
         handleMakeDrawPublic={this.handleMakeDrawPublic}
+        checkErrorsInConfiguration={this.checkErrorsInConfiguration}
       />
     );
   }

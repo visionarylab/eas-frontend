@@ -33,11 +33,9 @@ describe('Number Draw Page', () => {
       .its('requestBody')
       .should('deep.eq', {
         allow_repeated_results: false,
-        description: 'Nice description',
         number_of_results: 2,
         range_max: 100,
         range_min: 3,
-        title: 'Cool title',
       });
   });
 

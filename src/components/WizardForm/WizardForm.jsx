@@ -121,6 +121,7 @@ class WizardForm extends Component {
               variant="contained"
               color="primary"
               className={c('WizardForm__step-button')}
+              data-component={'WizzardForm__next-button'}
               onClick={this.handleNext}
             >
               {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}

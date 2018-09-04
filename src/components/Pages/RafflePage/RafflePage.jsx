@@ -5,30 +5,18 @@ import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import STYLES from './RafflePage.scss';
 import Page from '../../Page/Page';
-import PublicDetails from '../../PublicDetails/PublicDetails';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import WizardForm from '../../WizardForm/WizardForm';
-import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection';
 
 const c = classnames.bind(STYLES);
 
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
-
-const GeneralDetailsSection = ({ title, description, onFieldChange, t }) => (
-  <SectionPanel title={t('general_details_raffle')}>
-    <PublicDetails title={title} description={description} onFieldChange={onFieldChange} />
-  </SectionPanel>
-);
-GeneralDetailsSection.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-};
 
 const ParticipantsSection = ({ participants, onFieldChange, t }) => (
   <SectionPanel title={t('who_will_participate')}>
@@ -68,25 +56,6 @@ PrizesSection.propTypes = {
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-};
-
-const WhenToTossSection = ({ dateScheduled, onFieldChange, t }) => (
-  <SectionPanel title={t('when_to_toss')}>
-    <PublishDrawOptions
-      options={['now', 'schedule']}
-      dateScheduled={dateScheduled}
-      onFieldChange={onFieldChange}
-    />
-  </SectionPanel>
-);
-WhenToTossSection.propTypes = {
-  dateScheduled: PropTypes.instanceOf(Date),
-  onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-};
-
-WhenToTossSection.defaultProps = {
-  dateScheduled: null,
 };
 
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
