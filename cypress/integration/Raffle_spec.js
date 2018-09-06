@@ -1,6 +1,6 @@
 describe('Raffle', () => {
   describe('Creation page', () => {
-    it.only('It should be possible to create a raffle', () => {
+    it.skip('It should be possible to create a raffle', () => {
       cy.visit('/raffle');
       // cy.getComponent('TitleInput').type('Action title');
       // cy.getComponent('DescriptionInput').type('That is a cool description');

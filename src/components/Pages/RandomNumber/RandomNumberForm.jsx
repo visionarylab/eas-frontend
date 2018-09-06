@@ -90,6 +90,19 @@ const ConfigurationSection = ({ values, onFieldChange, t }) => (
   </SectionPanel>
 );
 
+ConfigurationSection.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rangeMax: PropTypes.string.isRequired,
+    rangeMin: PropTypes.string.isRequired,
+    numberOfResults: PropTypes.string.isRequired,
+    allowRepeated: PropTypes.bool.isRequired,
+  }).isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
 const LocalDraw = ({ values, handleToss, onFieldChange, checkErrorsInConfiguration, t }) => (
   <ValidatedForm
     onSubmit={e => {
@@ -102,6 +115,21 @@ const LocalDraw = ({ values, handleToss, onFieldChange, checkErrorsInConfigurati
     <SubmitButton label={t('generate_numbers')} />
   </ValidatedForm>
 );
+
+LocalDraw.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rangeMax: PropTypes.string.isRequired,
+    rangeMin: PropTypes.string.isRequired,
+    numberOfResults: PropTypes.string.isRequired,
+    allowRepeated: PropTypes.bool.isRequired,
+  }).isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  handleToss: PropTypes.func.isRequired,
+  checkErrorsInConfiguration: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
 
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const ConfigurationForm = withFormValidation(ConfigurationSection);
@@ -150,6 +178,21 @@ const PublicDraw = ({ values, handlePublish, onFieldChange, checkErrorsInConfigu
   );
 };
 
+PublicDraw.propTypes = {
+  values: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rangeMax: PropTypes.string.isRequired,
+    rangeMin: PropTypes.string.isRequired,
+    numberOfResults: PropTypes.string.isRequired,
+    allowRepeated: PropTypes.bool.isRequired,
+  }).isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  handlePublish: PropTypes.func.isRequired,
+  checkErrorsInConfiguration: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
 const RandomNumberForm = props => (
   <Fragment>
     <Typography color="primary" variant="display1">
@@ -160,19 +203,7 @@ const RandomNumberForm = props => (
 );
 
 RandomNumberForm.propTypes = {
-  values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rangeMax: PropTypes.string.isRequired,
-    rangeMin: PropTypes.string.isRequired,
-    numberOfResults: PropTypes.string.isRequired,
-    allowRepeated: PropTypes.bool.isRequired,
-  }).isRequired,
   isPublic: PropTypes.bool.isRequired,
-  onFieldChange: PropTypes.func.isRequired,
-  handleToss: PropTypes.func.isRequired,
-  handlePublish: PropTypes.func.isRequired,
-  checkErrorsInConfiguration: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 const getErrors = (value, validators) =>
   validators.find(validator => {
-    console.log('value, validators', value, validators);
     switch (validator.rule) {
       case 'required':
         return !String(value).trim();
@@ -49,7 +48,7 @@ const withFieldValidation = WrappedComponent => {
       if (this.props.onChange) {
         this.props.onChange(e);
       }
-      this.getAndUpdateErrors();
+      // this.getAndUpdateErrors();
     };
 
     getAndUpdateErrors = () => {
@@ -71,14 +70,15 @@ const withFieldValidation = WrappedComponent => {
     };
 
     isValid = value => {
-      // console.log('is valid: value', value);
+      // console.log('isValid');
       const error = getErrors(value, this.props.validators);
       return error === undefined;
     };
 
     render() {
       const { validators, t, tReady, ...props } = this.props; // eslint-disable-line react/prop-types
-      const error = 'valid' in props ? props.valid : this.context.getFieldErrors(this.props.name);
+      const error =
+        'valid' in props ? props.valid : this.context.getErrorsToRenderInField(this.props.name);
       let message;
       if (error) {
         message = error.message || this.getDefaultErrorMessage(error);
@@ -86,7 +86,7 @@ const withFieldValidation = WrappedComponent => {
       return (
         <WrappedComponent
           {...props}
-          FormHelperTextProps={{ 'data-has-error': true }}
+          FormHelperTextProps={error && { 'data-has-error': true }}
           error={Boolean(error)}
           helperText={message}
           onChange={this.onFieldChange}
@@ -123,7 +123,7 @@ const withFieldValidation = WrappedComponent => {
     registerValidatedField: PropTypes.func.isRequired,
     deregisterValidatedField: PropTypes.func.isRequired,
     onFieldChange: PropTypes.func.isRequired,
-    getFieldErrors: PropTypes.func.isRequired,
+    getErrorsToRenderInField: PropTypes.func.isRequired,
     updateErrors: PropTypes.func.isRequired,
     updateFieldChangedState: PropTypes.func.isRequired,
   };
