@@ -37,6 +37,7 @@
   },
   "scripts": {
     "start": "REACT_APP_ENV=local react-scripts start",
+    "start:test": "REACT_APP_ENV=test react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",

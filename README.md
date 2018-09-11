@@ -21,6 +21,10 @@ npm run lint
 #### Run integration tests
 
 ```bash
+# First start the dev server
+npm run start:test
+
+# Then run integration tests
 npm run test:integration
 ```
 Integration tests are run with [Cypress.io](https://www.cypress.io/)
