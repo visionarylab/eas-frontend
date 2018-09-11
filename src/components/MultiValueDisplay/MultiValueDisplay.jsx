@@ -8,18 +8,12 @@ import STYLES from './MultiValueDisplay.scss';
 const c = className => STYLES[className];
 
 class MultiValueDisplay extends Component {
-  onValueDelete = value => () => {
-    const values = this.props.values;
-    const indexToDelete = values.indexOf(value);
-    values.splice(indexToDelete, 1);
-    this.props.onChange(values);
-  };
+  onValueDelete = value => () => this.props.onDelete(value);
 
   render() {
-    const { values, label, allowDelete, messageEmpty } = this.props;
+    const { values, label, messageEmpty, onDelete } = this.props;
     return (
       <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
-        {/* {label && <div className={c('MultiValueDisplay__label')}>{label}</div>} */}
         {label && <Typography variant="caption">{label}</Typography>}
         <div className={c('MultiValueDisplay__values-list')}>
           {values.length ? (
@@ -27,7 +21,7 @@ class MultiValueDisplay extends Component {
               <Chip
                 key={Math.random()}
                 label={value}
-                onDelete={allowDelete ? this.onValueDelete(value) : null}
+                onDelete={onDelete ? this.onValueDelete(value) : null}
                 data-component={'MultiValueDisplay__chip'}
               />
             ))
@@ -44,17 +38,16 @@ class MultiValueDisplay extends Component {
 
 MultiValueDisplay.propTypes = {
   label: PropTypes.string,
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  allowDelete: PropTypes.bool,
+  values: PropTypes.arrayOf(PropTypes.string),
   messageEmpty: PropTypes.string,
-  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 MultiValueDisplay.defaultProps = {
+  values: [],
   label: null,
-  allowDelete: false,
   messageEmpty: '',
-  onChange: () => {},
+  onDelete: null,
 };
 
 export default MultiValueDisplay;

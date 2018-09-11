@@ -9,7 +9,6 @@ import SectionPanel from '../../SectionPanel/SectionPanel';
 import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
-import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import WizardForm from '../../WizardForm/WizardForm';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection';
@@ -31,7 +30,8 @@ const ParticipantsSection = ({ participants, onFieldChange, t }) => (
       }}
       messageEmpty={t('you_havent_add_any_participants')}
       fullWidth
-      inputProps={{ 'data-component': 'ParticipantsInput' }}
+      data-component="Raffle__participants-field"
+      inputProps={{ 'data-component': 'Raffle__participants-field-input' }}
       validators={[{ rule: 'required' }]}
     />
   </SectionPanel>
@@ -42,17 +42,23 @@ ParticipantsSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const PrizesSection = ({ numberOfWinners, prizes, onFieldChange, t }) => (
+const PrizesSection = ({ prizes, onFieldChange, t }) => (
   <SectionPanel title={t('detail_about_winners')}>
-    <PrizeSelector
-      numberOfWinners={numberOfWinners}
-      prizes={prizes}
-      onFieldChange={onFieldChange}
+    <ValidatedMultiValueInput
+      name="prizes"
+      label={t('prizes')}
+      labelDisplayList={t('list_of_prizes')}
+      placeholder="PS4"
+      messageEmpty={t('no_prizes_selected')}
+      value={prizes}
+      onChange={prizes_ => onFieldChange('prizes', prizes_)}
+      data-component="Raffle__prizes-field"
+      inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+      validators={[{ rule: 'required' }]}
     />
   </SectionPanel>
 );
 PrizesSection.propTypes = {
-  numberOfWinners: PropTypes.number.isRequired,
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -108,6 +114,7 @@ const RafflePage = props => {
         <WhenToTossForm
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
+          checkErrors={() => undefined}
           t={t}
           {...wizardProps}
         />
@@ -122,7 +129,7 @@ const RafflePage = props => {
       </Typography>
       <WizardForm
         steps={steps}
-        // initialStep={3}
+        initialStep={1}
         onSubmit={handlePublish}
         submitButtonLabel={t('publish_raffle')}
       />

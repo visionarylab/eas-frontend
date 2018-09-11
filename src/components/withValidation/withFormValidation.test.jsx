@@ -278,7 +278,7 @@ describe('withFormValidation', () => {
     });
   });
   describe('Submit', () => {
-    it('main onSubmit function should be called if the form is valid', () => {
+    it('Should call the main onSubmit function if the form is valid', () => {
       const onSubmitMock = jest.fn();
       const wrapper = mount(<FormWithValidation onSubmit={onSubmitMock} />);
 
@@ -289,7 +289,7 @@ describe('withFormValidation', () => {
       expect(onSubmitMock).toHaveBeenCalled();
     });
 
-    it('main onSubmit function should not be called if the form is invalid', () => {
+    it('Should not call the main onSubmit function if the form is invalid', () => {
       const onSubmitMock = jest.fn();
       const wrapper = mount(<FormWithValidation onSubmit={onSubmitMock} />);
 
@@ -298,6 +298,25 @@ describe('withFormValidation', () => {
 
       wrapper.find('form').simulate('submit');
       expect(onSubmitMock).not.toHaveBeenCalled();
+    });
+
+    it('Should show errors', () => {
+      const wrapper = mount(
+        <FormWithValidation onSubmit={jest.fn()}>
+          <FieldwithValidation name="field1" id="field" validators={[{ rule: 'required' }]} />
+        </FormWithValidation>,
+      );
+
+      const instance = wrapper.instance();
+      expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'required' } });
+      expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
+      expect(instance.isFormValid()).toBe(false);
+
+      wrapper.find('form').simulate('submit');
+      expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'required' });
+
+      wrapper.update();
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
 });

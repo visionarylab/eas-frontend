@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiValueDisplay Chip.onDelete should be null if onDelete is not supplied 1`] = `
+<div
+  className="MultiValueDisplay"
+  data-component="MultiValueDisplay"
+>
+  <WithStyles(Typography)
+    variant="caption"
+  >
+    Input label
+  </WithStyles(Typography)>
+  <div
+    className="MultiValueDisplay__values-list"
+  >
+    <WithStyles(Chip)
+      data-component="MultiValueDisplay__chip"
+      key="1"
+      label="value 2"
+      onDelete={null}
+    />
+  </div>
+</div>
+`;
+
+exports[`MultiValueDisplay Chip.onDelete should be onDelete when supplied 1`] = `
+<div
+  className="MultiValueDisplay"
+  data-component="MultiValueDisplay"
+>
+  <WithStyles(Typography)
+    variant="caption"
+  >
+    Input label
+  </WithStyles(Typography)>
+  <div
+    className="MultiValueDisplay__values-list"
+  >
+    <WithStyles(Chip)
+      data-component="MultiValueDisplay__chip"
+      key="1"
+      label="value 2"
+      onDelete={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`MultiValueDisplay Should render correctly with values 1`] = `
+<div
+  className="MultiValueDisplay"
+  data-component="MultiValueDisplay"
+>
+  <WithStyles(Typography)
+    variant="caption"
+  >
+    Input label
+  </WithStyles(Typography)>
+  <div
+    className="MultiValueDisplay__values-list"
+  >
+    <WithStyles(Chip)
+      data-component="MultiValueDisplay__chip"
+      key="1"
+      label="value 1"
+      onDelete={null}
+    />
+    <WithStyles(Chip)
+      data-component="MultiValueDisplay__chip"
+      key="1"
+      label="value 2"
+      onDelete={null}
+    />
+  </div>
+</div>
+`;
+
+exports[`MultiValueDisplay Should render correctly without values 1`] = `
+<div
+  className="MultiValueDisplay"
+  data-component="MultiValueDisplay"
+>
+  <WithStyles(Typography)
+    variant="caption"
+  >
+    Input label
+  </WithStyles(Typography)>
+  <div
+    className="MultiValueDisplay__values-list"
+  >
+    <WithStyles(Typography)
+      className="MultiValueDisplay__empty-message"
+      variant="body1"
+    >
+      No items selected
+    </WithStyles(Typography)>
+  </div>
+</div>
+`;

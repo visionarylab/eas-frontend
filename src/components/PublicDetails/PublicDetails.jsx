@@ -17,7 +17,8 @@ const PublicDetails = props => (
       margin="normal"
       fullWidth
       onChange={e => props.onFieldChange('title', e.target.value)}
-      inputProps={{ 'data-component': 'TitleInput' }}
+      data-component={'PublicDetails__title-field'}
+      inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
       validators={[{ rule: 'required' }]}
     />
 
@@ -31,7 +32,8 @@ const PublicDetails = props => (
       rows="4"
       margin="normal"
       onChange={e => props.onFieldChange('description', e.target.value)}
-      inputProps={{ 'data-component': 'DescriptionInput' }}
+      data-component={'PublicDetails__description-field'}
+      inputProps={{ 'data-component': 'PublicDetails__description-field-input' }}
       validators={[{ rule: 'required' }]}
     />
   </Fragment>

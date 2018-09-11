@@ -16,13 +16,12 @@ class RandomNumberFormContainer extends Component {
     this.state = {
       privateId: null,
       values: {
-        title: 'Cool title',
-        description: 'Nice description',
+        title: '',
+        description: '',
         rangeMin: '1',
         rangeMax: '10',
         numberOfResults: '1',
         allowRepeated: false,
-        whenToToss: 'now',
         dateScheduled: null,
       },
     };
@@ -96,7 +95,7 @@ class RandomNumberFormContainer extends Component {
 
   handlePublish = async () => {
     const draw = await this.createDraw();
-    if (this.state.values.whenToToss === 'now') {
+    if (!this.state.values.dateScheduled) {
       try {
         await randomNumberApi.randomNumberToss(draw.private_id, {});
         this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);

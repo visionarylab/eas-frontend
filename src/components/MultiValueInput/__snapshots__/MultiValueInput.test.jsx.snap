@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiValueInput Should render correctly with values 1`] = `
+<Fragment>
+  <TextField
+    label="Input label"
+    margin="normal"
+    name="coolInput"
+    onChange={[Function]}
+    onKeyPress={[Function]}
+    required={false}
+    select={false}
+    type="text"
+    value=""
+  />
+  <MultiValueDisplay
+    allowDelete={true}
+    label="Selected Items"
+    messageEmpty="No items selected"
+    onChange={[Function]}
+    values={
+      Array [
+        "value 1",
+        "value 2",
+      ]
+    }
+  />
+</Fragment>
+`;
+
+exports[`MultiValueInput Should render correctly without values 1`] = `
+<Fragment>
+  <TextField
+    label="Input label"
+    margin="normal"
+    name="coolInput"
+    onChange={[Function]}
+    onKeyPress={[Function]}
+    required={false}
+    select={false}
+    type="text"
+    value=""
+  />
+  <MultiValueDisplay
+    allowDelete={true}
+    label="Selected Items"
+    messageEmpty="No items selected"
+    onChange={[Function]}
+    values={Array []}
+  />
+</Fragment>
+`;

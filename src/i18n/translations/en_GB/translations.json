@@ -95,7 +95,9 @@
     "random_number_html_title": "Generate random numbers",
     "random_number_seo_description": "Generate randon numbers online. Select Random numbers from a range, etc.",
     "to": "To",
-    "when_to_toss": "When do you want to generate the numbers?"
+    "when_to_toss": "When do you want to generate the numbers?",
+    "range_not_big_enough": "The range is not big enough"
+
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Results have not been generated yet",

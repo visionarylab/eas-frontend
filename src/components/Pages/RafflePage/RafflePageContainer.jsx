@@ -13,8 +13,8 @@ class RafflePageContainer extends Component {
     this.state = {
       privateId: null,
       values: {
-        title: '',
-        description: '',
+        title: 'asd',
+        description: 'asd',
         participants: [],
         prizes: [],
         numberOfWinners: 1,

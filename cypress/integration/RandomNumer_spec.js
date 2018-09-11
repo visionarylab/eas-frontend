@@ -18,7 +18,7 @@ describe('Number Draw Page', () => {
 
   it('Request sent contains the right data', function() {
     cy.visit('/number');
-    cy.getComponent('RandomNumber__from-input')
+    cy.getComponent('RandomNumber__from-field-input')
       .clear()
       .type(3);
     cy.getComponent('RandomNumber__to-input')
@@ -65,9 +65,9 @@ describe('Number Draw Page', () => {
     it('Should show error when any required field is empty', function() {
       cy.visit('/number');
       cy.getComponent('RandomNumber__from-field').within(() => {
-        cy.getComponent('RandomNumber__from-input').clear();
+        cy.getComponent('RandomNumber__from-field-input').clear();
         cy.getError().should('be.visible');
-        cy.getComponent('RandomNumber__from-input').type(2);
+        cy.getComponent('RandomNumber__from-field-input').type(2);
         cy.getError().should('not.exist');
       });
 
@@ -88,7 +88,7 @@ describe('Number Draw Page', () => {
 
     it('Should show error when range is invalid', function() {
       cy.visit('/number');
-      cy.getComponent('RandomNumber__from-input')
+      cy.getComponent('RandomNumber__from-field-input')
         .clear()
         .type(12);
       cy.getComponent('ValidationFeedback').should('be.visible');

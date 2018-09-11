@@ -588,6 +588,60 @@ exports[`withFormValidation Errors Required field Should recover from errors whe
 </WithFormValidation>
 `;
 
+exports[`withFormValidation Submit Should show errors 1`] = `
+<WithFormValidation
+  checkErrors={[Function]}
+  onFieldDeregister={null}
+  onSubmit={[Function]}
+  onValidationChange={null}
+>
+  <Form
+    onSubmit={[Function]}
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <WithFieldValidation
+        id="field"
+        name="field1"
+        onChange={null}
+        t={[Function]}
+        validators={
+          Array [
+            Object {
+              "rule": "required",
+            },
+          ]
+        }
+        value=""
+      >
+        <Field
+          FormHelperTextProps={
+            Object {
+              "data-has-error": true,
+            }
+          }
+          error={true}
+          helperText="some translated stuff"
+          id="field"
+          name="field1"
+          onChange={[Function]}
+          value=""
+        >
+          <input
+            id="field"
+            name="field1"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </Field>
+      </WithFieldValidation>
+    </form>
+  </Form>
+</WithFormValidation>
+`;
+
 exports[`withFormValidation should render correctly 1`] = `
 <WithFormValidation
   checkErrors={[Function]}

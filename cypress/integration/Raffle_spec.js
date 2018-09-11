@@ -1,29 +1,75 @@
 describe('Raffle', () => {
+  beforeEach(() => {
+    cy.server();
+    cy.mockFixture('Raffle');
+  });
+
   describe('Creation page', () => {
-    it.skip('It should be possible to create a raffle', () => {
+    it.only('It should be possible to create a raffle', () => {
       cy.visit('/raffle');
-      // cy.getComponent('TitleInput').type('Action title');
-      // cy.getComponent('DescriptionInput').type('That is a cool description');
-      cy.getComponent('WizzardForm__next-button').click();
-      cy.getComponent('MultiValueDisplay__chip')
-        .first()
-        .get('[class*="deleteIcon"]')
-        .click();
+
+      // Attempt to submit step without filling the fields
       cy.getComponent('WizzardForm__next-button').click();
 
-      //   cy.getComponent('MultiValueDisplay').within(() => {
-      //     cy.get('[data-component="MultiValueDisplay__chip"]:contains("David")');
-      //     cy.get('[data-component="MultiValueDisplay__chip"]:contains("Mario")');
-      //     cy.get('[data-component="MultiValueDisplay__chip"]:contains("Cristina")')
-      //       .find('svg')
-      //       .click();
-      //     cy.getComponent('MultiValueDisplay__chip')
-      //       .contains('Cristina')
-      //       .should('not.exist');
-      //   });
-      //   cy.getComponent('PrizeSelector__number-of-winners').type('2');
-      //   cy.getComponent('WhenToToss__manual').check();
-      //   cy.getComponent('SubmitDrawButton').click();
+      // Both fields should error as they are required
+      cy.getComponent('PublicDetails__title-field').within(() => {
+        cy.getError().should('be.visible');
+      });
+      cy.getComponent('PublicDetails__description-field').within(() => {
+        cy.getError().should('be.visible');
+      });
+
+      // Fill the title and its error should recover
+      cy.getComponent('PublicDetails__title-field-input').type('The title');
+      cy.getComponent('PublicDetails__title-field').within(() => {
+        cy.getError().should('not.exist');
+      });
+
+      // Fill the description and its error should recover
+      cy.getComponent('PublicDetails__description-field-input').type('A cool description');
+      cy.getComponent('PublicDetails__description-field').within(() => {
+        cy.getError().should('not.exist');
+      });
+
+      // Go to second step
+      cy.getComponent('WizzardForm__next-button').click();
+
+      // Attempt to submit step without filling the fields
+      cy.getComponent('WizzardForm__next-button').click();
+
+      // Participants field should error as it is required
+      cy.getComponent('Raffle__participants-field').within(() => {
+        cy.getError().should('be.visible');
+      });
+
+      cy.getComponent('Raffle__participants-field-input').type('Participant 1, Participant 2,');
+
+      // Go to third step
+      cy.getComponent('WizzardForm__next-button').click();
+
+      // Attempt to submit step without filling the fields
+      cy.getComponent('WizzardForm__next-button').click();
+
+      // Participants field should error as it is required
+      cy.getComponent('Raffle__prizes-field').within(() => {
+        cy.getError().should('be.visible');
+      });
+
+      cy.getComponent('Raffle__prizes-field-input').type('Prize 1,');
+
+      // Go to fourth step
+      cy.getComponent('WizzardForm__next-button').click();
+
+      cy.getComponent('WizzardForm__next-button').click();
+
+      cy.mockedRequestWait('POST', '/api/raffle')
+        .its('requestBody')
+        .should('deep.eq', {
+          title: 'The title',
+          description: 'A cool description',
+          participants: [{ name: 'Participant 1' }],
+          prizes: [{ name: 'Prize 1' }],
+        });
     });
   });
   describe('Published page', () => {

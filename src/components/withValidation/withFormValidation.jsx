@@ -6,9 +6,9 @@ const withFormValidation = WrappedComponent => {
     constructor(props) {
       super(props);
       this.state = {
-        formSubmitted: false,
+        formSubmitted: false, // It's used to bypass changedFields when the form is submitted
         fieldErrors: {},
-        formError: 'the is an error',
+        formError: undefined,
         changedFields: [],
       };
     }
@@ -36,7 +36,6 @@ const withFormValidation = WrappedComponent => {
     };
 
     onSubmit = e => {
-      console.log('this.isFormValid()', this.isFormValid());
       if (!this.isFormValid()) {
         e.preventDefault();
         this.setState({
@@ -56,8 +55,7 @@ const withFormValidation = WrappedComponent => {
 
     getErrorsToRenderInField(name) {
       const { changedFields, fieldErrors, formSubmitted } = this.state; // eslint-disable-line no-unused-vars
-      // return formSubmitted || changedFields.includes(name) ? fieldErrors[name] : undefined;  //don't rememeber why formSubmitted was needed here
-      return changedFields.includes(name) ? fieldErrors[name] : undefined;
+      return formSubmitted || changedFields.includes(name) ? fieldErrors[name] : undefined;
     }
 
     getFormError() {
@@ -77,11 +75,11 @@ const withFormValidation = WrappedComponent => {
       if (!isEmptyAtRegister) {
         this.updateFieldChangedState(name);
       } else if (this.state.changedFields.indexOf(name) !== -1) {
-        const changedFields = this.state.changedFields.slice();
-        changedFields.splice(changedFields.indexOf(name), 1);
-        this.setState({
-          changedFields,
-        });
+        // const changedFields = this.state.changedFields.slice();
+        // changedFields.splice(changedFields.indexOf(name), 1);
+        // this.setState({
+        //   changedFields,
+        // });
       }
     }
 

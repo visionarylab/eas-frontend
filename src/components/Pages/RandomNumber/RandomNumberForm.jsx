@@ -36,7 +36,7 @@ const ConfigurationSection = ({ values, onFieldChange, t }) => (
           fullWidth
           validators={[{ rule: 'required' }]}
           data-component="RandomNumber__from-field"
-          inputProps={{ 'data-component': 'RandomNumber__from-input' }}
+          inputProps={{ 'data-component': 'RandomNumber__from-field-input' }}
         />
       </Grid>
       <Grid item xs={6}>

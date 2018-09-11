@@ -42,9 +42,17 @@ class MultiValueInput extends Component {
     this.setState({ currentValue: '' });
   };
 
+  onValueDelete = value => {
+    const values = this.props.value;
+    const indexToDelete = values.indexOf(value);
+    values.splice(indexToDelete, 1);
+    this.props.onChange(values);
+  };
+
   render() {
     const { value: values, labelDisplayList, messageEmpty, ...rest } = this.props;
     const { delimiters, onChange, ...extra } = rest;
+    console.log('values', values);
     return (
       <Fragment>
         <TextField
@@ -60,7 +68,7 @@ class MultiValueInput extends Component {
           values={values}
           messageEmpty={messageEmpty}
           allowDelete
-          onChange={this.props.onChange}
+          onDelete={this.onValueDelete}
         />
       </Fragment>
     );
@@ -71,15 +79,15 @@ MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
   labelDisplayList: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.arrayOf(PropTypes.string),
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 };
 
 MultiValueInput.defaultProps = {
   delimiters: ['Enter', ','],
+  value: [],
 };
 
 export default MultiValueInput;
