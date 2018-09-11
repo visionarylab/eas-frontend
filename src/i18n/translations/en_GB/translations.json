@@ -1,4 +1,10 @@
 {
+  "DateTimePicker": {
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "only_future_date_valid": "You have to choose a date in the future",
+    "today": "Today"
+  },
   "FacebookDraw": {
     "check_participants": "Get participants",
     "facebook_draw_html_title": "Facebook Raffle",
@@ -9,9 +15,11 @@
   },
   "HomePage": {
     "facebook_draw_title": "Facebook Raffle",
+    "raffle_section_title": "Raffles Section",
     "raffle_title": "Make a Raffle",
     "random_letter_title": "Generate Random Letters",
-    "random_number_title": "Generate Random Numbers"
+    "random_number_title": "Generate Random Numbers",
+    "spin_arrow_title": "Spin an arrow"
   },
   "LetterDrawPage": {
     "draw_configuration": "Draw configuration",
@@ -56,6 +64,7 @@
     "number_of_participants": "Number of participants:",
     "number_of_winners": "Number of winners:",
     "raffle_details": "Raffle details",
+    "results_generated_on": "The result will be generated on {{date}} at {{time}}",
     "results_not_generated_yet": "The result of the raffle hasn't been published yet",
     "winners": "Winners"
   },
@@ -72,6 +81,10 @@
     "raffle_default_title": "Raffled with closed list of participants",
     "raffle_html_title": "Organise a raffle",
     "raffle_seo_description": "<div>Organise <0>public</0> raffles</div>",
+    "step_general_details": "General details",
+    "step_participants": "Choose participants",
+    "step_prizes": "Choose prizes",
+    "step_when_to_toss": "When will be the raffle done?",
     "when_to_toss": "When do you want the results to be generated?",
     "who_will_participate": "Who wil participate?",
     "you_havent_add_any_participants": "You haven't added any participant"
@@ -79,12 +92,13 @@
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Raffle between Facebook users",
     "facebook_photo_raffle_title": "Raffle bettwen 'likes' in Facebook",
-    "raffle_title": "Raffle with closed list of participants",
-    "raffle_section_title": "Raffles section"
+    "raffle_title": "Raffle with closed list of participants"
   },
   "RandomNumberPage": {
     "allow_repeated": "Allow repeated",
     "draw_configuration": "Draw details",
+    "error_in_ranges": "The chose range (numbers between {{min}} and {{max}}) is not valid",
+    "error_message_min_results": "You have to generate at least 1 result",
     "from": "From",
     "general_details_draw": "General details",
     "generate_numbers": "Generate numbers",
@@ -94,16 +108,28 @@
     "random_number_default_title": "Generate random numbers",
     "random_number_html_title": "Generate random numbers",
     "random_number_seo_description": "Generate randon numbers online. Select Random numbers from a range, etc.",
+    "range_not_big_enough": "The range is not big enough",
     "to": "To",
-    "when_to_toss": "When do you want to generate the numbers?",
-    "range_not_big_enough": "The range is not big enough"
-
+    "when_to_toss": "When do you want to generate the numbers?"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Results have not been generated yet",
     "message_scheduled_toss": "Results will be generated in"
   },
+  "SpinArrowPage": {
+    "click_the_arrow_to_spin_it": "(Hit the arrow to make it spin)",
+    "spin_arrow_html_tittle": "Spin an arrow online",
+    "spin_arrow_title": "Spin an arrow"
+  },
   "TranslationsSwitch": {
     "change_language": "Change language"
+  },
+  "WithFieldValidation": {
+    "default_message_min": "It must be lower than {{min}}",
+    "default_message_required_field": "This field is required"
+  },
+  "WizardForm": {
+    "back": "Back",
+    "next": "Next"
   }
 }

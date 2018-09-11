@@ -1,4 +1,10 @@
 {
+  "DateTimePicker": {
+    "cancel": "Cancelar",
+    "ok": "Ok",
+    "only_future_date_valid": "Tienes que elegir una fecha en el futuro",
+    "today": "Hoy"
+  },
   "FacebookDraw": {
     "check_participants": "Ver participantes",
     "facebook_draw_html_title": "Organizar eb Facebook",
@@ -19,10 +25,10 @@
   },
   "HomePage": {
     "facebook_draw_title": "Sorteo en Facebook",
+    "raffle_section_title": "Seccion de sorteos",
     "raffle_title": "Realizar Sorteo",
     "random_letter_title": "Generar letras aleatorias",
     "random_number_title": "Generar números aleatorios",
-    "raffle_section_title": "Seccion de sorteos",
     "spin_arrow_title": "Girar una flecha"
   },
   "LetterDrawPage": {
@@ -57,8 +63,7 @@
   "PublishDrawOptions": {
     "manual_toss": "Publicar el sorteo sin resultados",
     "schedule_toss": "Progamar el sorteo para una fecha determinada",
-    "show_now": "Mostrar ahora",
-    "past_date_not_valid": "Debes elegir una fecha en el futuro"
+    "show_now": "Mostrar ahora"
   },
   "PublishedFacebookLoginRafflePage": {
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
@@ -75,9 +80,9 @@
     "number_of_participants": "Número de participantes:",
     "number_of_winners": "Número de ganadores:",
     "raffle_details": "Detalles del sorteo",
+    "results_generated_on": "Los resultados seran generados el {{date}} a las {{time}}",
     "results_not_generated_yet": "Los resultados del sorteo todavía no se han publicado",
-    "winners": "Ganadores",
-    "results_generated_on": "Los resultados seran generados el {{date}} a las {{time}}"
+    "winners": "Ganadores"
   },
   "PublishedRandomNumberPage": {
     "draw_details": "Detalles del sorteo",
@@ -92,13 +97,13 @@
     "raffle_default_title": "Sorteo con lista de participantes cerrada",
     "raffle_html_title": "Organizar sorteo",
     "raffle_seo_description": "<0>Organiza sorteos publicos</0>",
-    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
-    "who_will_participate": "¿Quién participará en el sorteo?",
-    "you_havent_add_any_participants": "Todavía no has añadido ningun participante",
     "step_general_details": "Detalles generales",
     "step_participants": "Elegir participantes",
     "step_prizes": "Elegir premios",
-    "step_when_to_toss": "Cuándo se realizara el sorteo?"
+    "step_when_to_toss": "Cuándo se realizara el sorteo?",
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
+    "who_will_participate": "¿Quién participará en el sorteo?",
+    "you_havent_add_any_participants": "Todavía no has añadido ningun participante"
   },
   "RafflesSectionPage": {
     "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",
@@ -108,6 +113,8 @@
   "RandomNumberPage": {
     "allow_repeated": "Permitir números repetidos",
     "draw_configuration": "Detalles de la tirada",
+    "error_in_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
+    "error_message_min_results": "Debes generar al menos 1 resultado",
     "from": "Desde",
     "general_details_draw": "Información general",
     "generate_numbers": "Generar números",
@@ -117,36 +124,28 @@
     "random_number_default_title": "Generar números aleatorios",
     "random_number_html_title": "Generar números aleatorios",
     "random_number_seo_description": "Generar números aleatorios",
+    "range_not_big_enough": "El rango no es suficientemente grande",
     "to": "Hasta",
-    "when_to_toss": "Cuándo quieres generar los números?",
-    "error_message_min_results": "Debes generar al menos 1 resultado",
-    "error_in_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
-    "range_not_big_enough": "El rango no es suficientemente grande"
+    "when_to_toss": "Cuándo quieres generar los números?"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",
     "message_scheduled_toss": "Los resultados se generarán en"
   },
+  "SpinArrowPage": {
+    "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)",
+    "spin_arrow_html_tittle": "Girar una flecha online",
+    "spin_arrow_title": "Girar una flecha online"
+  },
   "TranslationsSwitch": {
     "change_language": "Cambiar idioma"
   },
-  "DateTimePicker": {
-    "only_future_date_valid": "Tienes que elegir una fecha en el futuro",
-    "cancel": "Cancelar",
-    "ok": "Ok",
-    "today": "Hoy"
+  "WithFieldValidation": {
+    "default_message_min": "Tiene que ser mayor que {{min}}",
+    "default_message_required_field": "Este campo es obligatorio"
   },
   "WizardForm": {
-    "next": "Siguiente",
-    "back": "Atrás"
-  },
-  "SpinArrowPage": {
-    "spin_arrow_html_tittle": "Girar una flecha online",
-    "spin_arrow_title": "Girar la flecha online",
-    "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)"
-  },
-  "WithFieldValidation": {
-    "default_message_required_field": "Este campo es obligatorio",
-    "default_message_min": "Tiene que ser mayor que {{min}}"
+    "back": "Atrás",
+    "next": "Siguiente"
   }
 }
