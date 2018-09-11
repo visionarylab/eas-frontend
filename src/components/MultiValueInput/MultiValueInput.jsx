@@ -17,29 +17,16 @@ class MultiValueInput extends Component {
     const { value } = e.target;
     const regexFromMyArray = new RegExp(delimiters.join('|\\'), 'gi');
     if (regexFromMyArray.test(value)) {
-      const values = value.split(regexFromMyArray);
+      const values = value
+        .split(regexFromMyArray)
+        .map(val => val.trim())
+        .filter(Boolean);
       this.addValues(values);
     } else {
       this.setState({
         currentValue: e.target.value,
       });
     }
-  };
-
-  onKeyPress = e => {
-    const { delimiters } = this.props;
-    if (delimiters.includes(e.key)) {
-      if (e.target.value) {
-        this.addValues([e.target.value]);
-      }
-      e.preventDefault();
-    }
-  };
-
-  addValues = newValues => {
-    const { value: values } = this.props;
-    this.props.onChange(values.concat(newValues));
-    this.setState({ currentValue: '' });
   };
 
   onValueDelete = value => {
@@ -49,15 +36,19 @@ class MultiValueInput extends Component {
     this.props.onChange(values);
   };
 
+  addValues = newValues => {
+    const { value: values } = this.props;
+    this.props.onChange(values.concat(newValues));
+    this.setState({ currentValue: '' });
+  };
+
   render() {
     const { value: values, labelDisplayList, messageEmpty, ...rest } = this.props;
     const { delimiters, onChange, ...extra } = rest;
-    console.log('values', values);
     return (
       <Fragment>
         <TextField
           onChange={this.onCurrentValueChange}
-          onKeyPress={this.onKeyPress}
           type="text"
           margin="normal"
           value={this.state.currentValue}

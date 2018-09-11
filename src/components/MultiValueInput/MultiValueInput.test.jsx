@@ -4,9 +4,10 @@ import toJson from 'enzyme-to-json';
 import MultiValueInput from './MultiValueInput';
 
 describe('MultiValueInput', () => {
-  it.only('Should render correctly without values', () => {
+  it('Should render correctly without values', () => {
     const wrapper = shallow(
       <MultiValueInput
+        name="field1"
         label="Input label"
         labelDisplayList="Selected Items"
         messageEmpty="No items selected"
@@ -16,11 +17,11 @@ describe('MultiValueInput', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it.only('Should render correctly with values', () => {
+  it('Should render correctly with values', () => {
     const wrapper = shallow(
       <MultiValueInput
         label="Input label"
-        name="coolInput"
+        name="field1"
         labelDisplayList="Selected Items"
         messageEmpty="No items selected"
         value={['value 1', 'value 2']}
@@ -28,5 +29,43 @@ describe('MultiValueInput', () => {
       />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('Pasting a comma separated list of values should return trimmed values', () => {
+    const onChangeMock = jest.fn();
+    const wrapper = mount(
+      <MultiValueInput
+        label="Input label"
+        name="field1"
+        labelDisplayList="Selected Items"
+        messageEmpty="No items selected"
+        onChange={onChangeMock}
+        data-component="MultiValueInput__field"
+        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+      />,
+    );
+    const input = wrapper.find('input');
+    const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
+    input.simulate('change', event);
+    expect(onChangeMock).toHaveBeenCalledWith(['Value 1', 'Value 2']);
+  });
+
+  it('Should trimm values', () => {
+    const onChangeMock = jest.fn();
+    const wrapper = mount(
+      <MultiValueInput
+        label="Input label"
+        name="field1"
+        labelDisplayList="Selected Items"
+        messageEmpty="No items selected"
+        onChange={onChangeMock}
+        data-component="MultiValueInput__field"
+        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+      />,
+    );
+    const input = wrapper.find('input');
+    const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
+    input.simulate('change', event);
+    expect(onChangeMock).toHaveBeenCalledWith(['Value 1', 'Value 2']);
   });
 });

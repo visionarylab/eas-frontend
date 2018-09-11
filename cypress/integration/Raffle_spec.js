@@ -5,7 +5,7 @@ describe('Raffle', () => {
   });
 
   describe('Creation page', () => {
-    it.only('It should be possible to create a raffle', () => {
+    it('It should be possible to create a raffle', () => {
       cy.visit('/raffle');
 
       // Attempt to submit step without filling the fields
@@ -67,7 +67,7 @@ describe('Raffle', () => {
         .should('deep.eq', {
           title: 'The title',
           description: 'A cool description',
-          participants: [{ name: 'Participant 1' }],
+          participants: [{ name: 'Participant 1' }, { name: 'Participant 2' }],
           prizes: [{ name: 'Prize 1' }],
         });
     });

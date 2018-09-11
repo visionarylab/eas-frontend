@@ -129,7 +129,7 @@ const RafflePage = props => {
       </Typography>
       <WizardForm
         steps={steps}
-        initialStep={1}
+        // initialStep={1}
         onSubmit={handlePublish}
         submitButtonLabel={t('publish_raffle')}
       />
