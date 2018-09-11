@@ -39,7 +39,7 @@
     "start": "REACT_APP_ENV=local react-scripts start",
     "start:test": "REACT_APP_ENV=test react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --testPathIgnorePatterns src/config/test.js",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:scss:fix": "stylefmt --recursive 'src/**/*.scss'",
     "lint:js": "eslint . --ignore-path .gitignore --ext .js,.jsx",

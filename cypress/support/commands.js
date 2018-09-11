@@ -46,3 +46,10 @@ Cypress.Commands.add('mockedRequestWait', (method, path) => {
 Cypress.Commands.add('automockFixture', fixtureName =>
   cy.fixture(automockFixturePath(fixtureName)),
 );
+
+// https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/stubbing-spying__google-analytics
+Cypress.Commands.add('mockGA', () => {
+  Cypress.on('window:before:load', win => {
+    win.ga = cy.stub().as('ga'); // eslint-disable-line no-param-reassign
+  });
+});

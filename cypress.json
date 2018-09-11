@@ -1,4 +1,5 @@
 {
   "viewportWidth": 1100,
-  "viewportHeight": 660
+  "viewportHeight": 660,
+  "blacklistHosts": "www.google-analytics.com"
 }

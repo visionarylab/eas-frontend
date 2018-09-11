@@ -5,6 +5,15 @@ describe('Raffle', () => {
   });
 
   describe('Creation page', () => {
+    it('Google Analytics pageview event is sent', () => {
+      cy.mockGA();
+      cy.visit('/raffle');
+
+      cy.get('@ga')
+        .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+        .and('be.calledWith', 'send', { hitType: 'pageview', page: '/raffle' });
+    });
+
     it('It should be possible to create a raffle', () => {
       cy.visit('/raffle');
 

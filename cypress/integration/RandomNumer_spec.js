@@ -8,6 +8,15 @@ describe('Number Draw Page', () => {
     cy.mockFixture('RandomNumber');
   });
 
+  it('Google Analytics pageview event is sent', () => {
+    cy.mockGA();
+    cy.visit('/number');
+
+    cy.get('@ga')
+      .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+      .and('be.calledWith', 'send', { hitType: 'pageview', page: '/number' });
+  });
+
   it('Results are shown', function() {
     cy.visit('/number');
     cy.getComponent('SubmitDrawButton').click();
