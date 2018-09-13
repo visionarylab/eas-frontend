@@ -105,7 +105,11 @@ class RandomNumberPageContainer extends React.Component {
     }
   };
 
-  checkErrorsInConfiguration = t => {
+  handleMakePublic = () => {
+    this.setState({ isPublic: true });
+  };
+
+  handleCheckErrorsInConfiguration = t => {
     const { values } = this.state;
     const rangeMin = parseInt(values.rangeMin, 10);
     const rangeMax = parseInt(values.rangeMax, 10);
@@ -122,21 +126,23 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   render() {
-    const { isPublic, values, quickResult } = this.state;
+    const { isPublic, values, quickResult, privateId } = this.state;
     return isPublic ? (
       <RandomNumberPage
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
-        checkErrorsInConfiguration={this.checkErrorsInConfiguration}
+        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
       />
     ) : (
       <RandomNumberQuickPage
         values={values}
+        shareResultLink={privateId ? `/number/${privateId}` : ''}
+        quickResult={quickResult}
         onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
-        checkErrorsInConfiguration={this.checkErrorsInConfiguration}
-        quickResult={quickResult}
+        handleMakePublic={this.handleMakePublic}
+        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
       />
     );
   }

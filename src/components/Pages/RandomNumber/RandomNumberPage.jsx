@@ -18,7 +18,7 @@ const ConfigurationForm = withFormValidation(RandomNumberConfigurationSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const RandomNumberPage = props => {
-  const { values, checkErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
+  const { values, handleCheckErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
       label: t('step_general_details'),
@@ -39,7 +39,7 @@ const RandomNumberPage = props => {
           values={values}
           onFieldChange={onFieldChange}
           t={t}
-          checkErrors={() => checkErrorsInConfiguration(t)}
+          checkErrors={() => handleCheckErrorsInConfiguration(t)}
           {...wizardProps}
         />
       ),
@@ -83,7 +83,7 @@ RandomNumberPage.propTypes = {
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
-  checkErrorsInConfiguration: PropTypes.func.isRequired,
+  handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

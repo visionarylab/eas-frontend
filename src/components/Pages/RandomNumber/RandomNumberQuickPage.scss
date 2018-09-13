@@ -1,9 +1,12 @@
+@import '~include-media/dist/include-media';
 $result-font-size: 10rem;
 
 .RandomNumberQuickPage {
-  &__container {
-    width: 50%;
-    margin: auto;
+  @include media('>tablet') {
+    &__container {
+      width: 50%;
+      margin: auto;
+    }
   }
 
   &__results {
