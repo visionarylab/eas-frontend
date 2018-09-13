@@ -20,7 +20,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
       <Grid item xs={6}>
         <ValidatedTextField
           name="rangeMin"
-          label={t('from')}
+          label={t('input_label_from')}
           placeholder="1"
           onChange={e => onFieldChange('rangeMin', e.target.value)}
           value={values.rangeMin}
@@ -35,7 +35,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
       <Grid item xs={6}>
         <ValidatedTextField
           name="rangeMax"
-          label={t('to')}
+          label={t('input_label_to')}
           placeholder="9"
           onChange={e => onFieldChange('rangeMax', e.target.value)}
           value={values.rangeMax}
@@ -50,7 +50,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
     <div>
       <ValidatedTextField
         name="numberOfResults"
-        label={t('number_of_results')}
+        label={t('input_label_number_of_results')}
         placeholder="1"
         onChange={e => onFieldChange('numberOfResults', e.target.value)}
         value={values.numberOfResults}
@@ -58,7 +58,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
         type="number"
         validators={[
           { rule: 'required', value: true },
-          { rule: 'min', value: 1, message: t('error_message_min_results', { min: 1 }) },
+          { rule: 'min', value: 1, message: t('error_field_message_min_results', { min: 1 }) },
         ]}
         data-component="RandomNumber__number-of-results-field"
         inputProps={{ 'data-component': 'RandomNumber__number-of-results-input' }}
@@ -74,7 +74,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
                 inputProps={{ 'data-component': 'RandomNumber__allow-repated-input' }}
               />
             }
-            label={t('allow_repeated')}
+            label={t('input_label_allow_repeated')}
           />
         </FormGroup>
       )}
@@ -96,4 +96,4 @@ RandomNumberConfigurationSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('RandomNumberConfigurationSection')(RandomNumberConfigurationSection);
+export default translate('RandomNumber')(RandomNumberConfigurationSection);

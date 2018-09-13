@@ -111,12 +111,12 @@ class RandomNumberPageContainer extends React.Component {
     const rangeMax = parseInt(values.rangeMax, 10);
     const numberOfResults = parseInt(values.numberOfResults, 10);
     if (rangeMin >= rangeMax) {
-      return t('error_in_ranges', {
+      return t('error_form_invalid_ranges', {
         min: values.rangeMin,
         max: values.rangeMax,
       });
     } else if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
-      return t('range_not_big_enough');
+      return t('error_form_range_not_big_enough');
     }
     return undefined;
   };

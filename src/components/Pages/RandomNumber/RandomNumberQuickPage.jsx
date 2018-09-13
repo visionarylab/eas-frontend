@@ -17,10 +17,10 @@ const ValidatedForm = withFormValidation(props => <form {...props} />);
 const RandomNumberQuickPage = props => {
   const { values, handleToss, onFieldChange, checkErrorsInConfiguration, t, quickResult } = props;
   return (
-    <Page htmlTitle={t('random_number_html_title')}>
+    <Page htmlTitle={t('html_title')}>
       <div className={c('RandomNumberQuickPage__container')}>
         <Typography color="primary" variant="display1">
-          {t('random_number_default_title')}
+          {t('page_title')}
         </Typography>
         <ValidatedForm
           onSubmit={e => {
@@ -63,4 +63,4 @@ RandomNumberQuickPage.defaultProps = {
   quickResult: [],
 };
 
-export default translate('RandomNumberQuickPage')(RandomNumberQuickPage);
+export default translate('RandomNumber')(RandomNumberQuickPage);

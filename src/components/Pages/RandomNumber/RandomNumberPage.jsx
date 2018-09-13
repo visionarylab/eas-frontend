@@ -57,10 +57,10 @@ const RandomNumberPage = props => {
     },
   ];
   return (
-    <Page htmlTitle={t('random_number_html_title')}>
+    <Page htmlTitle={t('html_title')}>
       <div className={c('RandomNumberPage__container')}>
         <Typography color="primary" variant="display1">
-          {t('random_number_default_title')}
+          {t('page_title')}
         </Typography>
         <WizardForm
           steps={steps}
@@ -89,4 +89,4 @@ RandomNumberPage.propTypes = {
 
 RandomNumberPage.defaultProps = {};
 
-export default translate('RandomNumberPage')(RandomNumberPage);
+export default translate('RandomNumber')(RandomNumberPage);
