@@ -81,10 +81,10 @@
     "raffle_default_title": "Raffled with closed list of participants",
     "raffle_html_title": "Organise a raffle",
     "raffle_seo_description": "<div>Organise <0>public</0> raffles</div>",
-    "step_general_details": "General details",
-    "step_participants": "Choose participants",
+    "step_label_general_details": "General details",
+    "step_label_participants": "Choose participants",
     "step_prizes": "Choose prizes",
-    "step_when_to_toss": "When will be the raffle done?",
+    "step_label_when_to_toss": "When will be the raffle done?",
     "when_to_toss": "When do you want the results to be generated?",
     "who_will_participate": "Who wil participate?",
     "you_havent_add_any_participants": "You haven't added any participant"

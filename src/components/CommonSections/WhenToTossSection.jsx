@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import PublishDrawOptions from '../PublishDrawOptions/PublishDrawOptions';
 import SectionPanel from '../SectionPanel/SectionPanel';
 
-const WhenToTossSection = ({ dateScheduled, onFieldChange, t }) => (
-  <SectionPanel title={t('when_to_toss')}>
+const WhenToTossSection = ({ sectionTitle, dateScheduled, onFieldChange }) => (
+  <SectionPanel title={sectionTitle}>
     <PublishDrawOptions
       options={['now', 'schedule']}
       dateScheduled={dateScheduled}
@@ -13,9 +13,9 @@ const WhenToTossSection = ({ dateScheduled, onFieldChange, t }) => (
   </SectionPanel>
 );
 WhenToTossSection.propTypes = {
+  sectionTitle: PropTypes.string.isRequired,
   dateScheduled: PropTypes.instanceOf(Date),
   onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
 WhenToTossSection.defaultProps = {

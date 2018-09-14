@@ -21,19 +21,19 @@ const RandomNumberPage = props => {
   const { values, handleCheckErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
-      label: t('step_general_details'),
+      label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
+          sectionTitle={t('step_title_general_details')}
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
-          t={t}
           {...wizardProps}
         />
       ),
     },
     {
-      label: t('step_participants'),
+      label: t('step_label_participants'),
       render: wizardProps => (
         <ConfigurationForm
           values={values}
@@ -45,9 +45,10 @@ const RandomNumberPage = props => {
       ),
     },
     {
-      label: t('step_when_to_toss'),
+      label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
+          sectionTitle={t('step_title_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}

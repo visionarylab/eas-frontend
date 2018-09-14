@@ -74,7 +74,7 @@ const RafflePage = props => {
 
   const steps = [
     {
-      label: t('step_general_details'),
+      label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
           title={values.title}
@@ -86,7 +86,7 @@ const RafflePage = props => {
       ),
     },
     {
-      label: t('step_participants'),
+      label: t('step_label_participants'),
       render: wizardProps => (
         <ParticipantsForm
           participants={values.participants}
@@ -109,7 +109,7 @@ const RafflePage = props => {
       ),
     },
     {
-      label: t('step_when_to_toss'),
+      label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
           dateScheduled={values.dateScheduled}

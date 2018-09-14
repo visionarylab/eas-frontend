@@ -15,7 +15,7 @@ const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedCheckbox = withFieldValidation(Checkbox);
 
 const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
-  <SectionPanel title={t('draw_configuration')}>
+  <SectionPanel title={t('step_title_draw_configuration')}>
     <Grid container spacing={16}>
       <Grid item xs={6}>
         <ValidatedTextField
