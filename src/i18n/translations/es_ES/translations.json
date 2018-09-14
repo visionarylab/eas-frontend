@@ -110,23 +110,25 @@
     "facebook_photo_raffle_title": "Sorteo entre 'likes' en Facebook",
     "raffle_title": "Sorteo con lista cerrada de participantes"
   },
-  "RandomNumberPage": {
-    "allow_repeated": "Permitir números repetidos",
-    "draw_configuration": "Detalles de la tirada",
-    "error_in_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
-    "error_message_min_results": "Debes generar al menos 1 resultado",
-    "from": "Desde",
-    "general_details_draw": "Información general",
-    "generate_numbers": "Generar números",
-    "number_draw_seo_description": "Crea una tirada publica para que todo el mundo pueda ver el resultado a la vez",
-    "number_of_results": "Número de resultados",
+  "RandomNumber": {
+    "error_form_invalid_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
+    "error_form_range_not_big_enough": "El rango no es suficientemente grande",
+    "error_field_message_min_results": "Debes generar al menos 1 resultado",
+    "step_general_details": "Detalles generales de la tirada",
+    "step_participants": "Elegir participantes",
+    "step_when_to_toss": "Cuándo quieres generar los números?",
+
     "publish_draw": "Publicar tirada",
-    "random_number_default_title": "Generar números aleatorios",
-    "random_number_html_title": "Generar números aleatorios",
-    "random_number_seo_description": "Generar números aleatorios",
-    "range_not_big_enough": "El rango no es suficientemente grande",
-    "to": "Hasta",
-    "when_to_toss": "Cuándo quieres generar los números?"
+    "generate_numbers": "Generar números",
+
+    "page_title": "Generar números aleatorios",
+    "html_title": "Generar números aleatorios",
+
+    "draw_configuration": "Detalles de la tirada",
+    "input_label_from": "Desde",
+    "input_label_to": "Hasta",
+    "input_label_number_of_results": "Número de resultados",
+    "input_label_allow_repeated": "Permitir números repetidos"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",

@@ -77,7 +77,7 @@ class PublishedRandomNumberPageContainer extends Component {
         rangeMax={rangeMax}
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
-        results={results.map(result => result.value)}
+        results={results.length ? results[0].value : undefined}
         isOwner={isOwner}
         onToss={this.onToss}
       />

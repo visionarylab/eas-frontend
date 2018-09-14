@@ -1,9 +1,7 @@
 @import '~include-media/dist/include-media';
+$result-font-size: 10rem;
 
-.HomePage {
-  padding-right: 20%;
-  padding-left: 20%;
-
+.RandomNumberQuickPage {
   @include media('>tablet') {
     &__container {
       width: 50%;
@@ -11,7 +9,8 @@
     }
   }
 
-  &__draw-chips-list {
-    width: 50%;
+  &__results {
+    font-size: $result-font-size;
+    text-align: center;
   }
 }
