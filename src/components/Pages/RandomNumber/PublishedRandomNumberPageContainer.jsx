@@ -46,6 +46,8 @@ class PublishedRandomNumberPageContainer extends Component {
       description,
       range_min: rangeMin,
       range_max: rangeMax,
+      number_of_results: numberOfResults,
+      allow_repeated: allowRepeated,
       results,
     } = draw;
     this.setState({
@@ -53,6 +55,8 @@ class PublishedRandomNumberPageContainer extends Component {
       description,
       rangeMin,
       rangeMax,
+      numberOfResults,
+      allowRepeated,
       results,
       isOwner: Boolean(privateId),
     });

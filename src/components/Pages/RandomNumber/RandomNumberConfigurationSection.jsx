@@ -40,6 +40,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           onChange={e => onFieldChange('rangeMax', e.target.value)}
           value={values.rangeMax}
           margin="normal"
+          fullWidth
           type="number"
           validators={[{ rule: 'required' }]}
           data-component="RandomNumber__to-field"

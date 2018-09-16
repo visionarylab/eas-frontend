@@ -10,6 +10,7 @@ import rafflesIcon from './raffles.svg';
 import randomNumber from './random_number.png';
 import arrowIcon from './arrow.svg';
 import randomLetter from './random_letter.png';
+import groupsIcon from './groups.png';
 
 import STYLES from './HomePage.scss';
 
@@ -18,13 +19,16 @@ const c = classNames.bind(STYLES);
 const HomePage = ({ t }) => (
   <Page htmlTitle={'Échalo A Suerte'} className={c('HomePage')}>
     <Typography variant="display1">Sorteos online</Typography>
-    <div className={c('HomePage__draw-chips-list')}>
+    <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={rafflesIcon} href="/raffles">
         {t('raffle_section_title')}
       </DrawCard>
+      <DrawCard icon={groupsIcon} href="/groups">
+        Crear equipos
+      </DrawCard>
     </div>
-    <Typography variant="display1">Sorteos básicos</Typography>
-    <div className={c('HomePage__draw-chips-list')}>
+    <Typography variant="display1">Generadores básicos al azar</Typography>
+    <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={randomNumber} href="/number">
         {t('random_number_title')}
       </DrawCard>
@@ -33,7 +37,7 @@ const HomePage = ({ t }) => (
       </DrawCard>
     </div>
     <Typography variant="display1">Otros</Typography>
-    <div className={c('HomePage__draw-chips-list')}>
+    <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={arrowIcon} href="/arrow">
         {t('spin_arrow_title')}
       </DrawCard>

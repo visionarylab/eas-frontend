@@ -6,13 +6,12 @@ $spacing-lg: 1.875rem;
 
 .PublishedRandomNumberPage {
   &__content {
-    width: 80%;
+    width: 50rem;
     margin: auto;
     text-align: center;
   }
 
-  &__results {
-    width: 50%;
-    margin: auto;
+  &__details {
+    text-align: left;
   }
 }

@@ -130,7 +130,12 @@
     "input_label_from": "Desde",
     "input_label_to": "Hasta",
     "input_label_number_of_results": "Número de resultados",
-    "input_label_allow_repeated": "Permitir números repetidos"
+    "input_label_allow_repeated": "Permitir números repetidos",
+
+    "create_certificated_draw": "Crea una tirada certificada",
+
+    "publishd_draw_details": "Detalles del sorteo",
+    "generated_numbers": "Números generados"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",

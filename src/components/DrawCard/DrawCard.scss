@@ -21,8 +21,8 @@ $eas-chip-title-font-color: #6f6f6f;
 
   &__icon {
     width: $eas-chip-icon-width;
-    height: auto;
-    // filter: grayscale(100%);
+    height: $eas-chip-icon-width;
+    // height: auto;  // TODO keep auto?
   }
 
   &__title {

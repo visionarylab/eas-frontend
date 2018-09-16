@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 
 import Page from '../../Page/Page';
-import DrawContent from '../../DrawContent/DrawContent';
+import RandomNumberResult from './RandomNumberResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 import SubmitButton from '../../SubmitButton/SubmitButton';
@@ -14,56 +13,68 @@ import STYLES from './PublishedRandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);
 
-const SummaryRaffle = ({ rangeMin, rangeMax, description, t }) => (
-  <Grid container spacing={16} direction={'row'} justify={'center'}>
-    <Grid item>
-      <div>
-        <Typography variant="display1">{t('draw_details')}</Typography>
-        <div>
-          {t('From')} {rangeMin}
-        </div>
-        <div>
-          {t('To')} {rangeMax}
-        </div>
-        <div>
-          {t('description')}
-          <p>{description}</p>
-        </div>
-      </div>
-    </Grid>
-  </Grid>
-);
-
-SummaryRaffle.propTypes = {
-  rangeMin: PropTypes.number.isRequired,
-  rangeMax: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
-};
-
 const PublishedRandomNumberPage = props => {
-  const { title, results, isOwner, onToss, t } = props;
+  const {
+    title,
+    results,
+    isOwner,
+    rangeMin,
+    rangeMax,
+    numberOfResults,
+    allowRepeated,
+    description,
+    onToss,
+    t,
+  } = props;
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRandomNumberPage__content')}>
-        <DrawContent title={title} footer={<SummaryRaffle {...props} />}>
-          {results.length ? (
-            <div className={c('PublishedRandomNumberPage__results')}>
-              <ResultsBox title={t('generated_numbers')}>
-                {results.map(result => (
-                  <Typography variant="display3" component={'p'}>
-                    {result}
-                  </Typography>
-                ))}{' '}
-              </ResultsBox>
-            </div>
-          ) : (
+        {title && (
+          <div>
+            <Typography
+              variant="display2"
+              align={'center'}
+              data-component={'PublishedRandomNumberPage__Title'}
+            >
+              {title}
+            </Typography>
+          </div>
+        )}
+        {results.length ? (
+          <ResultsBox title={t('generated_numbers')}>
+            <RandomNumberResult result={results} />
+          </ResultsBox>
+        ) : (
+          <div>
+            <BannerAlert title={t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} />
+            {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
+          </div>
+        )}
+        <section className={c('PublishedRandomNumberPage__details')}>
+          <div>
+            <Typography variant="display1">{t('publishd_draw_details')}</Typography>
             <div>
-              <BannerAlert title={t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} />
-              {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
+              {t('input_label_from')} {rangeMin}
             </div>
-          )}
-        </DrawContent>
+            <div>
+              {t('input_label_to')} {rangeMax}
+            </div>
+            <div>
+              {t('input_label_number_of_results')} {numberOfResults}
+            </div>
+            {numberOfResults > 1 && (
+              <div>
+                {t('input_label_allow_repeated')} {allowRepeated}
+              </div>
+            )}
+            {description && (
+              <div>
+                {t('description')}
+                <p>{description}</p>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </Page>
   );
@@ -71,6 +82,11 @@ const PublishedRandomNumberPage = props => {
 
 PublishedRandomNumberPage.propTypes = {
   title: PropTypes.string,
+  rangeMin: PropTypes.number.isRequired,
+  rangeMax: PropTypes.number.isRequired,
+  numberOfResults: PropTypes.number.isRequired,
+  allowRepeated: PropTypes.bool.isRequired,
+  description: PropTypes.string,
   results: PropTypes.arrayOf(PropTypes.object),
   isOwner: PropTypes.bool,
   onToss: PropTypes.func,
@@ -79,9 +95,10 @@ PublishedRandomNumberPage.propTypes = {
 
 PublishedRandomNumberPage.defaultProps = {
   title: '',
+  description: '',
   results: [],
   isOwner: false,
   onToss: () => {},
 };
 
-export default translate('PublishedRandomNumberPage')(PublishedRandomNumberPage);
+export default translate('RandomNumber')(PublishedRandomNumberPage);

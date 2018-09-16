@@ -52,9 +52,7 @@ const ResultsBox = ({ title, children }) => (
     <div>
       <WinnersTitle winnersLabel={title} />
     </div>
-    <div>
-      <Grid item>{children}</Grid>
-    </div>
+    <div>{children}</div>
   </section>
 );
 

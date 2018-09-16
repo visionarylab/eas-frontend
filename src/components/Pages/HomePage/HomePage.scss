@@ -1,4 +1,4 @@
-@import '~include-media/dist/include-media';
+@import '../../include-media';
 
 .HomePage {
   padding-right: 20%;
@@ -11,7 +11,8 @@
     }
   }
 
-  &__draw-chips-list {
+  &__draw-chips-group {
     width: 50%;
+    margin-bottom: 3rem;
   }
 }
