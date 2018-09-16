@@ -63,9 +63,7 @@ const RandomNumberQuickPage = props => {
             </div>
           )}
         </div>
-        <div
-          className={c('RandomNumberQuickPage__side-panel', 'RandomNumberQuickPage__side-panel')}
-        >
+        <div className={c('RandomNumberQuickPage__side-panel')}>
           {true && (
             <Card>
               <CardContent>

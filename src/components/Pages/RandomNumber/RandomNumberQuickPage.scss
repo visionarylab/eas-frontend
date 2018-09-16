@@ -9,46 +9,46 @@ $side-panel-total-width: $side-panel-width + $side-panel-padding;
 $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-small;
 
 .RandomNumberQuickPage {
-  @include media('>=desktop') {
-    &__container {
+  &__container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    @media (min-width: $media-desktop) {
       margin: auto;
       flex-direction: row;
 
-      @include media('>=widescreen') {
+      @media (min-width: $media-widescreen) {
         width: 88rem;
       }
     }
+  }
 
-    &__content {
+  &__content {
+    @media (min-width: $media-desktop) {
       margin-left: $side-panel-total-width-small;
       flex: 1 0 0;
 
-      @include media('>=widescreen') {
+      @media (min-width: $media-widescreen) {
         margin-left: $side-panel-total-width;
       }
     }
+  }
 
-    &__side-panel {
+  &__side-panel {
+    padding: $spacing-sm $side-panel-padding-small $spacing-sm $side-panel-padding-small;
+
+    @media (min-width: $media-desktop) {
       width: $side-panel-width-small;
       padding-right: $side-panel-padding-small;
       padding-left: $side-panel-padding-small;
 
-      @include media('>=widescreen') {
+      @media (min-width: $media-widescreen) {
         width: $side-panel-width;
         padding-right: $side-panel-padding;
         padding-left: $side-panel-padding;
       }
     }
-  }
-
-  &__container {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-  }
-
-  &__side-panel {
-    padding: $side-panel-padding-small $spacing-sm $side-panel-padding-small $spacing-sm;
   }
 
   &__container &__results {
