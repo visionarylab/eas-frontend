@@ -14,6 +14,7 @@ import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedR
 import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer';
 import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer';
 import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer';
+import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer';
 import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer';
 import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer';
 import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer';
@@ -32,6 +33,8 @@ const AppShell = () => (
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/typography" component={Typographies} />
         <Route exact path="/raffles" component={RafflesSectionPage} />
+
+        <Route exact path="/groups" component={GroupsGeneratorPageContainer} />
 
         <Route exact path="/number" component={RandomNumberPageContainer} />
         <Route exact path="/number/:drawId" component={PublishedRandomNumberPageContainer} />
