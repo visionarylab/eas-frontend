@@ -64,7 +64,7 @@ const PublishedRandomNumberPage = props => {
             </div>
             {numberOfResults > 1 && (
               <div>
-                {t('input_label_allow_repeated')} {allowRepeated}
+                {t('input_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
               </div>
             )}
             {description && (

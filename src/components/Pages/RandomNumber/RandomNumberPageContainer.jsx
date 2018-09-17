@@ -29,6 +29,7 @@ class RandomNumberPageContainer extends React.Component {
   onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
       privateId: null,
+      quickResult: [],
       values: {
         ...previousState.values,
         ...{

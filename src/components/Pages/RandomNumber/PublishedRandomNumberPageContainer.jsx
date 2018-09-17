@@ -47,7 +47,7 @@ class PublishedRandomNumberPageContainer extends Component {
       range_min: rangeMin,
       range_max: rangeMax,
       number_of_results: numberOfResults,
-      allow_repeated: allowRepeated,
+      allow_repeated_results: allowRepeated,
       results,
     } = draw;
     this.setState({
