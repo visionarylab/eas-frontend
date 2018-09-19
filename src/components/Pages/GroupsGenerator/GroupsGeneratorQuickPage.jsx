@@ -85,10 +85,8 @@ GroupsGeneratorQuickPage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    rangeMax: PropTypes.string.isRequired,
-    rangeMin: PropTypes.string.isRequired,
-    numberOfResults: PropTypes.string.isRequired,
-    allowRepeated: PropTypes.bool.isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+    numberOfGroups: PropTypes.number.isRequired,
   }).isRequired,
   shareResultLink: PropTypes.string,
   onFieldChange: PropTypes.func.isRequired,

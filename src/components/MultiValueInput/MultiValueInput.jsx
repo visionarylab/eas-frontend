@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
@@ -43,10 +43,16 @@ class MultiValueInput extends Component {
   };
 
   render() {
-    const { value: values, labelDisplayList, messageEmpty, ...rest } = this.props;
+    const {
+      value: values,
+      labelDisplayList,
+      messageEmpty,
+      'data-component': dataComponent,
+      ...rest
+    } = this.props;
     const { delimiters, onChange, ...extra } = rest;
     return (
-      <Fragment>
+      <div data-component={dataComponent}>
         <TextField
           onChange={this.onCurrentValueChange}
           type="text"
@@ -61,7 +67,7 @@ class MultiValueInput extends Component {
           allowDelete
           onDelete={this.onValueDelete}
         />
-      </Fragment>
+      </div>
     );
   }
 }
@@ -74,11 +80,13 @@ MultiValueInput.propTypes = {
   value: PropTypes.arrayOf(PropTypes.string),
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  'data-component': PropTypes.string,
 };
 
 MultiValueInput.defaultProps = {
   delimiters: ['Enter', ','],
   value: [],
+  'data-component': '',
 };
 
 export default MultiValueInput;

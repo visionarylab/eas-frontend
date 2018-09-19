@@ -25,15 +25,23 @@ describe('Number Draw Page', () => {
     cy.getComponent('RandomNumberResult__result').should('be.visible');
   });
 
+  it('Fields have the right default values', function() {
+    cy.visit('/number');
+    cy.getComponent('RandomNumber__from-field-input').should('have.value', '1');
+    cy.getComponent('RandomNumber__to-field-input').should('have.value', '10');
+    cy.getComponent('RandomNumber__number-of-results-field-input').should('have.value', '1');
+    cy.getComponent('RandomNumber__allow-repeated-field-input').should('not.exist');
+  });
+
   it('Request sent contains the right data', function() {
     cy.visit('/number');
     cy.getComponent('RandomNumber__from-field-input')
       .clear()
       .type(3);
-    cy.getComponent('RandomNumber__to-input')
+    cy.getComponent('RandomNumber__to-field-input')
       .clear()
       .type(100);
-    cy.getComponent('RandomNumber__number-of-results-input')
+    cy.getComponent('RandomNumber__number-of-results-field-input')
       .clear()
       .type(2);
     cy.getComponent('SubmitDrawButton').click();
@@ -58,7 +66,7 @@ describe('Number Draw Page', () => {
       });
     cy.mockedRequestWait('POST', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss');
     cy.getComponent('RandomNumberResult__result').should('be.visible');
-    cy.getComponent('RandomNumber__number-of-results-input')
+    cy.getComponent('RandomNumber__number-of-results-field-input')
       .clear()
       .type(3);
     cy.getComponent('SubmitDrawButton').click();
@@ -81,16 +89,16 @@ describe('Number Draw Page', () => {
       });
 
       cy.getComponent('RandomNumber__to-field').within(() => {
-        cy.getComponent('RandomNumber__to-input').clear();
+        cy.getComponent('RandomNumber__to-field-input').clear();
         cy.getError().should('be.visible');
-        cy.getComponent('RandomNumber__to-input').type(10);
+        cy.getComponent('RandomNumber__to-field-input').type(10);
         cy.getError().should('not.exist');
       });
 
       cy.getComponent('RandomNumber__number-of-results-field').within(() => {
-        cy.getComponent('RandomNumber__number-of-results-input').clear();
+        cy.getComponent('RandomNumber__number-of-results-field-input').clear();
         cy.getError().should('be.visible');
-        cy.getComponent('RandomNumber__number-of-results-input').type(2);
+        cy.getComponent('RandomNumber__number-of-results-field-input').type(2);
         cy.getError().should('not.exist');
       });
     });
@@ -105,11 +113,11 @@ describe('Number Draw Page', () => {
 
     it('Should show error when range is too small', function() {
       cy.visit('/number');
-      cy.getComponent('RandomNumber__number-of-results-input')
+      cy.getComponent('RandomNumber__number-of-results-field-input')
         .clear()
         .type(12);
       cy.getComponent('ValidationFeedback').should('be.visible');
-      cy.getComponent('RandomNumber__allow-repated-input').check();
+      cy.getComponent('RandomNumber__allow-repeated-field-input').check();
       cy.getComponent('ValidationFeedback').should('not.exist');
     });
   });

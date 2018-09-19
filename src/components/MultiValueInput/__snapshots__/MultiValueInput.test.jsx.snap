@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MultiValueInput Should render correctly with values 1`] = `
-<Fragment>
+<div
+  data-component=""
+>
   <TextField
     label="Input label"
     margin="normal"
@@ -24,11 +26,13 @@ exports[`MultiValueInput Should render correctly with values 1`] = `
       ]
     }
   />
-</Fragment>
+</div>
 `;
 
 exports[`MultiValueInput Should render correctly without values 1`] = `
-<Fragment>
+<div
+  data-component=""
+>
   <TextField
     label="Input label"
     margin="normal"
@@ -46,5 +50,5 @@ exports[`MultiValueInput Should render correctly without values 1`] = `
     onDelete={[Function]}
     values={Array []}
   />
-</Fragment>
+</div>
 `;

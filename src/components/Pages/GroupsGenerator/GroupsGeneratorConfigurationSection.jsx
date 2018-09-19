@@ -22,6 +22,8 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       fullWidth
       onChange={participants_ => onFieldChange('participants', participants_)}
       validators={[{ rule: 'required' }]}
+      data-component="GroupsGenerator__participants-field"
+      inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
     />
     <ValidatedTextField
       name="numberOfGroups"
@@ -44,7 +46,7 @@ GroupsGeneratorConfigurationSection.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    numberOfgroups: PropTypes.number.isRequired,
+    numberOfGroups: PropTypes.number.isRequired,
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

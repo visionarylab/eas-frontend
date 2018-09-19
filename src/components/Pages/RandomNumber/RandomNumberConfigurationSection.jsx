@@ -44,7 +44,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           type="number"
           validators={[{ rule: 'required' }]}
           data-component="RandomNumber__to-field"
-          inputProps={{ 'data-component': 'RandomNumber__to-input' }}
+          inputProps={{ 'data-component': 'RandomNumber__to-field-input' }}
         />
       </Grid>
     </Grid>
@@ -62,7 +62,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           { rule: 'min', value: 1, message: t('error_field_message_min_results', { min: 1 }) },
         ]}
         data-component="RandomNumber__number-of-results-field"
-        inputProps={{ 'data-component': 'RandomNumber__number-of-results-input' }}
+        inputProps={{ 'data-component': 'RandomNumber__number-of-results-field-input' }}
       />
       {values.numberOfResults > 1 && (
         <FormGroup row>
@@ -72,7 +72,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
                 name="allowRepeated"
                 checked={values.allowRepeated}
                 onChange={e => onFieldChange('allowRepeated', e.target.checked)}
-                inputProps={{ 'data-component': 'RandomNumber__allow-repated-input' }}
+                inputProps={{ 'data-component': 'RandomNumber__allow-repeated-field-input' }}
               />
             }
             label={t('input_label_allow_repeated')}
