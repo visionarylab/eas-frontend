@@ -20,7 +20,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       messageEmpty={t('message_no_participants_added')}
       value={values.participants}
       fullWidth
-      onChange={participants_ => onFieldChange('participants', participants_)}
+      onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
       data-component="GroupsGenerator__participants-field"
       inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}

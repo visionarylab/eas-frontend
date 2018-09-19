@@ -28,17 +28,17 @@ const withFieldValidation = WrappedComponent => {
       this.context.registerValidatedField(this.props.name, errors, this.props.value);
     }
 
-    componentDidUpdate(prevProps) {
-      if (this.props.name === undefined) {
-        console.log('This validated field is missing the "name" prop'); // eslint-disable-line no-console
-      }
-      if (
-        prevProps.value !== this.props.value ||
-        this.isValid(this.props.value) !== this.isValid(prevProps.value)
-      ) {
-        this.getAndUpdateErrors();
-      }
-    }
+    // componentDidUpdate(prevProps) {
+    //   if (this.props.name === undefined) {
+    //     console.log('This validated field is missing the "name" prop'); // eslint-disable-line no-console
+    //   }
+    //   if (
+    //     prevProps.value !== this.props.value ||
+    //     this.isValid(this.props.value) !== this.isValid(prevProps.value)
+    //   ) {
+    //     this.getAndUpdateErrors();
+    //   }
+    // }
 
     componentWillUnmount() {
       this.context.deregisterValidatedField(this.props.name);
@@ -48,11 +48,11 @@ const withFieldValidation = WrappedComponent => {
       if (this.props.onChange) {
         this.props.onChange(e);
       }
-      // this.getAndUpdateErrors();
+      this.getAndUpdateErrors(e.target.value);
     };
 
-    getAndUpdateErrors = () => {
-      const errors = getErrors(this.props.value, this.props.validators);
+    getAndUpdateErrors = value => {
+      const errors = getErrors(value, this.props.validators);
       this.context.updateErrors(this.props.name, errors);
       this.context.updateFieldChangedState(this.props.name);
     };

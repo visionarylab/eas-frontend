@@ -19,10 +19,10 @@ const Form = ({ onFieldRegister, onFieldDeregister, onFieldChange, ...props }) =
   <form {...props} />
 );
 
-const updateFieldValue = (wrapper, value) =>
-  wrapper.setProps({
-    children: React.cloneElement(wrapper.props().children, { value }),
-  });
+const simulateChangeField = (element, value) => {
+  const event = { target: { name: element.props().name, value } };
+  element.simulate('change', event);
+};
 
 // eslint-disable-next-line
 const Field = ({ valid, FormHelperTextProps, helperText, error, ...props }) => <input type="text" {...props} />;
@@ -120,19 +120,19 @@ describe('withFormValidation', () => {
             <FieldwithValidation
               name="field1"
               id="field"
-              value="a value"
+              value="a value1"
               validators={[{ rule: 'required' }]}
             />
           </FormWithValidation>,
         );
-        updateFieldValue(wrapper, '');
+        const fieldDomElement = wrapper.find('#field').last();
+        const event = { target: { name: 'field1', value: '' } };
+        fieldDomElement.simulate('change', event);
 
         const instance = wrapper.instance();
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'required' } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'required' });
         expect(instance.isFormValid()).toBe(false);
-        wrapper.update();
-        expect(toJson(wrapper)).toMatchSnapshot();
       });
 
       it('Should recover from errors when filled', () => {
@@ -146,19 +146,18 @@ describe('withFormValidation', () => {
             />
           </FormWithValidation>,
         );
-        updateFieldValue(wrapper, '');
+        const fieldDomElement = wrapper.find('#field').last();
+        simulateChangeField(fieldDomElement, '');
 
         const instance = wrapper.instance();
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'required' } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'required' });
         expect(instance.isFormValid()).toBe(false);
 
-        updateFieldValue(wrapper, 'Im not empty');
+        simulateChangeField(fieldDomElement, 'Im not empty');
         expect(instance.state.fieldErrors).toEqual({});
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
-        wrapper.update();
-        expect(toJson(wrapper)).toMatchSnapshot();
       });
     });
 
@@ -220,12 +219,11 @@ describe('withFormValidation', () => {
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
 
-        updateFieldValue(wrapper, '0');
+        const fieldDomElement = wrapper.find('#field').last();
+        simulateChangeField(fieldDomElement, '0');
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'min', value: 1 } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'min', value: 1 });
         expect(instance.isFormValid()).toBe(false);
-        wrapper.update();
-        expect(toJson(wrapper)).toMatchSnapshot();
       });
 
       it('Update a field from invalid to valid should recover from the error', () => {
@@ -243,12 +241,11 @@ describe('withFormValidation', () => {
         const instance = wrapper.instance();
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'min', value: 1 } });
 
-        updateFieldValue(wrapper, '5');
+        const fieldDomElement = wrapper.find('#field').last();
+        simulateChangeField(fieldDomElement, '5');
         expect(instance.state.fieldErrors).toEqual({});
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
-        wrapper.update();
-        expect(toJson(wrapper)).toMatchSnapshot();
       });
     });
     describe('Global errors', () => {

@@ -19,7 +19,7 @@ describe('Groups Generator Draw Page', () => {
     cy.visit('/groups');
 
     cy.getComponent('GroupsGenerator__participants-field-input').should('have.value', '');
-    cy.getComponent('GroupsGenerator__number-of-groups-field-input').should('have.value', '1');
+    cy.getComponent('GroupsGenerator__number-of-groups-field-input').should('have.value', '2');
     cy.getComponent('MultiValueDisplay__chip').should('not.exist');
   });
 
@@ -62,7 +62,7 @@ describe('Groups Generator Draw Page', () => {
   });
 
   describe('Invalid configurations', function() {
-    it.only('Should show error when any required field is empty', function() {
+    it('Should show error when any required field is empty', function() {
       cy.visit('/groups');
       cy.getComponent('GroupsGenerator__participants-field').within(() => {
         cy.getComponent('GroupsGenerator__participants-field-input').type('one,');

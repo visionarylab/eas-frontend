@@ -33,12 +33,14 @@ class MultiValueInput extends Component {
     const values = this.props.value;
     const indexToDelete = values.indexOf(value);
     values.splice(indexToDelete, 1);
-    this.props.onChange(values);
+    const event = { target: { name: this.props.name, value: values } };
+    this.props.onChange(event);
   };
 
   addValues = newValues => {
     const { value: values } = this.props;
-    this.props.onChange(values.concat(newValues));
+    const event = { target: { name: this.props.name, value: values.concat(newValues) } };
+    this.props.onChange(event);
     this.setState({ currentValue: '' });
   };
 

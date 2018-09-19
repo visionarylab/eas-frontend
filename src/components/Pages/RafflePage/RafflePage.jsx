@@ -25,8 +25,8 @@ const ParticipantsSection = ({ participants, onFieldChange, t }) => (
       labelDisplayList={t('list_of_participants')}
       value={participants}
       placeholder="David, María, ..."
-      onChange={p => {
-        onFieldChange('participants', p);
+      onChange={e => {
+        onFieldChange('participants', e.target.value);
       }}
       messageEmpty={t('you_havent_add_any_participants')}
       fullWidth
@@ -51,7 +51,7 @@ const PrizesSection = ({ prizes, onFieldChange, t }) => (
       placeholder="PS4"
       messageEmpty={t('no_prizes_selected')}
       value={prizes}
-      onChange={prizes_ => onFieldChange('prizes', prizes_)}
+      onChange={e => onFieldChange('prizes', e.target.value)}
       data-component="Raffle__prizes-field"
       inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}

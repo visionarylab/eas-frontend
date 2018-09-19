@@ -47,7 +47,8 @@ describe('MultiValueInput', () => {
     const input = wrapper.find('input');
     const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
     input.simulate('change', event);
-    expect(onChangeMock).toHaveBeenCalledWith(['Value 1', 'Value 2']);
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1', 'Value 2'] } };
+    expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
   it('Should trimm values', () => {
@@ -66,6 +67,7 @@ describe('MultiValueInput', () => {
     const input = wrapper.find('input');
     const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
     input.simulate('change', event);
-    expect(onChangeMock).toHaveBeenCalledWith(['Value 1', 'Value 2']);
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1', 'Value 2'] } };
+    expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 });
