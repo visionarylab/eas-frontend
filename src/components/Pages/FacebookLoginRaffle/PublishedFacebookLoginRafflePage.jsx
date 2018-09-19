@@ -22,7 +22,9 @@ const PublishedFacebookLoginRafflePage = props => (
         <Fragment>
           <PublicResultsPanel>
             <Typography variant="display1">{props.t('winners')}</Typography>
-            {props.results.map(result => <div>{result}</div>)}
+            {props.results.map(result => (
+              <div>{result}</div>
+            ))}
           </PublicResultsPanel>
           <PublicSummaryPanel>
             <Typography variant="display1">{props.t('draw_details')}</Typography>

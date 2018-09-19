@@ -41,7 +41,11 @@ const FacebookPhotoRafflePage = props => {
                 {isLoggedInFB ? (
                   <Fragment>
                     You are logged in. These are the pages were we got access:
-                    <ul>{ownedPages.map(page => <li>{page.pageName}</li>)}</ul>
+                    <ul>
+                      {ownedPages.map(page => (
+                        <li>{page.pageName}</li>
+                      ))}
+                    </ul>
                   </Fragment>
                 ) : (
                   <Fragment>

@@ -32,7 +32,9 @@ const BannerAlert = props => {
   return (
     <section className={c('BannerAlert', `BannerAlert--${type}`)}>
       {getIconForType(type)}
-      &nbsp;<span>{title}</span>&nbsp;
+      &nbsp;
+      <span>{title}</span>
+      &nbsp;
     </section>
   );
 };

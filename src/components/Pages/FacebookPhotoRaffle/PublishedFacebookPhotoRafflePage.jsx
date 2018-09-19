@@ -16,7 +16,11 @@ const PublishedFacebookPhotoRafflePage = props => (
         <Typography variant="display2">{props.title}</Typography>
         <PublicResultsPanel>
           <Typography variant="display1">{props.t('winners')}</Typography>
-          <div>{props.results.map(result => <div>{result}</div>)}</div>
+          <div>
+            {props.results.map(result => (
+              <div>{result}</div>
+            ))}
+          </div>
         </PublicResultsPanel>
       </section>
       <section className={c('PublishedFacebookDraw__summary-panel')}>

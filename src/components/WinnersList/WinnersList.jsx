@@ -9,7 +9,9 @@ const c = classNames.bind(STYLES);
 
 const WinnersList = ({ winners }) => (
   <div className={c('WinnersList')}>
-    {winners.map(winner => <WinnerChip key={winner.prize.id} winner={winner} />)}
+    {winners.map(winner => (
+      <WinnerChip key={winner.prize.id} winner={winner} />
+    ))}
   </div>
 );
 
