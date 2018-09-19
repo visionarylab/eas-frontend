@@ -63,7 +63,7 @@ const GroupsGeneratorQuickPage = props => {
             onFieldChange={onFieldChange}
             t={t}
           />
-          <SubmitButton label={t('generate_numbers')} />
+          <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
         {quickResult.length > 0 && (
           <div>

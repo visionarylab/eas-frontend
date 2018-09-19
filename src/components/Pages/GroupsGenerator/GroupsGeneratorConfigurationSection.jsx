@@ -15,9 +15,9 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
     <ValidatedMultiValueInput
       name="participants"
       label={t('input_label_participants')}
-      labelDisplayList={t('list_of_participants')}
+      labelDisplayList={t('input_label_list_of_participants')}
       placeholder="David, Ana..."
-      messageEmpty={t('no_participants_added')}
+      messageEmpty={t('message_no_participants_added')}
       value={values.participants}
       fullWidth
       onChange={participants_ => onFieldChange('participants', participants_)}
@@ -50,4 +50,4 @@ GroupsGeneratorConfigurationSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('RandomNumber')(GroupsGeneratorConfigurationSection);
+export default translate('GroupsGenerator')(GroupsGeneratorConfigurationSection);

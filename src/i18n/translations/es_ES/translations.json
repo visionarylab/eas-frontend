@@ -111,9 +111,22 @@
     "raffle_title": "Sorteo con lista cerrada de participantes"
   },
   "RandomNumber": {
+    "page_title": "Generar números aleatorios",
+    "html_title": "Generar números aleatorios",
+    "draw_subheading": "Simple generador de numeros aleatorios. Sólo elige el rango y la cantidad de números a generar",
+
+    "input_label_from": "Desde",
+    "input_label_to": "Hasta",
+    "input_label_number_of_results": "Número de resultados",
+    "input_label_allow_repeated": "Permitir números repetidos",
+
+    "publish_draw": "Publicar tirada",
+    "generate_numbers": "Generar números",
+
     "error_form_invalid_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
     "error_form_range_not_big_enough": "El rango no es suficientemente grande",
     "error_field_message_min_results": "Debes generar al menos 1 resultado",
+
     "step_label_general_details": "Detalles generales de la tirada",
     "step_label_participants": "Elegir participantes",
     "step_label_when_to_toss": "Cuándo quieres generar los números?",
@@ -121,26 +134,28 @@
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_when_to_toss": "Cuando quieres que se generen los resultados?",
 
-    "publish_draw": "Publicar tirada",
-    "generate_numbers": "Generar números",
-
-    "page_title": "Generar números aleatorios",
-    "html_title": "Generar números aleatorios",
-
-    "input_label_from": "Desde",
-    "input_label_to": "Hasta",
-    "input_label_number_of_results": "Número de resultados",
-    "input_label_allow_repeated": "Permitir números repetidos",
-
     "create_certificated_draw": "Crea una tirada certificada",
 
-    "publishd_draw_details": "Detalles del sorteo",
+    "published_draw_details": "Detalles del sorteo",
     "generated_numbers": "Números generados"
   },
   "GroupsGenerator": {
     "page_title": "Generar grupos",
     "html_title": "Generar grupos online",
-    "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar"
+    "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
+  
+    "input_label_number_of_groups": "Número de grupos",
+    "input_label_participants": "Participantes",
+    "input_label_list_of_participants": "Lista de participantes",
+
+    "message_no_participants_added": "No ha añadido ningún participante",
+
+    "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
+
+    "step_title_draw_configuration": "Configura la tirada",
+
+    "publish_draw": "Publicar tirada",
+    "generate_groups": "Generar grupos"
   },
   "ResultsNotGeneratedYet": {
     "message_manual_toss": "Los resultados todavía no se han generado",

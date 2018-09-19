@@ -103,7 +103,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     const { participants, numberOfGroups } = this.state.values;
 
     if (participants.length < numberOfGroups) {
-      return t('error_form_not_enough_participants');
+      return t('error_form_not_enough_participants', { numberOfGroups });
     }
     return undefined;
   };

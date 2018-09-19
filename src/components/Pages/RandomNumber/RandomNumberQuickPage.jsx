@@ -38,8 +38,7 @@ const RandomNumberQuickPage = props => {
             {t('page_title')}
           </Typography>
           <Typography variant="body1" align="center" color={'textSecondary'}>
-            Simple generador de numeros aleatorios. Sólo elige el rango y la cantidad de números a
-            generar
+            {t('draw_subheading')}
           </Typography>
           <ValidatedForm
             onSubmit={e => {

@@ -52,7 +52,7 @@ const PublishedRandomNumberPage = props => {
         )}
         <section className={c('PublishedRandomNumberPage__details')}>
           <div>
-            <Typography variant="display1">{t('publishd_draw_details')}</Typography>
+            <Typography variant="display1">{t('published_draw_details')}</Typography>
             <div>
               {t('input_label_from')} {rangeMin}
             </div>
