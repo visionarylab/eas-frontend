@@ -7,7 +7,6 @@ import { translate } from 'react-i18next';
 import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
-import PublicDrawContent from '../../PublicDrawContent/PublicDrawContent';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview';
 import STYLES from './PublishedFacebookLoginRafflePage.scss';
@@ -16,7 +15,7 @@ const c = className => STYLES[className];
 
 const PublishedFacebookLoginRafflePage = props => (
   <Page htmlTitle={props.title} className={c('PublishedFacebookLoginRafflePage')} noIndex>
-    <PublicDrawContent>
+    <div>
       <Typography variant="display2">{props.title}</Typography>
       {props.results.length ? (
         <Fragment>
@@ -65,7 +64,7 @@ const PublishedFacebookLoginRafflePage = props => (
           </div>
         </Fragment>
       )}
-    </PublicDrawContent>
+    </div>
   </Page>
 );
 

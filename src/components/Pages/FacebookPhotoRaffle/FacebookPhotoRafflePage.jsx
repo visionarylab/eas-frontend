@@ -7,12 +7,10 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import DrawPanel from '../../DrawPanel/DrawPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
-import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
 
@@ -31,11 +29,9 @@ const FacebookPhotoRafflePage = props => {
   return (
     <Page htmlTitle={t('facebook_photo_raffle_html_title')}>
       <Grid container spacing={16}>
-        <Grid item sm={3}>
-          <BackArrow />
-        </Grid>
+        <Grid item sm={3} />
         <Grid item xs={6}>
-          <DrawPanel>
+          <div>
             <Grid item sm={12}>
               <SectionPanel>
                 {isLoggedInFB ? (
@@ -100,7 +96,7 @@ const FacebookPhotoRafflePage = props => {
                 </Button>
               </div>
             </Grid>
-          </DrawPanel>
+          </div>
         </Grid>
         <Grid item xs={3}>
           <TransparentPanel>

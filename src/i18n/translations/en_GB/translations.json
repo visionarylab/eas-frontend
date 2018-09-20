@@ -31,9 +31,6 @@
     "publish_draw": "Publish draw",
     "when_to_toss": "When do you want to show the results?"
   },
-  "MakeDrawPublicButton": {
-    "make_public": "Publish an online draw"
-  },
   "PrizeSelector": {
     "list_of_prizes": "List of prizes",
     "no_prizes_selected": "Add prizes in the box below",
@@ -111,10 +108,6 @@
     "error_form_range_not_big_enough": "The range is not big enough",
     "to": "To",
     "when_to_toss": "When do you want to generate the numbers?"
-  },
-  "ResultsNotGeneratedYet": {
-    "message_manual_toss": "Results have not been generated yet",
-    "message_scheduled_toss": "Results will be generated in"
   },
   "SpinArrowPage": {
     "click_the_arrow_to_spin_it": "(Hit the arrow to make it spin)",

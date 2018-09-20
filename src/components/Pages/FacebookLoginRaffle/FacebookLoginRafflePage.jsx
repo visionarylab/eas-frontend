@@ -4,15 +4,12 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
-import DrawPanel from '../../DrawPanel/DrawPanel';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import PublicDetails from '../../PublicDetails/PublicDetails';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
 import SubmitButton from '../../SubmitButton/SubmitButton';
-import BackArrow from '../../BackArrow/BackArrow';
 import Page from '../../Page/Page';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 
@@ -22,11 +19,9 @@ const FacebookLoginRafflePage = props => {
   return (
     <Page htmlTitle={t('facebook_draw_html_title')}>
       <Grid container spacing={16}>
-        <Grid item sm={3}>
-          <BackArrow />
-        </Grid>
+        <Grid item sm={3} />
         <Grid item xs={6}>
-          <DrawPanel>
+          <div>
             <Typography variant="display1">{t('facebook_login_raffle_default_title')}</Typography>
             <BannerAlert title={t('raffle_explanation')} type={ALERT_TYPES.NEUTRAL} />
             <SectionPanel title={t('general_details_raffle')}>
@@ -68,7 +63,7 @@ const FacebookLoginRafflePage = props => {
               />
             </SectionPanel>
             <SubmitButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
-          </DrawPanel>
+          </div>
         </Grid>
         <Grid item xs={3}>
           <TransparentPanel>
