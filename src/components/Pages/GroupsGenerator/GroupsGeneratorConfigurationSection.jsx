@@ -33,7 +33,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       value={values.numberOfGroups}
       type="number"
       margin="normal"
-      validators={[{ rule: 'required' }]}
+      validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
       data-component="GroupsGenerator__number-of-groups-field"
       inputProps={{ 'data-component': 'GroupsGenerator__number-of-groups-field-input' }}
     />

@@ -54,12 +54,13 @@ const withFormValidation = WrappedComponent => {
     };
 
     getErrorsToRenderInField(name) {
-      const { changedFields, fieldErrors, formSubmitted } = this.state; // eslint-disable-line no-unused-vars
+      const { changedFields, fieldErrors, formSubmitted } = this.state;
       return formSubmitted || changedFields.includes(name) ? fieldErrors[name] : undefined;
     }
 
     getFormError() {
-      return this.state.formError;
+      const { changedFields, formSubmitted } = this.state;
+      return formSubmitted || changedFields.length ? this.state.formError : undefined;
     }
 
     isFormValid = () => {

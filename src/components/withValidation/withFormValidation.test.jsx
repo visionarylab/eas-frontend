@@ -86,7 +86,7 @@ describe('withFormValidation', () => {
             <FieldwithValidation
               name="field1"
               id="field"
-              value="asd"
+              value="a value"
               validators={[{ rule: 'required' }]}
             />
           </FormWithValidation>,
@@ -120,7 +120,7 @@ describe('withFormValidation', () => {
             <FieldwithValidation
               name="field1"
               id="field"
-              value="a value1"
+              value="a value"
               validators={[{ rule: 'required' }]}
             />
           </FormWithValidation>,
@@ -133,6 +133,7 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'required' } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'required' });
         expect(instance.isFormValid()).toBe(false);
+        expect(toJson(wrapper)).toMatchSnapshot();
       });
 
       it('Should recover from errors when filled', () => {
@@ -158,6 +159,7 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({});
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
+        expect(toJson(wrapper)).toMatchSnapshot();
       });
     });
 
@@ -178,7 +180,6 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({});
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
-        wrapper.update();
         expect(toJson(wrapper)).toMatchSnapshot();
       });
 
@@ -198,7 +199,6 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'min', value: 5 } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'min', value: 5 });
         expect(instance.isFormValid()).toBe(false);
-        wrapper.update();
         expect(toJson(wrapper)).toMatchSnapshot();
       });
 
@@ -224,6 +224,7 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({ field1: { rule: 'min', value: 1 } });
         expect(instance.getErrorsToRenderInField('field1')).toEqual({ rule: 'min', value: 1 });
         expect(instance.isFormValid()).toBe(false);
+        expect(toJson(wrapper)).toMatchSnapshot();
       });
 
       it('Update a field from invalid to valid should recover from the error', () => {
@@ -246,6 +247,7 @@ describe('withFormValidation', () => {
         expect(instance.state.fieldErrors).toEqual({});
         expect(instance.getErrorsToRenderInField('field1')).toBeUndefined();
         expect(instance.isFormValid()).toBe(true);
+        expect(toJson(wrapper)).toMatchSnapshot();
       });
     });
     describe('Global errors', () => {
@@ -261,7 +263,7 @@ describe('withFormValidation', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
       });
 
-      it('Global errors are not shown if there are not errors', () => {
+      it('Are not shown if there are not errors', () => {
         const wrapper = mount(
           <FormWithValidation onSubmit={jest.fn()} checkErrors={() => undefined}>
             <FieldwithValidation name="field1" id="field" value="1" />
@@ -270,6 +272,21 @@ describe('withFormValidation', () => {
         );
         const instance = wrapper.instance();
         expect(instance.isFormValid()).toBe(true);
+        expect(toJson(wrapper)).toMatchSnapshot();
+      });
+
+      it('Are not shown until a field is changed', () => {
+        const wrapper = mount(
+          <FormWithValidation onSubmit={jest.fn()} checkErrors={() => 'There are errors'}>
+            <FieldwithValidation name="field1" id="field" value="1" />
+            <ValidationFeedback />
+          </FormWithValidation>,
+        );
+        const instance = wrapper.instance();
+        expect(instance.isFormValid()).toBe(false);
+
+        const fieldDomElement = wrapper.find('#field').last();
+        simulateChangeField(fieldDomElement, 'still invalid');
         expect(toJson(wrapper)).toMatchSnapshot();
       });
     });

@@ -70,40 +70,33 @@ describe('Groups Generator Draw Page', () => {
         cy.get('[class*="delete"]').click();
         cy.getComponent('GroupsGenerator__participants-field-input').clear();
         cy.getError().should('be.visible');
+
+        // It should recover from not enough
+        cy.getComponent('GroupsGenerator__participants-field-input').type('one,');
+        cy.getError().should('not.exist');
       });
 
-      // cy.getComponent('RandomNumber__to-field').within(() => {
-      //   cy.getComponent('RandomNumber__to-input').clear();
-      //   cy.getError().should('be.visible');
-      //   cy.getComponent('RandomNumber__to-input').type(10);
-      //   cy.getError().should('not.exist');
-      // });
+      cy.getComponent('GroupsGenerator__number-of-groups-field').within(() => {
+        cy.getComponent('GroupsGenerator__number-of-groups-field-input').clear();
+        cy.getError().should('be.visible');
 
-      // cy.getComponent('RandomNumber__number-of-results-field').within(() => {
-      //   cy.getComponent('RandomNumber__number-of-results-field-input').clear();
-      //   cy.getError().should('be.visible');
-      //   cy.getComponent('RandomNumber__number-of-results-field-input').type(2);
-      //   cy.getError().should('not.exist');
-      // });
+        cy.getComponent('GroupsGenerator__number-of-groups-field-input')
+          .clear()
+          .type(0);
+        cy.getError().should('be.visible');
+
+        cy.getComponent('GroupsGenerator__number-of-groups-field-input')
+          .clear()
+          .type(2);
+        cy.getError().should('not.exist');
+      });
+    });
+
+    it('Should recover from not enough participants for N groups', function() {
+      cy.visit('/groups');
+      cy.getComponent('ValidationFeedback').should('be.visible');
+      cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+      cy.getComponent('ValidationFeedback').should('not.exist');
     });
   });
-
-  //   it('Should show error when range is invalid', function() {
-  //     cy.visit('/number');
-  //     cy.getComponent('RandomNumber__from-field-input')
-  //       .clear()
-  //       .type(12);
-  //     cy.getComponent('ValidationFeedback').should('be.visible');
-  //   });
-
-  //   it('Should show error when range is too small', function() {
-  //     cy.visit('/number');
-  //     cy.getComponent('RandomNumber__number-of-results-field-input')
-  //       .clear()
-  //       .type(12);
-  //     cy.getComponent('ValidationFeedback').should('be.visible');
-  //     cy.getComponent('RandomNumber__allow-repated-input').check();
-  //     cy.getComponent('ValidationFeedback').should('not.exist');
-  //   });
-  // });
 });
