@@ -42,7 +42,6 @@ const AppShell = () => (
         <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
         <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
 
-        <Route exact path="/arrow" component={SpinArrowPageContainer} />
         <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
         <Route
           path="/facebook_photo/:drawId"
@@ -56,6 +55,8 @@ const AppShell = () => (
         />
 
         <Route exact path="/letter" component={LetterDrawPageContainer} />
+
+        <Route exact path="/arrow" component={SpinArrowPageContainer} />
 
         <Route render={() => <div>Not found</div>} />
       </Switch>

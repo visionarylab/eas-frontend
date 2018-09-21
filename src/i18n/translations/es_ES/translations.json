@@ -29,7 +29,8 @@
     "raffle_title": "Realizar Sorteo",
     "random_letter_title": "Generar letras aleatorias",
     "random_number_title": "Generar números aleatorios",
-    "spin_arrow_title": "Girar una flecha"
+    "spin_arrow_title": "Girar una flecha",
+    "flip_coin_title": "Lanzar una moneda"
   },
   "LetterDrawPage": {
     "draw_configuration": "Configuración de la tirada",
