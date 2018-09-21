@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import DateTimePicker from '../../DateTimePicker/DateTimePicker';
+import classnames from 'classnames/bind';
+import STYLES from './LetterDrawPage.scss';
 
+const c = classnames.bind(STYLES);
 class LetterDrawPage extends React.Component {
   state = {
     selectedDate: new Date(),
@@ -17,26 +19,10 @@ class LetterDrawPage extends React.Component {
   render() {
     return (
       <MuiPickersUtilsProvider utils={MomentUtils}>
-        {/* <DateTimePicker
-      value={dateScheduled}
-      onChange={datetime => {
-        onFieldChange('dateScheduled', datetime);
-      }}
-      autoOk
-      // ampm={false}
-      disablePast
-      label="24h clock"
-      showTodayButton
-      minDateMessage={t('past_date_not_valid')}
-    /> */}
-        <DateTimePicker
-          autoOk
-          ampm={false}
-          disableFuture
-          value={new Date('2018-01-01T00:00:00.000Z')}
-          onChange={this.handleDateChange}
-          label="24h clock"
-        />
+        <div className={c('LetterDrawPage', 'LetterDrawPage__tails')}>
+          <div className={c('LetterDrawPage__side', 'LetterDrawPage__side--a')} />
+          <div className={c('LetterDrawPage__side', 'LetterDrawPage__side--b')} />
+        </div>
       </MuiPickersUtilsProvider>
     );
   }

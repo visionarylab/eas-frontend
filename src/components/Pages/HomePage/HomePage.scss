@@ -1,18 +1,14 @@
 @import '../../include-media';
+@import '../../variables';
 
 .HomePage {
-  padding-right: 20%;
-  padding-left: 20%;
-
-  @include media('>tablet') {
-    &__container {
-      width: 50%;
-      margin: auto;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: $spacing-sm;
+  padding-right: $spacing-sm;
 
   &__draw-chips-group {
-    width: 50%;
     margin-bottom: 3rem;
   }
 }

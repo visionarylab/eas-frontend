@@ -1,11 +1,6 @@
 @import '../variables';
 $eas-chip-icon-width: 3.125rem;
 $eas-chip-padding: $spacing-xs .5rem;
-$eas-chip-border: $one-pixel-rem #d6d6d6 solid;
-$eas-chip-background-color: #fff;
-$eas-chip-shadow: $spacing-xs $spacing-xs $spacing-xs #888;
-$eas-chip-title-font-size: $spacing-md;
-$eas-chip-title-font-color: #6f6f6f;
 
 .DrawCard {
   display: flex;
@@ -15,14 +10,10 @@ $eas-chip-title-font-color: #6f6f6f;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  border: $eas-chip-border;
-  background-color: $eas-chip-background-color;
-  box-shadow: $eas-chip-shadow;
 
   &__icon {
     width: $eas-chip-icon-width;
     height: $eas-chip-icon-width;
-    // height: auto;  // TODO keep auto?
   }
 
   &__title {

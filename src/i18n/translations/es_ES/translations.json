@@ -2,14 +2,17 @@
   "HomePage": {
     "draw_title_facebook_draw": "Sorteo en Facebook",
     "draw_title_raffle_section": "Seccion de sorteos",
-    "draw_title_raffle": "Realizar Sorteo",
+    "draw_title_raffle": "Realizar Sorteo con premios",
     "draw_title_random_letter": "Generar letras aleatorias",
     "draw_title_random_number": "Generar números aleatorios",
     "draw_title_spin_arrow": "Girar una flecha",
     "draw_title_flip_coin": "Lanzar una moneda",
     "draw_title_roll_dice": "Lanzar dados",
     "draw_title_pick_card": "Elegir cartas al azar",
-    "draw_title_tournament": "Organizar un torneo"
+    "draw_title_tournament": "Organizar un torneo",
+    "draw_title_facebook_login": "Sorteo entre usuarios de Facebook",
+    "draw_title_facebook_photo": "Sorteo entre 'likes' en Facebook",
+    "draw_title_groups_generator": "Crea grupos aleatoriamente"
   },
   "DateTimePicker": {
     "cancel": "Cancelar",

@@ -19,12 +19,12 @@ const DrawCard = props => {
   const LinkComponent = props.to ? Link : ExternalLink;
   return (
     <LinkComponent className={c('DrawCard__link')} to={props.to} href={props.externalHref}>
-      <Paper className={c('DrawCard')}>
+      <div className={c('DrawCard')}>
         <img className={c('DrawCard__icon')} src={props.icon} alt={props.children} />
         <Typography className={c('DrawCard__title')} variant="subheading">
           {props.children}
         </Typography>
-      </Paper>
+      </div>
     </LinkComponent>
   );
 };

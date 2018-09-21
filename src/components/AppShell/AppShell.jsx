@@ -21,6 +21,7 @@ import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/Faceb
 import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer';
 import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer';
 import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer';
+import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer';
 
 const c = classnames.bind(STYLES);
 
@@ -57,6 +58,7 @@ const AppShell = () => (
         <Route exact path="/letter" component={LetterDrawPageContainer} />
 
         <Route exact path="/arrow" component={SpinArrowPageContainer} />
+        <Route exact path="/flip-a-coin" component={FlipCoinPageContainer} />
 
         <Route render={() => <div>Not found</div>} />
       </Switch>
