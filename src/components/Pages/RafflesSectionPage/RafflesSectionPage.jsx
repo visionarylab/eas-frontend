@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 
-import Chip from './../../DrawCard/DrawCard';
+import DrawCard from './../../DrawCard/DrawCard';
 import Page from '../../Page/Page';
 import likeIcon from './like.jpg';
 import facebookIcon from './facebook.png';
@@ -16,15 +16,15 @@ const c = classNames.bind(STYLES);
 const RafflesSectionPage = ({ t }) => (
   <Page htmlTitle={'Échalo A Suerte'}>
     <div className={c('RafflesSectionPage__draw-chips-list')}>
-      <Chip icon={facebookIcon} href="/facebook_login">
+      <DrawCard icon={facebookIcon} to="/facebook_login">
         {t('facebook_login_raffle_title')}
-      </Chip>
-      <Chip icon={likeIcon} href="/facebook_photo">
+      </DrawCard>
+      <DrawCard icon={likeIcon} to="/facebook_photo">
         {t('facebook_photo_raffle_title')}
-      </Chip>
-      <Chip icon={raffleIcon} href="/raffle">
+      </DrawCard>
+      <DrawCard icon={raffleIcon} to="/raffle">
         {t('raffle_title')}
-      </Chip>
+      </DrawCard>
     </div>
   </Page>
 );
