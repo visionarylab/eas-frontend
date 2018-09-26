@@ -11,8 +11,8 @@ class FlipCoinPageContainer extends Component {
   }
 
   handleFlipCoin = () => {
-    console.log('asads');
-    this.setState({ coinSide: 'tails' });
+    const coinSide = Math.floor(Math.random() * 2) ? 'heads' : 'tails';
+    this.setState({ coinSide });
   };
   render() {
     return <FlipCoinPage coinSide={this.state.coinSide} onFlip={this.handleFlipCoin} />;

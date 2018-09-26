@@ -14,6 +14,16 @@
     "draw_title_facebook_photo": "Sorteo entre 'likes' en Facebook",
     "draw_title_groups_generator": "Crea grupos aleatoriamente"
   },
+  "FlipCoinPage":{
+    "page_title": "Cara o cruz",
+    "html_title": "Cara o cruz",
+    "draw_subheading": "(Toca la moneda para lanzarla)"
+  },
+  "SpinArrowPage": {
+    "spin_arrow_html_tittle": "Girar una flecha online",
+    "spin_arrow_title": "Girar una flecha online",
+    "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)"
+  },
   "DateTimePicker": {
     "cancel": "Cancelar",
     "ok": "Ok",
@@ -160,11 +170,6 @@
 
     "publish_draw": "Publicar tirada",
     "generate_groups": "Generar grupos"
-  },
-  "SpinArrowPage": {
-    "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)",
-    "spin_arrow_html_tittle": "Girar una flecha online",
-    "spin_arrow_title": "Girar una flecha online"
   },
   "TranslationsSwitch": {
     "change_language": "Cambiar idioma"
