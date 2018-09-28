@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 const log = message => DEBUG && console.log(message); // eslint-disable-line no-console
 /**
  * Set up the FB SDK
@@ -13,11 +13,12 @@ export const fbAsyncInit = onStatusChange => {
       autoLogAppEvents: true,
       xfbml: true,
       status: true,
-      version: 'v3.0',
+      version: 'v3.1',
     });
     window.FB.Event.subscribe('auth.statusChange', onStatusChange);
 
     window.FB.Event.subscribe('auth.statusChange', response => {
+      console.log('response', response);
       if (response.authResponse) {
         log('logged in');
       } else {
@@ -27,15 +28,32 @@ export const fbAsyncInit = onStatusChange => {
   };
 };
 
+export const injectScript = locale => {
+  // eslint-disable-next-line func-names
+  (function(d, s, id) {
+    const fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    const js = d.createElement(s);
+    js.id = id;
+    // const locale = i18n.language.replace('-', '_');
+    js.src = `https://connect.facebook.net/${locale}/sdk.js`;
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script', 'facebook-jssdk');
+};
+
+export const onStatusChange = callback => window.FB.Event.subscribe('auth.statusChange', callback);
+
 /**
- * Set up the FB SDK
+ * Make an API call
  * @param {string} endpoint - Endpoint to hit. E.g '/123123213/likes'
  * @param {string} accessToken - Access token used to make the request '/123123213/likes'
  * @return {Promise} - Response from the API
  */
 export const apiCall = async (endpoint, accessToken = null) =>
   new Promise(async (accept, reject) => {
-    log(`Facebook API call: ${endpoint} (Access Token: ${accessToken}`);
+    log(`Facebook API call: ${endpoint} (Access Token: ${accessToken})`);
     const response = await new Promise(callback => {
       const options = accessToken ? { access_token: accessToken } : {};
       FB.api(endpoint, options, callback); // eslint-disable-line no-undef
@@ -54,28 +72,29 @@ export const apiCall = async (endpoint, accessToken = null) =>
  */
 export const getUserDetails = async () => {
   const response = await apiCall('/me');
+  console.log('response', response);
   if (response && !response.error) {
     return { userID: response.id, userName: response.name };
   }
   return 'error';
 };
 
-/**
- * Get the Facebook pages that the current user has granted access to
- * @return {object} - Facebook pages names their AccessTokens
- * @throws {Exception}
- */
-export const getFacebookPages = async () => {
-  const response = await apiCall('/me/accounts');
-  if (response && !response.error) {
-    const pages = response.data.map(page => ({
-      pageName: page.name,
-      accessToken: page.access_token,
-    }));
-    return pages;
-  }
-  return 'error';
-};
+// /**
+//  * Get the Facebook pages that the current user has granted access to
+//  * @return {object} - Facebook pages names their AccessTokens
+//  * @throws {Exception}
+//  */
+// export const getFacebookPages = async () => {
+//   const response = await apiCall('/me/accounts');
+//   if (response && !response.error) {
+//     const pages = response.data.map(page => ({
+//       pageName: page.name,
+//       accessToken: page.access_token,
+//     }));
+//     return pages;
+//   }
+//   return 'error';
+// };
 
 /**
  * Get the people who liked a given facebook object
@@ -83,7 +102,7 @@ export const getFacebookPages = async () => {
  * @param {string} pageAccessToken - Page Access Token'
  * @return {Array} - People who liked the given object
  */
-export const onGetLikes = async (objectId, pageAccessToken = null) => {
+export const getLikesOnObject = async (objectId, pageAccessToken = null) => {
   const response = await apiCall(`${objectId}/likes`, pageAccessToken);
   const participants = response.data.map(item => item.name);
   return participants;
@@ -123,4 +142,32 @@ export const getObjectIdFromUrl = urlString => {
   }
   parcialObjectId = parcialObjectIdResults[1];
   return `${pageId}_${parcialObjectId}`;
+};
+
+export const whoAmI = async () => {
+  // const response = await apiCall('/me');
+  // console.log('response', response);
+
+  const asd = new Promise((accept, reject) => {
+    const callback = response => {
+      console.log(`Good to see you, ${response.name}.`);
+      console.log('response', response);
+      if (response && !response.error) {
+        accept('cool');
+      } else {
+        reject('not cool');
+      }
+    };
+    FB.api('/me', callback);
+  });
+
+  const response = await asd;
+  console.log(response);
+};
+
+export const logout = () => {
+  // eslint-disable-next-line no-undef
+  FB.logout(() => {
+    console.log('FB: logged out');
+  });
 };

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { apiCall, fbAsyncInit } from '../../services/FacebookAPI/FacebookAPI';
+import {
+  apiCall,
+  fbAsyncInit,
+  injectScript,
+  getLikesOnObject,
+} from '../../services/FacebookAPI/FacebookAPI';
 import i18n from '../../i18n/i18n';
 
 export const FacebookContext = React.createContext();
@@ -14,28 +19,17 @@ class FacebookProvider extends Component {
       isLoggedInFB: false,
       userID: null,
       userName: null,
-      userPages: [],
+      userPages: null,
     };
   }
 
   componentDidMount() {
-    fbAsyncInit(this.onStatusChange);
+    const updateLoginStatus = response => this.setState({ isLoggedInFB: !!response.authResponse });
+    fbAsyncInit(updateLoginStatus);
 
-    // eslint-disable-next-line func-names
-    (function(d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      const js = d.createElement(s);
-      js.id = id;
-      const locale = i18n.language.replace('-', '_');
-      js.src = `https://connect.facebook.net/${locale}/sdk.js`;
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    const locale = i18n.language.replace('-', '_');
+    injectScript(locale);
   }
-
-  onStatusChange = response => this.setState({ isLoggedInFB: !!response.authResponse });
 
   getUserDetails = () => {
     if (!this.state.userID) {
@@ -45,14 +39,10 @@ class FacebookProvider extends Component {
     return { userID, userName };
   };
 
-  getUserPages = () => {
-    if (!this.state.userPages.length) {
-      this.queryFacebookPages();
-    }
-    return this.state.userPages;
-  };
+  queryUserPages = async () => {
+    const response2 = await apiCall('/me');
+    console.log('response name', response2);
 
-  queryFacebookPages = async () => {
     const response = await apiCall('/me/accounts');
     if (response && !response.error) {
       const userPages = response.data.map(page => ({
@@ -63,6 +53,24 @@ class FacebookProvider extends Component {
       this.setState({ userPages });
       // }
     }
+  };
+
+  queryLikesOnObject = async objectId => {
+    console.log('queryLikesOnObject');
+    const accessTokens = this.state.userPages.map(page => page.accessToken);
+
+    const response = await Promise.all(
+      accessTokens.map(token => getLikesOnObject(objectId, token)),
+    );
+    console.log('queryLikesOnObject___response', response);
+
+    // accessTokens.forEach(async pageAccessToken => {
+    //   const likers = await getLikesOnObject(objectId, pageAccessToken);
+    //   if (likers.length) {
+    //     this.onFieldChange('participants', likers);
+    //   }
+    //   this.setState({ participantsFetched: true });
+    // });
   };
 
   queryUserDetails = async () => {
@@ -76,7 +84,8 @@ class FacebookProvider extends Component {
     const context = {
       ...this.state,
       getUserDetails: this.getUserDetails,
-      getUserPages: this.getUserPages,
+      queryUserPages: this.queryUserPages,
+      queryLikesOnObject: this.queryLikesOnObject,
     };
     return (
       <FacebookContext.Provider value={context}>{this.props.children}</FacebookContext.Provider>

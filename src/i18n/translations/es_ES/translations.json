@@ -24,6 +24,11 @@
     "spin_arrow_title": "Girar una flecha online",
     "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)"
   },
+  "FacebookPhotoRafflePage": {
+    "page_title": "Sorteo de 'likes' en Facebook",
+    "html_title": "Sorteo de likes en Facebook",
+    "draw_subheading": "Some description"
+  },
   "DateTimePicker": {
     "cancel": "Cancelar",
     "ok": "Ok",

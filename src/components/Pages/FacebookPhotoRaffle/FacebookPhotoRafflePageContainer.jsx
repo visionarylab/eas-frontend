@@ -6,9 +6,10 @@ import FacebookPhotoRafflePage from './FacebookPhotoRafflePage';
 import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
 import {
-  getFacebookPages,
   onGetLikes,
   getObjectIdFromUrl,
+  logout,
+  whoAmI,
 } from '../../../services/FacebookAPI/FacebookAPI';
 
 class FacebookPhotoRafflePageContainer extends Component {
@@ -28,8 +29,14 @@ class FacebookPhotoRafflePageContainer extends Component {
       },
       isLoggedInFB: false,
       participantsFetched: false,
-      ownedPages: [],
     };
+  }
+
+  componentDidUpdate() {
+    const { isLoggedInFB, userPages, queryUserPages } = this.props.facebookContext;
+    if (isLoggedInFB && userPages === null) {
+      queryUserPages();
+    }
   }
 
   onFieldChange = (fieldName, value) => {
@@ -56,41 +63,45 @@ class FacebookPhotoRafflePageContainer extends Component {
     // const objectId = '1775681819145291';
     // const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
-    const userPages = this.props.facebookContext.getUserPages();
-    userPages.map(page => page.accessToken).forEach(async pageAccessToken => {
-      const participants = await onGetLikes(objectId, pageAccessToken);
-      if (participants) {
-        this.onFieldChange('participants', participants);
-      }
-      this.setState({ participantsFetched: true });
-    });
+
+    const likes = await this.props.facebookContext.queryLikesOnObject(objectId);
+
+    // this.props.facebookContext.userPages
+    //   .map(page => page.accessToken)
+    //   .forEach(async pageAccessToken => {
+    //     const participants = await onGetLikes(objectId, pageAccessToken);
+    //     if (participants) {
+    //       this.onFieldChange('participants', participants);
+    //     }
+    //     this.setState({ participantsFetched: true });
+    //   });
   };
 
-  getOwnedPages = async () => {
-    const facebookPages = await getFacebookPages();
-    this.setState({ ownedPages: facebookPages });
+  handleFaceebookLogout = () => {
+    logout();
+    whoAmI();
   };
 
   handlePublish = async () => {
     this.props.history.push(`${this.props.location.pathname}/3`);
   };
 
+  handleQueryLikes = () => {};
+
   render() {
-    const { ownedPages, values, participantsFetched } = this.state;
-    const { isLoggedInFB, getUserPages } = this.props.facebookContext;
-    const userPages = isLoggedInFB ? getUserPages() : null;
-    console.log('pages', userPages);
+    const { values, participantsFetched } = this.state;
+    const { isLoggedInFB, userPages } = this.props.facebookContext;
     return (
       <div>
         <FacebookPhotoRafflePage
           isLoggedInFB={isLoggedInFB}
-          // userPages={isLoggedInFB ? getuserPages() : null}
           participantsFetched={participantsFetched}
-          ownedPages={ownedPages}
+          userPages={userPages}
           values={values}
           onGetLikes={this.onGetLikes}
           onFieldChange={this.onFieldChange}
           handlePublish={this.handlePublish}
+          handleFaceebookLogout={this.handleFaceebookLogout}
         />
       </div>
     );
@@ -101,7 +112,13 @@ FacebookPhotoRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
-    getUserPages: PropTypes.func.isRequired,
+    queryUserPages: PropTypes.func.isRequired,
+    userPages: PropTypes.arrayOf(
+      PropTypes.shape({
+        pageName: PropTypes.string.isRequired,
+        accessToken: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
   }).isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };

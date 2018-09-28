@@ -6,108 +6,98 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import SubmitButton from '../../SubmitButton/SubmitButton';
 
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay';
-import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
+import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
+import withFormValidation from '../../withValidation/withFormValidation';
+
 import Page from '../../Page/Page';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
+
+const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const FacebookPhotoRafflePage = props => {
   const {
     values,
     participantsFetched,
     isLoggedInFB,
-    ownedPages,
+    userPages,
     onGetLikes,
     onFieldChange,
     handlePublish,
+    handleFaceebookLogout,
     t,
   } = props;
 
   return (
-    <Page htmlTitle={t('facebook_photo_raffle_html_title')}>
-      <Grid container spacing={16}>
-        <Grid item sm={3} />
-        <Grid item xs={6}>
-          <div>
-            <Grid item sm={12}>
-              <SectionPanel>
-                {isLoggedInFB ? (
-                  <Fragment>
-                    You are logged in. These are the pages were we got access:
-                    <ul>
-                      {ownedPages.map(page => (
-                        <li>{page.pageName}</li>
-                      ))}
-                    </ul>
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <Typography variant="body1" gutterBottom>
-                      Organise a raffle among the people who liked a post or photo in your page
-                      <br />
-                      Login with facebook so we can automatically get the participants for the
-                      raffle
-                    </Typography>
-                    <FacebookLoginButton permissions="manage_pages" />
-                  </Fragment>
-                )}
-              </SectionPanel>
-              <SectionPanel>
-                Now paste here the link to the post you want to check
-                <TextField
-                  label={t('post_or_photo_url')}
-                  margin="normal"
-                  onChange={e => onFieldChange('url', e.target.value)}
-                  value={values.url}
-                  type="text"
-                  fullWidth
-                  disabled={!isLoggedInFB}
-                />
-                <Button
-                  variant="raised"
-                  color="primary"
-                  onClick={onGetLikes}
-                  disabled={!isLoggedInFB}
-                >
-                  {t('check_participants')}
-                </Button>
-                {participantsFetched && (
-                  <MultiValueDisplay
-                    name="participants"
-                    label={props.t('participants')}
-                    values={values.participants}
-                    placeholder="David"
-                  />
-                )}
-              </SectionPanel>
-              <SectionPanel>
-                <PrizeSelector
-                  numberOfWinners={values.numberOfWinners}
-                  prizes={values.prizes}
-                  onFieldChange={onFieldChange}
-                />
-              </SectionPanel>
-              <div>
-                <Button variant="raised" color="primary" onClick={handlePublish}>
-                  {props.t('publish_draw')}
-                </Button>
-              </div>
-            </Grid>
-          </div>
-        </Grid>
-        <Grid item xs={3}>
-          <TransparentPanel>
-            <Paper>
-              <Trans i18nKey="facebook_photo_raffle_seo_description">
-                <span>Organize raffles in your Facebook page</span>
-              </Trans>
-            </Paper>
-          </TransparentPanel>
-        </Grid>
-      </Grid>
+    <Page htmlTitle={t('html_title')}>
+      <QuickDrawLayout sidePanel={<Button onClick={handleFaceebookLogout}>FB logout</Button>}>
+        <Typography color="primary" variant="display1" align="center">
+          {t('page_title')}
+        </Typography>
+        <Typography variant="body1" align="center" color={'textSecondary'}>
+          {t('draw_subheading')}
+        </Typography>
+        <ValidatedForm
+          onSubmit={e => {
+            e.preventDefault();
+            // handleToss();
+          }}
+          // checkErrors={() => handleCheckErrorsInConfiguration(t)}
+        >
+          <SectionPanel>
+            {isLoggedInFB ? (
+              <Fragment>
+                You are logged in. These are the pages were we got access:
+                <ul>{userPages && userPages.map(page => <li>{page.pageName}</li>)}</ul>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Typography variant="body1" gutterBottom>
+                  Organise a raffle among the people who liked a post or photo in your page
+                  <br />
+                  Login with facebook so we can automatically get the participants for the raffle
+                </Typography>
+              </Fragment>
+            )}
+            <FacebookLoginButton permissions="manage_pages" />
+          </SectionPanel>
+          <SectionPanel>
+            Now paste here the link to the post you want to check
+            <TextField
+              label={t('post_or_photo_url')}
+              margin="normal"
+              onChange={e => onFieldChange('url', e.target.value)}
+              value={values.url}
+              type="text"
+              fullWidth
+              disabled={!isLoggedInFB}
+            />
+            <Button variant="raised" color="primary" onClick={onGetLikes} disabled={!isLoggedInFB}>
+              {t('check_participants')}
+            </Button>
+            {participantsFetched && (
+              <MultiValueDisplay
+                name="participants"
+                label={props.t('participants')}
+                values={values.participants}
+                placeholder="David"
+              />
+            )}
+          </SectionPanel>
+          <SectionPanel>
+            <PrizeSelector
+              numberOfWinners={values.numberOfWinners}
+              prizes={values.prizes}
+              onFieldChange={onFieldChange}
+            />
+          </SectionPanel>
+          <SubmitButton label={t('publish_draw')} onClick={handlePublish} />
+        </ValidatedForm>
+      </QuickDrawLayout>
     </Page>
   );
 };
@@ -124,7 +114,7 @@ FacebookPhotoRafflePage.propTypes = {
   }).isRequired,
   participantsFetched: PropTypes.bool.isRequired,
   isLoggedInFB: PropTypes.bool,
-  ownedPages: PropTypes.arrayOf(
+  userPages: PropTypes.arrayOf(
     PropTypes.shape({
       pageName: PropTypes.string.isRequired,
       accessToken: PropTypes.string.isRequired,
@@ -138,7 +128,7 @@ FacebookPhotoRafflePage.propTypes = {
 
 FacebookPhotoRafflePage.defaultProps = {
   isLoggedInFB: false,
-  ownedPages: [],
+  userPages: [],
 };
 
 export default translate('FacebookPhotoRafflePage')(FacebookPhotoRafflePage);
