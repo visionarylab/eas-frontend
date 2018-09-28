@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 const log = message => DEBUG && console.log(message); // eslint-disable-line no-console
 /**
  * Set up the FB SDK
@@ -18,7 +18,6 @@ export const fbAsyncInit = onStatusChange => {
     window.FB.Event.subscribe('auth.statusChange', onStatusChange);
 
     window.FB.Event.subscribe('auth.statusChange', response => {
-      console.log('response', response);
       if (response.authResponse) {
         log('logged in');
       } else {
@@ -56,7 +55,7 @@ export const apiCall = async (endpoint, accessToken = null) =>
     log(`Facebook API call: ${endpoint} (Access Token: ${accessToken})`);
     const response = await new Promise(callback => {
       const options = accessToken ? { access_token: accessToken } : {};
-      FB.api(endpoint, options, callback); // eslint-disable-line no-undef
+      window.FB.api(endpoint, options, callback); // eslint-disable-line no-undef
     });
     log('Response:', response);
     if (response && !response.error) {
@@ -78,23 +77,6 @@ export const getUserDetails = async () => {
   }
   return 'error';
 };
-
-// /**
-//  * Get the Facebook pages that the current user has granted access to
-//  * @return {object} - Facebook pages names their AccessTokens
-//  * @throws {Exception}
-//  */
-// export const getFacebookPages = async () => {
-//   const response = await apiCall('/me/accounts');
-//   if (response && !response.error) {
-//     const pages = response.data.map(page => ({
-//       pageName: page.name,
-//       accessToken: page.access_token,
-//     }));
-//     return pages;
-//   }
-//   return 'error';
-// };
 
 /**
  * Get the people who liked a given facebook object
@@ -158,7 +140,7 @@ export const whoAmI = async () => {
         reject('not cool');
       }
     };
-    FB.api('/me', callback);
+    window.FB.api('/me', callback);
   });
 
   const response = await asd;
@@ -166,8 +148,7 @@ export const whoAmI = async () => {
 };
 
 export const logout = () => {
-  // eslint-disable-next-line no-undef
-  FB.logout(() => {
+  window.FB.logout(() => {
     console.log('FB: logged out');
   });
 };

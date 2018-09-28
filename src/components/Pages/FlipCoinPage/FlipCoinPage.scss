@@ -1,61 +1,63 @@
+@import '../../variables';
+
 $coin-size: 12.5rem;
 
 @keyframes flipHeads {
-    from { transform: rotateY(0); }
-    to { transform: rotateY(1800deg); }
-  }
+  from { transform: rotateY(0); }
+  to { transform: rotateY(1800deg); }
+}
+
 @keyframes flipTails {
-    from { transform: rotateY(0); }
-    to { transform: rotateY(1980deg); }
+  from { transform: rotateY(0); }
+  to { transform: rotateY(1980deg); }
 }
 
 .FlipCoinPage {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  &__container {
     display: flex;
-    flex-direction: column;
-    text-align: center;
+    padding-top: 10vh;
+    flex: 1;
+  }
 
-    &__container {
-        display: flex;
-        flex: 1;
-        padding-top: 10vh;
-      }
+  &__coin {
+    position: relative;
+    width: $coin-size;
+    height: $coin-size;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    transform-style: preserve-3d;
 
-    &__coin {
-        border: none;
-        outline: none;
-        background-color: transparent;
-        cursor: pointer;
-
-        position: relative;
-        margin: 0 auto;
-        width: $coin-size;
-        height: $coin-size;
-        transform-style: preserve-3d;
-        &--heads {
-            animation: flipHeads 3s cubic-bezier(0.43, 0.72, 0.54, 0.87) forwards;
-        }
-    
-        &--tails {
-            animation: flipTails 3s cubic-bezier(0.43, 0.72, 0.54, 0.87) forwards;
-        }
+    &--heads {
+      animation: flipHeads 3s cubic-bezier(.43, .72, .54, .87) forwards;
     }
 
-
-    &__coin-side {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top:0;
-        left:0;
-        backface-visibility: hidden;
-
-        &--heads {
-        z-index: 100;
-    }
     &--tails {
-        background-color: white;
-        transform: rotateY(-180deg);
-        }
+      animation: flipTails 3s cubic-bezier(.43, .72, .54, .87) forwards;
     }
+  }
+
+  &__coin-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    &--heads {
+      z-index: 100;
+    }
+
+    &--tails {
+      transform: rotateY(-180deg);
+      background-color: $color-white;
+    }
+  }
 }
-  

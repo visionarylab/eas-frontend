@@ -3,14 +3,8 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import DrawCard from './../../DrawCard/DrawCard';
 import Page from '../../Page/Page';
-import rafflesIcon from './raffles.svg';
 import randomNumber from './random_number.png';
 import arrowIcon from './arrow.svg';
 import randomLetter from './random_letter.png';

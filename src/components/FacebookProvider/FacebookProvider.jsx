@@ -40,25 +40,18 @@ class FacebookProvider extends Component {
   };
 
   queryUserPages = async () => {
-    const response2 = await apiCall('/me');
-    console.log('response name', response2);
-
     const response = await apiCall('/me/accounts');
     if (response && !response.error) {
       const userPages = response.data.map(page => ({
         pageName: page.name,
         accessToken: page.access_token,
       }));
-      // if (pages.length) {
       this.setState({ userPages });
-      // }
     }
   };
 
   queryLikesOnObject = async objectId => {
-    console.log('queryLikesOnObject');
     const accessTokens = this.state.userPages.map(page => page.accessToken);
-
     const response = await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );

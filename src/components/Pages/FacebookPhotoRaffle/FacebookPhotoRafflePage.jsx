@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -28,13 +26,12 @@ const FacebookPhotoRafflePage = props => {
     onGetLikes,
     onFieldChange,
     handlePublish,
-    handleFaceebookLogout,
     t,
   } = props;
 
   return (
     <Page htmlTitle={t('html_title')}>
-      <QuickDrawLayout sidePanel={<Button onClick={handleFaceebookLogout}>FB logout</Button>}>
+      <QuickDrawLayout sidePanel={<Button>Do Nothing</Button>}>
         <Typography color="primary" variant="display1" align="center">
           {t('page_title')}
         </Typography>

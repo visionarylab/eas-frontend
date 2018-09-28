@@ -86,11 +86,6 @@
     "who_will_participate": "Who wil participate?",
     "you_havent_add_any_participants": "You haven't added any participant"
   },
-  "RafflesSectionPage": {
-    "facebook_login_raffle_title": "Raffle between Facebook users",
-    "facebook_photo_raffle_title": "Raffle bettwen 'likes' in Facebook",
-    "raffle_title": "Raffle with closed list of participants"
-  },
   "RandomNumberPage": {
     "input_label_allow_repeated": "Allow repeated",
     "draw_configuration": "Draw details",

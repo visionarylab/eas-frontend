@@ -11,7 +11,6 @@ const c = classnames.bind(STYLES);
 
 class FlipCoinPage extends Component {
   componentDidUpdate(prevProps) {
-    console.log('componentDidUpdate');
     const { coinSide } = this.props;
     const className = c({
       'FlipCoinPage__coin--heads': coinSide === 'heads',
@@ -27,7 +26,7 @@ class FlipCoinPage extends Component {
   }
 
   render() {
-    const { coinSide, onFlip, t } = this.props;
+    const { onFlip, t } = this.props;
     return (
       <Page htmlTitle={t('page_html_title')} className={c('FlipCoinPage')}>
         <Typography color="primary" variant="display1">
@@ -36,14 +35,7 @@ class FlipCoinPage extends Component {
         <Typography variant="subheading">{t('draw_subheading')}</Typography>
 
         <div className={c('FlipCoinPage__container')}>
-          <button
-            id="coinImage"
-            className={c('FlipCoinPage__coin', {
-              // 'FlipCoinPage__coin--heads': coinSide === 'heads',
-              // 'FlipCoinPage__coin--tails': coinSide === 'tails',
-            })}
-            onClick={onFlip}
-          >
+          <button id="coinImage" className={c('FlipCoinPage__coin')} onClick={onFlip}>
             <img
               className={c('FlipCoinPage__coin-side', 'FlipCoinPage__coin-side--heads')}
               src="https://echaloasuerte.com/static/img/img_coin/head.png"

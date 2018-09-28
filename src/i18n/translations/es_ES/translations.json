@@ -124,11 +124,6 @@
     "who_will_participate": "¿Quién participará en el sorteo?",
     "you_havent_add_any_participants": "Todavía no has añadido ningun participante"
   },
-  "RafflesSectionPage": {
-    "facebook_login_raffle_title": "Sorteo entre usuarios de Facebook",
-    "facebook_photo_raffle_title": "Sorteo entre 'likes' en Facebook",
-    "raffle_title": "Sorteo con lista cerrada de participantes"
-  },
   "RandomNumber": {
     "page_title": "Generar números aleatorios",
     "html_title": "Generar números aleatorios",

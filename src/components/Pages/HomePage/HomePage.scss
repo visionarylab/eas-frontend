@@ -3,10 +3,10 @@
 
 .HomePage {
   display: flex;
+  padding-right: $spacing-sm;
+  padding-left: $spacing-sm;
   flex-direction: column;
   align-items: center;
-  padding-left: $spacing-sm;
-  padding-right: $spacing-sm;
 
   &__draw-chips-group {
     margin-bottom: 3rem;

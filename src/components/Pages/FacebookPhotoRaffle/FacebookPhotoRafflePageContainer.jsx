@@ -5,12 +5,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import FacebookPhotoRafflePage from './FacebookPhotoRafflePage';
 import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
 
-import {
-  onGetLikes,
-  getObjectIdFromUrl,
-  logout,
-  whoAmI,
-} from '../../../services/FacebookAPI/FacebookAPI';
+import { getObjectIdFromUrl, logout, whoAmI } from '../../../services/FacebookAPI/FacebookAPI';
 
 class FacebookPhotoRafflePageContainer extends Component {
   constructor(props) {
@@ -63,18 +58,8 @@ class FacebookPhotoRafflePageContainer extends Component {
     // const objectId = '1775681819145291';
     // const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
-
     const likes = await this.props.facebookContext.queryLikesOnObject(objectId);
-
-    // this.props.facebookContext.userPages
-    //   .map(page => page.accessToken)
-    //   .forEach(async pageAccessToken => {
-    //     const participants = await onGetLikes(objectId, pageAccessToken);
-    //     if (participants) {
-    //       this.onFieldChange('participants', participants);
-    //     }
-    //     this.setState({ participantsFetched: true });
-    //   });
+    console.log(likes);
   };
 
   handleFaceebookLogout = () => {
