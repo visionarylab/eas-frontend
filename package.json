@@ -48,5 +48,10 @@
     "test:integration:ci": "cypress run",
     "test:integration": "cypress open",
     "eject": "react-scripts eject"
+  },
+  "backpack-react-scripts": {
+    "babelIncludePrefixes": [
+      "echaloasuerte-js-sdk"
+    ]
   }
 }
