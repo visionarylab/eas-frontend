@@ -23,6 +23,7 @@ class RandomNumberPageContainer extends React.Component {
         dateScheduled: null,
       },
       quickResult: [],
+      APIError: false,
     };
   }
 
@@ -67,30 +68,22 @@ class RandomNumberPageContainer extends React.Component {
       };
     }
     const randomNumberDraw = EASApi.RandomNumber.constructFromObject(drawData);
-    try {
-      return await randomNumberApi.randomNumberCreate(randomNumberDraw);
-    } catch (err) {
-      alert(err);
-      return null;
-    }
+    return randomNumberApi.randomNumberCreate(randomNumberDraw);
   };
 
   handleToss = async () => {
-    let privateId;
-    if (this.state.privateId) {
-      privateId = this.state.privateId;
-    } else {
-      const draw = await this.createDraw();
-      privateId = draw.private_id;
-      this.setState({ privateId });
-    }
+    let privateId = this.state.privateId;
     try {
+      if (!privateId) {
+        const draw = await this.createDraw();
+        privateId = draw.private_id;
+        this.setState({ privateId });
+      }
       const tossResponse = await randomNumberApi.randomNumberToss(this.state.privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Random Number', label: 'Local' });
-      // this.props.onToss(tossResponse.value);
       this.setState({ quickResult: tossResponse.value });
     } catch (err) {
-      alert(err);
+      this.setState({ APIError: true });
     }
   };
 
@@ -101,7 +94,7 @@ class RandomNumberPageContainer extends React.Component {
         await randomNumberApi.randomNumberToss(draw.private_id, {});
         this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
       } catch (err) {
-        alert(err);
+        this.setState({ APIError: true });
       }
     }
   };
@@ -111,7 +104,11 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   handleCheckErrorsInConfiguration = t => {
-    const { values } = this.state;
+    const { APIError, values } = this.state;
+    if (APIError) {
+      return t('ApiError:api_error');
+    }
+
     const rangeMin = parseInt(values.rangeMin, 10);
     const rangeMax = parseInt(values.rangeMax, 10);
     const numberOfResults = parseInt(values.numberOfResults, 10);

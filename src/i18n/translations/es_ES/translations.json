@@ -178,11 +178,14 @@
     "change_language": "Cambiar idioma"
   },
   "WithFieldValidation": {
-    "default_message_min": "Tiene que ser mayor que {{min}}",
+    "default_message_min": "Tiene que ser mayor o igual que {{min}}",
     "default_message_required_field": "Este campo es obligatorio"
   },
   "WizardForm": {
     "back": "Atrás",
     "next": "Siguiente"
+  },
+  "ApiError": {
+    "api_error": "Estamos teniendo problemas en nuestro servidor."
   }
 }

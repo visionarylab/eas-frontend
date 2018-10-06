@@ -22,11 +22,11 @@ const withFormValidation = WrappedComponent => {
     }
 
     onSubmit = e => {
+      this.setState({
+        formSubmitted: true,
+      });
       if (!this.isFormValid()) {
         e.preventDefault();
-        this.setState({
-          formSubmitted: true,
-        });
       } else {
         this.props.onSubmit(e);
       }

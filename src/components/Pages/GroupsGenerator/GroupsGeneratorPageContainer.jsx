@@ -21,6 +21,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         dateScheduled: null,
       },
       quickResult: [],
+      APIError: false,
     };
   }
 
@@ -100,7 +101,12 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handleCheckErrorsInConfiguration = t => {
-    const { participants, numberOfGroups } = this.state.values;
+    const { APIError, values } = this.state;
+    const { participants, numberOfGroups } = values;
+
+    if (APIError) {
+      return t('ApiError:api_error');
+    }
 
     if (participants.length < numberOfGroups) {
       return t('error_form_not_enough_participants', { numberOfGroups });

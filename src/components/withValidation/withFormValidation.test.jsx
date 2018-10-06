@@ -115,6 +115,14 @@ describe('withFormValidation', () => {
   });
 });
 describe('Submit', () => {
+  it('Should store submitted state when submitted', () => {
+    const wrapper = mount(<FormWithValidation onSubmit={jest.fn()} />);
+    const instance = wrapper.instance();
+    expect(instance.state.formSubmitted).toBe(false);
+    wrapper.find('form').simulate('submit');
+    expect(instance.state.formSubmitted).toBe(true);
+  });
+
   it('Should call the main onSubmit function if the form is valid', () => {
     const onSubmitMock = jest.fn();
     const wrapper = mount(<FormWithValidation onSubmit={onSubmitMock} />);

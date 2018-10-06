@@ -17,6 +17,19 @@ describe('Number Draw Page', () => {
       .and('be.calledWith', 'send', { hitType: 'pageview', page: '/number' });
   });
 
+  it('Should show feedback if there are server errors', () => {
+    cy.visit('/number');
+    cy.route({
+      method: 'POST',
+      url: '/api/random_number/',
+      status: 503,
+      response: {},
+    }).as('failedRequest');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.wait('@failedRequest');
+    cy.getComponent('ValidationFeedback').should('be.visible');
+  });
+
   it('Results are shown', function() {
     cy.visit('/number');
     cy.getComponent('SubmitDrawButton').click();

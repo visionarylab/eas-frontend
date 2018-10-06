@@ -9,6 +9,8 @@ import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell';
 import FacebookProvider from './../FacebookProvider/FacebookProvider';
 import config from '../../config/config';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 
 class App extends Component {
   constructor(props) {
@@ -27,15 +29,21 @@ class App extends Component {
 
   render() {
     return (
-      <I18nextProvider i18n={i18n}>
-        <MuiThemeProvider theme={theme}>
-          <FacebookProvider>
-            <BrowserRouter>
-              <AppShell />
-            </BrowserRouter>
-          </FacebookProvider>
-        </MuiThemeProvider>
-      </I18nextProvider>
+      <ErrorBoundary
+        render={() => (
+          <ErrorPage>Something went bad, but we are working very hard to fix it</ErrorPage>
+        )}
+      >
+        <I18nextProvider i18n={i18n}>
+          <MuiThemeProvider theme={theme}>
+            <FacebookProvider>
+              <BrowserRouter>
+                <AppShell />
+              </BrowserRouter>
+            </FacebookProvider>
+          </MuiThemeProvider>
+        </I18nextProvider>
+      </ErrorBoundary>
     );
   }
 }
