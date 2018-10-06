@@ -9,10 +9,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import withFieldValidation from '../../withValidation/withFieldValidation';
-import ValidationFeedback from '../../withValidation/ValidationFeedback';
+import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
 
 const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedCheckbox = withFieldValidation(Checkbox);
+const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel title={t('step_title_draw_configuration')}>

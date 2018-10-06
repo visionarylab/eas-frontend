@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import withFieldValidation from '../../withValidation/withFieldValidation';
-import ValidationFeedback from '../../withValidation/ValidationFeedback';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput';
+import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
 
 const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
+const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel title={t('step_title_draw_configuration')}>

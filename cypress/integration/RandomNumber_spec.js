@@ -27,7 +27,7 @@ describe('Number Draw Page', () => {
     }).as('failedRequest');
     cy.getComponent('SubmitDrawButton').click();
     cy.wait('@failedRequest');
-    cy.getComponent('ValidationFeedback').should('be.visible');
+    cy.getComponent('ErrorFeedback').should('be.visible');
   });
 
   it('Results are shown', function() {
@@ -122,7 +122,7 @@ describe('Number Draw Page', () => {
         .clear()
         .type(12);
       cy.getComponent('SubmitDrawButton').click();
-      cy.getComponent('ValidationFeedback').should('be.visible');
+      cy.getComponent('ErrorFeedback').should('be.visible');
     });
 
     it('Should show error when range is too small', function() {
@@ -131,9 +131,9 @@ describe('Number Draw Page', () => {
         .clear()
         .type(12);
       cy.getComponent('SubmitDrawButton').click();
-      cy.getComponent('ValidationFeedback').should('be.visible');
+      cy.getComponent('ErrorFeedback').should('be.visible');
       cy.getComponent('RandomNumber__allow-repeated-field-input').check();
-      cy.getComponent('ValidationFeedback').should('not.exist');
+      cy.getComponent('ErrorFeedback').should('not.exist');
     });
   });
 });

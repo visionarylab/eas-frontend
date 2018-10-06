@@ -38,7 +38,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     }));
   };
 
-  createDraw = async () => {
+  createDraw = () => {
     const { title, description, participants, numberOfGroups } = this.state.values;
 
     const publicDetails = {
@@ -57,30 +57,22 @@ class GroupsGeneratorPageContainer extends React.Component {
       };
     }
     const groupGeneratorDraw = EASApi.Groups.constructFromObject(drawData);
-    try {
-      return await groupsApi.groupsCreate(groupGeneratorDraw);
-    } catch (err) {
-      alert(err);
-      return null;
-    }
+    return groupsApi.groupsCreate(groupGeneratorDraw);
   };
 
   handleToss = async () => {
-    let privateId;
-    if (this.state.privateId) {
-      privateId = this.state.privateId;
-    } else {
-      const draw = await this.createDraw();
-      privateId = draw.private_id;
-      this.setState({ privateId });
-    }
+    let privateId = this.state.privateId;
     try {
+      if (!privateId) {
+        const draw = await this.createDraw();
+        privateId = draw.private_id;
+        this.setState({ privateId });
+      }
       const tossResponse = await groupsApi.groupsToss(this.state.privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Random Number', label: 'Local' });
-      // this.props.onToss(tossResponse.value);
       this.setState({ quickResult: tossResponse.value });
     } catch (err) {
-      alert(err);
+      this.setState({ APIError: true });
     }
   };
 
@@ -91,7 +83,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         await groupsApi.groupsToss(draw.private_id, {});
         this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
       } catch (err) {
-        alert(err);
+        this.setState({ APIError: true });
       }
     }
   };
@@ -102,8 +94,11 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   handleCheckErrorsInConfiguration = t => {
     const { APIError, values } = this.state;
-    const { participants, numberOfGroups } = values;
+    if (APIError) {
+      return t('ApiError:api_error');
+    }
 
+    const { participants, numberOfGroups } = values;
     if (APIError) {
       return t('ApiError:api_error');
     }
@@ -116,7 +111,6 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   render() {
     const { isPublic, values, quickResult, privateId } = this.state;
-    console.log('values', values);
     return isPublic ? (
       <GroupsGeneratorPage
         values={values}

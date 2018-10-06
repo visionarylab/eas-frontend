@@ -12,11 +12,13 @@ import Page from '../../Page/Page';
 import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection';
 import RandomNumberResult from './RandomNumberResult';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const RandomNumberQuickPage = props => {
   const {
+    apiError,
     values,
     quickResult,
     shareResultLink,
@@ -59,6 +61,7 @@ const RandomNumberQuickPage = props => {
           checkErrors={() => handleCheckErrorsInConfiguration(t)}
         >
           <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
+          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_numbers')} />
         </ValidatedForm>
         {quickResult.length > 0 && (
@@ -78,6 +81,7 @@ const RandomNumberQuickPage = props => {
 };
 
 RandomNumberQuickPage.propTypes = {
+  apiError: PropTypes.bool,
   values: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -96,6 +100,7 @@ RandomNumberQuickPage.propTypes = {
 };
 
 RandomNumberQuickPage.defaultProps = {
+  apiError: false,
   quickResult: [],
   shareResultLink: '',
 };

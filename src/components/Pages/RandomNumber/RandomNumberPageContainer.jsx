@@ -88,14 +88,14 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   handlePublish = async () => {
-    const draw = await this.createDraw();
-    if (!this.state.values.dateScheduled) {
-      try {
+    try {
+      const draw = await this.createDraw();
+      if (!this.state.values.dateScheduled) {
         await randomNumberApi.randomNumberToss(draw.private_id, {});
         this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
-      } catch (err) {
-        this.setState({ APIError: true });
       }
+    } catch (err) {
+      this.setState({ APIError: true });
     }
   };
 
@@ -104,11 +104,7 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   handleCheckErrorsInConfiguration = t => {
-    const { APIError, values } = this.state;
-    if (APIError) {
-      return t('ApiError:api_error');
-    }
-
+    const { values } = this.state;
     const rangeMin = parseInt(values.rangeMin, 10);
     const rangeMax = parseInt(values.rangeMax, 10);
     const numberOfResults = parseInt(values.numberOfResults, 10);
@@ -124,9 +120,10 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   render() {
-    const { isPublic, values, quickResult, privateId } = this.state;
+    const { APIError, isPublic, values, quickResult, privateId } = this.state;
     return isPublic ? (
       <RandomNumberPage
+        apiError={APIError}
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -134,6 +131,7 @@ class RandomNumberPageContainer extends React.Component {
       />
     ) : (
       <RandomNumberQuickPage
+        apiError={APIError}
         values={values}
         shareResultLink={privateId ? `/number/${privateId}` : ''}
         quickResult={quickResult}

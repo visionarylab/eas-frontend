@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import STYLES from './WizardForm.scss';
+import ErrorFeedback from '../ErrorFeedback/ErrorFeedback';
 
 const c = classnames.bind(STYLES);
 
@@ -82,7 +83,7 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { steps, submitButtonLabel, t } = this.props;
+    const { steps, apiError, submitButtonLabel, t } = this.props;
     const stepLabels = steps.map(step => step.label);
     const { activeStep, stepValidations, submittedSteps } = this.state;
     return (
@@ -109,6 +110,7 @@ class WizardForm extends Component {
               onSubmit: this.onStepSubmit,
             })}
           </div>
+          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <div className={c('WizardForm__buttons-row')}>
             <Button
               className={c('WizardForm__step-button')}
@@ -140,6 +142,7 @@ WizardForm.propTypes = {
       render: PropTypes.func.isRequired,
     }),
   ).isRequired,
+  apiError: PropTypes.bool,
   initialStep: PropTypes.number,
   submitButtonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
@@ -148,6 +151,7 @@ WizardForm.propTypes = {
 
 WizardForm.defaultProps = {
   initialStep: 0,
+  apiError: false,
 };
 
 export default translate('WizardForm')(WizardForm);

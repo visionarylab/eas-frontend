@@ -15,6 +15,20 @@ describe('Groups Generator Draw Page', () => {
       .and('be.calledWith', 'send', { hitType: 'pageview', page: '/groups' });
   });
 
+  it('Should show feedback if there are server errors', () => {
+    cy.visit('/groups');
+    cy.route({
+      method: 'POST',
+      url: '/api/groups/',
+      status: 503,
+      response: {},
+    }).as('failedRequest');
+    cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.wait('@failedRequest');
+    cy.getComponent('ErrorFeedback').should('be.visible');
+  });
+
   it('Fields have the right default values', function() {
     cy.visit('/groups');
 
@@ -95,9 +109,9 @@ describe('Groups Generator Draw Page', () => {
     it('Should recover from not enough participants for N groups', function() {
       cy.visit('/groups');
       cy.getComponent('SubmitDrawButton').click();
-      cy.getComponent('ValidationFeedback').should('be.visible');
+      cy.getComponent('ErrorFeedback').should('be.visible');
       cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
-      cy.getComponent('ValidationFeedback').should('not.exist');
+      cy.getComponent('ErrorFeedback').should('not.exist');
     });
   });
 });

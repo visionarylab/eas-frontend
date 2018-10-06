@@ -18,7 +18,14 @@ const ConfigurationForm = withFormValidation(RandomNumberConfigurationSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const RandomNumberPage = props => {
-  const { values, handleCheckErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
+  const {
+    values,
+    apiError,
+    handleCheckErrorsInConfiguration,
+    onFieldChange,
+    handlePublish,
+    t,
+  } = props;
   const steps = [
     {
       label: t('step_label_general_details'),
@@ -67,6 +74,7 @@ const RandomNumberPage = props => {
           steps={steps}
           onSubmit={handlePublish}
           submitButtonLabel={t('publish_raffle')}
+          apiError={apiError}
         />
       </div>
     </Page>
@@ -82,12 +90,15 @@ RandomNumberPage.propTypes = {
     numberOfResults: PropTypes.string.isRequired,
     allowRepeated: PropTypes.bool.isRequired,
   }).isRequired,
+  apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-RandomNumberPage.defaultProps = {};
+RandomNumberPage.defaultProps = {
+  apiError: false,
+};
 
 export default translate('RandomNumber')(RandomNumberPage);
