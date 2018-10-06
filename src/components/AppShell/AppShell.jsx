@@ -36,6 +36,11 @@ const AppShell = () => (
         <Route exact path="/groups" component={GroupsGeneratorPageContainer} />
 
         <Route exact path="/number" component={RandomNumberPageContainer} />
+        <Route
+          exact
+          path="/number/public"
+          component={props => <RandomNumberPageContainer isPublic {...props} />}
+        />
         <Route exact path="/number/:drawId" component={PublishedRandomNumberPageContainer} />
 
         <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />

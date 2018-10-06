@@ -145,7 +145,7 @@
     "error_field_message_min_results": "Debes generar al menos 1 resultado",
 
     "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_participants": "Elegir participantes",
+    "step_label_configuration": "Configura la tirada",
     "step_label_when_to_toss": "Cuándo quieres generar los números?",
     "step_title_general_details": "Detalles generales",
     "step_title_draw_configuration": "Configura la tirada",

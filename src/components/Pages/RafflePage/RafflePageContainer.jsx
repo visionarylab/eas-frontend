@@ -56,7 +56,8 @@ class RafflePageContainer extends Component {
     const { dateScheduled } = this.state.values;
     const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
     await raffleApi.raffleToss(draw.private_id, drawTossPayload);
-    this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
+    const publishDrawUrl = this.props.location.pathname.replace('public', draw.private_id);
+    this.props.history.push(publishDrawUrl);
   };
 
   render() {

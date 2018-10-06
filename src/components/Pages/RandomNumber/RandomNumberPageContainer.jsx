@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import ReactGA from 'react-ga';
 import EASApi from '../../../services/EASApi';
@@ -12,7 +13,6 @@ class RandomNumberPageContainer extends React.Component {
     super(props);
     this.state = {
       privateId: null,
-      isPublic: false,
       values: {
         title: '',
         description: '',
@@ -91,16 +91,13 @@ class RandomNumberPageContainer extends React.Component {
     try {
       const draw = await this.createDraw();
       if (!this.state.values.dateScheduled) {
-        await randomNumberApi.randomNumberToss(draw.private_id, {});
-        this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
+        alert(`${this.props.location.pathname}`);
+        // await randomNumberApi.randomNumberToss(draw.private_id, {});
+        // this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
       }
     } catch (err) {
       this.setState({ APIError: true });
     }
-  };
-
-  handleMakePublic = () => {
-    this.setState({ isPublic: true });
   };
 
   handleCheckErrorsInConfiguration = t => {
@@ -120,7 +117,8 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   render() {
-    const { APIError, isPublic, values, quickResult, privateId } = this.state;
+    const { APIError, values, quickResult, privateId } = this.state;
+    const { isPublic } = this.props;
     return isPublic ? (
       <RandomNumberPage
         apiError={APIError}
@@ -137,7 +135,6 @@ class RandomNumberPageContainer extends React.Component {
         quickResult={quickResult}
         onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
-        handleMakePublic={this.handleMakePublic}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
       />
     );
@@ -145,7 +142,12 @@ class RandomNumberPageContainer extends React.Component {
 }
 
 RandomNumberPageContainer.propTypes = {
+  isPublic: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
+};
+
+RandomNumberPageContainer.defaultProps = {
+  isPublic: false,
 };
 
 export default RandomNumberPageContainer;

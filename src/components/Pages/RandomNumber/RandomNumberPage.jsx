@@ -40,7 +40,7 @@ const RandomNumberPage = props => {
       ),
     },
     {
-      label: t('step_label_participants'),
+      label: t('step_label_configuration'),
       render: wizardProps => (
         <ConfigurationForm
           values={values}
