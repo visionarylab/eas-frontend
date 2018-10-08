@@ -16,12 +16,12 @@ class FacebookPhotoRafflePageContainer extends Component {
         description: '',
         url: '',
         // participants: ['David Naranjo', 'Mr. Nobody'],
-        participants: [],
         prizes: [],
         numberOfWinners: 1,
         winners: [],
         dateScheduled: null,
       },
+      participants: [],
       isLoggedInFB: false,
       participantsFetched: false,
     };
@@ -60,6 +60,7 @@ class FacebookPhotoRafflePageContainer extends Component {
     // The following could be improved
     const likes = await this.props.facebookContext.queryLikesOnObject(objectId);
     console.log(likes);
+    return likes;
   };
 
   handleFaceebookLogout = () => {
@@ -74,13 +75,14 @@ class FacebookPhotoRafflePageContainer extends Component {
   handleQueryLikes = () => {};
 
   render() {
-    const { values, participantsFetched } = this.state;
+    const { values, participantsFetched, participants } = this.state;
     const { isLoggedInFB, userPages } = this.props.facebookContext;
     return (
       <FacebookPhotoRafflePage
         isLoggedInFB={isLoggedInFB}
+        participants={participants}
         participantsFetched={participantsFetched}
-        userPages={userPages}
+        userPages={userPages || []}
         values={values}
         onGetLikes={this.onGetLikes}
         onFieldChange={this.onFieldChange}
@@ -101,9 +103,13 @@ FacebookPhotoRafflePageContainer.propTypes = {
         pageName: PropTypes.string.isRequired,
         accessToken: PropTypes.string.isRequired,
       }),
-    ).isRequired,
+    ),
   }).isRequired,
   location: ReactRouterPropTypes.location.isRequired,
+};
+
+FacebookPhotoRafflePageContainer.defaultProps = {
+  userPages: null,
 };
 
 export default withFacebookSDK(FacebookPhotoRafflePageContainer);

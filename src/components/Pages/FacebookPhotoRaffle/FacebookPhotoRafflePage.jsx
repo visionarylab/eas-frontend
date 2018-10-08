@@ -14,6 +14,10 @@ import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
 import withFormValidation from '../../withValidation/withFormValidation';
 import WizardForm from '../../WizardForm/WizardForm';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
+import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
+
+const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 import Page from '../../Page/Page';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
@@ -21,13 +25,16 @@ import STYLES from './FacebookPhotoRafflePage.scss';
 
 const c = classnames.bind(STYLES);
 
-const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
+const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
   <Fragment>
-    <SectionPanel>
+    <SectionPanel title={t('step_title_login_with_facebook')}>
       {isLoggedInFB ? (
         <Fragment>
           You are logged in. These are the pages were we got access:
-          <ul>{userPages !== null && userPages.map(page => <li>{page.pageName}</li>)}</ul>
+          <ul>
+            {userPages !== null &&
+              userPages.map(page => <li key={page.pageName}>{page.pageName}</li>)}
+          </ul>
         </Fragment>
       ) : (
         <Fragment>
@@ -40,18 +47,27 @@ const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
         </Fragment>
       )}
       <FacebookLoginButton permissions="manage_pages" />
+      <br />
+      <ValidationFeedback />
     </SectionPanel>
   </Fragment>
 );
 
-const ChoosePostSection = () => (
-  <SectionPanel>
+const ChoosePostSection = ({
+  url,
+  participants,
+  participantsFetched,
+  onFieldChange,
+  onGetLikes,
+  t,
+}) => (
+  <SectionPanel title={t('step_title_choose_post')}>
     Now paste here the link to the post you want to check
-    {/* <TextField
+    <TextField
       label={t('post_or_photo_url')}
       margin="normal"
       onChange={e => onFieldChange('url', e.target.value)}
-      value={values.url}
+      value={url}
       type="text"
       fullWidth
     />
@@ -62,10 +78,10 @@ const ChoosePostSection = () => (
       <MultiValueDisplay
         name="participants"
         label={t('participants')}
-        values={values.participants}
+        values={participants}
         placeholder="David"
       />
-    )} */}
+    )}
   </SectionPanel>
 );
 
@@ -75,6 +91,7 @@ const ChoosePostForm = withFormValidation(ChoosePostSection);
 const FacebookPhotoRafflePage = props => {
   const {
     values,
+    participants,
     participantsFetched,
     isLoggedInFB,
     userPages,
@@ -85,19 +102,37 @@ const FacebookPhotoRafflePage = props => {
   } = props;
   const steps = [
     {
-      label: t('step_login_with_facebook'),
+      label: t('step_label_login_with_facebook'),
       render: wizardProps => (
         <GrantAccessForm
           isLoggedInFB={isLoggedInFB}
           userPages={userPages}
+          checkErrors={() => {
+            if (!isLoggedInFB) {
+              return t('error_form_need_to_login_facebook');
+            } else if (!userPages.length) {
+              return t('error_no_user_pages');
+            }
+            return undefined;
+          }}
+          t={t}
           {...wizardProps}
-          checkErrors={() => 'asdas'}
         />
       ),
     },
     {
-      label: t('step_choose_post'),
-      render: wizardProps => <ChoosePostForm {...wizardProps} />,
+      label: t('step_label_choose_post'),
+      render: wizardProps => (
+        <ChoosePostForm
+          url={values.url}
+          participants={participants}
+          participantsFetched={participantsFetched}
+          onFieldChange={onFieldChange}
+          onGetLikes={onGetLikes}
+          t={t}
+          {...wizardProps}
+        />
+      ),
     },
   ];
 
