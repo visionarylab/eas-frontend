@@ -91,9 +91,8 @@ class RandomNumberPageContainer extends React.Component {
     try {
       const draw = await this.createDraw();
       if (!this.state.values.dateScheduled) {
-        alert(`${this.props.location.pathname}`);
-        // await randomNumberApi.randomNumberToss(draw.private_id, {});
-        // this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
+        await randomNumberApi.randomNumberToss(draw.private_id, {});
+        this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
       }
     } catch (err) {
       this.setState({ APIError: true });

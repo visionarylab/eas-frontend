@@ -3,9 +3,6 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
@@ -13,6 +10,7 @@ import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection';
 import RandomNumberResult from './RandomNumberResult';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
+import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
@@ -25,26 +23,16 @@ const RandomNumberQuickPage = props => {
     handleToss,
     onFieldChange,
     handleCheckErrorsInConfiguration,
-    handleMakePublic,
     t,
   } = props;
   return (
     <Page htmlTitle={t('html_title')}>
       <QuickDrawLayout
         sidePanel={
-          <Card>
-            <CardContent>
-              <Typography component="p">
-                Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
-                imparcial del resultado, te recomendamos que hagas un sorteo certificado
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button variant="raised" onClick={handleMakePublic}>
-                {t('create_certificated_draw')}
-              </Button>
-            </CardActions>
-          </Card>
+          <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
+            Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
+            imparcial del resultado, te recomendamos que hagas un sorteo certificado
+          </MakeCertifiedDrawPanel>
         }
       >
         <Typography color="primary" variant="display1" align="center">

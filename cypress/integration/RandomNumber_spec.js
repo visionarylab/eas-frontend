@@ -18,6 +18,12 @@ describe('Number Draw Page', () => {
   });
 
   describe('Quick Draw', () => {
+    it('Should contain a working link to the certified draw', () => {
+      cy.visit('/number');
+      cy.getComponent('MakeCertifiedDrawPanel__button').click();
+      cy.location('pathname').should('eq', '/number/public');
+    });
+
     it('Should show feedback if there are server errors', () => {
       cy.visit('/number');
       cy.route({
