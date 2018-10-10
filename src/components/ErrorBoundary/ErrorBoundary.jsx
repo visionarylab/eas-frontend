@@ -13,9 +13,7 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true, error, errorInfo });
-    // eslint-disable-next-line no-undef
-    console.log('componentDidCatch');
-    Raven.captureException(error, { extra: errorInfo });
+    window.Raven.captureException(error, { extra: errorInfo });
   }
 
   render() {

@@ -72,7 +72,7 @@ class RafflePageContainer extends Component {
 }
 
 RafflePageContainer.propTypes = {
-  location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default withRouter(RafflePageContainer);

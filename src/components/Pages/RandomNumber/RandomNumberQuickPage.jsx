@@ -83,7 +83,6 @@ RandomNumberQuickPage.propTypes = {
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
   quickResult: PropTypes.arrayOf(PropTypes.number),
-  handleMakePublic: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 

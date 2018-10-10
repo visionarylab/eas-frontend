@@ -50,7 +50,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       number_of_groups: numberOfGroups,
     };
 
-    if (this.props.isPublic) {
+    if (this.state.isPublic) {
       drawData = {
         ...drawData,
         ...publicDetails,

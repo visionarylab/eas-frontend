@@ -22,7 +22,8 @@ const withFieldValidation = WrappedComponent => {
       if (!isEmptyAtRegister) {
         newState.changed = true;
       }
-      this.setState(newState);
+
+      this.setState(newState); // eslint-disable-line react/no-did-mount-set-state
       this.context.registerValidatedField(name, valid);
     }
 
@@ -30,7 +31,7 @@ const withFieldValidation = WrappedComponent => {
       const prevErrors = this.getErrors(prevProps.value);
       const errors = this.getErrors(this.props.value);
       if (JSON.stringify(prevErrors) !== JSON.stringify(errors)) {
-        this.setState({ changed: true, error: errors });
+        this.setState({ changed: true, error: errors }); // eslint-disable-line react/no-did-update-set-state
         this.context.updateFieldValidationState(this.props.name, !errors);
       }
     }

@@ -5,25 +5,18 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import classnames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-
 import SectionPanel from '../../SectionPanel/SectionPanel';
 import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay';
-import PrizeSelector from '../../PrizeSelector/PrizeSelector';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
 import withFormValidation from '../../withValidation/withFormValidation';
 import WizardForm from '../../WizardForm/WizardForm';
-import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
 import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
-
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
-
 import Page from '../../Page/Page';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
 import STYLES from './FacebookPhotoRafflePage.scss';
 
 const c = classnames.bind(STYLES);
+const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
   <Fragment>
@@ -52,6 +45,17 @@ const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
     </SectionPanel>
   </Fragment>
 );
+
+GrantAccessSection.propTypes = {
+  isLoggedInFB: PropTypes.bool.isRequired,
+  userPages: PropTypes.arrayOf(
+    PropTypes.shape({
+      pageName: PropTypes.string.isRequired,
+      accessToken: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  t: PropTypes.func.isRequired,
+};
 
 const ChoosePostSection = ({
   url,
@@ -84,6 +88,15 @@ const ChoosePostSection = ({
     )}
   </SectionPanel>
 );
+
+ChoosePostSection.propTypes = {
+  url: PropTypes.string.isRequired,
+  participants: PropTypes.string.isRequired,
+  participantsFetched: PropTypes.bool.isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  onGetLikes: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
 
 const GrantAccessForm = withFormValidation(GrantAccessSection);
 const ChoosePostForm = withFormValidation(ChoosePostSection);
@@ -166,6 +179,7 @@ FacebookPhotoRafflePage.propTypes = {
     numberOfWinners: PropTypes.number,
     dateScheduled: PropTypes.string,
   }).isRequired,
+  participants: PropTypes.string.isRequired,
   participantsFetched: PropTypes.bool.isRequired,
   isLoggedInFB: PropTypes.bool,
   userPages: PropTypes.arrayOf(
