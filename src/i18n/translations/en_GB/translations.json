@@ -19,7 +19,7 @@
     "raffle_title": "Make a Raffle",
     "random_letter_title": "Generate Random Letters",
     "random_number_title": "Generate Random Numbers",
-    "spin_arrow_title": "Spin an arrow"
+    "page_title": "Spin an arrow"
   },
   "LetterDrawPage": {
     "draw_configuration": "Draw configuration",
@@ -70,24 +70,24 @@
     "generated_numbers": "Generated numbers"
   },
   "RafflePage": {
-    "detail_about_winners": "Details about the prizes",
+    "step_title_participants": "Details about the prizes",
     "general_details_raffle": "General details about the raffle",
     "list_of_participants": "List of participants",
     "participants": "Participants",
     "publish_raffle": "Publish raffle",
-    "raffle_default_title": "Raffled with closed list of participants",
-    "raffle_html_title": "Organise a raffle",
+    "page_title": "Raffled with closed list of participants",
+    "html_title": "Organise a raffle",
     "raffle_seo_description": "<div>Organise <0>public</0> raffles</div>",
     "step_label_general_details": "General details",
     "step_label_participants": "Choose participants",
-    "step_prizes": "Choose prizes",
+    "step_label_prizes": "Choose prizes",
     "step_label_when_to_toss": "When will be the raffle done?",
     "when_to_toss": "When do you want the results to be generated?",
-    "who_will_participate": "Who wil participate?",
+    "step_title_participants": "Who wil participate?",
     "you_havent_add_any_participants": "You haven't added any participant"
   },
   "RandomNumberPage": {
-    "input_label_allow_repeated": "Allow repeated",
+    "field_label_allow_repeated": "Allow repeated",
     "draw_configuration": "Draw details",
     "error_form_invalid_ranges": "The chose range (numbers between {{min}} and {{max}}) is not valid",
     "error_field_message_min_results": "You have to generate at least 1 result",
@@ -105,9 +105,9 @@
     "when_to_toss": "When do you want to generate the numbers?"
   },
   "SpinArrowPage": {
-    "click_the_arrow_to_spin_it": "(Hit the arrow to make it spin)",
-    "spin_arrow_html_tittle": "Spin an arrow online",
-    "spin_arrow_title": "Spin an arrow"
+    "draw_subheading": "(Hit the arrow to make it spin)",
+    "html_tittle": "Spin an arrow online",
+    "page_title": "Spin an arrow"
   },
   "TranslationsSwitch": {
     "change_language": "Change language"

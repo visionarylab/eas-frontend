@@ -17,24 +17,98 @@
   "FlipCoinPage":{
     "page_title": "Cara o cruz",
     "html_title": "Cara o cruz",
-    "draw_subheading": "(Toca la moneda para lanzarla)"
+    "draw_subheading": "(Toca la moneda para hacerla girar)"
   },
   "SpinArrowPage": {
-    "spin_arrow_html_tittle": "Girar una flecha online",
-    "spin_arrow_title": "Girar una flecha online",
-    "click_the_arrow_to_spin_it": "(Toca la flecha para hacerla girar)"
+    "html_tittle": "Girar una flecha online",
+    "page_title": "Girar una flecha online",
+    "draw_subheading": "(Toca la flecha para hacerla girar)"
+  },
+  "RafflePage": {
+    "html_title": "Organizar sorteo",
+    "page_title": "Sorteo con lista de participantes cerrada",
+    "draw_subheading": "",
+    
+    "step_label_general_details": "Detalles generales",
+    "step_label_participants": "Elegir participantes",
+    "step_label_prizes": "Elegir premios",
+    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
+    "step_title_general_details": "Detalles generales",
+    "step_title_participants": "¿Quién participará en el sorteo?",
+    "step_title_prizes": "¿Cuáles serán los premios?",
+    "step_title_when_to_toss": "Cuando quieres que se generen los resultados?",
+    
+    "field_label_participants": "Participantes",
+    "field_label_list_of_participants": "Lista de participantes",
+    "message_no_participants_added": "No ha añadido ningún participante",
+    "field_label_prizes": "Premios",
+    "field_label_list_of_prizes": "Lista de premios",
+    "message_no_prizes_added": "No ha añadido ningún premio",
+    
+    "publish_raffle": "Publicar sorteo",
+
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?"
+  },
+  "RandomNumber": {
+    "page_title": "Generar números aleatorios",
+    "html_title": "Generar números aleatorios",
+    "draw_subheading": "Simple generador de numeros aleatorios. Sólo elige el rango y la cantidad de números a generar",
+
+    "field_label_from": "Desde",
+    "field_label_to": "Hasta",
+    "field_label_number_of_results": "Número de resultados",
+    "field_label_allow_repeated": "Permitir números repetidos",
+    
+    "publish_draw": "Publicar tirada",
+    "generate_numbers": "Generar números",
+    
+    "error_form_invalid_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
+    "error_form_range_not_big_enough": "El rango no es suficientemente grande",
+    "error_field_message_min_results": "Debes generar al menos 1 resultado",
+    
+    "step_label_general_details": "Detalles generales de la tirada",
+    "step_label_configuration": "Configura la tirada",
+    "step_label_when_to_toss": "Cuándo quieres generar los números?",
+    "step_title_general_details": "Detalles generales",
+    "step_title_draw_configuration": "Configura la tirada",
+    "step_title_when_to_toss": "Cuando quieres que se generen los resultados?",
+
+    "create_certificated_draw": "Crea una tirada certificada",
+
+    "published_draw_details": "Detalles del sorteo",
+    "generated_numbers": "Números generados"
+  },
+  "GroupsGenerator": {
+    "page_title": "Generar grupos",
+    "html_title": "Generar grupos online",
+    "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
+  
+    "field_label_number_of_groups": "Número de grupos",
+    "field_label_participants": "Participantes",
+    "field_label_list_of_participants": "Lista de participantes",
+    "message_no_participants_added": "No ha añadido ningún participante",
+
+    "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
+    "step_label_general_details": "Detalles generales",
+    "step_label_participants": "Elegir participantes",
+    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
+    "step_title_general_details": "Detalles generales",
+    "step_title_draw_configuration": "Configura la tirada",
+
+    "publish_draw": "Publicar tirada",
+    "generate_groups": "Generar grupos"
   },
   "FacebookPhotoRafflePage": {
     "page_title": "Sorteo de 'likes' en Facebook",
     "html_title": "Sorteo de likes en Facebook",
     "draw_subheading": "Some description",
 
-    "error_form_need_to_login_facebook": "Tienes que hacer login con facebook para continuar",
-    "error_no_user_pages": "No nos has dado acceso a ninguna página de Facebook",
-
     "step_label_login_with_facebook": "Acceder con Facebook",
     "step_title_login_with_facebook": "Acceder con Facebook",
-    "step_choose_post": "Elegir publicación"
+    "step_choose_post": "Elegir publicación",
+
+    "error_form_need_to_login_facebook": "Tienes que hacer login con facebook para continuar",
+    "error_no_user_pages": "No nos has dado acceso a ninguna página de Facebook"
   },
   "DateTimePicker": {
     "cancel": "Cancelar",
@@ -51,7 +125,7 @@
     "publish_draw": "Publicar sorteo"
   },
   "FacebookLoginRafflePage": {
-    "facebook_login_raffle_default_title": "Sorteo entre usuarios de Facebook",
+    "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
     "info_about_winners": "Información sobre los ganadores",
@@ -113,70 +187,6 @@
   "PublishedRandomNumberPage": {
     "draw_details": "Detalles del sorteo",
     "generated_numbers": "Números generados"
-  },
-  "RafflePage": {
-    "detail_about_winners": "¿Cuáles serán los premios?",
-    "general_details_raffle": "Detalles generales sobre el sorteo",
-    "list_of_participants": "Lista de participantes",
-    "participants": "Participantes",
-    "publish_raffle": "Publicar sorteo",
-    "raffle_default_title": "Sorteo con lista de participantes cerrada",
-    "raffle_html_title": "Organizar sorteo",
-    "raffle_seo_description": "<0>Organiza sorteos publicos</0>",
-    "step_label_general_details": "Detalles generales",
-    "step_label_participants": "Elegir participantes",
-    "step_prizes": "Elegir premios",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
-    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
-    "who_will_participate": "¿Quién participará en el sorteo?",
-    "you_havent_add_any_participants": "Todavía no has añadido ningun participante"
-  },
-  "RandomNumber": {
-    "page_title": "Generar números aleatorios",
-    "html_title": "Generar números aleatorios",
-    "draw_subheading": "Simple generador de numeros aleatorios. Sólo elige el rango y la cantidad de números a generar",
-
-    "input_label_from": "Desde",
-    "input_label_to": "Hasta",
-    "input_label_number_of_results": "Número de resultados",
-    "input_label_allow_repeated": "Permitir números repetidos",
-
-    "publish_draw": "Publicar tirada",
-    "generate_numbers": "Generar números",
-
-    "error_form_invalid_ranges": "El rango elegido (números entre {{min}} y {{max}}) no es válido",
-    "error_form_range_not_big_enough": "El rango no es suficientemente grande",
-    "error_field_message_min_results": "Debes generar al menos 1 resultado",
-
-    "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_configuration": "Configura la tirada",
-    "step_label_when_to_toss": "Cuándo quieres generar los números?",
-    "step_title_general_details": "Detalles generales",
-    "step_title_draw_configuration": "Configura la tirada",
-    "step_title_when_to_toss": "Cuando quieres que se generen los resultados?",
-
-    "create_certificated_draw": "Crea una tirada certificada",
-
-    "published_draw_details": "Detalles del sorteo",
-    "generated_numbers": "Números generados"
-  },
-  "GroupsGenerator": {
-    "page_title": "Generar grupos",
-    "html_title": "Generar grupos online",
-    "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
-  
-    "input_label_number_of_groups": "Número de grupos",
-    "input_label_participants": "Participantes",
-    "input_label_list_of_participants": "Lista de participantes",
-
-    "message_no_participants_added": "No ha añadido ningún participante",
-
-    "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
-
-    "step_title_draw_configuration": "Configura la tirada",
-
-    "publish_draw": "Publicar tirada",
-    "generate_groups": "Generar grupos"
   },
   "TranslationsSwitch": {
     "change_language": "Cambiar idioma"

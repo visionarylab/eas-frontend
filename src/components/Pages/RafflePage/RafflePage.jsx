@@ -18,17 +18,17 @@ const c = classnames.bind(STYLES);
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 
 const ParticipantsSection = ({ participants, onFieldChange, t }) => (
-  <SectionPanel title={t('who_will_participate')}>
+  <SectionPanel title={t('step_title_participants')}>
     <ValidatedMultiValueInput
       name="participants"
-      label={t('participants')}
-      labelDisplayList={t('list_of_participants')}
+      label={t('field_label_participants')}
+      labelDisplayList={t('field_label_list_of_participants')}
       value={participants}
       placeholder="David, María, ..."
       onChange={e => {
         onFieldChange('participants', e.target.value);
       }}
-      messageEmpty={t('you_havent_add_any_participants')}
+      messageEmpty={t('message_no_participants_added')}
       fullWidth
       data-component="Raffle__participants-field"
       inputProps={{ 'data-component': 'Raffle__participants-field-input' }}
@@ -43,14 +43,15 @@ ParticipantsSection.propTypes = {
 };
 
 const PrizesSection = ({ prizes, onFieldChange, t }) => (
-  <SectionPanel title={t('detail_about_winners')}>
+  <SectionPanel title={t('step_title_prizes')}>
     <ValidatedMultiValueInput
       name="prizes"
-      label={t('prizes')}
-      labelDisplayList={t('list_of_prizes')}
+      label={t('field_label_prizes')}
+      labelDisplayList={t('field_label_list_of_prizes')}
       placeholder="PS4"
-      messageEmpty={t('no_prizes_selected')}
+      messageEmpty={t('message_no_prizes_added')}
       value={prizes}
+      fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
       data-component="Raffle__prizes-field"
       inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
@@ -98,7 +99,7 @@ const RafflePage = props => {
       ),
     },
     {
-      label: t('step_prizes'),
+      label: t('step_label_prizes'),
       render: wizardProps => (
         <PrizesForm
           numberOfWinners={values.numberOfWinners}
@@ -124,9 +125,9 @@ const RafflePage = props => {
   ];
 
   return (
-    <Page htmlTitle={t('raffle_html_title')} className={c('RafflePage')}>
+    <Page htmlTitle={t('html_title')} className={c('RafflePage')}>
       <Typography color="primary" variant="display1">
-        {t('raffle_default_title')}
+        {t('page_title')}
       </Typography>
       <WizardForm
         steps={steps}

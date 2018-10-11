@@ -81,7 +81,7 @@ class RandomNumberPageContainer extends React.Component {
       }
       const tossResponse = await randomNumberApi.randomNumberToss(this.state.privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Random Number', label: 'Local' });
-      this.setState({ quickResult: tossResponse.value });
+      this.setState({ quickResult: tossResponse.value, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });
     }

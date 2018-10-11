@@ -22,7 +22,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
       <Grid item xs={6}>
         <ValidatedTextField
           name="rangeMin"
-          label={t('input_label_from')}
+          label={t('field_label_from')}
           placeholder="1"
           onChange={e => onFieldChange('rangeMin', e.target.value)}
           value={values.rangeMin}
@@ -37,7 +37,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
       <Grid item xs={6}>
         <ValidatedTextField
           name="rangeMax"
-          label={t('input_label_to')}
+          label={t('field_label_to')}
           placeholder="9"
           onChange={e => onFieldChange('rangeMax', e.target.value)}
           value={values.rangeMax}
@@ -53,7 +53,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
     <div>
       <ValidatedTextField
         name="numberOfResults"
-        label={t('input_label_number_of_results')}
+        label={t('field_label_number_of_results')}
         placeholder="1"
         onChange={e => onFieldChange('numberOfResults', e.target.value)}
         value={values.numberOfResults}
@@ -77,7 +77,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
                 inputProps={{ 'data-component': 'RandomNumber__allow-repeated-field-input' }}
               />
             }
-            label={t('input_label_allow_repeated')}
+            label={t('field_label_allow_repeated')}
           />
         </FormGroup>
       )}
