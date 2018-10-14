@@ -60,8 +60,9 @@ const AppShell = () => (
 
         <Route exact path="/letter" component={LetterDrawPageContainer} />
 
-        <Route exact path="/arrow" component={SpinArrowPageContainer} />
         <Route exact path="/flip-a-coin" component={FlipCoinPageContainer} />
+
+        <Route exact path="/arrow" component={SpinArrowPageContainer} />
 
         <Route render={() => <div>Not found</div>} />
       </Switch>

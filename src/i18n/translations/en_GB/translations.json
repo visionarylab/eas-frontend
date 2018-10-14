@@ -1,4 +1,7 @@
 {
+  "ApiError": {
+    "api_error": "We are having some trouble in our servers."
+  },
   "DateTimePicker": {
     "cancel": "Cancel",
     "ok": "Ok",
@@ -13,13 +16,23 @@
     "post_or_photo_url": "URL of the post or photo",
     "publish_draw": "Publish raffle"
   },
+  "FlipCoinPage": {
+    "draw_subheading": "Flip a coin. Just hit it to make it spin.",
+    "html_title": "Heads or Tails",
+    "page_title": "Head or tails"
+  },
   "HomePage": {
-    "facebook_draw_title": "Facebook Raffle",
-    "raffle_section_title": "Raffles Section",
-    "raffle_title": "Make a Raffle",
-    "random_letter_title": "Generate Random Letters",
-    "random_number_title": "Generate Random Numbers",
-    "spin_arrow_title": "Spin an arrow"
+    "draw_title_facebook_login": "Raffle among Facebook users",
+    "draw_title_facebook_photo": "Raffle among 'likes' in Facebook",
+    "draw_title_flip_coin": "Flip a coin",
+    "draw_title_groups_generator": "Generate groups randomly",
+    "draw_title_pick_card": "Pick a card",
+    "draw_title_raffle": "Organize raffle with prizes",
+    "draw_title_random_letter": "Generate random letters",
+    "draw_title_random_number": "Generate random numbers",
+    "draw_title_roll_dice": "Roll a dice",
+    "draw_title_spin_arrow": "Spin an arrow",
+    "draw_title_tournament": "Organize a tournament"
   },
   "LetterDrawPage": {
     "draw_configuration": "Draw configuration",
@@ -65,49 +78,52 @@
     "results_not_generated_yet": "The result of the raffle hasn't been published yet",
     "winners": "Winners"
   },
-  "PublishedRandomNumberPage": {
-    "draw_details": "Detalles del sorteo",
-    "generated_numbers": "Generated numbers"
-  },
-  "RafflePage": {
-    "detail_about_winners": "Details about the prizes",
-    "general_details_raffle": "General details about the raffle",
-    "list_of_participants": "List of participants",
-    "participants": "Participants",
+  "Raffle": {
+    "field_label_list_of_participants": "LIst of participants",
+    "field_label_list_of_prizes": "List of prizes",
+    "field_label_participants": "Participants",
+    "field_label_prizes": "Prizes",
+    "html_title": "Organize raffle",
+    "message_no_participants_added": "You haven't added any participants",
+    "message_no_prizes_added": "You haven't added any prizes",
+    "page_title": "Raffle with a closed list of participants",
     "publish_raffle": "Publish raffle",
-    "raffle_default_title": "Raffled with closed list of participants",
-    "raffle_html_title": "Organise a raffle",
-    "raffle_seo_description": "<div>Organise <0>public</0> raffles</div>",
     "step_label_general_details": "General details",
     "step_label_participants": "Choose participants",
-    "step_prizes": "Choose prizes",
-    "step_label_when_to_toss": "When will be the raffle done?",
-    "when_to_toss": "When do you want the results to be generated?",
-    "who_will_participate": "Who wil participate?",
-    "you_havent_add_any_participants": "You haven't added any participant"
+    "step_label_prizes": "Choose prizes",
+    "step_label_when_to_toss": "When will the results be generated?",
+    "step_title_general_details": "General details",
+    "step_title_participants": "Who will participate in the raffle",
+    "step_title_prizes": "What are the prices?",
+    "step_title_when_to_toss": "When do you want the results to be generated?"
   },
-  "RandomNumberPage": {
-    "input_label_allow_repeated": "Allow repeated",
-    "draw_configuration": "Draw details",
-    "error_form_invalid_ranges": "The chose range (numbers between {{min}} and {{max}}) is not valid",
-    "error_field_message_min_results": "You have to generate at least 1 result",
-    "from": "From",
-    "general_details_draw": "General details",
-    "generate_numbers": "Generate numbers",
-    "number_draw_seo_description": "Create this draw publicly so everyone can see the results at the same time",
-    "number_of_results": "Number of results",
-    "publish_draw": "Publish results",
-    "page_title": "Generate random numbers",
-    "html_title": "Generate random numbers",
-    "random_number_seo_description": "Generate randon numbers online. Select Random numbers from a range, etc.",
+  "RandomNumber": {
+    "create_certificated_draw": "Create a certified draw",
+    "draw_subheading": "Simple random number generator. Simply choose the range and the amount of numbers to generate.",
+    "error_field_message_min_results": "You must generate at least one number",
+    "error_form_invalid_ranges": "The choosen range (numbers between {{min}} and {{max}}) is not valid",
     "error_form_range_not_big_enough": "The range is not big enough",
-    "to": "To",
-    "when_to_toss": "When do you want to generate the numbers?"
+    "field_label_allow_repeated": "Allow repeated numbers",
+    "field_label_from": "From",
+    "field_label_number_of_results": "Number of results",
+    "field_label_to": "To",
+    "generate_numbers": "Generate numbers",
+    "generated_numbers": "Generated numbers",
+    "html_title": "Generate random numbers",
+    "page_title": "Generate random numbers",
+    "publish_draw": "Publish draw",
+    "published_draw_details": "Draw details",
+    "step_label_configuration": "Configure the draw",
+    "step_label_general_details": "General details",
+    "step_label_when_to_toss": "When do you want to generate the results?",
+    "step_title_draw_configuration": "Configure the toss",
+    "step_title_general_details": "General details",
+    "step_title_when_to_toss": "When do you want to generate the results?"
   },
-  "SpinArrowPage": {
-    "click_the_arrow_to_spin_it": "(Hit the arrow to make it spin)",
-    "spin_arrow_html_tittle": "Spin an arrow online",
-    "spin_arrow_title": "Spin an arrow"
+  "SpinArrow": {
+    "draw_subheading": "(Hit the arrow to make it spin)",
+    "html_tittle": "Spin an arrow online",
+    "page_title": "Spin an arrow"
   },
   "TranslationsSwitch": {
     "change_language": "Change language"

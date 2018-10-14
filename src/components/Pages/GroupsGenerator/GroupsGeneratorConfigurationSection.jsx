@@ -16,8 +16,8 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel title={t('step_title_draw_configuration')}>
     <ValidatedMultiValueInput
       name="participants"
-      label={t('input_label_participants')}
-      labelDisplayList={t('input_label_list_of_participants')}
+      label={t('field_label_participants')}
+      labelDisplayList={t('field_label_list_of_participants')}
       placeholder="David, Ana..."
       messageEmpty={t('message_no_participants_added')}
       value={values.participants}
@@ -29,7 +29,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
     />
     <ValidatedTextField
       name="numberOfGroups"
-      label={t('input_label_number_of_groups')}
+      label={t('field_label_number_of_groups')}
       placeholder="2"
       onChange={e => onFieldChange('numberOfGroups', e.target.value)}
       value={values.numberOfGroups}

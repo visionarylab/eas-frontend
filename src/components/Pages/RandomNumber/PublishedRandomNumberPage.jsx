@@ -54,17 +54,17 @@ const PublishedRandomNumberPage = props => {
           <div>
             <Typography variant="display1">{t('published_draw_details')}</Typography>
             <div>
-              {t('input_label_from')} {rangeMin}
+              {t('field_label_from')} {rangeMin}
             </div>
             <div>
-              {t('input_label_to')} {rangeMax}
+              {t('field_label_to')} {rangeMax}
             </div>
             <div>
-              {t('input_label_number_of_results')} {numberOfResults}
+              {t('field_label_number_of_results')} {numberOfResults}
             </div>
             {numberOfResults > 1 && (
               <div>
-                {t('input_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
+                {t('field_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
               </div>
             )}
             {description && (
