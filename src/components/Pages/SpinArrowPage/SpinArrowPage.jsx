@@ -51,4 +51,4 @@ SpinArrowPage.defaultProps = {
   animate: true,
 };
 
-export default translate('SpinArrowPage')(SpinArrowPage);
+export default translate('SpinArrow')(SpinArrowPage);

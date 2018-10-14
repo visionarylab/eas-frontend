@@ -17,6 +17,7 @@ const redirect = domain => {
 
 const handleChangeLanguage = l => {
   if (config.environment === 'local') {
+    // Avoid redirecting to ease the translation process in local
     i18n.changeLanguage(l);
   } else {
     switch (l) {

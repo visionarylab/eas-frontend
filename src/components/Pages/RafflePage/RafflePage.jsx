@@ -154,4 +154,4 @@ RafflePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('RafflePage')(RafflePage);
+export default translate('Raffle')(RafflePage);
