@@ -1,17 +1,35 @@
 import i18n from 'i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import config from '../config/config';
 
 import esES from './translations/es_ES/translations.json';
 import enGB from './translations/en_GB/translations.json';
 
-i18n.use(LanguageDetector).init({
+const getLanguageBasedOnHostname = () => {
+  const { hostname } = window.location;
+  const hostnameRegex = /(woreep|echaloasuerte)\.com/;
+  const match = hostname.match(hostnameRegex);
+  const hostnameMatch = match ? match[1] : null;
+  const defaultLanguage = 'es-ES';
+
+  switch (hostnameMatch) {
+    case 'woreep':
+      return 'en-GB';
+    case 'echaloasuerte':
+      return 'es-ES';
+    default:
+      return defaultLanguage;
+  }
+};
+
+i18n.init({
   // we init with resources
   resources: {
     'es-ES': esES,
     'en-GB': enGB,
   },
   fallbackLng: 'en-GB',
-  debug: true,
+  lng: getLanguageBasedOnHostname(),
+  debug: config.environment === 'local',
 
   // have a common namespace used around the full app
   ns: ['translations'],
