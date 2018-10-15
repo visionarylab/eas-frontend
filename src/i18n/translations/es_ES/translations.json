@@ -2,6 +2,9 @@
   "ApiError": {
     "api_error": "Estamos teniendo problemas en nuestro servidor."
   },
+  "Header": {
+    "brand_name": "ÉchaloASuerte"
+  },
   "DateTimePicker": {
     "cancel": "Cancelar",
     "ok": "Ok",
