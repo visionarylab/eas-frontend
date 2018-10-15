@@ -32,7 +32,9 @@
     "draw_title_random_number": "Generate random numbers",
     "draw_title_roll_dice": "Roll a dice",
     "draw_title_spin_arrow": "Spin an arrow",
-    "draw_title_tournament": "Organize a tournament"
+    "draw_title_tournament": "Organize a tournament",
+    "section_title_online_raffles": "Online raffles",
+    "section_title_simple_draws": "Simple choices"
   },
   "LetterDrawPage": {
     "draw_configuration": "Draw configuration",

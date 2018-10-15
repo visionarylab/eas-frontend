@@ -27,7 +27,7 @@ i18n.init({
     'es-ES': esES,
     'en-GB': enGB,
   },
-  fallbackLng: 'en-GB',
+  fallbackLng: 'es-ES',
   lng: getLanguageBasedOnHostname(),
   debug: config.environment === 'local',
 
