@@ -9,7 +9,8 @@
     "cancel": "Cancel",
     "ok": "Ok",
     "only_future_date_valid": "You have to choose a date in the future",
-    "today": "Today"
+    "today": "Today",
+    "date": "Date"
   },
   "FacebookDraw": {
     "check_participants": "Get participants",
@@ -116,7 +117,8 @@
     "generated_numbers": "Generated numbers",
     "html_title": "Generate random numbers",
     "page_title": "Generate random numbers",
-    "publish_draw": "Publish draw",
+    "page_title_public": "Create public raffle with numbers",
+    "publish_draw": "Publish raffle",
     "published_draw_details": "Draw details",
     "step_label_configuration": "Configure the draw",
     "step_label_general_details": "General details",

@@ -3,6 +3,12 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
@@ -11,6 +17,7 @@ import RandomNumberConfigurationSection from './RandomNumberConfigurationSection
 import RandomNumberResult from './RandomNumberResult';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel';
+import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
@@ -23,7 +30,10 @@ const RandomNumberQuickPage = props => {
     handleToss,
     onFieldChange,
     handleCheckErrorsInConfiguration,
+    shareDrawModalOpen,
+    handleShareDrawModalOpen,
     t,
+    fullScreen,
   } = props;
   return (
     <Page htmlTitle={t('html_title')}>
@@ -52,15 +62,11 @@ const RandomNumberQuickPage = props => {
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_numbers')} />
         </ValidatedForm>
+
         {quickResult.length > 0 && (
           <div>
             <RandomNumberResult result={quickResult} />
-            <br />
-            {true && (
-              <Button variant="raised" color="primary" href={shareResultLink}>
-                {t('share_result')}
-              </Button>
-            )}
+            <ShareDrawModal />
           </div>
         )}
       </QuickDrawLayout>
@@ -90,6 +96,7 @@ RandomNumberQuickPage.defaultProps = {
   apiError: false,
   quickResult: [],
   shareResultLink: '',
+  t: () => {},
 };
 
-export default translate('RandomNumber')(RandomNumberQuickPage);
+export default withMobileDialog()(translate('RandomNumberQuickPage')(RandomNumberQuickPage));

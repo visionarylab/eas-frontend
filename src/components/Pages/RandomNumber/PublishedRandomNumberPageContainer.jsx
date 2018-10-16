@@ -73,6 +73,9 @@ class PublishedRandomNumberPageContainer extends Component {
       results,
       isOwner,
     } = this.state;
+
+    const lastResult = results.length ? results[0].value : [];
+    console.log('results', results);
     return (
       <PublishedRandomNumberPage
         title={title}
@@ -81,7 +84,7 @@ class PublishedRandomNumberPageContainer extends Component {
         rangeMax={rangeMax}
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
-        results={results.length ? results[0].value : undefined}
+        results={lastResult}
         isOwner={isOwner}
         onToss={this.onToss}
       />

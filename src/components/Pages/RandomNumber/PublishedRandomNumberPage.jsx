@@ -40,7 +40,7 @@ const PublishedRandomNumberPage = props => {
             </Typography>
           </div>
         )}
-        {results.length ? (
+        {results ? (
           <ResultsBox title={t('generated_numbers')}>
             <RandomNumberResult result={results} />
           </ResultsBox>

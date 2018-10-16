@@ -9,7 +9,7 @@ const getLanguageBasedOnHostname = () => {
   const hostnameRegex = /(woreep|echaloasuerte)\.com/;
   const match = hostname.match(hostnameRegex);
   const hostnameMatch = match ? match[1] : null;
-  const defaultLanguage = 'es-ES';
+  const defaultLanguage = 'en-GB';
 
   switch (hostnameMatch) {
     case 'woreep':
