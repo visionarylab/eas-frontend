@@ -72,7 +72,6 @@ const RandomNumberPage = props => {
         </Typography>
         <WizardForm
           steps={steps}
-          initialStep={2}
           onSubmit={handlePublish}
           submitButtonLabel={t('publish_draw')}
           apiError={apiError}

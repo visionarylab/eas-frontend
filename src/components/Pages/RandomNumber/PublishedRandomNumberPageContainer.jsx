@@ -17,8 +17,9 @@ class PublishedRandomNumberPageContainer extends Component {
       rangeMax: null,
       numberOfResults: null,
       allowRepeated: null,
-      results: [],
+      result: null,
       isOwner: false,
+      isLoading: true,
     };
   }
 
@@ -48,8 +49,17 @@ class PublishedRandomNumberPageContainer extends Component {
       range_max: rangeMax,
       number_of_results: numberOfResults,
       allow_repeated_results: allowRepeated,
-      results,
     } = draw;
+    let result;
+    if (draw.results.length) {
+      const lastToss = draw.results[0];
+      if (lastToss.value) {
+        result = lastToss;
+      } else {
+        result = lastToss;
+      }
+    }
+
     this.setState({
       title,
       description,
@@ -57,8 +67,9 @@ class PublishedRandomNumberPageContainer extends Component {
       rangeMax,
       numberOfResults,
       allowRepeated,
-      results,
+      result,
       isOwner: Boolean(privateId),
+      isLoading: false,
     });
   }
 
@@ -70,12 +81,11 @@ class PublishedRandomNumberPageContainer extends Component {
       rangeMax,
       numberOfResults,
       allowRepeated,
-      results,
+      result,
       isOwner,
+      isLoading,
     } = this.state;
 
-    const lastResult = results.length ? results[0].value : [];
-    console.log('results', results);
     return (
       <PublishedRandomNumberPage
         title={title}
@@ -84,9 +94,10 @@ class PublishedRandomNumberPageContainer extends Component {
         rangeMax={rangeMax}
         numberOfResults={numberOfResults}
         allowRepeated={allowRepeated}
-        results={lastResult}
+        result={result}
         isOwner={isOwner}
         onToss={this.onToss}
+        isLoading={isLoading}
       />
     );
   }

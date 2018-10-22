@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
@@ -26,14 +19,10 @@ const RandomNumberQuickPage = props => {
     apiError,
     values,
     quickResult,
-    shareResultLink,
     handleToss,
     onFieldChange,
     handleCheckErrorsInConfiguration,
-    shareDrawModalOpen,
-    handleShareDrawModalOpen,
     t,
-    fullScreen,
   } = props;
   return (
     <Page htmlTitle={t('html_title')}>
@@ -46,7 +35,7 @@ const RandomNumberQuickPage = props => {
         }
       >
         <Typography color="primary" variant="display1" align="center">
-          {t('page_title')}
+          {t('page_title_quick')}
         </Typography>
         <Typography variant="body1" align="center" color={'textSecondary'}>
           {t('draw_subheading')}
@@ -64,10 +53,10 @@ const RandomNumberQuickPage = props => {
         </ValidatedForm>
 
         {quickResult.length > 0 && (
-          <div>
+          <Fragment>
             <RandomNumberResult result={quickResult} />
             <ShareDrawModal />
-          </div>
+          </Fragment>
         )}
       </QuickDrawLayout>
     </Page>
@@ -84,7 +73,6 @@ RandomNumberQuickPage.propTypes = {
     numberOfResults: PropTypes.string.isRequired,
     allowRepeated: PropTypes.bool.isRequired,
   }).isRequired,
-  shareResultLink: PropTypes.string,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -95,8 +83,6 @@ RandomNumberQuickPage.propTypes = {
 RandomNumberQuickPage.defaultProps = {
   apiError: false,
   quickResult: [],
-  shareResultLink: '',
-  t: () => {},
 };
 
-export default withMobileDialog()(translate('RandomNumberQuickPage')(RandomNumberQuickPage));
+export default translate('RandomNumber')(RandomNumberQuickPage);

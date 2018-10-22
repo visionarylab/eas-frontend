@@ -9,6 +9,9 @@ import RandomNumberResult from './RandomNumberResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 import SubmitButton from '../../SubmitButton/SubmitButton';
+import { getDate, getTime } from '../../../services/datetime';
+import Countdown from '../../Countdown/Countdown';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 import STYLES from './PublishedRandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -16,7 +19,7 @@ const c = classNames.bind(STYLES);
 const PublishedRandomNumberPage = props => {
   const {
     title,
-    results,
+    result,
     isOwner,
     rangeMin,
     rangeMax,
@@ -24,8 +27,12 @@ const PublishedRandomNumberPage = props => {
     allowRepeated,
     description,
     onToss,
+    isLoading,
     t,
   } = props;
+  if (isLoading) {
+    return <LoadingSpinner fullpage />;
+  }
   return (
     <Page htmlTitle={title} noIndex>
       <div className={c('PublishedRandomNumberPage__content')}>
@@ -40,13 +47,13 @@ const PublishedRandomNumberPage = props => {
             </Typography>
           </div>
         )}
-        {results ? (
+        {result.value ? (
           <ResultsBox title={t('generated_numbers')}>
-            <RandomNumberResult result={results} />
+            <RandomNumberResult result={result.value} />
           </ResultsBox>
         ) : (
           <div>
-            <BannerAlert title={t('results_not_generated_yet')} type={ALERT_TYPES.NEUTRAL} />
+            <Countdown date={result.schedule_date} />
             {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
           </div>
         )}
@@ -69,7 +76,7 @@ const PublishedRandomNumberPage = props => {
             )}
             {description && (
               <div>
-                {t('description')}
+                {t('field_label_description')}
                 <p>{description}</p>
               </div>
             )}
@@ -87,8 +94,9 @@ PublishedRandomNumberPage.propTypes = {
   numberOfResults: PropTypes.number.isRequired,
   allowRepeated: PropTypes.bool.isRequired,
   description: PropTypes.string,
-  results: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.arrayOf(PropTypes.object),
   isOwner: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onToss: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
@@ -96,8 +104,9 @@ PublishedRandomNumberPage.propTypes = {
 PublishedRandomNumberPage.defaultProps = {
   title: '',
   description: '',
-  results: [],
+  result: [],
   isOwner: false,
+  isLoading: false,
   onToss: () => {},
 };
 
