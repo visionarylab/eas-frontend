@@ -1,0 +1,17 @@
+$published-results-background-color: white;
+$summary-panel-background-color: rgba(0, 0, 0, .09);
+$border-radius: .2rem;
+$spacing-md: 1.125rem;
+$spacing-lg: 1.875rem;
+
+.PublishedGroupsGeneratorPage {
+  &__content {
+    width: 50rem;
+    margin: auto;
+    text-align: center;
+  }
+
+  &__details {
+    text-align: left;
+  }
+}

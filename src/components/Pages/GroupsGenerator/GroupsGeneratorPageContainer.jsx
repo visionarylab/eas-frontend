@@ -11,6 +11,11 @@ const groupsApi = new GroupsApi();
 class GroupsGeneratorPageContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    const now = new Date();
+    now.setHours(now.getHours() + 1);
+    const dateScheduled = now;
+
     this.state = {
       privateId: null,
       quickResult: [],
@@ -20,7 +25,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         description: '',
         participants: ['asda', 'aaa'],
         numberOfGroups: 2,
-        dateScheduled: null,
+        dateScheduled,
       },
     };
   }
@@ -50,7 +55,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       number_of_groups: numberOfGroups,
     };
 
-    if (this.state.isPublic) {
+    if (this.props.isPublic) {
       drawData = {
         ...drawData,
         ...publicDetails,

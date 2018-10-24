@@ -10,6 +10,7 @@ import Typographies from '../Pages/Typographies/Typographies';
 import STYLES from './AppShell.scss';
 
 import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer';
+import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPageContainer';
 import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer';
 import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer';
 import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer';
@@ -34,6 +35,12 @@ const AppShell = () => (
         <Route exact path="/typography" component={Typographies} />
 
         <Route exact path="/groups" component={GroupsGeneratorPageContainer} />
+        <Route
+          exact
+          path="/groups/public"
+          component={props => <GroupsGeneratorPageContainer isPublic {...props} />}
+        />
+        <Route exact path="/groups/:drawId" component={PublishedGroupsGeneratorPageContainer} />
 
         <Route exact path="/number" component={RandomNumberPageContainer} />
         <Route
