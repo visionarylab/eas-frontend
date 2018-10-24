@@ -126,7 +126,7 @@ const RafflePage = props => {
 
   return (
     <Page htmlTitle={t('html_title')} className={c('RafflePage')}>
-      <Typography color="primary" variant="display1">
+      <Typography variant="h1">
         {t('page_title')}
       </Typography>
       <WizardForm

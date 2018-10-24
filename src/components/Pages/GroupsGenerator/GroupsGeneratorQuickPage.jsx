@@ -34,7 +34,7 @@ const GroupsGeneratorQuickPage = props => {
           </MakeCertifiedDrawPanel>
         }
       >
-        <Typography color="primary" variant="display1" align="center">
+        <Typography variant="h1" align="center">
           {t('page_title')}
         </Typography>
         <Typography variant="body1" align="center" color={'textSecondary'}>

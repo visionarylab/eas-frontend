@@ -33,7 +33,7 @@ const WinnersTitle = ({ winnersLabel }) => (
       <TrumpetIcon inverted />
     </Grid>
     <Grid item>
-      <Typography variant="display1" component={'p'}>
+      <Typography variant="h1" component={'p'}>
         {winnersLabel}
       </Typography>
     </Grid>

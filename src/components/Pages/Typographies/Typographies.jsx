@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 const Typographies = () => (
   <div>
     <br />
-    <Typography variant="display1">Display 1 - (draw titles)</Typography>
+    <Typography variant="h1">Display 1 - (draw titles)</Typography>
     <br />
     <Typography variant="body1" color={'textSecondary'}>
       body1 - (draw subtitle)

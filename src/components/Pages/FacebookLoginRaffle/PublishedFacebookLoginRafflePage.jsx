@@ -20,13 +20,13 @@ const PublishedFacebookLoginRafflePage = props => (
       {props.results.length ? (
         <Fragment>
           <PublicResultsPanel>
-            <Typography variant="display1">{props.t('winners')}</Typography>
+            <Typography variant="h1">{props.t('winners')}</Typography>
             {props.results.map(result => (
               <div>{result}</div>
             ))}
           </PublicResultsPanel>
           <PublicSummaryPanel>
-            <Typography variant="display1">{props.t('draw_details')}</Typography>
+            <Typography variant="h1">{props.t('draw_details')}</Typography>
             <div>Participants: {props.participants.join(', ')}</div>
             <div>prizes: {props.prizes}</div>
             <div>

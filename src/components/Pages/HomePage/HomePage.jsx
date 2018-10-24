@@ -23,7 +23,7 @@ const c = classNames.bind(STYLES);
 
 const OldHomepage = ({ t }) => (
   <div className={c('HomePage__container')}>
-    <Typography variant="display1">Sorteos online</Typography>
+    <Typography variant="h1">Sorteos online</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={facebookIcon} to="/facebook_login">
         {t('draw_title_facebook_login')}
@@ -35,7 +35,7 @@ const OldHomepage = ({ t }) => (
         {t('draw_title_raffle')}
       </DrawCard>
     </div>
-    <Typography variant="display1">Generadores básicos al azar</Typography>
+    <Typography variant="h1">Generadores básicos al azar</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={randomNumber} to="/number">
         {t('draw_title_random_number')}
@@ -44,7 +44,7 @@ const OldHomepage = ({ t }) => (
         {t('draw_title_random_letter')}
       </DrawCard>
     </div>
-    <Typography variant="display1">Otros</Typography>
+    <Typography variant="h1">Otros</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={arrowIcon} to="/arrow">
         {t('draw_title_spin_arrow')}
@@ -54,7 +54,7 @@ const OldHomepage = ({ t }) => (
       </DrawCard>
     </div>
 
-    <Typography variant="display1">Not migrated yet</Typography>
+    <Typography variant="h1">Not migrated yet</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={coinIcon} to="flip-a-coin">
         {t('draw_title_flip_coin')}
@@ -74,7 +74,7 @@ const OldHomepage = ({ t }) => (
 
 const WoreepHomepage = ({ t }) => (
   <div className={c('HomePage__container')}>
-    <Typography variant="display1">{t('section_title_online_raffles')}</Typography>
+    <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={raffleIcon} to="/raffle">
         {t('draw_title_raffle')}
@@ -86,7 +86,7 @@ const WoreepHomepage = ({ t }) => (
         {t('draw_title_random_number')}
       </DrawCard>
     </div>
-    <Typography variant="display1"> {t('section_title_simple_draws')}</Typography>
+    <Typography variant="h1"> {t('section_title_simple_draws')}</Typography>
     <div className={c('HomePage__draw-chips-group')}>
       <DrawCard icon={coinIcon} to="flip-a-coin">
         {t('draw_title_flip_coin')}

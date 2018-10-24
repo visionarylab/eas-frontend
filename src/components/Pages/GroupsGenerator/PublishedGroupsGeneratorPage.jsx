@@ -57,7 +57,7 @@ const PublishedGroupsGeneratorPage = props => {
         )}
         <section className={c('PublishedGroupsGeneratorPage__details')}>
           <div>
-            <Typography variant="display1">{t('published_draw_details')}</Typography>
+            <Typography variant="h1">{t('published_draw_details')}</Typography>
             {description && <Typography variant="body1">{description}</Typography>}
             <div>
               {t('field_label_number_of_groups')}: {numberOfGroups}

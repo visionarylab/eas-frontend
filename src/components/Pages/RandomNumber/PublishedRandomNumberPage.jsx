@@ -39,7 +39,7 @@ const PublishedRandomNumberPage = props => {
         {title && (
           <div>
             <Typography
-              variant="display2"
+              variant="h1"
               align={'center'}
               data-component={'PublishedRandomNumberPage__Title'}
             >
@@ -59,7 +59,7 @@ const PublishedRandomNumberPage = props => {
         )}
         <section className={c('PublishedRandomNumberPage__details')}>
           <div>
-            <Typography variant="display1">{t('published_draw_details')}</Typography>
+            <Typography variant="h2">{t('published_draw_details')}</Typography>
             <div>
               {t('field_label_from')} {rangeMin}
             </div>

@@ -20,7 +20,7 @@ const c = classNames.bind(STYLES);
 const SummaryRaffle = ({ participants, numberOfWinners, description, t }) => (
   <div className={c('PublishedRafflePage__summary-container')}>
     <div className={c('PublishedRafflePage__summary')}>
-      <Typography variant="display1">{t('raffle_details')}</Typography>
+      <Typography variant="h1">{t('raffle_details')}</Typography>
       <div>
         {t('number_of_participants')} {participants.length}
       </div>

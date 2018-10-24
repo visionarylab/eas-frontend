@@ -17,7 +17,9 @@ CurrentDrawCertifiedLink.propTypes = {
 const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
   <Card>
     <CardContent>
-      <Typography component="p">{children}</Typography>
+      <Typography variant="body2" component="p">
+        {children}
+      </Typography>
     </CardContent>
     <CardActions>
       <Button

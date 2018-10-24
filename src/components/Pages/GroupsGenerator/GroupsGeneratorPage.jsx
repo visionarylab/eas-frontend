@@ -60,9 +60,7 @@ const GroupsGeneratorPage = props => {
   return (
     <Page htmlTitle={t('html_title')}>
       <div className={c('GroupsGeneratorPage__container')}>
-        <Typography color="primary" variant="display1">
-          {t('page_title')}
-        </Typography>
+        <Typography variant="h1">{t('page_title')}</Typography>
         <WizardForm
           steps={steps}
           onSubmit={handlePublish}

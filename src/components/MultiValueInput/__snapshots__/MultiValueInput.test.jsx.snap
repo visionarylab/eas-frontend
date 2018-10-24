@@ -206,7 +206,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                 "colorPrimary": "MuiTypography-colorPrimary-48",
                 "colorSecondary": "MuiTypography-colorSecondary-49",
                 "colorTextSecondary": "MuiTypography-colorTextSecondary-50",
-                "display1": "MuiTypography-display1-32",
+                "h1": "MuiTypography-h1-32",
                 "display2": "MuiTypography-display2-31",
                 "display3": "MuiTypography-display3-30",
                 "display4": "MuiTypography-display4-29",
@@ -225,7 +225,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
               Object {
                 "body1": "p",
                 "body2": "aside",
-                "display1": "h1",
+                "h1": "h1",
                 "display2": "h1",
                 "display3": "h1",
                 "display4": "h1",

@@ -34,10 +34,10 @@ const RandomNumberQuickPage = props => {
           </MakeCertifiedDrawPanel>
         }
       >
-        <Typography color="primary" variant="display1" align="center">
+        <Typography variant="h1" align="center">
           {t('page_title_quick')}
         </Typography>
-        <Typography variant="body1" align="center" color={'textSecondary'}>
+        <Typography variant="subtitle1" align="center">
           {t('draw_subheading')}
         </Typography>
         <ValidatedForm
