@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
-
+import Button from '@material-ui/core/Button';
 import Page from '../../Page/Page';
 import RandomNumberResult from './RandomNumberResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
-import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import { getDate, getTime } from '../../../services/datetime';
 import Countdown from '../../Countdown/Countdown';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 import STYLES from './PublishedRandomNumberPage.scss';
@@ -34,8 +31,8 @@ const PublishedRandomNumberPage = props => {
     return <LoadingSpinner fullpage />;
   }
   return (
-    <Page htmlTitle={title} noIndex>
-      <div className={c('PublishedRandomNumberPage__content')}>
+    <Page htmlTitle={title} noIndex className={c('PublishedRandomNumberPage')}>
+      <div>
         {title && (
           <div>
             <Typography
@@ -54,30 +51,37 @@ const PublishedRandomNumberPage = props => {
         ) : (
           <div>
             <Countdown date={result.schedule_date} />
-            {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
+            {isOwner && <Button type="submit" onClick={onToss} />}
           </div>
         )}
         <section className={c('PublishedRandomNumberPage__details')}>
           <div>
-            <Typography variant="h2">{t('published_draw_details')}</Typography>
+            <Typography variant="h5">{t('published_draw_details')}</Typography>
+            {description && (
+              <p>
+                <Typography variant="body2">{description}</Typography>
+              </p>
+            )}
             <div>
-              {t('field_label_from')} {rangeMin}
+              <Typography variant="body2">
+                {t('field_label_from')} {rangeMin}
+              </Typography>
             </div>
             <div>
-              {t('field_label_to')} {rangeMax}
+              <Typography variant="body2">
+                {t('field_label_to')} {rangeMax}
+              </Typography>
             </div>
             <div>
-              {t('field_label_number_of_results')} {numberOfResults}
+              <Typography variant="body2">
+                {t('field_label_number_of_results')} {numberOfResults}
+              </Typography>
             </div>
             {numberOfResults > 1 && (
               <div>
-                {t('field_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
-              </div>
-            )}
-            {description && (
-              <div>
-                {t('field_label_description')}
-                <p>{description}</p>
+                <Typography variant="body2">
+                  {t('field_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
+                </Typography>
               </div>
             )}
           </div>

@@ -72,6 +72,10 @@ const OldHomepage = ({ t }) => (
   </div>
 );
 
+OldHomepage.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
 const WoreepHomepage = ({ t }) => (
   <div className={c('HomePage__container')}>
     <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
@@ -97,6 +101,10 @@ const WoreepHomepage = ({ t }) => (
     </div>
   </div>
 );
+
+WoreepHomepage.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 const HomePage = ({ t }) => (
   <Page htmlTitle={'Échalo A Suerte'} className={c('HomePage')}>

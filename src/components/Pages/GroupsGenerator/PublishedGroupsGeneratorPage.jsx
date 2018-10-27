@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 
 import Page from '../../Page/Page';
 import GroupsGeneratorResult from './GroupsGeneratorResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
-import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import { getDate, getTime } from '../../../services/datetime';
 import Countdown from '../../Countdown/Countdown';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
@@ -32,42 +30,36 @@ const PublishedGroupsGeneratorPage = props => {
     return <LoadingSpinner fullpage />;
   }
   return (
-    <Page htmlTitle={title} noIndex>
-      <div className={c('PublishedGroupsGeneratorPage__content')}>
-        {title && (
-          <div>
-            <Typography
-              variant="display2"
-              align={'center'}
-              data-component={'PublishedGroupsGeneratorPage__Title'}
-            >
-              {title}
-            </Typography>
-          </div>
-        )}
-        {result.value ? (
-          <ResultsBox title={t('generated_groups')}>
-            <GroupsGeneratorResult result={result.value} />
-          </ResultsBox>
-        ) : (
-          <div>
-            <Countdown date={result.schedule_date} />
-            {isOwner && <SubmitButton label={t('generate_resuts')} onClick={onToss} />}
-          </div>
-        )}
-        <section className={c('PublishedGroupsGeneratorPage__details')}>
-          <div>
-            <Typography variant="h1">{t('published_draw_details')}</Typography>
-            {description && <Typography variant="body1">{description}</Typography>}
-            <div>
-              {t('field_label_number_of_groups')}: {numberOfGroups}
-            </div>
-            <div>
-              {t('field_label_participants')}: {participants.map(p => p.name).join(', ')}
-            </div>
-          </div>
-        </section>
-      </div>
+    <Page htmlTitle={title} noIndex className={c('PublishedGroupsGeneratorPage')}>
+      {title && (
+        <Typography variant="h1" data-component={'PublishedGroupsGeneratorPage__Title'}>
+          {title}
+        </Typography>
+      )}
+      {result.value ? (
+        <ResultsBox title={t('generated_groups')}>
+          <GroupsGeneratorResult result={result.value} />
+        </ResultsBox>
+      ) : (
+        <div>
+          <Countdown date={result.schedule_date} />
+          {isOwner && <Button type="submit" onClick={onToss} />}
+        </div>
+      )}
+      <section className={c('PublishedGroupsGeneratorPage__details')}>
+        <Typography variant="h5">{t('published_draw_details')}</Typography>
+        {description && <Typography variant="body2">{description}</Typography>}
+        <div>
+          <Typography variant="body2">
+            {t('field_label_number_of_groups')}: {numberOfGroups}
+          </Typography>
+        </div>
+        <div>
+          <Typography variant="body2">
+            {t('field_label_participants')}: {participants.map(p => p.name).join(', ')}
+          </Typography>
+        </div>
+      </section>
     </Page>
   );
 };

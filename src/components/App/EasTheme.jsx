@@ -10,14 +10,6 @@ const fontFamilySecondary =
 const fontFamilyPrimary =
   '"Montserrat", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif';
 
-const primaryColor = '#4caf50';
-const secondaryColor = '#f44336';
-
-const fontHeader = {
-  color: primaryColor,
-  fontFamily: fontFamilySecondary,
-};
-
 const baseTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
@@ -39,6 +31,16 @@ const baseTheme = createMuiTheme({
     },
   },
 });
+
+const fontHeader = {
+  color: baseTheme.palette.primary.main,
+  fontFamily: fontFamilySecondary,
+};
+
+const fontHeaderSecondary = {
+  color: baseTheme.palette.text.primary,
+  fontFamily: fontFamilyPrimary,
+};
 
 const theme = {
   ...baseTheme,
@@ -66,6 +68,14 @@ const theme = {
     h4: {
       ...baseTheme.typography.h4,
       ...fontHeader,
+    },
+    h5: {
+      ...baseTheme.typography.h5,
+      ...fontHeaderSecondary,
+    },
+    h6: {
+      ...baseTheme.typography.h6,
+      ...fontHeaderSecondary,
     },
     subtitle1: {
       ...baseTheme.typography.subtitle1,

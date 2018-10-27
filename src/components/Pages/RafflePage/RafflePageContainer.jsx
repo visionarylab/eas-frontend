@@ -10,6 +10,11 @@ const raffleApi = new RaffleApi();
 class RafflePageContainer extends Component {
   constructor(props) {
     super(props);
+
+    const now = new Date();
+    now.setHours(now.getHours() + 1);
+    const dateScheduled = now;
+
     this.state = {
       privateId: null,
       values: {
@@ -19,7 +24,7 @@ class RafflePageContainer extends Component {
         prizes: [],
         numberOfWinners: 1,
         winners: [],
-        dateScheduled: null,
+        dateScheduled,
       },
     };
   }

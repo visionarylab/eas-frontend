@@ -23,7 +23,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       values: {
         title: '',
         description: '',
-        participants: ['asda', 'aaa'],
+        participants: [],
         numberOfGroups: 2,
         dateScheduled,
       },
