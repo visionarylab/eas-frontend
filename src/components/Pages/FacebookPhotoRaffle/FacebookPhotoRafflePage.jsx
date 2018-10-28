@@ -75,7 +75,7 @@ const ChoosePostSection = ({
       type="text"
       fullWidth
     />
-    <Button variant="raised" color="primary" onClick={onGetLikes}>
+    <Button variant="contained" color="primary" onClick={onGetLikes}>
       {t('check_participants')}
     </Button>
     {participantsFetched && (

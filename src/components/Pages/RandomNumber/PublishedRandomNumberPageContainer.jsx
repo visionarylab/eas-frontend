@@ -50,15 +50,11 @@ class PublishedRandomNumberPageContainer extends Component {
       number_of_results: numberOfResults,
       allow_repeated_results: allowRepeated,
     } = draw;
-    let result;
+    let lastToss;
     if (draw.results.length) {
-      const lastToss = draw.results[0];
-      if (lastToss.value) {
-        result = lastToss;
-      } else {
-        result = lastToss;
-      }
+      lastToss = draw.results[0];
     }
+    console.log('lastToss', lastToss);
 
     this.setState({
       title,
@@ -67,7 +63,7 @@ class PublishedRandomNumberPageContainer extends Component {
       rangeMax,
       numberOfResults,
       allowRepeated,
-      result,
+      result: lastToss,
       isOwner: Boolean(privateId),
       isLoading: false,
     });

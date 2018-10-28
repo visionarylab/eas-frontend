@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
-
+import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 import Page from '../../Page/Page';
 import GroupsGeneratorResult from './GroupsGeneratorResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
@@ -43,7 +43,11 @@ const PublishedGroupsGeneratorPage = props => {
       ) : (
         <div>
           <Countdown date={result.schedule_date} />
-          {isOwner && <Button type="submit" onClick={onToss} />}
+          {isOwner && (
+            <Button type="submit" onClick={onToss}>
+              {' '}
+            </Button>
+          )}
         </div>
       )}
       <section className={c('PublishedGroupsGeneratorPage__details')}>
@@ -66,10 +70,10 @@ const PublishedGroupsGeneratorPage = props => {
 
 PublishedGroupsGeneratorPage.propTypes = {
   title: PropTypes.string,
-  participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-  numberOfGroups: PropTypes.number.isRequired,
+  participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
+  numberOfGroups: PropTypes.number,
   description: PropTypes.string,
-  result: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.instanceOf(GroupsResult),
   isOwner: PropTypes.bool,
   isLoading: PropTypes.bool,
   onToss: PropTypes.func,
@@ -80,6 +84,7 @@ PublishedGroupsGeneratorPage.defaultProps = {
   title: '',
   description: '',
   result: [],
+  numberOfGroups: null,
   isOwner: false,
   isLoading: false,
   onToss: () => {},

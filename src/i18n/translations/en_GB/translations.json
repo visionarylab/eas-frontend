@@ -85,7 +85,8 @@
     "winners": "Winners"
   },
   "Raffle": {
-    "field_label_list_of_participants": "LIst of participants",
+    "field_label_list_of_participants": "List of participants",
+    "field_label_number_of_participants": "Number of participants",
     "field_label_list_of_prizes": "List of prizes",
     "field_label_participants": "Participants",
     "field_label_prizes": "Prizes",
@@ -94,6 +95,8 @@
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
     "publish_raffle": "Publish raffle",
+    "published_draw_details": "Detalles del sorteo",
+    "section_title_winners": "Winners",
     "step_label_general_details": "General details",
     "step_label_participants": "Choose participants",
     "step_label_prizes": "Choose prizes",

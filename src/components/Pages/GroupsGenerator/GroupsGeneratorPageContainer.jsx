@@ -18,13 +18,13 @@ class GroupsGeneratorPageContainer extends React.Component {
 
     this.state = {
       privateId: null,
-      quickResult: [],
+      quickResult: null,
       APIError: false,
       values: {
         title: '',
         description: '',
         participants: [],
-        numberOfGroups: 2,
+        numberOfGroups: '2',
         dateScheduled,
       },
     };
@@ -33,7 +33,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
       privateId: null,
-      quickResult: [],
+      quickResult: null,
       values: {
         ...previousState.values,
         ...{
@@ -75,7 +75,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       }
       const tossResponse = await groupsApi.groupsToss(privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Group Generator', label: 'Local' });
-      this.setState({ quickResult: tossResponse.value, APIError: false });
+      this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });
     }

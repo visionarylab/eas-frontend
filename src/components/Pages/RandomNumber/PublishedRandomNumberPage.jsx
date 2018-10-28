@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
+import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
 import Page from '../../Page/Page';
 import RandomNumberResult from './RandomNumberResult';
 import ResultsBox from '../../ResultsBox/ResultsBox';
@@ -42,22 +43,22 @@ const PublishedRandomNumberPage = props => {
         </Typography>
         {result.value ? (
           <ResultsBox title={t('generated_numbers')}>
-            <RandomNumberResult result={result.value} />
+            <RandomNumberResult result={result} />
           </ResultsBox>
         ) : (
           <div>
             <Countdown date={result.schedule_date} />
-            {isOwner && <Button type="submit" onClick={onToss} />}
+            {isOwner && (
+              <Button type="submit" onClick={onToss}>
+                {' '}
+              </Button>
+            )}
           </div>
         )}
         <section className={c('PublishedRandomNumberPage__details')}>
           <div>
             <Typography variant="h5">{t('published_draw_details')}</Typography>
-            {description && (
-              <p>
-                <Typography variant="body2">{description}</Typography>
-              </p>
-            )}
+            {description && <Typography variant="body2">{description}</Typography>}
             <div>
               <Typography variant="body2">
                 {t('field_label_from')} {rangeMin}
@@ -88,13 +89,13 @@ const PublishedRandomNumberPage = props => {
 };
 
 PublishedRandomNumberPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  rangeMin: PropTypes.number.isRequired,
-  rangeMax: PropTypes.number.isRequired,
-  numberOfResults: PropTypes.number.isRequired,
-  allowRepeated: PropTypes.bool.isRequired,
+  title: PropTypes.string,
+  rangeMin: PropTypes.number,
+  rangeMax: PropTypes.number,
+  numberOfResults: PropTypes.number,
+  allowRepeated: PropTypes.bool,
   description: PropTypes.string,
-  result: PropTypes.arrayOf(PropTypes.object),
+  result: PropTypes.instanceOf(RandomNumberResultClass),
   isOwner: PropTypes.bool,
   isLoading: PropTypes.bool,
   onToss: PropTypes.func,
@@ -102,8 +103,13 @@ PublishedRandomNumberPage.propTypes = {
 };
 
 PublishedRandomNumberPage.defaultProps = {
+  title: '',
   description: '',
-  result: [],
+  rangeMin: null,
+  rangeMax: null,
+  numberOfResults: null,
+  allowRepeated: null,
+  result: null,
   isOwner: false,
   isLoading: false,
   onToss: () => {},

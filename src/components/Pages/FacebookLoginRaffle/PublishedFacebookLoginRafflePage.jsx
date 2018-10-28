@@ -48,7 +48,7 @@ const PublishedFacebookLoginRafflePage = props => (
                 <Typography variant="title">{props.t('registration_is_open')}</Typography>
                 <br />
                 {props.isLoggedInFB ? (
-                  <Button variant="raised" color="primary" onClick={props.onRegisterInRaffle}>
+                  <Button variant="contained" color="primary" onClick={props.onRegisterInRaffle}>
                     {props.t('participate_as', { username: props.userName })}
                   </Button>
                 ) : (

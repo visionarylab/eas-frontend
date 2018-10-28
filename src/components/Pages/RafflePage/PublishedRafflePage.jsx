@@ -16,53 +16,37 @@ import STYLES from './PublishedRafflePage.scss';
 const c = classNames.bind(STYLES);
 
 const PublishedRafflePage = props => {
-  const {
-    isLoading,
-    title,
-    prizes,
-    result,
-    description,
-    participants,
-    numberOfWinners,
-    isOwner,
-    onToss,
-    t,
-  } = props;
+  const { isLoading, title, prizes, result, description, participants, isOwner, onToss, t } = props;
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedRafflePage')}>
-      <Typography variant="h1" align={'center'} data-component={'PublishedRandomNumberPage__Title'}>
+      <Typography variant="h1" align={'center'} data-component={'PublishedRafflePage__Title'}>
         {title}
       </Typography>
       {result.value ? (
-        <ResultsBox title={t('generated_numbers')}>
+        <ResultsBox title={t('section_title_winners')}>
           <WinnersList winners={result.value} />
         </ResultsBox>
       ) : (
         <Fragment>
           <PrizesOverview prizes={prizes} />
           <Countdown date={result.schedule_date} />
-          {isOwner && <Button type="submit" onClick={onToss} />}
+          {isOwner && (
+            <Button type="submit" onClick={onToss}>
+              {' '}
+            </Button>
+          )}
         </Fragment>
       )}
-      <section className={c('PublishedRandomNumberPage__details')}>
+      <section className={c('PublishedRafflePage__details')}>
         <div>
           <Typography variant="h5">{t('published_draw_details')}</Typography>
-          {description && (
-            <p>
-              <Typography variant="body2">{description}</Typography>
-            </p>
-          )}
+          {description && <Typography variant="body2">{description}</Typography>}
           <div>
             <Typography variant="body2">
-              {t('field_label_number_of_participants')} {participants.length}
-            </Typography>
-          </div>
-          <div>
-            <Typography variant="body2">
-              {t('field_label_number_of_winners')} {numberOfWinners}
+              {t('field_label_number_of_participants')}: {participants.length}
             </Typography>
           </div>
         </div>
@@ -76,7 +60,6 @@ PublishedRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-  numberOfWinners: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   result: PropTypes.instanceOf(RaffleResult),
   isOwner: PropTypes.bool,
@@ -92,4 +75,4 @@ PublishedRafflePage.defaultProps = {
   onToss: () => {},
 };
 
-export default translate('PublishedRafflePage')(PublishedRafflePage);
+export default translate('Raffle')(PublishedRafflePage);

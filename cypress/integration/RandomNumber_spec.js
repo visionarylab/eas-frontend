@@ -195,4 +195,55 @@ describe('Number Draw Page', () => {
       cy.location('pathname').should('eq', '/number/6ce5042f-f931-4a79-a716-dfadccc978d0');
     });
   });
+  describe('Published page', () => {
+    it('Google Analytics pageview event is sent', () => {
+      cy.mockGA();
+      cy.visit('/number/6ce5042f-f931-4a79-a716-dfadccc978d0');
+      cy.get('@ga')
+        .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+        .and('be.calledWith', 'send', {
+          hitType: 'pageview',
+          page: '/number/6ce5042f-f931-4a79-a716-dfadccc978d0',
+        });
+    });
+    it('Should show the countdown if there are not results', () => {
+      const now = new Date();
+      now.setHours(now.getHours() + 1);
+      const dateInFuture = now.toISOString();
+      cy.route({
+        method: 'GET',
+        url: '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0',
+        status: 200,
+        response: {
+          id: 'ee870985-eeef-4457-a914-7e96372a3c69',
+          created_at: '2018-10-28T22:40:41.964247Z',
+          updated_at: '2018-10-28T22:40:41.964294Z',
+          title: 'asdada',
+          description: 'asdas',
+          results: [
+            {
+              created_at: '2018-10-28T22:40:41.990740Z',
+              value: null,
+              schedule_date: dateInFuture,
+            },
+          ],
+          metadata: [],
+          private_id: '6ce5042f-f931-4a79-a716-dfadccc978d0',
+          range_min: 2,
+          range_max: 10,
+          number_of_results: 1,
+          allow_repeated_results: false,
+        },
+      }).as('request');
+      cy.visit('/number/6ce5042f-f931-4a79-a716-dfadccc978d0');
+      cy.wait('@request');
+      cy.getComponent('Countdown').should('be.visible');
+    });
+    it('Should show results and the raffle details', () => {
+      cy.visit('/number/6ce5042f-f931-4a79-a716-dfadccc978d0');
+      cy.mockedRequestWait('GET', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0');
+      cy.getComponent('PublishedRandomNumberPage__Title').contains('The title');
+      cy.getComponent('RandomNumberResult__result').should('be.visible');
+    });
+  });
 });

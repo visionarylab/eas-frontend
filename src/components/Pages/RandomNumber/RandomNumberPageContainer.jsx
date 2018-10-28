@@ -27,7 +27,7 @@ class RandomNumberPageContainer extends React.Component {
         allowRepeated: false,
         dateScheduled,
       },
-      quickResult: [],
+      quickResult: null,
       APIError: false,
     };
   }
@@ -35,7 +35,7 @@ class RandomNumberPageContainer extends React.Component {
   onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
       privateId: null,
-      quickResult: [],
+      quickResult: null,
       values: {
         ...previousState.values,
         ...{
@@ -86,7 +86,7 @@ class RandomNumberPageContainer extends React.Component {
       }
       const tossResponse = await randomNumberApi.randomNumberToss(privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Random Number', label: 'Local' });
-      this.setState({ quickResult: tossResponse.value, APIError: false });
+      this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });
     }

@@ -31,7 +31,7 @@ const Countdown = ({ date, t }) => (
         countdownMessage = `${countdownMessage} ${seconds}s`;
       }
       return (
-        <div className={c('Countdown')}>
+        <div className={c('Countdown')} data-component="Countdown">
           <Typography>{t('time_remaining')}</Typography>
           <Typography className={c('Countdown__message')}>{countdownMessage}</Typography>
         </div>
@@ -41,8 +41,8 @@ const Countdown = ({ date, t }) => (
 );
 
 Countdown.propTypes = {
-  t: PropTypes.bool.isRequired,
-  date: PropTypes.number.isRequired,
+  t: PropTypes.func.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default translate('Countdown')(Countdown);

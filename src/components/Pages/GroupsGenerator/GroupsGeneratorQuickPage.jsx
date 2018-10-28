@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import { GroupsResult } from 'echaloasuerte-js-sdk';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal';
@@ -55,7 +56,7 @@ const GroupsGeneratorQuickPage = props => {
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
-        {quickResult.length > 0 && (
+        {quickResult && (
           <Fragment>
             <GroupsGeneratorResult result={quickResult} />
             <ShareDrawModal />
@@ -72,17 +73,17 @@ GroupsGeneratorQuickPage.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    numberOfGroups: PropTypes.number.isRequired,
+    numberOfGroups: PropTypes.string.isRequired,
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
-  quickResult: PropTypes.arrayOf(PropTypes.number),
+  quickResult: PropTypes.instanceOf(GroupsResult),
   t: PropTypes.func.isRequired,
 };
 
 GroupsGeneratorQuickPage.defaultProps = {
-  quickResult: [],
+  quickResult: null,
   apiError: false,
 };
 

@@ -58,7 +58,7 @@ class ShareDrawModal extends Component {
             </Button>
             <Button
               component={withRouter(MakeCurrentDrawPublicLink)}
-              variant="raised"
+              variant="contained"
               color="primary"
               data-component="ShareDrawModal__button"
               autoFocus

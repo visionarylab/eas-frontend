@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
 import SubmitButton from '../../SubmitButton/SubmitButton';
 import withFormValidation from '../../withValidation/withFormValidation';
 import Page from '../../Page/Page';
@@ -52,7 +53,7 @@ const RandomNumberQuickPage = props => {
           <SubmitButton label={t('generate_numbers')} />
         </ValidatedForm>
 
-        {quickResult.length > 0 && (
+        {quickResult && (
           <Fragment>
             <RandomNumberResult result={quickResult} />
             <ShareDrawModal />
@@ -76,13 +77,13 @@ RandomNumberQuickPage.propTypes = {
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
-  quickResult: PropTypes.arrayOf(PropTypes.number),
+  quickResult: PropTypes.instanceOf(RandomNumberResultClass),
   t: PropTypes.func.isRequired,
 };
 
 RandomNumberQuickPage.defaultProps = {
   apiError: false,
-  quickResult: [],
+  quickResult: null,
 };
 
 export default translate('RandomNumber')(RandomNumberQuickPage);

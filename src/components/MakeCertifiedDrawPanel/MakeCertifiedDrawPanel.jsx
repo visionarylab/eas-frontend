@@ -9,7 +9,10 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-const CurrentDrawCertifiedLink = props => <Link to={`${props.match.path}/public`} {...props} />;
+// eslint-disable-next-line react/prop-types
+const CurrentDrawCertifiedLink = ({ match, history, location, staticContext, ...rest }) => (
+  <Link to={`${match.path}/public`} {...rest} />
+);
 CurrentDrawCertifiedLink.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
@@ -24,7 +27,7 @@ const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
     <CardActions>
       <Button
         component={withRouter(CurrentDrawCertifiedLink)}
-        variant="raised"
+        variant="contained"
         data-component="MakeCertifiedDrawPanel__button"
       >
         {buttonLabel}

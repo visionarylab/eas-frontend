@@ -14,7 +14,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       title: '',
       description: '',
       participants: [],
-      numberOfGroups: 0,
+      numberOfGroups: null,
       result: null,
       isOwner: false,
       isLoading: true,
@@ -46,14 +46,9 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       participants,
       number_of_groups: numberOfGroups,
     } = draw;
-    let result;
+    let lastToss;
     if (draw.results.length) {
-      const lastToss = draw.results[0];
-      if (lastToss.value) {
-        result = lastToss;
-      } else {
-        result = lastToss;
-      }
+      lastToss = draw.results[0];
     }
 
     this.setState({
@@ -61,7 +56,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       description,
       participants,
       numberOfGroups,
-      result,
+      result: lastToss,
       isOwner: Boolean(privateId),
       isLoading: false,
     });
