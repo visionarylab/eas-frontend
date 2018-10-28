@@ -114,9 +114,9 @@ const RafflePage = props => {
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
+          sectionTitle={t('step_title_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
-          checkErrors={() => undefined}
           t={t}
           {...wizardProps}
         />

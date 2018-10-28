@@ -33,17 +33,13 @@ const PublishedRandomNumberPage = props => {
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedRandomNumberPage')}>
       <div>
-        {title && (
-          <div>
-            <Typography
-              variant="h1"
-              align={'center'}
-              data-component={'PublishedRandomNumberPage__Title'}
-            >
-              {title}
-            </Typography>
-          </div>
-        )}
+        <Typography
+          variant="h1"
+          align={'center'}
+          data-component={'PublishedRandomNumberPage__Title'}
+        >
+          {title}
+        </Typography>
         {result.value ? (
           <ResultsBox title={t('generated_numbers')}>
             <RandomNumberResult result={result.value} />
@@ -92,7 +88,7 @@ const PublishedRandomNumberPage = props => {
 };
 
 PublishedRandomNumberPage.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   rangeMin: PropTypes.number.isRequired,
   rangeMax: PropTypes.number.isRequired,
   numberOfResults: PropTypes.number.isRequired,
@@ -106,7 +102,6 @@ PublishedRandomNumberPage.propTypes = {
 };
 
 PublishedRandomNumberPage.defaultProps = {
-  title: '',
   description: '',
   result: [],
   isOwner: false,

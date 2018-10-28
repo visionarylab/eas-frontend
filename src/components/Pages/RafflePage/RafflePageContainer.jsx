@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
+import ReactGA from 'react-ga';
 import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
 import RafflePage from './RafflePage';
@@ -58,11 +59,13 @@ class RafflePageContainer extends Component {
 
   handlePublish = async () => {
     const draw = await this.createDraw();
+    const { history, match } = this.props;
     const { dateScheduled } = this.state.values;
     const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
     await raffleApi.raffleToss(draw.private_id, drawTossPayload);
-    const publishDrawUrl = this.props.location.pathname.replace('public', draw.private_id);
-    this.props.history.push(publishDrawUrl);
+    ReactGA.event({ category: 'Publish', action: 'Group Generator', label: draw.id });
+    const drawPathname = `${match.path}/${draw.private_id}`;
+    history.push(drawPathname);
   };
 
   render() {
@@ -78,6 +81,7 @@ class RafflePageContainer extends Component {
 
 RafflePageContainer.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default withRouter(RafflePageContainer);
