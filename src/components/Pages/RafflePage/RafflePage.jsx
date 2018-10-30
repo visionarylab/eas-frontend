@@ -126,7 +126,12 @@ const RafflePage = props => {
 
   return (
     <Page htmlTitle={t('html_title')} className={c('RafflePage')}>
-      <Typography variant="h1">{t('page_title')}</Typography>
+      <Typography variant="h1" align="center">
+        {t('page_title')}
+      </Typography>
+      <Typography variant="subtitle1" align="center">
+        {t('draw_subheading')}
+      </Typography>
       <WizardForm
         steps={steps}
         // initialStep={1}

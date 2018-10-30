@@ -2,15 +2,15 @@
   "ApiError": {
     "api_error": "Estamos teniendo problemas en nuestro servidor."
   },
-  "Header": {
-    "brand_name": "ÉchaloASuerte"
+  "Countdown": {
+    "time_remaining": "Tiempo restante"
   },
   "DateTimePicker": {
     "cancel": "Cancelar",
+    "date": "Fecha",
     "ok": "Ok",
     "only_future_date_valid": "Tienes que elegir una fecha en el futuro",
-    "today": "Hoy",
-    "date": "Fecha"
+    "today": "Hoy"
   },
   "FacebookDraw": {
     "check_participants": "Ver participantes",
@@ -52,15 +52,21 @@
     "field_label_number_of_groups": "Número de grupos",
     "field_label_participants": "Participantes",
     "generate_groups": "Generar grupos",
+    "generated_groups": "Grupos generados",
     "html_title": "Generar grupos online",
     "message_no_participants_added": "No ha añadido ningún participante",
     "page_title": "Generar grupos",
     "publish_draw": "Publicar tirada",
+    "published_draw_details": "Detalles del sorteo",
+    "result_label_group": "Group {{groupNumber}}",
     "step_label_general_details": "Detalles generales",
     "step_label_participants": "Elegir participantes",
     "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales"
+  },
+  "Header": {
+    "brand_name": "ÉchaloASuerte"
   },
   "HomePage": {
     "draw_title_facebook_login": "Sorteo entre usuarios de Facebook",
@@ -73,7 +79,9 @@
     "draw_title_random_number": "Generar números aleatorios",
     "draw_title_roll_dice": "Lanzar dados",
     "draw_title_spin_arrow": "Girar una flecha",
-    "draw_title_tournament": "Organizar un torneo"
+    "draw_title_tournament": "Organizar un torneo",
+    "section_title_online_raffles": "Sorteos online",
+    "section_title_simple_draws": "Sorteos simples"
   },
   "LetterDrawPage": {
     "draw_configuration": "Configuración de la tirada",
@@ -125,14 +133,11 @@
     "results_not_generated_yet": "Los resultados del sorteo todavía no se han publicado",
     "winners": "Ganadores"
   },
-  "PublishedRandomNumberPage": {
-    "draw_details": "Detalles del sorteo",
-    "generated_numbers": "Números generados"
-  },
   "Raffle": {
-    "draw_subheading": "",
+    "draw_subheading": "Crea un sorteo online con premios y comprate el resultado.",
     "field_label_list_of_participants": "Lista de participantes",
     "field_label_list_of_prizes": "Lista de premios",
+    "field_label_number_of_participants": "Número de participantes",
     "field_label_participants": "Participantes",
     "field_label_prizes": "Premios",
     "html_title": "Organizar sorteo",
@@ -140,6 +145,8 @@
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
     "publish_raffle": "Publicar sorteo",
+    "published_draw_details": "Detalles del sorteo",
+    "section_title_winners": "Ganadores",
     "step_label_general_details": "Detalles generales",
     "step_label_participants": "Elegir participantes",
     "step_label_prizes": "Elegir premios",
@@ -162,7 +169,8 @@
     "generate_numbers": "Generar números",
     "generated_numbers": "Números generados",
     "html_title": "Generar números aleatorios",
-    "page_title": "Generar números aleatorios",
+    "page_title_public": "Crear sorteo público con numeros aleatorios",
+    "page_title_quick": "Generar números aleatorios",
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
     "step_label_configuration": "Configura la tirada",
