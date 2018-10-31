@@ -37,6 +37,19 @@ describe('Groups Generator Draw Page', () => {
     cy.getComponent('MultiValueDisplay__chip').should('not.exist');
   });
 
+  it('Should send GA event on toss', function() {
+    cy.mockGA();
+    cy.visit('/groups');
+    cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.get('@ga').should('be.calledWith', 'send', {
+      hitType: 'event',
+      eventCategory: 'Toss',
+      eventAction: 'Groups Generator',
+      eventLabel: 'Local',
+    });
+  });
+
   it('Request sent contains the right data and results are shown', function() {
     cy.visit('/groups');
     cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');

@@ -9,7 +9,7 @@ describe('Number Draw Page', () => {
   });
 
   describe('Quick Draw', () => {
-    it('Google Analytics pageview event is sent', () => {
+    it('Should send GA pageview', () => {
       cy.mockGA();
       cy.visit('/number');
 
@@ -35,6 +35,18 @@ describe('Number Draw Page', () => {
       cy.getComponent('SubmitDrawButton').click();
       cy.wait('@failedRequest');
       cy.getComponent('ErrorFeedback').should('be.visible');
+    });
+
+    it('Should send GA event on toss', function() {
+      cy.mockGA();
+      cy.visit('/number');
+      cy.getComponent('SubmitDrawButton').click();
+      cy.get('@ga').should('be.calledWith', 'send', {
+        hitType: 'event',
+        eventCategory: 'Toss',
+        eventAction: 'Random Number',
+        eventLabel: 'Local',
+      });
     });
 
     it('Results are shown', function() {

@@ -74,7 +74,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         this.setState({ privateId });
       }
       const tossResponse = await groupsApi.groupsToss(privateId, {});
-      ReactGA.event({ category: 'Toss', action: 'Group Generator', label: 'Local' });
+      ReactGA.event({ category: 'Toss', action: 'Groups Generator', label: 'Local' });
       this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });

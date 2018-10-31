@@ -63,7 +63,7 @@ class RafflePageContainer extends Component {
     const { dateScheduled } = this.state.values;
     const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
     await raffleApi.raffleToss(draw.private_id, drawTossPayload);
-    ReactGA.event({ category: 'Publish', action: 'Group Generator', label: draw.id });
+    ReactGA.event({ category: 'Publish', action: 'Raffle', label: draw.id });
     const drawPathname = `${match.path}/${draw.private_id}`;
     history.push(drawPathname);
   };

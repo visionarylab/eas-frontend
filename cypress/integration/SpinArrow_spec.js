@@ -1,7 +1,7 @@
 /* eslint-disable func-names, prefer-arrow-callback */
 
 describe('Spin Arrow Page', () => {
-  it('Google Analytics pageview event is sent', () => {
+  it('Should send GA pageview', () => {
     cy.mockGA();
     cy.visit('/arrow');
 
@@ -10,17 +10,22 @@ describe('Spin Arrow Page', () => {
       .and('be.calledWith', 'send', { hitType: 'pageview', page: '/arrow' });
   });
 
-  it('Clicking the arrow should make it spin and send GA event', function() {
+  it('Should send GA event on toss', function() {
     cy.mockGA();
     cy.visit('/arrow');
     cy.getComponent('SpinArrow__arrow').click();
-    cy.getComponent('SpinArrow__arrow')
-      .should('have.css', 'transform')
-      .and('contain', 'matrix');
     cy.get('@ga').should('be.calledWith', 'send', {
       hitType: 'event',
       eventCategory: 'Toss',
       eventAction: 'Spin Arrow',
     });
+  });
+
+  it('Clicking the arrow should make it spin', function() {
+    cy.visit('/arrow');
+    cy.getComponent('SpinArrow__arrow').click();
+    cy.getComponent('SpinArrow__arrow')
+      .should('have.css', 'transform')
+      .and('contain', 'matrix');
   });
 });

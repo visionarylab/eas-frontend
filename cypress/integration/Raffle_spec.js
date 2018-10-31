@@ -15,6 +15,7 @@ describe('Raffle', () => {
     });
 
     it('It should be possible to create a raffle', () => {
+      cy.mockGA();
       cy.visit('/raffle');
 
       // Attempt to submit step without filling the fields
@@ -80,11 +81,17 @@ describe('Raffle', () => {
           prizes: [{ name: 'Prize 1' }],
         });
       cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss');
+      cy.get('@ga').should('be.calledWith', 'send', {
+        hitType: 'event',
+        eventCategory: 'Publish',
+        eventAction: 'Raffle',
+        eventLabel: 'B29f44c2-1022-408a-925f-63e5f77a12ad',
+      });
       cy.location('pathname').should('eq', '/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
     });
   });
   describe('Published page', () => {
-    it('Google Analytics pageview event is sent', () => {
+    it('Should send GA pageview', () => {
       cy.mockGA();
       cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
       cy.get('@ga')
