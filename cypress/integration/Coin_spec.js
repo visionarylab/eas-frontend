@@ -1,4 +1,4 @@
-describe.only('Coin', () => {
+describe('Coin', () => {
   it('Google Analytics pageview event is sent', () => {
     cy.mockGA();
     cy.visit('/flip-a-coin');

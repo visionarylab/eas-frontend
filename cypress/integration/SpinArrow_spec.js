@@ -10,11 +10,17 @@ describe('Spin Arrow Page', () => {
       .and('be.calledWith', 'send', { hitType: 'pageview', page: '/arrow' });
   });
 
-  it('Clicking the arrow should make it spin', function() {
+  it('Clicking the arrow should make it spin and send GA event', function() {
+    cy.mockGA();
     cy.visit('/arrow');
     cy.getComponent('SpinArrow__arrow').click();
     cy.getComponent('SpinArrow__arrow')
       .should('have.css', 'transform')
       .and('contain', 'matrix');
+    cy.get('@ga').should('be.calledWith', 'send', {
+      hitType: 'event',
+      eventCategory: 'Toss',
+      eventAction: 'Spin Arrow',
+    });
   });
 });
