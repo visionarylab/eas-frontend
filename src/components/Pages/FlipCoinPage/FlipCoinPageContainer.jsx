@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 import FlipCoinPage from './FlipCoinPage';
 
 class FlipCoinPageContainer extends Component {
@@ -11,6 +12,7 @@ class FlipCoinPageContainer extends Component {
 
   handleFlipCoin = () => {
     const coinSide = Math.floor(Math.random() * 2) ? 'heads' : 'tails';
+    ReactGA.event({ category: 'Toss', action: 'Coin' });
     this.setState({ coinSide });
   };
   render() {

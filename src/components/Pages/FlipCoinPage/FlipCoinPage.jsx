@@ -30,10 +30,15 @@ class FlipCoinPage extends Component {
     return (
       <Page htmlTitle={t('page_html_title')} className={c('FlipCoinPage')}>
         <Typography variant="h1">{t('page_title')}</Typography>
-        <Typography variant="subheading">{t('draw_subheading')}</Typography>
+        <Typography variant="subtitle1">{t('draw_subheading')}</Typography>
 
         <div className={c('FlipCoinPage__container')}>
-          <button id="coinImage" className={c('FlipCoinPage__coin')} onClick={onFlip}>
+          <button
+            id="coinImage"
+            className={c('FlipCoinPage__coin')}
+            onClick={onFlip}
+            data-component="FlipCoinPage__coin"
+          >
             <img
               className={c('FlipCoinPage__coin-side', 'FlipCoinPage__coin-side--heads')}
               src="https://echaloasuerte.com/static/img/img_coin/head.png"
