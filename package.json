@@ -15,7 +15,7 @@
     "backpack-react-scripts": "4.0.8",
     "classnames": "^2.2.5",
     "cypress": "^3.1.0",
-    "echaloasuerte-js-sdk": "0.0.4",
+    "echaloasuerte-js-sdk": "0.0.6",
     "enzyme": "^3.5.1",
     "enzyme-adapter-react-16": "^1.4.0",
     "enzyme-to-json": "^3.3.4",
@@ -56,5 +56,11 @@
     "babelIncludePrefixes": [
       "echaloasuerte-js-sdk"
     ]
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://127.0.0.1:8000",
+      "secure": false
+    }
   }
 }
