@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Typographies from '../Pages/Typographies/Typographies';
 import STYLES from './AppShell.scss';
+import config from '../../config/config';
 
 import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer';
 import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPageContainer';
@@ -15,11 +16,11 @@ import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer';
 import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer';
 import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer';
 import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer';
-import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer';
-import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer';
-import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer';
-import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer';
-import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer';
+// import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer';
+// import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer';
+// import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer';
+// import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer';
+// import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer';
 import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer';
 import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer';
 
@@ -30,9 +31,6 @@ const AppShell = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={props => <HomePage {...props} />} />
-      <Route exact path="/about" component={AboutPage} />
-      <Route exact path="/typography" component={Typographies} />
-
       <Route exact path="/groups" component={GroupsGeneratorPageContainer} />
       <Route
         exact
@@ -52,18 +50,20 @@ const AppShell = () => (
       <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
 
-      <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
-      <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
-
-      <Route exact path="/facebook_login" component={FacebookLoginRafflePageContainer} />
-      <Route path="/facebook_login/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
-
-      <Route exact path="/letter" component={LetterDrawPageContainer} />
-
       <Route exact path="/flip-a-coin" component={FlipCoinPageContainer} />
-
       <Route exact path="/arrow" component={SpinArrowPageContainer} />
 
+      {/* <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
+      <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
+      <Route exact path="/facebook_login" component={FacebookLoginRafflePageContainer} />
+      <Route path="/facebook_login/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
+      <Route exact path="/letter" component={LetterDrawPageContainer} /> */}
+
+      <Route exact path="/about" component={AboutPage} />
+
+      {config.environment === 'local' && (
+        <Route exact path="/typography" component={Typographies} />
+      )}
       <Route render={() => <div>Not found</div>} />
     </Switch>
     <Footer />
