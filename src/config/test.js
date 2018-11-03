@@ -1,5 +1,5 @@
 const config = {
-  noIndexAllPages: true,
+  indexPages: false,
   googleAnalyticsID: 'UA-XXXXX-Y',
   enableGoogleAnalytics: true,
   enableSentry: false,

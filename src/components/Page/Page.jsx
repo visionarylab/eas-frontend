@@ -20,11 +20,12 @@ class Page extends Component {
   }
   render() {
     const { htmlTitle, noIndex, className, children } = this.props;
+    const shouldIndexPage = config.indexPages && !noIndex;
     return (
       <Fragment>
         <Helmet>
           <title>{htmlTitle}</title>
-          {(config.noIndexAllPages || noIndex) && <meta name="robots" content="noindex" />}
+          {!shouldIndexPage && <meta name="robots" content="noindex" />}
         </Helmet>
         <div className={c('Page', className)}>{children}</div>
       </Fragment>
