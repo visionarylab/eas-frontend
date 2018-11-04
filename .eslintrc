@@ -1,6 +1,6 @@
 {
   "extends": [
-    "airbnb",
+    "skyscanner",
     "prettier",
     "prettier/react"
   ],
@@ -16,6 +16,26 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "import/no-extraneous-dependencies": [0]
+    "import/no-extraneous-dependencies": [0],
+    "valid-jsdoc": ["error"],
+    "react/destructuring-assignment": "off",
+    "function-paren-newline": "off",
+    "react/no-typos": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": ["error", {
+      "labelComponents": [],
+      "labelAttributes": [],
+      "controlComponents": [],
+      "assert": "either",
+      "depth": 25
+    }]
   }
 }
