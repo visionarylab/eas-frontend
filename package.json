@@ -4,27 +4,28 @@
   "private": true,
   "dependencies": {
     "moment": "^2.22.2",
+    "react-countdown-now": "^1.3.0",
     "react-event-listener": "^0.6.1",
     "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-countdown-now": "^1.3.0"
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^1.1.0",
-    "backpack-react-scripts": "4.0.8",
     "classnames": "^2.2.5",
     "cypress": "^3.1.0",
     "echaloasuerte-js-sdk": "0.0.6",
     "enzyme": "^3.5.1",
     "enzyme-adapter-react-16": "^1.4.0",
     "enzyme-to-json": "^3.3.4",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "i18next": "^11.2.3",
     "i18next-browser-languagedetector": "^2.2.0",
-    "material-ui-pickers": "^1.0.0-rc.12",
+    "material-ui-pickers": "^1.0.1",
+    "node-sass": "^4.10.0",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.0",
     "react": "^16.3.1",
@@ -32,6 +33,7 @@
     "react-ga": "^2.5.3",
     "react-i18next": "^7.6.0",
     "react-router-prop-types": "^1.0.3",
+    "react-scripts": "2.1.1",
     "react-tag-input": "^5.0.2",
     "react-validation": "^3.0.7",
     "superagent": "^3.8.3"
@@ -52,15 +54,18 @@
     "test:integration:full": "cypress open & REACT_APP_ENV=test react-scripts start",
     "eject": "react-scripts eject"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "backpack-react-scripts": {
     "babelIncludePrefixes": [
       "echaloasuerte-js-sdk"
     ]
   },
-  "proxy": {
-    "/api": {
-      "target": "http://127.0.0.1:8000",
-      "secure": false
-    }
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

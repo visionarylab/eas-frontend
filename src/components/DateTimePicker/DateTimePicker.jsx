@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import {MuiPickersUtilsProvider} from 'material-ui-pickers'
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import { default as MuiDateTimePicker } from 'material-ui-pickers/DateTimePicker'; // eslint-disable-line import/no-named-default
 import moment from 'moment';

@@ -1,6 +1,6 @@
 {
   "extends": [
-    "skyscanner",
+    "airbnb",
     "prettier",
     "prettier/react"
   ],
@@ -8,6 +8,7 @@
     "cypress",
     "prettier"
   ],
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "jest": true,
