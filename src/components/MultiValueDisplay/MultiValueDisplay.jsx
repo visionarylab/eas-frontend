@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
-
+import classnames from 'classnames/bind';
 import STYLES from './MultiValueDisplay.scss';
 
-const c = className => STYLES[className];
+const c = classnames.bind(STYLES);
 
 class MultiValueDisplay extends Component {
-  onValueDelete = value => () => this.props.onDelete(value);
+  onValueDelete = value => () => {
+    const { onDelete } = this.props;
+    onDelete(value);
+  };
 
   render() {
     const { values, label, messageEmpty, onDelete } = this.props;
@@ -22,7 +25,7 @@ class MultiValueDisplay extends Component {
                 key={Math.random()}
                 label={value}
                 onDelete={onDelete ? this.onValueDelete(value) : null}
-                data-component={'MultiValueDisplay__chip'}
+                data-component="MultiValueDisplay__chip"
               />
             ))
           ) : (

@@ -1,10 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 
-import PublicResultsPanel from '../../PublicResultsPanel/PublicResultsPanel';
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
 import Page from '../../Page/Page';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
@@ -19,12 +19,10 @@ const PublishedFacebookLoginRafflePage = props => (
       <Typography variant="display2">{props.title}</Typography>
       {props.results.length ? (
         <Fragment>
-          <PublicResultsPanel>
-            <Typography variant="h1">{props.t('winners')}</Typography>
-            {props.results.map(result => (
-              <div>{result}</div>
-            ))}
-          </PublicResultsPanel>
+          <Typography variant="h1">{props.t('winners')}</Typography>
+          {props.results.map(result => (
+            <div>{result}</div>
+          ))}
           <PublicSummaryPanel>
             <Typography variant="h1">{props.t('draw_details')}</Typography>
             <div>Participants: {props.participants.join(', ')}</div>

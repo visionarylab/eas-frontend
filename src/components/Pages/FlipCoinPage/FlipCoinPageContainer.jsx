@@ -15,8 +15,10 @@ class FlipCoinPageContainer extends Component {
     ReactGA.event({ category: 'Toss', action: 'Coin' });
     this.setState({ coinSide });
   };
+
   render() {
-    return <FlipCoinPage coinSide={this.state.coinSide} onFlip={this.handleFlipCoin} />;
+    const { coinSide } = this.state;
+    return <FlipCoinPage coinSide={coinSide} onFlip={this.handleFlipCoin} />;
   }
 }
 

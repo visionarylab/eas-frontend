@@ -8,7 +8,7 @@ const ErrorChild = () => {
 };
 
 const swallowErrors = codeToRun => {
-  const error = console.error; // eslint-disable-line no-console
+  const { error } = console; // eslint-disable-line no-console
   console.error = () => {}; // eslint-disable-line no-console
   codeToRun();
   console.error = error; // eslint-disable-line no-console

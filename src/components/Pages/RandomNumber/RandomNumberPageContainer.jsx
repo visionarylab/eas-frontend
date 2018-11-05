@@ -46,14 +46,9 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   createDraw = async () => {
-    const {
-      title,
-      description,
-      rangeMin,
-      rangeMax,
-      numberOfResults,
-      allowRepeated,
-    } = this.state.values;
+    const { isPublic } = this.props;
+    const { values } = this.state;
+    const { title, description, rangeMin, rangeMax, numberOfResults, allowRepeated } = values;
 
     const publicDetails = {
       title,
@@ -66,7 +61,7 @@ class RandomNumberPageContainer extends React.Component {
       allow_repeated_results: allowRepeated,
     };
 
-    if (this.props.isPublic) {
+    if (isPublic) {
       drawData = {
         ...drawData,
         ...publicDetails,
@@ -77,7 +72,7 @@ class RandomNumberPageContainer extends React.Component {
   };
 
   handleToss = async () => {
-    let privateId = this.state.privateId;
+    let { privateId } = this.state;
     try {
       if (!privateId) {
         const draw = await this.createDraw();
@@ -94,9 +89,10 @@ class RandomNumberPageContainer extends React.Component {
 
   handlePublish = async () => {
     const { match, history } = this.props;
+    const { values } = this.state;
     try {
       const draw = await this.createDraw();
-      const { dateScheduled } = this.state.values;
+      const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
       await randomNumberApi.randomNumberToss(draw.private_id, drawTossPayload);
       ReactGA.event({ category: 'Publish', action: 'Random Number', label: draw.id });
@@ -117,7 +113,8 @@ class RandomNumberPageContainer extends React.Component {
         min: values.rangeMin,
         max: values.rangeMax,
       });
-    } else if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
+    }
+    if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
       return t('error_form_range_not_big_enough');
     }
     return undefined;

@@ -17,7 +17,6 @@ class RafflePageContainer extends Component {
     const dateScheduled = now;
 
     this.state = {
-      privateId: null,
       values: {
         title: '',
         description: '',
@@ -42,7 +41,8 @@ class RafflePageContainer extends Component {
   };
 
   createDraw = async () => {
-    const { title, description, participants, prizes } = this.state.values;
+    const { values } = this.state;
+    const { title, description, participants, prizes } = values;
     const randomNumberDraw = Raffle.constructFromObject({
       title,
       description,
@@ -58,9 +58,10 @@ class RafflePageContainer extends Component {
   };
 
   handlePublish = async () => {
+    const { values } = this.state;
     const draw = await this.createDraw();
     const { history, match } = this.props;
-    const { dateScheduled } = this.state.values;
+    const { dateScheduled } = values;
     const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
     await raffleApi.raffleToss(draw.private_id, drawTossPayload);
     ReactGA.event({ category: 'Publish', action: 'Raffle', label: draw.id });
@@ -69,9 +70,10 @@ class RafflePageContainer extends Component {
   };
 
   render() {
+    const { values } = this.state;
     return (
       <RafflePage
-        values={this.state.values}
+        values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
       />

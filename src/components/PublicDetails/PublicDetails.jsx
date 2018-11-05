@@ -7,32 +7,32 @@ import withFieldValidation from '../withValidation/withFieldValidation';
 
 const ValidatedTextField = withFieldValidation(TextField);
 
-const PublicDetails = props => (
+const PublicDetails = ({ title, description, onFieldChange, t }) => (
   <Fragment>
     <ValidatedTextField
       name="title"
-      label={props.t('title_label')}
-      placeholder={props.t('title_placeholder')}
-      value={props.title}
+      label={t('title_label')}
+      placeholder={t('title_placeholder')}
+      value={title}
       margin="normal"
       fullWidth
-      onChange={e => props.onFieldChange('title', e.target.value)}
-      data-component={'PublicDetails__title-field'}
+      onChange={e => onFieldChange('title', e.target.value)}
+      data-component="PublicDetails__title-field"
       inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
       validators={[{ rule: 'required' }]}
     />
 
     <ValidatedTextField
       name="description"
-      label={props.t('description_label')}
-      placeholder={props.t('description_placeholder')}
-      value={props.description}
+      label={t('description_label')}
+      placeholder={t('description_placeholder')}
+      value={description}
       fullWidth
       multiline
       rows="4"
       margin="normal"
-      onChange={e => props.onFieldChange('description', e.target.value)}
-      data-component={'PublicDetails__description-field'}
+      onChange={e => onFieldChange('description', e.target.value)}
+      data-component="PublicDetails__description-field"
       inputProps={{ 'data-component': 'PublicDetails__description-field-input' }}
       validators={[{ rule: 'required' }]}
     />

@@ -22,7 +22,7 @@ const PublishedRafflePage = props => {
   }
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedRafflePage')}>
-      <Typography variant="h1" align={'center'} data-component={'PublishedRafflePage__Title'}>
+      <Typography variant="h1" align="center" data-component="PublishedRafflePage__Title">
         {title}
       </Typography>
       {result.value ? (

@@ -44,8 +44,9 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   createDraw = () => {
-    const { title, description, participants, numberOfGroups } = this.state.values;
-
+    const { values } = this.state;
+    const { title, description, participants, numberOfGroups } = values;
+    const { isPublic } = this.props;
     const publicDetails = {
       title,
       description,
@@ -55,7 +56,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       number_of_groups: numberOfGroups,
     };
 
-    if (this.props.isPublic) {
+    if (isPublic) {
       drawData = {
         ...drawData,
         ...publicDetails,
@@ -66,7 +67,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handleToss = async () => {
-    let privateId = this.state.privateId;
+    let { privateId } = this.state;
     try {
       if (!privateId) {
         const draw = await this.createDraw();
@@ -83,9 +84,10 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   handlePublish = async () => {
     const { match, history } = this.props;
+    const { values } = this.state;
     try {
       const draw = await this.createDraw();
-      const { dateScheduled } = this.state.values;
+      const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
       await groupsApi.groupsToss(draw.private_id, drawTossPayload);
       ReactGA.event({ category: 'Publish', action: 'Group Generator', label: draw.id });

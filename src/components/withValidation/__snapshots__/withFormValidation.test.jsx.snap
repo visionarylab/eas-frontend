@@ -4,7 +4,7 @@ exports[`withFormValidation Form errors are not shown if the form is not submitt
 <WithFormValidation
   checkErrors={[Function]}
   onFieldDeregister={null}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
   onValidationChange={null}
 >
   <Form
@@ -25,7 +25,7 @@ exports[`withFormValidation Form errors are not shown when fields change 1`] = `
 <WithFormValidation
   checkErrors={[Function]}
   onFieldDeregister={null}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
   onValidationChange={null}
 >
   <Form
@@ -46,7 +46,7 @@ exports[`withFormValidation Form errors are not shown when there are not 1`] = `
 <WithFormValidation
   checkErrors={[Function]}
   onFieldDeregister={null}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
   onValidationChange={null}
 >
   <Form
@@ -67,7 +67,7 @@ exports[`withFormValidation Form errors are shown when the form is submitted 1`]
 <WithFormValidation
   checkErrors={[Function]}
   onFieldDeregister={null}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
   onValidationChange={null}
 >
   <Form
@@ -90,7 +90,7 @@ exports[`withFormValidation should render correctly 1`] = `
 <WithFormValidation
   checkErrors={[Function]}
   onFieldDeregister={null}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
   onValidationChange={null}
 >
   <Form

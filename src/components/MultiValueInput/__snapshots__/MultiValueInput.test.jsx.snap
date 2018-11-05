@@ -18,7 +18,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
   labelDisplayList="Selected Items"
   messageEmpty="No items selected"
   name="field1"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   value={
     Array [
       "Value 1",

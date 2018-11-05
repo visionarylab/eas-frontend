@@ -38,7 +38,7 @@ const GroupsGeneratorQuickPage = props => {
         <Typography variant="h1" align="center">
           {t('page_title')}
         </Typography>
-        <Typography variant="body1" align="center" color={'textSecondary'}>
+        <Typography variant="body1" align="center" color="textSecondary">
           {t('draw_subheading')}
         </Typography>
         <ValidatedForm

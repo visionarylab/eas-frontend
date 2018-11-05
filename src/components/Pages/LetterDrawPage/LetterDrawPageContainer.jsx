@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -12,7 +13,6 @@ class LetterDrawPageContainer extends Component {
     this.handleToss = this.handleToss.bind(this);
 
     this.state = {
-      drawId: null,
       values: {
         title: '',
         description: '',
@@ -100,6 +100,7 @@ class LetterDrawPageContainer extends Component {
 
 LetterDrawPageContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default LetterDrawPageContainer;

@@ -22,9 +22,6 @@ QuickDrawLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-QuickDrawLayout.defaultProps = {
-  className: null,
-  noIndex: false,
-};
+QuickDrawLayout.defaultProps = {};
 
 export default withRouter(QuickDrawLayout);

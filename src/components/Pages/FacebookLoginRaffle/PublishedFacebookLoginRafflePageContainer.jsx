@@ -1,9 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage';
 // import ApiClient from '../../../services/api/EASApi';
-import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
 
 // const { DrawApi } = ApiClient;
 

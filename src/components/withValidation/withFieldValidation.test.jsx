@@ -78,7 +78,7 @@ describe('withFieldValidation', () => {
     // This also applies for valid values, as the errors wouldn't change (they keep being undefined)
     mockContext.updateFieldValidationState = jest.fn();
     const wrapper = shallow(
-      <FieldwithValidation name="field1" value={'value1'} validators={[{ rule: 'required' }]} />,
+      <FieldwithValidation name="field1" value="value1" validators={[{ rule: 'required' }]} />,
       { context: mockContext },
     );
     const instance = wrapper.instance();
@@ -93,7 +93,7 @@ describe('withFieldValidation', () => {
     // This also applies for valid values, as the errors wouldn't change (they keep being undefined)
     mockContext.updateFieldValidationState = jest.fn();
     const wrapper = shallow(
-      <FieldwithValidation name="field1" value={'value1'} validators={[{ rule: 'required' }]} />,
+      <FieldwithValidation name="field1" value="value1" validators={[{ rule: 'required' }]} />,
       { context: mockContext },
     );
     const instance = wrapper.instance();
@@ -235,7 +235,7 @@ describe('withFieldValidation', () => {
       expect(instance.getErrors('3')).toEqual(expectedError);
     });
 
-    it('Non numbers are valid', () => {
+    it('Non numbers are not valid', () => {
       const wrapper = shallow(
         <FieldwithValidation name="field1" validators={[{ rule: 'min', value: 3 }]} />,
         { context: mockContext },

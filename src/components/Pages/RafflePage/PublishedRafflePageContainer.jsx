@@ -25,7 +25,8 @@ class PublishedRafflePageContainer extends Component {
   }
 
   async loadData() {
-    const drawId = this.props.match.params.drawId;
+    const { match } = this.props;
+    const { drawId } = match.params;
     const draw = await raffleApi.raffleRead(drawId);
     const { private_id: privateId, title, description, participants, prizes } = draw;
 

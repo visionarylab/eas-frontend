@@ -15,7 +15,7 @@ const TrumpetIcon = ({ inverted }) => (
     className={c('ResultsBox__trumpet-icon', {
       'ResultsBox__trumpet-icon--flipped': inverted,
     })}
-    alt={'Trumpet icon'}
+    alt="Trumpet icon"
   />
 );
 
@@ -28,12 +28,12 @@ TrumpetIcon.defaultProps = {
 };
 
 const WinnersTitle = ({ winnersLabel }) => (
-  <Grid container direction={'row'} justify={'center'}>
+  <Grid container direction="row" justify="center">
     <Grid item>
       <TrumpetIcon inverted />
     </Grid>
     <Grid item>
-      <Typography variant="h2" component={'p'}>
+      <Typography variant="h2" component="p">
         {winnersLabel}
       </Typography>
     </Grid>

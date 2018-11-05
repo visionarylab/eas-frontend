@@ -22,29 +22,42 @@ const withFormValidation = WrappedComponent => {
     }
 
     onSubmit = e => {
+      const { onSubmit } = this.props;
       this.setState({
         formSubmitted: true,
       });
       if (!this.isFormValid()) {
         e.preventDefault();
       } else {
-        this.props.onSubmit(e);
+        onSubmit(e);
       }
     };
 
     getFormError() {
       const { formSubmitted } = this.state;
-      return formSubmitted ? this.props.checkErrors() : undefined;
+      const { checkErrors } = this.props;
+      return formSubmitted ? checkErrors() : undefined;
     }
 
     isFormValid = () => {
-      const validations = Object.values(this.state.validations);
-      const fieldsValid = validations.every(Boolean);
-      const formValid = !this.props.checkErrors();
+      const { checkErrors } = this.props;
+      const { validations } = this.state;
+      const validationsValues = Object.values(validations);
+      const fieldsValid = validationsValues.every(Boolean);
+      const formValid = !checkErrors();
       return fieldsValid && formValid;
     };
 
+    // eslint-disable-next-line react/destructuring-assignment
     isFormSubmitted = () => this.state.formSubmitted;
+
+    triggerValidationChange = () => {
+      const { onValidationChange } = this.props;
+      if (onValidationChange) {
+        const isValid = this.isFormValid();
+        onValidationChange(isValid);
+      }
+    };
 
     registerValidatedField(name, valid) {
       this.updateFieldValidationState(name, valid);
@@ -66,14 +79,8 @@ const withFormValidation = WrappedComponent => {
       );
     }
 
-    triggerValidationChange = () => {
-      if (this.props.onValidationChange) {
-        const isValid = this.isFormValid();
-        this.props.onValidationChange(isValid);
-      }
-    };
-
     deregisterValidatedField(name) {
+      const { onFieldDeregister } = this.props;
       this.setState(
         previousState => {
           const validations = Object.assign({}, previousState.validations);
@@ -83,8 +90,8 @@ const withFormValidation = WrappedComponent => {
           };
         },
         () => {
-          if (this.props.onFieldDeregister) {
-            this.props.onFieldDeregister(name);
+          if (onFieldDeregister) {
+            onFieldDeregister(name);
           }
           this.triggerValidationChange();
         },

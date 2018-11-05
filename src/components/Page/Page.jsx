@@ -18,6 +18,7 @@ class Page extends Component {
     const page = props.location.pathname;
     ReactGA.pageview(page);
   }
+
   render() {
     const { htmlTitle, noIndex, className, children } = this.props;
     const shouldIndexPage = config.indexPages && !noIndex;

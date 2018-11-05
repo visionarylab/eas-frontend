@@ -7,7 +7,7 @@ import ReactGA from 'react-ga';
 import theme from './EasTheme';
 import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell';
-import FacebookProvider from './../FacebookProvider/FacebookProvider';
+import FacebookProvider from '../FacebookProvider/FacebookProvider';
 import config from '../../config/config';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';

@@ -11,7 +11,7 @@ const availableLocales = ['es-ES', 'en-GB'];
 
 const redirect = locale => {
   const { protocol, pathname, search } = window.location;
-  const environment = config.environment;
+  const { environment } = config;
   let newDomain;
   if (locale === 'en-GB') {
     if (environment === 'production') {

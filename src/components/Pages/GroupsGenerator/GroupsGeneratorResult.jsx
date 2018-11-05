@@ -19,7 +19,7 @@ const GroupsGeneratorResult = ({ result, t }) => (
           className={c('GroupsGeneratorResult__results')}
           variant="body1"
           align="center"
-          data-component={'GroupsGeneratorResult__result'}
+          data-component="GroupsGeneratorResult__result"
           key={group[0].id}
         >
           {group.map(participant => participant.name).join(', ')}

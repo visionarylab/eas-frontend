@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import DrawCard from './../../DrawCard/DrawCard';
+import DrawCard from '../../DrawCard/DrawCard';
 import Page from '../../Page/Page';
 import randomNumber from './random_number.png';
 import arrowIcon from './arrow.svg';
@@ -22,7 +22,7 @@ import STYLES from './HomePage.scss';
 const c = classNames.bind(STYLES);
 
 const HomePage = ({ t }) => (
-  <Page htmlTitle={'Échalo A Suerte'} className={c('HomePage')}>
+  <Page htmlTitle="Échalo A Suerte" className={c('HomePage')}>
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
       <div className={c('HomePage__draw-chips-group')}>

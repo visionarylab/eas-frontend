@@ -14,7 +14,9 @@ import STYLES from './ShareDrawModal.scss';
 
 const c = classnames.bind(STYLES);
 
-const MakeCurrentDrawPublicLink = props => <Link to={`${props.match.path}/public`} {...props} />;
+const MakeCurrentDrawPublicLink = ({ match, ...rest }) => (
+  <Link to={`${match.path}/public`} {...rest} />
+);
 MakeCurrentDrawPublicLink.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
@@ -36,12 +38,13 @@ class ShareDrawModal extends Component {
   };
 
   render() {
+    const { open } = this.state;
     return (
       <div className={c('ShareDrawModal__button-row')}>
         <Button onClick={this.handleClickOpen}>Compartir resultado</Button>
         <Dialog
           fullScreen={this.fullScreen}
-          open={this.state.open}
+          open={open}
           onClose={this.handleClose}
           aria-labelledby="responsive-dialog-title"
         >

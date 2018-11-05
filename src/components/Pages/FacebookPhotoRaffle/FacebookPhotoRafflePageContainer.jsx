@@ -1,9 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import FacebookPhotoRafflePage from './FacebookPhotoRafflePage';
-import withFacebookSDK from './../../withFacebookSDK/withFacebookSDK';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
 
 import { getObjectIdFromUrl, logout, whoAmI } from '../../../services/FacebookAPI/FacebookAPI';
 
@@ -22,22 +23,23 @@ class FacebookPhotoRafflePageContainer extends Component {
         dateScheduled: null,
       },
       participants: [],
-      isLoggedInFB: false,
       participantsFetched: false,
     };
   }
 
   componentDidUpdate() {
-    const { isLoggedInFB, userPages, queryUserPages } = this.props.facebookContext;
+    const { facebookContext } = this.props;
+    const { isLoggedInFB, userPages, queryUserPages } = facebookContext;
     if (isLoggedInFB && userPages === null) {
       queryUserPages();
     }
   }
 
   onFieldChange = (fieldName, value) => {
+    const { values } = this.state;
     if (fieldName === 'url') {
       try {
-        getObjectIdFromUrl(this.state.values.url);
+        getObjectIdFromUrl(values.url);
       } catch (error) {
         console.log('INVALID URL');
       }
@@ -98,6 +100,7 @@ FacebookPhotoRafflePageContainer.propTypes = {
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
     queryUserPages: PropTypes.func.isRequired,
+    queryLikesOnObject: PropTypes.func.isRequired,
     userPages: PropTypes.arrayOf(
       PropTypes.shape({
         pageName: PropTypes.string.isRequired,
@@ -106,10 +109,9 @@ FacebookPhotoRafflePageContainer.propTypes = {
     ),
   }).isRequired,
   location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
-FacebookPhotoRafflePageContainer.defaultProps = {
-  userPages: null,
-};
+FacebookPhotoRafflePageContainer.defaultProps = {};
 
 export default withFacebookSDK(FacebookPhotoRafflePageContainer);

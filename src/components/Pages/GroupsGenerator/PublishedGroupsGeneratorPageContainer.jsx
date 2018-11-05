@@ -26,7 +26,8 @@ class PublishedGroupsGeneratorPageContainer extends Component {
   }
 
   onToss = async () => {
-    const drawId = this.props.match.params.drawId;
+    const { match } = this.props;
+    const { drawId } = match.params;
     try {
       await groupsApi.groupsToss(drawId, {});
       this.loadData();
@@ -36,7 +37,8 @@ class PublishedGroupsGeneratorPageContainer extends Component {
   };
 
   async loadData() {
-    const drawId = this.props.match.params.drawId;
+    const { match } = this.props;
+    const { drawId } = match.params;
 
     const draw = await groupsApi.groupsRead(drawId);
     const {

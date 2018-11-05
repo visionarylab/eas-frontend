@@ -34,6 +34,7 @@ class FlipCoinPage extends Component {
 
         <div className={c('FlipCoinPage__container')}>
           <button
+            type="button"
             id="coinImage"
             className={c('FlipCoinPage__coin')}
             onClick={onFlip}

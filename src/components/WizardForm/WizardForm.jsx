@@ -22,14 +22,16 @@ class WizardForm extends Component {
 
     this.stepRefs = props.steps.map(() => React.createRef());
   }
+
   onStepSubmit = e => {
-    this.setStep(this.state.requestedStep, e);
+    const { requestedStep } = this.state;
+    this.setStep(requestedStep, e);
   };
 
   onValidationChange = valid => {
     this.setState(previousState => {
       const stepValidations = previousState.stepValidations.slice();
-      stepValidations[this.state.activeStep] = valid;
+      stepValidations[previousState.activeStep] = valid;
       return {
         stepValidations,
       };
@@ -37,16 +39,18 @@ class WizardForm extends Component {
   };
 
   setStep = (stepIndex, e) => {
-    const isLastStep = stepIndex === this.props.steps.length;
-    if (isLastStep && this.props.onSubmit) {
-      this.props.onSubmit(e);
+    const { steps, onSubmit } = this.props;
+    const isLastStep = stepIndex === steps.length;
+    if (isLastStep && onSubmit) {
+      onSubmit(e);
     } else {
       this.setState({ activeStep: stepIndex, requestedStep: -1 });
     }
   };
 
   handleNext = () => {
-    this.requestStep(this.state.activeStep + 1);
+    const { activeStep } = this.state;
+    this.requestStep(activeStep + 1);
   };
 
   handleBack = () => {
@@ -63,7 +67,9 @@ class WizardForm extends Component {
   };
 
   requestStep(nextStepIndex) {
-    const activeStepDefinition = this.props.steps[this.state.activeStep];
+    const { steps } = this.props;
+    const { activeStep } = this.state;
+    const activeStepDefinition = steps[activeStep];
     const shouldValidateActiveStep =
       !('validate' in activeStepDefinition) || activeStepDefinition.validate;
     if (shouldValidateActiveStep) {
@@ -71,7 +77,7 @@ class WizardForm extends Component {
         {
           requestedStep: nextStepIndex,
         },
-        () => this.submitStepForm(this.state.activeStep),
+        () => this.submitStepForm(activeStep),
       );
     } else {
       this.setStep(nextStepIndex);
@@ -105,7 +111,7 @@ class WizardForm extends Component {
         <div>
           <div>
             {steps[activeStep].render({
-              ref: this.stepRefs[this.state.activeStep],
+              ref: this.stepRefs[activeStep],
               onValidationChange: this.onValidationChange,
               onSubmit: this.onStepSubmit,
             })}
@@ -123,7 +129,7 @@ class WizardForm extends Component {
               variant="contained"
               color="primary"
               className={c('WizardForm__step-button')}
-              data-component={'WizzardForm__next-button'}
+              data-component="WizzardForm__next-button"
               onClick={this.handleNext}
             >
               {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}

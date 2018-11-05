@@ -32,7 +32,7 @@ const PublishedGroupsGeneratorPage = props => {
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedGroupsGeneratorPage')}>
       {title && (
-        <Typography variant="h1" data-component={'PublishedGroupsGeneratorPage__Title'}>
+        <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
           {title}
         </Typography>
       )}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 
-import {MuiPickersUtilsProvider} from 'material-ui-pickers'
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import { default as MuiDateTimePicker } from 'material-ui-pickers/DateTimePicker'; // eslint-disable-line import/no-named-default
 import moment from 'moment';
@@ -27,7 +27,7 @@ const DateTimePicker = ({ t, ...props }) => {
         cancelLabel={t('cancel')}
         okLabel={t('ok')}
         todayLabel={t('today')}
-        format={'LLL'}
+        format="LLL"
         label={t('date')}
         margin="normal"
         fullWidth

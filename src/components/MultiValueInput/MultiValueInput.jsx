@@ -29,19 +29,19 @@ class MultiValueInput extends Component {
     }
   };
 
-  onValueDelete = value => {
-    const values = this.props.value;
-    const indexToDelete = values.indexOf(value);
+  onValueDelete = valueToDelete => {
+    const { value: values, name, onChange } = this.props;
+    const indexToDelete = values.indexOf(valueToDelete);
     const clonedValues = values.slice();
     clonedValues.splice(indexToDelete, 1);
-    const event = { target: { name: this.props.name, value: clonedValues } };
-    this.props.onChange(event);
+    const event = { target: { name, value: clonedValues } };
+    onChange(event);
   };
 
   addValues = newValues => {
-    const { value: values } = this.props;
-    const event = { target: { name: this.props.name, value: values.concat(newValues) } };
-    this.props.onChange(event);
+    const { value: values, name, onChange } = this.props;
+    const event = { target: { name, value: values.concat(newValues) } };
+    onChange(event);
     this.setState({ currentValue: '' });
   };
 
@@ -54,13 +54,14 @@ class MultiValueInput extends Component {
       ...rest
     } = this.props;
     const { delimiters, onChange, ...extra } = rest;
+    const { currentValue } = this.state;
     return (
       <div data-component={dataComponent}>
         <TextField
           onChange={this.onCurrentValueChange}
           type="text"
           margin="normal"
-          value={this.state.currentValue}
+          value={currentValue}
           {...extra}
         />
         <MultiValueDisplay

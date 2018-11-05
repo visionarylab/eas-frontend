@@ -123,7 +123,8 @@ const FacebookPhotoRafflePage = props => {
           checkErrors={() => {
             if (!isLoggedInFB) {
               return t('error_form_need_to_login_facebook');
-            } else if (!userPages.length) {
+            }
+            if (!userPages.length) {
               return t('error_no_user_pages');
             }
             return undefined;
@@ -155,7 +156,7 @@ const FacebookPhotoRafflePage = props => {
         <Typography variant="h1" align="center">
           {t('page_title')}
         </Typography>
-        <Typography variant="body1" align="center" color={'textSecondary'}>
+        <Typography variant="body1" align="center" color="textSecondary">
           {t('draw_subheading')}
         </Typography>
         <WizardForm

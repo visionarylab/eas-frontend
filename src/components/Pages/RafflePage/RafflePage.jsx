@@ -81,8 +81,8 @@ const RafflePage = props => {
           sectionTitle={t('step_title_general_details')}
           title={values.title}
           description={values.description}
-          onFieldChange={props.onFieldChange}
-          t={props.t}
+          onFieldChange={onFieldChange}
+          t={t}
           {...wizardProps}
         />
       ),
@@ -92,8 +92,8 @@ const RafflePage = props => {
       render: wizardProps => (
         <ParticipantsForm
           participants={values.participants}
-          onFieldChange={props.onFieldChange}
-          t={props.t}
+          onFieldChange={onFieldChange}
+          t={t}
           {...wizardProps}
         />
       ),

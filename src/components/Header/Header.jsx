@@ -12,7 +12,7 @@ const c = classNames.bind(STYLES);
 
 const Header = ({ t }) => (
   <header className={c('Header')}>
-    <Link to={'/'} className={c('Header__link')}>
+    <Link to="/" className={c('Header__link')}>
       <img className={c('Header__logo')} src={logo} alt={t('brand_name')} />
       <Typography variant="h4" component="span" className={c('Header__title')}>
         {t('brand_name')}

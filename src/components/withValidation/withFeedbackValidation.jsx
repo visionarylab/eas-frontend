@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const withFeedbackValidation = WrappedComponent => {
-  const WithFeedbackValidation = (props, context) => {
-    const error = context.getFormError();
+  const WithFeedbackValidation = (props, { getFormError }) => {
+    const error = getFormError();
     return error ? <WrappedComponent error={error} /> : null;
   };
 

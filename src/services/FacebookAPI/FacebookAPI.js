@@ -137,7 +137,7 @@ export const whoAmI = async () => {
       if (response && !response.error) {
         accept('cool');
       } else {
-        reject('not cool');
+        reject(Error('not cool'));
       }
     };
     window.FB.api('/me', callback);

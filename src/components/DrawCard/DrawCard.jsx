@@ -14,13 +14,13 @@ ExternalLink.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const DrawCard = props => {
-  const LinkComponent = props.to ? Link : ExternalLink;
+const DrawCard = ({ to, externalHref, icon, children }) => {
+  const LinkComponent = to ? Link : ExternalLink;
   return (
-    <LinkComponent className={c('DrawCard__link')} to={props.to} href={props.externalHref}>
+    <LinkComponent className={c('DrawCard__link')} to={to} href={externalHref}>
       <div className={c('DrawCard')}>
-        <img className={c('DrawCard__icon')} src={props.icon} alt={props.children} />
-        <Typography className={c('DrawCard__title')}>{props.children}</Typography>
+        <img className={c('DrawCard__icon')} src={icon} alt={children} />
+        <Typography className={c('DrawCard__title')}>{children}</Typography>
       </div>
     </LinkComponent>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -5,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import SectionPanel from '../../SectionPanel/SectionPanel';
-import TransparentPanel from '../../TransparentPanel/TransparentPanel';
 import PrizeSelector from '../../PrizeSelector/PrizeSelector';
 import PublicDetails from '../../PublicDetails/PublicDetails';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
@@ -66,13 +66,11 @@ const FacebookLoginRafflePage = props => {
           </div>
         </Grid>
         <Grid item xs={3}>
-          <TransparentPanel>
-            <Paper>
-              <Trans i18nKey="facebook_draw_seo_description">
-                <span>Organize raffles in your Facebook page</span>
-              </Trans>
-            </Paper>
-          </TransparentPanel>
+          <Paper>
+            <Trans i18nKey="facebook_draw_seo_description">
+              <span>Organize raffles in your Facebook page</span>
+            </Trans>
+          </Paper>
         </Grid>
       </Grid>
     </Page>
@@ -93,9 +91,6 @@ FacebookLoginRafflePage.propTypes = {
   handlePublish: PropTypes.func.isRequired,
 };
 
-FacebookLoginRafflePage.defaultProps = {
-  isLoggedInFB: false,
-  ownedPages: [],
-};
+FacebookLoginRafflePage.defaultProps = {};
 
 export default translate('FacebookLoginRafflePage')(FacebookLoginRafflePage);

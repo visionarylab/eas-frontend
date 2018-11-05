@@ -32,10 +32,10 @@ class FacebookProvider extends Component {
   }
 
   getUserDetails = () => {
-    if (!this.state.userID) {
+    const { userID, userName } = this.state;
+    if (!userID) {
       this.queryUserDetails();
     }
-    const { userID, userName } = this.state;
     return { userID, userName };
   };
 
@@ -51,7 +51,8 @@ class FacebookProvider extends Component {
   };
 
   queryLikesOnObject = async objectId => {
-    const accessTokens = this.state.userPages.map(page => page.accessToken);
+    const { userPages } = this.state;
+    const accessTokens = userPages.map(page => page.accessToken);
     const response = await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );
@@ -80,9 +81,8 @@ class FacebookProvider extends Component {
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
     };
-    return (
-      <FacebookContext.Provider value={context}>{this.props.children}</FacebookContext.Provider>
-    );
+    const { children } = this.props;
+    return <FacebookContext.Provider value={context}>{children}</FacebookContext.Provider>;
   }
 }
 FacebookProvider.propTypes = {

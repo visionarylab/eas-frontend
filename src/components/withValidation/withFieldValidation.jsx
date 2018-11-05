@@ -14,6 +14,7 @@ const withFieldValidation = WrappedComponent => {
     }
 
     componentDidMount() {
+      const { registerValidatedField } = this.context;
       const { value, name } = this.props;
       const errors = this.getErrors(value);
       const newState = { error: errors };
@@ -24,20 +25,24 @@ const withFieldValidation = WrappedComponent => {
       }
 
       this.setState(newState); // eslint-disable-line react/no-did-mount-set-state
-      this.context.registerValidatedField(name, valid);
+      registerValidatedField(name, valid);
     }
 
     componentDidUpdate(prevProps) {
+      const { name, value } = this.props;
+      const { updateFieldValidationState } = this.context;
       const prevErrors = this.getErrors(prevProps.value);
-      const errors = this.getErrors(this.props.value);
+      const errors = this.getErrors(value);
       if (JSON.stringify(prevErrors) !== JSON.stringify(errors)) {
         this.setState({ changed: true, error: errors }); // eslint-disable-line react/no-did-update-set-state
-        this.context.updateFieldValidationState(this.props.name, !errors);
+        updateFieldValidationState(name, !errors);
       }
     }
 
     componentWillUnmount() {
-      this.context.deregisterValidatedField(this.props.name);
+      const { deregisterValidatedField } = this.context;
+      const { name } = this.props;
+      deregisterValidatedField(name);
     }
 
     getDefaultErrorMessage = error => {
@@ -59,7 +64,7 @@ const withFieldValidation = WrappedComponent => {
           case 'required':
             return !String(value).trim();
           case 'min':
-            return isNaN(value) || value < parseInt(validator.value, 10);
+            return Number.isNaN(parseFloat(value)) || value < parseInt(validator.value, 10);
           default:
             return true;
         }
@@ -68,7 +73,8 @@ const withFieldValidation = WrappedComponent => {
 
     getErrorsToShow = () => {
       const { changed, error } = this.state;
-      const shouldShowError = this.context.isFormSubmitted() || changed;
+      const { isFormSubmitted } = this.context;
+      const shouldShowError = isFormSubmitted() || changed;
       return shouldShowError && error ? error : undefined;
     };
 

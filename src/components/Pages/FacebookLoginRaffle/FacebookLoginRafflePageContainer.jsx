@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -49,6 +50,7 @@ class FacebookLoginRafflePageContainer extends Component {
 
 FacebookLoginRafflePageContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default FacebookLoginRafflePageContainer;

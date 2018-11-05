@@ -28,7 +28,8 @@ class PublishedRandomNumberPageContainer extends Component {
   }
 
   onToss = async () => {
-    const drawId = this.props.match.params.drawId;
+    const { match } = this.props;
+    const { drawId } = match.params;
     try {
       await randomNumberApi.randomNumberToss(drawId, {});
       this.loadData();
@@ -38,7 +39,8 @@ class PublishedRandomNumberPageContainer extends Component {
   };
 
   async loadData() {
-    const drawId = this.props.match.params.drawId;
+    const { match } = this.props;
+    const { drawId } = match.params;
 
     const draw = await randomNumberApi.randomNumberRead(drawId);
     const {
@@ -54,7 +56,6 @@ class PublishedRandomNumberPageContainer extends Component {
     if (draw.results.length) {
       lastToss = draw.results[0];
     }
-    console.log('lastToss', lastToss);
 
     this.setState({
       title,

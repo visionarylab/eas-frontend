@@ -18,7 +18,7 @@ const Form = ({ onFieldRegister, onFieldDeregister, onFieldChange, ...props }) =
   <form {...props} />
 );
 
-const ValidationFeedbackMock = (props, context) => <div>{context.getFormError()}</div>;
+const ValidationFeedbackMock = (props, { getFormError }) => <div>{getFormError()}</div>;
 
 ValidationFeedbackMock.contextTypes = {
   getFormError: PropTypes.func.isRequired,

@@ -6,8 +6,8 @@ import STYLES from './PublicSummaryPanel.scss';
 
 const c = classNames.bind(STYLES);
 
-const PublicSummaryPanel = props => (
-  <section className={c('PublicSummaryPanel')}>{props.children}</section>
+const PublicSummaryPanel = ({ children }) => (
+  <section className={c('PublicSummaryPanel')}>{children}</section>
 );
 
 PublicSummaryPanel.propTypes = {
