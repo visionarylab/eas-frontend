@@ -23,6 +23,7 @@ import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGenerat
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer';
 import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer';
 import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 const c = classnames.bind(STYLES);
 
@@ -66,7 +67,7 @@ const AppShell = () => (
       {config.environment === 'local' && (
         <Route exact path="/typography" component={Typographies} />
       )}
-      <Route render={() => <div>Not found</div>} />
+      <Route component={NotFoundPage} />
     </Switch>
     <Footer />
   </div>
