@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import ReactGA from 'react-ga';
 import { GroupsApi, Groups, DrawTossPayload } from 'echaloasuerte-js-sdk';
@@ -12,17 +11,16 @@ class GroupsGeneratorPageContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    const now = new Date();
-    now.setHours(now.getHours() + 1);
-    const dateScheduled = now;
+    const dateScheduled = new Date();
+    dateScheduled.setHours(dateScheduled.getHours() + 1);
 
     this.state = {
       privateId: null,
       quickResult: null,
       APIError: false,
       values: {
-        title: '',
-        description: '',
+        title: null,
+        description: null,
         participants: [],
         numberOfGroups: '2',
         dateScheduled,
@@ -46,22 +44,12 @@ class GroupsGeneratorPageContainer extends React.Component {
   createDraw = () => {
     const { values } = this.state;
     const { title, description, participants, numberOfGroups } = values;
-    const { isPublic } = this.props;
-    const publicDetails = {
+    const drawData = {
+      participants: participants.map(participant => ({ name: participant })),
+      number_of_groups: numberOfGroups,
       title,
       description,
     };
-    let drawData = {
-      participants: participants.map(participant => ({ name: participant })),
-      number_of_groups: numberOfGroups,
-    };
-
-    if (isPublic) {
-      drawData = {
-        ...drawData,
-        ...publicDetails,
-      };
-    }
     const groupGeneratorDraw = Groups.constructFromObject(drawData);
     return groupsApi.groupsCreate(groupGeneratorDraw);
   };
@@ -69,11 +57,13 @@ class GroupsGeneratorPageContainer extends React.Component {
   handleToss = async () => {
     let { privateId } = this.state;
     try {
+      // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
         const draw = await this.createDraw();
         privateId = draw.private_id;
         this.setState({ privateId });
       }
+
       const tossResponse = await groupsApi.groupsToss(privateId, {});
       ReactGA.event({ category: 'Toss', action: 'Groups Generator', label: 'Local' });
       this.setState({ quickResult: tossResponse, APIError: false });
@@ -87,11 +77,13 @@ class GroupsGeneratorPageContainer extends React.Component {
     const { values } = this.state;
     try {
       const draw = await this.createDraw();
+
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
       await groupsApi.groupsToss(draw.private_id, drawTossPayload);
       ReactGA.event({ category: 'Publish', action: 'Group Generator', label: draw.id });
-      const drawPathname = match.path.replace('public', draw.private_id);
+
+      const drawPathname = match.url.replace('public', draw.private_id);
       history.push(drawPathname);
     } catch (err) {
       this.setState({ APIError: true });
@@ -105,10 +97,6 @@ class GroupsGeneratorPageContainer extends React.Component {
     }
 
     const { participants, numberOfGroups } = values;
-    if (APIError) {
-      return t('ApiError:api_error');
-    }
-
     if (participants.length < numberOfGroups) {
       return t('error_form_not_enough_participants', { numberOfGroups });
     }
@@ -117,7 +105,9 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   render() {
     const { APIError, values, quickResult } = this.state;
-    const { isPublic } = this.props;
+    const { match } = this.props;
+    const { isPublic } = match.params;
+
     return isPublic ? (
       <GroupsGeneratorPage
         apiError={APIError}
@@ -140,12 +130,9 @@ class GroupsGeneratorPageContainer extends React.Component {
 }
 
 GroupsGeneratorPageContainer.propTypes = {
-  isPublic: PropTypes.bool,
   history: ReactRouterPropTypes.history.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
 };
-GroupsGeneratorPageContainer.defaultProps = {
-  isPublic: false,
-};
+GroupsGeneratorPageContainer.defaultProps = {};
 
 export default GroupsGeneratorPageContainer;

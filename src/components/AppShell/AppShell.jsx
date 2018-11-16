@@ -26,18 +26,20 @@ import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer';
 
 const c = classnames.bind(STYLES);
 
+const guidRegex = '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}';
+
 const AppShell = () => (
   <div className={c('AppShell')}>
     <Header />
     <Switch>
       <Route exact path="/" component={props => <HomePage {...props} />} />
-      <Route exact path="/groups" component={GroupsGeneratorPageContainer} />
+
+      <Route exact path="/groups/:isPublic(public)?" component={GroupsGeneratorPageContainer} />
       <Route
         exact
-        path="/groups/public"
-        component={props => <GroupsGeneratorPageContainer isPublic {...props} />}
+        path={`/groups/:drawId(${guidRegex})`}
+        component={PublishedGroupsGeneratorPageContainer}
       />
-      <Route exact path="/groups/:drawId" component={PublishedGroupsGeneratorPageContainer} />
 
       <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
