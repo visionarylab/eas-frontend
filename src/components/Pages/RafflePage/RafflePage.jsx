@@ -125,7 +125,11 @@ const RafflePage = props => {
   ];
 
   return (
-    <Page htmlTitle={t('html_title')} className={c('RafflePage')}>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      className={c('RafflePage')}
+    >
       <Typography variant="h1" align="center">
         {t('page_title')}
       </Typography>

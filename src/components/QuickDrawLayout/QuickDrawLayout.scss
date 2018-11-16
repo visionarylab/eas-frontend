@@ -9,7 +9,7 @@ $side-panel-total-width: $side-panel-width + $side-panel-padding;
 $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-small;
 
 .QuickDrawLayout {
-  &__container {
+
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -22,7 +22,7 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
         width: 88rem;
       }
     }
-  }
+  
 
   &__content {
     @media (min-width: $media-desktop) {
@@ -51,7 +51,7 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
     }
   }
 
-  &__container &__results {
+  & &__results {
     font-size: $result-font-size;
     line-height: $result-font-size;
     text-align: center;

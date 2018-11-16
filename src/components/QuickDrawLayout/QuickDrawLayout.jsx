@@ -10,7 +10,7 @@ const c = classNames.bind(STYLES);
 const QuickDrawLayout = props => {
   const { sidePanel, children } = props;
   return (
-    <div className={c('QuickDrawLayout__container')}>
+    <div className={c('QuickDrawLayout')}>
       <div className={c('QuickDrawLayout__content')}>{children}</div>
       <div className={c('QuickDrawLayout__side-panel')}>{sidePanel}</div>
     </div>

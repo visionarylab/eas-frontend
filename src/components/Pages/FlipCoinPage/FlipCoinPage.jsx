@@ -28,7 +28,11 @@ class FlipCoinPage extends Component {
   render() {
     const { onFlip, t } = this.props;
     return (
-      <Page htmlTitle={t('page_html_title')} className={c('FlipCoinPage')}>
+      <Page
+        htmlTitle={t('html_title')}
+        htmlDescription={t('html_description')}
+        className={c('FlipCoinPage')}
+      >
         <Typography variant="h1">{t('page_title')}</Typography>
         <Typography variant="subtitle1">{t('draw_subheading')}</Typography>
 

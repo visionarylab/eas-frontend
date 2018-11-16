@@ -22,7 +22,11 @@ import STYLES from './HomePage.scss';
 const c = classNames.bind(STYLES);
 
 const HomePage = ({ t }) => (
-  <Page htmlTitle="Échalo A Suerte" className={c('HomePage')}>
+  <Page
+    htmlTitle={t('html_title')}
+    htmlDescription={t('html_description')}
+    className={c('HomePage')}
+  >
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
       <div className={c('HomePage__draw-chips-group')}>

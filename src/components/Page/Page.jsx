@@ -20,12 +20,13 @@ class Page extends Component {
   }
 
   render() {
-    const { htmlTitle, noIndex, className, children } = this.props;
+    const { htmlTitle, htmlDescription, noIndex, className, children } = this.props;
     const shouldIndexPage = config.indexPages && !noIndex;
     return (
       <Fragment>
         <Helmet>
           <title>{htmlTitle}</title>
+          <meta name="description" content={htmlDescription} />
           {!shouldIndexPage && <meta name="robots" content="noindex" />}
         </Helmet>
         <div className={c('Page', className)}>{children}</div>
@@ -36,6 +37,7 @@ class Page extends Component {
 
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
+  htmlDescription: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,

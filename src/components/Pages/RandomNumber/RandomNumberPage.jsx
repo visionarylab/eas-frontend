@@ -65,16 +65,18 @@ const RandomNumberPage = props => {
     },
   ];
   return (
-    <Page htmlTitle={t('html_title')}>
-      <div className={c('RandomNumberPage__container')}>
-        <Typography variant="h1">{t('page_title_public')}</Typography>
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_draw')}
-          apiError={apiError}
-        />
-      </div>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      className={c('RandomNumberPage')}
+    >
+      <Typography variant="h1">{t('page_title_public')}</Typography>
+      <WizardForm
+        steps={steps}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_draw')}
+        apiError={apiError}
+      />
     </Page>
   );
 };

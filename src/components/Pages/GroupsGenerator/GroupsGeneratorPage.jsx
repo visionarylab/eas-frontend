@@ -2,7 +2,6 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Typography from '@material-ui/core/Typography';
 import withFormValidation from '../../withValidation/withFormValidation';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection';
@@ -59,7 +58,11 @@ const GroupsGeneratorPage = props => {
     },
   ];
   return (
-    <Page htmlTitle={t('html_title')} className={c('GroupsGeneratorPage')}>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      className={c('GroupsGeneratorPage')}
+    >
       <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
       <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_raffle')} />
     </Page>

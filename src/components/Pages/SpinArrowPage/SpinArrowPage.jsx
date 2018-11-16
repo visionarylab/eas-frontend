@@ -19,7 +19,11 @@ const SpinArrowPage = ({ angle, animate, handleToss, t }) => {
   }
 
   return (
-    <Page htmlTitle={t('html_tittle')} className={c('SpinArrowPage')}>
+    <Page
+      htmlTitle={t('html_tittle')}
+      htmlDescription={t('html_description')}
+      className={c('SpinArrowPage')}
+    >
       <Typography variant="h1">{t('page_title')}</Typography>
       <Typography variant="subtitle1">{t('draw_subheading')}</Typography>
 

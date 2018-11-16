@@ -26,7 +26,7 @@ const GroupsGeneratorQuickPage = props => {
     t,
   } = props;
   return (
-    <Page htmlTitle={t('html_title')}>
+    <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
       <QuickDrawLayout
         sidePanel={
           <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
