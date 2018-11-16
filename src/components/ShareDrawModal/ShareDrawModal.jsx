@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,16 +7,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import classnames from 'classnames/bind';
+import PublicModeButton from '../PublicModeButton/PublicModeButton';
 import STYLES from './ShareDrawModal.scss';
 
 const c = classnames.bind(STYLES);
-
-const MakeCurrentDrawPublicLink = ({ match, ...rest }) => (
-  <Link to={`${match.path}/public`} {...rest} />
-);
-MakeCurrentDrawPublicLink.propTypes = {
-  match: ReactRouterPropTypes.match.isRequired,
-};
 
 class ShareDrawModal extends Component {
   constructor(props) {
@@ -59,15 +50,7 @@ class ShareDrawModal extends Component {
             <Button onClick={this.handleClose} color="primary">
               Cancelar
             </Button>
-            <Button
-              component={withRouter(MakeCurrentDrawPublicLink)}
-              variant="contained"
-              color="primary"
-              data-component="ShareDrawModal__button"
-              autoFocus
-            >
-              Crear sorteo público
-            </Button>
+            <PublicModeButton label="Crear sorteo público" inputProps={{ color: 'primary' }} />
           </DialogActions>
         </Dialog>
       </div>
