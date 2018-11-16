@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
@@ -13,34 +13,38 @@ const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
-  <SectionPanel title={t('step_title_draw_configuration')}>
-    <ValidatedMultiValueInput
-      name="participants"
-      label={t('field_label_participants')}
-      labelDisplayList={t('field_label_list_of_participants')}
-      placeholder="David, Ana..."
-      messageEmpty={t('message_no_participants_added')}
-      value={values.participants}
-      fullWidth
-      onChange={e => onFieldChange('participants', e.target.value)}
-      validators={[{ rule: 'required' }]}
-      data-component="GroupsGenerator__participants-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
-    />
-    <ValidatedTextField
-      name="numberOfGroups"
-      label={t('field_label_number_of_groups')}
-      placeholder="2"
-      onChange={e => onFieldChange('numberOfGroups', e.target.value)}
-      value={values.numberOfGroups}
-      type="number"
-      margin="normal"
-      validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
-      data-component="GroupsGenerator__number-of-groups-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__number-of-groups-field-input' }}
-    />
+  <Fragment>
+    <SectionPanel title="Introduce los participantes">
+      <ValidatedMultiValueInput
+        name="participants"
+        label={t('field_label_participants')}
+        labelDisplayList={t('field_label_list_of_participants')}
+        placeholder="David, Ana..."
+        messageEmpty={t('message_no_participants_added')}
+        value={values.participants}
+        fullWidth
+        onChange={e => onFieldChange('participants', e.target.value)}
+        validators={[{ rule: 'required' }]}
+        data-component="GroupsGenerator__participants-field"
+        inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
+      />
+    </SectionPanel>
+    <SectionPanel title="Cuantos grupos quieres hacer?">
+      <ValidatedTextField
+        name="numberOfGroups"
+        label={t('field_label_number_of_groups')}
+        placeholder="2"
+        onChange={e => onFieldChange('numberOfGroups', e.target.value)}
+        value={values.numberOfGroups}
+        type="number"
+        margin="normal"
+        validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
+        data-component="GroupsGenerator__number-of-groups-field"
+        inputProps={{ 'data-component': 'GroupsGenerator__number-of-groups-field-input' }}
+      />
+    </SectionPanel>
     <ValidationFeedback />
-  </SectionPanel>
+  </Fragment>
 );
 
 GroupsGeneratorConfigurationSection.propTypes = {

@@ -60,7 +60,7 @@
     "published_draw_details": "Detalles del sorteo",
     "result_label_group": "Group {{groupNumber}}",
     "step_label_general_details": "Detalles generales",
-    "step_label_participants": "Elegir participantes",
+    "step_label_configure": "Configura los grupos",
     "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales"

@@ -8,6 +8,7 @@ import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection';
 import WizardForm from '../../WizardForm/WizardForm';
 import Page from '../../Page/Page';
+import DrawHeading from '../../DrawHeading/DrawHeading';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection';
 import STYLES from './GroupsGeneratorPage.scss';
 
@@ -21,6 +22,18 @@ const GroupsGeneratorPage = props => {
   const { values, handleCheckErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
+      label: t('step_label_configure'),
+      render: wizardProps => (
+        <ConfigurationForm
+          values={values}
+          onFieldChange={onFieldChange}
+          t={t}
+          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          {...wizardProps}
+        />
+      ),
+    },
+    {
       label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
@@ -28,18 +41,6 @@ const GroupsGeneratorPage = props => {
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
-          {...wizardProps}
-        />
-      ),
-    },
-    {
-      label: t('step_label_participants'),
-      render: wizardProps => (
-        <ConfigurationForm
-          values={values}
-          onFieldChange={onFieldChange}
-          t={t}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
           {...wizardProps}
         />
       ),
@@ -59,7 +60,7 @@ const GroupsGeneratorPage = props => {
   ];
   return (
     <Page htmlTitle={t('html_title')} className={c('GroupsGeneratorPage')}>
-      <Typography variant="h1">{t('page_title')}</Typography>
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
       <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_raffle')} />
     </Page>
   );
