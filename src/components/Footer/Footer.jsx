@@ -1,11 +1,11 @@
 import React from 'react';
+import classnames from 'classnames/bind';
 import i18n from '../../i18n/i18n';
-import config from '../../config/config';
-
 import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch';
 import STYLES from './Footer.scss';
+import config from '../../config/config';
 
-const c = className => STYLES[className];
+const c = classnames.bind(STYLES);
 
 const availableLocales = ['es-ES', 'en-GB'];
 
