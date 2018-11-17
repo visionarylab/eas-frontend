@@ -42,6 +42,7 @@
   },
   "FlipCoinPage": {
     "draw_subheading": "Lanza una moneda. Sólo toca la moneda para hacerla girar.",
+    "html_description": "¿Necesitas tomar una decision? Lanza una moneda online. Cara o cruz, deja que la suerte decida.",
     "html_title": "Cara o cruz",
     "page_title": "Cara o cruz"
   },
@@ -53,17 +54,19 @@
     "field_label_participants": "Participantes",
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
+    "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
     "html_title": "Generar grupos online",
     "message_no_participants_added": "No ha añadido ningún participante",
     "page_title": "Generar grupos",
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
     "result_label_group": "Group {{groupNumber}}",
-    "step_label_general_details": "Detalles generales",
     "step_label_configure": "Configura los grupos",
+    "step_label_general_details": "Detalles generales",
     "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
     "step_title_draw_configuration": "Configura la tirada",
-    "step_title_general_details": "Detalles generales"
+    "step_title_general_details": "Detalles generales",
+    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte"
@@ -80,6 +83,8 @@
     "draw_title_roll_dice": "Lanzar dados",
     "draw_title_spin_arrow": "Girar una flecha",
     "draw_title_tournament": "Organizar un torneo",
+    "html_description": "Crear sorteos online, lanzar una moneda, crear equipos... Toma cualquier decisión aleatoriamente",
+    "html_title": "Toma decisiones aleatoriamente - ÉchaloASuerte",
     "section_title_online_raffles": "Sorteos online",
     "section_title_simple_draws": "Sorteos simples"
   },
@@ -140,6 +145,7 @@
     "field_label_number_of_participants": "Número de participantes",
     "field_label_participants": "Participantes",
     "field_label_prizes": "Premios",
+    "html_description": "Organiza sorteos online. Deja que la suerte decida quién sera el ganador de un premio.",
     "html_title": "Organizar sorteo",
     "message_no_participants_added": "No ha añadido ningún participante",
     "message_no_prizes_added": "No has añadido ningún premio",
@@ -168,6 +174,7 @@
     "field_label_to": "Hasta",
     "generate_numbers": "Generar números",
     "generated_numbers": "Números generados",
+    "html_description": "Genera números aleatorios desde un numero hasta otro, con o sin repeticiones. El generador de números aleatorios de ÉchaloASuerte es simple y rápido.",
     "html_title": "Generar números aleatorios",
     "page_title_public": "Crear sorteo público con numeros aleatorios",
     "page_title_quick": "Generar números aleatorios",
@@ -182,6 +189,7 @@
   },
   "SpinArrow": {
     "draw_subheading": "(Toca la flecha para hacerla girar)",
+    "html_description": "¿Necesitas decidir quién sera el elegido? Gira la flecha para tomar la decisión",
     "html_tittle": "Girar una flecha online",
     "page_title": "Girar una flecha online"
   },

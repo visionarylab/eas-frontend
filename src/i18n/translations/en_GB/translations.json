@@ -22,8 +22,8 @@
   },
   "FlipCoinPage": {
     "draw_subheading": "Flip a coin. Just hit it to make it spin.",
+    "html_description": "Do you need to make a decision? Flip a coin online. Head or tails, let the luck decide.",
     "html_title": "Heads or Tails",
-    "html_description": "",
     "page_title": "Head or tails"
   },
   "GroupsGenerator": {
@@ -34,26 +34,24 @@
     "field_label_participants": "Participants",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
+    "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
     "html_title": "Generate groups online",
-    "html_description": "",
     "message_no_participants_added": "You haven't added any participants",
     "page_title": "Generate groups",
     "publish_draw": "Publish draw",
     "published_draw_details": "Raffle details",
     "result_label_group": "Group {{groupNumber}}",
-    "step_label_general_details": "General details",
     "step_label_configure": "Set up the groups",
+    "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be published?",
     "step_title_draw_configuration": "Configure the draw",
     "step_title_general_details": "General details",
-    "step_title_when_to_toss": "Choose a date to publish the results"
+    "step_title_when_to_toss": "Choose the date when the results will be published"
   },
   "Header": {
     "brand_name": "Woreep"
   },
   "HomePage": {
-    "html_title": "",
-    "html_description": "",
     "draw_title_facebook_login": "Raffle among Facebook users",
     "draw_title_facebook_photo": "Raffle among 'likes' in Facebook",
     "draw_title_flip_coin": "Flip a coin",
@@ -65,6 +63,8 @@
     "draw_title_roll_dice": "Roll a dice",
     "draw_title_spin_arrow": "Spin an arrow",
     "draw_title_tournament": "Organize a tournament",
+    "html_description": "Create online raffles, flip a coin, make teams... Take any decision randomly",
+    "html_title": "Take decisions randomly online - Woreep",
     "section_title_online_raffles": "Online raffles",
     "section_title_simple_draws": "Simple choices"
   },
@@ -119,8 +119,8 @@
     "field_label_number_of_participants": "Number of participants",
     "field_label_participants": "Participants",
     "field_label_prizes": "Prizes",
+    "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
     "html_title": "Organize raffle",
-    "html_description": "",
     "message_no_participants_added": "You haven't added any participants",
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
@@ -148,8 +148,8 @@
     "field_label_to": "To",
     "generate_numbers": "Generate numbers",
     "generated_numbers": "Generated numbers",
+    "html_description": "Generate random numbers between two numbers, with or without repetitions. Woreep's random number generator is quick and simple.",
     "html_title": "Generate random numbers",
-    "html_description": "",
     "page_title_public": "Create public raffle with numbers",
     "page_title_quick": "Generate random numbers",
     "publish_draw": "Publish raffle",
@@ -163,8 +163,8 @@
   },
   "SpinArrow": {
     "draw_subheading": "(Hit the arrow to make it spin)",
+    "html_description": "Do you need to decide who wil be the chosen one? Spin an arrow online",
     "html_tittle": "Spin an arrow online",
-    "html_description": "",
     "page_title": "Spin an arrow"
   },
   "TranslationsSwitch": {
