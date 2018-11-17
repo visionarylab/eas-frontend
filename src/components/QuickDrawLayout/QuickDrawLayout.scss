@@ -9,20 +9,18 @@ $side-panel-total-width: $side-panel-width + $side-panel-padding;
 $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-small;
 
 .QuickDrawLayout {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 
-    display: flex;
-    height: 100%;
-    flex-direction: column;
+  @media (min-width: $media-desktop) {
+    margin: auto;
+    flex-direction: row;
 
-    @media (min-width: $media-desktop) {
-      margin: auto;
-      flex-direction: row;
-
-      @media (min-width: $media-widescreen) {
-        width: 88rem;
-      }
+    @media (min-width: $media-widescreen) {
+      width: 88rem;
     }
-  
+  }
 
   &__content {
     @media (min-width: $media-desktop) {
