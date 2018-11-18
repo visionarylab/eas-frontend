@@ -63,6 +63,8 @@ describe('Groups Generator Draw Page', () => {
       .should('deep.eq', {
         participants: [{ name: 'you' }, { name: 'me' }, { name: 'him' }, { name: 'her' }],
         number_of_groups: 4,
+        title: null,
+        description: null,
       });
 
     cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss');
