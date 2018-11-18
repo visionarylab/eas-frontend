@@ -7,6 +7,7 @@ import ReactGA from 'react-ga';
 import { withRouter } from 'react-router';
 
 import config from '../../config/config';
+import logo from '../Header/logo_vector2.svg';
 import STYLES from './Page.scss';
 
 const c = classNames.bind(STYLES);
@@ -26,6 +27,8 @@ class Page extends Component {
       <Fragment>
         <Helmet>
           <title>{htmlTitle}</title>
+          <meta property="og:title" content="Mark's Favorites at AEO" />
+          <meta property="og:image" content={logo} />
           <meta name="description" content={htmlDescription} />
           {!shouldIndexPage && <meta name="robots" content="noindex" />}
         </Helmet>
