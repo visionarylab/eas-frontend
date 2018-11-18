@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 import Page from '../../Page/Page';
 import STYLES from './FlipCoinPage.scss';
+import headsIcon from './heads.png';
+import tailsIcon from './tails.png';
 
 const c = classnames.bind(STYLES);
 
@@ -46,12 +48,12 @@ class FlipCoinPage extends Component {
           >
             <img
               className={c('FlipCoinPage__coin-side', 'FlipCoinPage__coin-side--heads')}
-              src="https://echaloasuerte.com/static/img/img_coin/head.png"
+              src={headsIcon}
               alt="heads"
             />
             <img
               className={c('FlipCoinPage__coin-side', 'FlipCoinPage__coin-side--tails')}
-              src="https://echaloasuerte.com/static/img/img_coin/tail.png"
+              src={tailsIcon}
               alt="tails"
             />
           </button>
