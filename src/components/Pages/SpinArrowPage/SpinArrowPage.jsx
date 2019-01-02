@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 
-import Page from '../../Page/Page';
+import Page from '../../Page/Page.jsx';
 import STYLES from './SpinArrowPage.scss';
 import ArrowImage from './arrow.svg';
 

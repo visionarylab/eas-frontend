@@ -5,11 +5,11 @@ import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
-import Page from '../../Page/Page';
-import GroupsGeneratorResult from './GroupsGeneratorResult';
-import ResultsBox from '../../ResultsBox/ResultsBox';
-import Countdown from '../../Countdown/Countdown';
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
+import Page from '../../Page/Page.jsx';
+import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
+import Countdown from '../../Countdown/Countdown.jsx';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);

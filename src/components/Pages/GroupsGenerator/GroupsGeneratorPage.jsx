@@ -3,12 +3,12 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import withFormValidation from '../../withValidation/withFormValidation';
-import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
-import WhenToTossSection from '../../CommonSections/WhenToTossSection';
-import WizardForm from '../../WizardForm/WizardForm';
-import Page from '../../Page/Page';
-import DrawHeading from '../../DrawHeading/DrawHeading';
-import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
+import WizardForm from '../../WizardForm/WizardForm.jsx';
+import Page from '../../Page/Page.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
 import STYLES from './GroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);

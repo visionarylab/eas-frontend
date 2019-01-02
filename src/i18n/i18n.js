@@ -5,7 +5,8 @@ import esES from './translations/es_ES/translations.json';
 import enGB from './translations/en_GB/translations.json';
 
 const getLanguageBasedOnHostname = () => {
-  const { hostname } = window.location;
+  // const { hostname } = window.location;  // TODO fix this as part of SSR
+  const hostname = 'echaloasuerte.com';
   const hostnameRegex = /(woreep|echaloasuerte)\.com/;
   const match = hostname.match(hostnameRegex);
   const hostnameMatch = match ? match[1] : null;

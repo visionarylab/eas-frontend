@@ -4,13 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import theme from './EasTheme';
 import i18n from '../../i18n/i18n';
-import AppShell from '../AppShell/AppShell';
-import FacebookProvider from '../FacebookProvider/FacebookProvider';
+import AppShell from '../AppShell/AppShell.jsx';
+import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
 import config from '../../config/config';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.jsx';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -34,13 +33,9 @@ class App extends Component {
         )}
       >
         <I18nextProvider i18n={i18n}>
-          <MuiThemeProvider theme={theme}>
-            <FacebookProvider>
-              <BrowserRouter>
-                <AppShell />
-              </BrowserRouter>
-            </FacebookProvider>
-          </MuiThemeProvider>
+          <FacebookProvider>
+            <AppShell />
+          </FacebookProvider>
         </I18nextProvider>
       </ErrorBoundary>
     );

@@ -3,8 +3,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import ReactGA from 'react-ga';
 import { GroupsApi, Groups, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
-import GroupsGeneratorPage from './GroupsGeneratorPage';
-import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage';
+import GroupsGeneratorPage from './GroupsGeneratorPage.jsx';
+import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
 
 const groupsApi = new GroupsApi();
 class GroupsGeneratorPageContainer extends React.Component {

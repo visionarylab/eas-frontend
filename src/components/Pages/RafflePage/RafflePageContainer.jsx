@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import ReactGA from 'react-ga';
 import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
-import RafflePage from './RafflePage';
+import RafflePage from './RafflePage.jsx';
 
 const raffleApi = new RaffleApi();
 

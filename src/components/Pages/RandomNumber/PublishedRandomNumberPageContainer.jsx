@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { RandomNumberApi } from 'echaloasuerte-js-sdk';
 
-import PublishedRandomNumberPage from './PublishedRandomNumberPage';
+import PublishedRandomNumberPage from './PublishedRandomNumberPage.jsx';
 
 const randomNumberApi = new RandomNumberApi();
 

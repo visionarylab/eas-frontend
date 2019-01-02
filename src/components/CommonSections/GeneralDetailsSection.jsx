@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PublicDetails from '../PublicDetails/PublicDetails';
-import SectionPanel from '../SectionPanel/SectionPanel';
+import PublicDetails from '../PublicDetails/PublicDetails.jsx';
+import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
 const GeneralDetailsSection = ({ sectionTitle, title, description, onFieldChange }) => (
   <SectionPanel title={sectionTitle}>

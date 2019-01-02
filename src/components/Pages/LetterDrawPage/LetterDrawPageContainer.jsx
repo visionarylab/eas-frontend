@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import LetterDrawPage from './LetterDrawPage';
+import LetterDrawPage from './LetterDrawPage.jsx';
 
 class LetterDrawPageContainer extends Component {
   constructor(props) {

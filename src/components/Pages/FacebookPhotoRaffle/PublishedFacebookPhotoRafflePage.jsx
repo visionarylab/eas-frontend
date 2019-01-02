@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 
-import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
+import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel.jsx';
 import STYLES from './PublishedFacebookPhotoRafflePage.scss';
 
 const c = className => STYLES[className];

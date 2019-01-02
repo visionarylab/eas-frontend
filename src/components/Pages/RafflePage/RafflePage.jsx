@@ -4,14 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import STYLES from './RafflePage.scss';
-import Page from '../../Page/Page';
-import SectionPanel from '../../SectionPanel/SectionPanel';
+import Page from '../../Page/Page.jsx';
+import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import withFormValidation from '../../withValidation/withFormValidation';
 import withFieldValidation from '../../withValidation/withFieldValidation';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput';
-import WizardForm from '../../WizardForm/WizardForm';
-import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
-import WhenToTossSection from '../../CommonSections/WhenToTossSection';
+import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
+import WizardForm from '../../WizardForm/WizardForm.jsx';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 
 const c = classnames.bind(STYLES);
 

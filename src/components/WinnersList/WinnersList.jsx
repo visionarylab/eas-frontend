@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import WinnerChip from '../WinnerChip/WinnerChip';
+import WinnerChip from '../WinnerChip/WinnerChip.jsx';
 import STYLES from './WinnersList.scss';
 
 const c = classNames.bind(STYLES);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import MultiValueInput from './MultiValueInput';
+import MultiValueInput from './MultiValueInput.jsx';
 
 describe('MultiValueInput', () => {
   beforeEach(() => {

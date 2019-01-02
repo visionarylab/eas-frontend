@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage';
+import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage.jsx';
 // import ApiClient from '../../../services/api/EASApi';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
 

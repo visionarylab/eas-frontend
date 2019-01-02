@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import classnames from 'classnames/bind';
-import PublicModeButton from '../PublicModeButton/PublicModeButton';
+import PublicModeButton from '../PublicModeButton/PublicModeButton.jsx';
 import STYLES from './ShareDrawModal.scss';
 
 const c = classnames.bind(STYLES);

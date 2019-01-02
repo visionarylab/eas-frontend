@@ -18,7 +18,7 @@ class Page extends Component {
     super(props);
 
     const page = props.location.pathname;
-    ReactGA.pageview(page);
+    // ReactGA.pageview(page);
   }
 
   getMetaTags() {
@@ -60,12 +60,12 @@ class Page extends Component {
             lang: i18n.language,
             itemtype: 'http://schema.org/WebPage',
           }}
-          link={[
-            {
-              rel: 'canonical',
-              href: window.location.origin + location.pathname,
-            },
-          ]}
+          // link={[
+          //   {
+          //     rel: 'canonical',
+          //     href: window.location.origin + location.pathname,
+          //   },
+          // ]}
           meta={this.getMetaTags()}
         >
           {/* <meta property="og:title" content="Mark's Favorites at AEO" /> */}

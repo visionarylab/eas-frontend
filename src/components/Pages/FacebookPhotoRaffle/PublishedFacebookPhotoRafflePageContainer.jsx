@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import PublishedFacebookPhotoRafflePage from './PublishedFacebookPhotoRafflePage';
+import PublishedFacebookPhotoRafflePage from './PublishedFacebookPhotoRafflePage.jsx';
 
 class PublishedFacebookPhotoRafflePageContainer extends Component {
   constructor(props) {

@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import SectionPanel from '../../SectionPanel/SectionPanel';
-import PrizeSelector from '../../PrizeSelector/PrizeSelector';
-import PublicDetails from '../../PublicDetails/PublicDetails';
-import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import Page from '../../Page/Page';
+import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
+import PrizeSelector from '../../PrizeSelector/PrizeSelector.jsx';
+import PublicDetails from '../../PublicDetails/PublicDetails.jsx';
+import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions.jsx';
+import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import Page from '../../Page/Page.jsx';
 import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
 
 const FacebookLoginRafflePage = props => {

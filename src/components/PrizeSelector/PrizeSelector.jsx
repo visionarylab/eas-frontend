@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-import MultiValueInput from '../MultiValueInput/MultiValueInput';
-import withFieldValidation from '../withValidation/withFieldValidation';
+import MultiValueInput from '../MultiValueInput/MultiValueInput.jsx';
+import withFieldValidation from '../withValidation/withFieldValidation.jsx';
 
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 

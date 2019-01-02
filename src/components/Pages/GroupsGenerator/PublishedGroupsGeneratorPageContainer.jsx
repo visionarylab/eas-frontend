@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { GroupsApi } from 'echaloasuerte-js-sdk';
 
-import PublishedGroupsGeneratorPage from './PublishedGroupsGeneratorPage';
+import PublishedGroupsGeneratorPage from './PublishedGroupsGeneratorPage.jsx';
 
 const groupsApi = new GroupsApi();
 
