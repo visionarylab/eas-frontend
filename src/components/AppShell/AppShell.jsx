@@ -4,8 +4,8 @@ import classnames from 'classnames/bind';
 
 import HomePage from '../Pages/HomePage/HomePage.jsx';
 import AboutPage from '../Pages/AboutPage/AboutPage.jsx';
-import Header from '../Header/Header.jsx';
-import Footer from '../Footer/Footer.jsx';
+import Header from '../Header/HeaderOld.jsx';
+import Footer from '../Footer/FooterOld.jsx';
 import Typographies from '../Pages/Typographies/Typographies.jsx';
 import STYLES from './AppShell.scss';
 import config from '../../config/config';

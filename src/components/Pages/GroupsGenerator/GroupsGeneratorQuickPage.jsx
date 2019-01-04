@@ -27,7 +27,42 @@ const GroupsGeneratorQuickPage = props => {
   } = props;
   return (
     <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
-      asd
+      <QuickDrawLayout
+        sidePanel={
+          <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
+            Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
+            imparcial del resultado, te recomendamos que hagas un sorteo certificado
+          </MakeCertifiedDrawPanel>
+        }
+      >
+        <Typography variant="h1" align="center">
+          {t('page_title')}
+        </Typography>
+        <Typography variant="body1" align="center" color="textSecondary">
+          {t('draw_subheading')}
+        </Typography>
+        <ValidatedForm
+          onSubmit={e => {
+            e.preventDefault();
+            handleToss();
+          }}
+          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+        >
+          <GroupsGeneratorConfigurationSection
+            values={values}
+            onFieldChange={onFieldChange}
+            t={t}
+          />
+          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
+          <SubmitButton label={t('generate_groups')} />
+        </ValidatedForm>
+        {quickResult && (
+          <Fragment>
+            <GroupsGeneratorResult result={quickResult} />
+            <ShareDrawModal />
+          </Fragment>
+        )}
+      </QuickDrawLayout>
     </Page>
   );
 };

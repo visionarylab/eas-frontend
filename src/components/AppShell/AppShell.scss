@@ -7,4 +7,10 @@
 
 body {
   margin: 0;
+  background-image: url('./background_image.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  // transition: background 0s linear 0s
 }
