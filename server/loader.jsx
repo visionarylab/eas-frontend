@@ -33,20 +33,21 @@ export default (req, res) => {
       - Code-split script tags depending on the current route
   */
   const injectHTML = (data, { html, title, meta, body, scripts, state, css }) => {
-    data = data.replace('<html>', `<html ${html}>`);
-    data = data.replace(/<title>.*?<\/title>/g, title);
-    data = data.replace('</head>', `${meta}</head>`);
-    data = data.replace(
+    let content = data;
+    content = content.replace('<html>', `<html ${html}>`);
+    content = content.replace(/<title>.*?<\/title>/g, title);
+    content = content.replace('</head>', `${meta}</head>`);
+    content = content.replace(
       '<div id="root"></div>',
       `<div id="root">${body}</div><script>window.__PRELOADED_STATE__ = ${state}</script>`,
     );
-    data = data.replace(
+    content = content.replace(
       '<style id="jss-server-side"></style>',
       `<style id="jss-server-side">${css}</style>`,
     );
-    data = data.replace('</body>', `${scripts.join('')}</body>`);
+    content = content.replace('</body>', `${scripts.join('')}</body>`);
 
-    return data;
+    return content;
   };
 
   // Create a sheetsRegistry instance.
@@ -59,11 +60,11 @@ export default (req, res) => {
   const generateClassName = createGenerateClassName();
 
   // Load in our HTML file from our build
+  // eslint-disable-next-line consistent-return
   fs.readFile(path.resolve(__dirname, '../build/index.html'), 'utf8', (err, htmlData) => {
     // If there's an error... serve up something nasty
     if (err) {
       console.error('Read error', err);
-
       return res.status(404).end();
     }
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-import withFormValidation from '../../withValidation/withFormValidation';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import Page from '../../Page/Page.jsx';
 import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';

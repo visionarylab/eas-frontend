@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage.jsx';
 // import ApiClient from '../../../services/api/EASApi';
-import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
 // const { DrawApi } = ApiClient;
 

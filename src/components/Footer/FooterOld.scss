@@ -1,39 +1,46 @@
+/* stylelint-disable */
 @import '../variables';
 
 $footer-background-color: $color-primary;
 
 .Footer {
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
 
   @media (min-width: 768px) {
     width: 750px;
   }
+
   @media (min-width: 992px) {
-      width: 970px;
+    width: 970px;
   }
+
   @media (min-width: 1200px) {
-      width: 1170px;
+    width: 1170px;
   }
-  &__bar  {
+
+  &__bar {
     padding: 12px 0 25px;
-    font-size: 14px;
-    color: #d3d3d3 !important;
-    text-align: center;
     background: rgb(136, 136, 136);
-    background: rgba(136, 136, 136, 0.5);
+    background: rgba(136, 136, 136, .5);
+    color: #d3d3d3 !important;
+    font-size: 14px;
+    text-align: center;
+
     & span,
     & svg {
       color: #d3d3d3;
-
     }
-    & > div > div div{
+
+    & > div > div div {
       color: #d3d3d3;
-      &:before{
+
+      &::before {
         border-bottom: 2px solid  #d3d3d3;
       }
-      &:after {
+
+      &::after {
         border-bottom: 2px solid  #d3d3d3;
       }
     }

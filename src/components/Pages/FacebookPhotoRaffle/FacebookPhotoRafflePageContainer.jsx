@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import FacebookPhotoRafflePage from './FacebookPhotoRafflePage.jsx';
-import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
 import { getObjectIdFromUrl, logout, whoAmI } from '../../../services/FacebookAPI/FacebookAPI';
 

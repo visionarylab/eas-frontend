@@ -12,6 +12,7 @@ const register = ignoreStyles.default;
 const extensions = ['.gif', '.jpeg', '.jpg', '.png', '.svg'];
 
 // Override the default style ignorer, also modifying all image requests
+// eslint-disable-next-line consistent-return
 register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
   if (!extensions.find(f => filename.endsWith(f))) {
     // If we find a style
@@ -21,7 +22,7 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
   const hash = md5File.sync(filename).slice(0, 8);
   const bn = path.basename(filename).replace(/(\.\w{3})$/, `.${hash}$1`);
 
-  mod.exports = `/static/media/${bn}`;
+  mod.exports = `/static/media/${bn}`; // eslint-disable-line no-param-reassign
 });
 
 // Set up babel to do its thing... env for the latest toys, react-app for CRA

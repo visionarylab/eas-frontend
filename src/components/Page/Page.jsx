@@ -18,7 +18,9 @@ class Page extends Component {
     super(props);
 
     const page = props.location.pathname;
-    // ReactGA.pageview(page);
+    if (config.isServer) {
+      ReactGA.pageview(page);
+    }
   }
 
   getMetaTags() {
@@ -52,6 +54,14 @@ class Page extends Component {
 
   render() {
     const { htmlTitle, className, location, children } = this.props;
+    const canonicalLinks = config.isServer
+      ? []
+      : [
+          {
+            rel: 'canonical',
+            href: window.location.origin + location.pathname,
+          },
+        ];
     return (
       <Fragment>
         <Helmet
@@ -60,12 +70,7 @@ class Page extends Component {
             lang: i18n.language,
             itemtype: 'http://schema.org/WebPage',
           }}
-          // link={[
-          //   {
-          //     rel: 'canonical',
-          //     href: window.location.origin + location.pathname,
-          //   },
-          // ]}
+          link={canonicalLinks}
           meta={this.getMetaTags()}
         >
           {/* <meta property="og:title" content="Mark's Favorites at AEO" /> */}

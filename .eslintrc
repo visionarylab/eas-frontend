@@ -18,6 +18,9 @@
     "prefer-destructuring": ["error", {"object": true, "array": false}],
     "prettier/prettier": "error",
     "import/no-extraneous-dependencies": [0],
-    "valid-jsdoc": ["error"]
+    "valid-jsdoc": ["error"],
+    "import/extensions": ["error", "always", {
+      "js": "never"
+    }]
   }
 }

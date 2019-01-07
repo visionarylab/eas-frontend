@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FacebookContext } from '../FacebookProvider/FacebookProvider';
+import { FacebookContext } from '../FacebookProvider/FacebookProvider.jsx';
 
 const withFacebookSDK = WrappedComponent => {
   const WithFacebookSDK = props => (

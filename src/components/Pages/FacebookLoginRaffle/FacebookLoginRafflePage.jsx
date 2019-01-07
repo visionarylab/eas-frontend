@@ -11,7 +11,7 @@ import PublicDetails from '../../PublicDetails/PublicDetails.jsx';
 import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions.jsx';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
 import Page from '../../Page/Page.jsx';
-import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert';
+import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert.jsx';
 
 const FacebookLoginRafflePage = props => {
   const { values, onFieldChange, handlePublish, t } = props;

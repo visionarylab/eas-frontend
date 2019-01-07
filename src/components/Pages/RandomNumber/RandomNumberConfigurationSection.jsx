@@ -8,8 +8,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
+import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);

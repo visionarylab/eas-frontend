@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import withFormValidation from '../../withValidation/withFormValidation';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';

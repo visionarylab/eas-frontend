@@ -9,7 +9,7 @@ import Loadable from 'react-loadable';
 import cookieParser from 'cookie-parser';
 
 // Our loader - this basically acts as the entry point for each page load
-import loader from './loader';
+import loader from './loader.jsx';
 
 // Create our express app using the port optionally specified
 const app = express();
@@ -42,23 +42,20 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 
 // set a cookie
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   // check if client sent cookie
-  var uidCookieName = 'uid';
-  var cookie = req.cookies[uidCookieName];
-  if (cookie === undefined)
-  {
+  const uidCookieName = 'uid';
+  const cookie = req.cookies[uidCookieName];
+  if (cookie === undefined) {
     // no: set a new cookie
-    var randomNumber=Math.random().toString();
-    randomNumber=randomNumber.substring(2,randomNumber.length);
-    res.cookie(uidCookieName,randomNumber, { maxAge: 900000, httpOnly: true });
+    let randomNumber = Math.random().toString();
+    randomNumber = randomNumber.substring(2, randomNumber.length);
+    res.cookie(uidCookieName, randomNumber, { maxAge: 900000, httpOnly: true });
     console.log('cookie created successfully');
-  } 
-  else
-  {
-    // yes, cookie was already present 
+  } else {
+    // yes, cookie was already present
     console.log('cookie exists', cookie);
-  } 
+  }
   next(); // <-- important!
 });
 
@@ -78,15 +75,15 @@ app.on('error', error => {
     throw error;
   }
 
-  const bind = typeof PORT === 'string' ? 'Pipe ' + PORT : 'Port ' + PORT;
+  const bind = typeof PORT === 'string' ? `Pipe ${PORT}` : `Port ${PORT}`;
 
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:

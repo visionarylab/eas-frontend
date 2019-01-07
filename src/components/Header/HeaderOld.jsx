@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 
 import STYLES from './HeaderOld.scss';
