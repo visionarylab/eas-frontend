@@ -53,7 +53,7 @@ const GroupsGeneratorQuickPage = props => {
             onFieldChange={onFieldChange}
             t={t}
           />
-          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
+          {/* {apiError && <ErrorFeedback error={t('ApiError:api_error')} />} */}
           <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
         {quickResult && (
