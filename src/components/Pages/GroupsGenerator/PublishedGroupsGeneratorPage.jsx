@@ -37,7 +37,7 @@ const PublishedGroupsGeneratorPage = props => {
       noIndex
       className={c('PublishedGroupsGeneratorPage')}
     >
-      <TransparentBox>
+      <TransparentBox center>
         <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>

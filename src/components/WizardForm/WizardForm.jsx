@@ -94,7 +94,7 @@ class WizardForm extends Component {
     const { activeStep, stepValidations, submittedSteps } = this.state;
     return (
       <Fragment>
-        <Stepper activeStep={activeStep}>
+        <Stepper className={c('WizardForm__stepper')} activeStep={activeStep}>
           {stepLabels.map((label, index) => {
             const props = {};
             const labelProps = {};

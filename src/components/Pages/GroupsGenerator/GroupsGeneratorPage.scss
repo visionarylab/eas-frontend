@@ -4,32 +4,4 @@ $result-font-size: 10rem;
   position: relative;
   // width: 50%;
   margin: auto;
-
-  // ------ Old style
-  /* stylelint-disable */
-  margin-top: 25px;
-  margin-bottom: 100px;
-  padding: 15px 15px 10px;
-  transition: all .7s;
-  border: 5px #e9e9e9 solid;
-  color: #3f3f3f;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: ' ';
-    display: block;
-    z-index: -11;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #d6d6d6;
-    background: url('../../QuickDrawLayout/background_pattern.png');
-    opacity: .5;
-  }
-
-  & > div:nth-child(2) {
-    background: #d6d6d685;
-  }
-  /* stylelint-enable */
 }

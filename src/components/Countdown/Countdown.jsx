@@ -22,7 +22,7 @@ const Countdown = ({ date, t }) => (
         countdownMessage = `${days}d`;
       }
       if (hours) {
-        countdownMessage = `${countdownMessage} ${hours}d`;
+        countdownMessage = `${countdownMessage} ${hours}h`;
       }
       if (minutes) {
         countdownMessage = `${countdownMessage} ${minutes}m`;

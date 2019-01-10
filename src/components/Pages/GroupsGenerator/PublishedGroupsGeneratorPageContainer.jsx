@@ -48,10 +48,12 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       participants,
       number_of_groups: numberOfGroups,
     } = draw;
-    let lastToss;
-    if (draw.results.length) {
-      lastToss = draw.results[0];
-    }
+    const lastToss = draw.results[0];
+    const scheduleDate = lastToss.schedule_date;
+    const milisecondsMissing = scheduleDate - Date.now();
+    setTimeout(() => {
+      this.loadData();
+    }, milisecondsMissing);
 
     this.setState({
       title,

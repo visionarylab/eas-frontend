@@ -27,6 +27,7 @@ const DateTimePicker = ({ t, ...props }) => {
         cancelLabel={t('cancel')}
         okLabel={t('ok')}
         todayLabel={t('today')}
+        ampm={false}
         format="LLL"
         label={t('date')}
         margin="normal"

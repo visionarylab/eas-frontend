@@ -9,6 +9,7 @@ import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
+import TransparentBox from '../../TransparentBox/TransparentBox.jsx';
 import STYLES from './GroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -63,8 +64,14 @@ const GroupsGeneratorPage = props => {
       htmlDescription={t('html_description')}
       className={c('GroupsGeneratorPage')}
     >
-      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-      <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_raffle')} />
+      <TransparentBox>
+        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+        <WizardForm
+          steps={steps}
+          onSubmit={handlePublish}
+          submitButtonLabel={t('publish_raffle')}
+        />
+      </TransparentBox>
     </Page>
   );
 };

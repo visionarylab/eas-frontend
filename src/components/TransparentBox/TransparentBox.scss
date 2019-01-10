@@ -5,7 +5,7 @@
 .TransparentBox {
     position: relative;
     margin-top: 25px;
-    margin-bottom: 100px;
+    margin-bottom: 25px;
     padding: 15px 15px 10px;
     transition: all .7s;
     border: 5px #e9e9e9 solid;
@@ -13,7 +13,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-around;
 
     // @media (min-width: $media-desktop) {
@@ -37,5 +37,9 @@
       border: 1px solid #d6d6d6;
       background: url('./background_pattern.png');
       opacity: .5;
+    }
+
+    &--center {
+      align-items: center;
     }
 }

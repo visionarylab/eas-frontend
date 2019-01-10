@@ -1,6 +1,10 @@
 @import '../variables';
 
 .WizardForm {
+  &__stepper {
+    background-color: #d6d6d685 !important;
+  }
+
   &__buttons-row {
     text-align: center;
   }
