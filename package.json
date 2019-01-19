@@ -58,7 +58,7 @@
     "start:dev": "react-scripts start",
     "start:test": "EAS_APP_ENV=test react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --testPathIgnorePatterns src/config/test.js",
+    "test": "EAS_APP_ENV=test react-scripts test --env=jsdom --testPathIgnorePatterns src/config/test.js",
     "lint:scss": "stylelint 'src/**/*.scss' --syntax scss",
     "lint:scss:fix": "stylelint  'src/**/*.scss' --syntax scss --fix",
     "lint:js": "eslint . --ignore-path .gitignore --ext .js,.jsx",

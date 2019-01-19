@@ -6,7 +6,7 @@ const isServer = !(typeof window !== 'undefined' && window.document);
 let config = {};
 let environment;
 
-if (isServer) {
+if (process.env.EAS_APP_ENV) {
   environment = process.env.EAS_APP_ENV;
 } else if (window && window.__internal) {
   environment = window.__internal.ENVIRONMENT;
