@@ -5,17 +5,17 @@ import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
 import Page from '../../Page/Page.jsx';
-import randomNumber from './random_number.png';
-import arrowIcon from './arrow.svg';
+// import randomNumber from './random_number.png';
+// import arrowIcon from './arrow.svg';
 import groupsIcon from './groups.png';
-import coinIcon from './coin.svg';
+// import coinIcon from './coin.svg';
 // import randomLetter from './random_letter.png';
 // import diceIcon from './dice.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
 // import likeIcon from './like.jpg';
 // import facebookIcon from './facebook.png';
-import raffleIcon from './raffle.svg';
+// import raffleIcon from './raffle.svg';
 
 import STYLES from './HomePage.scss';
 

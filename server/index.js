@@ -38,15 +38,15 @@ require('@babel/register')({
     'dynamic-import-node',
     'react-loadable/babel',
     [
-      "file-loader",
+      'file-loader',
       {
-        "name": 'static/media/[name].[hash:8].[ext]',
-        "extensions": ["png", "jpg", "jpeg", "gif"],
-        "publicPath": "",
-        "outputPath": null,
-        "limit": 10000
-      }
-    ]
+        name: 'static/media/[name].[hash:8].[ext]',
+        extensions: ['png', 'jpg', 'jpeg', 'gif'],
+        publicPath: '',
+        outputPath: null,
+        limit: 10000,
+      },
+    ],
   ],
 });
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+// import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import Page from '../../Page/Page.jsx';
@@ -17,7 +17,7 @@ const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const GroupsGeneratorQuickPage = props => {
   const {
-    apiError,
+    // apiError,
     values,
     quickResult,
     handleToss,
@@ -72,7 +72,7 @@ const GroupsGeneratorQuickPage = props => {
 };
 
 GroupsGeneratorQuickPage.propTypes = {
-  apiError: PropTypes.bool,
+  // apiError: PropTypes.bool,
   values: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -88,7 +88,7 @@ GroupsGeneratorQuickPage.propTypes = {
 
 GroupsGeneratorQuickPage.defaultProps = {
   quickResult: null,
-  apiError: false,
+  // apiError: false,
 };
 
 export default translate('GroupsGenerator')(GroupsGeneratorQuickPage);

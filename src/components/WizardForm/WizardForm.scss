@@ -1,8 +1,10 @@
 @import '../variables';
 
+$stepper-background-color: #d6d6d685; /* stylelint-disable-line scale-unlimited/declaration-strict-value */
+
 .WizardForm {
   &__stepper {
-    background-color: #d6d6d685 !important;
+    background-color: $stepper-background-color !important; /* stylelint-disable-line declaration-no-important */
   }
 
   &__buttons-row {
