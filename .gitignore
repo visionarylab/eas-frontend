@@ -32,5 +32,5 @@ yarn-error.log*
 # Metadata for i18n-editor
 src/i18n/translations/.i18n-editor-metadata
 
-# Unnecessary stuff from the SDK
-/src/services/api/client
+# Direnv
+.envrc
