@@ -33,16 +33,20 @@ const AppShell = () => (
   <div className={c('AppShell')}>
     <Header />
     <Switch>
-      <Route exact path="/" component={props => <HomePage {...props} />} />
+      {/* <Route exact path="/" component={props => <HomePage {...props} />} /> */}
 
-      <Route exact path="/groups/:isPublic(public)?" component={GroupsGeneratorPageContainer} />
+      <Route
+        exact
+        path="/draw/new/groups/:isPublic(shared)?"
+        component={GroupsGeneratorPageContainer}
+      />
       <Route
         exact
         path={`/groups/:drawId(${guidRegex})`}
         component={PublishedGroupsGeneratorPageContainer}
       />
 
-      <Route exact path="/number" component={RandomNumberPageContainer} />
+      {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
         exact
         path="/number/public"
@@ -54,7 +58,7 @@ const AppShell = () => (
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
 
       <Route exact path="/flip-a-coin" component={FlipCoinPageContainer} />
-      <Route exact path="/arrow" component={SpinArrowPageContainer} />
+      <Route exact path="/arrow" component={SpinArrowPageContainer} /> */}
 
       {/* <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
       <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
@@ -62,11 +66,11 @@ const AppShell = () => (
       <Route path="/facebook_login/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
       <Route exact path="/letter" component={LetterDrawPageContainer} /> */}
 
-      <Route exact path="/about" component={AboutPage} />
+      {/* <Route exact path="/about" component={AboutPage} />
 
       {config.environment === 'local' && (
         <Route exact path="/typography" component={Typographies} />
-      )}
+      )} */}
       <Route component={NotFoundPage} />
     </Switch>
     <Footer />

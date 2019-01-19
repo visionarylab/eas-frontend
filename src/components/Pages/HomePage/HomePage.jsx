@@ -29,14 +29,14 @@ const HomePage = ({ t }) => (
   >
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
-      <div className={c('HomePage__draw-chips-group')}>
+      {/* <div className={c('HomePage__draw-chips-group')}>
         <DrawCard icon={raffleIcon} to="/raffle">
           {t('draw_title_raffle')}
-        </DrawCard>
-        <DrawCard icon={groupsIcon} to="/groups">
-          {t('draw_title_groups_generator')}
-        </DrawCard>
-        <DrawCard icon={randomNumber} to="/number">
+        </DrawCard> */}
+      <DrawCard icon={groupsIcon} to="/draw/new/item">
+        {t('draw_title_groups_generator')}
+      </DrawCard>
+      {/* <DrawCard icon={randomNumber} to="/number">
           {t('draw_title_random_number')}
         </DrawCard>
       </div>
@@ -48,7 +48,7 @@ const HomePage = ({ t }) => (
         <DrawCard icon={arrowIcon} to="/arrow">
           {t('draw_title_spin_arrow')}
         </DrawCard>
-      </div>
+      </div> */}
 
       {/* <Typography variant="h1">Not migrated yet</Typography>
     <div className={c('HomePage__draw-chips-group')}>

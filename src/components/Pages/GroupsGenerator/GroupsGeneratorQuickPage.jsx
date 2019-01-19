@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
@@ -30,8 +30,12 @@ const GroupsGeneratorQuickPage = props => {
       <QuickDrawLayout
         sidePanel={
           <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
-            Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
-            imparcial del resultado, te recomendamos que hagas un sorteo certificado
+            <span>
+              <Trans i18nKey="certified_draw_description">
+                Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
+                imparcial del resultado, te recomendamos que hagas un sorteo certificado
+              </Trans>
+            </span>
           </MakeCertifiedDrawPanel>
         }
       >

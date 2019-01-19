@@ -59,7 +59,7 @@ class Page extends Component {
       : [
           {
             rel: 'canonical',
-            href: window.location.origin + location.pathname,
+            // href: window.location.origin + location.pathname,
           },
         ];
     return (
