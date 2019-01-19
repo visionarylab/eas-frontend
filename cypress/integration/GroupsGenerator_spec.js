@@ -8,15 +8,15 @@ describe('Groups Generator Draw Page', () => {
 
   it('Google Analytics pageview event is sent', () => {
     cy.mockGA();
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
 
     cy.get('@ga')
       .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-      .and('be.calledWith', 'send', { hitType: 'pageview', page: '/groups' });
+      .and('be.calledWith', 'send', { hitType: 'pageview', page: '/draw/new/groups' });
   });
 
   it('Should show feedback if there are server errors', () => {
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
     cy.route({
       method: 'POST',
       url: '/api/groups/',
@@ -30,7 +30,7 @@ describe('Groups Generator Draw Page', () => {
   });
 
   it('Fields have the right default values', function() {
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
 
     cy.getComponent('GroupsGenerator__participants-field-input').should('have.value', '');
     cy.getComponent('GroupsGenerator__number-of-groups-field-input').should('have.value', '2');
@@ -39,7 +39,7 @@ describe('Groups Generator Draw Page', () => {
 
   it('Should send GA event on toss', function() {
     cy.mockGA();
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
     cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
     cy.getComponent('SubmitDrawButton').click();
     cy.get('@ga').should('be.calledWith', 'send', {
@@ -51,7 +51,7 @@ describe('Groups Generator Draw Page', () => {
   });
 
   it('Request sent contains the right data and results are shown', function() {
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
     cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
     cy.getComponent('GroupsGenerator__number-of-groups-field-input')
       .clear()
@@ -72,7 +72,7 @@ describe('Groups Generator Draw Page', () => {
   });
 
   it('Changing data after toss should create a new draw', function() {
-    cy.visit('/groups');
+    cy.visit('/draw/new/groups');
     cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
     cy.getComponent('SubmitDrawButton').click();
     cy.mockedRequestWait('POST', '/api/groups')
@@ -92,7 +92,7 @@ describe('Groups Generator Draw Page', () => {
 
   describe('Invalid configurations', function() {
     it('Should show error when any required field is empty', function() {
-      cy.visit('/groups');
+      cy.visit('/draw/new/groups');
       cy.getComponent('GroupsGenerator__participants-field').within(() => {
         cy.getComponent('GroupsGenerator__participants-field-input').type('one,');
         cy.getError().should('not.exist');
@@ -122,7 +122,7 @@ describe('Groups Generator Draw Page', () => {
     });
 
     it('Should recover from not enough participants for N groups', function() {
-      cy.visit('/groups');
+      cy.visit('/draw/new/groups');
       cy.getComponent('SubmitDrawButton').click();
       cy.getComponent('ErrorFeedback').should('be.visible');
       cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');

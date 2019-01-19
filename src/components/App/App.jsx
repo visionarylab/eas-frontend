@@ -12,6 +12,7 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log('config.googleAnaliticsEnabled', config.googleAnaliticsEnabled);
     if (config.googleAnaliticsEnabled) {
       ReactGA.initialize(config.googleAnalyticsID);
     }

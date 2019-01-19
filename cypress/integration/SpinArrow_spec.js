@@ -1,6 +1,6 @@
 /* eslint-disable func-names, prefer-arrow-callback */
 
-describe('Spin Arrow Page', () => {
+describe.skip('Spin Arrow Page', () => {
   it('Should send GA pageview', () => {
     cy.mockGA();
     cy.visit('/arrow');

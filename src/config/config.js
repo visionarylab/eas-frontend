@@ -6,8 +6,8 @@ const isServer = !(typeof window !== 'undefined' && window.document);
 let config = {};
 let environment;
 
-if (process.env.EAS_APP_ENV) {
-  environment = process.env.EAS_APP_ENV;
+if (process.env.REACT_APP_ENV) {
+  environment = process.env.REACT_APP_ENV;
 } else if (window && window.__internal) {
   environment = window.__internal.ENVIRONMENT;
 }
@@ -28,6 +28,9 @@ if (environment) {
 
     config = Object.assign({}, baseConfig, environmentConfig);
 
+    console.log('isServer', isServer);
+    console.log('process.env.REACT_APP_ENV', process.env.REACT_APP_ENV);
+    console.log('config.googleAnaliticsEnabled', config.googleAnaliticsEnabled);
     // Disable logs and events when rendering in server
     config.googleAnaliticsEnabled = !isServer && config.googleAnaliticsEnabled;
     config.sentryEnabled = !isServer && config.sentryEnabled;
@@ -35,7 +38,7 @@ if (environment) {
     console.error('No application config could be found.', e);
   }
 } else {
-  console.error('No environment specified. Please set the EAS_APP_ENV environment variable');
+  console.error('No environment specified. Please set the REACT_APP_ENV environment variable');
 }
 
 module.exports = config;

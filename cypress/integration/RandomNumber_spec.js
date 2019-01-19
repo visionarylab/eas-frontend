@@ -2,7 +2,7 @@
 
 // TODO Mock GA, Facebook
 
-describe('Number Draw Page', () => {
+describe.skip('Number Draw Page', () => {
   beforeEach(() => {
     cy.server();
     cy.mockFixture('RandomNumber');
