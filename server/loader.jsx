@@ -19,7 +19,7 @@ import Loadable from 'react-loadable';
 // Our store, entrypoint, and manifest
 // import createStore from "../src/store";
 import App from '../src/components/App/App.jsx';
-import manifest from '../build/asset-manifest.json';
+import manifest from '../build/asset-manifest.json'; // eslint-disable-line import/no-unresolved
 
 import theme from '../src/EasTheme.jsx';
 
