@@ -6,6 +6,7 @@
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/polyfill": "^7.2.5",
     "@babel/register": "^7.0.0",
+    "babel-plugin-file-loader": "^1.1.1",
     "cookie-parser": "^1.4.3",
     "ignore-styles": "^5.0.1",
     "md5-file": "^4.0.0",
@@ -53,7 +54,8 @@
     "superagent": "^3.8.3"
   },
   "scripts": {
-    "start": "REACT_APP_ENV=local react-scripts start",
+    "start": "REACT_APP_ENV=development node ./server/index.js",
+    "start:dev": "REACT_APP_ENV=local react-scripts start",
     "start:test": "REACT_APP_ENV=test react-scripts start",
     "build": "REACT_APP_ENV=production react-scripts build",
     "build:dev": "REACT_APP_ENV=development react-scripts build",
@@ -67,7 +69,8 @@
     "test:integration": "cypress open",
     "test:integration:full": "cypress open & REACT_APP_ENV=test react-scripts start",
     "serve": "NODE_ENV=production nodemon ./server/index.js",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "browserslist": [
     ">0.2%",

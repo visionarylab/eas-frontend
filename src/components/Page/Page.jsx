@@ -17,8 +17,8 @@ class Page extends Component {
   constructor(props) {
     super(props);
 
-    const page = props.location.pathname;
-    if (config.isServer) {
+    if (config.googleAnaliticsEnabled) {
+      const page = props.location.pathname;
       ReactGA.pageview(page);
     }
   }
@@ -59,7 +59,7 @@ class Page extends Component {
       : [
           {
             rel: 'canonical',
-            // href: window.location.origin + location.pathname,
+            href: window.location.origin + location.pathname,
           },
         ];
     return (

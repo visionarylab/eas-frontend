@@ -12,12 +12,12 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    if (config.enableGoogleAnalytics) {
+    if (config.googleAnaliticsEnabled) {
       ReactGA.initialize(config.googleAnalyticsID);
     }
-    if (config.enableSentry) {
+    if (config.sentryEnabled) {
       // eslint-disable-next-line no-undef
-      Raven.config('https://bebd8f08ca1e44b0bd2b2d5f352332f4@sentry.io/1247679', {
+      window.Raven.config('https://bebd8f08ca1e44b0bd2b2d5f352332f4@sentry.io/1247679', {
         environment: config.environment,
       }).install();
     }

@@ -37,6 +37,16 @@ require('@babel/register')({
     '@babel/plugin-proposal-class-properties',
     'dynamic-import-node',
     'react-loadable/babel',
+    [
+      "file-loader",
+      {
+        "name": 'static/media/[name].[hash:8].[ext]',
+        "extensions": ["png", "jpg", "jpeg", "gif"],
+        "publicPath": "",
+        "outputPath": null,
+        "limit": 10000
+      }
+    ]
   ],
 });
 
