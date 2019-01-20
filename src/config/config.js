@@ -8,7 +8,7 @@ let environment;
 
 if (process.env.REACT_APP_ENV) {
   environment = process.env.REACT_APP_ENV;
-} else if (window && window.__internal) {
+} else if (typeof window !== 'undefined' && window.__internal) {
   environment = window.__internal.ENVIRONMENT;
 }
 
