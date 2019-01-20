@@ -8,7 +8,7 @@ import { withRouter } from 'react-router';
 import i18n from 'i18next';
 
 import config from '../../config/config';
-import logo from '../Header/logo_vector2.svg';
+import logo from './logo_og.png';
 import STYLES from './Page.scss';
 
 const c = classNames.bind(STYLES);
@@ -28,7 +28,7 @@ class Page extends Component {
     const shouldIndexPage = config.indexPages && !noIndex;
     const theTitle = htmlTitle.substring(0, 60);
     const theDescription = htmlDescription.substring(0, 155);
-    // const theImage = defaultImage;
+    const OGImagesFullDomain = 'https://immense-thicket-32273.herokuapp.com/';
 
     const metaTags = [
       // { itemprop: 'name', content: theTitle },
@@ -39,7 +39,7 @@ class Page extends Component {
       { property: 'og:title', content: theTitle },
       { property: 'og:type', content: 'website' },
       // { property: 'og:url', content: SITE_URL + pathname },
-      { property: 'og:image', content: logo },
+      { property: 'og:image', content: OGImagesFullDomain + logo },
       { property: 'og:description', content: theDescription },
       // { property: 'og:site_name', content: defaultTitle },
       // { property: 'fb:app_id', content: FACEBOOK_APP_ID },
