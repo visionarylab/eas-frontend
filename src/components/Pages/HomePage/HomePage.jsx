@@ -33,7 +33,7 @@ const HomePage = ({ t }) => (
         <DrawCard icon={raffleIcon} to="/raffle">
           {t('draw_title_raffle')}
         </DrawCard> */}
-      <DrawCard icon={groupsIcon} to="/draw/new/item">
+      <DrawCard icon={groupsIcon} to="/draw/new/groups">
         {t('draw_title_groups_generator')}
       </DrawCard>
       {/* <DrawCard icon={randomNumber} to="/number">
