@@ -4,8 +4,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import ReactGA from 'react-ga';
 import { RandomNumberApi, RandomNumber, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
-import RandomNumberPage from './RandomNumberPage';
-import RandomNumberQuickPage from './RandomNumberQuickPage';
+import RandomNumberPage from './RandomNumberPage.jsx';
+import RandomNumberQuickPage from './RandomNumberQuickPage.jsx';
 
 const randomNumberApi = new RandomNumberApi();
 class RandomNumberPageContainer extends React.Component {

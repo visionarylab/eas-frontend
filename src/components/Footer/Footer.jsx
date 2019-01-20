@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import i18n from '../../i18n/i18n';
-import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch';
+import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch.jsx';
 import STYLES from './Footer.scss';
 import config from '../../config/config';
 

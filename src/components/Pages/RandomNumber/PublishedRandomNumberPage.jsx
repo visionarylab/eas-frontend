@@ -5,11 +5,11 @@ import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
-import Page from '../../Page/Page';
-import RandomNumberResult from './RandomNumberResult';
-import ResultsBox from '../../ResultsBox/ResultsBox';
-import Countdown from '../../Countdown/Countdown';
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
+import Page from '../../Page/Page.jsx';
+import RandomNumberResult from './RandomNumberResult.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
+import Countdown from '../../Countdown/Countdown.jsx';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import STYLES from './PublishedRandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);

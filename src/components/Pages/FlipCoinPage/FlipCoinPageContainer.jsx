@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import FlipCoinPage from './FlipCoinPage';
+import FlipCoinPage from './FlipCoinPage.jsx';
 
 class FlipCoinPageContainer extends Component {
   constructor(props) {

@@ -3,15 +3,15 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
-import SubmitButton from '../../SubmitButton/SubmitButton';
-import withFormValidation from '../../withValidation/withFormValidation';
-import Page from '../../Page/Page';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout';
-import RandomNumberConfigurationSection from './RandomNumberConfigurationSection';
-import RandomNumberResult from './RandomNumberResult';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
-import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel';
-import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal';
+import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import Page from '../../Page/Page.jsx';
+import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
+import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
+import RandomNumberResult from './RandomNumberResult.jsx';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
+import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 

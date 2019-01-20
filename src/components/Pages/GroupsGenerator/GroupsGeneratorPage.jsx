@@ -2,13 +2,14 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import withFormValidation from '../../withValidation/withFormValidation';
-import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
-import WhenToTossSection from '../../CommonSections/WhenToTossSection';
-import WizardForm from '../../WizardForm/WizardForm';
-import Page from '../../Page/Page';
-import DrawHeading from '../../DrawHeading/DrawHeading';
-import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
+import WizardForm from '../../WizardForm/WizardForm.jsx';
+import Page from '../../Page/Page.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
+import TransparentBox from '../../TransparentBox/TransparentBox.jsx';
 import STYLES from './GroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -63,8 +64,14 @@ const GroupsGeneratorPage = props => {
       htmlDescription={t('html_description')}
       className={c('GroupsGeneratorPage')}
     >
-      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-      <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_raffle')} />
+      <TransparentBox>
+        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+        <WizardForm
+          steps={steps}
+          onSubmit={handlePublish}
+          submitButtonLabel={t('publish_raffle')}
+        />
+      </TransparentBox>
     </Page>
   );
 };

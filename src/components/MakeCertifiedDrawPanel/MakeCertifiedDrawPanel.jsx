@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import PublicModeButton from '../PublicModeButton/PublicModeButton';
+import PublicModeButton from '../PublicModeButton/PublicModeButton.jsx';
 
 const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
   <Card>

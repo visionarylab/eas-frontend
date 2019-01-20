@@ -1,4 +1,4 @@
-describe('Coin', () => {
+describe.skip('Coin', () => {
   it('Should send GA pageview', () => {
     cy.mockGA();
     cy.visit('/flip-a-coin');

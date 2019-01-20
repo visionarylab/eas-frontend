@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import withFieldValidation from './withFieldValidation';
+import withFieldValidation from './withFieldValidation.jsx';
 
 jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate HoC receive the t function as a prop

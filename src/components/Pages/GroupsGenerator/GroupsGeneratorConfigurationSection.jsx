@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import SectionPanel from '../../SectionPanel/SectionPanel';
-import withFieldValidation from '../../withValidation/withFieldValidation';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback';
+import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
+import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
+import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);

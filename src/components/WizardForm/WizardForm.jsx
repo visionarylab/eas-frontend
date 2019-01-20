@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import STYLES from './WizardForm.scss';
-import ErrorFeedback from '../ErrorFeedback/ErrorFeedback';
+import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
 
 const c = classnames.bind(STYLES);
 
@@ -94,7 +94,7 @@ class WizardForm extends Component {
     const { activeStep, stepValidations, submittedSteps } = this.state;
     return (
       <Fragment>
-        <Stepper activeStep={activeStep}>
+        <Stepper className={c('WizardForm__stepper')} activeStep={activeStep}>
           {stepLabels.map((label, index) => {
             const props = {};
             const labelProps = {};

@@ -15,7 +15,7 @@ const Header = ({ t }) => (
     <Link to="/" className={c('Header__link')}>
       <img className={c('Header__logo')} src={logo} alt={t('brand_name')} />
       <Typography variant="h4" component="span" className={c('Header__title')}>
-        {t('brand_name')}
+        {t('brand_name')}2
       </Typography>
     </Link>
   </header>

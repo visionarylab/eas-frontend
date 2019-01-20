@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import SpinArrowPage from './SpinArrowPage';
+import SpinArrowPage from './SpinArrowPage.jsx';
 
 class ArrowPageContainer extends Component {
   constructor(props) {

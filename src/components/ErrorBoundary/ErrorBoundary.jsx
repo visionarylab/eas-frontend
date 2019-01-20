@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import config from '../../config/config';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true, error, errorInfo });
-    window.Raven.captureException(error, { extra: errorInfo });
+    if (!config.isServer) {
+      window.Raven.captureException(error, { extra: errorInfo });
+    }
   }
 
   render() {

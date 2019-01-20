@@ -3,12 +3,12 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import withFormValidation from '../../withValidation/withFormValidation';
-import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection';
-import WhenToTossSection from '../../CommonSections/WhenToTossSection';
-import WizardForm from '../../WizardForm/WizardForm';
-import Page from '../../Page/Page';
-import RandomNumberConfigurationSection from './RandomNumberConfigurationSection';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
+import WizardForm from '../../WizardForm/WizardForm.jsx';
+import Page from '../../Page/Page.jsx';
+import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
 import STYLES from './RandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);

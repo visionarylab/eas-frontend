@@ -55,9 +55,9 @@
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
     "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
-    "html_title": "Generar grupos online",
+    "html_title": "Grupos Aleatorios | Echalo A Suerte",
     "message_no_participants_added": "No ha añadido ningún participante",
-    "page_title": "Generar grupos",
+    "page_title": "Grupos Aleatorios",
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
     "result_label_group": "Group {{groupNumber}}",
@@ -66,7 +66,9 @@
     "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados"
+    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
+    "create_certificated_draw": "Genera grupos certificados",
+    "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte"

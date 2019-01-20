@@ -5,12 +5,12 @@ import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
 import { RaffleResult } from 'echaloasuerte-js-sdk';
-import Page from '../../Page/Page';
-import PrizesOverview from '../../PrizesOverview/PrizesOverview';
-import WinnersList from '../../WinnersList/WinnersList';
-import ResultsBox from '../../ResultsBox/ResultsBox';
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
-import Countdown from '../../Countdown/Countdown';
+import Page from '../../Page/Page.jsx';
+import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
+import WinnersList from '../../WinnersList/WinnersList.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
+import Countdown from '../../Countdown/Countdown.jsx';
 import STYLES from './PublishedRafflePage.scss';
 
 const c = classNames.bind(STYLES);

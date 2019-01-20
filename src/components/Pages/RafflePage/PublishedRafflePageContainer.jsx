@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { RaffleApi } from 'echaloasuerte-js-sdk';
-import PublishedRafflePage from './PublishedRafflePage';
+import PublishedRafflePage from './PublishedRafflePage.jsx';
 
 const raffleApi = new RaffleApi();
 

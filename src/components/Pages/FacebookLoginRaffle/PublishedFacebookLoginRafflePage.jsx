@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 
-import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel';
-import Page from '../../Page/Page';
-import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton';
-import PrizesOverview from '../../PrizesOverview/PrizesOverview';
+import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel.jsx';
+import Page from '../../Page/Page.jsx';
+import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
+import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import STYLES from './PublishedFacebookLoginRafflePage.scss';
 
 const c = className => STYLES[className];

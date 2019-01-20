@@ -1,8 +1,8 @@
 const config = {
   indexPages: false,
   googleAnalyticsID: 'UA-XXXXX-Y',
-  enableGoogleAnalytics: true,
-  enableSentry: false,
+  googleAnaliticsEnabled: true,
+  sentryEnabled: false,
   APIBasePath: 'http://unexisting-domain.com/api',
 };
 

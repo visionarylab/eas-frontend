@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import withFeedbackValidation from './withFeedbackValidation';
+import withFeedbackValidation from './withFeedbackValidation.jsx';
 
 const ValidationFeedback = withFeedbackValidation(() => <div />);
 

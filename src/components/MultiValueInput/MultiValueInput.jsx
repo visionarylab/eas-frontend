@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay';
+import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay.jsx';
 
 class MultiValueInput extends Component {
   constructor(props) {

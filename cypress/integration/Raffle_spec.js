@@ -1,4 +1,4 @@
-describe('Raffle', () => {
+describe.skip('Raffle', () => {
   beforeEach(() => {
     cy.server();
     cy.mockFixture('Raffle');

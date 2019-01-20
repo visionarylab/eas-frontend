@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { GroupsApi } from 'echaloasuerte-js-sdk';
 
-import PublishedGroupsGeneratorPage from './PublishedGroupsGeneratorPage';
+import PublishedGroupsGeneratorPage from './PublishedGroupsGeneratorPage.jsx';
 
 const groupsApi = new GroupsApi();
 
@@ -48,10 +48,12 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       participants,
       number_of_groups: numberOfGroups,
     } = draw;
-    let lastToss;
-    if (draw.results.length) {
-      lastToss = draw.results[0];
-    }
+    const lastToss = draw.results[0];
+    const scheduleDate = lastToss.schedule_date;
+    const milisecondsMissing = scheduleDate - Date.now();
+    setTimeout(() => {
+      this.loadData();
+    }, milisecondsMissing);
 
     this.setState({
       title,

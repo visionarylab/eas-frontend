@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DateTimePicker from '../DateTimePicker/DateTimePicker';
-import SectionPanel from '../SectionPanel/SectionPanel';
+import DateTimePicker from '../DateTimePicker/DateTimePicker.jsx';
+import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
 const WhenToTossSection = ({ sectionTitle, dateScheduled, onFieldChange }) => (
   <SectionPanel title={sectionTitle}>

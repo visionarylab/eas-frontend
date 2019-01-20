@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import FacebookLoginRafflePage from './FacebookLoginRafflePage';
+import FacebookLoginRafflePage from './FacebookLoginRafflePage.jsx';
 
 class FacebookLoginRafflePageContainer extends Component {
   constructor(props) {

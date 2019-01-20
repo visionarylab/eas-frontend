@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import MultiValueDisplay from './MultiValueDisplay';
+import MultiValueDisplay from './MultiValueDisplay.jsx';
 
 describe('MultiValueDisplay', () => {
   beforeEach(() => {
