@@ -1,12 +1,23 @@
 [![Build Status](https://travis-ci.org/etcaterva/eas-frontend.svg?branch=master)](https://travis-ci.org/etcaterva/eas-frontend)
 
-EAS Frontend
+ÉchaloASuerte Frontend
 
 ## Working locally
 ### Set up local environment
 
 ```bash
+# Set the environment to local
+export REACT_APP_ENV=local
+
+# Install the dependencies
 npm install
+```
+Option 1  (recommended): Run the development server
+```bash
+npm run start:dev
+```
+Option 2: Start the server to do SSR
+```bash
 npm start
 ```
 
@@ -26,23 +37,22 @@ npm test
 ```
 
 #### Integration tests
+Integration tests are run with [Cypress.io](https://www.cypress.io/)
 ```bash
-# First start the dev server with the test settings
-npm run start:test
-
-# Then run integration tests
+# It will fire the dev server in test mode and the Cypress UI
 npm run test:integration
 ```
-Integration tests are run with [Cypress.io](https://www.cypress.io/)
 
-### Generate production build
-Generates a /build directory with React bundle in production mode, minified files and hashed filenames.
-
+### Deploy to production
 ```bash
-# Using production settings
+# REACT_APP_ENV should be set to `production` or `development`
+export REACT_APP_ENV=production
+
+npm run install
+
+# Generate the production bundle (REACT_APP_ENV needs to be set)
 npm run build
-```
-```bash
-# Using development settings
-npm run build:dev
+
+# Start the server in SSR mode (REACT_APP_ENV needs to be set)
+npm start
 ```
