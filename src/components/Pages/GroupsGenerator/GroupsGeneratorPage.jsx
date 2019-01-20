@@ -78,12 +78,10 @@ const GroupsGeneratorPage = props => {
 
 GroupsGeneratorPage.propTypes = {
   values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rangeMax: PropTypes.string.isRequired,
-    rangeMin: PropTypes.string.isRequired,
-    numberOfResults: PropTypes.string.isRequired,
-    allowRepeated: PropTypes.bool.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    participants: PropTypes.arrayOf(PropTypes.string),
+    numberOfGroups: PropTypes.string,
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,

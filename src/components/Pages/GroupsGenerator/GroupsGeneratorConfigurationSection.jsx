@@ -49,10 +49,10 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
 
 GroupsGeneratorConfigurationSection.propTypes = {
   values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    numberOfGroups: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    participants: PropTypes.arrayOf(PropTypes.string),
+    numberOfGroups: PropTypes.string,
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

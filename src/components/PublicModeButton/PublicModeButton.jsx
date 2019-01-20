@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 // eslint-disable-next-line react/prop-types
 const CurrentDrawCertifiedLink = ({ match, history, location, staticContext, ...rest }) => (
-  <Link to={`${match.url}/public`} {...rest} />
+  <Link to={`${match.url}/shared`} {...rest} />
 );
 CurrentDrawCertifiedLink.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
