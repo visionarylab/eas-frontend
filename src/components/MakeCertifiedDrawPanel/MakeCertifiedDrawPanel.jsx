@@ -4,7 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import classnames from 'classnames/bind';
 import PublicModeButton from '../PublicModeButton/PublicModeButton.jsx';
+
+import STYLES from './MakeCertifiedDrawPanel.scss';
+
+const c = classnames.bind(STYLES);
 
 const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
   <Card>
@@ -13,7 +18,7 @@ const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
         {children}
       </Typography>
     </CardContent>
-    <CardActions>
+    <CardActions className={c('MakeCertifiedDrawPanel__actions')}>
       <PublicModeButton label={buttonLabel} />
     </CardActions>
   </Card>
