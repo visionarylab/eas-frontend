@@ -11,9 +11,9 @@ const c = classNames.bind(STYLES);
 const Header = ({ t }) => (
   <div className={c('Header')}>
     <header className={c('Header__navbar')}>
-      {/* <Link to="/" className={c('Header__link')}> */}
-      <img className={c('Header__logo')} src={logo} alt={t('brand_name')} />
-      {/* </Link> */}
+      <a href="/" className={c('Header__link')}>
+        <img className={c('Header__logo')} src={logo} alt={t('brand_name')} />
+      </a>
     </header>
   </div>
 );
