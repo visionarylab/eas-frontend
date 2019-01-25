@@ -44,6 +44,8 @@ npm run test:integration
 ```
 
 ### Deploy to production
+Master branch is deployed in https://beta-dev.echaloasuerte.com
+
 ```bash
 # REACT_APP_ENV should be set to `production` or `development`
 export REACT_APP_ENV=production
