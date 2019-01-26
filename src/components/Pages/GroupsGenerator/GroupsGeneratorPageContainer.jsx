@@ -19,8 +19,8 @@ class GroupsGeneratorPageContainer extends React.Component {
       quickResult: null,
       APIError: false,
       values: {
-        title: null,
-        description: null,
+        title: '',
+        description: '',
         participants: [],
         numberOfGroups: '2',
         dateScheduled,
@@ -47,8 +47,8 @@ class GroupsGeneratorPageContainer extends React.Component {
     const drawData = {
       participants: participants.map(participant => ({ name: participant })),
       number_of_groups: numberOfGroups,
-      title,
-      description,
+      title: title || null,
+      description: description || null,
     };
     const groupGeneratorDraw = Groups.constructFromObject(drawData);
     return groupsApi.groupsCreate(groupGeneratorDraw);
@@ -65,7 +65,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       }
 
       const tossResponse = await groupsApi.groupsToss(privateId, {});
-      ReactGA.event({ category: 'Toss', action: 'Groups Generator', label: 'Local' });
+      ReactGA.event({ category: 'draw_groups', action: 'toss', label: 'local' });
       this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });
@@ -73,7 +73,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handlePublish = async () => {
-    const { match, history } = this.props;
+    const { /* match, */ history } = this.props;
     const { values } = this.state;
     try {
       const draw = await this.createDraw();
@@ -81,9 +81,10 @@ class GroupsGeneratorPageContainer extends React.Component {
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
       await groupsApi.groupsToss(draw.private_id, drawTossPayload);
-      ReactGA.event({ category: 'Publish', action: 'Group Generator', label: draw.id });
+      ReactGA.event({ category: 'draw_groups', action: 'publish', label: draw.id });
 
-      const drawPathname = match.url.replace('public', draw.private_id);
+      // const drawPathname = match.url.replace('public', draw.private_id);
+      const drawPathname = `/draw/${draw.private_id}`;
       history.push(drawPathname);
     } catch (err) {
       this.setState({ APIError: true });

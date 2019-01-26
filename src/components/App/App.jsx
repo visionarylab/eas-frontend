@@ -14,7 +14,8 @@ class App extends Component {
     super(props);
     console.log('config.googleAnaliticsEnabled', config.googleAnaliticsEnabled);
     if (config.googleAnaliticsEnabled) {
-      ReactGA.initialize(config.googleAnalyticsID);
+      ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
+      ReactGA.set({ dimension1: 'v3' });
     }
     if (config.sentryEnabled) {
       // eslint-disable-next-line no-undef

@@ -66,11 +66,7 @@ const GroupsGeneratorPage = props => {
     >
       <TransparentBox>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_raffle')}
-        />
+        <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_draw')} />
       </TransparentBox>
     </Page>
   );
