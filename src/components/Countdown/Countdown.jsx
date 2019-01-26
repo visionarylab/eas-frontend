@@ -15,11 +15,12 @@ const Countdown = ({ date, t }) => {
   moment.locale(i18n.language);
   return (
     <div className={c('Countdown')} data-component="Countdown">
-      <Tooltip title={moment(date).format()}>
-        <Typography variant="subtitle2">
-          {t('results_published_on')} {moment(date).format('LLL')}
-        </Typography>
-      </Tooltip>
+      <Typography variant="subtitle2">
+        {t('results_published_on')}{' '}
+        <Tooltip placement="top" title={moment(date).format()}>
+          <span>{moment(date).format('LLL')}</span>
+        </Tooltip>
+      </Typography>
       <CountdownHandler
         date={date}
         zeroPadLength={0}

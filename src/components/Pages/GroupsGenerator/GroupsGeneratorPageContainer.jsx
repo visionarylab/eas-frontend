@@ -90,7 +90,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       ReactGA.event({ category: 'draw_groups', action: 'publish', label: draw.id });
 
       // const drawPathname = match.url.replace('public', draw.private_id);
-      const drawPathname = `/draw/${draw.private_id}`;
+      const drawPathname = `/draw/${draw.id}`;
       history.push(drawPathname);
     } catch (err) {
       this.setState({ APIError: true });
