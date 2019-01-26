@@ -73,7 +73,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handlePublish = async () => {
-    const { match, history } = this.props;
+    const { /* match, */ history } = this.props;
     const { values } = this.state;
     try {
       const draw = await this.createDraw();
