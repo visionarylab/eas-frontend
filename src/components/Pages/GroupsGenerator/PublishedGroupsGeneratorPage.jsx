@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
+import moment from 'moment';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
+import i18n from '../../../i18n/i18n';
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
@@ -30,6 +33,7 @@ const PublishedGroupsGeneratorPage = props => {
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+  moment.locale(i18n.language);
   return (
     <Page
       htmlTitle={title || t('html_title')}
@@ -47,10 +51,15 @@ const PublishedGroupsGeneratorPage = props => {
           </ResultsBox>
         ) : (
           <div>
+            <Tooltip title={moment(result.schedule_date).format()}>
+              <Typography variant="subtitle1">
+                {t('results_published_on')} {moment(result.schedule_date).format('LLL')}
+              </Typography>
+            </Tooltip>
             <Countdown date={result.schedule_date} />
             {isOwner && (
               <Button type="submit" onClick={onToss}>
-                {'secret'}
+                {'secret toss'}
               </Button>
             )}
           </div>
