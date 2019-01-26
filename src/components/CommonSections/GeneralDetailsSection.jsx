@@ -10,9 +10,14 @@ const GeneralDetailsSection = ({ sectionTitle, title, description, onFieldChange
 );
 GeneralDetailsSection.propTypes = {
   sectionTitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
   onFieldChange: PropTypes.func.isRequired,
+};
+
+GeneralDetailsSection.defaultProps = {
+  title: '',
+  description: '',
 };
 
 export default GeneralDetailsSection;
