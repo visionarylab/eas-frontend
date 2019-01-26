@@ -3,6 +3,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { GroupsApi } from 'echaloasuerte-js-sdk';
 
 import PublishedGroupsGeneratorPage from './PublishedGroupsGeneratorPage.jsx';
+import config from '../../../config/config';
 
 const groupsApi = new GroupsApi();
 
@@ -18,6 +19,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       result: null,
       isOwner: false,
       isLoading: true,
+      shareUrl: '',
     };
   }
 
@@ -50,6 +52,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
     } = draw;
     const lastToss = draw.results[0];
     const scheduleDate = lastToss.schedule_date;
+    const shareUrl = config.domain + match.url;
     const milisecondsMissing = scheduleDate - Date.now();
     setTimeout(() => {
       this.loadData();
@@ -63,6 +66,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       result: lastToss,
       isOwner: Boolean(privateId),
       isLoading: false,
+      shareUrl,
     });
   }
 
@@ -75,6 +79,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
       result,
       isOwner,
       isLoading,
+      shareUrl,
     } = this.state;
 
     return (
@@ -86,6 +91,7 @@ class PublishedGroupsGeneratorPageContainer extends Component {
         result={result}
         isOwner={isOwner}
         isLoading={isLoading}
+        shareUrl={shareUrl}
       />
     );
   }

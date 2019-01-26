@@ -6,7 +6,7 @@ const c = classnames.bind(STYLES);
 
 const LoadingCoin = () => (
   <div className={c('LoadingCoin')}>
-    <div />
+    <div className={c('LoadingCoin__circle')} />
   </div>
 );
 

@@ -5,12 +5,14 @@ import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
+
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import TransparentBox from '../../TransparentBox/TransparentBox.jsx';
+import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -21,6 +23,7 @@ const PublishedGroupsGeneratorPage = props => {
     result,
     isOwner,
     participants,
+    shareUrl,
     numberOfGroups,
     description,
     onToss,
@@ -45,13 +48,17 @@ const PublishedGroupsGeneratorPage = props => {
         {result.value ? (
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />
+            <br />
+            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
           </ResultsBox>
         ) : (
           <Fragment>
             <Countdown date={result.schedule_date} />
             {isOwner && <Button type="submit" onClick={onToss} />}
+            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
           </Fragment>
         )}
+
         <section className={c('PublishedGroupsGeneratorPage__details')}>
           <Typography variant="h5">{t('published_draw_details')}</Typography>
           <div>
@@ -76,6 +83,7 @@ PublishedGroupsGeneratorPage.propTypes = {
   numberOfGroups: PropTypes.number,
   description: PropTypes.string,
   result: PropTypes.instanceOf(GroupsResult),
+  shareUrl: PropTypes.string.isRequired,
   isOwner: PropTypes.bool,
   isLoading: PropTypes.bool,
   onToss: PropTypes.func,

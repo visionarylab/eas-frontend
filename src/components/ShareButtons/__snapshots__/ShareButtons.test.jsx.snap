@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShareButtons renders the title if given 1`] = `
+<div>
+  <WithStyles(Typography)
+    align="center"
+    variant="subtitle2"
+  >
+    The title
+  </WithStyles(Typography)>
+  <SocialShareButton
+    key="facebook"
+    type="facebook"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="twitter"
+    type="twitter"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="telegram"
+    type="telegram"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="whatsapp"
+    type="whatsapp"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="email"
+    type="email"
+    url="the_cool_url"
+  />
+</div>
+`;
+
+exports[`ShareButtons should only render the specified types 1`] = `
+<div>
+  <SocialShareButton
+    key="facebook"
+    type="facebook"
+    url="the_cool_url"
+  />
+</div>
+`;
+
+exports[`ShareButtons should render all buttons by default 1`] = `
+<div>
+  <SocialShareButton
+    key="facebook"
+    type="facebook"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="twitter"
+    type="twitter"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="telegram"
+    type="telegram"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="whatsapp"
+    type="whatsapp"
+    url="the_cool_url"
+  />
+  <SocialShareButton
+    key="email"
+    type="email"
+    url="the_cool_url"
+  />
+</div>
+`;

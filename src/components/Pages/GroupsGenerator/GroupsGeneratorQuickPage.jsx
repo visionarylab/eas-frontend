@@ -82,6 +82,7 @@ GroupsGeneratorQuickPage.propTypes = {
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
   }).isRequired,
+  loadingResult: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -91,6 +92,7 @@ GroupsGeneratorQuickPage.propTypes = {
 
 GroupsGeneratorQuickPage.defaultProps = {
   quickResult: null,
+  loadingResult: false,
   // apiError: false,
 };
 
