@@ -28,9 +28,7 @@ if (environment) {
 
     config = Object.assign({}, baseConfig, environmentConfig);
 
-    console.log('isServer', isServer);
-    console.log('process.env.REACT_APP_ENV', process.env.REACT_APP_ENV);
-    console.log('config.googleAnaliticsEnabled', config.googleAnaliticsEnabled);
+    console.log('environment:', process.env.REACT_APP_ENV);
     // Disable logs and events when rendering in server
     config.googleAnaliticsEnabled = !isServer && config.googleAnaliticsEnabled;
     config.sentryEnabled = !isServer && config.sentryEnabled;
