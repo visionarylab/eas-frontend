@@ -19,7 +19,6 @@ const PublicDetails = ({ title, description, onFieldChange, t }) => (
       onChange={e => onFieldChange('title', e.target.value)}
       data-component="PublicDetails__title-field"
       inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
-      validators={[{ rule: 'required' }]}
     />
 
     <ValidatedTextField
@@ -34,7 +33,6 @@ const PublicDetails = ({ title, description, onFieldChange, t }) => (
       onChange={e => onFieldChange('description', e.target.value)}
       data-component="PublicDetails__description-field"
       inputProps={{ 'data-component': 'PublicDetails__description-field-input' }}
-      validators={[{ rule: 'required' }]}
     />
   </Fragment>
 );

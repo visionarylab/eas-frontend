@@ -12,6 +12,7 @@ import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
+import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
@@ -23,6 +24,7 @@ const GroupsGeneratorQuickPage = props => {
     handleToss,
     onFieldChange,
     handleCheckErrorsInConfiguration,
+    loadingResult,
     t,
   } = props;
   return (
@@ -60,7 +62,8 @@ const GroupsGeneratorQuickPage = props => {
           {/* {apiError && <ErrorFeedback error={t('ApiError:api_error')} />} */}
           <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
-        {quickResult && (
+        {loadingResult && <LoadingCoin />}
+        {!loadingResult && quickResult && (
           <Fragment>
             <GroupsGeneratorResult result={quickResult} />
             <ShareDrawModal />
@@ -79,6 +82,7 @@ GroupsGeneratorQuickPage.propTypes = {
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
   }).isRequired,
+  loadingResult: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -88,6 +92,7 @@ GroupsGeneratorQuickPage.propTypes = {
 
 GroupsGeneratorQuickPage.defaultProps = {
   quickResult: null,
+  loadingResult: false,
   // apiError: false,
 };
 

@@ -19,7 +19,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       quickResult: null,
       APIError: false,
       values: {
-        title: '',
+        title: 'Sorteo de grupos aleatorios',
         description: '',
         participants: [],
         numberOfGroups: '2',
@@ -42,19 +42,25 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   createDraw = () => {
+    const { match } = this.props;
+    const { isPublic } = match.params;
     const { values } = this.state;
     const { title, description, participants, numberOfGroups } = values;
     const drawData = {
       participants: participants.map(participant => ({ name: participant })),
       number_of_groups: numberOfGroups,
-      title: title || null,
-      description: description || null,
+      title: isPublic && title ? title : null,
+      description: isPublic && description ? description : null,
     };
     const groupGeneratorDraw = Groups.constructFromObject(drawData);
     return groupsApi.groupsCreate(groupGeneratorDraw);
   };
 
   handleToss = async () => {
+    this.setState({ loadingResult: true });
+
+    const randomNumberOfSeconds = Math.floor(Math.random() * 2.5) + 1.5;
+    setTimeout(() => this.setState({ loadingResult: false }), randomNumberOfSeconds * 1000);
     let { privateId } = this.state;
     try {
       // Create the draw only if it wasn't created in a previous toss
@@ -84,7 +90,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       ReactGA.event({ category: 'draw_groups', action: 'publish', label: draw.id });
 
       // const drawPathname = match.url.replace('public', draw.private_id);
-      const drawPathname = `/draw/${draw.private_id}`;
+      const drawPathname = `/draw/${draw.id}`;
       history.push(drawPathname);
     } catch (err) {
       this.setState({ APIError: true });
@@ -105,7 +111,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   render() {
-    const { APIError, values, quickResult } = this.state;
+    const { APIError, values, quickResult, loadingResult } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
 
@@ -120,6 +126,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     ) : (
       <GroupsGeneratorQuickPage
         apiError={APIError}
+        loadingResult={loadingResult}
         values={values}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}

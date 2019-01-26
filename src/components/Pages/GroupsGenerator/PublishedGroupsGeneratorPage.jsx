@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
 import classNames from 'classnames/bind';
-import moment from 'moment';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
-import i18n from '../../../i18n/i18n';
+
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import TransparentBox from '../../TransparentBox/TransparentBox.jsx';
+// import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -24,6 +23,7 @@ const PublishedGroupsGeneratorPage = props => {
     result,
     isOwner,
     participants,
+    shareUrl, // eslint-disable-line no-unused-vars
     numberOfGroups,
     description,
     onToss,
@@ -33,7 +33,6 @@ const PublishedGroupsGeneratorPage = props => {
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
-  moment.locale(i18n.language);
   return (
     <Page
       htmlTitle={title || t('html_title')}
@@ -45,28 +44,23 @@ const PublishedGroupsGeneratorPage = props => {
         <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>
+        {description && <Typography variant="body2">{description}</Typography>}
         {result.value ? (
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />
+            <br />
+            {/* <ShareButtons sectionTitle={t('share_result')} url={shareUrl} /> */}
           </ResultsBox>
         ) : (
-          <div>
-            <Tooltip title={moment(result.schedule_date).format()}>
-              <Typography variant="subtitle1">
-                {t('results_published_on')} {moment(result.schedule_date).format('LLL')}
-              </Typography>
-            </Tooltip>
+          <Fragment>
             <Countdown date={result.schedule_date} />
-            {isOwner && (
-              <Button type="submit" onClick={onToss}>
-                {'secret toss'}
-              </Button>
-            )}
-          </div>
+            {isOwner && <Button type="submit" onClick={onToss} />}
+            {/* <ShareButtons sectionTitle={t('share_result')} url={shareUrl} /> */}
+          </Fragment>
         )}
+
         <section className={c('PublishedGroupsGeneratorPage__details')}>
           <Typography variant="h5">{t('published_draw_details')}</Typography>
-          {description && <Typography variant="body2">{description}</Typography>}
           <div>
             <Typography variant="body2">
               {t('field_label_number_of_groups')}: {numberOfGroups}
@@ -89,6 +83,7 @@ PublishedGroupsGeneratorPage.propTypes = {
   numberOfGroups: PropTypes.number,
   description: PropTypes.string,
   result: PropTypes.instanceOf(GroupsResult),
+  shareUrl: PropTypes.string.isRequired,
   isOwner: PropTypes.bool,
   isLoading: PropTypes.bool,
   onToss: PropTypes.func,
