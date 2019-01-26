@@ -85,7 +85,6 @@ class PublishedGroupsGeneratorPageContainer extends Component {
         numberOfGroups={numberOfGroups}
         result={result}
         isOwner={isOwner}
-        onToss={this.onToss}
         isLoading={isLoading}
       />
     );

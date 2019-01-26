@@ -3,7 +3,8 @@
     "api_error": "Estamos teniendo problemas en nuestro servidor."
   },
   "Countdown": {
-    "time_remaining": "Tiempo restante"
+    "time_remaining": "Tiempo restante",
+    "results_published_on": "El resultado será publicado el"
   },
   "DateTimePicker": {
     "cancel": "Cancelar",
@@ -68,7 +69,6 @@
     "step_title_general_details": "Detalles generales",
     "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
     "create_certificated_draw": "Genera grupos certificados",
-    "results_published_on": "El resultado será publicado el",
     "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado"
   },
   "Header": {
