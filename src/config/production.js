@@ -1,6 +1,6 @@
 const config = {
   indexPages: false,
-  googleAnalyticsID: 'UA-62791775-3',
+  googleAnalyticsID: 'UA-62791775-2',
   googleAnaliticsEnabled: true,
   sentryEnabled: true,
   APIBasePath: '/api',
