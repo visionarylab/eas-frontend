@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import urlJoin from 'url-join';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 
 // eslint-disable-next-line react/prop-types
 const CurrentDrawCertifiedLink = ({ match, history, location, staticContext, ...rest }) => (
-  <Link to={`${match.url}/shared`} {...rest} />
+  <Link to={urlJoin(match.url, 'shared')} {...rest} />
 );
 CurrentDrawCertifiedLink.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
