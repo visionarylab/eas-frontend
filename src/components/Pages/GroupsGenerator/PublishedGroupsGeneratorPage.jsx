@@ -11,8 +11,8 @@ import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
-import TransparentBox from '../../TransparentBox/TransparentBox.jsx';
 // import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
+import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -40,7 +40,7 @@ const PublishedGroupsGeneratorPage = props => {
       noIndex
       className={c('PublishedGroupsGeneratorPage')}
     >
-      <TransparentBox center>
+      <QuickDrawLayout>
         <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>
@@ -72,7 +72,7 @@ const PublishedGroupsGeneratorPage = props => {
             </Typography>
           </div>
         </section>
-      </TransparentBox>
+      </QuickDrawLayout>
     </Page>
   );
 };

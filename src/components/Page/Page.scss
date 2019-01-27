@@ -1,4 +1,11 @@
+@import '../include-media';
+@import '../variables';
+
 .Page {
-  padding: 2rem 0;
+  padding: $spacing-sm 0;
   flex: 1;
+
+  @media (min-width: $media-desktop) {
+    padding: $spacing-lg 0;
+  }
 }
