@@ -27,6 +27,11 @@ describe('Groups Generator Draw Page', () => {
     cy.getComponent('SubmitDrawButton').click();
     cy.wait('@failedRequest');
     cy.getComponent('ErrorFeedback').should('be.visible');
+
+    // It should recover form the error
+    cy.mockFixture('GroupsGenerator'); // Reset the mock with the 200 response
+    cy.getComponent('SubmitDrawButton').click();
+    cy.getComponent('ErrorFeedback').should('not.exist');
   });
 
   it('Fields have the right default values', function() {

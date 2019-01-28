@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-// import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import Page from '../../Page/Page.jsx';
@@ -18,7 +18,7 @@ const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const GroupsGeneratorQuickPage = props => {
   const {
-    // apiError,
+    apiError,
     values,
     quickResult,
     handleToss,
@@ -59,7 +59,7 @@ const GroupsGeneratorQuickPage = props => {
             onFieldChange={onFieldChange}
             t={t}
           />
-          {/* {apiError && <ErrorFeedback error={t('ApiError:api_error')} />} */}
+          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
         {loadingResult && <LoadingCoin />}
@@ -75,7 +75,7 @@ const GroupsGeneratorQuickPage = props => {
 };
 
 GroupsGeneratorQuickPage.propTypes = {
-  // apiError: PropTypes.bool,
+  apiError: PropTypes.bool,
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
