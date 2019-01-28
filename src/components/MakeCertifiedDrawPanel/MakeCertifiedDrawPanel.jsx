@@ -19,7 +19,7 @@ const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
       </Typography>
     </CardContent>
     <CardActions className={c('MakeCertifiedDrawPanel__actions')}>
-      <PublicModeButton label={buttonLabel} />
+      <PublicModeButton label={buttonLabel} dataComponent="MakeCertifiedDrawPanel__button" />
     </CardActions>
   </Card>
 );

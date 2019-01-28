@@ -6,15 +6,6 @@ describe('Groups Generator Draw Page', () => {
     cy.mockFixture('GroupsGenerator');
   });
 
-  it('Google Analytics pageview event is sent', () => {
-    cy.mockGA();
-    cy.visit('/draw/new/groups');
-
-    cy.get('@ga')
-      .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-      .and('be.calledWith', 'send', { hitType: 'pageview', page: '/draw/new/groups' });
-  });
-
   it('Should show feedback if there are server errors', () => {
     cy.visit('/draw/new/groups');
     cy.route({
@@ -42,9 +33,14 @@ describe('Groups Generator Draw Page', () => {
     cy.getComponent('MultiValueDisplay__chip').should('not.exist');
   });
 
-  it('Should send GA event on toss', function() {
+  it('Should send GA pageview and event on toss', function() {
     cy.mockGA();
     cy.visit('/draw/new/groups');
+
+    cy.get('@ga')
+      .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+      .and('be.calledWith', 'send', { hitType: 'pageview', page: '/draw/new/groups' });
+
     cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
     cy.getComponent('SubmitDrawButton').click();
     cy.get('@ga').should('be.calledWith', 'send', {
@@ -93,6 +89,23 @@ describe('Groups Generator Draw Page', () => {
       .its('requestBody.participants')
       .should('deep.eq', [{ name: 'one' }, { name: 'two' }, { name: 'three' }]);
     cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss');
+  });
+
+  it('Should have a share button that takes the user to the public draw', () => {
+    cy.visit('/draw/new/groups');
+    cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+    cy.getComponent('SubmitDrawButton').click();
+    cy.getComponent('ShareDrawButton').click();
+    cy.getComponent('ShareDrawButton__cancel').click();
+    cy.getComponent('ShareDrawButton').click();
+    cy.getComponent('ShareDrawButton__confirm').click();
+    cy.location('pathname').should('eq', '/draw/new/groups/shared');
+  });
+
+  it('Should contain a working link to the public draw', () => {
+    cy.visit('/draw/new/groups');
+    cy.getComponent('MakeCertifiedDrawPanel__button').click();
+    cy.location('pathname').should('eq', '/draw/new/groups/shared');
   });
 
   describe('Invalid configurations', function() {

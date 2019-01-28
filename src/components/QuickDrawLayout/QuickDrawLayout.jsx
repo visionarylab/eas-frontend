@@ -18,10 +18,12 @@ const QuickDrawLayout = props => {
 };
 
 QuickDrawLayout.propTypes = {
-  sidePanel: PropTypes.node.isRequired,
+  sidePanel: PropTypes.node,
   children: PropTypes.node.isRequired,
 };
 
-QuickDrawLayout.defaultProps = {};
+QuickDrawLayout.defaultProps = {
+  sidePanel: null,
+};
 
 export default withRouter(QuickDrawLayout);
