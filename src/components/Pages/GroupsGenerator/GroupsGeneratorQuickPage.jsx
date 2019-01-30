@@ -93,7 +93,7 @@ GroupsGeneratorQuickPage.propTypes = {
 GroupsGeneratorQuickPage.defaultProps = {
   quickResult: null,
   loadingResult: false,
-  // apiError: false,
+  apiError: false,
 };
 
 export default translate('GroupsGenerator')(GroupsGeneratorQuickPage);
