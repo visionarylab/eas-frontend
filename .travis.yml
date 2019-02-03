@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "stable"
+services:
+  - "docker"
 cache:
   directories:
     - ~/.npm
@@ -10,8 +12,18 @@ script:
   - npm test
   - REACT_APP_ENV=test npm run start:dev -- --silent &
   - $(npm bin)/cypress run -- --record --parallel
-on:
-  branch: [master, development]
+  - docker build -f Dockerfile-prod -t etcaterva/echaloasuerte:$TRAVIS_BRANCH .
+branches:
+  only:
+  - development
+  - master
+  - prod
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "prod" ] || [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u $DOCKER_USER -p $DOCKER_PASS ;
+      docker push etcaterva/echaloasuerte:$TRAVIS_BRANCH ;
+    fi
 
 before_deploy:
   # Decrypt secrets
