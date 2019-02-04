@@ -8,7 +8,7 @@ import { withRouter } from 'react-router';
 import i18n from 'i18next';
 
 import config from '../../config/config';
-import logo from './logo_og.png';
+import defaultOgImage from './logo_og.png';
 import STYLES from './Page.scss';
 
 const c = classNames.bind(STYLES);
@@ -24,24 +24,18 @@ class Page extends Component {
   }
 
   getMetaTags() {
-    const { htmlTitle, htmlDescription, noIndex } = this.props;
+    const { htmlTitle, htmlDescription, htmlKeywords, noIndex, ogImage, location } = this.props;
     const shouldIndexPage = config.indexPages && !noIndex;
-    const theTitle = htmlTitle.substring(0, 60);
-    const theDescription = htmlDescription.substring(0, 155);
-
+    const pageTitle = htmlTitle.substring(0, 60);
+    const pageDescription = htmlDescription.substring(0, 155);
     const metaTags = [
-      // { itemprop: 'name', content: theTitle },
-      // { itemprop: 'description', content: theDescription },
-      // { itemprop: 'image', content: theImage },
-      { name: 'description', content: theDescription },
-      // { name: 'twitter:image:src', content: theImage },
-      { property: 'og:title', content: theTitle },
+      { name: 'description', content: pageDescription },
+      { name: 'keywords', content: htmlKeywords },
       { property: 'og:type', content: 'website' },
-      // { property: 'og:url', content: SITE_URL + pathname },
-      { property: 'og:image', content: config.OGImagesFullDomain + logo },
-      { property: 'og:description', content: theDescription },
-      // { property: 'og:site_name', content: defaultTitle },
-      // { property: 'fb:app_id', content: FACEBOOK_APP_ID },
+      { property: 'og:title', content: pageTitle },
+      { property: 'og:image', content: config.OGImagesFullDomain + ogImage },
+      { property: 'og:description', content: pageDescription },
+      { property: 'og:url', content: config.domain + location.pathname },
     ];
 
     if (!shouldIndexPage) {
@@ -71,12 +65,7 @@ class Page extends Component {
           }}
           link={canonicalLinks}
           meta={this.getMetaTags()}
-        >
-          {/* <meta property="og:title" content="Mark's Favorites at AEO" /> */}
-          {/* <meta property="og:image" content={logo} /> */}
-          {/* <meta name="description" content={htmlDescription} /> */}
-          {/* {!shouldIndexPage && <meta name="robots" content="noindex" />} */}
-        </Helmet>
+        />
         <div className={c('Page', className)}>{children}</div>
       </Fragment>
     );
@@ -86,15 +75,18 @@ class Page extends Component {
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
   htmlDescription: PropTypes.string.isRequired,
+  htmlKeywords: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
+  ogImage: PropTypes.node,
 };
 
 Page.defaultProps = {
   className: null,
   noIndex: false,
+  ogImage: defaultOgImage,
 };
 
 export default withRouter(Page);

@@ -13,6 +13,7 @@ import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationS
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
+import groupsOgImage from './groups_og_image.png';
 
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
@@ -28,7 +29,12 @@ const GroupsGeneratorQuickPage = props => {
     t,
   } = props;
   return (
-    <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      htmlKeywords={t('html_keywords')}
+      ogImage={groupsOgImage}
+    >
       <QuickDrawLayout
         sidePanel={
           <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
