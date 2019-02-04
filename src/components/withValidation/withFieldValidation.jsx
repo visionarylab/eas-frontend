@@ -79,20 +79,20 @@ const withFieldValidation = WrappedComponent => {
     };
 
     render() {
-      const { validators, t, tReady, ...props } = this.props; // eslint-disable-line react/prop-types
+      const { validators, t, defaultNS, reportNS, i18nOptions, tReady, ...rest } = this.props;
       const error = this.getErrorsToShow();
       let message;
       if (error) {
         message = error.message || this.getDefaultErrorMessage(error);
       }
-      if (props.checked !== undefined) {
+      if (rest.checked !== undefined) {
         // If the prop 'checked' is pass, the field is a checkbox
         // and we aren't showing any feedback in checkboxes
-        return <WrappedComponent {...props} error={undefined} />;
+        return <WrappedComponent {...rest} error={undefined} />;
       }
       return (
         <WrappedComponent
-          {...props}
+          {...rest}
           FormHelperTextProps={error && { 'data-has-error': true }}
           error={Boolean(error)}
           helperText={message}

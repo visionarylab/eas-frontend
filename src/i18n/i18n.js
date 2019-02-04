@@ -41,15 +41,6 @@ i18n.init({
   interpolation: {
     formatSeparator: ',',
   },
-
-  react: {
-    wait: true,
-  },
-  backend: {
-    projectId: '511fa9cb-9426-47d3-b5d5-67093adf8e96',
-    apiKey: '87f24a2b-5043-42c2-8f29-3d7525447bca',
-    referenceLng: 'es-ES',
-  },
 });
 
 export default i18n;

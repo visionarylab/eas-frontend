@@ -32,7 +32,9 @@ class ShareDrawModal extends Component {
     const { open } = this.state;
     return (
       <div className={c('ShareDrawModal__button-row')}>
-        <Button onClick={this.handleClickOpen}>Compartir resultado</Button>
+        <Button onClick={this.handleClickOpen} data-component="ShareDrawButton">
+          Compartir resultado
+        </Button>
         <Dialog
           fullScreen={this.fullScreen}
           open={open}
@@ -47,10 +49,18 @@ class ShareDrawModal extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button
+              data-component="ShareDrawButton__cancel"
+              onClick={this.handleClose}
+              color="primary"
+            >
               Cancelar
             </Button>
-            <PublicModeButton label="Crear sorteo público" inputProps={{ color: 'primary' }} />
+            <PublicModeButton
+              dataComponent="ShareDrawButton__confirm"
+              label="Crear sorteo público"
+              inputProps={{ color: 'primary' }}
+            />
           </DialogActions>
         </Dialog>
       </div>

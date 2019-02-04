@@ -98,11 +98,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handleCheckErrorsInConfiguration = t => {
-    const { APIError, values } = this.state;
-    if (APIError) {
-      return t('ApiError:api_error');
-    }
-
+    const { values } = this.state;
     const { participants, numberOfGroups } = values;
     if (participants.length < numberOfGroups) {
       return t('error_form_not_enough_participants', { numberOfGroups });

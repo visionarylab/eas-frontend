@@ -14,11 +14,11 @@ CurrentDrawCertifiedLink.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
 };
 
-const PublicModeButton = ({ label, inputProps }) => (
+const PublicModeButton = ({ label, inputProps, dataComponent }) => (
   <Button
     component={withRouter(CurrentDrawCertifiedLink)}
     variant="contained"
-    data-component="MakeCertifiedDrawPanel__button"
+    data-component={dataComponent}
     {...inputProps}
   >
     {label}
