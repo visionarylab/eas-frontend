@@ -162,7 +162,7 @@ describe.skip('Number Draw Page', () => {
       cy.visit('/number/public');
 
       // Attempt to submit step without filling the fields
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Both fields should error as they are required
       cy.getComponent('PublicDetails__title-field').within(() => {
@@ -185,13 +185,13 @@ describe.skip('Number Draw Page', () => {
       });
 
       // Go to second step
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Go to third step
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Submit the draw
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       cy.mockedRequestWait('POST', '/api/random_number')
         .its('requestBody')

@@ -8,7 +8,7 @@ $side-panel-padding-small: $spacing-lg;
 $side-panel-total-width: $side-panel-width + $side-panel-padding;
 $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-small;
 
-.QuickDrawLayout {
+.DrawLayout {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -38,6 +38,11 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
       @media (min-width: $media-widescreen) {
         margin-left: $side-panel-total-width;
       }
+    }
+
+    &--opaque {
+      padding: $spacing-sm 0 0 0;
+      background: #fafafa;
     }
 
     &::before {

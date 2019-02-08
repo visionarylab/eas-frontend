@@ -8,7 +8,7 @@ import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import Page from '../../Page/Page.jsx';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
@@ -35,7 +35,7 @@ const GroupsGeneratorQuickPage = props => {
       htmlKeywords={t('html_keywords')}
       ogImage={groupsOgImage}
     >
-      <QuickDrawLayout
+      <DrawLayout
         sidePanel={
           <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
             <span>
@@ -75,7 +75,7 @@ const GroupsGeneratorQuickPage = props => {
             <ShareDrawModal />
           </Fragment>
         )}
-      </QuickDrawLayout>
+      </DrawLayout>
     </Page>
   );
 };

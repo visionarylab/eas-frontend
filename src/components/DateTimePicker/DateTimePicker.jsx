@@ -10,7 +10,7 @@ import 'moment/locale/es';
 import i18n from '../../i18n/i18n';
 
 const DateTimePicker = ({ t, ...props }) => {
-  const { tReady, ...rest } = props; // eslint-disable-line react/prop-types
+  const { defaultNS, reportNS, i18nOptions, tReady, ...rest } = props; // eslint-disable-line react/prop-types
   const locale = i18n.language;
 
   const localeMap = {

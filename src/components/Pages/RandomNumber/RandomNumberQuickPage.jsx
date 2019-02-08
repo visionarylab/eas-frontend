@@ -6,7 +6,7 @@ import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import Page from '../../Page/Page.jsx';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
 import RandomNumberResult from './RandomNumberResult.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
@@ -27,7 +27,7 @@ const RandomNumberQuickPage = props => {
   } = props;
   return (
     <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
-      <QuickDrawLayout
+      <DrawLayout
         sidePanel={
           <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
             Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
@@ -59,7 +59,7 @@ const RandomNumberQuickPage = props => {
             <ShareDrawModal />
           </Fragment>
         )}
-      </QuickDrawLayout>
+      </DrawLayout>
     </Page>
   );
 };
