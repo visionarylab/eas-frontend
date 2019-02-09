@@ -1,15 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
 import { translate } from 'react-i18next';
-import classnames from 'classnames/bind';
-import STYLES from './WizardForm.scss';
-import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
-
-const c = classnames.bind(STYLES);
+import { isMobile } from 'react-device-detect';
+import config from '../../config/config';
+import DesktopWizardForm from './DesktopWizardForm.jsx';
+import MobileWizardForm from './MobileWizardForm.jsx';
 
 class WizardForm extends Component {
   constructor(props) {
@@ -18,10 +13,28 @@ class WizardForm extends Component {
       activeStep: props.initialStep,
       stepValidations: props.steps.map(() => undefined),
       submittedSteps: props.steps.map(() => false),
+      isSmallScreen: this.isSmallScreen(),
     };
 
     this.stepRefs = props.steps.map(() => React.createRef());
   }
+
+  componentWillMount() {
+    if (!config.isServer) {
+      window.addEventListener('resize', this.handleWindowSizeChange);
+    }
+  }
+
+  isSmallScreen = () => {
+    if (config.isServer) {
+      return isMobile;
+    }
+    return window.innerWidth <= 600;
+  };
+
+  handleWindowSizeChange = () => {
+    this.setState({ isSmallScreen: this.isSmallScreen() });
+  };
 
   onStepSubmit = e => {
     const { requestedStep } = this.state;
@@ -91,51 +104,42 @@ class WizardForm extends Component {
   render() {
     const { steps, apiError, submitButtonLabel, t } = this.props;
     const stepLabels = steps.map(step => step.label);
-    const { activeStep, stepValidations, submittedSteps } = this.state;
+    const { activeStep, stepValidations, submittedSteps, isSmallScreen } = this.state;
+
+    const content = (
+      <div>
+        <div>
+          {steps[activeStep].render({
+            ref: this.stepRefs[activeStep],
+            onValidationChange: this.onValidationChange,
+            onSubmit: this.onStepSubmit,
+          })}
+        </div>
+      </div>
+    );
+
+    const commonWizardProps = {
+      activeStep,
+      stepLabels,
+      submitButtonLabel,
+      apiError,
+      handleNext: this.handleNext,
+      handleBack: this.handleBack,
+      t,
+    };
     return (
       <Fragment>
-        <Stepper className={c('WizardForm__stepper')} activeStep={activeStep}>
-          {stepLabels.map((label, index) => {
-            const props = {};
-            const labelProps = {};
-            if (submittedSteps[index] && !stepValidations[index]) {
-              labelProps.error = true;
-            }
-            return (
-              <Step key={label} {...props}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        <div>
-          <div>
-            {steps[activeStep].render({
-              ref: this.stepRefs[activeStep],
-              onValidationChange: this.onValidationChange,
-              onSubmit: this.onStepSubmit,
-            })}
-          </div>
-          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <div className={c('WizardForm__buttons-row')}>
-            <Button
-              className={c('WizardForm__step-button')}
-              disabled={activeStep === 0}
-              onClick={this.handleBack}
-            >
-              {t('back')}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={c('WizardForm__step-button')}
-              data-component="WizzardForm__next-button"
-              onClick={this.handleNext}
-            >
-              {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
-            </Button>
-          </div>
-        </div>
+        {isSmallScreen ? (
+          <MobileWizardForm {...commonWizardProps}>{content}</MobileWizardForm>
+        ) : (
+          <DesktopWizardForm
+            stepValidations={stepValidations}
+            submittedSteps={submittedSteps}
+            {...commonWizardProps}
+          >
+            {content}
+          </DesktopWizardForm>
+        )}
       </Fragment>
     );
   }

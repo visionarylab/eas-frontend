@@ -2,6 +2,15 @@
 
 $stepper-background-color: #d6d6d685; /* stylelint-disable-line scale-unlimited/declaration-strict-value */
 
+.MobileWizardForm {
+  background: white;
+
+  &__step-label {
+    padding: $spacing-md;
+    background: #fafafa;
+  }
+}
+
 .WizardForm {
   &__stepper {
     background-color: $stepper-background-color !important; /* stylelint-disable-line declaration-no-important */

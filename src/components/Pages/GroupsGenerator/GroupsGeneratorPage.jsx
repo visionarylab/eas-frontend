@@ -8,14 +8,21 @@ import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const ConfigurationForm = withFormValidation(GroupsGeneratorConfigurationSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const GroupsGeneratorPage = props => {
-  const { values, handleCheckErrorsInConfiguration, onFieldChange, handlePublish, t } = props;
+  const {
+    values,
+    apiError,
+    handleCheckErrorsInConfiguration,
+    onFieldChange,
+    handlePublish,
+    t,
+  } = props;
   const steps = [
     {
       label: t('step_label_configure'),
@@ -55,11 +62,20 @@ const GroupsGeneratorPage = props => {
     },
   ];
   return (
-    <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
-      <QuickDrawLayout>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      htmlKeywords={t('html_description')}
+    >
+      <DrawLayout isPublic>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm steps={steps} onSubmit={handlePublish} submitButtonLabel={t('publish_draw')} />
-      </QuickDrawLayout>
+        <WizardForm
+          steps={steps}
+          onSubmit={handlePublish}
+          submitButtonLabel={t('publish_draw')}
+          apiError={apiError}
+        />
+      </DrawLayout>
     </Page>
   );
 };
@@ -71,12 +87,15 @@ GroupsGeneratorPage.propTypes = {
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
   }).isRequired,
+  apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-GroupsGeneratorPage.defaultProps = {};
+GroupsGeneratorPage.defaultProps = {
+  apiError: false,
+};
 
 export default translate('GroupsGenerator')(GroupsGeneratorPage);

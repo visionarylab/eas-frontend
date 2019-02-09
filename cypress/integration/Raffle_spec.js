@@ -19,7 +19,7 @@ describe.skip('Raffle', () => {
       cy.visit('/raffle');
 
       // Attempt to submit step without filling the fields
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Both fields should error as they are required
       cy.getComponent('PublicDetails__title-field').within(() => {
@@ -42,10 +42,10 @@ describe.skip('Raffle', () => {
       });
 
       // Go to second step
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Attempt to submit step without filling the fields
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Participants field should error as it is required
       cy.getComponent('Raffle__participants-field').within(() => {
@@ -55,10 +55,10 @@ describe.skip('Raffle', () => {
       cy.getComponent('Raffle__participants-field-input').type('Participant 1, Participant 2,');
 
       // Go to third step
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Attempt to submit step without filling the fields
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       // Participants field should error as it is required
       cy.getComponent('Raffle__prizes-field').within(() => {
@@ -68,9 +68,9 @@ describe.skip('Raffle', () => {
       cy.getComponent('Raffle__prizes-field-input').type('Prize 1,');
 
       // Go to fourth step
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
-      cy.getComponent('WizzardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
 
       cy.mockedRequestWait('POST', '/api/raffle')
         .its('requestBody')

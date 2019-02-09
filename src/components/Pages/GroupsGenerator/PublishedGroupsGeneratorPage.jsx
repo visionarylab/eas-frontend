@@ -12,7 +12,7 @@ import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 // import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
-import QuickDrawLayout from '../../QuickDrawLayout/QuickDrawLayout.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -37,10 +37,11 @@ const PublishedGroupsGeneratorPage = props => {
     <Page
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
+      htmlKeywords={t('html_keywords')}
       noIndex
       className={c('PublishedGroupsGeneratorPage')}
     >
-      <QuickDrawLayout>
+      <DrawLayout>
         <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>
@@ -72,7 +73,7 @@ const PublishedGroupsGeneratorPage = props => {
             </Typography>
           </div>
         </section>
-      </QuickDrawLayout>
+      </DrawLayout>
     </Page>
   );
 };
