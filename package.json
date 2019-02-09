@@ -44,6 +44,7 @@
     "react-tag-input": "^5.0.2",
     "react-validation": "^3.0.7",
     "superagent": "^3.8.3",
+    "ua-parser-js": "^0.7.19",
     "url-join": "^4.0.0"
   },
   "devDependencies": {

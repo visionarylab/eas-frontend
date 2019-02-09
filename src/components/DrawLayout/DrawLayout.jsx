@@ -1,38 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router';
-import { isMobile } from 'react-device-detect';
-import config from '../../config/config';
+import { DeviceContext } from '../DeviceDetector/DeviceDetector.jsx';
 
 import STYLES from './DrawLayout.scss';
 
 const c = classNames.bind(STYLES);
 
-class DrawLayout extends Component {
-  isSmallScreen = () => {
-    if (config.isServer) {
-      return isMobile;
-    }
-    return window.innerWidth <= 600;
-  };
-
-  render() {
-    const { sidePanel, isPublic, children } = this.props;
-    return (
+const DrawLayout = ({ sidePanel, isPublic, children }) => (
+  <DeviceContext.Consumer>
+    {isMobile => (
       <div className={c('DrawLayout')}>
         <div
           className={c(`DrawLayout__content`, {
-            'DrawLayout__content--opaque': isPublic && this.isSmallScreen(),
+            'DrawLayout__content--opaque': isPublic && isMobile,
           })}
         >
           {children}
         </div>
-        {sidePanel && <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>}
+        <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>
       </div>
-    );
-  }
-}
+    )}
+  </DeviceContext.Consumer>
+);
 
 DrawLayout.propTypes = {
   sidePanel: PropTypes.node,

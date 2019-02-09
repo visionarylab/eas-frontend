@@ -18,6 +18,7 @@ import Loadable from 'react-loadable';
 
 // Our store, entrypoint, and manifest
 // import createStore from "../src/store";
+import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
 import manifest from '../build/asset-manifest.json'; // eslint-disable-line import/no-unresolved
 
@@ -94,7 +95,9 @@ export default (req, res) => {
             <Frontload isServer>
               <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
                 <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-                  <App />
+                  <DeviceDetector userAgent={req.headers['user-agent']}>
+                    <App />
+                  </DeviceDetector>
                 </MuiThemeProvider>
               </JssProvider>
             </Frontload>

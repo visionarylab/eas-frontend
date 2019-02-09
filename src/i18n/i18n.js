@@ -1,6 +1,4 @@
 import i18n from 'i18next';
-import config from '../config/config';
-
 import esES from './translations/es_ES/translations.json';
 import enGB from './translations/en_GB/translations.json';
 
@@ -30,7 +28,7 @@ i18n.init({
   },
   fallbackLng: 'es-ES',
   lng: getLanguageBasedOnHostname(),
-  debug: config.environment === 'local',
+  debug: false,
 
   // have a common namespace used around the full app
   ns: ['translations'],

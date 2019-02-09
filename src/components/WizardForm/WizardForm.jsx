@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { isMobile } from 'react-device-detect';
-import config from '../../config/config';
 import DesktopWizardForm from './DesktopWizardForm.jsx';
 import MobileWizardForm from './MobileWizardForm.jsx';
+import { DeviceContext } from '../DeviceDetector/DeviceDetector.jsx';
 
 class WizardForm extends Component {
   constructor(props) {
@@ -13,28 +12,10 @@ class WizardForm extends Component {
       activeStep: props.initialStep,
       stepValidations: props.steps.map(() => undefined),
       submittedSteps: props.steps.map(() => false),
-      isSmallScreen: this.isSmallScreen(),
     };
 
     this.stepRefs = props.steps.map(() => React.createRef());
   }
-
-  componentWillMount() {
-    if (!config.isServer) {
-      window.addEventListener('resize', this.handleWindowSizeChange);
-    }
-  }
-
-  isSmallScreen = () => {
-    if (config.isServer) {
-      return isMobile;
-    }
-    return window.innerWidth <= 600;
-  };
-
-  handleWindowSizeChange = () => {
-    this.setState({ isSmallScreen: this.isSmallScreen() });
-  };
 
   onStepSubmit = e => {
     const { requestedStep } = this.state;
@@ -104,7 +85,7 @@ class WizardForm extends Component {
   render() {
     const { steps, apiError, submitButtonLabel, t } = this.props;
     const stepLabels = steps.map(step => step.label);
-    const { activeStep, stepValidations, submittedSteps, isSmallScreen } = this.state;
+    const { activeStep, stepValidations, submittedSteps } = this.state;
 
     const content = (
       <div>
@@ -128,19 +109,21 @@ class WizardForm extends Component {
       t,
     };
     return (
-      <Fragment>
-        {isSmallScreen ? (
-          <MobileWizardForm {...commonWizardProps}>{content}</MobileWizardForm>
-        ) : (
-          <DesktopWizardForm
-            stepValidations={stepValidations}
-            submittedSteps={submittedSteps}
-            {...commonWizardProps}
-          >
-            {content}
-          </DesktopWizardForm>
-        )}
-      </Fragment>
+      <DeviceContext.Consumer>
+        {({ isMobile }) =>
+          isMobile ? (
+            <MobileWizardForm {...commonWizardProps}>{content}</MobileWizardForm>
+          ) : (
+            <DesktopWizardForm
+              stepValidations={stepValidations}
+              submittedSteps={submittedSteps}
+              {...commonWizardProps}
+            >
+              {content}
+            </DesktopWizardForm>
+          )
+        }
+      </DeviceContext.Consumer>
     );
   }
 }
