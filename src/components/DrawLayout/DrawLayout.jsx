@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router';
@@ -8,22 +8,21 @@ import STYLES from './DrawLayout.scss';
 
 const c = classNames.bind(STYLES);
 
-const DrawLayout = ({ sidePanel, isPublic, children }) => (
-  <DeviceContext.Consumer>
-    {isMobile => (
-      <div className={c('DrawLayout')}>
-        <div
-          className={c(`DrawLayout__content`, {
-            'DrawLayout__content--opaque': isPublic && isMobile,
-          })}
-        >
-          {children}
-        </div>
-        <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>
+const DrawLayout = ({ sidePanel, isPublic, children }) => {
+  const device = useContext(DeviceContext);
+  return (
+    <div className={c('DrawLayout')}>
+      <div
+        className={c(`DrawLayout__content`, {
+          'DrawLayout__content--opaque': isPublic && device.isMobile,
+        })}
+      >
+        {children}
       </div>
-    )}
-  </DeviceContext.Consumer>
-);
+      <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>
+    </div>
+  );
+};
 
 DrawLayout.propTypes = {
   sidePanel: PropTypes.node,
