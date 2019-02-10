@@ -7,6 +7,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import App from './components/App/App.jsx';
 import theme from './EasTheme.jsx';
 import config from './config/config';
+import DeviceDetector from './components/DeviceDetector/DeviceDetector.jsx';
 
 const { APIBasePath } = config;
 const defaultClient = EASApi.ApiClient.instance;
@@ -15,7 +16,9 @@ defaultClient.basePath = APIBasePath;
 const Application = () => (
   <MuiThemeProvider theme={theme}>
     <BrowserRouter>
-      <App />
+      <DeviceDetector userAgent={window.navigator.userAgent}>
+        <App />
+      </DeviceDetector>
     </BrowserRouter>
   </MuiThemeProvider>
 );
