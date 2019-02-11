@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import classnames from 'classnames/bind';
 import SocialShareButton from './SocialShareButton.jsx';
+import STYLES from './ShareButtons.scss';
+
+const c = classnames.bind(STYLES);
 
 const availableShareButtons = ['facebook', 'twitter', 'telegram', 'whatsapp', 'email'];
 
 const ShareButtons = ({ sectionTitle, url, types }) => (
-  <div>
+  <div className={c('ShareButtons')}>
     {sectionTitle && (
       <Typography variant="subtitle2" align="center">
         {sectionTitle}
@@ -27,7 +31,7 @@ ShareButtons.propTypes = {
 };
 ShareButtons.defaultProps = {
   sectionTitle: '',
-  types: availableShareButtons,
+  types: ['facebook', 'twitter', 'telegram', 'whatsapp'],
 };
 
 export default ShareButtons;

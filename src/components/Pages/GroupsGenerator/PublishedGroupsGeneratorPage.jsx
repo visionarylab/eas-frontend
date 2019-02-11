@@ -11,7 +11,7 @@ import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
-// import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
+import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import groupsOgImage from './groups_og_image.png';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
@@ -24,7 +24,7 @@ const PublishedGroupsGeneratorPage = props => {
     result,
     isOwner,
     participants,
-    shareUrl, // eslint-disable-line no-unused-vars
+    shareUrl,
     numberOfGroups,
     description,
     onToss,
@@ -56,13 +56,13 @@ const PublishedGroupsGeneratorPage = props => {
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />
             <br />
-            {/* <ShareButtons sectionTitle={t('share_result')} url={shareUrl} /> */}
+            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
           </ResultsBox>
         ) : (
           <Fragment>
             <Countdown date={result.schedule_date} />
             {isOwner && <Button type="submit" onClick={onToss} />}
-            {/* <ShareButtons sectionTitle={t('share_result')} url={shareUrl} /> */}
+            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
           </Fragment>
         )}
 
