@@ -13,6 +13,7 @@ import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 // import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import groupsOgImage from './groups_og_image.png';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
@@ -35,6 +36,7 @@ const PublishedGroupsGeneratorPage = props => {
   }
   return (
     <Page
+      ogImage={groupsOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
@@ -42,7 +44,11 @@ const PublishedGroupsGeneratorPage = props => {
       className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
-        <Typography variant="h1" data-component="PublishedGroupsGeneratorPage__Title">
+        <Typography
+          align="center"
+          variant="h1"
+          data-component="PublishedGroupsGeneratorPage__Title"
+        >
           {title || t('page_title')}
         </Typography>
         {description && <Typography variant="body2">{description}</Typography>}
