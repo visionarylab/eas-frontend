@@ -62,7 +62,7 @@ const PublishedGroupsGeneratorPage = props => {
           <Fragment>
             <Countdown date={result.schedule_date} />
             {isOwner && <Button type="submit" onClick={onToss} />}
-            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
+            <ShareButtons sectionTitle={t('share_draw')} url={shareUrl} />
           </Fragment>
         )}
 

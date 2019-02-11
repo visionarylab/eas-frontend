@@ -71,6 +71,7 @@
     "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
     "create_certificated_draw": "Genera grupos certificados",
     "share_result": "Comparte este resultado",
+    "share_draw": "Comparte este sorteo",
     "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado"
   },
   "Header": {

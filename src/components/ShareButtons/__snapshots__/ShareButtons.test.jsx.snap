@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ShareButtons renders the title if given 1`] = `
-<div>
+<div
+  className="ShareButtons"
+>
   <WithStyles(Typography)
     align="center"
     variant="subtitle2"
@@ -28,16 +30,13 @@ exports[`ShareButtons renders the title if given 1`] = `
     type="whatsapp"
     url="the_cool_url"
   />
-  <SocialShareButton
-    key="email"
-    type="email"
-    url="the_cool_url"
-  />
 </div>
 `;
 
 exports[`ShareButtons should only render the specified types 1`] = `
-<div>
+<div
+  className="ShareButtons"
+>
   <SocialShareButton
     key="facebook"
     type="facebook"
@@ -47,7 +46,9 @@ exports[`ShareButtons should only render the specified types 1`] = `
 `;
 
 exports[`ShareButtons should render all buttons by default 1`] = `
-<div>
+<div
+  className="ShareButtons"
+>
   <SocialShareButton
     key="facebook"
     type="facebook"
@@ -66,11 +67,6 @@ exports[`ShareButtons should render all buttons by default 1`] = `
   <SocialShareButton
     key="whatsapp"
     type="whatsapp"
-    url="the_cool_url"
-  />
-  <SocialShareButton
-    key="email"
-    type="email"
     url="the_cool_url"
   />
 </div>

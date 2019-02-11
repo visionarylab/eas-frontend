@@ -8,7 +8,7 @@ const WhenToTossSection = ({ sectionTitle, dateScheduled, onFieldChange }) => (
     <DateTimePicker
       value={dateScheduled}
       onChange={datetime => {
-        onFieldChange('dateScheduled', datetime);
+        onFieldChange('dateScheduled', datetime.toDate());
       }}
       autoOk
       // ampm={false}
