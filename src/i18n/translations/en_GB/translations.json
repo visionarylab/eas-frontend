@@ -3,6 +3,7 @@
     "api_error": "We are having some trouble in our servers."
   },
   "Countdown": {
+    "results_published_on": "Results will be published on",
     "time_remaining": "Time remaining"
   },
   "DateTimePicker": {
@@ -27,6 +28,8 @@
     "page_title": "Head or tails"
   },
   "GroupsGenerator": {
+    "certified_draw_description": "If you want to make a public raffle to ensure an impartial result you should create a certified raffle.",
+    "create_certificated_draw": "Generate certified groups",
     "draw_subheading": "Create groups online",
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
     "field_label_list_of_participants": "List of participants",
@@ -35,12 +38,15 @@
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
+    "html_keywords": "random groups, random teams, make teams, raffle, match, pairs, couples, trios, match people",
     "html_title": "Generate groups online",
     "message_no_participants_added": "You haven't added any participants",
     "page_title": "Generate groups",
     "publish_draw": "Publish draw",
     "published_draw_details": "Raffle details",
     "result_label_group": "Group {{groupNumber}}",
+    "share_draw": "Share this raffle",
+    "share_result": "Share this result",
     "step_label_configure": "Set up the groups",
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be published?",
