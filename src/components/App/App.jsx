@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import ReactGA from 'react-ga';
 
+import mixpanel from 'mixpanel-browser';
+import { MixpanelProvider } from 'react-mixpanel';
 import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell.jsx';
 import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
@@ -12,7 +14,9 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    if (config.googleAnaliticsEnabled) {
+
+    if (config.analiticsEnabled) {
+      mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
       ReactGA.set({ dimension1: 'v3' });
     }
@@ -31,11 +35,13 @@ class App extends Component {
           <ErrorPage>Something went bad, but we are working very hard to fix it</ErrorPage>
         )}
       >
-        <I18nextProvider i18n={i18n}>
-          <FacebookProvider>
-            <AppShell />
-          </FacebookProvider>
-        </I18nextProvider>
+        <MixpanelProvider mixpanel={mixpanel}>
+          <I18nextProvider i18n={i18n}>
+            <FacebookProvider>
+              <AppShell />
+            </FacebookProvider>
+          </I18nextProvider>
+        </MixpanelProvider>
       </ErrorBoundary>
     );
   }

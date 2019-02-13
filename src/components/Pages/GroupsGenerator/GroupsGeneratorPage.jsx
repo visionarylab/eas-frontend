@@ -66,6 +66,7 @@ const GroupsGeneratorPage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_description')}
+      pageType="groups_public_draw"
     >
       <DrawLayout isPublic>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />

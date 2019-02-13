@@ -1,7 +1,9 @@
 const config = {
   indexPages: false,
   googleAnalyticsID: 'UA-XXXXX-Y',
-  googleAnaliticsEnabled: true,
+  mixpanelID: 'fake-mixpanel-id',
+  mixpanel_debug: false,
+  analiticsEnabled: true,
   sentryEnabled: false,
   APIBasePath: 'http://unexisting-domain.com/api',
 };

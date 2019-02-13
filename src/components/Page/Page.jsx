@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 import ReactGA from 'react-ga';
 import { withRouter } from 'react-router';
 import i18n from 'i18next';
+import { MixpanelConsumer } from 'react-mixpanel';
 
 import config from '../../config/config';
 import defaultOgImage from './logo_og.png';
@@ -14,13 +15,13 @@ import STYLES from './Page.scss';
 const c = classNames.bind(STYLES);
 
 class Page extends Component {
-  constructor(props) {
-    super(props);
-
-    if (config.googleAnaliticsEnabled) {
-      const page = props.location.pathname;
+  componentDidMount() {
+    const { mixpanel, pageType, location } = this.props;
+    if (config.analiticsEnabled) {
+      const page = location.pathname;
       ReactGA.pageview(page);
     }
+    mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
   }
 
   getMetaTags() {
@@ -72,11 +73,23 @@ class Page extends Component {
   }
 }
 
+const withMixpanel = WrappedComponent => {
+  const WithMixpanel = props => (
+    <MixpanelConsumer>
+      {mixpanel => <WrappedComponent mixpanel={mixpanel} {...props} />}
+    </MixpanelConsumer>
+  );
+
+  return WithMixpanel;
+};
+
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
   htmlDescription: PropTypes.string.isRequired,
   htmlKeywords: PropTypes.string.isRequired,
+  pageType: PropTypes.string.isRequired,
   className: PropTypes.string,
+  mixpanel: PropTypes.shape({}).isRequired,
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
@@ -89,4 +102,4 @@ Page.defaultProps = {
   ogImage: defaultOgImage,
 };
 
-export default withRouter(Page);
+export default withMixpanel(withRouter(Page));

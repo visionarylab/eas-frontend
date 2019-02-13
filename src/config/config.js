@@ -31,7 +31,7 @@ if (environment) {
 
     console.log('environment:', process.env.REACT_APP_ENV);
     // Disable logs and events when rendering in server
-    config.googleAnaliticsEnabled = !isServer && config.googleAnaliticsEnabled;
+    config.analiticsEnabled = !isServer && config.analiticsEnabled;
     config.sentryEnabled = !isServer && config.sentryEnabled;
   } catch (e) {
     console.error('No application config could be found.', e);

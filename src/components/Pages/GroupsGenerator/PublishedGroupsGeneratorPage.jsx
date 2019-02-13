@@ -41,6 +41,7 @@ const PublishedGroupsGeneratorPage = props => {
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
       noIndex
+      pageType="groups_published_draw"
       className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>

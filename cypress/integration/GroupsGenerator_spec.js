@@ -39,9 +39,13 @@ describe('Groups Generator Draw Page', () => {
         cy.getComponent('MultiValueDisplay__chip').should('not.exist');
       });
 
-      it('Should send GA pageview and event on toss', function() {
+      it('Analytics pageview and event on toss', function() {
         cy.mockGA();
+        cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
+        cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
         cy.visit('/draw/new/groups');
+        cy.wait('@startMixpanel');
+        cy.wait('@trackMixpanel');
 
         cy.get('@ga')
           .should('be.calledWith', 'create', 'UA-XXXXX-Y')
