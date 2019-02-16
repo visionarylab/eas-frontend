@@ -55,9 +55,8 @@ describe('Groups Generator Draw Page', () => {
         cy.getComponent('SubmitDrawButton').click();
         cy.get('@ga').should('be.calledWith', 'send', {
           hitType: 'event',
-          eventCategory: 'draw_groups',
-          eventAction: 'toss',
-          eventLabel: 'local',
+          eventCategory: 'Groups Draw',
+          eventAction: 'Toss',
         });
       });
 

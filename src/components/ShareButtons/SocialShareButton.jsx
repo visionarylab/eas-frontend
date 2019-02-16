@@ -12,15 +12,16 @@ import {
   WhatsappIcon,
   EmailIcon,
 } from 'react-share';
-
 import classnames from 'classnames/bind';
+import withTracking from '../withTracking/withTracking.jsx';
+
 import STYLES from './SocialShareButton.scss';
 
 const c = classnames.bind(STYLES);
 
-const SocialButton = ({ url, type, size, className }) => {
-  const buttonProps = { url, className };
-  switch (type) {
+const SocialButton = ({ url, socialType, size, className, beforeOnClick }) => {
+  const buttonProps = { url, className, beforeOnClick };
+  switch (socialType) {
     case 'whatsapp':
       return (
         <WhatsappShareButton {...buttonProps}>
@@ -59,7 +60,7 @@ const SocialButton = ({ url, type, size, className }) => {
 
 SocialButton.propTypes = {
   url: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  socialType: PropTypes.string.isRequired,
   size: PropTypes.number,
   className: PropTypes.string.isRequired,
 };
@@ -68,13 +69,25 @@ SocialButton.defaultProps = {
   size: 32,
 };
 
-const SocialShareButton = ({ url, type }) => (
-  <SocialButton url={url} type={type} className={c('SocialShareButton')} />
+const SocialShareButton = ({ url, drawType, socialType, track }) => (
+  <SocialButton
+    beforeOnClick={() =>
+      track({
+        mp: { name: 'Social Share Draw', properties: { socialType, drawType } },
+        ga: { category: drawType, action: 'Social Share Draw', label: socialType },
+      })
+    }
+    url={url}
+    socialType={socialType}
+    className={c('SocialShareButton')}
+  />
 );
 
 SocialShareButton.propTypes = {
   url: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  drawType: PropTypes.string.isRequired,
+  socialType: PropTypes.string.isRequired,
+  track: PropTypes.func.isRequired,
 };
 
-export default SocialShareButton;
+export default withTracking(SocialShareButton);

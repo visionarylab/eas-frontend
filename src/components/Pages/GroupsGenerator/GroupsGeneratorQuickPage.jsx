@@ -43,8 +43,11 @@ const GroupsGeneratorQuickPage = props => {
             buttonLabel={t('create_certificated_draw')}
             publicDrawUrl={publicDrawUrl}
             trackingData={{
-              mp: { name: 'Start Public Draw - Groups Draw' },
-              ga: { action: 'make_public', category: 'draw_groups', label: 'start_public_draw' },
+              mp: {
+                name: 'Start Public Draw',
+                properties: { drawType: 'Groups', source: 'From Scratch' },
+              },
+              ga: { category: 'Groups Draw', action: 'Start Public', label: 'From Scratch' },
             }}
           >
             <span>
@@ -84,8 +87,11 @@ const GroupsGeneratorQuickPage = props => {
             <ShareDrawModal
               publicDrawUrl={publicDrawUrl}
               trackingData={{
-                mp: { name: 'Share Quick Result - Groups Draw ' },
-                ga: { action: 'make_public', category: 'draw_groups', label: 'share_quick_result' },
+                mp: {
+                  name: 'Start Public Draw',
+                  properties: { drawType: 'Groups', source: 'From Quick Result' },
+                },
+                ga: { category: 'Groups Draw', action: 'Start Public', label: 'From Quick Result' },
               }}
             />
           </Fragment>

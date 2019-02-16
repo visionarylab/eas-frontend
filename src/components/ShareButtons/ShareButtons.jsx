@@ -9,7 +9,7 @@ const c = classnames.bind(STYLES);
 
 const availableShareButtons = ['facebook', 'twitter', 'telegram', 'whatsapp', 'email'];
 
-const ShareButtons = ({ sectionTitle, url, types }) => (
+const ShareButtons = ({ sectionTitle, drawType, url, types }) => (
   <div className={c('ShareButtons')}>
     {sectionTitle && (
       <Typography variant="subtitle2" align="center">
@@ -19,13 +19,14 @@ const ShareButtons = ({ sectionTitle, url, types }) => (
     {types
       .filter(type => availableShareButtons.includes(type))
       .map(type => (
-        <SocialShareButton key={type} url={url} type={type} />
+        <SocialShareButton key={type} url={url} drawType={drawType} socialType={type} />
       ))}
   </div>
 );
 
 ShareButtons.propTypes = {
   sectionTitle: PropTypes.string,
+  drawType: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.string),
 };
