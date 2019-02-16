@@ -10,24 +10,24 @@ exports[`ShareButtons renders the title if given 1`] = `
   >
     The title
   </WithStyles(Typography)>
-  <SocialShareButton
+  <WithMixpanel
     key="facebook"
-    type="facebook"
+    socialType="facebook"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="twitter"
-    type="twitter"
+    socialType="twitter"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="telegram"
-    type="telegram"
+    socialType="telegram"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="whatsapp"
-    type="whatsapp"
+    socialType="whatsapp"
     url="the_cool_url"
   />
 </div>
@@ -37,9 +37,9 @@ exports[`ShareButtons should only render the specified types 1`] = `
 <div
   className="ShareButtons"
 >
-  <SocialShareButton
+  <WithMixpanel
     key="facebook"
-    type="facebook"
+    socialType="facebook"
     url="the_cool_url"
   />
 </div>
@@ -49,24 +49,24 @@ exports[`ShareButtons should render all buttons by default 1`] = `
 <div
   className="ShareButtons"
 >
-  <SocialShareButton
+  <WithMixpanel
     key="facebook"
-    type="facebook"
+    socialType="facebook"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="twitter"
-    type="twitter"
+    socialType="twitter"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="telegram"
-    type="telegram"
+    socialType="telegram"
     url="the_cool_url"
   />
-  <SocialShareButton
+  <WithMixpanel
     key="whatsapp"
-    type="whatsapp"
+    socialType="whatsapp"
     url="the_cool_url"
   />
 </div>

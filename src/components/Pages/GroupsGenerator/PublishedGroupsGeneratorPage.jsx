@@ -41,6 +41,7 @@ const PublishedGroupsGeneratorPage = props => {
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
       noIndex
+      pageType="groups_published_draw"
       className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
@@ -62,7 +63,7 @@ const PublishedGroupsGeneratorPage = props => {
           <Fragment>
             <Countdown date={result.schedule_date} />
             {isOwner && <Button type="submit" onClick={onToss} />}
-            <ShareButtons sectionTitle={t('share_draw')} url={shareUrl} />
+            <ShareButtons drawType="Groups" sectionTitle={t('share_draw')} url={shareUrl} />
           </Fragment>
         )}
 

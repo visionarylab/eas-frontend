@@ -26,6 +26,7 @@ const HomePage = ({ t }) => (
     htmlTitle={t('html_title')}
     htmlDescription={t('html_description')}
     className={c('HomePage')}
+    pageType="homepage"
   >
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>

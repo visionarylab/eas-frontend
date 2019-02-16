@@ -3,8 +3,8 @@
     "api_error": "Estamos teniendo problemas en nuestro servidor."
   },
   "Countdown": {
-    "time_remaining": "Tiempo restante",
-    "results_published_on": "El resultado será publicado el"
+    "results_published_on": "El resultado será publicado el",
+    "time_remaining": "Tiempo restante"
   },
   "DateTimePicker": {
     "cancel": "Cancelar",
@@ -48,6 +48,8 @@
     "page_title": "Cara o cruz"
   },
   "GroupsGenerator": {
+    "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado.",
+    "create_certificated_draw": "Genera grupos certificados",
     "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
     "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
     "field_label_list_of_participants": "Lista de participantes",
@@ -56,23 +58,21 @@
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
     "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
-    "html_title": "Grupos Aleatorios | Echalo A Suerte",
     "html_keywords": "grupos al azar, equipos aleatorios, dividir grupos, sorteo equipos, parejas, trios, emparejar personas",
+    "html_title": "Grupos Aleatorios | Echalo A Suerte",
     "message_no_participants_added": "No ha añadido ningún participante",
     "page_title": "Grupos Aleatorios",
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
     "result_label_group": "Group {{groupNumber}}",
+    "share_draw": "Comparte este sorteo",
+    "share_result": "Comparte este resultado",
     "step_label_configure": "Configura los grupos",
     "step_label_general_details": "Detalles generales",
     "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
-    "create_certificated_draw": "Genera grupos certificados",
-    "share_result": "Comparte este resultado",
-    "share_draw": "Comparte este sorteo",
-    "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado"
+    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte"
