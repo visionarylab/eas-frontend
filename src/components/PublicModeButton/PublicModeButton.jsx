@@ -1,22 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import urlJoin from 'url-join';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
+import withTracking from '../withTracking/withTracking.jsx';
 
-// eslint-disable-next-line react/prop-types
-const CurrentDrawCertifiedLink = ({ match, history, location, staticContext, ...rest }) => (
-  <Link to={urlJoin(match.url, 'shared')} {...rest} />
-);
-CurrentDrawCertifiedLink.propTypes = {
-  match: ReactRouterPropTypes.match.isRequired,
-};
-
-const PublicModeButton = ({ label, inputProps, dataComponent }) => (
+const PublicModeButton = ({ to, label, trackingData, inputProps, dataComponent, track }) => (
   <Button
-    component={withRouter(CurrentDrawCertifiedLink)}
+    component={props => <Link to={to} onClick={() => track(trackingData)} {...props} />}
     variant="contained"
     data-component={dataComponent}
     {...inputProps}
@@ -26,7 +16,9 @@ const PublicModeButton = ({ label, inputProps, dataComponent }) => (
 );
 
 PublicModeButton.propTypes = {
+  to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-export default PublicModeButton;
+export default withTracking(PublicModeButton);

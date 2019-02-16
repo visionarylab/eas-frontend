@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import ReactGA from 'react-ga';
 import { GroupsApi, Groups, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
 import GroupsGeneratorPage from './GroupsGeneratorPage.jsx';
 import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
+import withTracking from '../../withTracking/withTracking.jsx';
 
 const groupsApi = new GroupsApi();
 class GroupsGeneratorPageContainer extends React.Component {
@@ -71,7 +72,11 @@ class GroupsGeneratorPageContainer extends React.Component {
       }
 
       const tossResponse = await groupsApi.groupsToss(privateId, {});
-      ReactGA.event({ category: 'draw_groups', action: 'toss', label: 'local' });
+      const { track } = this.props;
+      track({
+        mp: { name: 'Toss - Groups Draw' },
+        ga: { action: 'toss', category: 'draw_groups', label: 'local' },
+      });
       this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
       this.setState({ APIError: true });
@@ -87,7 +92,12 @@ class GroupsGeneratorPageContainer extends React.Component {
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
       await groupsApi.groupsToss(draw.private_id, drawTossPayload);
-      ReactGA.event({ category: 'draw_groups', action: 'publish', label: draw.id });
+
+      const { track } = this.props;
+      track({
+        mp: { name: 'Publish - Groups Draw' },
+        ga: { action: 'publish', category: 'draw_groups', label: draw.id },
+      });
 
       // const drawPathname = match.url.replace('public', draw.private_id);
       const drawPathname = `/draw/${draw.id}`;
@@ -134,9 +144,10 @@ class GroupsGeneratorPageContainer extends React.Component {
 }
 
 GroupsGeneratorPageContainer.propTypes = {
+  track: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
 };
 GroupsGeneratorPageContainer.defaultProps = {};
 
-export default GroupsGeneratorPageContainer;
+export default withTracking(GroupsGeneratorPageContainer);

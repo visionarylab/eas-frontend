@@ -28,6 +28,7 @@ const GroupsGeneratorQuickPage = props => {
     loadingResult,
     t,
   } = props;
+  const publicDrawUrl = '/draw/new/groups/shared';
   return (
     <Page
       htmlTitle={t('html_title')}
@@ -38,7 +39,14 @@ const GroupsGeneratorQuickPage = props => {
     >
       <DrawLayout
         sidePanel={
-          <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
+          <MakeCertifiedDrawPanel
+            buttonLabel={t('create_certificated_draw')}
+            publicDrawUrl={publicDrawUrl}
+            trackingData={{
+              mp: { name: 'Start Public Draw - Groups Draw' },
+              ga: { action: 'make_public', category: 'draw_groups', label: 'start_public_draw' },
+            }}
+          >
             <span>
               <Trans i18nKey="certified_draw_description">
                 Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
@@ -73,7 +81,13 @@ const GroupsGeneratorQuickPage = props => {
         {!loadingResult && quickResult && (
           <Fragment>
             <GroupsGeneratorResult result={quickResult} />
-            <ShareDrawModal />
+            <ShareDrawModal
+              publicDrawUrl={publicDrawUrl}
+              trackingData={{
+                mp: { name: 'Share Quick Result - Groups Draw ' },
+                ga: { action: 'make_public', category: 'draw_groups', label: 'share_quick_result' },
+              }}
+            />
           </Fragment>
         )}
       </DrawLayout>

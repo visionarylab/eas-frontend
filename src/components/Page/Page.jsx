@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import ReactGA from 'react-ga';
 import { withRouter } from 'react-router';
 import i18n from 'i18next';
-import { MixpanelConsumer } from 'react-mixpanel';
+import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 
 import config from '../../config/config';
 import defaultOgImage from './logo_og.png';
@@ -16,12 +16,12 @@ const c = classNames.bind(STYLES);
 
 class Page extends Component {
   componentDidMount() {
-    const { mixpanel, pageType, location } = this.props;
     if (config.analiticsEnabled) {
+      const { mixpanel, pageType, location } = this.props;
       const page = location.pathname;
       ReactGA.pageview(page);
+      mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
     }
-    mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
   }
 
   getMetaTags() {
@@ -72,16 +72,6 @@ class Page extends Component {
     );
   }
 }
-
-const withMixpanel = WrappedComponent => {
-  const WithMixpanel = props => (
-    <MixpanelConsumer>
-      {mixpanel => <WrappedComponent mixpanel={mixpanel} {...props} />}
-    </MixpanelConsumer>
-  );
-
-  return WithMixpanel;
-};
 
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,

@@ -11,7 +11,7 @@ import STYLES from './MakeCertifiedDrawPanel.scss';
 
 const c = classnames.bind(STYLES);
 
-const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
+const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, children }) => (
   <Card>
     <CardContent>
       <Typography variant="body2" component="p">
@@ -19,13 +19,20 @@ const MakeCertifiedDrawPanel = ({ children, buttonLabel }) => (
       </Typography>
     </CardContent>
     <CardActions className={c('MakeCertifiedDrawPanel__actions')}>
-      <PublicModeButton label={buttonLabel} dataComponent="MakeCertifiedDrawPanel__button" />
+      <PublicModeButton
+        to={publicDrawUrl}
+        label={buttonLabel}
+        dataComponent="MakeCertifiedDrawPanel__button"
+        trackingData={trackingData}
+      />
     </CardActions>
   </Card>
 );
 
 MakeCertifiedDrawPanel.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  publicDrawUrl: PropTypes.string.isRequired,
+  trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node.isRequired,
 };
 

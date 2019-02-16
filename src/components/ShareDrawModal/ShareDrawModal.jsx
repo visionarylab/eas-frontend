@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -30,6 +31,7 @@ class ShareDrawModal extends Component {
 
   render() {
     const { open } = this.state;
+    const { publicDrawUrl, trackingData } = this.props;
     return (
       <div className={c('ShareDrawModal__button-row')}>
         <Button onClick={this.handleClickOpen} data-component="ShareDrawButton">
@@ -57,8 +59,10 @@ class ShareDrawModal extends Component {
               Cancelar
             </Button>
             <PublicModeButton
-              dataComponent="ShareDrawButton__confirm"
               label="Crear sorteo público"
+              to={publicDrawUrl}
+              trackingData={trackingData}
+              dataComponent="ShareDrawButton__confirm"
               inputProps={{ color: 'primary' }}
             />
           </DialogActions>
@@ -68,6 +72,9 @@ class ShareDrawModal extends Component {
   }
 }
 
-ShareDrawModal.propTypes = {};
+ShareDrawModal.propTypes = {
+  publicDrawUrl: PropTypes.string.isRequired,
+  trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
 
 export default withMobileDialog()(ShareDrawModal);
