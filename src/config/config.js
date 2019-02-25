@@ -12,6 +12,11 @@ if (process.env.REACT_APP_ENV) {
   environment = window.__internal.ENVIRONMENT;
 }
 
+if (process.env.REACT_APP_COMMIT) {
+  const deployedCommit = process.env.REACT_APP_COMMIT;
+  console.log(deployedCommit);
+}
+
 if (environment) {
   try {
     if (environment !== 'production') {
