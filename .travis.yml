@@ -37,7 +37,7 @@ before_deploy:
   # Install Ansible
   - pip install --user ansible
   # Deploy to Dev
-  - git clone https://github.com/etcaterva/deployment.git eas-deployment
+  - git clone --recurse-submodules https://github.com/etcaterva/deployment.git eas-deployment
   - mv vault-pass eas-deployment/vault-pass
   - export ANSIBLE_HOST_KEY_CHECKING=False
 
