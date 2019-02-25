@@ -100,7 +100,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       });
 
       // const drawPathname = match.url.replace('public', draw.private_id);
-      const drawPathname = `/draw/${draw.id}`;
+      const drawPathname = `/groups/${draw.id}`;
       history.push(drawPathname);
     } catch (err) {
       this.setState({ APIError: true });

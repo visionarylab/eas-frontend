@@ -42,7 +42,7 @@ const AppShell = () => (
       />
       <Route
         exact
-        path={`/draw/:drawId(${guidRegex})`}
+        path={`/groups/:drawId(${guidRegex})`}
         component={PublishedGroupsGeneratorPageContainer}
       />
 
