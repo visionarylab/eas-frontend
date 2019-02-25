@@ -1,5 +1,8 @@
 # build environment
 FROM node:dubnium
+
+ARG commit_sha=none
+
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
@@ -10,6 +13,7 @@ RUN npm install --silent
 COPY . /usr/src/app
 
 ENV REACT_APP_ENV=production
+ENV REACT_APP_COMMIT=$commit_sha
 RUN npm run build
 
 ENV PORT 80
