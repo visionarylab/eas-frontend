@@ -18,7 +18,7 @@ class App extends Component {
     if (config.analiticsEnabled) {
       mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
-      ReactGA.set({ dimension1: 'v3' });
+      ReactGA.set({ dimension2: 'v3' });
     }
     if (config.sentryEnabled) {
       // eslint-disable-next-line no-undef
