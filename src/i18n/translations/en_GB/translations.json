@@ -55,7 +55,7 @@
     "step_title_when_to_toss": "Choose the date when the results will be published"
   },
   "Header": {
-    "brand_name": "Woreep"
+    "brand_name": "ChooseRandom"
   },
   "HomePage": {
     "draw_title_facebook_login": "Raffle among Facebook users",
@@ -70,7 +70,7 @@
     "draw_title_spin_arrow": "Spin an arrow",
     "draw_title_tournament": "Organize a tournament",
     "html_description": "Create online raffles, flip a coin, make teams... Take any decision randomly",
-    "html_title": "Take decisions randomly online - Woreep",
+    "html_title": "Take decisions randomly online - ChooseRandom",
     "section_title_online_raffles": "Online raffles",
     "section_title_simple_draws": "Simple choices"
   },
@@ -154,7 +154,7 @@
     "field_label_to": "To",
     "generate_numbers": "Generate numbers",
     "generated_numbers": "Generated numbers",
-    "html_description": "Generate random numbers between two numbers, with or without repetitions. Woreep's random number generator is quick and simple.",
+    "html_description": "Generate random numbers between two numbers, with or without repetitions. ChooseRandom's random number generator is quick and simple.",
     "html_title": "Generate random numbers",
     "page_title_public": "Create public raffle with numbers",
     "page_title_quick": "Generate random numbers",
