@@ -9,7 +9,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package.json /usr/src/app/package.json
 COPY package-lock.json /usr/src/app/package-lock.json
-RUN npm install --silent
+RUN npm install --silent --production
 COPY . /usr/src/app
 
 ENV REACT_APP_ENV=production
