@@ -15,9 +15,9 @@ const redirect = locale => {
   let newDomain;
   if (locale === 'en-GB') {
     if (environment === 'production') {
-      newDomain = 'woreep.com';
+      newDomain = 'chooserandom.com';
     } else {
-      newDomain = 'dev.woreep.com';
+      newDomain = 'dev.chooserandom.com';
     }
   } else if (environment === 'production') {
     newDomain = 'echaloasuerte.com';
