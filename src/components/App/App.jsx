@@ -10,6 +10,7 @@ import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
 import config from '../../config/config';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.jsx';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
+import { hotjar } from '../../services/hotjar';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
       mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
       ReactGA.set({ dimension2: 'v3' });
+      hotjar.initialize(1051921, 6);
     }
     if (config.sentryEnabled) {
       // eslint-disable-next-line no-undef
