@@ -33,7 +33,7 @@ export default (req, res) => {
       - Preloaded state (for Redux) depending on the current route
       - Code-split script tags depending on the current route
   */
-  const injectHTML = (data, { html, title, meta, body, scripts, state, css }) => {
+  const injectHTML = (data, { html, title, meta, body, state, css }) => {
     let content = data;
     content = content.replace('<html>', `<html ${html}>`);
     content = content.replace(/<title>.*?<\/title>/g, title);
@@ -46,8 +46,6 @@ export default (req, res) => {
       '<style id="jss-server-side"></style>',
       `<style id="jss-server-side">${css}</style>`,
     );
-    content = content.replace('</body>', `${scripts.join('')}</body>`);
-
     return content;
   };
 
@@ -69,87 +67,37 @@ export default (req, res) => {
       return res.status(404).end();
     }
 
-    // Create a store (with a memory history) from our current url
-    //   const { store } = createStore(req.url);
-
     const context = {};
-    const modules = [];
+    const renderedHtml = renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+            <DeviceDetector userAgent={req.headers['user-agent']}>
+              <App />
+            </DeviceDetector>
+          </MuiThemeProvider>
+        </JssProvider>
+      </StaticRouter>,
+    );
 
-    /*
-        Here's the core funtionality of this file. We do the following in specific order (inside-out):
-          1. Load the <App /> component
-          2. Inside of the Frontload HOC
-          3. Inside of a Redux <StaticRouter /> (since we're on the server), given a location and context to write to
-          5. Inside of the React Loadable HOC to make sure we have the right scripts depending on page
-          6. Render all
-          7. Make sure that when rendering Frontload knows to get all the appropriate preloaded requests
+    // We need to tell Helmet to compute the right meta tags, title, and such
+    const helmet = Helmet.renderStatic();
 
-        In English, we basically need to know what page we're dealing with, and then load all the appropriate scripts and
-        data for that page. We take all that information and compute the appropriate state to send to the user. This is
-        then loaded into the correct components and sent as a Promise to be handled below.
-      */
-    frontloadServerRender(() =>
-      renderToString(
-        <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-          <StaticRouter location={req.url} context={context}>
-            <Frontload isServer>
-              <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-                  <DeviceDetector userAgent={req.headers['user-agent']}>
-                    <App />
-                  </DeviceDetector>
-                </MuiThemeProvider>
-              </JssProvider>
-            </Frontload>
-          </StaticRouter>
-        </Loadable.Capture>,
-      ),
-    ).then(routeMarkup => {
-      if (context.url) {
-        // If context has a url property, then we need to handle a redirection in Redux Router
-        res.writeHead(302, {
-          Location: context.url,
-        });
+    // Grab the CSS from our sheetsRegistry.
+    const css = sheetsRegistry.toString();
 
-        res.end();
-      } else {
-        // Otherwise, we carry on...
-
-        // Let's give ourself a function to load all our page-specific JS assets for code splitting
-        const extractAssets = (assets, chunks) =>
-          Object.keys(assets)
-            .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-            .map(k => assets[k]);
-
-        // Let's format those assets into pretty <script> tags
-        const extraChunks = extractAssets(manifest, modules).map(
-          c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`,
-        );
-
-        // We need to tell Helmet to compute the right meta tags, title, and such
-        const helmet = Helmet.renderStatic();
-
-        // NOTE: Disable if you desire
-        // Let's output the title, just to see SSR is working as intended
-        console.log('THE TITLE', helmet.title.toString());
-
-        // Grab the CSS from our sheetsRegistry.
-        const css = sheetsRegistry.toString();
-
-        // Pass all this nonsense into our HTML formatting function above
-        const html = injectHTML(htmlData, {
-          html: helmet.htmlAttributes.toString(),
-          title: helmet.title.toString(),
-          meta: helmet.meta.toString(),
-          body: routeMarkup,
-          scripts: extraChunks,
-          state: JSON.stringify({}).replace(/</g, '\\u003c'),
-          css,
-        });
-
-        // We have all the final HTML, let's send it to the user already!
-        res.send(html);
-      }
+    // Pass all this nonsense into our HTML formatting function above
+    const html = injectHTML(htmlData, {
+      html: helmet.htmlAttributes.toString(),
+      title: helmet.title.toString(),
+      meta: helmet.meta.toString(),
+      body: renderedHtml,
+      state: JSON.stringify({}).replace(/</g, '\\u003c'),
+      css,
     });
+    console.log(html);
+
+    // We have all the final HTML, let's send it to the user already!
+    res.send(html);
   });
 };
