@@ -1,3 +1,4 @@
+// Taking this from: https://github.com/cereallarceny/cra-ssr/blob/master/server/index.js
 const md5File = require('md5-file');
 const path = require('path');
 
