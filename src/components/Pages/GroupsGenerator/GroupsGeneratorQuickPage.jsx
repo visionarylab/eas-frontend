@@ -47,7 +47,7 @@ const GroupsGeneratorQuickPage = props => {
                 name: 'Start Public Draw',
                 properties: { drawType: 'Groups', source: 'From Scratch' },
               },
-              ga: { category: 'Groups Draw', action: 'Start Public', label: 'From Scratch' },
+              ga: { category: 'Groups', action: 'Start Public', label: 'From Scratch' },
             }}
           >
             <span>

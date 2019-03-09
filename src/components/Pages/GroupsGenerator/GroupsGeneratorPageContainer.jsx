@@ -74,7 +74,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       const tossResponse = await groupsApi.groupsToss(privateId, {});
       const { track } = this.props;
       track({
-        mp: { name: 'Toss', properties: { drawType: 'Groups Draw' } },
+        mp: { name: 'Toss - Groups', properties: { drawType: 'Groups' } },
         ga: { action: 'Toss', category: 'Groups Draw' },
       });
       this.setState({ quickResult: tossResponse, APIError: false });
@@ -95,8 +95,8 @@ class GroupsGeneratorPageContainer extends React.Component {
 
       const { track } = this.props;
       track({
-        mp: { name: 'Publish', properties: { drawType: 'Groups', drawId: draw.id } },
-        ga: { action: 'Publish', category: 'Groups Draw', label: draw.id },
+        mp: { name: 'Publish - Groups', properties: { drawType: 'Groups', drawId: draw.id } },
+        ga: { action: 'Publish', category: 'Groups', label: draw.id },
       });
 
       // const drawPathname = match.url.replace('public', draw.private_id);

@@ -73,7 +73,7 @@ const SocialShareButton = ({ url, drawType, socialType, track }) => (
   <SocialButton
     beforeOnClick={() =>
       track({
-        mp: { name: 'Social Share Draw', properties: { socialType, drawType } },
+        mp: { name: `Social Share Draw - ${drawType}`, properties: { socialType, drawType } },
         ga: { category: drawType, action: 'Social Share Draw', label: socialType },
       })
     }
