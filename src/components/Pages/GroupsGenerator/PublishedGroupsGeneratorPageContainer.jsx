@@ -23,8 +23,8 @@ class PublishedGroupsGeneratorPageContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    this.loadData();
+  async componentDidMount() {
+    await this.loadData();
   }
 
   onToss = async () => {
@@ -53,10 +53,13 @@ class PublishedGroupsGeneratorPageContainer extends Component {
     const lastToss = draw.results[0];
     const scheduleDate = lastToss.schedule_date;
     const shareUrl = config.domain + match.url;
-    const milisecondsMissing = scheduleDate - Date.now();
-    setTimeout(() => {
-      this.loadData();
-    }, milisecondsMissing);
+
+    if (scheduleDate > Date.now()) {
+      const milisecondsMissing = scheduleDate - Date.now();
+      setTimeout(() => {
+        this.loadData();
+      }, milisecondsMissing);
+    }
 
     this.setState({
       title,
