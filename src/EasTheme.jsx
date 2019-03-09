@@ -4,9 +4,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 // https://github.com/mui-org/material-ui/issues/1915#issuecomment-310849153
 // Default theme: https://material-ui.com/customization/default-theme/
 
-const fontFamilySecondary = 'robotoregular,sans-serif';
+const fontFamilySecondary =
+  '"Fredoka One", -apple-system, BlinkMacSystemFont, "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif';
 
-const fontFamilyPrimary = fontFamilySecondary;
+const fontFamilyPrimary =
+  '"Montserrat", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica", "Arial", sans-serif';
 
 const baseTheme = createMuiTheme({
   typography: {
@@ -31,7 +33,7 @@ const baseTheme = createMuiTheme({
 });
 
 const fontHeader = {
-  color: baseTheme.palette.text.primary,
+  color: baseTheme.palette.primary.main,
   fontFamily: fontFamilySecondary,
 };
 

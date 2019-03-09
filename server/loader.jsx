@@ -11,16 +11,10 @@ import { MuiThemeProvider, createGenerateClassName } from '@material-ui/core/sty
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
-// import { Provider } from "react-redux";
 import { StaticRouter } from 'react-router';
-import { Frontload, frontloadServerRender } from 'react-frontload';
-import Loadable from 'react-loadable';
 
-// Our store, entrypoint, and manifest
-// import createStore from "../src/store";
 import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
-import manifest from '../build/asset-manifest.json'; // eslint-disable-line import/no-unresolved
 
 import theme from '../src/EasTheme.jsx';
 

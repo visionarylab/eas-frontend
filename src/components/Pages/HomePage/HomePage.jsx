@@ -7,7 +7,7 @@ import DrawCard from '../../DrawCard/DrawCard.jsx';
 import Page from '../../Page/Page.jsx';
 // import randomNumber from './random_number.png';
 // import arrowIcon from './arrow.svg';
-import groupsIcon from './groups.png';
+import groupsIcon from './groups.svg';
 // import coinIcon from './coin.svg';
 // import randomLetter from './random_letter.png';
 // import diceIcon from './dice.svg';

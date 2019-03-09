@@ -1,3 +1,5 @@
+@import '../variables';
+
 .AppShell {
   display: flex;
   min-height: 100vh;
@@ -7,10 +9,5 @@
 
 body {
   margin: 0;
-  background-image: url('./background_image.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  // transition: background 0s linear 0s
+  background-color: $color-primary-super-light;
 }

@@ -23,7 +23,7 @@ const DesktopWizard = ({
   t,
   children,
 }) => (
-  <div>
+  <div className={c('WizardForm')}>
     <Stepper className={c('WizardForm__stepper')} activeStep={activeStep}>
       {stepLabels.map((label, index) => {
         const props = {};

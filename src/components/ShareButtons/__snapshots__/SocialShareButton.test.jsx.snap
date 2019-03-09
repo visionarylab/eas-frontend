@@ -2,14 +2,17 @@
 
 exports[`SocialShareButton Email should render correctly 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="email"
   url="the_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="email"
     url="the_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="email"
       track={[Function]}
       url="the_url"
@@ -106,14 +109,17 @@ exports[`SocialShareButton Email should render correctly 1`] = `
 
 exports[`SocialShareButton Facebook should render correctly 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="facebook"
   url="the_cool_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="facebook"
     url="the_cool_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="facebook"
       track={[Function]}
       url="the_cool_url"
@@ -211,14 +217,17 @@ exports[`SocialShareButton Facebook should render correctly 1`] = `
 
 exports[`SocialShareButton Telegram should render correctly 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="telegram"
   url="the_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="telegram"
     url="the_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="telegram"
       track={[Function]}
       url="the_url"
@@ -316,14 +325,17 @@ exports[`SocialShareButton Telegram should render correctly 1`] = `
 
 exports[`SocialShareButton Twitter should render correctly 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="twitter"
   url="the_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="twitter"
     url="the_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="twitter"
       track={[Function]}
       url="the_url"
@@ -422,14 +434,17 @@ exports[`SocialShareButton Twitter should render correctly 1`] = `
 
 exports[`SocialShareButton Whatsapp should render correctly 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="whatsapp"
   url="the_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="whatsapp"
     url="the_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="whatsapp"
       track={[Function]}
       url="the_url"
@@ -529,14 +544,17 @@ exports[`SocialShareButton Whatsapp should render correctly 1`] = `
 
 exports[`SocialShareButton should not be rendered if socialType not valid 1`] = `
 <WithMixpanel
+  drawType="groups"
   socialType="not_valid_type"
   url="the_url"
 >
   <WithTracking
+    drawType="groups"
     socialType="not_valid_type"
     url="the_url"
   >
     <SocialShareButton
+      drawType="groups"
       socialType="not_valid_type"
       track={[Function]}
       url="the_url"

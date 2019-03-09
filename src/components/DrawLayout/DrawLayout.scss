@@ -16,48 +16,21 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
   @media (min-width: $media-desktop) {
     margin: auto;
     flex-direction: row;
+  }
 
-    @media (min-width: $media-widescreen) {
-      width: 88rem;
-    }
+  @media (min-width: $media-widescreen) {
+    width: 88rem;
   }
 
   &__content {
-    position: relative;
-    // ------ Old style
-    /* stylelint-disable */
-    padding: 15px 15px 10px;
-    border: 5px #e9e9e9 solid;
-    color: #3f3f3f;
-
     @media (min-width: $media-desktop) {
       margin-left: $side-panel-total-width-small;
       flex: 1 0 0;
-
-      @media (min-width: $media-widescreen) {
-        margin-left: $side-panel-total-width;
-      }
     }
 
-    &--opaque {
-      padding: $spacing-sm 0 0 0;
-      background: #fafafa;
+    @media (min-width: $media-widescreen) {
+      margin-left: $side-panel-total-width;
     }
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: ' ';
-      display: block;
-      z-index: -11;
-      width: 100%;
-      height: 100%;
-      border: $one-pixel-rem solid #d6d6d6;
-      background: url('./background_pattern.png');
-      opacity: .5;
-    }
-    /* stylelint-enable */
   }
 
   &__side-panel {
@@ -67,12 +40,12 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
       width: $side-panel-width-small;
       padding-right: $side-panel-padding-small;
       padding-left: $side-panel-padding-small;
+    }
 
-      @media (min-width: $media-widescreen) {
-        width: $side-panel-width;
-        padding-right: $side-panel-padding;
-        padding-left: $side-panel-padding;
-      }
+    @media (min-width: $media-widescreen) {
+      width: $side-panel-width;
+      padding-right: $side-panel-padding;
+      padding-left: $side-panel-padding;
     }
   }
 
