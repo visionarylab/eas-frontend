@@ -1,14 +1,5 @@
 @import '../variables';
 
-.MobileWizardForm {
-  background: white;
-
-  &__step-label {
-    padding: $spacing-md;
-    background: #fafafa;
-  }
-}
-
 .WizardForm {
   & &__stepper {
     background-color: $color-primary-super-light;

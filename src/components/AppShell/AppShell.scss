@@ -7,7 +7,7 @@
   // There must be an element between the Header and the Footer with 'flex: 1;' (e.g. a Page)
 }
 
-body {
+body { /* stylelint-disable-line selector-max-type */
   margin: 0;
   background-color: $color-primary-super-light;
 }

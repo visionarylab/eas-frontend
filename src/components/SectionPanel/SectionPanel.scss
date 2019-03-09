@@ -1,10 +1,9 @@
 @import '../variables';
-@import '../include-media';
 
 .SectionPanel {
-  margin: $spacing-lg $spacing-sm $spacing-lg $spacing-sm;
+  margin: $spacing-sm $spacing-sm $spacing-lg $spacing-sm;
 
-  @include media('>desktop') {
+  @media (min-width: $media-desktop) {
     padding-right: $spacing-lg;
     padding-left: $spacing-lg;
   }

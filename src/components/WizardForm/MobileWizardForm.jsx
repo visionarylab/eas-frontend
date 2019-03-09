@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import classnames from 'classnames/bind';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
-import STYLES from './WizardForm.scss';
-
-const c = classnames.bind(STYLES);
 
 const MobileWizardForm = ({
-  stepLabels,
+  numSteps,
   submitButtonLabel,
   activeStep,
   apiError,
@@ -22,19 +16,16 @@ const MobileWizardForm = ({
   children,
   t,
 }) => (
-  <div className={c('MobileWizardForm')}>
-    <div className={c('MobileWizardForm__step-label')}>
-      <Typography align="center">{stepLabels[activeStep]}</Typography>
-    </div>
+  <div>
     {children}
     {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
     <MobileStepper
-      steps={stepLabels.length}
+      steps={numSteps}
       position="static"
       activeStep={activeStep}
       nextButton={
         <Button size="small" onClick={handleNext}>
-          {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
+          {activeStep === numSteps - 1 ? submitButtonLabel : t('next')}
           <KeyboardArrowRight />
         </Button>
       }
@@ -49,7 +40,7 @@ const MobileWizardForm = ({
 );
 
 MobileWizardForm.propTypes = {
-  stepLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  numSteps: PropTypes.number.isRequired,
   activeStep: PropTypes.number.isRequired,
   apiError: PropTypes.bool,
   submitButtonLabel: PropTypes.string.isRequired,

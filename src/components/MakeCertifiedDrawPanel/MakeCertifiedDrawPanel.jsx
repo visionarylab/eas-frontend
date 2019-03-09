@@ -12,7 +12,7 @@ import STYLES from './MakeCertifiedDrawPanel.scss';
 const c = classnames.bind(STYLES);
 
 const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, children }) => (
-  <Card>
+  <Card className={c('MakeCertifiedDrawPanel')}>
     <CardContent>
       <Typography variant="body2" component="p">
         {children}

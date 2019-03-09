@@ -101,7 +101,6 @@ class WizardForm extends Component {
 
     const commonWizardProps = {
       activeStep,
-      stepLabels,
       submitButtonLabel,
       apiError,
       handleNext: this.handleNext,
@@ -112,11 +111,14 @@ class WizardForm extends Component {
       <DeviceContext.Consumer>
         {({ isMobile }) =>
           isMobile ? (
-            <MobileWizardForm {...commonWizardProps}>{content}</MobileWizardForm>
+            <MobileWizardForm numSteps={stepLabels.length} {...commonWizardProps}>
+              {content}
+            </MobileWizardForm>
           ) : (
             <DesktopWizardForm
               stepValidations={stepValidations}
               submittedSteps={submittedSteps}
+              stepLabels={stepLabels}
               {...commonWizardProps}
             >
               {content}

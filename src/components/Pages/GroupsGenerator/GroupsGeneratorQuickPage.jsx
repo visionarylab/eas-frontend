@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
@@ -59,12 +59,7 @@ const GroupsGeneratorQuickPage = props => {
           </MakeCertifiedDrawPanel>
         }
       >
-        <Typography variant="h1" align="center">
-          {t('page_title')}
-        </Typography>
-        <Typography variant="body1" align="center" color="textSecondary">
-          {t('draw_subheading')}
-        </Typography>
+        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
         <ValidatedForm
           onSubmit={e => {
             e.preventDefault();

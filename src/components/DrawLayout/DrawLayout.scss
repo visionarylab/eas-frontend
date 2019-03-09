@@ -1,5 +1,5 @@
-@import '../include-media';
 @import '../variables';
+
 $result-font-size: 10rem;
 $side-panel-width: 19rem;
 $side-panel-width-small: 9rem;
@@ -34,7 +34,7 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
   }
 
   &__side-panel {
-    padding: $spacing-sm $side-panel-padding-small $spacing-sm $side-panel-padding-small;
+    padding: 0 $side-panel-padding-small;
 
     @media (min-width: $media-desktop) {
       width: $side-panel-width-small;

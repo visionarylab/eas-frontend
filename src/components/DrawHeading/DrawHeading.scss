@@ -1,6 +1,12 @@
 @import '../variables';
 
 .DrawHeading {
-  margin-bottom: $spacing-md;
+  margin: $spacing-md 0;
   text-align: center;
+
+  @media (max-width: $media-tablet) {
+    & &__subtitle {
+      display: none;
+    }
+  }
 }
