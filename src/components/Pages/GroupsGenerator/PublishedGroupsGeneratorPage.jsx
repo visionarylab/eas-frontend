@@ -17,6 +17,7 @@ import groupsOgImage from './groups_og_image.png';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
 const c = classNames.bind(STYLES);
+const analyticsDrawType = 'Groups';
 
 const PublishedGroupsGeneratorPage = props => {
   const {
@@ -57,13 +58,21 @@ const PublishedGroupsGeneratorPage = props => {
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />
             <br />
-            <ShareButtons sectionTitle={t('share_result')} url={shareUrl} />
+            <ShareButtons
+              drawType={analyticsDrawType}
+              sectionTitle={t('share_result')}
+              url={shareUrl}
+            />
           </ResultsBox>
         ) : (
           <Fragment>
             <Countdown date={result.schedule_date} />
             {isOwner && <Button type="submit" onClick={onToss} />}
-            <ShareButtons drawType="Groups" sectionTitle={t('share_draw')} url={shareUrl} />
+            <ShareButtons
+              drawType={analyticsDrawType}
+              sectionTitle={t('share_draw')}
+              url={shareUrl}
+            />
           </Fragment>
         )}
 

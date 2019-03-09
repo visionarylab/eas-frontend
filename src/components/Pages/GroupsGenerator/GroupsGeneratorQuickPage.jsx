@@ -15,6 +15,7 @@ import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDr
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import groupsOgImage from './groups_og_image.png';
 
+const analyticsDrawType = 'Groups';
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const GroupsGeneratorQuickPage = props => {
@@ -44,10 +45,10 @@ const GroupsGeneratorQuickPage = props => {
             publicDrawUrl={publicDrawUrl}
             trackingData={{
               mp: {
-                name: 'Start Public Draw',
-                properties: { drawType: 'Groups', source: 'From Scratch' },
+                name: `Start Public Draw - ${analyticsDrawType}`,
+                properties: { drawType: analyticsDrawType, source: 'From Scratch' },
               },
-              ga: { category: 'Groups', action: 'Start Public', label: 'From Scratch' },
+              ga: { category: analyticsDrawType, action: 'Start Public', label: 'From Scratch' },
             }}
           >
             <span>
@@ -83,10 +84,14 @@ const GroupsGeneratorQuickPage = props => {
               publicDrawUrl={publicDrawUrl}
               trackingData={{
                 mp: {
-                  name: 'Start Public Draw',
-                  properties: { drawType: 'Groups', source: 'From Quick Result' },
+                  name: `Start Public Draw - ${analyticsDrawType}`,
+                  properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
                 },
-                ga: { category: 'Groups Draw', action: 'Start Public', label: 'From Quick Result' },
+                ga: {
+                  category: analyticsDrawType,
+                  action: 'Start Public',
+                  label: 'From Quick Result',
+                },
               }}
             />
           </Fragment>

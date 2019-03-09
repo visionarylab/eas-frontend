@@ -9,23 +9,25 @@ import STYLES from './GroupsGeneratorResult.scss';
 const c = classnames.bind(STYLES);
 
 const GroupsGeneratorResult = ({ result, t }) => (
-  <div className={c('GroupsGeneratorResult')}>
-    {result.value.map((group, index) => (
-      <div key={group[0].id} className={c('GroupsGeneratorResult__group')}>
-        <Typography variant="caption">
-          {t('result_label_group', { groupNumber: index + 1 })}
-        </Typography>
-        <Typography
-          className={c('GroupsGeneratorResult__results')}
-          variant="body1"
-          align="center"
-          data-component="GroupsGeneratorResult__result"
-          key={group[0].id}
-        >
-          {group.map(participant => participant.name).join(', ')}
-        </Typography>
-      </div>
-    ))}
+  <div>
+    <div className={c('GroupsGeneratorResult')}>
+      {result.value.map((group, index) => (
+        <div key={group[0].id} className={c('GroupsGeneratorResult__group')}>
+          <Typography variant="caption">
+            {t('result_label_group', { groupNumber: index + 1 })}
+          </Typography>
+          <ul>
+            {group.map(participant => (
+              <li key={participant.id}>
+                <Typography variant="body1" data-component="GroupsGeneratorResult__result">
+                  {participant.name}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
   </div>
 );
 

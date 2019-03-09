@@ -8,6 +8,7 @@ import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
 import withTracking from '../../withTracking/withTracking.jsx';
 
 const groupsApi = new GroupsApi();
+const analyticsDrawType = 'Groups';
 class GroupsGeneratorPageContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -74,8 +75,8 @@ class GroupsGeneratorPageContainer extends React.Component {
       const tossResponse = await groupsApi.groupsToss(privateId, {});
       const { track } = this.props;
       track({
-        mp: { name: 'Toss - Groups', properties: { drawType: 'Groups' } },
-        ga: { action: 'Toss', category: 'Groups Draw' },
+        mp: { name: `Toss - ${analyticsDrawType}`, properties: { drawType: analyticsDrawType } },
+        ga: { action: 'Toss', category: analyticsDrawType },
       });
       this.setState({ quickResult: tossResponse, APIError: false });
     } catch (err) {
@@ -84,7 +85,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handlePublish = async () => {
-    const { /* match, */ history } = this.props;
+    const { history } = this.props;
     const { values } = this.state;
     try {
       const draw = await this.createDraw();
@@ -95,11 +96,13 @@ class GroupsGeneratorPageContainer extends React.Component {
 
       const { track } = this.props;
       track({
-        mp: { name: 'Publish - Groups', properties: { drawType: 'Groups', drawId: draw.id } },
-        ga: { action: 'Publish', category: 'Groups', label: draw.id },
+        mp: {
+          name: `Publish - ${analyticsDrawType}`,
+          properties: { drawType: analyticsDrawType, drawId: draw.id },
+        },
+        ga: { action: 'Publish', category: analyticsDrawType, label: draw.id },
       });
 
-      // const drawPathname = match.url.replace('public', draw.private_id);
       const drawPathname = `/groups/${draw.id}`;
       history.push(drawPathname);
     } catch (err) {

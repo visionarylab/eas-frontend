@@ -4,17 +4,15 @@ $results-font-size: 2rem;
 $border-radius: .2rem;
 
 .GroupsGeneratorResult {
+  display: inline-block;
+
   &__group {
     margin-top: $spacing-md;
-    padding: $spacing-xs;
+    padding: $spacing-xs $spacing-md $spacing-xs $spacing-xs;
     border-width: $one-pixel-rem;
     border-style: solid;
     border-radius: $border-radius;
     border-color: $color-gray;
-  }
-
-  & &__results {
-    font-size: $results-font-size;
-    line-height: $results-font-size;
+    text-align: left;
   }
 }
