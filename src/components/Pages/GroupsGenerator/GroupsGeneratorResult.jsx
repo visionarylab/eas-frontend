@@ -9,8 +9,8 @@ import STYLES from './GroupsGeneratorResult.scss';
 const c = classnames.bind(STYLES);
 
 const GroupsGeneratorResult = ({ result, t }) => (
-  <div>
-    <div className={c('GroupsGeneratorResult')}>
+  <div className={c('GroupsGeneratorResult')}>
+    <div className={c('GroupsGeneratorResult__container')}>
       {result.value.map((group, index) => (
         <div key={group[0].id} className={c('GroupsGeneratorResult__group')}>
           <Typography variant="caption">

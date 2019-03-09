@@ -4,7 +4,11 @@ $results-font-size: 2rem;
 $border-radius: .2rem;
 
 .GroupsGeneratorResult {
-  display: inline-block;
+  text-align: center;
+
+  &__container {
+    display: inline-block;
+  }
 
   &__group {
     margin-top: $spacing-md;
