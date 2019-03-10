@@ -212,5 +212,10 @@
   },
   "Footer": {
     "privacy_policy": "Politica de privacidad"
+  },
+  "CookieBanner": {
+    "basic_info": "Usamos cookies para asegurar la mejor experiencia en nuestra página.",
+    "learn_more": "Más información",
+    "got_it": "Entendido"
   }
 }
