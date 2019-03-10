@@ -16,7 +16,7 @@ const localeMap = {
 };
 
 const TranslationsSwitch = ({ available, onChange, t }) => (
-  <div className={c('TranslationsSwitch')}>
+  <span className={c('TranslationsSwitch')}>
     <Typography className={c('TranslationsSwitch__label')} variant="body1" component="span">
       {t('change_language')}
     </Typography>
@@ -29,7 +29,7 @@ const TranslationsSwitch = ({ available, onChange, t }) => (
         ))}
       </Select>
     </FormControl>
-  </div>
+  </span>
 );
 
 TranslationsSwitch.propTypes = {

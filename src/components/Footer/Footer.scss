@@ -6,4 +6,10 @@ $footer-background-color: $color-primary;
   padding: $spacing-sm 0 $spacing-sm;
   background: $footer-background-color;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+
+  & &__link {
+    line-height: 2rem;
+  }
 }

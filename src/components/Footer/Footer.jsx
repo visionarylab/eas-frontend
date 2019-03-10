@@ -1,5 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
+import { translate } from 'react-i18next';
+import Typography from '@material-ui/core/Typography';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import i18n from '../../i18n/i18n';
 import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch.jsx';
 import STYLES from './Footer.scss';
@@ -37,12 +42,19 @@ const handleChangeLanguage = l => {
   }
 };
 
-const Footer = () => (
+const Footer = ({ t }) => (
   <footer className={c('Footer')}>
+    <Link component={RouterLink} to="/privacy-policy" color="textPrimary">
+      <Typography className={c('Footer__link')} variant="body1" component="span">
+        {t('privacy_policy')}
+      </Typography>
+    </Link>
     <TranslationsSwitch onChange={handleChangeLanguage} available={availableLocales} />
   </footer>
 );
 
-Footer.propTypes = {};
+Footer.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
-export default Footer;
+export default translate('Footer')(Footer);

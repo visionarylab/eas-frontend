@@ -210,7 +210,7 @@
     "back": "Atrás",
     "next": "Siguiente"
   },
-  "PrivacyPolicy": {
-    "privacy_policy": "aaa"
+  "Footer": {
+    "privacy_policy": "Politica de privacidad"
   }
 }
