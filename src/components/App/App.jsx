@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
-import showCookieBanner from '../../services/cookieConsent';
+// import showCookieBanner from '../../services/cookieConsent';
 import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell.jsx';
 import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
@@ -30,9 +30,9 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    showCookieBanner();
-  }
+  // componentDidMount() {
+  //   showCookieBanner();
+  // }
 
   render() {
     return (
