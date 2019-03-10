@@ -183,5 +183,8 @@
   "WizardForm": {
     "back": "Back",
     "next": "Next"
+  },
+  "PrivacyPolicy": {
+    "privacy_policy": "bbb"
   }
 }

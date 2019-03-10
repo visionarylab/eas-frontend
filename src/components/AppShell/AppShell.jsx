@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer.jsx';
 import STYLES from './AppShell.scss';
 // import config from '../../config/config';
 
+import PrivacyPolicyPage from '../Pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
 // import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer.jsx';
 import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPageContainer.jsx';
 // import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer.jsx';
@@ -46,6 +47,7 @@ const AppShell = () => (
         component={PublishedGroupsGeneratorPageContainer}
       />
 
+      <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
         exact
