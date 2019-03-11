@@ -1,24 +1,16 @@
-// Express requirements
 import path from 'path';
 import fs from 'fs';
-
-// Material UI stuff
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, createGenerateClassName } from '@material-ui/core/styles';
-
-// React requirements
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { StaticRouter } from 'react-router';
-
 import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
-
 import theme from '../src/EasTheme.jsx';
 
-// LOADER
 export default (req, res) => {
   /*
     A simple helper function to prepare the HTML markup. This loads:
@@ -89,7 +81,6 @@ export default (req, res) => {
       state: JSON.stringify({}).replace(/</g, '\\u003c'),
       css,
     });
-    console.log(html);
 
     // We have all the final HTML, let's send it to the user already!
     res.send(html);

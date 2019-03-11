@@ -3,6 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
+import * as Sentry from '@sentry/browser';
 // import showCookieBanner from '../../services/cookieConsent';
 import i18n from '../../i18n/i18n';
 import AppShell from '../AppShell/AppShell.jsx';
@@ -23,10 +24,10 @@ class App extends Component {
       hotjar.initialize(1051921, 6);
     }
     if (config.sentryEnabled) {
-      // eslint-disable-next-line no-undef
-      window.Raven.config('https://bebd8f08ca1e44b0bd2b2d5f352332f4@sentry.io/1247679', {
+      Sentry.init({
+        dsn: config.sentryDsn,
         environment: config.environment,
-      }).install();
+      });
     }
   }
 

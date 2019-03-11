@@ -28,6 +28,7 @@ if (environment) {
       environment,
       domain: isServer ? 'https://echaloasuerte.com' : window.location.origin,
       isServer,
+      sentryDsn: 'https://bebd8f08ca1e44b0bd2b2d5f352332f4@sentry.io/1247679',
     };
 
     const environmentConfig = require(`./${environment}`).default; // eslint-disable-line 

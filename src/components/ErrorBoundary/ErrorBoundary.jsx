@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import config from '../../config/config';
+
+import * as Sentry from '@sentry/browser';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -14,9 +15,12 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true, error, errorInfo });
-    if (!config.isServer) {
-      window.Raven.captureException(error, { extra: errorInfo });
-    }
+    Sentry.withScope(scope => {
+      Object.keys(errorInfo).forEach(key => {
+        scope.setExtra(key, errorInfo[key]);
+      });
+      Sentry.captureException(error);
+    });
   }
 
   render() {
