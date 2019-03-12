@@ -28,7 +28,7 @@ if (environment) {
       environment,
       domain: isServer ? 'https://echaloasuerte.com' : window.location.origin,
       isServer,
-      sentryDsn: 'https://bebd8f08ca1e44b0bd2b2d5f352332f4@sentry.io/1247679',
+      sentryDsn: 'https://1abd369d5cc644ae8e9ec016f43c46b5@sentry.io/1412847',
     };
 
     const environmentConfig = require(`./${environment}`).default; // eslint-disable-line 
