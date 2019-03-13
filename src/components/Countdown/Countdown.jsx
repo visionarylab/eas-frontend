@@ -26,7 +26,7 @@ const Countdown = ({ date, t }) => {
         zeroPadLength={0}
         renderer={({ days, hours, minutes, seconds, completed }) => {
           if (completed) {
-            return 'done';
+            return 'Results are public now';
           }
 
           let countdownMessage = '';

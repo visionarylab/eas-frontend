@@ -75,7 +75,7 @@ class Page extends Component {
 
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
-  htmlDescription: PropTypes.string.isRequired,
+  htmlDescription: PropTypes.string,
   htmlKeywords: PropTypes.string,
   pageType: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -91,6 +91,7 @@ Page.defaultProps = {
   noIndex: false,
   ogImage: defaultOgImage,
   htmlKeywords: '',
+  htmlDescription: '',
 };
 
 export default withMixpanel(withRouter(Page));
