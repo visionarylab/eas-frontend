@@ -42,6 +42,7 @@ const AppShell = () => (
         path="/draw/new/groups/:isPublic(shared)?"
         component={GroupsGeneratorPageContainer}
       />
+      <Route exact path="/groups/:isPublic(public)?" component={GroupsGeneratorPageContainer} />
       <Route
         exact
         path={`/groups/:drawId(${guidRegex})`}
