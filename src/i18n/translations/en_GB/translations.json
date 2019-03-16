@@ -2,6 +2,11 @@
   "ApiError": {
     "api_error": "We are having some trouble in our servers."
   },
+  "CookieBanner": {
+    "basic_info": "We use cookies to ensure the best experience in our site.",
+    "got_it": "Got it",
+    "learn_more": "Learn more"
+  },
   "Countdown": {
     "results_published_on": "Results will be published on",
     "time_remaining": "Time remaining"
@@ -26,6 +31,9 @@
     "html_description": "Do you need to make a decision? Flip a coin online. Head or tails, let the luck decide.",
     "html_title": "Heads or Tails",
     "page_title": "Head or tails"
+  },
+  "Footer": {
+    "privacy_policy": "Privacy Policy"
   },
   "GroupsGenerator": {
     "certified_draw_description": "If you want to make a public raffle to ensure an impartial result you should create a certified raffle.",
@@ -55,7 +63,8 @@
     "step_title_when_to_toss": "Choose the date when the results will be published"
   },
   "Header": {
-    "brand_name": "ChooseRandom"
+    "brand_name": "ChooseRandom",
+    "recent_draws": "Recent Raffles"
   },
   "HomePage": {
     "draw_title_facebook_login": "Raffle among Facebook users",
@@ -83,6 +92,9 @@
     "number_of_letters": "Number of letters",
     "publish_draw": "Publish draw",
     "when_to_toss": "When do you want to show the results?"
+  },
+  "PrivacyPolicy": {
+    "html_title": "Privacy Policy"
   },
   "PrizeSelector": {
     "list_of_prizes": "List of prizes",
@@ -167,6 +179,20 @@
     "step_title_general_details": "General details",
     "step_title_when_to_toss": "When do you want to generate the results?"
   },
+  "RecentDrawsPage": {
+    "delete_all_recent_draws_modal_cancel": "Cancel",
+    "delete_all_recent_draws_modal_confirm": "Clear history",
+    "delete_all_recent_draws_modal_content": "Raffles are only removed from your history, participants will still be able to access them if they have the link.",
+    "delete_all_recent_draws_modal_title": "Do you want to clear your history of raffles?",
+    "delete_recent_draw_modal_confirm": "Remove raffle",
+    "delete_recent_draw_modal_content": "This raffle will only be removed from your history of recent raffles, participants who have the link will still be able to access it.",
+    "delete_recent_draw_modal_title": "Remove raffle from you history",
+    "delete_recent_raffles_button_label": "Remove recent raffles",
+    "empty_list": "You haven't published any raffle",
+    "html_title": "Recent Raffles",
+    "html_tittle": "Recent raffles",
+    "page_title": "Recent Raffles"
+  },
   "SpinArrow": {
     "draw_subheading": "(Hit the arrow to make it spin)",
     "html_description": "Do you need to decide who wil be the chosen one? Spin an arrow online",
@@ -183,8 +209,5 @@
   "WizardForm": {
     "back": "Back",
     "next": "Next"
-  },
-  "PrivacyPolicy": {
-    "privacy_policy": "bbb"
   }
 }

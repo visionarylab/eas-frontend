@@ -10,12 +10,7 @@ import STYLES from './PrivacyPolicyPage.scss';
 const c = classnames.bind(STYLES);
 
 const PrivacyPolicyPage = ({ t }) => (
-  <Page
-    htmlTitle={t('html_title')}
-    htmlDescription={t('html_description')}
-    pageType="Privacy Policy"
-    className={c('PrivacyPolicyPage')}
-  >
+  <Page htmlTitle={t('html_title')} pageType="Privacy Policy" className={c('PrivacyPolicyPage')}>
     {i18n.language === 'es-ES' ? (
       <div>
         <h1>Política de privacidad</h1>

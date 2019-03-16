@@ -11,6 +11,7 @@ import STYLES from './AppShell.scss';
 // import config from '../../config/config';
 
 import PrivacyPolicyPage from '../Pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
+import RecentDraws from '../Pages/RecentDraws/RecentDrawsPage.jsx';
 // import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer.jsx';
 import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPageContainer.jsx';
 // import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer.jsx';
@@ -48,6 +49,7 @@ const AppShell = () => (
       />
 
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route exact path="/recent" component={RecentDraws} />
       {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
         exact

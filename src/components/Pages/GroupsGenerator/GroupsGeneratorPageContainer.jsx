@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { GroupsApi, Groups, DrawTossPayload } from 'echaloasuerte-js-sdk';
-
+import moment from 'moment';
 import GroupsGeneratorPage from './GroupsGeneratorPage.jsx';
 import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
 import withTracking from '../../withTracking/withTracking.jsx';
+import recentDraws from '../../../services/recentDraws';
 
 const groupsApi = new GroupsApi();
 const analyticsDrawType = 'Groups';
@@ -92,8 +93,8 @@ class GroupsGeneratorPageContainer extends React.Component {
 
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
-      await groupsApi.groupsToss(draw.private_id, drawTossPayload);
-
+      const tossResponse = await groupsApi.groupsToss(draw.private_id, drawTossPayload);
+      const scheduleDate = moment(tossResponse.schedule_date).unix();
       const { track } = this.props;
       track({
         mp: {
@@ -103,8 +104,9 @@ class GroupsGeneratorPageContainer extends React.Component {
         ga: { action: 'Publish', category: analyticsDrawType, label: draw.id },
       });
 
-      const drawPathname = `/groups/${draw.id}`;
-      history.push(drawPathname);
+      const drawPath = `/groups/${draw.id}`;
+      recentDraws.add(draw, drawPath, scheduleDate);
+      history.push(drawPath);
     } catch (err) {
       this.setState({ APIError: true });
     }

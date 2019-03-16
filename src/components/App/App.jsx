@@ -21,7 +21,6 @@ class App extends Component {
       mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
       ReactGA.set({ dimension2: 'v3' });
-      hotjar.initialize(1051921, 6);
     }
     if (config.sentryEnabled) {
       Sentry.init({
@@ -31,9 +30,10 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   showCookieBanner();
-  // }
+  componentDidMount() {
+    hotjar.initialize(1051921, 6);
+    // showCookieBanner();
+  }
 
   render() {
     return (

@@ -2,6 +2,11 @@
   "ApiError": {
     "api_error": "Estamos teniendo problemas en nuestro servidor."
   },
+  "CookieBanner": {
+    "basic_info": "Usamos cookies para asegurar la mejor experiencia en nuestra página.",
+    "got_it": "Entendido",
+    "learn_more": "Más información"
+  },
   "Countdown": {
     "results_published_on": "El resultado será publicado el",
     "time_remaining": "Tiempo restante"
@@ -47,6 +52,9 @@
     "html_title": "Cara o cruz",
     "page_title": "Cara o cruz"
   },
+  "Footer": {
+    "privacy_policy": "Politica de privacidad"
+  },
   "GroupsGenerator": {
     "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo certificado.",
     "create_certificated_draw": "Genera grupos certificados",
@@ -75,7 +83,8 @@
     "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados"
   },
   "Header": {
-    "brand_name": "ÉchaloASuerte"
+    "brand_name": "ÉchaloASuerte",
+    "recent_draws": "Sorteos recientes"
   },
   "HomePage": {
     "draw_title_facebook_login": "Sorteo entre usuarios de Facebook",
@@ -103,6 +112,9 @@
     "number_of_letters": "Número de letras",
     "publish_draw": "Publicar tidada",
     "when_to_toss": "Cuándo quieres mostrar los resultados?"
+  },
+  "PrivacyPolicy": {
+    "html_title": "Politica de privacidad"
   },
   "PrizeSelector": {
     "list_of_prizes": "Lista de premios",
@@ -193,6 +205,20 @@
     "step_title_general_details": "Detalles generales",
     "step_title_when_to_toss": "Cuando quieres que se generen los resultados?"
   },
+  "RecentDrawsPage": {
+    "delete_all_recent_draws_modal_cancel": "Cancelar",
+    "delete_all_recent_draws_modal_confirm": "Borrar historial",
+    "delete_all_recent_draws_modal_content": "Los sorteos sólamente serán eliminados de tu historial de tiradas recientes, los participantes podrán seguir accediendo a ellos sin tienen los links.",
+    "delete_all_recent_draws_modal_title": "¿Quieres borrar tu historial de sorteos?",
+    "delete_recent_draw_modal_confirm": "Eliminar sorteo",
+    "delete_recent_draw_modal_content": "El sorteo sólamente será eliminado de tu historial de sorteos recientes, los participantes que tengan el link podrán seguir accediendo si.",
+    "delete_recent_draw_modal_title": "Eliminar sorteo de tus historial",
+    "delete_recent_raffles_button_label": "Eliminar sorteos recientes",
+    "empty_list": "No has realizado ningún sorteo público",
+    "html_title": "Sorteos recientes",
+    "html_tittle": "Sorteos Recientes",
+    "page_title": "Sorteos recientes"
+  },
   "SpinArrow": {
     "draw_subheading": "(Toca la flecha para hacerla girar)",
     "html_description": "¿Necesitas decidir quién sera el elegido? Gira la flecha para tomar la decisión",
@@ -209,13 +235,5 @@
   "WizardForm": {
     "back": "Atrás",
     "next": "Siguiente"
-  },
-  "Footer": {
-    "privacy_policy": "Politica de privacidad"
-  },
-  "CookieBanner": {
-    "basic_info": "Usamos cookies para asegurar la mejor experiencia en nuestra página.",
-    "learn_more": "Más información",
-    "got_it": "Entendido"
   }
 }
