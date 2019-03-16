@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
+// import { Link as RouterLink } from 'react-router-dom';
+// import Link from '@material-ui/core/Link';
 import { translate } from 'react-i18next';
 
 import STYLES from './Header.scss';
@@ -19,13 +19,13 @@ const Header = ({ t }) => (
         {t('brand_name')}
       </Typography>
     </a>
-    <span className={c('Header__links')}>
+    {/* <span className={c('Header__links')}>
       <Link component={RouterLink} to="/recent" color="textPrimary">
         <Typography variant="body1" component="span" inline>
           {t('recent_draws')}
         </Typography>
       </Link>
-    </span>
+    </span> */}
   </header>
 );
 
