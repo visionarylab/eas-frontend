@@ -67,7 +67,6 @@ const PublishedGroupsGeneratorPage = props => {
         ) : (
           <Fragment>
             <Countdown date={result.schedule_date} />
-            {isOwner && <Button type="submit" onClick={onToss} />}
             <ShareButtons
               drawType={analyticsDrawType}
               sectionTitle={t('share_draw')}

@@ -7,7 +7,7 @@ import withFieldValidation from '../withValidation/withFieldValidation.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
 
-const PublicDetails = ({ title, description, onFieldChange, t }) => (
+const PublicDetails = ({ title, titleRequired, description, onFieldChange, t }) => (
   <Fragment>
     <ValidatedTextField
       name="title"
@@ -16,6 +16,8 @@ const PublicDetails = ({ title, description, onFieldChange, t }) => (
       value={title}
       margin="normal"
       fullWidth
+      required={titleRequired}
+      validators={titleRequired ? [{ rule: 'required' }] : []}
       onChange={e => onFieldChange('title', e.target.value)}
       data-component="PublicDetails__title-field"
       inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
@@ -39,6 +41,7 @@ const PublicDetails = ({ title, description, onFieldChange, t }) => (
 
 PublicDetails.propTypes = {
   title: PropTypes.string,
+  titleRequired: PropTypes.bool,
   description: PropTypes.string,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -47,6 +50,7 @@ PublicDetails.propTypes = {
 PublicDetails.defaultProps = {
   title: '',
   description: '',
+  titleRequired: false,
 };
 
 export default translate('PublicDetails')(PublicDetails);

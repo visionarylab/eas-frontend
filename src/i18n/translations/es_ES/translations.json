@@ -18,15 +18,8 @@
     "only_future_date_valid": "Tienes que elegir una fecha en el futuro",
     "today": "Hoy"
   },
-  "FacebookDraw": {
-    "check_participants": "Ver participantes",
-    "facebook_draw_html_title": "Organizar eb Facebook",
-    "facebook_draw_seo_description": "<0>Organiza sorteos en tu página de Facebook</0>",
-    "number_of_winners": "Número de ganadores",
-    "post_or_photo_url": "Url de la foto o post",
-    "publish_draw": "Publicar sorteo"
-  },
-  "FacebookLoginRafflePage": {
+  "FacebookRaffle": {
+    "page_title": "Sorteo entre usuarios de Facebook",
     "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
@@ -34,7 +27,11 @@
     "publish_raffle": "Publicar sorteo",
     "raffle_explanation": "Los usuarios se registrarán en el sorteo con su cuenta de Facebook, de esta manera te asegurarás de que cada usuario solo se regista una vez.",
     "raffle_when_to_toss_explanation": "El sorteo sera público en el momento en que hagas click en \"{{toss_button_label}}\". Los resultados sin embargo se generarán mas tarde, a continuación puedes elegir cuándo y cómo quieres que eso suceda.",
-    "when_to_toss": "Cuándo quieres que se generen los resultados?"
+    "when_to_toss": "Cuándo quieres que se generen los resultados?",
+    "login_with_facebook_to_participate": "Accede con Facebook para participar",
+    "participate_as": "Participar como {{username}}",
+    "registration_is_open": "El registro en el sorteo esta abierto!",
+    "winners": "Ganadores del sorteo"
   },
   "FacebookPhotoRafflePage": {
     "draw_subheading": "Some description",

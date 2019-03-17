@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { translate } from 'react-i18next';
 import Chip from '@material-ui/core/Chip';
 import classNames from 'classnames/bind';
+import { Prize } from 'echaloasuerte-js-sdk';
 
 import STYLES from './PrizesOverview.scss';
 
@@ -15,8 +16,8 @@ const PrizesOverview = ({ prizes, t }) => (
     <Typography variant="h2">{t('prizes')}</Typography>
     <ul className={c('PrizesOverview__prizes-list')}>
       {prizes.map((prize, i) => (
-        <li key={`prize-${prize}-${i}`}>
-          <Chip label={prize} />
+        <li key={`prize-${prize.id}-${i}`}>
+          <Chip label={prize.name} />
         </li>
       ))}
     </ul>
@@ -24,7 +25,7 @@ const PrizesOverview = ({ prizes, t }) => (
 );
 
 PrizesOverview.propTypes = {
-  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.instanceOf(Prize)).isRequired,
   t: PropTypes.func.isRequired,
 };
 
