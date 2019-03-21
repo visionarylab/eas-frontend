@@ -15,42 +15,44 @@ class FacebookLoginButton extends Component {
     }
   }
 
-  handleLogin = () => {
-    const { onLogin } = this.props;
-    window.FB.login(response => {
-      // Handle the response object, like in statusChangeCallback() in our demo
-      // code.
-      onLogin();
-    });
-  };
+  // handleLogin = () => {
+  //   const { onUserLoggedIn } = this.props;
+  //   window.FB.login(response => {
+  //     // Handle the response object, like in statusChangeCallback() in our demo
+  //     // code.
+  //     onUserLoggedIn();
+  //   });
+  // };
 
   render() {
     const { onLogin, permissions } = this.props;
     return (
-      <button onClick={this.handleLogin}>login</button>
-      // <div className={c('FacebookLoginButton')} data-component="FacebookLoginButton">
-      //   <div
-      //     className="fb-login-button"
-      //     data-max-rows="1"
-      //     data-size="large"
-      //     data-button-type="continue_with"
-      //     data-show-faces="false"
-      //     data-auto-logout-link="true"
-      //     data-use-continue-as="false"
-      //     data-scope={permissions}
-      //   />
-      // </div>
+      // <button onClick={this.handleLogin} data-component="FacebookLoginButton">
+      //   login
+      // </button>
+      <div className={c('FacebookLoginButton')} data-component="FacebookLoginButton">
+        <div
+          className="fb-login-button"
+          data-max-rows="1"
+          data-size="large"
+          data-button-type="continue_with"
+          data-show-faces="false"
+          data-auto-logout-link="true"
+          data-use-continue-as="false"
+          data-scope={permissions}
+        />
+      </div>
     );
   }
 }
 
 FacebookLoginButton.propTypes = {
-  onLogin: PropTypes.func,
+  onUserLoggedIn: PropTypes.func,
   permissions: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
-  onLogin: () => {},
+  onUserLoggedIn: () => {},
   permissions: '',
 };
 

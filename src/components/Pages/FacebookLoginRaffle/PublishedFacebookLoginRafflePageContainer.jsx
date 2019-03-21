@@ -32,6 +32,13 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     this.loadData();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { isLoggedInFB } = this.props.facebookContext;
+    if (prevProps.facebookContext.isLoggedInFB !== isLoggedInFB && isLoggedInFB) {
+      this.checkIfUserRegistered();
+    }
+  }
+
   onRegisterInRaffle = async () => {
     const { match } = this.props;
     const { drawId } = match.params;
@@ -44,11 +51,12 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
   };
 
   checkIfUserRegistered = async () => {
-    const { userName, userID } = this.props.facebookContext.getUserDetails();
+    const { userID } = this.props.facebookContext.getUserDetails();
     const { participants } = this.state;
     const participant = participants.find(p => p.facebook_id === userID);
     if (participant) {
       console.log('YES');
+      this.setState({ userRegisteredInRaffle: true });
     } else {
       console.log('NO');
     }
@@ -60,7 +68,6 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
 
     const draw = await raffleApi.raffleRead(drawId);
     const { title, description, participants, prizes } = draw;
-    console.log('draw', draw);
     const lastToss = draw.results[0];
     const scheduleDate = lastToss.schedule_date;
     const shareUrl = config.domain + match.url;
@@ -96,7 +103,6 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
       shareUrl,
       isLoading,
     } = this.state;
-    console.log('prizes', prizes);
     const { isLoggedInFB, getUserDetails } = this.props.facebookContext;
     return (
       <PublishedFacebookLoginRafflePage

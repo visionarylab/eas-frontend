@@ -20,6 +20,7 @@
   },
   "FacebookRaffle": {
     "page_title": "Sorteo entre usuarios de Facebook",
+    "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
     "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
@@ -31,7 +32,24 @@
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
     "participate_as": "Participar como {{username}}",
     "registration_is_open": "El registro en el sorteo esta abierto!",
-    "winners": "Ganadores del sorteo"
+    "winners": "Ganadores del sorteo",
+    "field_label_number_of_participants": "Número de participantes",
+    "field_label_prizes": "Premios",
+    "published_raffle_details": "Detalles del sorteo",
+    "share_draw": "Comparte este sorteo",
+    "share_result": "Comparte este resultado",
+    "step_label_prizes": "Añade los premios",
+    "step_label_general_details": "Detalles generales",
+    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
+    "step_title_prizes": "Añade los premios",
+    "step_title_general_details": "Detalles generales",
+    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
+    "message_no_prizes_added": "No has añadido ningún premio",
+    "field_label_list_of_prizes": "Lista de premios",
+    "publish_draw": "Publicar sorteo",
+    "people_registered_already": "Ya hay {{count}} persona inscrita",
+    "people_registered_already_0": "No Ya hay {{count}} persona inscrita"
+
   },
   "FacebookPhotoRafflePage": {
     "draw_subheading": "Some description",

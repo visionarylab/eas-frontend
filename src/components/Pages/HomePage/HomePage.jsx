@@ -14,7 +14,7 @@ import coinIcon from './coin.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
 // import likeIcon from './like.jpg';
-// import facebookIcon from './facebook.png';
+import facebookIcon from './facebook.png';
 // import raffleIcon from './raffle.svg';
 
 import STYLES from './HomePage.scss';
@@ -40,6 +40,9 @@ const HomePage = ({ t }) => (
       <DrawCard icon={coinIcon} to="draw/new/coin/">
         {t('draw_title_flip_coin')}
       </DrawCard>
+      <DrawCard icon={facebookIcon} to="/facebook">
+        {t('draw_title_facebook_login')}
+      </DrawCard>
       {/* <DrawCard icon={randomNumber} to="/number">
           {t('draw_title_random_number')}
         </DrawCard>
@@ -64,9 +67,6 @@ const HomePage = ({ t }) => (
       </DrawCard>
       <DrawCard icon={tournamentIcon} externalHref="https://echaloasuerte.com/draw/new/tournament/">
         {t('draw_title_tournament')}
-      </DrawCard>
-      <DrawCard icon={facebookIcon} to="/facebook_login">
-        {t('draw_title_facebook_login')}
       </DrawCard>
       <DrawCard icon={likeIcon} to="/facebook_photo">
         {t('draw_title_facebook_photo')}

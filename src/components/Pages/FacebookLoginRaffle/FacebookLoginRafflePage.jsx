@@ -119,4 +119,4 @@ FacebookLoginRafflePage.defaultProps = {
   apiError: false,
 };
 
-export default translate('FacebookLoginRaffle')(FacebookLoginRafflePage);
+export default translate('FacebookRaffle')(FacebookLoginRafflePage);

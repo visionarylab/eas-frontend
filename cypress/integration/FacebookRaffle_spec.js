@@ -5,13 +5,17 @@ describe('FacebookRaffle', () => {
   });
 
   describe('Creation page', () => {
-    it.skip('Google Analytics pageview event is sent', () => {
+    it('Google Analytics pageview event is sent', () => {
       cy.mockGA();
-      cy.visit('/raffle');
+      cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
+      cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
+      cy.visit('/facebook');
+      cy.wait('@startMixpanel');
+      cy.wait('@trackMixpanel');
 
       cy.get('@ga')
         .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-        .and('be.calledWith', 'send', { hitType: 'pageview', page: '/raffle' });
+        .and('be.calledWith', 'send', { hitType: 'pageview', page: '/facebook' });
     });
 
     it('It should be possible to create a raffle', () => {
@@ -56,6 +60,12 @@ describe('FacebookRaffle', () => {
 
       // Submit form
       cy.getComponent('WizardForm__next-button').click();
+      cy.get('@ga').should('be.calledWith', 'send', {
+        hitType: 'event',
+        eventCategory: 'Facebook',
+        eventAction: 'Publish',
+        eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
+      });
 
       cy.mockedRequestWait('POST', '/api/raffle')
         .its('requestBody')
@@ -75,71 +85,97 @@ describe('FacebookRaffle', () => {
       cy.location('pathname').should('eq', '/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
     });
   });
-  describe('Published Facebook Raffle page', () => {
-    // it('Should send GA pageview', () => {
-    //   cy.mockGA();
-    //   cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
-    //   cy.get('@ga')
-    //     .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-    //     .and('be.calledWith', 'send', {
-    //       hitType: 'pageview',
-    //       page: '/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c',
-    //     });
-    // });
-    it.only('Should show the countdown if there are not results yet', () => {
-      const now = new Date();
-      now.setHours(now.getHours() + 1);
-      const dateInFuture = now.toISOString();
-      cy.route({
-        method: 'GET',
-        url: '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
-        status: 200,
-        response: {
-          id: '79a8d152-d965-465c-90fd-ceb86efc39cb',
-          created_at: '2018-10-28T12:10:49.409170Z',
-          updated_at: '2018-10-28T12:10:49.409296Z',
-          title: 'This is the title',
-          description: "That's a nice description",
-          results: [
-            {
-              created_at: '2018-10-28T12:10:49.469348Z',
-              value: null,
-              schedule_date: dateInFuture,
-            },
-          ],
-          metadata: [],
-          private_id: '86a7eae4-5cfc-497b-a30e-48e2f77836ce',
-          prizes: [
-            {
-              id: 'b5e9426c-fdc7-49e3-a11f-3ee87c7f77ec',
-              created_at: '2018-10-28T12:10:49.425183Z',
-              name: 'Prize one',
-              url: null,
-            },
-          ],
-          participants: [
-            {
-              id: '2b020a30-49eb-4909-8caf-b1672807cdaf',
-              created_at: '2018-10-28T12:10:49.426936Z',
-              name: 'Participant 1',
-              facebook_id: null,
-            },
-          ],
-        },
-      }).as('request');
-      cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
-      cy.wait('@request');
-      cy.getComponent('Countdown').should('be.visible');
-      cy.getComponent('FacebookLoginButton').click();
-    });
-    it('Should show results and the raffle details', () => {
-      cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
-      cy.mockedRequestWait('GET', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
-      cy.getComponent('PublishedRafflePage__Title').contains('This is the title');
-      cy.getComponent('WinnerChip').should('have.length', 1);
+  describe('Published Facebook Raffle', () => {
+    describe('Before results published', () => {
+      beforeEach(() => {
+        cy.mockFB();
 
-      // Non winners should not be shown
-      cy.contains('Participant 1').should('not.exist');
+        // Mocking a draw in the future
+        const now = new Date();
+        now.setHours(now.getHours() + 1);
+        const dateInFuture = now.toISOString();
+        cy.fixture('FacebookRaffle').then(fixtures => {
+          const fixtureGetRaffle = fixtures.find(
+            fixture => fixture.path === '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
+          );
+          fixtureGetRaffle.response.results[0].schedule_date = dateInFuture;
+          fixtureGetRaffle.response.results[0].value = null;
+          cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
+            'LoadData',
+          );
+        });
+      });
+      it('Should initially state if the user is regitered', () => {
+        cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
+        cy.window().then(win => {
+          // eslint-disable-next-line no-param-reassign
+          win.FB.api = cy
+            .spy((endpoint, options, callback) => {
+              callback({ id: '000000', name: 'Mr Nobody' });
+            })
+            .as('FbApi');
+        });
+
+        // Status change will be automatically called after FB has been initialised
+        cy.wait('@LoadData').then(() =>
+          cy.window().then(win => {
+            win.cypressEas.statusChange({ authResponse: true });
+          }),
+        );
+        cy.get('@FbApi').should('be.calledWith', '/me', {});
+        cy.getComponent('FacebookRaffle__participat-registered').should('contain', 'Mr Nobody');
+      });
+      it('Should show the countdown if there are not results yet', () => {
+        cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
+        cy.window().then(win => {
+          // eslint-disable-next-line no-param-reassign
+          win.FB.api = cy
+            .spy((endpoint, options, callback) => {
+              callback({ id: '000000', name: 'Mr Nobody' });
+            })
+            .as('FbApi');
+        });
+        cy.wait('@LoadData');
+        cy.getComponent('Countdown').should('be.visible');
+
+        // Do facebook login
+        cy.getComponent('FacebookLoginButton').click();
+        cy.get('@FbLogin')
+          .should('be.calledOnce')
+          .then(() =>
+            cy.window().then(win => {
+              win.cypressEas.statusChange({ authResponse: true });
+            }),
+          );
+        cy.get('@FbApi').should('be.calledWith', '/me', {});
+        cy.getComponent('FacebookRaffle__participat-button').should('contain', 'Mr Nobody');
+
+        // Register in the raffle
+        cy.getComponent('FacebookRaffle__participat-button').click();
+        cy.mockedRequestWait(
+          'POST',
+          '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad/participants',
+        )
+          .its('requestBody')
+          .should('deep.eq', { facebook_id: '000000', name: 'Mr Nobody' });
+        cy.getComponent('FacebookRaffle__participat-registered').should('contain', 'Mr Nobody');
+      });
     });
+
+    describe('After results published', () => {
+      it.only('Should show the results', () => {
+        cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
+      });
+    });
+
+    // it('Should show results and the raffle details', () => {
+    //   cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
+    //   cy.mockedRequestWait('GET', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
+    //   cy.getComponent('PublishedRafflePage__Title').contains('This is the title');
+    //   cy.getComponent('WinnerChip').should('have.length', 1);
+
+    //   // Non winners should not be shown
+    //   cy.contains('Participant 1').should('not.exist');
+    // });
   });
 });

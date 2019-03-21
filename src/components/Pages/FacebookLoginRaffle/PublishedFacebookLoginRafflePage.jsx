@@ -7,23 +7,25 @@ import { translate } from 'react-i18next';
 import classnames from 'classnames/bind';
 import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
-import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
+import FacebookRaffleResult from './FacebookRaffleResult.jsx';
 import Page from '../../Page/Page.jsx';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
-import STYLES from './PublishedFacebookLoginRafflePage.scss';
+import STYLES from './PublishedFacebookRafflePage.scss';
 
 const c = classnames.bind(STYLES);
 
-const analyticsDrawType = 'Facebook Login';
+const analyticsDrawType = 'Facebook';
 
 const PublishedFacebookLoginRafflePage = props => {
   const {
     title,
     result,
+    prizes,
     isOwner,
     participants,
     shareUrl,
@@ -31,6 +33,7 @@ const PublishedFacebookLoginRafflePage = props => {
     description,
     onToss,
     isLoading,
+    onUserLoggedIn,
     t,
   } = props;
   if (isLoading) {
@@ -38,7 +41,7 @@ const PublishedFacebookLoginRafflePage = props => {
   }
   return (
     <Page
-      className={c('PublishedFacebookLoginRafflePage')}
+      className={c('PublishedFacebookRafflePage')}
       // ogImage={groupsOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
@@ -56,42 +59,62 @@ const PublishedFacebookLoginRafflePage = props => {
           {title || t('page_title')}
         </Typography>
         {description && <Typography variant="body2">{description}</Typography>}
-        {props.result.value ? (
+        {result.value ? (
           <Fragment>
-            <Typography variant="h1">{props.t('winners')}</Typography>
-            {/* {props.results.map(result => (
-                <div>{result}</div>
-              ))} */}
-            <PublicSummaryPanel>
-              <Typography variant="h1">{props.t('draw_details')}</Typography>
-              <div>Participants: {props.participants.join(', ')}</div>
+            <ResultsBox title={t('winners')}>
+              <FacebookRaffleResult result={result} />
+              <br />
+              <ShareButtons
+                drawType={analyticsDrawType}
+                sectionTitle={t('share_result')}
+                url={shareUrl}
+              />
+            </ResultsBox>
+            <section /* className={c('PublishedFacebookRafflePage__details')} */>
+              <Typography variant="h5">{t('published_raffle_details')}</Typography>
               <div>
-                Descripcion:
-                <p>{props.description}</p>
+                <Typography variant="body2">
+                  {t('field_label_prizes')}: {prizes.map(p => p.name).join(', ')}
+                </Typography>
               </div>
-            </PublicSummaryPanel>
+              <div>
+                <Typography variant="body2">
+                  {t('field_label_number_of_participants')}: {participants.length}
+                </Typography>
+              </div>
+            </section>
           </Fragment>
         ) : (
           <Fragment>
-            <PrizesOverview prizes={props.prizes} />
-            <div className={c('PublishedFacebookLoginRafflePage__participate-with-facebook')}>
+            <PrizesOverview prizes={prizes} />
+            <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
               {props.userRegisteredInRaffle ? (
-                <Typography variant="body1">
+                <Typography variant="body1" data-component="FacebookRaffle__participat-registered">
                   You are registered in the raffle as {props.userName}
                 </Typography>
               ) : (
                 <Fragment>
-                  <Typography variant="body1">{props.t('registration_is_open')}</Typography>
-                  <br />
+                  <Typography variant="body2">
+                    {t('people_registered_already', { count: 0 })}
+                    {/* npm i react-i18next@v10.0.0 i18next@latest
+                     to check if count_0 works */}
+                    <br />
+                  </Typography>
                   {props.isLoggedInFB ? (
-                    <Button variant="contained" color="primary" onClick={props.onRegisterInRaffle}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      data-component="FacebookRaffle__participat-button"
+                      onClick={props.onRegisterInRaffle}
+                    >
                       {props.t('participate_as', { username: props.userName })}
                     </Button>
                   ) : (
                     <div>
                       <Typography variant="body2">
-                        {props.t('login_with_facebook_to_participate')}
+                        {t('login_with_facebook_to_participate')}
                       </Typography>
+                      <br />
                       <FacebookLoginButton />
                     </div>
                   )}
@@ -122,12 +145,14 @@ PublishedFacebookLoginRafflePage.propTypes = {
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
   shareUrl: PropTypes.string.isRequired,
+  onUserLoggedIn: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
 
 PublishedFacebookLoginRafflePage.defaultProps = {
   result: null,
   userName: null,
+  onUserLoggedIn: () => {},
 };
 
 export default translate('FacebookRaffle')(PublishedFacebookLoginRafflePage);
