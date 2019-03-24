@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
@@ -86,4 +86,4 @@ RandomNumberQuickPage.defaultProps = {
   quickResult: null,
 };
 
-export default translate('RandomNumber')(RandomNumberQuickPage);
+export default withTranslation('RandomNumber')(RandomNumberQuickPage);

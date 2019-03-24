@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classnames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 
@@ -53,4 +53,4 @@ SpinArrowPage.defaultProps = {
   animate: true,
 };
 
-export default translate('SpinArrow')(SpinArrowPage);
+export default withTranslation('SpinArrow')(SpinArrowPage);

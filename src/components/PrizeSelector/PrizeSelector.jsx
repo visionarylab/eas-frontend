@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import MultiValueInput from '../MultiValueInput/MultiValueInput.jsx';
@@ -75,4 +75,4 @@ PrizeSelector.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('PrizeSelector')(PrizeSelector);
+export default withTranslation('PrizeSelector')(PrizeSelector);

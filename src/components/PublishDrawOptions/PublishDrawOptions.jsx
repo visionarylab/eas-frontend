@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -80,4 +80,4 @@ PublishDrawOptions.defaultProps = {
   options: ['now'],
 };
 
-export default translate('PublishDrawOptions')(PublishDrawOptions);
+export default withTranslation('PublishDrawOptions')(PublishDrawOptions);

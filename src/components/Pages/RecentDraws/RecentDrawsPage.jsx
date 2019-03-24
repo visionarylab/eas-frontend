@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -157,4 +157,4 @@ RecentDrawsPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default withTracking(translate('RecentDrawsPage')(RecentDrawsPage));
+export default withTracking(withTranslation('RecentDrawsPage')(RecentDrawsPage));

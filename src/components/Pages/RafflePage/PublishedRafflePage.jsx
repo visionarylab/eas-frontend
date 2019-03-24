@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
 import { RaffleResult } from 'echaloasuerte-js-sdk';
@@ -75,4 +75,4 @@ PublishedRafflePage.defaultProps = {
   onToss: () => {},
 };
 
-export default translate('Raffle')(PublishedRafflePage);
+export default withTranslation('Raffle')(PublishedRafflePage);

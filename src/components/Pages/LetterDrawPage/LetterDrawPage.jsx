@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import MomentUtils from '@date-io/moment';
 import classnames from 'classnames/bind';
@@ -31,4 +31,4 @@ LetterDrawPage.propTypes = {
   }).isRequired,
 };
 
-export default translate('LetterDrawPage')(LetterDrawPage);
+export default withTranslation('LetterDrawPage')(LetterDrawPage);

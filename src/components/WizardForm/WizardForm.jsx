@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import DesktopWizardForm from './DesktopWizardForm.jsx';
 import MobileWizardForm from './MobileWizardForm.jsx';
 import { DeviceContext } from '../DeviceDetector/DeviceDetector.jsx';
@@ -149,4 +149,4 @@ WizardForm.defaultProps = {
   apiError: false,
 };
 
-export default translate('WizardForm')(WizardForm);
+export default withTranslation('WizardForm')(WizardForm);

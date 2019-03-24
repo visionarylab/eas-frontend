@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import MomentUtils from '@date-io/moment';
@@ -42,4 +42,4 @@ DateTimePicker.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('DateTimePicker')(DateTimePicker);
+export default withTranslation('DateTimePicker')(DateTimePicker);

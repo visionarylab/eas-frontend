@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -100,4 +100,4 @@ RandomNumberConfigurationSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('RandomNumber')(RandomNumberConfigurationSection);
+export default withTranslation('RandomNumber')(RandomNumberConfigurationSection);

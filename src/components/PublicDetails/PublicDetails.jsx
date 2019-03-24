@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 
@@ -53,4 +53,4 @@ PublicDetails.defaultProps = {
   titleRequired: false,
 };
 
-export default translate('PublicDetails')(PublicDetails);
+export default withTranslation('PublicDetails')(PublicDetails);

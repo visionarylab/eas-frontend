@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classnames from 'classnames/bind';
 import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
@@ -155,4 +155,4 @@ PublishedFacebookLoginRafflePage.defaultProps = {
   onUserLoggedIn: () => {},
 };
 
-export default translate('FacebookRaffle')(PublishedFacebookLoginRafflePage);
+export default withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
@@ -80,4 +80,4 @@ HomePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('HomePage')(HomePage);
+export default withTranslation('HomePage')(HomePage);

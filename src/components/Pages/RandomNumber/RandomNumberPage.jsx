@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
@@ -101,4 +101,4 @@ RandomNumberPage.defaultProps = {
   apiError: false,
 };
 
-export default translate('RandomNumber')(RandomNumberPage);
+export default withTranslation('RandomNumber')(RandomNumberPage);

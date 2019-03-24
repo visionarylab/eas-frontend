@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import moment from 'moment';
 import { RaffleApi, Raffle, Prize, DrawTossPayload } from 'echaloasuerte-js-sdk';
@@ -111,4 +111,4 @@ FacebookLoginRafflePageContainer.propTypes = {
   track: PropTypes.func.isRequired,
 };
 
-export default withTracking(translate('FacebookRaffle')(FacebookLoginRafflePageContainer));
+export default withTracking(withTranslation('FacebookRaffle')(FacebookLoginRafflePageContainer));

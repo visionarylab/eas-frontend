@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 
@@ -116,4 +116,4 @@ PublishedGroupsGeneratorPage.defaultProps = {
   onToss: () => {},
 };
 
-export default translate('GroupsGenerator')(PublishedGroupsGeneratorPage);
+export default withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);

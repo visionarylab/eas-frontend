@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Chip from '@material-ui/core/Chip';
 import classNames from 'classnames/bind';
 import { Prize } from 'echaloasuerte-js-sdk';
@@ -29,4 +29,4 @@ PrizesOverview.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('PrizesOverview')(PrizesOverview);
+export default withTranslation('PrizesOverview')(PrizesOverview);

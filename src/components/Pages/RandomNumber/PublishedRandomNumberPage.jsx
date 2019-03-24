@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Button from '@material-ui/core/Button';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
@@ -111,4 +111,4 @@ PublishedRandomNumberPage.defaultProps = {
   onToss: () => {},
 };
 
-export default translate('RandomNumber')(PublishedRandomNumberPage);
+export default withTranslation('RandomNumber')(PublishedRandomNumberPage);

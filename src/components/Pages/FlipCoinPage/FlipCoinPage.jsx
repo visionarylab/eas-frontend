@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import Page from '../../Page/Page.jsx';
@@ -76,4 +76,4 @@ FlipCoinPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('FlipCoinPage')(FlipCoinPage);
+export default withTranslation('FlipCoinPage')(FlipCoinPage);

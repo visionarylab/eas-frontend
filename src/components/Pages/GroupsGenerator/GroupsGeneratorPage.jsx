@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
@@ -101,4 +101,4 @@ GroupsGeneratorPage.defaultProps = {
   apiError: false,
 };
 
-export default translate('GroupsGenerator')(GroupsGeneratorPage);
+export default withTranslation('GroupsGenerator')(GroupsGeneratorPage);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classnames from 'classnames/bind';
 import CountdownHandler from 'react-countdown-now';
 import Typography from '@material-ui/core/Typography';
@@ -59,4 +59,4 @@ Countdown.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
 };
 
-export default translate('Countdown')(Countdown);
+export default withTranslation('Countdown')(Countdown);
