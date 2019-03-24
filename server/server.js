@@ -2,6 +2,9 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
+import morgan from 'morgan';
+import rfs from 'rotating-file-stream';
+import * as fs from 'fs';
 import path from 'path';
 import * as Sentry from '@sentry/node';
 import config from '../src/config/config';
@@ -13,11 +16,24 @@ import loader from './loader.jsx';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Setup error logs
 Sentry.init({
   dsn: config.sentryDsn,
   environment: config.environment,
 });
 app.use(Sentry.Handlers.requestHandler());
+
+// Setup access logs
+const logDirectory = path.join(__dirname, 'logs');
+if (!fs.existsSync(logDirectory)) {
+  fs.mkdirSync(logDirectory);
+}
+const accessLogStream = rfs('access.log', {
+  maxFiles: process.env.LOGS_MAX_FILES || 5,
+  size: '10M',
+  path: process.env.LOGS_PATH || logDirectory,
+});
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // Compress, parse, log, and raid the cookie jar
 app.use(compression());
