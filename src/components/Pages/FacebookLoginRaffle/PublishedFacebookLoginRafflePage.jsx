@@ -1,9 +1,11 @@
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/anchor-is-valid, no-alert */
+
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withTranslation } from 'react-i18next';
+import Link from '@material-ui/core/Link';
 import classnames from 'classnames/bind';
 import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
@@ -27,13 +29,15 @@ const PublishedFacebookLoginRafflePage = props => {
     result,
     prizes,
     isOwner,
+    isLoggedInFB,
+    userName,
     participants,
     shareUrl,
-    numberOfGroups,
+    onRegisterInRaffle,
+    onFacebookLogout,
+    userRegisteredInRaffle,
     description,
-    onToss,
     isLoading,
-    onUserLoggedIn,
     t,
   } = props;
   if (isLoading) {
@@ -88,27 +92,33 @@ const PublishedFacebookLoginRafflePage = props => {
           <Fragment>
             <PrizesOverview prizes={prizes} />
             <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
-              {props.userRegisteredInRaffle ? (
+              {userRegisteredInRaffle ? (
                 <Typography variant="body1" data-component="FacebookRaffle__participat-registered">
-                  You are registered in the raffle as {props.userName}
+                  You are registered in the raffle as {userName}
                 </Typography>
               ) : (
                 <Fragment>
                   <Typography variant="body2">
-                    {t('people_registered_already', { count: 0 })}
-                    {/* npm i react-i18next@v10.0.0 i18next@latest
-                     to check if count_0 works */}
+                    {participants.length > 0 &&
+                      t('people_registered_already', { count: participants.length })}
                     <br />
                   </Typography>
-                  {props.isLoggedInFB ? (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      data-component="FacebookRaffle__participat-button"
-                      onClick={props.onRegisterInRaffle}
-                    >
-                      {props.t('participate_as', { username: props.userName })}
-                    </Button>
+                  {isLoggedInFB ? (
+                    <Fragment>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        data-component="FacebookRaffle__participat-button"
+                        onClick={onRegisterInRaffle}
+                      >
+                        {t('participate_as', { username: userName })}
+                      </Button>
+                      <Typography variant="caption" gutterBottom>
+                        <Link component="button" variant="caption" onClick={onFacebookLogout}>
+                          O accede como otra persona
+                        </Link>
+                      </Typography>
+                    </Fragment>
                   ) : (
                     <div>
                       <Typography variant="body2">
@@ -136,7 +146,7 @@ const PublishedFacebookLoginRafflePage = props => {
 
 PublishedFacebookLoginRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
   prizes: PropTypes.arrayOf(PropTypes.instanceOf(Prize)).isRequired,
   result: PropTypes.instanceOf(RaffleResult),
@@ -144,12 +154,14 @@ PublishedFacebookLoginRafflePage.propTypes = {
   userName: PropTypes.string,
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
+  onFacebookLogout: PropTypes.func.isRequired,
   shareUrl: PropTypes.string.isRequired,
   onUserLoggedIn: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
 
 PublishedFacebookLoginRafflePage.defaultProps = {
+  description: '',
   result: null,
   userName: null,
   onUserLoggedIn: () => {},

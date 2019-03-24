@@ -33,8 +33,9 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { isLoggedInFB } = this.props.facebookContext;
-    if (prevProps.facebookContext.isLoggedInFB !== isLoggedInFB && isLoggedInFB) {
+    const { userID } = this.props.facebookContext;
+    console.log('componentDidUpdate', userID);
+    if (prevProps.facebookContext.userID !== userID && userID) {
       this.checkIfUserRegistered();
     }
   }
@@ -53,6 +54,8 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
   checkIfUserRegistered = async () => {
     const { userID } = this.props.facebookContext.getUserDetails();
     const { participants } = this.state;
+    console.log('participants', participants);
+    console.log('userID', userID);
     const participant = participants.find(p => p.facebook_id === userID);
     if (participant) {
       console.log('YES');
@@ -103,7 +106,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
       shareUrl,
       isLoading,
     } = this.state;
-    const { isLoggedInFB, getUserDetails } = this.props.facebookContext;
+    const { isLoggedInFB, getUserDetails, logout } = this.props.facebookContext;
     return (
       <PublishedFacebookLoginRafflePage
         title={title}
@@ -115,6 +118,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
         userName={isLoggedInFB ? getUserDetails().userName : null}
         userRegisteredInRaffle={userRegisteredInRaffle}
         onRegisterInRaffle={this.onRegisterInRaffle}
+        onFacebookLogout={logout}
         isLoading={isLoading}
         shareUrl={shareUrl}
       />
@@ -126,6 +130,7 @@ PublishedFacebookLoginRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   }).isRequired,
 };
 

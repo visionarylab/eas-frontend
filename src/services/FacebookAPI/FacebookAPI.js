@@ -158,7 +158,10 @@ export const whoAmI = async () => {
 };
 
 export const logout = () => {
+  console.log('logging out');
   window.FB.logout(() => {
+    window.FB.Auth.setAuthResponse(null, 'unknown');
     console.log('FB: logged out');
+    // TODO this is not logging out from facebook
   });
 };

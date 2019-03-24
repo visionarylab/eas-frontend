@@ -51,14 +51,9 @@ class FacebookLoginRafflePageContainer extends Component {
     const { title, description, prizes } = values;
     const drawData = {
       title,
-      description, // TODO make description mandatory
+      description: description || null,
       prizes: prizes.map(prize => Prize.constructFromObject({ name: prize })),
-      participants: [
-        {
-          name: 'participant1',
-          facebook_id: '000000',
-        },
-      ],
+      participants: [],
     };
     const facebookLoginDraw = Raffle.constructFromObject(drawData);
     return raffleApi.raffleCreate(facebookLoginDraw);

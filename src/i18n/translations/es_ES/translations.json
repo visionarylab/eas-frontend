@@ -47,9 +47,7 @@
     "message_no_prizes_added": "No has añadido ningún premio",
     "field_label_list_of_prizes": "Lista de premios",
     "publish_draw": "Publicar sorteo",
-    "people_registered_already": "Ya hay {{count}} persona inscrita",
-    "people_registered_already_0": "No Ya hay {{count}} persona inscrita"
-
+    "people_registered_already": "Ya hay {{count}} persona inscrita"
   },
   "FacebookPhotoRafflePage": {
     "draw_subheading": "Some description",
