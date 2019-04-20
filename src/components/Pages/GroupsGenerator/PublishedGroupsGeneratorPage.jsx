@@ -1,9 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
+import { frontloadConnect } from 'react-frontload';
+import { connect } from 'react-redux';
+import { fetchDraw } from '../../../actions/drawActions';
+import config from '../../../config/config';
 
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
@@ -19,16 +24,10 @@ const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Groups';
 
 const PublishedGroupsGeneratorPage = props => {
-  const {
-    title,
-    result,
-    participants,
-    shareUrl,
-    numberOfGroups,
-    description,
-    isLoading,
-    t,
-  } = props;
+  const { draw, match, t } = props;
+  const { title, description, participants, numberOfGroups, result, isLoading } = draw;
+  const shareUrl = config.domain + match.url;
+
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
@@ -91,22 +90,35 @@ const PublishedGroupsGeneratorPage = props => {
 };
 
 PublishedGroupsGeneratorPage.propTypes = {
-  title: PropTypes.string,
-  participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
-  numberOfGroups: PropTypes.number,
-  description: PropTypes.string,
-  result: PropTypes.instanceOf(GroupsResult),
-  shareUrl: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool,
+  draw: PropTypes.shape({
+    title: PropTypes.string,
+    participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
+    numberOfGroups: PropTypes.number,
+    description: PropTypes.string,
+    result: PropTypes.instanceOf(GroupsResult),
+    isOwner: PropTypes.bool,
+    isLoading: PropTypes.bool,
+  }).isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-PublishedGroupsGeneratorPage.defaultProps = {
-  title: '',
-  description: '',
-  result: [],
-  numberOfGroups: null,
-  isLoading: false,
+PublishedGroupsGeneratorPage.defaultProps = {};
+
+const TranslatedPage = withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);
+
+const mapsStateToProps = state => ({ draw: state.draws.draw });
+const frontload = async props => {
+  const { drawId } = props.match.params;
+  await props.fetchDraw(drawId);
 };
 
-export default withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);
+export default connect(
+  mapsStateToProps,
+  { fetchDraw },
+)(
+  frontloadConnect(frontload, {
+    onMount: true,
+    onUpdate: false,
+  })(TranslatedPage),
+);

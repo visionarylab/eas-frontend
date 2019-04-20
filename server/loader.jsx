@@ -6,7 +6,10 @@ import { MuiThemeProvider, createGenerateClassName } from '@material-ui/core/sty
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
+import { Frontload, frontloadServerRender } from 'react-frontload';
+import createStore from '../src/store';
 import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
 import theme from '../src/EasTheme.jsx';
@@ -53,36 +56,43 @@ export default (req, res) => {
       return res.status(404).end();
     }
 
+    const { store } = createStore(req.url);
+
     const context = {};
-    const renderedHtml = renderToString(
-      <StaticRouter location={req.url} context={context}>
-        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-            <DeviceDetector userAgent={req.headers['user-agent']}>
-              <App />
-            </DeviceDetector>
-          </MuiThemeProvider>
-        </JssProvider>
-      </StaticRouter>,
-    );
+    frontloadServerRender(() =>
+      renderToString(
+        <Provider store={store}>
+          <StaticRouter location={req.url} context={context}>
+            <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+              <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+                <DeviceDetector userAgent={req.headers['user-agent']}>
+                  <Frontload isServer>
+                    <App />
+                  </Frontload>
+                </DeviceDetector>
+              </MuiThemeProvider>
+            </JssProvider>
+          </StaticRouter>
+        </Provider>,
+      ),
+    ).then(routeMarkup => {
+      // We need to tell Helmet to compute the right meta tags, title, and such
+      const helmet = Helmet.renderStatic();
 
-    // We need to tell Helmet to compute the right meta tags, title, and such
-    const helmet = Helmet.renderStatic();
+      // Grab the CSS from our sheetsRegistry.
+      const css = sheetsRegistry.toString();
 
-    // Grab the CSS from our sheetsRegistry.
-    const css = sheetsRegistry.toString();
+      // Build the markup
+      const html = injectHTML(htmlData, {
+        html: helmet.htmlAttributes.toString(),
+        title: helmet.title.toString(),
+        meta: helmet.meta.toString(),
+        body: routeMarkup,
+        state: JSON.stringify({}).replace(/</g, '\\u003c'),
+        css,
+      });
 
-    // Pass all this nonsense into our HTML formatting function above
-    const html = injectHTML(htmlData, {
-      html: helmet.htmlAttributes.toString(),
-      title: helmet.title.toString(),
-      meta: helmet.meta.toString(),
-      body: renderedHtml,
-      state: JSON.stringify({}).replace(/</g, '\\u003c'),
-      css,
+      res.send(html);
     });
-
-    // We have all the final HTML, let's send it to the user already!
-    res.send(html);
   });
 };
