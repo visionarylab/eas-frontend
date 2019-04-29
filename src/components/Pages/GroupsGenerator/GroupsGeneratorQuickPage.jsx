@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
@@ -30,6 +30,18 @@ const GroupsGeneratorQuickPage = props => {
     t,
   } = props;
   const publicDrawUrl = '/groups/public';
+  const resultsRef = React.createRef();
+
+  useEffect(() => {
+    if (quickResult) {
+      try {
+        window.scroll({ left: 0, top: resultsRef.current.offsetTop, behavior: 'smooth' });
+      } catch (error) {
+        window.scrollTo(0, resultsRef.current.offsetTop);
+      }
+    }
+  }, [quickResult]);
+
   return (
     <Page
       htmlTitle={t('html_title')}
@@ -76,26 +88,28 @@ const GroupsGeneratorQuickPage = props => {
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_groups')} />
         </ValidatedForm>
-        {loadingResult && <LoadingCoin />}
-        {!loadingResult && quickResult && (
-          <Fragment>
-            <GroupsGeneratorResult result={quickResult} />
-            <ShareDrawModal
-              publicDrawUrl={publicDrawUrl}
-              trackingData={{
-                mp: {
-                  name: `Start Public Draw - ${analyticsDrawType}`,
-                  properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
-                },
-                ga: {
-                  category: analyticsDrawType,
-                  action: 'Start Public',
-                  label: 'From Quick Result',
-                },
-              }}
-            />
-          </Fragment>
-        )}
+        <div ref={resultsRef}>
+          {loadingResult && <LoadingCoin />}
+          {!loadingResult && quickResult && (
+            <Fragment>
+              <GroupsGeneratorResult result={quickResult} />
+              <ShareDrawModal
+                publicDrawUrl={publicDrawUrl}
+                trackingData={{
+                  mp: {
+                    name: `Start Public Draw - ${analyticsDrawType}`,
+                    properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
+                  },
+                  ga: {
+                    category: analyticsDrawType,
+                    action: 'Start Public',
+                    label: 'From Quick Result',
+                  },
+                }}
+              />
+            </Fragment>
+          )}
+        </div>
       </DrawLayout>
     </Page>
   );

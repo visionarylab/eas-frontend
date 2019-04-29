@@ -1,5 +1,5 @@
 // eslint-disable-line no-console
-const DEBUG = true;
+const DEBUG = false;
 const log = message => DEBUG && console.log(message);
 
 /**
