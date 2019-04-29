@@ -53,3 +53,12 @@ Cypress.Commands.add('mockGA', () => {
     win.ga = cy.stub().as('ga'); // eslint-disable-line no-param-reassign
   });
 });
+
+Cypress.Commands.add('mockFB', () => {
+  Cypress.on('window:before:load', win => {
+    // eslint-disable-next-line no-param-reassign
+    win.FB = {
+      login: cy.stub().as('FbLogin'),
+    };
+  });
+});

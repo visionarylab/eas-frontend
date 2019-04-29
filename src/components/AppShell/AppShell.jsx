@@ -18,8 +18,8 @@ import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/Publ
 // import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer.jsx';
 // import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer.jsx';
 import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
-// import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer.jsx';
-// import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer.jsx';
+import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer.jsx';
+import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer.jsx';
 // import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer.jsx';
 // import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer.jsx';
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer.jsx';
@@ -49,6 +49,8 @@ const AppShell = () => (
         path={`/groups/:drawId(${guidRegex})`}
         component={PublishedGroupsGeneratorPageContainer}
       />
+      <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
+      <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
 
       <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
 
@@ -69,8 +71,6 @@ const AppShell = () => (
 
       {/* <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
       <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
-      <Route exact path="/facebook_login" component={FacebookLoginRafflePageContainer} />
-      <Route path="/facebook_login/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
       <Route exact path="/letter" component={LetterDrawPageContainer} /> */}
 
       {/* <Route exact path="/about" component={AboutPage} />

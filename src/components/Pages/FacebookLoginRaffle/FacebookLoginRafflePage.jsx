@@ -1,78 +1,103 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import PrizeSelector from '../../PrizeSelector/PrizeSelector.jsx';
-import PublicDetails from '../../PublicDetails/PublicDetails.jsx';
-import PublishDrawOptions from '../../PublishDrawOptions/PublishDrawOptions.jsx';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
+import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
+import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
-import BannerAlert, { ALERT_TYPES } from '../../BannerAlert/BannerAlert.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
+import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
+import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+
+const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
+
+const PrizesSection = ({ prizes, onFieldChange, t }) => (
+  <SectionPanel title={t('step_title_prizes')}>
+    <ValidatedMultiValueInput
+      name="prizes"
+      label={t('field_label_prizes')}
+      labelDisplayList={t('field_label_list_of_prizes')}
+      placeholder="PS4"
+      messageEmpty={t('message_no_prizes_added')}
+      value={prizes}
+      fullWidth
+      onChange={e => onFieldChange('prizes', e.target.value)}
+      data-component="Raffle__prizes-field"
+      inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+      validators={[{ rule: 'required' }]}
+    />
+  </SectionPanel>
+);
+PrizesSection.propTypes = {
+  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onFieldChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
+
+const PrizesForm = withFormValidation(PrizesSection);
+const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
+const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const FacebookLoginRafflePage = props => {
-  const { values, onFieldChange, handlePublish, t } = props;
-
+  const { values, apiError, onFieldChange, handlePublish, t } = props;
+  const steps = [
+    {
+      label: t('step_label_prizes'),
+      render: wizardProps => (
+        <PrizesForm
+          numberOfWinners={values.numberOfWinners}
+          prizes={values.prizes}
+          onFieldChange={onFieldChange}
+          t={t}
+          {...wizardProps}
+        />
+      ),
+    },
+    {
+      label: t('step_label_general_details'),
+      render: wizardProps => (
+        <GeneralDetailsForm
+          sectionTitle={t('step_title_general_details')}
+          title={values.title}
+          description={values.description}
+          onFieldChange={onFieldChange}
+          titleRequired
+          {...wizardProps}
+        />
+      ),
+    },
+    {
+      label: t('step_label_when_to_toss'),
+      render: wizardProps => (
+        <WhenToTossForm
+          sectionTitle={t('step_title_when_to_toss')}
+          dateScheduled={values.dateScheduled}
+          onFieldChange={onFieldChange}
+          t={t}
+          {...wizardProps}
+        />
+      ),
+    },
+  ];
   return (
-    <Page htmlTitle={t('facebook_draw_html_title')}>
-      <Grid container spacing={16}>
-        <Grid item sm={3} />
-        <Grid item xs={6}>
-          <div>
-            <Typography variant="h1">{t('facebook_login_raffle_default_title')}</Typography>
-            <BannerAlert title={t('raffle_explanation')} type={ALERT_TYPES.NEUTRAL} />
-            <SectionPanel title={t('general_details_raffle')}>
-              <PublicDetails
-                title={values.title}
-                description={values.description}
-                onFieldChange={props.onFieldChange}
-              />
-            </SectionPanel>
-            <SectionPanel title={t('info_about_winners')}>
-              <PrizeSelector
-                numberOfWinners={values.numberOfWinners}
-                prizes={values.prizes}
-                onFieldChange={onFieldChange}
-              />
-              <br />
-              <BannerAlert title={t('how_to_participate')} type={ALERT_TYPES.NEUTRAL} />
-              {/* <Paper>
-                <p>
-                  <Trans i18nKey="how_to_participate">
-                    Once you publish the raffle, you will get a link that you will be able to share
-                    it with others. To participate, they will need to login with facebook.
-                  </Trans>
-                </p>
-              </Paper> */}
-            </SectionPanel>
-            <SectionPanel title={t('when_to_toss')}>
-              <PublishDrawOptions
-                whenToToss={values.whenToToss}
-                options={['manual', 'schedule']}
-                dateScheduled={values.dateScheduled}
-                onFieldChange={props.onFieldChange}
-              />
-              <BannerAlert
-                title={t('raffle_when_to_toss_explanation', {
-                  toss_button_label: props.t('publish_raffle'),
-                })}
-                type={ALERT_TYPES.NEUTRAL}
-              />
-            </SectionPanel>
-            <SubmitButton label={props.t('publish_raffle')} handlePublish={handlePublish} />
-          </div>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper>
-            <Trans i18nKey="facebook_draw_seo_description">
-              <span>Organize raffles in your Facebook page</span>
-            </Trans>
-          </Paper>
-        </Grid>
-      </Grid>
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      htmlKeywords={t('html_description')}
+      pageType="groups_public_draw"
+    >
+      <DrawLayout isPublic>
+        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+        <WizardForm
+          steps={steps}
+          onSubmit={handlePublish}
+          submitButtonLabel={t('publish_draw')}
+          apiError={apiError}
+        />
+      </DrawLayout>
     </Page>
   );
 };
@@ -81,16 +106,17 @@ FacebookLoginRafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    prizes: PropTypes.arrayOf(PropTypes.string),
-    numberOfWinners: PropTypes.number,
-    dateScheduled: PropTypes.string,
-    whenToToss: PropTypes.string.isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string),
+    numberOfGroups: PropTypes.string,
   }).isRequired,
-  t: PropTypes.func.isRequired,
+  apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-FacebookLoginRafflePage.defaultProps = {};
+FacebookLoginRafflePage.defaultProps = {
+  apiError: false,
+};
 
-export default translate('FacebookLoginRafflePage')(FacebookLoginRafflePage);
+export default withTranslation('FacebookRaffle')(FacebookLoginRafflePage);

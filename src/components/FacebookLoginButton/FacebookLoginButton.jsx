@@ -11,14 +11,26 @@ class FacebookLoginButton extends Component {
     if (window.FB) {
       // The FB login button is parsed and rendered by XFBML
       // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-      window.FB.XFBML.parse();
+      // window.FB.XFBML.parse();
     }
   }
 
+  // handleLogin = () => {
+  //   const { onUserLoggedIn } = this.props;
+  //   window.FB.login(response => {
+  //     // Handle the response object, like in statusChangeCallback() in our demo
+  //     // code.
+  //     onUserLoggedIn();
+  //   });
+  // };
+
   render() {
-    const { permissions } = this.props;
+    const { onLogin, permissions } = this.props;
     return (
-      <div className={c('FacebookLoginButton')}>
+      // <button onClick={this.handleLogin} data-component="FacebookLoginButton">
+      //   login
+      // </button>
+      <div className={c('FacebookLoginButton')} data-component="FacebookLoginButton">
         <div
           className="fb-login-button"
           data-max-rows="1"
@@ -35,10 +47,12 @@ class FacebookLoginButton extends Component {
 }
 
 FacebookLoginButton.propTypes = {
+  onUserLoggedIn: PropTypes.func,
   permissions: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
+  onUserLoggedIn: () => {},
   permissions: '',
 };
 

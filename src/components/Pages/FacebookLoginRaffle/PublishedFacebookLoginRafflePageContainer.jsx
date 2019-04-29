@@ -2,11 +2,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+import { RaffleApi, Participant } from 'echaloasuerte-js-sdk';
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage.jsx';
 // import ApiClient from '../../../services/api/EASApi';
-import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
-// const { DrawApi } = ApiClient;
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
+import config from '../../../config/config';
+
+const raffleApi = new RaffleApi();
 
 class PublishedFacebookLoginRafflePageContainer extends Component {
   constructor(props) {
@@ -17,8 +21,10 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
       description: '',
       participants: [],
       prizes: [],
-      results: [],
+      result: null,
       userRegisteredInRaffle: false,
+      isLoading: true,
+      shareUrl: '',
     };
   }
 
@@ -26,26 +32,66 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     this.loadData();
   }
 
-  onRegisterInRaffle = () => {
-    // Call EAS API to participate
+  componentDidUpdate(prevProps, prevState) {
+    const { userID } = this.props.facebookContext;
+    console.log('componentDidUpdate', userID);
+    if (prevProps.facebookContext.userID !== userID && userID) {
+      this.checkIfUserRegistered();
+    }
+  }
+
+  onRegisterInRaffle = async () => {
+    const { match } = this.props;
+    const { drawId } = match.params;
     const { userName, userID } = this.props.facebookContext.getUserDetails();
+
+    const participant = Participant.constructFromObject({ name: userName, facebook_id: userID });
+    const response = await raffleApi.raffleParticipantsAdd(drawId, participant);
     console.log('Register as', userName, userID);
     this.setState({ userRegisteredInRaffle: true });
   };
 
-  loadData() {
-    // const drawId = this.props.match.params.drawId;
+  checkIfUserRegistered = async () => {
+    const { userID } = this.props.facebookContext.getUserDetails();
+    const { participants } = this.state;
+    console.log('participants', participants);
+    console.log('userID', userID);
+    const participant = participants.find(p => p.facebook_id === userID);
+    if (participant) {
+      console.log('YES');
+      this.setState({ userRegisteredInRaffle: true });
+    } else {
+      console.log('NO');
+    }
+  };
 
-    // const draw = await drawApi.getRandomNumber(drawId);
-    const draw = {
-      title: 'Sorteo de Navidad',
-      description: 'This is a complete description',
-      results: [],
-      participants: ['David', 'Mario', 'Pedro'],
-      prizes: ['PS4'],
-    };
+  async loadData() {
+    const { match } = this.props;
+    const { drawId } = match.params;
+
+    const draw = await raffleApi.raffleRead(drawId);
+    const { title, description, participants, prizes } = draw;
+    const lastToss = draw.results[0];
+    const scheduleDate = lastToss.schedule_date;
+    const shareUrl = config.domain + match.url;
+
+    if (scheduleDate > Date.now()) {
+      const milisecondsMissing = scheduleDate - Date.now();
+      setTimeout(() => {
+        this.loadData();
+      }, milisecondsMissing);
+    }
+
     this.setState({
-      ...draw,
+      drawId,
+      title,
+      description,
+      participants,
+      prizes,
+      result: lastToss,
+      // isOwner: Boolean(privateId),
+      isLoading: false,
+      shareUrl,
     });
   }
 
@@ -55,21 +101,26 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
       description,
       participants,
       prizes,
-      results,
+      result,
       userRegisteredInRaffle,
+      shareUrl,
+      isLoading,
     } = this.state;
-    const { isLoggedInFB, getUserDetails } = this.props.facebookContext;
+    const { isLoggedInFB, getUserDetails, logout } = this.props.facebookContext;
     return (
       <PublishedFacebookLoginRafflePage
         title={title}
         description={description}
         participants={participants}
         prizes={prizes}
-        results={results.map(result => result.value)}
+        result={result}
         isLoggedInFB={isLoggedInFB}
         userName={isLoggedInFB ? getUserDetails().userName : null}
         userRegisteredInRaffle={userRegisteredInRaffle}
         onRegisterInRaffle={this.onRegisterInRaffle}
+        onFacebookLogout={logout}
+        isLoading={isLoading}
+        shareUrl={shareUrl}
       />
     );
   }
@@ -79,6 +130,7 @@ PublishedFacebookLoginRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   }).isRequired,
 };
 

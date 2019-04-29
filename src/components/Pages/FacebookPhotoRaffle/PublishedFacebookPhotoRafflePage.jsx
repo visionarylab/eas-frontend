@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel.jsx';
 import STYLES from './PublishedFacebookPhotoRafflePage.scss';
@@ -49,4 +49,4 @@ PublishedFacebookPhotoRafflePage.defaultProps = {
   results: [],
 };
 
-export default translate('PublishedFacebookPhotoRafflePage')(PublishedFacebookPhotoRafflePage);
+export default withTranslation('PublishedFacebookPhotoRafflePage')(PublishedFacebookPhotoRafflePage);

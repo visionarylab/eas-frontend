@@ -21,6 +21,7 @@
     "valid-jsdoc": ["error"],
     "import/extensions": ["error", "always", {
       "js": "never"
-    }]
+    }],
+    "no-warning-comments": ["error", { "terms": ["TODO"], "location": "start" }]
   }
 }

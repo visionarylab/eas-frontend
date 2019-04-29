@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
@@ -57,4 +57,4 @@ Footer.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('Footer')(Footer);
+export default withTranslation('Footer')(Footer);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -38,4 +38,4 @@ TranslationsSwitch.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('TranslationsSwitch')(TranslationsSwitch);
+export default withTranslation('TranslationsSwitch')(TranslationsSwitch);

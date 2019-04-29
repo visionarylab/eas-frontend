@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import classnames from 'classnames/bind';
 import Page from '../../Page/Page.jsx';
@@ -600,4 +600,4 @@ PrivacyPolicyPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('PrivacyPolicy')(PrivacyPolicyPage);
+export default withTranslation('PrivacyPolicy')(PrivacyPolicyPage);

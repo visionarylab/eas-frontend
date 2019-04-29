@@ -1,87 +1,170 @@
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/anchor-is-valid, no-alert */
+
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { translate } from 'react-i18next';
-
-import PublicSummaryPanel from '../../PublicSummaryPanel/PublicSummaryPanel.jsx';
+import { withTranslation } from 'react-i18next';
+import Link from '@material-ui/core/Link';
+import classnames from 'classnames/bind';
+import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
+import FacebookRaffleResult from './FacebookRaffleResult.jsx';
 import Page from '../../Page/Page.jsx';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
-import STYLES from './PublishedFacebookLoginRafflePage.scss';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
+import Countdown from '../../Countdown/Countdown.jsx';
+import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
+import STYLES from './PublishedFacebookRafflePage.scss';
 
-const c = className => STYLES[className];
+const c = classnames.bind(STYLES);
 
-const PublishedFacebookLoginRafflePage = props => (
-  <Page htmlTitle={props.title} className={c('PublishedFacebookLoginRafflePage')} noIndex>
-    <div>
-      <Typography variant="display2">{props.title}</Typography>
-      {props.results.length ? (
-        <Fragment>
-          <Typography variant="h1">{props.t('winners')}</Typography>
-          {props.results.map(result => (
-            <div>{result}</div>
-          ))}
-          <PublicSummaryPanel>
-            <Typography variant="h1">{props.t('draw_details')}</Typography>
-            <div>Participants: {props.participants.join(', ')}</div>
-            <div>prizes: {props.prizes}</div>
-            <div>
-              Descripcion:
-              <p>{props.description}</p>
+const analyticsDrawType = 'Facebook';
+
+const PublishedFacebookLoginRafflePage = props => {
+  const {
+    title,
+    result,
+    prizes,
+    isOwner,
+    isLoggedInFB,
+    userName,
+    participants,
+    shareUrl,
+    onRegisterInRaffle,
+    onFacebookLogout,
+    userRegisteredInRaffle,
+    description,
+    isLoading,
+    t,
+  } = props;
+  if (isLoading) {
+    return <LoadingSpinner fullpage />;
+  }
+  return (
+    <Page
+      className={c('PublishedFacebookRafflePage')}
+      // ogImage={groupsOgImage}
+      htmlTitle={title || t('html_title')}
+      htmlDescription={description || t('html_description')}
+      htmlKeywords={t('html_keywords')}
+      noIndex
+      pageType="groups_published_draw"
+      // className={c('PublishedGroupsGeneratorPage')}
+    >
+      <DrawLayout>
+        <Typography
+          align="center"
+          variant="h1"
+          data-component="PublishedGroupsGeneratorPage__Title"
+        >
+          {title || t('page_title')}
+        </Typography>
+        {description && <Typography variant="body2">{description}</Typography>}
+        {result.value ? (
+          <Fragment>
+            <ResultsBox title={t('winners')}>
+              <FacebookRaffleResult result={result} />
+              <br />
+              <ShareButtons
+                drawType={analyticsDrawType}
+                sectionTitle={t('share_result')}
+                url={shareUrl}
+              />
+            </ResultsBox>
+            <section /* className={c('PublishedFacebookRafflePage__details')} */>
+              <Typography variant="h5">{t('published_raffle_details')}</Typography>
+              <div>
+                <Typography variant="body2">
+                  {t('field_label_prizes')}: {prizes.map(p => p.name).join(', ')}
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body2">
+                  {t('field_label_number_of_participants')}: {participants.length}
+                </Typography>
+              </div>
+            </section>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <PrizesOverview prizes={prizes} />
+            <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
+              {userRegisteredInRaffle ? (
+                <Typography variant="body1" data-component="FacebookRaffle__participat-registered">
+                  You are registered in the raffle as {userName}
+                </Typography>
+              ) : (
+                <Fragment>
+                  <Typography variant="body2">
+                    {participants.length > 0 &&
+                      t('people_registered_already', { count: participants.length })}
+                    <br />
+                  </Typography>
+                  {isLoggedInFB ? (
+                    <Fragment>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        data-component="FacebookRaffle__participat-button"
+                        onClick={onRegisterInRaffle}
+                      >
+                        {t('participate_as', { username: userName })}
+                      </Button>
+                      <Typography variant="caption" gutterBottom>
+                        <Link component="button" variant="caption" onClick={onFacebookLogout}>
+                          O accede como otra persona
+                        </Link>
+                      </Typography>
+                    </Fragment>
+                  ) : (
+                    <div>
+                      <Typography variant="body2">
+                        {t('login_with_facebook_to_participate')}
+                      </Typography>
+                      <br />
+                      <FacebookLoginButton />
+                    </div>
+                  )}
+                </Fragment>
+              )}
             </div>
-          </PublicSummaryPanel>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <PrizesOverview prizes={props.prizes} />
-          <div className={c('PublishedFacebookLoginRafflePage__participate-with-facebook')}>
-            {props.userRegisteredInRaffle ? (
-              <Typography variant="title">
-                You are registered in the raffle as {props.userName}
-              </Typography>
-            ) : (
-              <Fragment>
-                <Typography variant="title">{props.t('registration_is_open')}</Typography>
-                <br />
-                {props.isLoggedInFB ? (
-                  <Button variant="contained" color="primary" onClick={props.onRegisterInRaffle}>
-                    {props.t('participate_as', { username: props.userName })}
-                  </Button>
-                ) : (
-                  <div>
-                    <Typography variant="body2">
-                      {props.t('login_with_facebook_to_participate')}
-                    </Typography>
-                    <FacebookLoginButton />
-                  </div>
-                )}
-              </Fragment>
-            )}
-          </div>
-        </Fragment>
-      )}
-    </div>
-  </Page>
-);
+            <Countdown date={result.schedule_date} />
+            <ShareButtons
+              drawType={analyticsDrawType}
+              sectionTitle={t('share_draw')}
+              url={shareUrl}
+            />
+          </Fragment>
+        )}
+      </DrawLayout>
+    </Page>
+  );
+};
 
 PublishedFacebookLoginRafflePage.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  results: PropTypes.arrayOf(PropTypes.object),
+  description: PropTypes.string,
+  participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.instanceOf(Prize)).isRequired,
+  result: PropTypes.instanceOf(RaffleResult),
   isLoggedInFB: PropTypes.bool.isRequired,
   userName: PropTypes.string,
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
+  onFacebookLogout: PropTypes.func.isRequired,
+  shareUrl: PropTypes.string.isRequired,
+  onUserLoggedIn: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
 
 PublishedFacebookLoginRafflePage.defaultProps = {
-  results: [],
+  description: '',
+  result: null,
   userName: null,
+  onUserLoggedIn: () => {},
 };
 
-export default translate('PublishedFacebookLoginRafflePage')(PublishedFacebookLoginRafflePage);
+export default withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage);

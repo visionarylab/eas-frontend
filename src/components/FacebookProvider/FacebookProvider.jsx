@@ -6,6 +6,7 @@ import {
   fbAsyncInit,
   injectScript,
   getLikesOnObject,
+  logout,
 } from '../../services/FacebookAPI/FacebookAPI';
 import i18n from '../../i18n/i18n';
 
@@ -80,6 +81,7 @@ class FacebookProvider extends Component {
       getUserDetails: this.getUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
+      logout,
     };
     const { children } = this.props;
     return <FacebookContext.Provider value={context}>{children}</FacebookContext.Provider>;

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -123,4 +123,4 @@ GroupsGeneratorQuickPage.defaultProps = {
   apiError: false,
 };
 
-export default translate('GroupsGenerator')(GroupsGeneratorQuickPage);
+export default withTranslation('GroupsGenerator')(GroupsGeneratorQuickPage);

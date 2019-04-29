@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import classnames from 'classnames/bind';
 import STYLES from './GroupsGeneratorResult.scss';
@@ -36,4 +36,4 @@ GroupsGeneratorResult.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('GroupsGenerator')(GroupsGeneratorResult);
+export default withTranslation('GroupsGenerator')(GroupsGeneratorResult);

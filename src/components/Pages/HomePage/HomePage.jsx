@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
@@ -14,7 +14,7 @@ import coinIcon from './coin.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
 // import likeIcon from './like.jpg';
-// import facebookIcon from './facebook.png';
+import facebookIcon from './facebook.png';
 // import raffleIcon from './raffle.svg';
 
 import STYLES from './HomePage.scss';
@@ -39,6 +39,9 @@ const HomePage = ({ t }) => (
       </DrawCard>
       <DrawCard icon={coinIcon} to="draw/new/coin/">
         {t('draw_title_flip_coin')}
+      </DrawCard>
+      <DrawCard icon={facebookIcon} to="/facebook">
+        {t('draw_title_facebook_login')}
       </DrawCard>
       {/* <DrawCard icon={randomNumber} to="/number">
           {t('draw_title_random_number')}
@@ -65,9 +68,6 @@ const HomePage = ({ t }) => (
       <DrawCard icon={tournamentIcon} externalHref="https://echaloasuerte.com/draw/new/tournament/">
         {t('draw_title_tournament')}
       </DrawCard>
-      <DrawCard icon={facebookIcon} to="/facebook_login">
-        {t('draw_title_facebook_login')}
-      </DrawCard>
       <DrawCard icon={likeIcon} to="/facebook_photo">
         {t('draw_title_facebook_photo')}
       </DrawCard>
@@ -80,4 +80,4 @@ HomePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('HomePage')(HomePage);
+export default withTranslation('HomePage')(HomePage);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import PropTypes from 'prop-types';
 
@@ -132,7 +132,7 @@ const withFieldValidation = WrappedComponent => {
     isFormSubmitted: PropTypes.func.isRequired,
   };
 
-  return translate('WithFieldValidation')(WithFieldValidation);
+  return withTranslation('WithFieldValidation')(WithFieldValidation);
 };
 
 export default withFieldValidation;

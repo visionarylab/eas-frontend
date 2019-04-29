@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
@@ -58,4 +58,4 @@ GroupsGeneratorConfigurationSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default translate('GroupsGenerator')(GroupsGeneratorConfigurationSection);
+export default withTranslation('GroupsGenerator')(GroupsGeneratorConfigurationSection);
