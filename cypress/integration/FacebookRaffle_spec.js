@@ -1,4 +1,4 @@
-describe('FacebookRaffle', () => {
+describe.skip('FacebookRaffle', () => {
   beforeEach(() => {
     cy.server();
     cy.mockFixture('FacebookRaffle');
@@ -163,7 +163,7 @@ describe('FacebookRaffle', () => {
     });
 
     describe('After results published', () => {
-      it.only('Should show the results', () => {
+      it('Should show the results', () => {
         cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
       });
     });

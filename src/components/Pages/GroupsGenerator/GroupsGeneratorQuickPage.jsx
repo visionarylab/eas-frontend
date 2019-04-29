@@ -34,7 +34,11 @@ const GroupsGeneratorQuickPage = props => {
 
   useEffect(() => {
     if (quickResult) {
-      window.scroll({ left: 0, top: resultsRef.current.offsetTop, behavior: 'smooth' });
+      try {
+        window.scroll({ left: 0, top: resultsRef.current.offsetTop, behavior: 'smooth' });
+      } catch (error) {
+        window.scrollTo(0, resultsRef.current.offsetTop);
+      }
     }
   }, [quickResult]);
 
