@@ -25,7 +25,7 @@ class FacebookLoginButton extends Component {
   // };
 
   render() {
-    const { onLogin, permissions } = this.props;
+    const { /* onLogin, */ permissions } = this.props;
     return (
       // <button onClick={this.handleLogin} data-component="FacebookLoginButton">
       //   login
@@ -47,12 +47,12 @@ class FacebookLoginButton extends Component {
 }
 
 FacebookLoginButton.propTypes = {
-  onUserLoggedIn: PropTypes.func,
+  // onUserLoggedIn: PropTypes.func,
   permissions: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
-  onUserLoggedIn: () => {},
+  // onUserLoggedIn: () => {},
   permissions: '',
 };
 

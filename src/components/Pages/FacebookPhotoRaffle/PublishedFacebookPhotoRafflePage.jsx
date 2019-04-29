@@ -49,4 +49,6 @@ PublishedFacebookPhotoRafflePage.defaultProps = {
   results: [],
 };
 
-export default withTranslation('PublishedFacebookPhotoRafflePage')(PublishedFacebookPhotoRafflePage);
+export default withTranslation('PublishedFacebookPhotoRafflePage')(
+  PublishedFacebookPhotoRafflePage,
+);

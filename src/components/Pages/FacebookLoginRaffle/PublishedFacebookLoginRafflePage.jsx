@@ -28,7 +28,7 @@ const PublishedFacebookLoginRafflePage = props => {
     title,
     result,
     prizes,
-    isOwner,
+    // isOwner,
     isLoggedInFB,
     userName,
     participants,
@@ -156,15 +156,17 @@ PublishedFacebookLoginRafflePage.propTypes = {
   onRegisterInRaffle: PropTypes.func.isRequired,
   onFacebookLogout: PropTypes.func.isRequired,
   shareUrl: PropTypes.string.isRequired,
-  onUserLoggedIn: PropTypes.func,
+  // onUserLoggedIn: PropTypes.func,
+  isLoading: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
 
 PublishedFacebookLoginRafflePage.defaultProps = {
+  isLoading: false,
   description: '',
   result: null,
   userName: null,
-  onUserLoggedIn: () => {},
+  // onUserLoggedIn: () => {},
 };
 
 export default withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage);

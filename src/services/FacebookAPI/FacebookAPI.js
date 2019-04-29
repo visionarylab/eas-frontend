@@ -162,6 +162,5 @@ export const logout = () => {
   window.FB.logout(() => {
     window.FB.Auth.setAuthResponse(null, 'unknown');
     console.log('FB: logged out');
-    // TODO this is not logging out from facebook
   });
 };
