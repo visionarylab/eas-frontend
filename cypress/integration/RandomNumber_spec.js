@@ -1,7 +1,5 @@
 /* eslint-disable func-names, prefer-arrow-callback */
 
-// TODO Mock GA, Facebook
-
 describe.skip('Number Draw Page', () => {
   beforeEach(() => {
     cy.server();

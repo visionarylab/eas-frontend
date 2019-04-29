@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
@@ -23,12 +22,10 @@ const PublishedGroupsGeneratorPage = props => {
   const {
     title,
     result,
-    isOwner,
     participants,
     shareUrl,
     numberOfGroups,
     description,
-    onToss,
     isLoading,
     t,
   } = props;
@@ -100,9 +97,7 @@ PublishedGroupsGeneratorPage.propTypes = {
   description: PropTypes.string,
   result: PropTypes.instanceOf(GroupsResult),
   shareUrl: PropTypes.string.isRequired,
-  isOwner: PropTypes.bool,
   isLoading: PropTypes.bool,
-  onToss: PropTypes.func,
   t: PropTypes.func.isRequired,
 };
 
@@ -111,9 +106,7 @@ PublishedGroupsGeneratorPage.defaultProps = {
   description: '',
   result: [],
   numberOfGroups: null,
-  isOwner: false,
   isLoading: false,
-  onToss: () => {},
 };
 
 export default withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);

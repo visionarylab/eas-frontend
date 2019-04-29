@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import moment from 'moment';
+// import moment from 'moment';
 import { RaffleApi, Participant } from 'echaloasuerte-js-sdk';
 import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage.jsx';
 // import ApiClient from '../../../services/api/EASApi';
@@ -32,7 +32,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     this.loadData();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { userID } = this.props.facebookContext;
     console.log('componentDidUpdate', userID);
     if (prevProps.facebookContext.userID !== userID && userID) {
@@ -46,7 +46,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     const { userName, userID } = this.props.facebookContext.getUserDetails();
 
     const participant = Participant.constructFromObject({ name: userName, facebook_id: userID });
-    const response = await raffleApi.raffleParticipantsAdd(drawId, participant);
+    /* const response = */ await raffleApi.raffleParticipantsAdd(drawId, participant);
     console.log('Register as', userName, userID);
     this.setState({ userRegisteredInRaffle: true });
   };
@@ -83,7 +83,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     }
 
     this.setState({
-      drawId,
+      // drawId,
       title,
       description,
       participants,
@@ -128,6 +128,7 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
 
 PublishedFacebookLoginRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
+    userID: PropTypes.string.isRequired,
     isLoggedInFB: PropTypes.bool.isRequired,
     getUserDetails: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,

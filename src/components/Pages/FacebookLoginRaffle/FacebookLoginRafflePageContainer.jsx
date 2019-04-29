@@ -22,7 +22,7 @@ class FacebookLoginRafflePageContainer extends Component {
     this.state = {
       APIError: false,
       values: {
-        title: 'Sorteo en Facebook', // TODO This needs to be translated
+        title: 'Sorteo en Facebook',
         description: '',
         participants: [],
         prizes: [],
@@ -102,7 +102,7 @@ class FacebookLoginRafflePageContainer extends Component {
 FacebookLoginRafflePageContainer.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
-  match: ReactRouterPropTypes.match.isRequired,
+  // match: ReactRouterPropTypes.match.isRequired,
   track: PropTypes.func.isRequired,
 };
 
