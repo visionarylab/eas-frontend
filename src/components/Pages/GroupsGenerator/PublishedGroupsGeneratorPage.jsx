@@ -8,8 +8,6 @@ import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
 import { fetchDraw } from '../../../actions/drawActions';
-import config from '../../../config/config';
-
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
@@ -24,9 +22,9 @@ const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Groups';
 
 const PublishedGroupsGeneratorPage = props => {
-  const { draw, match, t } = props;
+  const { draw, match, t, hostname } = props;
   const { title, description, participants, numberOfGroups, result, isLoading } = draw;
-  const shareUrl = config.domain + match.url;
+  const shareUrl = hostname + match.url;
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
@@ -99,6 +97,7 @@ PublishedGroupsGeneratorPage.propTypes = {
     isOwner: PropTypes.bool,
     isLoading: PropTypes.bool,
   }).isRequired,
+  hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
@@ -107,7 +106,7 @@ PublishedGroupsGeneratorPage.defaultProps = {};
 
 const TranslatedPage = withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);
 
-const mapsStateToProps = state => ({ draw: state.draws.draw });
+const mapsStateToProps = state => ({ draw: state.draws.draw, hostname: state.hostname.hostname });
 const frontload = async props => {
   const { drawId } = props.match.params;
   await props.fetchDraw(drawId);

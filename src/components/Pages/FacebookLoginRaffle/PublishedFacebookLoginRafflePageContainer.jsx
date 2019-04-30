@@ -8,7 +8,6 @@ import PublishedFacebookLoginRafflePage from './PublishedFacebookLoginRafflePage
 // import ApiClient from '../../../services/api/EASApi';
 
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
-import config from '../../../config/config';
 
 const raffleApi = new RaffleApi();
 
@@ -73,7 +72,9 @@ class PublishedFacebookLoginRafflePageContainer extends Component {
     const { title, description, participants, prizes } = draw;
     const lastToss = draw.results[0];
     const scheduleDate = lastToss.schedule_date;
-    const shareUrl = config.domain + match.url;
+
+    // DONT USE DOMAIN HERE, USE THE HOSTNAME FROM REDUX
+    const shareUrl = ''; // config.domain + match.url;
 
     if (scheduleDate > Date.now()) {
       const milisecondsMissing = scheduleDate - Date.now();

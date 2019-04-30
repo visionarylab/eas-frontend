@@ -1,4 +1,6 @@
-/* eslint-disable react/jsx-filename-extension */
+/* ********************************************************
+ *          Client Side Rendering entry point             *
+ ******************************************************** */
 import React from 'react';
 // import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
@@ -16,7 +18,10 @@ import createStore from './store';
 setupApi();
 const { store, history } = createStore();
 
-class Main extends React.Component {
+const generateClassName = createGenerateClassName();
+
+class Application extends React.Component {
+  // Remove the server-side injected CSS.
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.getElementById('jss-server-side');
@@ -27,27 +32,22 @@ class Main extends React.Component {
 
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Frontload noServerRender>
-            <DeviceDetector userAgent={window.navigator.userAgent}>
-              <App />
-            </DeviceDetector>
+            <JssProvider generateClassName={generateClassName}>
+              <MuiThemeProvider theme={theme}>
+                <DeviceDetector userAgent={window.navigator.userAgent}>
+                  <App />
+                </DeviceDetector>
+              </MuiThemeProvider>
+            </JssProvider>
           </Frontload>
         </ConnectedRouter>
       </Provider>
     );
   }
 }
-
-const generateClassName = createGenerateClassName();
-
-const Application = () => (
-  <JssProvider generateClassName={generateClassName}>
-    <MuiThemeProvider theme={theme}>
-      <Main />
-    </MuiThemeProvider>
-  </JssProvider>
-);
 
 ReactDOM.render(React.createElement(Application), document.getElementById('root'));

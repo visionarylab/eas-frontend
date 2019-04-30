@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import {
   apiCall,
   fbAsyncInit,
-  injectScript,
+  // injectScript,
   getLikesOnObject,
   logout,
 } from '../../services/FacebookAPI/FacebookAPI';
-import i18n from '../../i18n/i18n';
+// import i18n from '../../i18n/i18n';
 
 export const FacebookContext = React.createContext();
 
@@ -28,8 +28,9 @@ class FacebookProvider extends Component {
     const updateLoginStatus = response => this.setState({ isLoggedInFB: !!response.authResponse });
     fbAsyncInit(updateLoginStatus);
 
-    const locale = i18n.language.replace('-', '_');
-    injectScript(locale);
+    // Commenting this as while trying to reolve a different problem
+    // const locale = i18n.language.replace('-', '_');
+    // injectScript(locale);
   }
 
   getUserDetails = () => {

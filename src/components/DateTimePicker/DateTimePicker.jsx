@@ -7,9 +7,8 @@ import MomentUtils from '@date-io/moment';
 import { default as MuiDateTimePicker } from 'material-ui-pickers/DateTimePicker'; // eslint-disable-line import/no-named-default
 import moment from 'moment';
 import 'moment/locale/es';
-import i18n from '../../i18n/i18n';
 
-const DateTimePicker = ({ t, ...props }) => {
+const DateTimePicker = ({ t, i18n, ...props }) => {
   const { defaultNS, reportNS, i18nOptions, tReady, ...rest } = props; // eslint-disable-line react/prop-types
   const locale = i18n.language;
 

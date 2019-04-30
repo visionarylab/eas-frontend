@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import classnames from 'classnames/bind';
 import STYLES from './TranslationsSwitch.scss';
-import i18n from '../../i18n/i18n';
 
 const c = classnames.bind(STYLES);
 const localeMap = {
@@ -15,7 +14,7 @@ const localeMap = {
   'es-ES': 'Español',
 };
 
-const TranslationsSwitch = ({ available, onChange, t }) => (
+const TranslationsSwitch = ({ available, onChange, t, i18n }) => (
   <span className={c('TranslationsSwitch')}>
     <Typography className={c('TranslationsSwitch__label')} variant="body1" component="span">
       {t('change_language')}
@@ -36,6 +35,7 @@ TranslationsSwitch.propTypes = {
   available: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default withTranslation('TranslationsSwitch')(TranslationsSwitch);

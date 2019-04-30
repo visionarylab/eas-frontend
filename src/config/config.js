@@ -26,7 +26,6 @@ if (environment) {
     const baseConfig = {
       OGImagesFullDomain: 'https://echaloasuerte.com',
       environment,
-      domain: isServer ? 'https://echaloasuerte.com' : window.location.origin,
       isServer,
       sentryDsn: 'https://31465bb4331a44fc9262616650942a64@sentry.io/1413974',
     };
