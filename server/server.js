@@ -8,6 +8,7 @@ import * as fs from 'fs';
 import path from 'path';
 import * as Sentry from '@sentry/node';
 import config from '../src/config/config';
+import setupApi from '../src/setupApi';
 
 // Our loader - this basically acts as the entry point for each page load
 import loader from './loader.jsx';
@@ -15,6 +16,9 @@ import loader from './loader.jsx';
 // Create our express app using the port optionally specified
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Setup the EAS API
+setupApi();
 
 // Setup error logs
 Sentry.init({

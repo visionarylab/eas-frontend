@@ -13,7 +13,7 @@ import STYLES from './AppShell.scss';
 import PrivacyPolicyPage from '../Pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
 import RecentDraws from '../Pages/RecentDraws/RecentDrawsPage.jsx';
 // import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer.jsx';
-import PublishedGroupsGeneratorPageContainer from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPageContainer.jsx';
+import PublishedGroupsGeneratorPage from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';
 // import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer.jsx';
 // import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer.jsx';
 // import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer.jsx';
@@ -47,7 +47,7 @@ const AppShell = () => (
       <Route
         exact
         path={`/groups/:drawId(${guidRegex})`}
-        component={PublishedGroupsGeneratorPageContainer}
+        component={PublishedGroupsGeneratorPage}
       />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
