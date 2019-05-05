@@ -5,4 +5,5 @@ export default function() {
   const { APIBasePath } = config;
   const defaultClient = EASApi.ApiClient.instance;
   defaultClient.basePath = APIBasePath;
+  defaultClient.timeout = 5000;
 }
