@@ -11,6 +11,7 @@
     "@material-ui/icons": "^1.1.0",
     "@sentry/browser": "^4.6.4",
     "@sentry/node": "^4.6.4",
+    "@synapsestudios/winston-sentry": "^1.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-plugin-file-loader": "^1.1.1",
     "body-parser": "^1.18.3",
@@ -49,7 +50,9 @@
     "redux-thunk": "^2.3.0",
     "rotating-file-stream": "^1.4.0",
     "ua-parser-js": "^0.7.19",
-    "url-join": "^4.0.0"
+    "url-join": "^4.0.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.9.0"
   },
   "devDependencies": {
     "cypress": "^3.2.0",

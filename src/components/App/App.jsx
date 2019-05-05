@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
-import * as Sentry from '@sentry/browser';
 import { connect } from 'react-redux';
 // import showCookieBanner from '../../services/cookieConsent';
 import initI18n from '../../i18n';
@@ -17,17 +16,10 @@ import { hotjar } from '../../services/hotjar';
 class App extends Component {
   constructor(props) {
     super(props);
-
     if (config.analiticsEnabled) {
       mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
       ReactGA.set({ dimension2: 'v3' });
-    }
-    if (config.sentryEnabled) {
-      Sentry.init({
-        dsn: config.sentryDsn,
-        environment: config.environment,
-      });
     }
     initI18n(props.hostname);
   }
