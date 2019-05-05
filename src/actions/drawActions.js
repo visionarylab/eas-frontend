@@ -5,28 +5,34 @@ const groupsApi = new GroupsApi();
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchDraw = drawId => dispatch =>
-  new Promise(resolve => {
-    groupsApi.groupsRead(drawId).then(draw => {
-      const {
-        private_id: privateId,
-        title,
-        description,
-        participants,
-        number_of_groups: numberOfGroups,
-      } = draw;
-      const lastToss = draw.results[0];
-      const scheduleDate = lastToss.schedule_date;
-      const drawData = {
-        title,
-        description,
-        participants,
-        numberOfGroups,
-        scheduleDate,
-        result: lastToss,
-        isOwner: Boolean(privateId),
-        isLoading: false,
-      };
-      dispatch({ type: FETCH_DRAW, payload: drawData });
-      resolve();
-    });
+  new Promise((resolve, reject) => {
+    groupsApi
+      .groupsRead(drawId)
+      .then(draw => {
+        const {
+          private_id: privateId,
+          title,
+          description,
+          participants,
+          number_of_groups: numberOfGroups,
+        } = draw;
+        const lastToss = draw.results[0];
+        const scheduleDate = lastToss.schedule_date;
+        const drawData = {
+          title,
+          description,
+          participants,
+          numberOfGroups,
+          scheduleDate,
+          result: lastToss,
+          isOwner: Boolean(privateId),
+          isLoading: false,
+        };
+        dispatch({ type: FETCH_DRAW, payload: drawData });
+        resolve();
+      })
+      .catch(error => {
+        console.error('API Error:', error);
+        reject(error);
+      });
   });
