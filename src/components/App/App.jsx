@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { I18nextProvider } from 'react-i18next';
+import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
 import * as Sentry from '@sentry/browser';
+import { connect } from 'react-redux';
 // import showCookieBanner from '../../services/cookieConsent';
-import i18n from '../../i18n/i18n';
+import initI18n from '../../i18n';
 import AppShell from '../AppShell/AppShell.jsx';
 import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
 import config from '../../config/config';
@@ -28,6 +29,7 @@ class App extends Component {
         environment: config.environment,
       });
     }
+    initI18n(props.hostname);
   }
 
   componentDidMount() {
@@ -43,15 +45,19 @@ class App extends Component {
         )}
       >
         <MixpanelProvider mixpanel={mixpanel}>
-          <I18nextProvider i18n={i18n}>
-            <FacebookProvider>
-              <AppShell />
-            </FacebookProvider>
-          </I18nextProvider>
+          <FacebookProvider>
+            <AppShell />
+          </FacebookProvider>
         </MixpanelProvider>
       </ErrorBoundary>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  hostname: PropTypes.string.isRequired,
+};
+
+const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
+
+export default connect(mapsStateToProps)(App);

@@ -6,12 +6,11 @@ import CountdownHandler from 'react-countdown-now';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import moment from 'moment';
-import i18n from '../../i18n/i18n';
 import STYLES from './Countdown.scss';
 
 const c = classnames.bind(STYLES);
 
-const Countdown = ({ date, t }) => {
+const Countdown = ({ date, t, i18n }) => {
   moment.locale(i18n.language);
   return (
     <div className={c('Countdown')} data-component="Countdown">
@@ -55,8 +54,9 @@ const Countdown = ({ date, t }) => {
 };
 
 Countdown.propTypes = {
-  t: PropTypes.func.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
+  t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default withTranslation('Countdown')(Countdown);

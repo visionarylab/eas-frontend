@@ -13,6 +13,7 @@ import createStore from '../src/store';
 import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
 import theme from '../src/EasTheme.jsx';
+import { setHostname } from '../src/actions/hostnameActions';
 
 export default (req, res) => {
   /*
@@ -58,6 +59,8 @@ export default (req, res) => {
 
     const { store } = createStore(req.url);
 
+    store.dispatch(setHostname(req.headers.host));
+
     const context = {};
     frontloadServerRender(() =>
       renderToString(
@@ -88,7 +91,7 @@ export default (req, res) => {
         title: helmet.title.toString(),
         meta: helmet.meta.toString(),
         body: routeMarkup,
-        state: JSON.stringify({}).replace(/</g, '\\u003c'),
+        state: JSON.stringify(store.getState()).replace(/</g, '\\u003c'),
         css,
       });
 

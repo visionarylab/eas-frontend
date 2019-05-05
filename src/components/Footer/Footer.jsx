@@ -5,7 +5,6 @@ import { withTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
-import i18n from '../../i18n/i18n';
 import TranslationsSwitch from '../TranslationsSwitch/TranslationsSwitch.jsx';
 import STYLES from './Footer.scss';
 import config from '../../config/config';
@@ -33,28 +32,31 @@ const redirect = locale => {
   window.location.replace(targetUrl);
 };
 
-const handleChangeLanguage = l => {
-  if (config.environment === 'local') {
-    // Avoid redirecting to ease the translation process in local
-    i18n.changeLanguage(l);
-  } else {
-    redirect(l);
-  }
-};
+const Footer = ({ t, i18n }) => {
+  const handleChangeLanguage = l => {
+    if (config.environment === 'local') {
+      // Avoid redirecting to ease the translation process in local
+      i18n.changeLanguage(l);
+    } else {
+      redirect(l);
+    }
+  };
 
-const Footer = ({ t }) => (
-  <footer className={c('Footer')}>
-    <Link component={RouterLink} to="/privacy-policy" color="textPrimary">
-      <Typography className={c('Footer__link')} variant="body1" component="span">
-        {t('privacy_policy')}
-      </Typography>
-    </Link>
-    <TranslationsSwitch onChange={handleChangeLanguage} available={availableLocales} />
-  </footer>
-);
+  return (
+    <footer className={c('Footer')}>
+      <Link component={RouterLink} to="/privacy-policy" color="textPrimary">
+        <Typography className={c('Footer__link')} variant="body1" component="span">
+          {t('privacy_policy')}
+        </Typography>
+      </Link>
+      <TranslationsSwitch onChange={handleChangeLanguage} available={availableLocales} />
+    </footer>
+  );
+};
 
 Footer.propTypes = {
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default withTranslation('Footer')(Footer);

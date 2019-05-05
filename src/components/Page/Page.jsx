@@ -4,6 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import classNames from 'classnames/bind';
 import Helmet from 'react-helmet';
 import ReactGA from 'react-ga';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
@@ -25,7 +26,15 @@ class Page extends Component {
   }
 
   getMetaTags() {
-    const { htmlTitle, htmlDescription, htmlKeywords, noIndex, ogImage, location } = this.props;
+    const {
+      htmlTitle,
+      htmlDescription,
+      htmlKeywords,
+      noIndex,
+      ogImage,
+      location,
+      hostname,
+    } = this.props;
     const shouldIndexPage = config.indexPages && !noIndex;
     const pageTitle = htmlTitle.substring(0, 60);
     const pageDescription = htmlDescription.substring(0, 155);
@@ -35,7 +44,7 @@ class Page extends Component {
       { property: 'og:title', content: pageTitle },
       { property: 'og:image', content: config.OGImagesFullDomain + ogImage },
       { property: 'og:description', content: pageDescription },
-      { property: 'og:url', content: config.domain + location.pathname },
+      { property: 'og:url', content: hostname + location.pathname },
     ];
 
     if (!shouldIndexPage) {
@@ -83,6 +92,7 @@ Page.propTypes = {
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
   ogImage: PropTypes.node,
+  hostname: PropTypes.string.isRequired,
 };
 
 Page.defaultProps = {
@@ -93,4 +103,6 @@ Page.defaultProps = {
   htmlDescription: '',
 };
 
-export default withMixpanel(withRouter(Page));
+const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
+
+export default withMixpanel(withRouter(connect(mapsStateToProps)(Page)));
