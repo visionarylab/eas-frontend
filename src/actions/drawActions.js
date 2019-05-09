@@ -1,4 +1,5 @@
 import { GroupsApi } from 'echaloasuerte-js-sdk';
+import winston from 'winston';
 import { FETCH_DRAW } from './types';
 
 const groupsApi = new GroupsApi();
@@ -32,7 +33,8 @@ export const fetchDraw = drawId => dispatch =>
         resolve();
       })
       .catch(error => {
-        console.error('API Error:', error);
+        winston.error('API error', { error });
         reject(error);
+        throw error;
       });
   });

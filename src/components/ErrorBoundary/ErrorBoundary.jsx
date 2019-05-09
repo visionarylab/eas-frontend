@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import * as Sentry from '@sentry/browser';
+import winston from 'winston';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -15,12 +14,7 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true, error, errorInfo });
-    Sentry.withScope(scope => {
-      Object.keys(errorInfo).forEach(key => {
-        scope.setExtra(key, errorInfo[key]);
-      });
-      Sentry.captureException(error);
-    });
+    winston.error('ErrorBoundary', { error });
   }
 
   render() {

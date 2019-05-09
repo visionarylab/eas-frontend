@@ -4,12 +4,20 @@
 const isServer = !(typeof window !== 'undefined' && window.document);
 
 let config = {};
+/** ****************
+ * Possible environments:
+ * - production (deployed app, both in the prod and dev server)
+ * - local (running locally)
+ * - test (running battery tests)
+ **************** */
 let environment;
 
 if (process.env.REACT_APP_ENV) {
   environment = process.env.REACT_APP_ENV;
-} else if (typeof window !== 'undefined' && window.__internal) {
-  environment = window.__internal.ENVIRONMENT;
+} else if (process.env.NODE_ENV === 'development') {
+  // NODE_ENV is set to development when running the react development server,
+  // that way we don't need to set the REACT_APP_ENV env variable locally
+  environment = 'local';
 }
 
 if (process.env.REACT_APP_COMMIT) {

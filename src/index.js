@@ -14,8 +14,10 @@ import theme from './EasTheme.jsx';
 import DeviceDetector from './components/DeviceDetector/DeviceDetector.jsx';
 import setupApi from './setupApi';
 import createStore from './store';
+import initLogging from './logging';
 
 setupApi();
+initLogging({ isServer: false });
 const { store, history } = createStore();
 
 const generateClassName = createGenerateClassName();

@@ -2,13 +2,12 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
+import winston from 'winston';
 import morgan from 'morgan';
-import rfs from 'rotating-file-stream';
-import * as fs from 'fs';
 import path from 'path';
 import * as Sentry from '@sentry/node';
-import config from '../src/config/config';
 import setupApi from '../src/setupApi';
+import initLogging, { getMorganStream } from '../src/logging';
 
 // Our loader - this basically acts as the entry point for each page load
 import loader from './loader.jsx';
@@ -19,24 +18,13 @@ const PORT = process.env.PORT || 3000;
 
 // Setup the EAS API
 setupApi();
+initLogging({ isServer: true });
 
-// Setup error logs
-Sentry.init({
-  dsn: config.sentryDsn,
-  environment: config.environment,
-});
+// Setup Sentry error logs (step 1)
 app.use(Sentry.Handlers.requestHandler());
 
 // Setup access logs
-const logDirectory = path.join(__dirname, 'logs');
-if (!fs.existsSync(logDirectory)) {
-  fs.mkdirSync(logDirectory);
-}
-const accessLogStream = rfs('access.log', {
-  maxFiles: process.env.LOGS_MAX_FILES || 5,
-  size: '10M',
-  path: process.env.LOGS_PATH || logDirectory,
-});
+const accessLogStream = getMorganStream();
 app.use(morgan('combined', { stream: accessLogStream }));
 
 // Compress, parse, log, and raid the cookie jar
@@ -51,12 +39,18 @@ app.use(loader);
 
 app.listen(PORT, console.log(`App listening on port ${PORT}!`));
 
-// Sentry error handling
+// Setup Sentry error logs (step 2)
 app.use(Sentry.Handlers.errorHandler());
+
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+app.use((error, req, res, next) => {
   res.statusCode = 500;
-  res.end(`Something went bad, but we are working very hard to fix it.`);
+  winston.error('Error 500', { error: error.toString(), sentryErrorId: res.sentry });
+  res.end(
+    `Something went bad, but we are working very hard to fix it.\n\nAh! if someone ask you for a number, this is the one: ${
+      res.sentry
+    }`,
+  );
 });
 
 // Handle the bugs somehow
