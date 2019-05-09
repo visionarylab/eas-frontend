@@ -65,7 +65,7 @@ const initLogging = ({ isServer }) => {
   if (env === 'test') {
     transports = [];
   } else if (env === 'local') {
-    transports = [getConsoleTransport(), ...getProductionTransports(isServer)];
+    transports = [getConsoleTransport()];
   } else if (env === 'production') {
     transports = getProductionTransports(isServer);
   }
