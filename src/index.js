@@ -9,17 +9,24 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { MuiThemeProvider, createGenerateClassName } from '@material-ui/core/styles';
+import * as Sentry from '@sentry/browser';
 import App from './components/App/App.jsx';
 import theme from './EasTheme.jsx';
 import DeviceDetector from './components/DeviceDetector/DeviceDetector.jsx';
 import setupApi from './setupApi';
 import createStore from './store';
-import initLogging from './logging';
+import { initWinstonLogging } from './logging';
+import config from './config/config';
 
 setupApi();
-initLogging({ isServer: false });
+initWinstonLogging({ isServer: false });
 const { store, history } = createStore();
 
+// Sentry Browser Sentry
+Sentry.init({
+  dsn: config.sentryDsn,
+  environment: config.environment,
+});
 const generateClassName = createGenerateClassName();
 
 class Application extends React.Component {
