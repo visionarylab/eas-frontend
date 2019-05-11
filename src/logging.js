@@ -3,13 +3,13 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
 import rfs from 'rotating-file-stream';
 import * as fs from 'fs';
-import * as Sentry from '@sentry/browser';
-import * as SentryTransport from '@synapsestudios/winston-sentry';
+import { NullTransport } from 'winston-null';
 import config from './config/config';
 
 const { LOGS_PATH, MAX_FILES } = process.env;
 const DEFAULT_MAX_FILES = 5;
 const MAX_SIZE = '10M';
+const maxFiles = MAX_FILES || DEFAULT_MAX_FILES;
 
 const setupDefaultLogsPath = () => {
   const logsDirectory = path.join('.', 'logs');
@@ -20,8 +20,6 @@ const setupDefaultLogsPath = () => {
 };
 
 const getLogsPath = () => LOGS_PATH || setupDefaultLogsPath();
-
-const maxFiles = MAX_FILES || DEFAULT_MAX_FILES;
 
 const getFileTransports = () => {
   const logsPath = getLogsPath();
@@ -42,32 +40,20 @@ const getFileTransports = () => {
   ];
 };
 
-const getSetryTransport = () => new SentryTransport({ Sentry });
-
-const getConsoleTransport = () => new winston.transports.Console();
-
-const getProductionTransports = isServer =>
-  isServer ? getFileTransports() : [getSetryTransport()];
-
-const initLogging = ({ isServer }) => {
+export const initWinstonLogging = ({ isServer }) => {
   const env = config.environment;
-
-  if (isServer) {
-    // Sentry needs to be initialised before calling getSetryTransport()
-    // or before using the Sentry express middleware
-    Sentry.init({
-      dsn: config.sentryDsn,
-      environment: config.environment,
-    });
-  }
-
   let transports;
   if (env === 'test') {
     transports = [];
   } else if (env === 'local') {
-    transports = [getConsoleTransport(), ...getProductionTransports(isServer)];
+    transports = [new winston.transports.Console()];
   } else if (env === 'production') {
-    transports = getProductionTransports(isServer);
+    if (isServer) {
+      transports = [...getFileTransports(), new winston.transports.Console()];
+    } else {
+      // We don't use winston to log stuff clientside in prod
+      transports = [new NullTransport()];
+    }
   }
   winston.configure({
     transports,
@@ -88,5 +74,3 @@ export const getMorganStream = () =>
     size: MAX_SIZE,
     path: getLogsPath(),
   });
-
-export default initLogging;

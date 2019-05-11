@@ -52,7 +52,8 @@
     "ua-parser-js": "^0.7.19",
     "url-join": "^4.0.0",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^3.9.0"
+    "winston-daily-rotate-file": "^3.9.0",
+    "winston-null": "^2.0.0"
   },
   "devDependencies": {
     "cypress": "^3.2.0",

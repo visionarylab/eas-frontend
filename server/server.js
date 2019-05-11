@@ -7,10 +7,17 @@ import morgan from 'morgan';
 import path from 'path';
 import * as Sentry from '@sentry/node';
 import setupApi from '../src/setupApi';
-import initLogging, { getMorganStream } from '../src/logging';
+import { initWinstonLogging, getMorganStream } from '../src/logging';
 
-// Our loader - this basically acts as the entry point for each page load
 import loader from './loader.jsx';
+import config from '../src/config/config';
+
+// Setup Node Sentry
+Sentry.init({
+  dsn: config.sentryDsn,
+  environment: config.environment,
+});
+initWinstonLogging({ isServer: true });
 
 // Create our express app using the port optionally specified
 const app = express();
@@ -18,7 +25,6 @@ const PORT = process.env.PORT || 3000;
 
 // Setup the EAS API
 setupApi();
-initLogging({ isServer: true });
 
 // Setup Sentry error logs (step 1)
 app.use(Sentry.Handlers.requestHandler());

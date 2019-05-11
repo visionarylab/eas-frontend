@@ -1,4 +1,5 @@
 import { GroupsApi } from 'echaloasuerte-js-sdk';
+import * as Sentry from '@sentry/browser';
 import winston from 'winston';
 import { FETCH_DRAW } from './types';
 
@@ -33,7 +34,13 @@ export const fetchDraw = drawId => dispatch =>
         resolve();
       })
       .catch(error => {
-        winston.error('API error', { error });
+        Sentry.withScope(scope => {
+          scope.setExtra('message', 'API Error');
+          scope.setExtra('Action', 'groupsRead');
+          scope.setExtra('drawId', drawId);
+          Sentry.captureException(error);
+        });
+        winston.error('API Error: groupsRead', { drawId, error });
         reject(error);
         throw error;
       });
