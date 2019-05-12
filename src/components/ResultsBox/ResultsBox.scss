@@ -1,7 +1,5 @@
 @import '../variables';
 
-$published-results-background-color: #ffffff61;
-$summary-panel-background-color: rgba(0, 0, 0, .09);
 $border-radius: .2rem;
 
 .ResultsBox {
@@ -12,7 +10,6 @@ $border-radius: .2rem;
     margin-bottom: $spacing-md;
     padding: $spacing-lg;
     border-radius: $border-radius;
-    background-color: $published-results-background-color;
     text-align: center;
   }
 
