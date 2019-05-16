@@ -1,5 +1,4 @@
 import winston, { format } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
 import rfs from 'rotating-file-stream';
 import * as fs from 'fs';
@@ -8,7 +7,8 @@ import config from './config/config';
 
 const { LOGS_PATH, MAX_FILES } = process.env;
 const DEFAULT_MAX_FILES = 5;
-const MAX_SIZE = '10M';
+const MAX_SIZE_MORGAN = '10M'; // 10 MB
+const MAX_SIZE_WINSTON = 10485760;
 const maxFiles = MAX_FILES || DEFAULT_MAX_FILES;
 
 const setupDefaultLogsPath = () => {
@@ -24,16 +24,17 @@ const getLogsPath = () => LOGS_PATH || setupDefaultLogsPath();
 const getFileTransports = () => {
   const logsPath = getLogsPath();
   const baseRatationOptions = {
-    maxSize: MAX_SIZE,
+    maxsize: MAX_SIZE_WINSTON,
+    tailable: true,
     maxFiles,
   };
   return [
-    new DailyRotateFile({
+    new winston.transports.File({
       filename: path.join(logsPath, 'error.log'),
       level: 'error',
       ...baseRatationOptions,
     }),
-    new DailyRotateFile({
+    new winston.transports.File({
       filename: path.join(logsPath, 'combined.log'),
       ...baseRatationOptions,
     }),
@@ -71,6 +72,6 @@ export const initWinstonLogging = ({ isServer }) => {
 export const getMorganStream = () =>
   rfs('access.log', {
     maxFiles,
-    size: MAX_SIZE,
+    size: MAX_SIZE_MORGAN,
     path: getLogsPath(),
   });
