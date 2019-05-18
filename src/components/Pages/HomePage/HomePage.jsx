@@ -15,7 +15,7 @@ import coinIcon from './coin.svg';
 // import tournamentIcon from './tournament.png';
 // import likeIcon from './like.jpg';
 import facebookIcon from './facebook.png';
-// import raffleIcon from './raffle.svg';
+import raffleIcon from './raffle.svg';
 
 import STYLES from './HomePage.scss';
 
@@ -30,10 +30,10 @@ const HomePage = ({ t }) => (
   >
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
-      {/* <div className={c('HomePage__draw-chips-group')}>
-        <DrawCard icon={raffleIcon} to="/raffle">
-          {t('draw_title_raffle')}
-        </DrawCard> */}
+      {/* <div className={c('HomePage__draw-chips-group')}> */}
+      <DrawCard icon={raffleIcon} to="/raffle">
+        {t('draw_title_raffle')}
+      </DrawCard>
       <DrawCard icon={groupsIcon} to="/draw/new/groups">
         {t('draw_title_groups_generator')}
       </DrawCard>

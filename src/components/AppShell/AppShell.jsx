@@ -14,8 +14,6 @@ import PrivacyPolicyPage from '../Pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx'
 import RecentDraws from '../Pages/RecentDraws/RecentDrawsPage.jsx';
 // import PublishedRandomNumberPageContainer from '../Pages/RandomNumber/PublishedRandomNumberPageContainer.jsx';
 import PublishedGroupsGeneratorPage from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';
-// import RafflePageContainer from '../Pages/RafflePage/RafflePageContainer.jsx';
-// import PublishedRafflePageContainer from '../Pages/RafflePage/PublishedRafflePageContainer.jsx';
 // import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer.jsx';
 import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer.jsx';
@@ -25,6 +23,8 @@ import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaf
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer.jsx';
 // import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer.jsx';
 import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer.jsx';
+import RafflePageContainer from '../Pages/Raffle/RafflePageContainer.jsx';
+import PublishedRafflePageContainer from '../Pages/Raffle/PublishedRafflePage.jsx';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage.jsx';
 
 const c = classnames.bind(STYLES);
@@ -53,6 +53,9 @@ const AppShell = () => (
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
 
       <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
+
+      <Route exact path="/raffle" component={RafflePageContainer} />
+      <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
 
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route exact path="/recent" component={RecentDraws} />

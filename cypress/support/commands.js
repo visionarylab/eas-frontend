@@ -26,6 +26,16 @@
 
 Cypress.Commands.add('getComponent', component => cy.get(`[data-component="${component}"]`));
 Cypress.Commands.add('getError', () => cy.get(`[data-has-error]`));
+Cypress.Commands.add('shouldHaveError', { prevSubject: 'element' }, subject =>
+  cy.wrap(subject).within(() => {
+    cy.getError().should('be.visible');
+  }),
+);
+Cypress.Commands.add('shouldNotHaveError', { prevSubject: 'element' }, subject =>
+  cy.wrap(subject).within(() => {
+    cy.getError().should('not.exist');
+  }),
+);
 
 const automockFixturePath = fixtureName => `${fixtureName}`;
 
