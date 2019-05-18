@@ -150,8 +150,8 @@ class GroupsGeneratorPageContainer extends React.Component {
 
 GroupsGeneratorPageContainer.propTypes = {
   track: PropTypes.func.isRequired,
-  history: ReactRouterPropTypes.history.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 GroupsGeneratorPageContainer.defaultProps = {};
 

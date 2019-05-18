@@ -18,7 +18,14 @@ const PublicModeButton = ({ to, label, trackingData, inputProps, dataComponent, 
 PublicModeButton.propTypes = {
   to: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  dataComponent: PropTypes.string.isRequired,
+  track: PropTypes.func.isRequired,
+  inputProps: PropTypes.shape(),
   trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
+
+PublicModeButton.defaultProps = {
+  inputProps: {},
 };
 
 export default withTracking(PublicModeButton);

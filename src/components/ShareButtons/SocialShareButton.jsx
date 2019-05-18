@@ -63,6 +63,7 @@ SocialButton.propTypes = {
   socialType: PropTypes.string.isRequired,
   size: PropTypes.number,
   className: PropTypes.string.isRequired,
+  beforeOnClick: PropTypes.func.isRequired,
 };
 
 SocialButton.defaultProps = {
