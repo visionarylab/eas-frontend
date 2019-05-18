@@ -38,6 +38,7 @@ const DateTimePicker = ({ t, i18n, ...props }) => {
 };
 
 DateTimePicker.propTypes = {
+  i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   t: PropTypes.func.isRequired,
 };
 

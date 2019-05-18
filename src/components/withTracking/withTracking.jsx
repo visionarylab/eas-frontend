@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import config from '../../config/config';
@@ -19,6 +20,10 @@ const withTracking = WrappedComponent => {
       }
     };
     return <WrappedComponent track={track} {...props} />;
+  };
+
+  WithTracking.propTypes = {
+    mixpanel: PropTypes.shape().isRequired,
   };
 
   return withMixpanel(WithTracking);

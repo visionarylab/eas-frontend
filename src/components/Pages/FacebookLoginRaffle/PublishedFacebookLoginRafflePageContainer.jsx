@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 // import moment from 'moment';
 import { RaffleApi, Participant } from 'echaloasuerte-js-sdk';
@@ -134,6 +135,7 @@ PublishedFacebookLoginRafflePageContainer.propTypes = {
     getUserDetails: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
   }).isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default withFacebookSDK(PublishedFacebookLoginRafflePageContainer);

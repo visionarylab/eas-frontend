@@ -154,6 +154,7 @@ class RecentDrawsPage extends Component {
 }
 
 RecentDrawsPage.propTypes = {
+  track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
