@@ -4,8 +4,11 @@ FROM node:dubnium
 ARG commit_sha=none
 
 RUN mkdir /usr/src/app
+RUN mkdir -p /var/log/eas3/
+
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV LOGS_PATH /var/log/eas3
 
 COPY package.json /usr/src/app/package.json
 COPY package-lock.json /usr/src/app/package-lock.json
