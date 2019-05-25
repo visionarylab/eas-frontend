@@ -79,6 +79,7 @@
     "field_label_list_of_participants": "Lista de participantes",
     "field_label_number_of_groups": "Número de grupos",
     "field_label_participants": "Participantes",
+    "field_placeholder_participants": "Separa los participantes con comas",
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
     "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
@@ -89,14 +90,15 @@
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
     "result_label_group": "Grupo {{groupNumber}}",
+    "section_title_general_details": "Detalles generales",
+    "section_title_number_of_groups": "Indica el número de grupos a hacer",
+    "section_title_participants": "Añade participantes",
+    "section_title_when_to_toss": "Indica cuando se generaran los resoltados del sorteo",
     "share_draw": "Comparte este sorteo",
     "share_result": "Comparte este resultado",
     "step_label_configure": "Configura los grupos",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
-    "step_title_draw_configuration": "Configura la tirada",
-    "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados"
+    "step_label_when_to_toss": "Cuándo se realizara el sorteo?"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte",
@@ -132,13 +134,6 @@
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
   },
-  "PrizeSelector": {
-    "list_of_prizes": "Lista de premios",
-    "no_prizes_selected": "Todavía no has añadido ningún premio",
-    "number_of_winners": "Número de ganadores",
-    "prizes": "Premios",
-    "specify_prizes": "Especificar premios"
-  },
   "PrizesOverview": {
     "prizes": "Premios"
   },
@@ -154,19 +149,6 @@
     "registration_is_open": "El registro en el sorteo esta abierto!",
     "winners": "Ganadores del sorteo"
   },
-  "PublishedFadebookDraw": {
-    "winners": "Ganadores"
-  },
-  "PublishedRafflePage": {
-    "description": "Descripción",
-    "generate_resuts": "Generar resultados",
-    "number_of_participants": "Número de participantes:",
-    "number_of_winners": "Número de ganadores:",
-    "raffle_details": "Detalles del sorteo",
-    "results_generated_on": "Los resultados seran generados el {{date}} a las {{time}}",
-    "results_not_generated_yet": "Los resultados del sorteo todavía no se han publicado",
-    "winners": "Ganadores"
-  },
   "Raffle": {
     "draw_subheading": "Crea un sorteo online con premios y comprate el resultado.",
     "field_default_title": "Sorteo público",
@@ -175,15 +157,19 @@
     "field_label_number_of_participants": "Número de participantes",
     "field_label_participants": "Participantes",
     "field_label_prizes": "Premios",
+    "field_placeholder_participants": "Separa los participantes con comas",
+    "field_placeholder_prizes": "Separa los premios con comas",
     "html_description": "Organiza sorteos online. Deja que la suerte decida quién sera el ganador de un premio.",
     "html_title": "Organizar sorteo",
+    "learn_more_content": "En este tipo de sorteo tú decides quienes serán los participantes.",
+    "learn_more_title": "Cuáles son las ventajas de este tipo de sorteo?",
     "message_no_participants_added": "No ha añadido ningún participante",
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
     "publish_raffle": "Publicar sorteo",
     "published_draw_details": "Detalles del sorteo",
     "section_title_general_details": "Detalles generales",
-    "section_title_participants": "Añade los participantes del sorteo",
+    "section_title_participants": "Añade los participantes",
     "section_title_prizes": "Añade los premios",
     "section_title_when_to_toss": "Indica cuando se generaran los resoltados del sorteo",
     "section_title_winners": "Ganadores",

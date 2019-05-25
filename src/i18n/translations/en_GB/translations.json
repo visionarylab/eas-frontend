@@ -46,6 +46,7 @@
     "field_label_list_of_participants": "List of participants",
     "field_label_number_of_groups": "Number of groups",
     "field_label_participants": "Participants",
+    "field_placeholder_participants": "Separate participants by commas",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
@@ -56,14 +57,15 @@
     "publish_draw": "Publish draw",
     "published_draw_details": "Raffle details",
     "result_label_group": "Group {{groupNumber}}",
+    "section_title_general_details": "General details",
+    "section_title_number_of_groups": "Indicate the number of groups to make",
+    "section_title_participants": "Add participants",
+    "section_title_when_to_toss": "When do you want the results to be generated?",
     "share_draw": "Share this raffle",
     "share_result": "Share this result",
     "step_label_configure": "Set up the groups",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When will the results be published?",
-    "step_title_draw_configuration": "Configure the draw",
-    "step_title_general_details": "General details",
-    "step_title_when_to_toss": "Choose the date when the results will be published"
+    "step_label_when_to_toss": "When will the results be published?"
   },
   "Header": {
     "brand_name": "ChooseRandom",
@@ -99,13 +101,6 @@
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
   },
-  "PrizeSelector": {
-    "list_of_prizes": "List of prizes",
-    "no_prizes_selected": "Add prizes in the box below",
-    "number_of_winners": "Number of winners",
-    "prizes": "Prizes",
-    "specify_prizes": "Specify prizes"
-  },
   "PrizesOverview": {
     "prizes": "Prizes"
   },
@@ -115,19 +110,6 @@
     "title_label": "Title",
     "title_placeholder": "Christmas raffle"
   },
-  "PublishedFadebookDraw": {
-    "winners": "Winners"
-  },
-  "PublishedRafflePage": {
-    "description": "Description",
-    "generate_resuts": "Generate results",
-    "number_of_participants": "Number of participants:",
-    "number_of_winners": "Number of winners:",
-    "raffle_details": "Raffle details",
-    "results_generated_on": "The result will be generated on {{date}} at {{time}}",
-    "results_not_generated_yet": "The result of the raffle hasn't been published yet",
-    "winners": "Winners"
-  },
   "Raffle": {
     "draw_subheading": "Create an online raffle with prizes and share the results.",
     "field_default_title": "Public raffle",
@@ -136,16 +118,20 @@
     "field_label_number_of_participants": "Number of participants",
     "field_label_participants": "Participants",
     "field_label_prizes": "Prizes",
+    "field_placeholder_participants": "Separate participants by commas",
+    "field_placeholder_prizes": "Separate prizes by commas",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
     "html_title": "Organize raffle",
+    "learn_more_content": "With this raffle you will be able to choose a list of participants and decide when the results will be published",
+    "learn_more_title": "What are the advantages of this raffle?",
     "message_no_participants_added": "You haven't added any participants",
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
     "publish_raffle": "Publish raffle",
     "published_draw_details": "Raffle details",
     "section_title_general_details": "General details",
-    "section_title_participants": "Who will participate in the raffle?",
-    "section_title_prizes": "What are the prices?",
+    "section_title_participants": "Add participants",
+    "section_title_prizes": "Add prizes",
     "section_title_when_to_toss": "When do you want the results to be generated?",
     "section_title_winners": "Winners",
     "step_label_configure": "Configure the raffle",

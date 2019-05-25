@@ -41,7 +41,7 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
-          sectionTitle={t('step_title_general_details')}
+          sectionTitle={t('section_title_general_details')}
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
@@ -53,7 +53,7 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
-          sectionTitle={t('step_title_when_to_toss')}
+          sectionTitle={t('section_title_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}

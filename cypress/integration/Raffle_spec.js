@@ -102,7 +102,7 @@ describe('Raffle', () => {
     });
   });
 
-  describe.only('Published page', () => {
+  describe('Published page', () => {
     it('Should send GA pageview', () => {
       cy.mockGA();
       cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');

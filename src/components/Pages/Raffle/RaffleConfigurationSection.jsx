@@ -12,27 +12,12 @@ const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
   <Fragment>
-    <SectionPanel title={t('section_title_prizes')}>
-      <ValidatedMultiValueInput
-        name="prizes"
-        label={t('field_label_prizes')}
-        labelDisplayList={t('field_label_list_of_prizes')}
-        placeholder="PS4"
-        messageEmpty={t('message_no_prizes_added')}
-        value={values.prizes}
-        fullWidth
-        onChange={e => onFieldChange('prizes', e.target.value)}
-        data-component="Raffle__prizes-field"
-        inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
-        validators={[{ rule: 'required' }]}
-      />
-    </SectionPanel>
     <SectionPanel title={t('section_title_participants')}>
       <ValidatedMultiValueInput
         name="participants"
         label={t('field_label_participants')}
         labelDisplayList={t('field_label_list_of_participants')}
-        placeholder="David, Ana..."
+        placeholder={t('field_placeholder_participants')}
         messageEmpty={t('message_no_participants_added')}
         value={values.participants}
         fullWidth
@@ -43,6 +28,21 @@ const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
       />
     </SectionPanel>
     <ValidationFeedback />
+    <SectionPanel title={t('section_title_prizes')}>
+      <ValidatedMultiValueInput
+        name="prizes"
+        label={t('field_label_prizes')}
+        labelDisplayList={t('field_label_list_of_prizes')}
+        placeholder={t('field_placeholder_prizes')}
+        messageEmpty={t('message_no_prizes_added')}
+        value={values.prizes}
+        fullWidth
+        onChange={e => onFieldChange('prizes', e.target.value)}
+        data-component="Raffle__prizes-field"
+        inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+        validators={[{ rule: 'required' }]}
+      />
+    </SectionPanel>
   </Fragment>
 );
 

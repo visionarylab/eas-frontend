@@ -14,12 +14,12 @@ const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <Fragment>
-    <SectionPanel title="Introduce los participantes">
+    <SectionPanel title={t('section_title_participants')}>
       <ValidatedMultiValueInput
         name="participants"
         label={t('field_label_participants')}
         labelDisplayList={t('field_label_list_of_participants')}
-        placeholder="David, Ana..."
+        placeholder={t('field_placeholder_participants')}
         messageEmpty={t('message_no_participants_added')}
         value={values.participants}
         fullWidth
@@ -29,7 +29,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
         inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
       />
     </SectionPanel>
-    <SectionPanel title="Cuantos grupos quieres hacer?">
+    <SectionPanel title={t('section_title_number_of_groups')}>
       <ValidatedTextField
         name="numberOfGroups"
         label={t('field_label_number_of_groups')}

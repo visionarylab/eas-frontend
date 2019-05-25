@@ -9,6 +9,7 @@ import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 // import groupsOgImage from './groups_og_image.png';
 
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
@@ -78,6 +79,7 @@ const RafflePage = ({
           submitButtonLabel={t('publish_draw')}
           apiError={apiError}
         />
+        <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
       </DrawLayout>
     </Page>
   );
