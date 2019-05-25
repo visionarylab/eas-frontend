@@ -148,11 +148,6 @@
     "title_label": "Título",
     "title_placeholder": "Sorteo de Navidad"
   },
-  "PublishDrawOptions": {
-    "manual_toss": "Publicar el sorteo sin resultados",
-    "schedule_toss": "Progamar el sorteo para una fecha determinada",
-    "show_now": "Mostrar ahora"
-  },
   "PublishedFacebookLoginRafflePage": {
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
     "participate_as": "Participar como {{username}}",

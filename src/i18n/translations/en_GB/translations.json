@@ -115,11 +115,6 @@
     "title_label": "Title",
     "title_placeholder": "Christmas raffle"
   },
-  "PublishDrawOptions": {
-    "manual_toss": "Do the raffle manually later",
-    "schedule_toss": "Schedule the raffle for a date in the future",
-    "show_now": "Show now"
-  },
   "PublishedFadebookDraw": {
     "winners": "Winners"
   },

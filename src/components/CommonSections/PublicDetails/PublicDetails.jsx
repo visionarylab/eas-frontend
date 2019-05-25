@@ -3,7 +3,7 @@ import { withTranslation } from 'react-i18next';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 
-import withFieldValidation from '../withValidation/withFieldValidation.jsx';
+import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
 

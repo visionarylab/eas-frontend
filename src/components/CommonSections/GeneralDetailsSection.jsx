@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PublicDetails from '../PublicDetails/PublicDetails.jsx';
+import PublicDetails from './PublicDetails/PublicDetails.jsx';
 import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
 const GeneralDetailsSection = ({
