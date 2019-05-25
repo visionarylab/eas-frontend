@@ -1,12 +1,12 @@
 @import '../variables';
 
 .LearnMoreSection {
-    margin: $spacing-sm $spacing-sm $spacing-lg $spacing-sm;
-    text-align: center;
+  margin: $spacing-sm $spacing-sm $spacing-lg $spacing-sm;
+  text-align: center;
 
-    @media (min-width: $media-desktop) {
-        max-width: 60rem;
-        padding-right: $spacing-lg;
-        padding-left: $spacing-lg;
-    }
+  @media (min-width: $media-desktop) {
+    max-width: 60rem;
+    padding-right: $spacing-lg;
+    padding-left: $spacing-lg;
+  }
 }
