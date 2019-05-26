@@ -73,12 +73,12 @@ const PublishedGroupsGeneratorPage = props => {
           <Typography variant="h5">{t('published_draw_details')}</Typography>
           <div>
             <Typography variant="body2">
-              {t('field_label_number_of_groups')}: {numberOfGroups}
+              {t('label_number_of_groups')} {numberOfGroups}
             </Typography>
           </div>
           <div>
             <Typography variant="body2">
-              {t('field_label_participants')}: {participants.map(p => p.name).join(', ')}
+              {t('label_participants')} {participants.map(p => p.name).join(', ')}
             </Typography>
           </div>
         </section>

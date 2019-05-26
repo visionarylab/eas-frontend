@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import classnames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
+import TextField from '../../TextField/TextField.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
@@ -163,7 +163,7 @@ const FacebookPhotoRafflePage = props => {
           steps={steps}
           // initialStep={1}
           onSubmit={handlePublish}
-          submitButtonLabel={t('publish_raffle')}
+          submitButtonLabel={t('publish_draw')}
         />
       </div>
     </Page>

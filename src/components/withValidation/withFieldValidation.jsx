@@ -81,24 +81,21 @@ const withFieldValidation = WrappedComponent => {
     render() {
       // eslint-disable-next-line react/prop-types
       const { validators, t, defaultNS, reportNS, i18nOptions, tReady, ...rest } = this.props;
+      let errorProps = {};
       const error = this.getErrorsToShow();
-      let message;
       if (error) {
-        message = error.message || this.getDefaultErrorMessage(error);
+        errorProps = {
+          error: Boolean(error),
+          helperText: error.message || this.getDefaultErrorMessage(error),
+          FormHelperTextProps: { 'data-test-has-error': true },
+        };
       }
       if (rest.checked !== undefined) {
         // If the prop 'checked' is pass, the field is a checkbox
         // and we aren't showing any feedback in checkboxes
         return <WrappedComponent {...rest} error={undefined} />;
       }
-      return (
-        <WrappedComponent
-          {...rest}
-          FormHelperTextProps={error && { 'data-has-error': true }}
-          error={Boolean(error)}
-          helperText={message}
-        />
-      );
+      return <WrappedComponent {...rest} {...errorProps} />;
     }
   }
 

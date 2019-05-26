@@ -4,7 +4,7 @@ exports[`withFieldValidation Errors Should render correctly 1`] = `
 <Field
   FormHelperTextProps={
     Object {
-      "data-has-error": true,
+      "data-test-has-error": true,
     }
   }
   error={true}

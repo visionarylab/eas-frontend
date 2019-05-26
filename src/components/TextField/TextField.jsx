@@ -16,7 +16,6 @@ const TextField = React.forwardRef((props, ref) => {
     autoComplete,
     autoFocus,
     children,
-    classes,
     className: classNameProp,
     defaultValue,
     error,
@@ -57,7 +56,7 @@ const TextField = React.forwardRef((props, ref) => {
       {...other}
     >
       {label && (
-        <Typography for={id} component="label" variant="h3">
+        <Typography htmlFor={id} component="label" variant="h3">
           {label}
         </Typography>
       )}
@@ -106,11 +105,6 @@ TextField.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */

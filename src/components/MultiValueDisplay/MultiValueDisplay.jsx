@@ -17,7 +17,11 @@ class MultiValueDisplay extends Component {
     const { values, label, messageEmpty, onDelete } = this.props;
     return (
       <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
-        {label && <Typography variant="caption">{label}</Typography>}
+        {label && (
+          <Typography color="textSecondary" variant="caption">
+            {label}
+          </Typography>
+        )}
         <div className={c('MultiValueDisplay__values-list')}>
           {values.length ? (
             values.map(value => (
@@ -29,7 +33,11 @@ class MultiValueDisplay extends Component {
               />
             ))
           ) : (
-            <Typography variant="body1" className={c('MultiValueDisplay__empty-message')}>
+            <Typography
+              color="textSecondary"
+              variant="body1"
+              className={c('MultiValueDisplay__empty-message')}
+            >
               {messageEmpty}
             </Typography>
           )}

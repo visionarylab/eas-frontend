@@ -87,17 +87,11 @@ class WizardForm extends Component {
     const stepLabels = steps.map(step => step.label);
     const { activeStep, stepValidations, submittedSteps } = this.state;
 
-    const content = (
-      <div>
-        <div>
-          {steps[activeStep].render({
-            ref: this.stepRefs[activeStep],
-            onValidationChange: this.onValidationChange,
-            onSubmit: this.onStepSubmit,
-          })}
-        </div>
-      </div>
-    );
+    const content = steps[activeStep].render({
+      ref: this.stepRefs[activeStep],
+      onValidationChange: this.onValidationChange,
+      onSubmit: this.onStepSubmit,
+    });
 
     const commonWizardProps = {
       activeStep,

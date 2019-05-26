@@ -1,7 +1,8 @@
 @import '../variables';
 
 .SectionPanel {
-  margin: $spacing-sm $spacing-sm $spacing-lg $spacing-sm;
+  margin: 0 $spacing-sm $spacing-lg $spacing-sm;
+  // padding-top: $spacing-sm;
 
   @media (min-width: $media-desktop) {
     padding-right: $spacing-lg;

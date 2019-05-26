@@ -66,16 +66,12 @@ const PublishedRafflePage = props => {
           </Fragment>
         )}
         <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
-          <div>
-            <Typography variant="body2">
-              {t('field_label_prizes')}: {prizes.map(p => p.name).join(', ')}
-            </Typography>
-          </div>
-          <div>
-            <Typography variant="body2">
-              {t('field_label_participants')}: {participants.length}
-            </Typography>
-          </div>
+          <Typography component="div" variant="body2">
+            {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
+          </Typography>
+          <Typography component="div" variant="body2">
+            {t('label_number_of_participants')} {participants.length}
+          </Typography>
         </PublishedDrawDetails>
       </DrawLayout>
     </Page>

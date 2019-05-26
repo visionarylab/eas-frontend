@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import DateTimePicker from '../DateTimePicker/DateTimePicker.jsx';
 import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
-const WhenToTossSection = ({ sectionTitle, dateScheduled, onFieldChange }) => (
-  <SectionPanel title={sectionTitle}>
+const WhenToTossSection = ({ label, dateScheduled, onFieldChange }) => (
+  <SectionPanel>
     <DateTimePicker
+      label={label}
       value={dateScheduled}
       onChange={datetime => {
         onFieldChange('dateScheduled', datetime.toDate());
       }}
       autoOk
-      // ampm={false}
       disablePast
       showTodayButton
     />
   </SectionPanel>
 );
 WhenToTossSection.propTypes = {
-  sectionTitle: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   dateScheduled: PropTypes.instanceOf(Date),
   onFieldChange: PropTypes.func.isRequired,
 };

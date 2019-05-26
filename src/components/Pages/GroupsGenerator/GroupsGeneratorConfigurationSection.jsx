@@ -16,7 +16,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
     <ValidatedMultiValueInput
       name="participants"
-      label={t('section_title_participants')}
+      label={t('field_label_participants')}
       labelDisplayList={t('field_label_list_of_participants')}
       placeholder={t('field_placeholder_participants')}
       messageEmpty={t('message_no_participants_added')}
@@ -26,10 +26,11 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       validators={[{ rule: 'required' }]}
       data-component="GroupsGenerator__participants-field"
       inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
+      helperText={t('field_help_separate_participants_commas')}
     />
     <ValidatedTextField
       name="numberOfGroups"
-      label={t('section_title_number_of_groups')}
+      label={t('field_label_number_of_groups')}
       placeholder="2"
       onChange={e => onFieldChange('numberOfGroups', e.target.value)}
       value={values.numberOfGroups}
