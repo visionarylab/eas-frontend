@@ -6,6 +6,7 @@ exports[`MultiValueDisplay Chip.onDelete should be null if onDelete is not suppl
   data-component="MultiValueDisplay"
 >
   <WithStyles(Typography)
+    color="textSecondary"
     variant="caption"
   >
     Input label
@@ -29,6 +30,7 @@ exports[`MultiValueDisplay Chip.onDelete should be onDelete when supplied 1`] = 
   data-component="MultiValueDisplay"
 >
   <WithStyles(Typography)
+    color="textSecondary"
     variant="caption"
   >
     Input label
@@ -52,6 +54,7 @@ exports[`MultiValueDisplay Should render correctly with values 1`] = `
   data-component="MultiValueDisplay"
 >
   <WithStyles(Typography)
+    color="textSecondary"
     variant="caption"
   >
     Input label
@@ -81,6 +84,7 @@ exports[`MultiValueDisplay Should render correctly without values 1`] = `
   data-component="MultiValueDisplay"
 >
   <WithStyles(Typography)
+    color="textSecondary"
     variant="caption"
   >
     Input label
@@ -90,6 +94,7 @@ exports[`MultiValueDisplay Should render correctly without values 1`] = `
   >
     <WithStyles(Typography)
       className="MultiValueDisplay__empty-message"
+      color="textSecondary"
       variant="body1"
     >
       No items selected

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import { withTranslation } from 'react-i18next';
-import Typography from '@material-ui/core/Typography';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import Page from '../../Page/Page.jsx';
+import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import STYLES from './FlipCoinPage.scss';
 import headsIcon from './heads.png';
 import tailsIcon from './tails.png';
@@ -61,10 +61,8 @@ class FlipCoinPage extends Component {
             />
           </button>
         </div>
-        <div className={c('FlipCoinPage__learn-more')}>
-          <Typography variant="h3">{t('learn_more_title')}</Typography>
-          <Typography variant="subtitle1">{t('learn_more_content')}</Typography>
-        </div>
+
+        <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
       </Page>
     );
   }

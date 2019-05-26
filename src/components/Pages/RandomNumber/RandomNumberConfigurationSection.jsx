@@ -2,10 +2,10 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '../../TextField/TextField.jsx';
 
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import withFieldValidation from '../../withValidation/withFieldValidation.jsx';

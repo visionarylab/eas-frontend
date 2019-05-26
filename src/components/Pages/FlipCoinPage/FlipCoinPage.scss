@@ -66,15 +66,4 @@ $color-transparent: rgba(0, 0, 0, 0);
       background-color: $web-background-color;
     }
   }
-
-  &__learn-more {
-    margin: $spacing-sm $spacing-sm $spacing-lg $spacing-sm;
-    text-align: center;
-
-    @media (min-width: $media-desktop) {
-      width: 60rem;
-      padding-right: $spacing-lg;
-      padding-left: $spacing-lg;
-    }
-  }
 }

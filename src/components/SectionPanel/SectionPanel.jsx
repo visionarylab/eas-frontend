@@ -9,14 +9,18 @@ const c = classnames.bind(STYLES);
 
 const SectionPanel = ({ title, children }) => (
   <div className={c('SectionPanel')}>
-    <Typography variant="h3">{title}</Typography>
+    {title && <Typography variant="h3">{title}</Typography>}
     {children}
   </div>
 );
 
 SectionPanel.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.node.isRequired,
+};
+
+SectionPanel.defaultProps = {
+  title: '',
 };
 
 export default SectionPanel;

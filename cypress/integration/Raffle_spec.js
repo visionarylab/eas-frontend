@@ -1,154 +1,140 @@
-describe.skip('Raffle', () => {
+describe('Raffle', () => {
   beforeEach(() => {
     cy.server();
     cy.mockFixture('Raffle');
   });
 
   describe('Creation page', () => {
-    it('Google Analytics pageview event is sent', () => {
+    it('Full creation', () => {
       cy.mockGA();
       cy.visit('/raffle');
 
       cy.get('@ga')
         .should('be.calledWith', 'create', 'UA-XXXXX-Y')
         .and('be.calledWith', 'send', { hitType: 'pageview', page: '/raffle' });
-    });
 
-    it('It should be possible to create a raffle', () => {
-      cy.mockGA();
-      cy.visit('/raffle');
-
-      // Attempt to submit step without filling the fields
+      // Make required errors show up
       cy.getComponent('WizardForm__next-button').click();
 
-      // Both fields should error as they are required
-      cy.getComponent('PublicDetails__title-field').within(() => {
-        cy.getError().should('be.visible');
-      });
-      cy.getComponent('PublicDetails__description-field').within(() => {
-        cy.getError().should('be.visible');
-      });
+      // It should error if participants is empty
+      cy.getComponent('Raffle__prizes-field').shouldHaveError();
+      cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
+      cy.getComponent('Raffle__prizes-field').shouldNotHaveError();
 
-      // Fill the title and its error should recover
-      cy.getComponent('PublicDetails__title-field-input').type('The title');
-      cy.getComponent('PublicDetails__title-field').within(() => {
-        cy.getError().should('not.exist');
-      });
+      // It should error if prizes is empty
+      cy.getComponent('Raffle__participants-field').shouldHaveError();
+      cy.getComponent('Raffle__participants-field-input').type('one,');
+      cy.getComponent('Raffle__participants-field').shouldNotHaveError();
 
-      // Fill the description and its error should recover
-      cy.getComponent('PublicDetails__description-field-input').type('A cool description');
-      cy.getComponent('PublicDetails__description-field').within(() => {
-        cy.getError().should('not.exist');
-      });
+      // It should error if there are less participants than prizes
+      cy.getComponent('WizardForm__next-button').click();
+      cy.getComponent('ErrorFeedback').should('be.visible');
+      cy.getComponent('Raffle__participants-field-input').type('two,');
+      cy.getComponent('ErrorFeedback').should('not.exist');
 
       // Go to second step
       cy.getComponent('WizardForm__next-button').click();
 
-      // Attempt to submit step without filling the fields
+      // The title field should have a default value
+      cy.getComponent('PublicDetails__title-field-input').should('not.have.value', '');
+
+      // Attempt to submit step without filling the title
+      cy.getComponent('PublicDetails__title-field-input').clear();
       cy.getComponent('WizardForm__next-button').click();
 
-      // Participants field should error as it is required
-      cy.getComponent('Raffle__participants-field').within(() => {
-        cy.getError().should('be.visible');
-      });
+      // Title field should error as they are required
+      cy.getComponent('PublicDetails__title-field').shouldHaveError();
 
-      cy.getComponent('Raffle__participants-field-input').type('Participant 1, Participant 2,');
+      // Fill the title and its error should recover
+      cy.getComponent('PublicDetails__title-field-input').type('The title');
+      cy.getComponent('PublicDetails__title-field').shouldNotHaveError();
+
+      // Fill the description
+      cy.getComponent('PublicDetails__description-field-input').type('A cool description');
 
       // Go to third step
       cy.getComponent('WizardForm__next-button').click();
 
-      // Attempt to submit step without filling the fields
-      cy.getComponent('WizardForm__next-button').click();
-
-      // Participants field should error as it is required
-      cy.getComponent('Raffle__prizes-field').within(() => {
-        cy.getError().should('be.visible');
-      });
-
-      cy.getComponent('Raffle__prizes-field-input').type('Prize 1,');
-
-      // Go to fourth step
-      cy.getComponent('WizardForm__next-button').click();
-
+      // Submit the draw
       cy.getComponent('WizardForm__next-button').click();
 
       cy.mockedRequestWait('POST', '/api/raffle')
         .its('requestBody')
         .should('deep.eq', {
-          title: 'The title',
           description: 'A cool description',
-          participants: [{ name: 'Participant 1' }, { name: 'Participant 2' }],
-          prizes: [{ name: 'Prize 1' }],
+          prizes: [{ name: 'prize1' }, { name: 'prize2' }],
+          participants: [{ name: 'one' }, { name: 'two' }],
+          title: 'The title',
         });
+
       cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss');
       cy.get('@ga').should('be.calledWith', 'send', {
         hitType: 'event',
-        eventCategory: 'Publish',
-        eventAction: 'Raffle',
-        eventLabel: 'B29f44c2-1022-408a-925f-63e5f77a12ad',
+        eventCategory: 'Raffle',
+        eventAction: 'Publish',
+        eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
       });
-      cy.location('pathname').should('eq', '/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
+
+      // Redirect to draw with the public id
+      cy.location('pathname').should('eq', '/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
+    });
+
+    it('Should show feedback if there are server errors', () => {
+      cy.visit('/raffle');
+      cy.route({
+        method: 'POST',
+        url: '/api/raffle/',
+        status: 503,
+        response: {},
+      }).as('failedRequest');
+      cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
+      cy.getComponent('Raffle__participants-field-input').type('one, two,');
+      cy.getComponent('WizardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
+      cy.getComponent('WizardForm__next-button').click();
+      cy.wait('@failedRequest');
+      cy.getComponent('ErrorFeedback').should('be.visible');
+
+      // It should recover form the error
+      cy.mockFixture('Raffle'); // Reset the mock with the 200 response
+      cy.getComponent('WizardForm__next-button').click();
+      cy.getComponent('ErrorFeedback').should('not.exist');
     });
   });
+
   describe('Published page', () => {
     it('Should send GA pageview', () => {
       cy.mockGA();
-      cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
+      cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
       cy.get('@ga')
         .should('be.calledWith', 'create', 'UA-XXXXX-Y')
         .and('be.calledWith', 'send', {
           hitType: 'pageview',
-          page: '/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c',
+          page: '/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
         });
     });
+
     it('Should show the countdown if there are not results', () => {
       const now = new Date();
       now.setHours(now.getHours() + 1);
       const dateInFuture = now.toISOString();
-      cy.route({
-        method: 'GET',
-        url: '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c',
-        status: 200,
-        response: {
-          id: '79a8d152-d965-465c-90fd-ceb86efc39cb',
-          created_at: '2018-10-28T12:10:49.409170Z',
-          updated_at: '2018-10-28T12:10:49.409296Z',
-          title: 'This is the title',
-          description: "That's a nice description",
-          results: [
-            {
-              created_at: '2018-10-28T12:10:49.469348Z',
-              value: null,
-              schedule_date: dateInFuture,
-            },
-          ],
-          metadata: [],
-          private_id: '86a7eae4-5cfc-497b-a30e-48e2f77836ce',
-          prizes: [
-            {
-              id: 'b5e9426c-fdc7-49e3-a11f-3ee87c7f77ec',
-              created_at: '2018-10-28T12:10:49.425183Z',
-              name: 'Prize one',
-              url: null,
-            },
-          ],
-          participants: [
-            {
-              id: '2b020a30-49eb-4909-8caf-b1672807cdaf',
-              created_at: '2018-10-28T12:10:49.426936Z',
-              name: 'Participant 1',
-              facebook_id: null,
-            },
-          ],
-        },
-      }).as('request');
-      cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
-      cy.wait('@request');
+      cy.fixture('Raffle').then(fixtures => {
+        const fixtureGetRaffle = fixtures.find(
+          fixture => fixture.path === '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
+        );
+        fixtureGetRaffle.response.results[0].schedule_date = dateInFuture;
+        fixtureGetRaffle.response.results[0].value = null;
+        cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
+          'LoadData',
+        );
+      });
+      cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
+      cy.wait('@LoadData');
       cy.getComponent('Countdown').should('be.visible');
     });
     it('Should show results and the raffle details', () => {
-      cy.visit('/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
-      cy.mockedRequestWait('GET', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c');
+      cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
+      cy.mockedRequestWait('GET', '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
       cy.getComponent('PublishedRafflePage__Title').contains('This is the title');
       cy.getComponent('WinnerChip').should('have.length', 1);
 

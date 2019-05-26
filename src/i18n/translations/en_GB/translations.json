@@ -43,14 +43,19 @@
     "create_certificated_draw": "Generate certified groups",
     "draw_subheading": "Create groups online",
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
+    "field_help_separate_participants_commas": "Separate participants by commas",
     "field_label_list_of_participants": "List of participants",
     "field_label_number_of_groups": "Number of groups",
-    "field_label_participants": "Participants",
+    "field_label_participants": "Add participants",
+    "field_label_when_to_toss": "Choose when to publish the results",
+    "field_placeholder_participants": "Ana, David...",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
     "html_keywords": "random groups, random teams, make teams, raffle, match, pairs, couples, trios, match people",
     "html_title": "Generate groups online",
+    "label_number_of_groups": "Number of groups:",
+    "label_participants": "Participants:",
     "message_no_participants_added": "You haven't added any participants",
     "page_title": "Generate groups",
     "publish_draw": "Publish draw",
@@ -60,10 +65,7 @@
     "share_result": "Share this result",
     "step_label_configure": "Set up the groups",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When will the results be published?",
-    "step_title_draw_configuration": "Configure the draw",
-    "step_title_general_details": "General details",
-    "step_title_when_to_toss": "Choose the date when the results will be published"
+    "step_label_when_to_toss": "When will the results be published?"
   },
   "Header": {
     "brand_name": "ChooseRandom",
@@ -99,13 +101,6 @@
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
   },
-  "PrizeSelector": {
-    "list_of_prizes": "List of prizes",
-    "no_prizes_selected": "Add prizes in the box below",
-    "number_of_winners": "Number of winners",
-    "prizes": "Prizes",
-    "specify_prizes": "Specify prizes"
-  },
   "PrizesOverview": {
     "prizes": "Prizes"
   },
@@ -115,53 +110,40 @@
     "title_label": "Title",
     "title_placeholder": "Christmas raffle"
   },
-  "PublishDrawOptions": {
-    "manual_toss": "Do the raffle manually later",
-    "schedule_toss": "Schedule the raffle for a date in the future",
-    "show_now": "Show now"
-  },
-  "PublishedFadebookDraw": {
-    "winners": "Winners"
-  },
-  "PublishedRafflePage": {
-    "description": "Description",
-    "generate_resuts": "Generate results",
-    "number_of_participants": "Number of participants:",
-    "number_of_winners": "Number of winners:",
-    "raffle_details": "Raffle details",
-    "results_generated_on": "The result will be generated on {{date}} at {{time}}",
-    "results_not_generated_yet": "The result of the raffle hasn't been published yet",
-    "winners": "Winners"
-  },
   "Raffle": {
     "draw_subheading": "Create an online raffle with prizes and share the results.",
+    "field_default_title": "Public raffle",
+    "field_help_separate_participants_commas": "Separate participants by commas",
+    "field_help_separate_prizes_commas": "Separate prizes by commas",
     "field_label_list_of_participants": "List of participants",
     "field_label_list_of_prizes": "List of prizes",
-    "field_label_number_of_participants": "Number of participants",
-    "field_label_participants": "Participants",
-    "field_label_prizes": "Prizes",
+    "field_label_participants": "Add participants",
+    "field_label_prizes": "Add prizes",
+    "field_label_when_to_toss": "Choose when the to publish the winners",
+    "field_placeholder_participants": "Ana, David, ...",
+    "field_placeholder_prizes": "Cruise to Bali, ...",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
     "html_title": "Organize raffle",
+    "label_number_of_participants": "Number of participants:",
+    "label_prizes": "Prizes:",
+    "learn_more_content": "With this raffle you will be able to choose a list of participants and decide when the results will be published",
+    "learn_more_title": "What are the advantages of this raffle?",
     "message_no_participants_added": "You haven't added any participants",
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
-    "publish_raffle": "Publish raffle",
+    "publish_draw": "Publish raffle",
     "published_draw_details": "Raffle details",
-    "section_title_winners": "Winners",
+    "share_draw": "Share this raffle",
+    "share_result": "Share this result",
+    "step_label_configure": "Configure the raffle",
     "step_label_general_details": "General details",
-    "step_label_participants": "Choose participants",
-    "step_label_prizes": "Choose prizes",
-    "step_label_when_to_toss": "When will the results be generated?",
-    "step_title_general_details": "General details",
-    "step_title_participants": "Who will participate in the raffle",
-    "step_title_prizes": "What are the prices?",
-    "step_title_when_to_toss": "When do you want the results to be generated?"
+    "step_label_when_to_toss": "When will the results be generated?"
   },
   "RandomNumber": {
     "create_certificated_draw": "Create a certified draw",
     "draw_subheading": "Simple random number generator. Simply choose the range and the amount of numbers to generate.",
     "error_field_message_min_results": "You must generate at least one number",
-    "error_form_invalid_ranges": "The choosen range (numbers between {{min}} and {{max}}) is not valid",
+    "error_form_invalid_ranges": "The chosen range (numbers between {{min}} and {{max}}) is not valid",
     "error_form_range_not_big_enough": "The range is not big enough",
     "field_label_allow_repeated": "Allow repeated numbers",
     "field_label_from": "From",

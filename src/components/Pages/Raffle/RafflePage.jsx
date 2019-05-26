@@ -7,23 +7,23 @@ import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
+import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
-import groupsOgImage from './groups_og_image.png';
+import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
+// import groupsOgImage from './groups_og_image.png';
 
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
-const ConfigurationForm = withFormValidation(GroupsGeneratorConfigurationSection);
+const ConfigurationForm = withFormValidation(RaffleConfigurationSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
-const GroupsGeneratorPage = props => {
-  const {
-    values,
-    apiError,
-    handleCheckErrorsInConfiguration,
-    onFieldChange,
-    handlePublish,
-    t,
-  } = props;
+const RafflePage = ({
+  values,
+  apiError,
+  onFieldChange,
+  handlePublish,
+  handleCheckErrorsInConfiguration,
+  t,
+}) => {
   const steps = [
     {
       label: t('step_label_configure'),
@@ -45,6 +45,7 @@ const GroupsGeneratorPage = props => {
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
+          titleRequired
           {...wizardProps}
         />
       ),
@@ -53,7 +54,7 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
-          label={t('field_label_when_to_toss')}
+          sectionTitle={t('section_title_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}
@@ -68,7 +69,7 @@ const GroupsGeneratorPage = props => {
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_description')}
       pageType="groups_public_draw"
-      ogImage={groupsOgImage}
+      // ogImage={groupsOgImage}
     >
       <DrawLayout isPublic>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
@@ -78,12 +79,13 @@ const GroupsGeneratorPage = props => {
           submitButtonLabel={t('publish_draw')}
           apiError={apiError}
         />
+        <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
       </DrawLayout>
     </Page>
   );
 };
 
-GroupsGeneratorPage.propTypes = {
+RafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -97,8 +99,8 @@ GroupsGeneratorPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-GroupsGeneratorPage.defaultProps = {
+RafflePage.defaultProps = {
   apiError: false,
 };
 
-export default withTranslation('GroupsGenerator')(GroupsGeneratorPage);
+export default withTranslation('Raffle')(RafflePage);

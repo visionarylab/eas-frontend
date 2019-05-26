@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
+import TextField from '../TextField/TextField.jsx';
 
 import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay.jsx';
 

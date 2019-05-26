@@ -6,13 +6,11 @@ import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
 import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
-import TextField from '../../TextField/TextField.jsx';
 
-const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
-const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
+const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
     <ValidatedMultiValueInput
       name="participants"
@@ -24,27 +22,29 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-component="GroupsGenerator__participants-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
+      data-component="Raffle__participants-field"
+      inputProps={{ 'data-component': 'Raffle__participants-field-input' }}
       helperText={t('field_help_separate_participants_commas')}
     />
-    <ValidatedTextField
-      name="numberOfGroups"
-      label={t('field_label_number_of_groups')}
-      placeholder="2"
-      onChange={e => onFieldChange('numberOfGroups', e.target.value)}
-      value={values.numberOfGroups}
-      type="number"
-      margin="normal"
-      validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
-      data-component="GroupsGenerator__number-of-groups-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__number-of-groups-field-input' }}
-    />
     <ValidationFeedback />
+    <ValidatedMultiValueInput
+      name="prizes"
+      label={t('field_label_prizes')}
+      labelDisplayList={t('field_label_list_of_prizes')}
+      placeholder={t('field_placeholder_prizes')}
+      messageEmpty={t('message_no_prizes_added')}
+      value={values.prizes}
+      fullWidth
+      onChange={e => onFieldChange('prizes', e.target.value)}
+      data-component="Raffle__prizes-field"
+      inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+      validators={[{ rule: 'required' }]}
+      helperText={t('field_help_separate_prizes_commas')}
+    />
   </SectionPanel>
 );
 
-GroupsGeneratorConfigurationSection.propTypes = {
+RaffleConfigurationSection.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -55,4 +55,4 @@ GroupsGeneratorConfigurationSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default withTranslation('GroupsGenerator')(GroupsGeneratorConfigurationSection);
+export default withTranslation('Raffle')(RaffleConfigurationSection);

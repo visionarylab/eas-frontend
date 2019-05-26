@@ -1,30 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PublicDetails from '../PublicDetails/PublicDetails.jsx';
+import { withTranslation } from 'react-i18next';
+import TextField from '../TextField/TextField.jsx';
+import withFieldValidation from '../withValidation/withFieldValidation.jsx';
 import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
-const GeneralDetailsSection = ({
-  sectionTitle,
-  title,
-  titleRequired,
-  description,
-  onFieldChange,
-}) => (
-  <SectionPanel title={sectionTitle}>
-    <PublicDetails
-      title={title}
-      description={description}
-      titleRequired={titleRequired}
-      onFieldChange={onFieldChange}
+const ValidatedTextField = withFieldValidation(TextField);
+
+const GeneralDetailsSection = ({ title, titleRequired, description, onFieldChange, t }) => (
+  <SectionPanel>
+    <ValidatedTextField
+      name="title"
+      label={t('title_label')}
+      placeholder={t('title_placeholder')}
+      value={title}
+      margin="normal"
+      fullWidth
+      required={titleRequired}
+      validators={titleRequired ? [{ rule: 'required' }] : []}
+      onChange={e => onFieldChange('title', e.target.value)}
+      data-component="PublicDetails__title-field"
+      inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
+    />
+
+    <ValidatedTextField
+      name="description"
+      label={t('description_label')}
+      placeholder={t('description_placeholder')}
+      value={description}
+      fullWidth
+      multiline
+      rows="4"
+      margin="normal"
+      onChange={e => onFieldChange('description', e.target.value)}
+      data-component="PublicDetails__description-field"
+      inputProps={{ 'data-component': 'PublicDetails__description-field-input' }}
     />
   </SectionPanel>
 );
 GeneralDetailsSection.propTypes = {
-  sectionTitle: PropTypes.string.isRequired,
   title: PropTypes.string,
   titleRequired: PropTypes.bool,
   description: PropTypes.string,
   onFieldChange: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 GeneralDetailsSection.defaultProps = {
@@ -33,4 +52,4 @@ GeneralDetailsSection.defaultProps = {
   titleRequired: false,
 };
 
-export default GeneralDetailsSection;
+export default withTranslation('PublicDetails')(GeneralDetailsSection);

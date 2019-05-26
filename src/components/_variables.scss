@@ -4,8 +4,7 @@ $color-primary-dark: #357a38;
 $color-primary-light: #6fbf73;
 $color-primary-super-light: #fbfdeb;
 $color-white: #fff;
-$color-gray: #949494;
-$color-gray-dark: #6d6d6d;
+$color-gray: rgba(0, 0, 0, .3);
 
 // #######  Spacing
 $one-pixel-rem: .0625rem;
@@ -20,5 +19,5 @@ $media-tablet: 768px; /* stylelint-disable-line unit-blacklist */
 $media-desktop: 1024px; /* stylelint-disable-line unit-blacklist */
 $media-widescreen: 1300px; /* stylelint-disable-line unit-blacklist */
 
-// Other viriables
+// Other variables
 $web-background-color: $color-primary-super-light;
