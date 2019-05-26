@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     if (config.analiticsEnabled) {
-      mixpanel.init(config.mixpanelID, { debug: config.mixpanel_debug, track_pageview: false });
+      mixpanel.init(config.mixpanelID, { debug: config.mixpanelDebug, track_pageview: false });
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
       ReactGA.set({ dimension2: 'v3' });
     }
@@ -25,7 +25,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    hotjar.initialize(1051921, 6);
+    if (config.hotjarEnabled) {
+      hotjar.initialize(1051921, 6);
+    }
     // showCookieBanner();
   }
 
