@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 // import showCookieBanner from '../../services/cookieConsent';
 import initI18n from '../../i18n';
 import AppShell from '../AppShell/AppShell.jsx';
@@ -54,4 +55,4 @@ App.propTypes = {
 
 const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
 
-export default connect(mapsStateToProps)(App);
+export default withRouter(connect(mapsStateToProps)(App));
