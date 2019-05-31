@@ -33,7 +33,7 @@ const SpinArrowPage = ({ angle, animate, handleToss, t }) => {
             className={c('SpinArrowPage__arrow')}
             style={arrowCss}
             src={ArrowImage}
-            data-component="SpinArrow__arrow"
+            data-testid="SpinArrow__arrow"
             alt="Arrow"
           />
         </button>

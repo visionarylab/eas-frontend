@@ -34,7 +34,7 @@ const PublishedRandomNumberPage = props => {
   return (
     <Page htmlTitle={title} noIndex className={c('PublishedRandomNumberPage')}>
       <div>
-        <Typography variant="h1" align="center" data-component="PublishedRandomNumberPage__Title">
+        <Typography variant="h1" align="center" data-testid="PublishedRandomNumberPage__Title">
           {title}
         </Typography>
         {result.value ? (

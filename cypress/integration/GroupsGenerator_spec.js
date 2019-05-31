@@ -1,7 +1,5 @@
-/* eslint-disable func-names, prefer-arrow-callback */
-
 describe('Groups Generator Page', () => {
-  ['macbook-13'].forEach(device => {
+  ['macbook-13', 'iphone-5'].forEach(device => {
     context(`Device ${device}`, () => {
       beforeEach(() => {
         cy.server();
@@ -29,7 +27,7 @@ describe('Groups Generator Page', () => {
           cy.getComponent('ErrorFeedback').should('not.exist');
         });
 
-        it('Fields have the right default values', function() {
+        it('Fields have the right default values', () => {
           cy.visit('/draw/new/groups');
 
           cy.getComponent('GroupsGenerator__participants-field-input').should('have.value', '');
@@ -40,7 +38,7 @@ describe('Groups Generator Page', () => {
           cy.getComponent('MultiValueDisplay__chip').should('not.exist');
         });
 
-        it('Analytics pageview and event on toss', function() {
+        it('Analytics pageview and event on toss', () => {
           cy.mockGA();
           cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
           cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
@@ -61,14 +59,15 @@ describe('Groups Generator Page', () => {
           });
         });
 
-        it('Request sent contains the right data and results are shown', function() {
+        it('Request sent contains the right data and results are shown', () => {
           cy.visit('/draw/new/groups');
+          cy.clock();
           cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
           cy.getComponent('GroupsGenerator__number-of-groups-field-input')
             .clear()
             .type(4);
           cy.getComponent('SubmitDrawButton').click();
-
+          cy.tick(4000); // Fast forward the loading animation
           cy.mockedRequestWait('POST', '/api/groups')
             .its('requestBody')
             .should('deep.eq', {
@@ -82,13 +81,15 @@ describe('Groups Generator Page', () => {
           cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
         });
 
-        it('Changing data after toss should create a new draw', function() {
+        it('Changing data after toss should create a new draw', () => {
           cy.visit('/draw/new/groups');
+          cy.clock();
           cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
           cy.getComponent('SubmitDrawButton').click();
           cy.mockedRequestWait('POST', '/api/groups')
             .its('requestBody.participants')
             .should('deep.eq', [{ name: 'one' }, { name: 'two' }]);
+          cy.tick(4000); // Fast forward the loading animation
           cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss');
           cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
           cy.getComponent('GroupsGenerator__participants-field-input').type('three,');
@@ -118,8 +119,8 @@ describe('Groups Generator Page', () => {
           cy.location('pathname').should('eq', '/groups/public');
         });
 
-        describe('Invalid configurations', function() {
-          it('Should show error when any required field is empty', function() {
+        describe('Invalid configurations', () => {
+          it('Should show error when any required field is empty', () => {
             cy.visit('/draw/new/groups');
             cy.getComponent('GroupsGenerator__participants-field').within(() => {
               cy.getComponent('GroupsGenerator__participants-field-input').type('one,');
@@ -149,7 +150,7 @@ describe('Groups Generator Page', () => {
             });
           });
 
-          it('Should recover from not enough participants for N groups', function() {
+          it('Should recover from not enough participants for N groups', () => {
             cy.visit('/draw/new/groups');
             cy.getComponent('SubmitDrawButton').click();
             cy.getComponent('ErrorFeedback').should('be.visible');
@@ -159,7 +160,7 @@ describe('Groups Generator Page', () => {
         });
       });
 
-      describe.only('Published page', () => {
+      describe('Published page', () => {
         it('Should send GA pageview', () => {
           cy.mockGA();
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');

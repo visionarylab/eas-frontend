@@ -27,10 +27,10 @@ class FacebookLoginButton extends Component {
   render() {
     const { /* onLogin, */ permissions } = this.props;
     return (
-      // <button onClick={this.handleLogin} data-component="FacebookLoginButton">
+      // <button onClick={this.handleLogin} data-testid="FacebookLoginButton">
       //   login
       // </button>
-      <div className={c('FacebookLoginButton')} data-component="FacebookLoginButton">
+      <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
         <div
           className="fb-login-button"
           data-max-rows="1"

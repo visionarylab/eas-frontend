@@ -47,7 +47,7 @@ class FlipCoinPage extends Component {
             id="coinImage"
             className={c('FlipCoinPage__coin')}
             onClick={onFlip}
-            data-component="FlipCoinPage__coin"
+            data-testid="FlipCoinPage__coin"
           >
             <img
               className={c('FlipCoinPage__coin-side', 'FlipCoinPage__coin-side--heads')}

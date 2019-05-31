@@ -16,7 +16,7 @@ class MultiValueDisplay extends Component {
   render() {
     const { values, label, messageEmpty, onDelete } = this.props;
     return (
-      <div className={c('MultiValueDisplay')} data-component="MultiValueDisplay">
+      <div className={c('MultiValueDisplay')} data-testid="MultiValueDisplay">
         {label && (
           <Typography color="textSecondary" variant="caption">
             {label}
@@ -29,7 +29,7 @@ class MultiValueDisplay extends Component {
                 key={Math.random()}
                 label={value}
                 onDelete={onDelete ? this.onValueDelete(value) : null}
-                data-component="MultiValueDisplay__chip"
+                data-testid="MultiValueDisplay__chip"
               />
             ))
           ) : (

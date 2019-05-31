@@ -13,7 +13,7 @@ const c = classnames.bind(STYLES);
 const Countdown = ({ date, t, i18n }) => {
   moment.locale(i18n.language);
   return (
-    <div className={c('Countdown')} data-component="Countdown">
+    <div className={c('Countdown')} data-testid="Countdown">
       <Typography variant="subtitle2">
         {t('results_published_on')}{' '}
         <Tooltip placement="top" title={moment(date).format()}>

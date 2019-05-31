@@ -24,7 +24,7 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('getComponent', component => cy.get(`[data-component="${component}"]`));
+Cypress.Commands.add('getComponent', component => cy.get(`[data-testid="${component}"]`));
 Cypress.Commands.add('getError', () => cy.get(`[data-test-has-error]`));
 Cypress.Commands.add('shouldHaveError', { prevSubject: 'element' }, subject =>
   cy.wrap(subject).within(() => {
