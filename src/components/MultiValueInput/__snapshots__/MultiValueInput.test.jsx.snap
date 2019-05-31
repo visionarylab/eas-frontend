@@ -2,7 +2,7 @@
 
 exports[`MultiValueInput Should not mutate the original value when values are removed 1`] = `
 <MultiValueInput
-  data-component="MultiValueInput__field"
+  data-testid="MultiValueInput__field"
   delimiters={
     Array [
       "Enter",
@@ -11,7 +11,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
   }
   inputProps={
     Object {
-      "data-component": "MultiValueInput__field-input",
+      "data-testid": "MultiValueInput__field-input",
     }
   }
   label="Input label"
@@ -26,12 +26,12 @@ exports[`MultiValueInput Should not mutate the original value when values are re
   }
 >
   <div
-    data-component="MultiValueInput__field"
+    data-testid="MultiValueInput__field"
   >
     <ForwardRef
       inputProps={
         Object {
-          "data-component": "MultiValueInput__field-input",
+          "data-testid": "MultiValueInput__field-input",
         }
       }
       label="Input label"
@@ -513,7 +513,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
             <WithStyles(Input)
               inputProps={
                 Object {
-                  "data-component": "MultiValueInput__field-input",
+                  "data-testid": "MultiValueInput__field-input",
                 }
               }
               name="field1"
@@ -541,7 +541,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                 }
                 inputProps={
                   Object {
-                    "data-component": "MultiValueInput__field-input",
+                    "data-testid": "MultiValueInput__field-input",
                   }
                 }
                 name="field1"
@@ -571,7 +571,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                   inputComponent="input"
                   inputProps={
                     Object {
-                      "data-component": "MultiValueInput__field-input",
+                      "data-testid": "MultiValueInput__field-input",
                     }
                   }
                   multiline={false}
@@ -606,7 +606,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                     inputComponent="input"
                     inputProps={
                       Object {
-                        "data-component": "MultiValueInput__field-input",
+                        "data-testid": "MultiValueInput__field-input",
                       }
                     }
                     multiline={false}
@@ -641,7 +641,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                       inputComponent="input"
                       inputProps={
                         Object {
-                          "data-component": "MultiValueInput__field-input",
+                          "data-testid": "MultiValueInput__field-input",
                         }
                       }
                       muiFormControl={
@@ -673,7 +673,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                         <input
                           aria-invalid={false}
                           className="MuiInputBase-input-64 MuiInput-input-49"
-                          data-component="MultiValueInput__field-input"
+                          data-testid="MultiValueInput__field-input"
                           disabled={false}
                           name="field1"
                           onBlur={[Function]}
@@ -706,7 +706,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
     >
       <div
         className="MultiValueDisplay"
-        data-component="MultiValueDisplay"
+        data-testid="MultiValueDisplay"
       >
         <WithStyles(Typography)
           color="textSecondary"
@@ -1155,7 +1155,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
           className="MultiValueDisplay__values-list"
         >
           <WithStyles(Chip)
-            data-component="MultiValueDisplay__chip"
+            data-testid="MultiValueDisplay__chip"
             key="1"
             label="Value 1"
             onDelete={[Function]}
@@ -1192,14 +1192,14 @@ exports[`MultiValueInput Should not mutate the original value when values are re
               }
               color="default"
               component="div"
-              data-component="MultiValueDisplay__chip"
+              data-testid="MultiValueDisplay__chip"
               label="Value 1"
               onDelete={[Function]}
               variant="default"
             >
               <div
                 className="MuiChip-root-71 MuiChip-deletable-77"
-                data-component="MultiValueDisplay__chip"
+                data-testid="MultiValueDisplay__chip"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
                 role="button"
@@ -1271,7 +1271,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
 
 exports[`MultiValueInput Should render correctly with values 1`] = `
 <div
-  data-component=""
+  data-testid=""
 >
   <ForwardRef
     label="Input label"
@@ -1298,7 +1298,7 @@ exports[`MultiValueInput Should render correctly with values 1`] = `
 
 exports[`MultiValueInput Should render correctly without values 1`] = `
 <div
-  data-component=""
+  data-testid=""
 >
   <ForwardRef
     label="Input label"

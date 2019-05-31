@@ -34,7 +34,7 @@ class ShareDrawModal extends Component {
     const { publicDrawUrl, trackingData } = this.props;
     return (
       <div className={c('ShareDrawModal__button-row')}>
-        <Button onClick={this.handleClickOpen} data-component="ShareDrawButton">
+        <Button onClick={this.handleClickOpen} data-testid="ShareDrawButton">
           Compartir resultado
         </Button>
         <Dialog
@@ -52,7 +52,7 @@ class ShareDrawModal extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              data-component="ShareDrawButton__cancel"
+              data-testid="ShareDrawButton__cancel"
               onClick={this.handleClose}
               color="primary"
             >

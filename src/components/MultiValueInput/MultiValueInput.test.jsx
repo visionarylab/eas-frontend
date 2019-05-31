@@ -44,8 +44,8 @@ describe('MultiValueInput', () => {
         labelDisplayList="Selected Items"
         messageEmpty="No items selected"
         onChange={onChangeMock}
-        data-component="MultiValueInput__field"
-        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+        data-testid="MultiValueInput__field"
+        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
       />,
     );
     const input = wrapper.find('input');
@@ -64,8 +64,8 @@ describe('MultiValueInput', () => {
         labelDisplayList="Selected Items"
         messageEmpty="No items selected"
         onChange={onChangeMock}
-        data-component="MultiValueInput__field"
-        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+        data-testid="MultiValueInput__field"
+        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
       />,
     );
     const input = wrapper.find('input');
@@ -86,8 +86,8 @@ describe('MultiValueInput', () => {
         messageEmpty="No items selected"
         value={initialValue}
         onChange={onChangeMock}
-        data-component="MultiValueInput__field"
-        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+        data-testid="MultiValueInput__field"
+        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
       />,
     );
     const input = wrapper.find('input');
@@ -109,8 +109,8 @@ describe('MultiValueInput', () => {
         messageEmpty="No items selected"
         value={initialValue}
         onChange={onChangeMock}
-        data-component="MultiValueInput__field"
-        inputProps={{ 'data-component': 'MultiValueInput__field-input' }}
+        data-testid="MultiValueInput__field"
+        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
       />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();

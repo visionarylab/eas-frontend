@@ -22,8 +22,8 @@ const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
       fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-component="Raffle__participants-field"
-      inputProps={{ 'data-component': 'Raffle__participants-field-input' }}
+      data-testid="Raffle__participants-field"
+      inputProps={{ 'data-testid': 'Raffle__participants-field-input' }}
       helperText={t('field_help_separate_participants_commas')}
     />
     <ValidationFeedback />
@@ -36,8 +36,8 @@ const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
       value={values.prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
-      data-component="Raffle__prizes-field"
-      inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+      data-testid="Raffle__prizes-field"
+      inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}
       helperText={t('field_help_separate_prizes_commas')}
     />

@@ -55,11 +55,7 @@ const PublishedFacebookLoginRafflePage = props => {
       // className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
-        <Typography
-          align="center"
-          variant="h1"
-          data-component="PublishedGroupsGeneratorPage__Title"
-        >
+        <Typography align="center" variant="h1" data-testid="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>
         {description && <Typography variant="body2">{description}</Typography>}
@@ -93,7 +89,7 @@ const PublishedFacebookLoginRafflePage = props => {
             <PrizesOverview prizes={prizes} />
             <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
               {userRegisteredInRaffle ? (
-                <Typography variant="body1" data-component="FacebookRaffle__participat-registered">
+                <Typography variant="body1" data-testid="FacebookRaffle__participat-registered">
                   You are registered in the raffle as {userName}
                 </Typography>
               ) : (
@@ -108,7 +104,7 @@ const PublishedFacebookLoginRafflePage = props => {
                       <Button
                         variant="contained"
                         color="primary"
-                        data-component="FacebookRaffle__participat-button"
+                        data-testid="FacebookRaffle__participat-button"
                         onClick={onRegisterInRaffle}
                       >
                         {t('participate_as', { username: userName })}

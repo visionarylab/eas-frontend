@@ -41,7 +41,7 @@ const PublishedRafflePage = props => {
       className={c('PublishedRafflePage')}
     >
       <DrawLayout>
-        <Typography align="center" variant="h1" data-component="PublishedRafflePage__Title">
+        <Typography align="center" variant="h1" data-testid="PublishedRafflePage__Title">
           {title || t('page_title')}
         </Typography>
         {description && <Typography variant="body2">{description}</Typography>}

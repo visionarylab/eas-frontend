@@ -12,14 +12,18 @@ const GroupsGeneratorResult = ({ result, t }) => (
   <div className={c('GroupsGeneratorResult')}>
     <div className={c('GroupsGeneratorResult__container')}>
       {result.value.map((group, index) => (
-        <div key={group[0].id} className={c('GroupsGeneratorResult__group')}>
+        <div
+          key={group[0].id}
+          className={c('GroupsGeneratorResult__group')}
+          data-testid="GroupsGeneratorResult__group"
+        >
           <Typography variant="caption">
             {t('result_label_group', { groupNumber: index + 1 })}
           </Typography>
           <ul>
             {group.map(participant => (
               <li key={participant.id}>
-                <Typography variant="body1" data-component="GroupsGeneratorResult__result">
+                <Typography variant="body1" data-testid="GroupsGeneratorResult__result">
                   {participant.name}
                 </Typography>
               </li>

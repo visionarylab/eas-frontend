@@ -40,11 +40,7 @@ const PublishedGroupsGeneratorPage = props => {
       className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
-        <Typography
-          align="center"
-          variant="h1"
-          data-component="PublishedGroupsGeneratorPage__Title"
-        >
+        <Typography align="center" variant="h1" data-testid="PublishedGroupsGeneratorPage__Title">
           {title || t('page_title')}
         </Typography>
         {description && <Typography variant="body2">{description}</Typography>}

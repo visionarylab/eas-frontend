@@ -50,13 +50,13 @@ class MultiValueInput extends Component {
       value: values,
       labelDisplayList,
       messageEmpty,
-      'data-component': dataComponent,
+      'data-testid': dataComponent,
       ...rest
     } = this.props;
     const { delimiters, onChange, ...extra } = rest;
     const { currentValue } = this.state;
     return (
-      <div data-component={dataComponent}>
+      <div data-testid={dataComponent}>
         <TextField
           onChange={this.onCurrentValueChange}
           type="text"
@@ -84,13 +84,13 @@ MultiValueInput.propTypes = {
   value: PropTypes.arrayOf(PropTypes.string),
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
-  'data-component': PropTypes.string,
+  'data-testid': PropTypes.string,
 };
 
 MultiValueInput.defaultProps = {
   delimiters: ['Enter', ','],
   value: [],
-  'data-component': '',
+  'data-testid': '',
 };
 
 export default MultiValueInput;

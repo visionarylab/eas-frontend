@@ -19,8 +19,8 @@ const GeneralDetailsSection = ({ title, titleRequired, description, onFieldChang
       required={titleRequired}
       validators={titleRequired ? [{ rule: 'required' }] : []}
       onChange={e => onFieldChange('title', e.target.value)}
-      data-component="PublicDetails__title-field"
-      inputProps={{ 'data-component': 'PublicDetails__title-field-input' }}
+      data-testid="PublicDetails__title-field"
+      inputProps={{ 'data-testid': 'PublicDetails__title-field-input' }}
     />
 
     <ValidatedTextField
@@ -33,8 +33,8 @@ const GeneralDetailsSection = ({ title, titleRequired, description, onFieldChang
       rows="4"
       margin="normal"
       onChange={e => onFieldChange('description', e.target.value)}
-      data-component="PublicDetails__description-field"
-      inputProps={{ 'data-component': 'PublicDetails__description-field-input' }}
+      data-testid="PublicDetails__description-field"
+      inputProps={{ 'data-testid': 'PublicDetails__description-field-input' }}
     />
   </SectionPanel>
 );

@@ -65,7 +65,7 @@ class RecentDrawsPage extends Component {
       >
         <Typography variant="h1">{t('page_title')}</Typography>
         {listEmpty ? (
-          <Typography variant="body2" data-component="RecentDraws__list-empty">
+          <Typography variant="body2" data-testid="RecentDraws__list-empty">
             {t('empty_list')}
           </Typography>
         ) : (
@@ -76,7 +76,7 @@ class RecentDrawsPage extends Component {
                   key={draw.id}
                   button
                   component={props => <Link to={draw.url} {...props} />}
-                  data-component="RecentDraws__list-item"
+                  data-testid="RecentDraws__list-item"
                   onClick={() =>
                     track({
                       mp: {
@@ -94,7 +94,7 @@ class RecentDrawsPage extends Component {
                     <IconButton
                       aria-label="Delete"
                       onClick={() => this.handleClickOpen(draw)}
-                      data-component="RecentDraws__remove-draw"
+                      data-testid="RecentDraws__remove-draw"
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -105,7 +105,7 @@ class RecentDrawsPage extends Component {
             <Button
               variant="contained"
               onClick={() => this.handleClickOpen()}
-              data-component="RecentDraws__clear-history"
+              data-testid="RecentDraws__clear-history"
             >
               {t('delete_recent_raffles_button_label')}
             </Button>
@@ -138,7 +138,7 @@ class RecentDrawsPage extends Component {
                       : this.handleClearRecentDraws
                   }
                   color="primary"
-                  data-component="RecentDraws__modal-confirm"
+                  data-testid="RecentDraws__modal-confirm"
                 >
                   {selectedDraw
                     ? t('delete_recent_draw_modal_confirm')

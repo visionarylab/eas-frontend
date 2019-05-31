@@ -7,7 +7,7 @@ import STYLES from './ErrorFeedback.scss';
 const c = classnames.bind(STYLES);
 
 const ErrorFeedback = ({ error }) => (
-  <div className={c('ErrorFeedback')} data-component="ErrorFeedback">
+  <div className={c('ErrorFeedback')} data-testid="ErrorFeedback">
     <BannerAlert title={error} type={ALERT_TYPES.ERROR} />
   </div>
 );

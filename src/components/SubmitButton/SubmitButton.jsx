@@ -6,7 +6,7 @@ import STYLES from './SubmitButton.scss';
 
 const c = classNames.bind(STYLES);
 const SubmitButton = ({ label, onClick }) => (
-  <div data-component="SubmitDrawButton" className={c('SubmitButton')}>
+  <div data-testid="SubmitDrawButton" className={c('SubmitButton')}>
     <Button type="submit" variant="contained" color="primary" onClick={onClick}>
       {label}
     </Button>

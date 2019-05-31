@@ -3,7 +3,7 @@
 exports[`MultiValueDisplay Chip.onDelete should be null if onDelete is not supplied 1`] = `
 <div
   className="MultiValueDisplay"
-  data-component="MultiValueDisplay"
+  data-testid="MultiValueDisplay"
 >
   <WithStyles(Typography)
     color="textSecondary"
@@ -15,7 +15,7 @@ exports[`MultiValueDisplay Chip.onDelete should be null if onDelete is not suppl
     className="MultiValueDisplay__values-list"
   >
     <WithStyles(Chip)
-      data-component="MultiValueDisplay__chip"
+      data-testid="MultiValueDisplay__chip"
       key="1"
       label="value 2"
       onDelete={null}
@@ -27,7 +27,7 @@ exports[`MultiValueDisplay Chip.onDelete should be null if onDelete is not suppl
 exports[`MultiValueDisplay Chip.onDelete should be onDelete when supplied 1`] = `
 <div
   className="MultiValueDisplay"
-  data-component="MultiValueDisplay"
+  data-testid="MultiValueDisplay"
 >
   <WithStyles(Typography)
     color="textSecondary"
@@ -39,7 +39,7 @@ exports[`MultiValueDisplay Chip.onDelete should be onDelete when supplied 1`] = 
     className="MultiValueDisplay__values-list"
   >
     <WithStyles(Chip)
-      data-component="MultiValueDisplay__chip"
+      data-testid="MultiValueDisplay__chip"
       key="1"
       label="value 2"
       onDelete={[Function]}
@@ -51,7 +51,7 @@ exports[`MultiValueDisplay Chip.onDelete should be onDelete when supplied 1`] = 
 exports[`MultiValueDisplay Should render correctly with values 1`] = `
 <div
   className="MultiValueDisplay"
-  data-component="MultiValueDisplay"
+  data-testid="MultiValueDisplay"
 >
   <WithStyles(Typography)
     color="textSecondary"
@@ -63,13 +63,13 @@ exports[`MultiValueDisplay Should render correctly with values 1`] = `
     className="MultiValueDisplay__values-list"
   >
     <WithStyles(Chip)
-      data-component="MultiValueDisplay__chip"
+      data-testid="MultiValueDisplay__chip"
       key="1"
       label="value 1"
       onDelete={null}
     />
     <WithStyles(Chip)
-      data-component="MultiValueDisplay__chip"
+      data-testid="MultiValueDisplay__chip"
       key="1"
       label="value 2"
       onDelete={null}
@@ -81,7 +81,7 @@ exports[`MultiValueDisplay Should render correctly with values 1`] = `
 exports[`MultiValueDisplay Should render correctly without values 1`] = `
 <div
   className="MultiValueDisplay"
-  data-component="MultiValueDisplay"
+  data-testid="MultiValueDisplay"
 >
   <WithStyles(Typography)
     color="textSecondary"

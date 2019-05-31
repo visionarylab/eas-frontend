@@ -8,7 +8,7 @@ const PublicModeButton = ({ to, label, trackingData, inputProps, dataComponent, 
   <Button
     component={props => <Link to={to} onClick={() => track(trackingData)} {...props} />}
     variant="contained"
-    data-component={dataComponent}
+    data-testid={dataComponent}
     {...inputProps}
   >
     {label}

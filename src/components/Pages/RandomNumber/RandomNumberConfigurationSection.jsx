@@ -30,8 +30,8 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           margin="normal"
           fullWidth
           validators={[{ rule: 'required' }]}
-          data-component="RandomNumber__from-field"
-          inputProps={{ 'data-component': 'RandomNumber__from-field-input' }}
+          data-testid="RandomNumber__from-field"
+          inputProps={{ 'data-testid': 'RandomNumber__from-field-input' }}
         />
       </Grid>
       <Grid item xs={6}>
@@ -45,8 +45,8 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           fullWidth
           type="number"
           validators={[{ rule: 'required' }]}
-          data-component="RandomNumber__to-field"
-          inputProps={{ 'data-component': 'RandomNumber__to-field-input' }}
+          data-testid="RandomNumber__to-field"
+          inputProps={{ 'data-testid': 'RandomNumber__to-field-input' }}
         />
       </Grid>
     </Grid>
@@ -63,8 +63,8 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
           { rule: 'required', value: true },
           { rule: 'min', value: 1, message: t('error_field_message_min_results', { min: 1 }) },
         ]}
-        data-component="RandomNumber__number-of-results-field"
-        inputProps={{ 'data-component': 'RandomNumber__number-of-results-field-input' }}
+        data-testid="RandomNumber__number-of-results-field"
+        inputProps={{ 'data-testid': 'RandomNumber__number-of-results-field-input' }}
       />
       {values.numberOfResults > 1 && (
         <FormGroup row>
@@ -75,7 +75,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
                 name="allowRepeated"
                 checked={values.allowRepeated}
                 onChange={e => onFieldChange('allowRepeated', e.target.checked)}
-                inputProps={{ 'data-component': 'RandomNumber__allow-repeated-field-input' }}
+                inputProps={{ 'data-testid': 'RandomNumber__allow-repeated-field-input' }}
               />
             }
             label={t('field_label_allow_repeated')}

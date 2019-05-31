@@ -24,8 +24,8 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-component="GroupsGenerator__participants-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__participants-field-input' }}
+      data-testid="GroupsGenerator__participants-field"
+      inputProps={{ 'data-testid': 'GroupsGenerator__participants-field-input' }}
       helperText={t('field_help_separate_participants_commas')}
     />
     <ValidatedTextField
@@ -37,8 +37,8 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       type="number"
       margin="normal"
       validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
-      data-component="GroupsGenerator__number-of-groups-field"
-      inputProps={{ 'data-component': 'GroupsGenerator__number-of-groups-field-input' }}
+      data-testid="GroupsGenerator__number-of-groups-field"
+      inputProps={{ 'data-testid': 'GroupsGenerator__number-of-groups-field-input' }}
     />
     <ValidationFeedback />
   </SectionPanel>

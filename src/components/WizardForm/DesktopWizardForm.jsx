@@ -52,7 +52,7 @@ const DesktopWizard = ({
         variant="contained"
         color="primary"
         className={c('WizardForm__step-button')}
-        data-component="WizardForm__next-button"
+        data-testid="WizardForm__next-button"
         onClick={handleNext}
       >
         {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}

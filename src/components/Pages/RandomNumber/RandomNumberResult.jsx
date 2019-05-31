@@ -13,7 +13,7 @@ const RandomNumberResult = ({ result }) => (
       className={c('RandomNumberResult__results')}
       variant="body1"
       align="center"
-      data-component="RandomNumberResult__result"
+      data-testid="RandomNumberResult__result"
     >
       {result.value.join(', ')}
     </Typography>

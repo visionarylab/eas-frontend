@@ -25,8 +25,8 @@ const PrizesSection = ({ prizes, onFieldChange, t }) => (
       value={prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
-      data-component="Raffle__prizes-field"
-      inputProps={{ 'data-component': 'Raffle__prizes-field-input' }}
+      data-testid="Raffle__prizes-field"
+      inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}
     />
   </SectionPanel>
