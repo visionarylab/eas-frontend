@@ -3,7 +3,6 @@ describe('Flip a Coin Page', () => {
     context(`Device ${device}`, () => {
       beforeEach(() => {
         cy.server();
-        cy.mockFixture('GroupsGenerator');
         cy.viewport(device);
       });
       it('Should send GA pageview', () => {

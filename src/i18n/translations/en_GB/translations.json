@@ -123,6 +123,7 @@
     "field_placeholder_participants": "Ana, David, ...",
     "field_placeholder_prizes": "Cruise to Bali, ...",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
+    "html_keywords": "raffle, lottery, pool, choose winner, prizes",
     "html_title": "Organize raffle",
     "label_number_of_participants": "Number of participants:",
     "label_prizes": "Prizes:",
@@ -181,6 +182,7 @@
   "SpinArrow": {
     "draw_subheading": "(Hit the arrow to make it spin)",
     "html_description": "Do you need to decide who wil be the chosen one? Spin an arrow online",
+    "html_keywords": "spin arrow online, spinner, game, choose randomly",
     "html_tittle": "Spin an arrow online",
     "page_title": "Spin an arrow"
   },

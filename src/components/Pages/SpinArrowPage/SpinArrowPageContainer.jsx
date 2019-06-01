@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga';
+import PropTypes from 'prop-types';
 import SpinArrowPage from './SpinArrowPage.jsx';
+import withTracking from '../../withTracking/withTracking.jsx';
+
+const analyticsDrawType = 'Spin Arrow';
 
 class ArrowPageContainer extends Component {
   constructor(props) {
@@ -11,7 +14,11 @@ class ArrowPageContainer extends Component {
   }
 
   handleToss = () => {
-    ReactGA.event({ category: 'Toss', action: 'Spin Arrow' });
+    const { track } = this.props;
+    track({
+      mp: { name: `Toss - ${analyticsDrawType}`, properties: { drawType: analyticsDrawType } },
+      ga: { action: 'Toss', category: analyticsDrawType },
+    });
     const angle = Math.floor(Math.random() * 360);
     const randomInitialSpin = Math.floor(Math.random() * 5 + 8) * 360;
     this.setState(previousState => {
@@ -30,6 +37,8 @@ class ArrowPageContainer extends Component {
   }
 }
 
-ArrowPageContainer.propTypes = {};
+ArrowPageContainer.propTypes = {
+  track: PropTypes.func.isRequired,
+};
 
-export default ArrowPageContainer;
+export default withTracking(ArrowPageContainer);

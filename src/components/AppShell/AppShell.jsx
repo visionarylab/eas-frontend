@@ -21,7 +21,7 @@ import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaf
 // import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer.jsx';
 // import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer.jsx';
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer.jsx';
-// import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer.jsx';
+import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContainer.jsx';
 import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer.jsx';
 import RafflePageContainer from '../Pages/Raffle/RafflePageContainer.jsx';
 import PublishedRafflePageContainer from '../Pages/Raffle/PublishedRafflePage.jsx';
@@ -36,7 +36,6 @@ const AppShell = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={props => <HomePage {...props} />} />
-
       {/* To be removed once we can confirm that this url is no longer used */}
       <Route
         exact
@@ -51,14 +50,12 @@ const AppShell = () => (
       />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
-
       <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
-
       <Route exact path="/raffle" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
-
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route exact path="/recent" component={RecentDraws} />
+      <Route exact path="/arrow" component={SpinArrowPageContainer} />
       {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
         exact
@@ -70,12 +67,10 @@ const AppShell = () => (
       <Route exact path="/raffle" component={props => <RafflePageContainer {...props} />} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
 
-      <Route exact path="/arrow" component={SpinArrowPageContainer} /> */}
 
       {/* <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
       <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
       <Route exact path="/letter" component={LetterDrawPageContainer} /> */}
-
       {/* <Route exact path="/about" component={AboutPage} />
 
       {config.environment === 'local' && (
