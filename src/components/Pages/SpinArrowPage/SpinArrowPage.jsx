@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Page from '../../Page/Page.jsx';
 import STYLES from './SpinArrowPage.scss';
 import ArrowImage from './arrow.svg';
+import arrowOgImage from './arrow_og_image.png';
 
 const c = classnames.bind(STYLES);
 
@@ -20,8 +21,11 @@ const SpinArrowPage = ({ angle, animate, handleToss, t }) => {
 
   return (
     <Page
-      htmlTitle={t('html_tittle')}
+      htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
+      htmlKeywords={t('html_keywords')}
+      pageType="spin_arrow_draw"
+      ogImage={arrowOgImage}
       className={c('SpinArrowPage')}
     >
       <Typography variant="h1">{t('page_title')}</Typography>

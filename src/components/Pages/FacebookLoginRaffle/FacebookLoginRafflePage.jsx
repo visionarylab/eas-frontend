@@ -86,7 +86,7 @@ const FacebookLoginRafflePage = props => {
     <Page
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
-      htmlKeywords={t('html_description')}
+      htmlKeywords={t('html_keywords')}
       pageType="groups_public_draw"
     >
       <DrawLayout isPublic>
