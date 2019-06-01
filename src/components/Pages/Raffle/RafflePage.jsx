@@ -54,7 +54,7 @@ const RafflePage = ({
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
-          sectionTitle={t('section_title_when_to_toss')}
+          label={t('field_label_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}
