@@ -40,7 +40,7 @@ const GroupsGeneratorQuickPage = props => {
         window.scrollTo(0, resultsRef.current.offsetTop);
       }
     }
-  }, [quickResult]);
+  }, [quickResult, resultsRef]);
 
   return (
     <Page
