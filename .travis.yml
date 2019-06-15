@@ -44,10 +44,10 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: cd eas-deployment &&  ansible-playbook -i hosts_dev config-eas3.yml --vault-password-file=vault-pass --extra-vars "ansible_user=automation"
+    script: cd eas-deployment &&  ansible-playbook -i hosts_dev config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend" --extra-vars "ansible_user=automation"
     on:
       branch: master
   - provider: script
-    script: cd eas-deployment &&  ansible-playbook -i hosts_prod config-eas3.yml --vault-password-file=vault-pass --extra-vars "ansible_user=automation echaloasuerte_3_git_branch=prod echaloasuerte_3_npm_config=''"
+    script: cd eas-deployment &&  ansible-playbook -i hosts_prod config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend" --extra-vars "ansible_user=automation echaloasuerte_3_git_branch=prod echaloasuerte_3_npm_config=''"
     on:
       branch: prod
