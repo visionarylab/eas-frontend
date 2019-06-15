@@ -6,7 +6,6 @@ import winston from 'winston';
 import morgan from 'morgan';
 import path from 'path';
 import * as Sentry from '@sentry/node';
-import setupApi from '../src/setupApi';
 import { initWinstonLogging, getMorganStream } from '../src/logging';
 
 import loader from './loader.jsx';
@@ -22,9 +21,6 @@ initWinstonLogging({ isServer: true });
 // Create our express app using the port optionally specified
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Setup the EAS API
-setupApi();
 
 // Setup Sentry error logs (step 1)
 app.use(Sentry.Handlers.requestHandler());
