@@ -9,6 +9,7 @@ import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Frontload, frontloadServerRender } from 'react-frontload';
+import setupApi from '../src/setupApi';
 import createStore from '../src/store';
 import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
@@ -38,6 +39,9 @@ export default (req, res) => {
     );
     return content;
   };
+  const hostname = req.headers.host;
+  // Setup the EAS API
+  setupApi(hostname);
 
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
@@ -59,7 +63,7 @@ export default (req, res) => {
 
     const { store } = createStore(req.url);
 
-    store.dispatch(setHostname(req.headers.host));
+    store.dispatch(setHostname(hostname));
 
     const context = {};
     frontloadServerRender(() =>
