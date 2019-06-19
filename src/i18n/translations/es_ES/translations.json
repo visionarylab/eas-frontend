@@ -66,7 +66,9 @@
     "html_title": "Cara o cruz",
     "learn_more_content": "El cara o cruz es un juego de azar en el que se emplea una moneda. Los participates tienen que elegir un lado de la moneda y lanzarla. Gana quien acierte qué lado de la moneda caerá cara arriba. Este juego recibe diferentes nombres en otros paises, como cara o escudo, cara o ceca, cara o sello, volado o águila o sol.",
     "learn_more_title": "¿Qué es \"Cara o Cruz\"?",
-    "page_title": "Cara o cruz"
+    "page_title": "Cara o cruz",
+    "result_heads": "Cara",
+    "result_tails": "Cruz"
   },
   "Footer": {
     "privacy_policy": "Politica de privacidad"

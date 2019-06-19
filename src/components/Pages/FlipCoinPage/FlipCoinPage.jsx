@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import { withTranslation } from 'react-i18next';
+import Typography from '@material-ui/core/Typography';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import Page from '../../Page/Page.jsx';
 import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
@@ -22,14 +23,16 @@ class FlipCoinPage extends Component {
     document
       .getElementById('coinImage')
       .classList.remove(c(`FlipCoinPage__coin--${prevProps.coinSide}`));
+    document.getElementById('resultLabel').classList.remove(c(`FlipCoinPage__result--animated`));
 
     setTimeout(() => {
       document.getElementById('coinImage').classList.add(className);
+      document.getElementById('resultLabel').classList.add(c(`FlipCoinPage__result--animated`));
     }, 50);
   }
 
   render() {
-    const { onFlip, t } = this.props;
+    const { coinSide, onFlip, t } = this.props;
     return (
       <Page
         htmlTitle={t('html_title')}
@@ -60,6 +63,14 @@ class FlipCoinPage extends Component {
               alt="tails"
             />
           </button>
+          <Typography
+            id="resultLabel"
+            variant="h2"
+            align="center"
+            className={c('FlipCoinPage__result')}
+          >
+            {coinSide === 'heads' ? t('result_heads') : t('result_tails')}
+          </Typography>
         </div>
 
         <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
