@@ -109,6 +109,6 @@ Page.defaultProps = {
   enableHotjar: false,
 };
 
-const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
+const mapsStateToProps = state => ({ hostname: state.userRequest.hostname });
 
 export default withMixpanel(withRouter(connect(mapsStateToProps)(Page)));

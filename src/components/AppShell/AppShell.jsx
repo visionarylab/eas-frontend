@@ -1,5 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import classnames from 'classnames/bind';
 
 import HomePage from '../Pages/HomePage/HomePage.jsx';
@@ -31,7 +34,7 @@ const c = classnames.bind(STYLES);
 
 const guidRegex = '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}';
 
-const AppShell = () => (
+const AppShell = ({ footerVisible }) => (
   <div className={c('AppShell')}>
     <Header />
     <Switch>
@@ -79,10 +82,14 @@ const AppShell = () => (
       )} */}
       <Route component={NotFoundPage} />
     </Switch>
-    <Footer />
+    {footerVisible && <Footer />}
   </div>
 );
 
-AppShell.propTypes = {};
+AppShell.propTypes = {
+  footerVisible: PropTypes.bool.isRequired,
+};
 
-export default AppShell;
+const mapStateToProps = state => ({ footerVisible: state.footer.visible });
+
+export default withRouter(connect(mapStateToProps)(AppShell));
