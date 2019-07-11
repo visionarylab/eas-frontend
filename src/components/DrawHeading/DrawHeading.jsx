@@ -8,11 +8,16 @@ const c = classnames.bind(STYLES);
 
 const DrawHeading = ({ title, subtitle }) => (
   <div className={c('DrawHeading')}>
-    <Typography align="center" variant="h1">
+    <Typography align="center" variant="h1" data-testid="DrawHeading__title">
       {title}
     </Typography>
     {subtitle && (
-      <Typography align="center" variant="subtitle1" className={c('DrawHeading__subtitle')}>
+      <Typography
+        align="center"
+        variant="subtitle1"
+        className={c('DrawHeading__subtitle')}
+        data-testid="DrawHeading__subtitle"
+      >
         {subtitle}
       </Typography>
     )}
