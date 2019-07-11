@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 /**
- * We are building our own TextField based on Material UI's one (link below) to have how static branded labels
+ * We are building our own TextField based on Material UI's one (link below) to have our own static branded labels
  * https://github.com/mui-org/material-ui/blob/d183b449df71b84ecc54c225ea0ba681432ce13e/packages/material-ui/src/TextField/TextField.js
  */
 const TextField = React.forwardRef((props, ref) => {
@@ -78,7 +78,9 @@ const TextField = React.forwardRef((props, ref) => {
         onChange={onChange}
         onFocus={onFocus}
         placeholder={placeholder}
-        inputProps={inputProps}
+        // Adding data-hj-whitelist to whitelist these fields in Hotjar
+        // https://help.hotjar.com/hc/en-us/articles/115015563287-Whitelisting-input-fields
+        inputProps={{ ...inputProps, 'data-hj-whitelist': true }}
         {...InputProps}
       />
       {helperText && (
