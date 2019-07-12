@@ -63,7 +63,6 @@ class MultiValueInput extends Component {
           margin="normal"
           value={currentValue}
           {...extra}
-          inputProps={{ ...extra.inputProps, 'data-hj-whitelist': true }}
         />
         <MultiValueDisplay
           label={labelDisplayList}

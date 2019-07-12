@@ -15,6 +15,7 @@ import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
 import STYLES from './PublishedGroupsGeneratorPage.scss';
 
@@ -55,10 +56,7 @@ const PublishedGroupsGeneratorPage = props => {
       className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
-        <Typography align="center" variant="h1" data-testid="PublishedGroupsGeneratorPage__Title">
-          {title || t('page_title')}
-        </Typography>
-        {description && <Typography variant="body2">{description}</Typography>}
+        <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />

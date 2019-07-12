@@ -206,9 +206,7 @@ describe('Groups Generator Page', () => {
         it('Should show results and the groups draw details', () => {
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
           cy.mockedRequestWait('GET', '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
-          cy.getComponent('PublishedGroupsGeneratorPage__Title').contains(
-            'Sorteo de grupos aleatorios',
-          );
+          cy.getComponent('DrawHeading__title').contains('Sorteo de grupos aleatorios');
           cy.getComponent('GroupsGeneratorResult__group').should('have.length', 2);
           cy.getComponent('GroupsGeneratorResult__group')
             .eq(0)
