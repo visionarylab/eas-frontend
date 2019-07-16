@@ -48,9 +48,10 @@ const AppShell = () => (
         path={`/groups/:drawId(${guidRegex})`}
         component={PublishedGroupsGeneratorPage}
       />
+      <Route exact path="/coin" component={FlipCoinPageContainer} />
+      <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
-      <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
       <Route exact path="/raffle" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
