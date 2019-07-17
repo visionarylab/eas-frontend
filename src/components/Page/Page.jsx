@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
+import Advert from '../Advert/Advert.jsx';
 import { hotjar } from '../../services/hotjar';
 
 import config from '../../config/config';
@@ -79,7 +80,10 @@ class Page extends Component {
           link={canonicalLinks}
           meta={this.getMetaTags()}
         />
-        <div className={c('Page', className)}>{children}</div>
+        <div className={c('Page', className)}>
+          {children}
+          <Advert />
+        </div>
       </Fragment>
     );
   }

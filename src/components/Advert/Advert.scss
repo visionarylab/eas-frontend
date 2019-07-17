@@ -1,0 +1,13 @@
+@import '../variables';
+
+.Advert {
+  max-width: 100%;
+  text-align: center;
+  overflow: hidden;
+
+  &__frame {
+    display: inline-block;
+    width: 970 * $one-pixel-rem;
+    height: 90 * $one-pixel-rem;
+  }
+}
