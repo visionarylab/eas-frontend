@@ -54,6 +54,6 @@ App.propTypes = {
   hostname: PropTypes.string.isRequired,
 };
 
-const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
+const mapsStateToProps = state => ({ hostname: state.userRequest.hostname });
 
 export default withRouter(connect(mapsStateToProps)(App));

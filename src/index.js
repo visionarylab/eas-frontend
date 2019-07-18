@@ -10,7 +10,6 @@ import { ThemeProvider } from '@material-ui/styles';
 import * as Sentry from '@sentry/browser';
 import App from './components/App/App.jsx';
 import theme from './EasTheme.jsx';
-import DeviceDetector from './components/DeviceDetector/DeviceDetector.jsx';
 import setupApi from './setupApi';
 import createStore from './store';
 import { initWinstonLogging } from './logging';
@@ -18,7 +17,12 @@ import config from './config/config';
 
 setupApi();
 initWinstonLogging({ isServer: false });
-const { store, history } = createStore();
+// In development, the server won't be running so the userRequestData is not in the preloded state
+const userRequestData = {
+  userAgent: window.navigator.userAgent,
+  hostname: window.location.hostname,
+};
+const { store, history } = createStore('/', userRequestData);
 
 // Sentry Browser Sentry
 Sentry.init({
@@ -42,9 +46,7 @@ class Application extends React.Component {
         <ConnectedRouter history={history}>
           <Frontload noServerRender>
             <ThemeProvider theme={theme}>
-              <DeviceDetector userAgent={window.navigator.userAgent}>
-                <App />
-              </DeviceDetector>
+              <App />
             </ThemeProvider>
           </Frontload>
         </ConnectedRouter>
