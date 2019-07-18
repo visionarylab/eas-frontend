@@ -115,7 +115,10 @@ PublishedGroupsGeneratorPage.defaultProps = {};
 
 const TranslatedPage = withTranslation('GroupsGenerator')(PublishedGroupsGeneratorPage);
 
-const mapsStateToProps = state => ({ draw: state.draws.draw, hostname: state.hostname.hostname });
+const mapsStateToProps = state => ({
+  draw: state.draws.draw,
+  hostname: state.userRequest.hostname,
+});
 
 export default connect(
   mapsStateToProps,
