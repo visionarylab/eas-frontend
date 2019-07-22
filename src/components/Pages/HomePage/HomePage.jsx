@@ -34,7 +34,7 @@ const HomePage = ({ t }) => (
       <DrawCard icon={raffleIcon} to="/raffle">
         {t('draw_title_raffle')}
       </DrawCard>
-      <DrawCard icon={groupsIcon} to="/draw/new/groups">
+      <DrawCard icon={groupsIcon} to="/groups">
         {t('draw_title_groups_generator')}
       </DrawCard>
       <DrawCard icon={facebookIcon} to="/facebook">
