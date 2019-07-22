@@ -14,6 +14,7 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
   flex-direction: column;
 
   @media (min-width: $media-desktop) {
+    margin: 0 auto;
     flex-direction: row;
   }
 

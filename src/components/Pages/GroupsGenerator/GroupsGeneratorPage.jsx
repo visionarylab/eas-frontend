@@ -71,7 +71,7 @@ const GroupsGeneratorPage = props => {
       ogImage={groupsOgImage}
       enableHotjar
     >
-      <DrawLayout isPublic>
+      <DrawLayout>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
         <WizardForm
           steps={steps}

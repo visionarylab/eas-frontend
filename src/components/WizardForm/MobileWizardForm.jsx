@@ -4,7 +4,11 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Button from '@material-ui/core/Button';
+import classnames from 'classnames/bind';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
+import STYLES from './MobileWizardForm.scss';
+
+const c = classnames.bind(STYLES);
 
 const MobileWizardForm = ({
   numSteps,
@@ -16,8 +20,8 @@ const MobileWizardForm = ({
   children,
   t,
 }) => (
-  <div>
-    {children}
+  <>
+    <div className={c('MobileWizardForm__content')}>{children}</div>
     {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
     <MobileStepper
       steps={numSteps}
@@ -36,7 +40,7 @@ const MobileWizardForm = ({
         </Button>
       }
     />
-  </div>
+  </>
 );
 
 MobileWizardForm.propTypes = {
