@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import classnames from 'classnames/bind';
 import TranslateIcon from '@material-ui/icons/Translate';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import STYLES from './TranslationsSwitch.scss';
 
 const c = classnames.bind(STYLES);
@@ -16,15 +16,17 @@ const localeMap = {
   'es-ES': 'Español',
 };
 
-const TranslationsSwitch = ({ available, onChange, t, i18n }) => 
-  // const isMobile = useSelector(state => state.userRequest.isMobile);
-  // console.log('isMobile', isMobile);
-   (
+const TranslationsSwitch = ({ available, onChange, t, i18n }) => {
+  const isMobile = useSelector(state => state.userRequest.isMobile);
+  return (
     <span className={c('TranslationsSwitch')}>
-      <Typography className={c('TranslationsSwitch__label')} variant="body1" component="span">
-        {t('change_language')}
-        <TranslateIcon />
-      </Typography>
+      {isMobile ? (
+        <TranslateIcon titleAccess={t('change_language')} />
+      ) : (
+        <Typography className={c('TranslationsSwitch__label')} variant="body1" component="span">
+          {t('change_language')}
+        </Typography>
+      )}
       <FormControl>
         <Select value={i18n.language} onChange={event => onChange(event.target.value)}>
           {available.map(item => (
@@ -35,9 +37,8 @@ const TranslationsSwitch = ({ available, onChange, t, i18n }) =>
         </Select>
       </FormControl>
     </span>
-  )
-;
-
+  );
+};
 TranslationsSwitch.propTypes = {
   available: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
