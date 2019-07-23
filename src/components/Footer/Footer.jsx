@@ -45,7 +45,7 @@ const Footer = ({ t, i18n }) => {
   return (
     <footer className={c('Footer')}>
       <Link component={RouterLink} to="/privacy-policy" color="textPrimary">
-        <Typography className={c('Footer__link')} variant="body1" component="span">
+        <Typography className={c('Footer__link')} variant="body2" component="span">
           {t('privacy_policy')}
         </Typography>
       </Link>
