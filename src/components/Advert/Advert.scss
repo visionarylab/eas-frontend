@@ -7,7 +7,15 @@
 
   &__frame {
     display: inline-block;
-    width: 970 * $one-pixel-rem;
-    height: 90 * $one-pixel-rem;
+
+    &--desktop {
+      width: 970 * $one-pixel-rem;
+      height: 90 * $one-pixel-rem;
+    }
+
+    &--mobile {
+      width: 320 * $one-pixel-rem;
+      height: 50 * $one-pixel-rem;
+    }
   }
 }
