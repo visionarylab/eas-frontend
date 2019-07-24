@@ -2,11 +2,11 @@
 
 $result-font-size: 10rem;
 $side-panel-width: 19rem;
-$side-panel-width-small: 9rem;
+$side-panel-width-small: 15rem;
 $side-panel-padding: $spacing-lg;
-$side-panel-padding-small: $spacing-lg;
-$side-panel-total-width: $side-panel-width + $side-panel-padding;
-$side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-small;
+$side-panel-padding-small: $spacing-md;
+$side-panel-total-width: $side-panel-width + 2 * $side-panel-padding;
+$side-panel-total-width-small: $side-panel-width-small + 2 * $side-panel-padding-small;
 
 .DrawLayout {
   display: flex;
@@ -14,11 +14,14 @@ $side-panel-total-width-small: $side-panel-width-small + $side-panel-padding-sma
   flex-direction: column;
 
   @media (min-width: $media-desktop) {
+    // width: 70rem;
+    // margin: 0 auto;
     flex-direction: row;
   }
 
   @media (min-width: $media-widescreen) {
     width: 88rem;
+    margin: 0 auto;
   }
 
   &__content {
