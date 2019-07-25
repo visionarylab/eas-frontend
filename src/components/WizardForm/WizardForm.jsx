@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import DesktopWizardForm from './DesktopWizardForm.jsx';
 import MobileWizardForm from './MobileWizardForm.jsx';
-import { DeviceContext } from '../DeviceDetector/DeviceDetector.jsx';
 
 class WizardForm extends Component {
   constructor(props) {
@@ -83,7 +82,7 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { steps, apiError, submitButtonLabel, t } = this.props;
+    const { steps, apiError, submitButtonLabel, isMobile, t } = this.props;
     const stepLabels = steps.map(step => step.label);
     const { activeStep, stepValidations, submittedSteps } = this.state;
 
@@ -101,25 +100,19 @@ class WizardForm extends Component {
       handleBack: this.handleBack,
       t,
     };
-    return (
-      <DeviceContext.Consumer>
-        {({ isMobile }) =>
-          isMobile ? (
-            <MobileWizardForm numSteps={stepLabels.length} {...commonWizardProps}>
-              {content}
-            </MobileWizardForm>
-          ) : (
-            <DesktopWizardForm
-              stepValidations={stepValidations}
-              submittedSteps={submittedSteps}
-              stepLabels={stepLabels}
-              {...commonWizardProps}
-            >
-              {content}
-            </DesktopWizardForm>
-          )
-        }
-      </DeviceContext.Consumer>
+    return isMobile ? (
+      <MobileWizardForm numSteps={stepLabels.length} {...commonWizardProps}>
+        {content}
+      </MobileWizardForm>
+    ) : (
+      <DesktopWizardForm
+        stepValidations={stepValidations}
+        submittedSteps={submittedSteps}
+        stepLabels={stepLabels}
+        {...commonWizardProps}
+      >
+        {content}
+      </DesktopWizardForm>
     );
   }
 }
@@ -136,6 +129,7 @@ WizardForm.propTypes = {
   submitButtonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 WizardForm.defaultProps = {

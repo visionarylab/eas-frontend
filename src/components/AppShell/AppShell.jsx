@@ -36,21 +36,16 @@ const AppShell = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={props => <HomePage {...props} />} />
-      {/* To be removed once we can confirm that this url is no longer used */}
-      <Route
-        exact
-        path="/draw/new/groups/:isPublic(shared)?"
-        component={GroupsGeneratorPageContainer}
-      />
       <Route exact path="/groups/:isPublic(public)?" component={GroupsGeneratorPageContainer} />
       <Route
         exact
         path={`/groups/:drawId(${guidRegex})`}
         component={PublishedGroupsGeneratorPage}
       />
+      <Route exact path="/coin" component={FlipCoinPageContainer} />
+      <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
-      <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
       <Route exact path="/raffle" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />

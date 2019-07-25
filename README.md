@@ -7,17 +7,28 @@
 
 ```bash
 # Set the environment to local
-export REACT_APP_ENV=local
+# export REACT_APP_ENV=local
 
 # Install the dependencies
 npm install
 ```
 Option 1  (recommended): Run the development server
 ```bash
+# Start the development server with hot reload
 npm run start:dev
 ```
 Option 2: Start the server to do SSR
 ```bash
+# REACT_APP_ENV can be used to choose config settings
+#  - `production`
+#  - `development`
+#  - `local` (default)
+export REACT_APP_ENV=local
+
+# Build production bundle 
+npm run build
+
+# Start the server
 npm start
 ```
 
@@ -43,18 +54,7 @@ Integration tests are run with [Cypress.io](https://www.cypress.io/)
 npm run test:integration
 ```
 
-### Deploy to production
-Master branch is deployed in https://beta-dev.echaloasuerte.com
+## Deploying to production
+[master](https://github.com/etcaterva/eas-frontend/tree/master) branch is deployed to preprod (e.g. https://dev.echaloasuerte.com or https://beta-dev.echaloasuerte.com)
 
-```bash
-# REACT_APP_ENV should be set to `production` or `development`
-export REACT_APP_ENV=production
-
-npm run install
-
-# Generate the production bundle (REACT_APP_ENV needs to be set)
-npm run build
-
-# Start the server in SSR mode (REACT_APP_ENV needs to be set)
-npm start
-```
+[prod](https://github.com/etcaterva/eas-frontend/tree/prod) is deployed to prod (e.g. https://echaloasuerte.com)

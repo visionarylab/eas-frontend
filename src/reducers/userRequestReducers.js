@@ -1,4 +1,4 @@
-import { SET_HOSTNAME } from '../actions/types';
+import { SET_USER_AGENT } from '../actions/types';
 
 const initialState = {
   hostname: '',
@@ -6,8 +6,8 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_HOSTNAME:
-      return { ...state, hostname: action.payload };
+    case SET_USER_AGENT:
+      return { ...state, userAgent: action.payload };
     default:
       return state;
   }

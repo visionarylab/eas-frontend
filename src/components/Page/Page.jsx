@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
+import Advert from '../Advert/Advert.jsx';
 import { hotjar } from '../../services/hotjar';
 
 import config from '../../config/config';
@@ -59,7 +60,7 @@ class Page extends Component {
   }
 
   render() {
-    const { htmlTitle, className, location, children } = this.props;
+    const { htmlTitle, className, location, children, showAdvert } = this.props;
     const canonicalLinks = config.isServer
       ? []
       : [
@@ -79,7 +80,10 @@ class Page extends Component {
           link={canonicalLinks}
           meta={this.getMetaTags()}
         />
-        <div className={c('Page', className)}>{children}</div>
+        <div className={c('Page', className)}>
+          {children}
+          {showAdvert && <Advert />}
+        </div>
       </Fragment>
     );
   }
@@ -98,6 +102,7 @@ Page.propTypes = {
   location: ReactRouterPropTypes.location.isRequired,
   ogImage: PropTypes.node,
   hostname: PropTypes.string.isRequired,
+  showAdvert: PropTypes.bool,
 };
 
 Page.defaultProps = {
@@ -107,8 +112,11 @@ Page.defaultProps = {
   htmlKeywords: '',
   htmlDescription: '',
   enableHotjar: false,
+  showAdvert: true,
 };
 
-const mapsStateToProps = state => ({ hostname: state.hostname.hostname });
+const mapsStateToProps = state => ({
+  hostname: state.userRequest.hostname,
+});
 
 export default withMixpanel(withRouter(connect(mapsStateToProps)(Page)));

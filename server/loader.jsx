@@ -9,10 +9,8 @@ import { StaticRouter } from 'react-router';
 import { Frontload, frontloadServerRender } from 'react-frontload';
 import setupApi from '../src/setupApi';
 import createStore from '../src/store';
-import DeviceDetector from '../src/components/DeviceDetector/DeviceDetector.jsx';
 import App from '../src/components/App/App.jsx';
 import theme from '../src/EasTheme.jsx';
-import { setHostname } from '../src/actions/hostnameActions';
 
 export default (req, res) => {
   /*
@@ -51,10 +49,11 @@ export default (req, res) => {
       console.error('Read error', err);
       return res.status(404).end();
     }
-
-    const { store } = createStore(req.url);
-
-    store.dispatch(setHostname(hostname));
+    const userRequestData = {
+      userAgent: req.headers['user-agent'],
+      hostname,
+    };
+    const { store } = createStore(req.url, userRequestData);
 
     const context = {};
     frontloadServerRender(() =>
@@ -63,11 +62,9 @@ export default (req, res) => {
           <Provider store={store}>
             <StaticRouter location={req.url} context={context}>
               <ThemeProvider theme={theme}>
-                <DeviceDetector userAgent={req.headers['user-agent']}>
-                  <Frontload isServer>
-                    <App />
-                  </Frontload>
-                </DeviceDetector>
+                <Frontload isServer>
+                  <App />
+                </Frontload>
               </ThemeProvider>
             </StaticRouter>
           </Provider>,

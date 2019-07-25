@@ -2,10 +2,4 @@
 
 .SectionPanel {
   margin: 0 $spacing-sm $spacing-lg $spacing-sm;
-  // padding-top: $spacing-sm;
-
-  @media (min-width: $media-desktop) {
-    padding-right: $spacing-lg;
-    padding-left: $spacing-lg;
-  }
 }

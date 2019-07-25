@@ -97,7 +97,10 @@ PublishedRafflePage.defaultProps = {};
 
 const TranslatedPage = withTranslation('Raffle')(PublishedRafflePage);
 
-const mapsStateToProps = state => ({ draw: state.draws.draw, hostname: state.hostname.hostname });
+const mapsStateToProps = state => ({
+  draw: state.draws.draw,
+  hostname: state.userRequest.hostname,
+});
 const frontload = async props => {
   const { drawId } = props.match.params;
   await props.fetchRaffleDraw(drawId);

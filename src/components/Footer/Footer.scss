@@ -4,10 +4,14 @@ $label-line-height: 2rem;
 
 .Footer {
   display: flex;
-  padding: $spacing-sm 0 $spacing-sm;
+  padding: $spacing-xs 0 $spacing-xs;
   justify-content: space-around;
   background: $color-primary;
   text-align: center;
+
+  @media (min-width: $media-tablet) {
+    padding: $spacing-sm 0 $spacing-sm;
+  }
 
   & &__link {
     line-height: $label-line-height;
