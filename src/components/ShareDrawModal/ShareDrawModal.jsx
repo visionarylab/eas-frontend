@@ -59,7 +59,7 @@ class ShareDrawModal extends Component {
               label={t('share_result_dialog_ok')}
               to={publicDrawUrl}
               trackingData={trackingData}
-              dataComponent="ShareDrawButton__confirm"
+              dataTestId="ShareDrawButton__confirm"
               inputProps={{ color: 'primary' }}
             />
           </DialogActions>

@@ -22,7 +22,7 @@ const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, chil
       <PublicModeButton
         to={publicDrawUrl}
         label={buttonLabel}
-        dataComponent="MakeCertifiedDrawPanel__button"
+        dataTestId="MakeCertifiedDrawPanel__button"
         trackingData={trackingData}
       />
     </CardActions>
