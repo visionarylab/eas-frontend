@@ -17,7 +17,7 @@ const ShareButtons = ({ sectionTitle, drawType, url, types }) => (
       </Typography>
     )}
     {types
-      .filter(type => availableShareButtons.includes(type))
+      .filter(type => availableShareButtons.indexOf(type) >= 0)
       .map(type => (
         <SocialShareButton key={type} url={url} drawType={drawType} socialType={type} />
       ))}
