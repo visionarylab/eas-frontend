@@ -69,7 +69,7 @@ const GroupsGeneratorPage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
-      pageType="groups_public_draw"
+      pageType="Groups Public Draw"
       ogImage={groupsOgImage}
       enableHotjar
       showAdvert={!isMobile}

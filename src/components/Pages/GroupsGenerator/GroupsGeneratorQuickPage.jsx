@@ -48,7 +48,7 @@ const GroupsGeneratorQuickPage = props => {
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
       ogImage={groupsOgImage}
-      pageType="groups_quick_draw"
+      pageType="Groups Quick Draw"
     >
       <DrawLayout
         sidePanel={
