@@ -10,7 +10,9 @@ const c = classnames.bind(STYLES);
 const LearnMoreSection = ({ title, content }) => (
   <section className={c('LearnMoreSection')}>
     <Typography variant="h3">{title}</Typography>
-    <Typography variant="subtitle1">{content}</Typography>
+    <Typography align="justify" variant="subtitle1">
+      {content}
+    </Typography>
   </section>
 );
 

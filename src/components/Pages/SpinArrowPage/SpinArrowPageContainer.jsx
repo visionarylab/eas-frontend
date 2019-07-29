@@ -10,6 +10,7 @@ class ArrowPageContainer extends Component {
     super(props);
     this.state = {
       angle: 0,
+      showTossHelp: true,
     };
   }
 
@@ -27,13 +28,14 @@ class ArrowPageContainer extends Component {
       const totalRotation = currentAngle + degreesUntilZero + randomInitialSpin + angle;
       return {
         angle: totalRotation,
+        showTossHelp: false,
       };
     });
   };
 
   render() {
-    const { angle } = this.state;
-    return <SpinArrowPage angle={angle} handleToss={this.handleToss} />;
+    const { angle, showTossHelp } = this.state;
+    return <SpinArrowPage angle={angle} showTossHelp={showTossHelp} handleToss={this.handleToss} />;
   }
 }
 

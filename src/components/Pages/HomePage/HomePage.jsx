@@ -43,7 +43,7 @@ const HomePage = ({ t }) => (
       <DrawCard icon={coinIcon} to="draw/new/coin/">
         {t('draw_title_flip_coin')}
       </DrawCard>
-      <DrawCard icon={arrowIcon} to="/arrow">
+      <DrawCard icon={arrowIcon} to="/spinner">
         {t('draw_title_spin_arrow')}
       </DrawCard>
       {/* <DrawCard icon={randomNumber} to="/number">
