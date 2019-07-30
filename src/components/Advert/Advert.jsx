@@ -21,7 +21,7 @@ const Advert = props => {
           'Advert__frame--mobile': isMobile,
         })}
         data-ad-client="ca-pub-1409219619115807"
-        data-ad-slot="2400047490"
+        data-ad-slot={isMobile ? '1221986757' : '2400047490'}
       />
     </div>
   );
