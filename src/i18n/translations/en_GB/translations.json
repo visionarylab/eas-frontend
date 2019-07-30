@@ -185,14 +185,13 @@
     "delete_recent_raffles_button_label": "Remove recent raffles",
     "empty_list": "You haven't published any raffle",
     "html_title": "Recent Raffles",
-    "html_tittle": "Recent raffles",
     "page_title": "Recent Raffles"
   },
   "SpinArrow": {
     "draw_subheading": "Point to a random direction",
     "html_description": "Do you need to decide who wil be the chosen one? Spin an arrow online",
     "html_keywords": "spin arrow online, spinner, game, choose randomly",
-    "html_tittle": "Spin an arrow online",
+    "html_title": "Spin an arrow online",
     "learn_more_title": "What can an arrow be used for?",
     "learn_more_content": "This arrow works best in mobile devices. Place it in the middle of a group, touch it to make it spin and the pointed person will be the winner. You can also use it as a random compass when you need to know where to go",
     "page_title": "Spin an arrow",
