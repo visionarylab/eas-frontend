@@ -3,6 +3,11 @@ import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import SocialShareButton from './SocialShareButton.jsx';
 
+const mockTracking = jest.fn(() => {});
+jest.mock('../withTracking/withTracking.jsx', () => Component => props => (
+  <Component {...props} track={mockTracking} />
+));
+
 describe('SocialShareButton', () => {
   it('Facebook should render correctly', () => {
     const wrapper = mount(
