@@ -27,7 +27,7 @@ if (process.env.REACT_APP_COMMIT) {
 
 if (environment) {
   try {
-    if (environment !== 'production') {
+    if (['production', 'test'].indexOf(environment) < 0) {
       console.log(`Loading application config for environment: ${environment}`);
     }
 
@@ -39,10 +39,8 @@ if (environment) {
     };
 
     const environmentConfig = require(`./${environment}`).default; // eslint-disable-line 
-
     config = Object.assign({}, baseConfig, environmentConfig);
 
-    console.log('environment:', process.env.REACT_APP_ENV);
     // Disable logs and events when rendering in server
     config.analiticsEnabled = !isServer && config.analiticsEnabled;
     config.sentryEnabled = !isServer && config.sentryEnabled;
