@@ -7,23 +7,23 @@ describe('Flip a Coin Page', () => {
       });
       it('Should send GA pageview', () => {
         cy.mockGA();
-        cy.visit('/draw/new/coin');
+        cy.visit('/coin');
         cy.get('@ga')
           .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-          .and('be.calledWith', 'send', { hitType: 'pageview', page: '/draw/new/coin' });
+          .and('be.calledWith', 'send', { hitType: 'pageview', page: '/coin' });
       });
 
       it('Analytics pageview and event on toss', () => {
         cy.mockGA();
         cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
         cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
-        cy.visit('/draw/new/coin');
+        cy.visit('/coin');
         cy.wait('@startMixpanel');
         cy.wait('@trackMixpanel');
 
         cy.get('@ga')
           .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-          .and('be.calledWith', 'send', { hitType: 'pageview', page: '/draw/new/coin' });
+          .and('be.calledWith', 'send', { hitType: 'pageview', page: '/coin' });
 
         cy.getComponent('FlipCoinPage__coin').click();
         cy.get('@ga').should('be.calledWith', 'send', {
@@ -34,7 +34,7 @@ describe('Flip a Coin Page', () => {
       });
 
       it('Clicking the coin should make it spin and show result', () => {
-        cy.visit('/draw/new/coin');
+        cy.visit('/coin');
         cy.get('[class*="FlipCoinPage__coin--"]').should('not.exist');
         cy.get('[class*="FlipCoinPage__result--animated"]').should('not.exist');
         cy.get('[class*="FlipCoinPage__coin--"]').should('not.exist');

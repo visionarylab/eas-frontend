@@ -43,8 +43,6 @@ const AppShell = () => (
         component={PublishedGroupsGeneratorPage}
       />
       <Route exact path="/coin" component={FlipCoinPageContainer} />
-      <Route exact path="/draw/new/coin" component={FlipCoinPageContainer} />
-      <Route exact path="/draw/new/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
