@@ -40,7 +40,7 @@ const HomePage = ({ t }) => (
       <DrawCard icon={facebookIcon} to="/facebook">
         {t('draw_title_facebook_login')}
       </DrawCard>
-      <DrawCard icon={coinIcon} to="draw/new/coin/">
+      <DrawCard icon={coinIcon} to="coin/">
         {t('draw_title_flip_coin')}
       </DrawCard>
       <DrawCard icon={arrowIcon} to="/spinner">
