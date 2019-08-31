@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -14,6 +14,7 @@ import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
+import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
@@ -45,6 +46,9 @@ const PublishedGroupsGeneratorPage = props => {
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+  const ShareButtonsList = () => (
+    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
+  );
   return (
     <Page
       ogImage={groupsOgImage}
@@ -58,39 +62,27 @@ const PublishedGroupsGeneratorPage = props => {
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
-          <ResultsBox title={t('generated_groups')}>
-            <GroupsGeneratorResult result={result} />
-            <br />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_result')}
-              url={shareUrl}
-            />
-          </ResultsBox>
+          <>
+            <ResultsBox title={t('generated_groups')}>
+              <GroupsGeneratorResult result={result} />
+            </ResultsBox>
+            <ShareButtonsList />
+          </>
         ) : (
-          <Fragment>
+          <>
             <Countdown date={result.schedule_date} />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_draw')}
-              url={shareUrl}
-            />
-          </Fragment>
+            <ShareButtonsList />
+          </>
         )}
 
-        <section className={c('PublishedGroupsGeneratorPage__details')}>
-          <Typography variant="h5">{t('published_draw_details')}</Typography>
-          <div>
-            <Typography variant="body2">
-              {t('label_number_of_groups')} {numberOfGroups}
-            </Typography>
-          </div>
-          <div>
-            <Typography variant="body2">
-              {t('label_participants')} {participants.map(p => p.name).join(', ')}
-            </Typography>
-          </div>
-        </section>
+        <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
+          <Typography component="div" variant="body2">
+            {t('label_number_of_groups')} {numberOfGroups}
+          </Typography>
+          <Typography component="div" variant="body2">
+            {t('label_participants')} {participants.map(p => p.name).join(', ')}
+          </Typography>
+        </PublishedDrawDetails>
       </DrawLayout>
     </Page>
   );
