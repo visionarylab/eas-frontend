@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { GroupsApi, Groups, DrawTossPayload } from 'echaloasuerte-js-sdk';
+import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import GroupsGeneratorPage from './GroupsGeneratorPage.jsx';
 import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
@@ -22,13 +23,24 @@ class GroupsGeneratorPageContainer extends React.Component {
       quickResult: null,
       APIError: false,
       values: {
-        title: 'Sorteo de grupos aleatorios', // TODO this string should be translated
+        title: '', // Default title is set in CDM
         description: '',
         participants: [],
         numberOfGroups: '2',
         dateScheduled,
       },
     };
+  }
+
+  componentDidMount() {
+    const { t } = this.props;
+    const defaultTitle = t('field_default_title');
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        title: defaultTitle,
+      },
+    }));
   }
 
   onFieldChange = (fieldName, value) => {
@@ -150,9 +162,10 @@ class GroupsGeneratorPageContainer extends React.Component {
 
 GroupsGeneratorPageContainer.propTypes = {
   track: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };
 GroupsGeneratorPageContainer.defaultProps = {};
 
-export default withTracking(GroupsGeneratorPageContainer);
+export default withTracking(withTranslation('GroupsGenerator')(GroupsGeneratorPageContainer));
