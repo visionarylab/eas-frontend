@@ -42,7 +42,8 @@ if (environment) {
     config = Object.assign({}, baseConfig, environmentConfig);
 
     // Disable logs and events when rendering in server
-    config.analiticsEnabled = !isServer && config.analiticsEnabled;
+    config.googleAnalyticsEnabled = !isServer && config.googleAnalyticsEnabled;
+    config.mixpanelEnabled = !isServer && config.mixpanelEnabled;
     config.sentryEnabled = !isServer && config.sentryEnabled;
   } catch (e) {
     console.error('No application config could be found.', e);

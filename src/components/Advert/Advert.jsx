@@ -8,7 +8,7 @@ const c = classnames.bind(STYLES);
 
 const Advert = props => {
   useEffect(() => {
-    if (window) (window.adsbygoogle = window.adsbygoogle || []).push({});
+    if (window && false) (window.adsbygoogle = window.adsbygoogle || []).push({});
   }, []);
 
   const { isMobile } = props;

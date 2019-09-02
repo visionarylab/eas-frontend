@@ -20,9 +20,11 @@ const c = classNames.bind(STYLES);
 class Page extends Component {
   componentDidMount() {
     const { mixpanel, pageType, location, enableHotjar } = this.props;
-    if (config.analiticsEnabled) {
+    if (config.googleAnalyticsEnabled) {
       const page = location.pathname;
       ReactGA.pageview(page);
+    }
+    if (config.mixpanelEnabled) {
       mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
     }
     if (config.hotjarEnabled && enableHotjar) {
@@ -96,7 +98,7 @@ Page.propTypes = {
   pageType: PropTypes.string.isRequired,
   enableHotjar: PropTypes.bool,
   className: PropTypes.string,
-  mixpanel: PropTypes.shape({}).isRequired,
+  mixpanel: PropTypes.shape({}),
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
@@ -113,6 +115,7 @@ Page.defaultProps = {
   htmlDescription: '',
   enableHotjar: false,
   showAdvert: true,
+  mixpanel: null,
 };
 
 const mapsStateToProps = state => ({

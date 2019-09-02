@@ -8,22 +8,23 @@ const withTracking = WrappedComponent => {
   const WithTracking = props => {
     const { mixpanel } = props;
     const track = ({ mp, ga }) => {
-      if (config.analiticsEnabled) {
-        if (mp) {
-          const { name, properties } = mp;
-          mixpanel.track(name, properties);
-        }
-        if (ga) {
-          const { category, action, label } = ga;
-          ReactGA.event({ category, action, label });
-        }
+      if (config.googleAnalyticsEnabled && ga) {
+        const { category, action, label } = ga;
+        ReactGA.event({ category, action, label });
+      }
+      if (config.mixpanelEnabled && mp) {
+        const { name, properties } = mp;
+        mixpanel.track(name, properties);
       }
     };
     return <WrappedComponent track={track} {...props} />;
   };
 
   WithTracking.propTypes = {
-    mixpanel: PropTypes.shape().isRequired,
+    mixpanel: PropTypes.shape(),
+  };
+  WithTracking.defaultProps = {
+    mixpanel: null,
   };
 
   return withMixpanel(WithTracking);

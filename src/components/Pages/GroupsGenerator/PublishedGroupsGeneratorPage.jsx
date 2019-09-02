@@ -34,6 +34,7 @@ const PublishedGroupsGeneratorPage = props => {
   const shareUrl = hostname + match.url;
 
   // eslint-disable-next-line consistent-return
+  // TODO make this a custom hook
   useEffect(() => {
     if (result && !result.value) {
       // Fetch the results once the countdown is over
