@@ -7,6 +7,7 @@ import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
+import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import { fetchDraw } from '../../../actions/drawActions';
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
@@ -33,20 +34,12 @@ const PublishedGroupsGeneratorPage = props => {
   const { title, description, participants, numberOfGroups, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
 
-  // eslint-disable-next-line consistent-return
-  // TODO make this a custom hook
-  useEffect(() => {
-    if (result && !result.value) {
-      // Fetch the results once the countdown is over
-      const missingSeconds = new Date(result.schedule_date).getTime() - new Date().getTime();
-      const timer = setTimeout(() => loadData(props), missingSeconds);
-      return () => clearTimeout(timer);
-    }
-  }, [result]);
+  useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+
   const ShareButtonsList = () => (
     <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
   );

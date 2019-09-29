@@ -5,7 +5,7 @@ import { RaffleResult } from 'echaloasuerte-js-sdk';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-
+import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
@@ -33,16 +33,7 @@ const RafflePage = ({
   const publicDrawUrl = '/raffle/public';
   const resultsRef = React.createRef();
 
-  // TODO Create custom hook https://reactjs.org/docs/hooks-custom.html
-  useEffect(() => {
-    if (quickResult) {
-      try {
-        window.scroll({ left: 0, top: resultsRef.current.offsetTop, behavior: 'smooth' });
-      } catch (error) {
-        window.scrollTo(0, resultsRef.current.offsetTop);
-      }
-    }
-  }, [quickResult, resultsRef]);
+  useScrollToResults(quickResult, resultsRef);
 
   return (
     <Page

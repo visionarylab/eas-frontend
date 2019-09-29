@@ -8,6 +8,7 @@ import { RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
+import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import Page from '../../Page/Page.jsx';
 import WinnersList from './WinnersList.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
@@ -23,10 +24,17 @@ import STYLES from './PublishedRafflePage.scss';
 const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Raffle';
 
+const loadData = async props => {
+  const { drawId } = props.match.params;
+  await props.fetchRaffleDraw(drawId);
+};
+
 const PublishedRafflePage = props => {
   const { draw, match, t, hostname } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
+
+  useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
@@ -96,16 +104,12 @@ const mapsStateToProps = state => ({
   draw: state.draws.draw,
   hostname: state.userRequest.hostname,
 });
-const frontload = async props => {
-  const { drawId } = props.match.params;
-  await props.fetchRaffleDraw(drawId);
-};
 
 export default connect(
   mapsStateToProps,
   { fetchRaffleDraw },
 )(
-  frontloadConnect(frontload, {
+  frontloadConnect(loadData, {
     onMount: true,
     onUpdate: false,
   })(TranslatedPage),
