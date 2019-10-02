@@ -1,5 +1,5 @@
 describe('Groups Generator Page', () => {
-  ['macbook-13' /* , 'iphone-5' */].forEach(device => {
+  ['macbook-13', 'iphone-5'].forEach(device => {
     context(`Device ${device}`, () => {
       beforeEach(() => {
         cy.server();
@@ -19,8 +19,7 @@ describe('Groups Generator Page', () => {
 
           it('Events sent on publish', () => {
             cy.visit('/groups/public');
-            cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-            cy.getComponent('Raffle__participants-field-input').type('one, two,');
+            cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
@@ -33,7 +32,7 @@ describe('Groups Generator Page', () => {
           });
         });
 
-        it.only('Create', () => {
+        it('Create', () => {
           cy.mockGA();
           cy.visit('/groups/public');
 
@@ -93,15 +92,14 @@ describe('Groups Generator Page', () => {
         });
 
         it('Should show feedback if there are server errors', () => {
-          cy.visit('/raffle/public');
+          cy.visit('/groups/public');
           cy.route({
             method: 'POST',
-            url: '/api/raffle/',
+            url: '/api/groups/',
             status: 503,
             response: {},
           }).as('failedRequest');
-          cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
-          cy.getComponent('Raffle__participants-field-input').type('one, two,');
+          cy.getComponent('GroupsGenerator__participants-field-input').type('you, me,');
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
@@ -109,13 +107,12 @@ describe('Groups Generator Page', () => {
           cy.getComponent('ErrorFeedback').should('be.visible');
 
           // It should recover form the error
-          cy.mockFixture('Raffle'); // Reset the mock with the 200 response
+          cy.mockFixture('GroupsGenerator'); // Reset the mock with the 200 response
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('ErrorFeedback').should('not.exist');
         });
       });
 
-      // TODO Quick draw is good to go
       describe('Quick Draw', () => {
         it('Should send pageview events', () => {
           cy.visit('/groups');
@@ -265,7 +262,6 @@ describe('Groups Generator Page', () => {
         });
       });
 
-      // TODO published is good to go
       describe('Published page', () => {
         it('Analytics events sent on pageview', () => {
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
@@ -286,12 +282,12 @@ describe('Groups Generator Page', () => {
             const now = new Date();
             now.setSeconds(now.getSeconds() + missingSeconds);
             const dateInFuture = now.toISOString();
-            const fixtureGetRaffle = fixtures.find(
+            const fixtureGetDraw = fixtures.find(
               fixture => fixture.path === '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b',
             );
-            fixtureGetRaffle.response.results[0].schedule_date = dateInFuture;
-            fixtureGetRaffle.response.results[0].value = null;
-            cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
+            fixtureGetDraw.response.results[0].schedule_date = dateInFuture;
+            fixtureGetDraw.response.results[0].value = null;
+            cy.route(fixtureGetDraw.method, fixtureGetDraw.path, fixtureGetDraw.response).as(
               'LoadDataResultsPending',
             );
           });
@@ -299,10 +295,10 @@ describe('Groups Generator Page', () => {
           cy.wait('@LoadDataResultsPending');
           cy.getComponent('Countdown').should('be.visible');
           cy.fixture('GroupsGenerator').then(fixtures => {
-            const fixtureGetRaffle = fixtures.find(
+            const fixtureGetDraw = fixtures.find(
               fixture => fixture.path === '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b',
             );
-            cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
+            cy.route(fixtureGetDraw.method, fixtureGetDraw.path, fixtureGetDraw.response).as(
               'LoadDataResultsPublished',
             );
           });

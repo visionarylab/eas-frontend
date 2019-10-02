@@ -1,5 +1,5 @@
 describe('Raffle Page', () => {
-  ['macbook-13' /* , 'iphone-5' */].forEach(device => {
+  ['macbook-13', 'iphone-5'].forEach(device => {
     context(`Device ${device}`, () => {
       beforeEach(() => {
         cy.server();
