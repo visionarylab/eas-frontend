@@ -4,7 +4,8 @@ const config = {
   mixpanelID: '25bd9d326ae0254f31deec3ae4ce1dd0',
   mixpanelDebug: true,
   hotjarEnabled: true,
-  analiticsEnabled: true,
+  googleAnalyticsEnabled: true,
+  mixpanelEnabled: true,
   sentryEnabled: true,
   APIBasePath: '/api',
 };

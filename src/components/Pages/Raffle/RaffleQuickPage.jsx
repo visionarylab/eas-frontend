@@ -1,36 +1,36 @@
 import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { GroupsResult } from 'echaloasuerte-js-sdk';
-import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
-import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
+import { RaffleResult } from 'echaloasuerte-js-sdk';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
-import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
-import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
+import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
+import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
-import groupsOgImage from './groups_og_image.png';
+import WinnersList from './WinnersList.jsx';
+import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
+// import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
+import raffleOgImage from './raffle_og_image.png';
 
-const analyticsDrawType = 'Groups';
+const analyticsDrawType = 'Raffle';
 const ValidatedForm = withFormValidation(props => <form {...props} />);
 
-const GroupsGeneratorQuickPage = props => {
-  const {
-    apiError,
-    values,
-    quickResult,
-    handleToss,
-    onFieldChange,
-    handleCheckErrorsInConfiguration,
-    loadingResult,
-    t,
-  } = props;
-  const publicDrawUrl = '/groups/public';
+const RafflePage = ({
+  values,
+  apiError,
+  loadingResult,
+  onFieldChange,
+  quickResult,
+  handleToss,
+  handleCheckErrorsInConfiguration,
+  t,
+}) => {
+  const publicDrawUrl = '/raffle/public';
   const resultsRef = React.createRef();
 
   useScrollToResults(quickResult, resultsRef);
@@ -40,8 +40,8 @@ const GroupsGeneratorQuickPage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
-      ogImage={groupsOgImage}
-      pageType="Groups Quick Draw"
+      ogImage={raffleOgImage}
+      pageType="Raffle Quick"
     >
       <DrawLayout
         sidePanel={
@@ -73,19 +73,15 @@ const GroupsGeneratorQuickPage = props => {
           }}
           checkErrors={() => handleCheckErrorsInConfiguration(t)}
         >
-          <GroupsGeneratorConfigurationSection
-            values={values}
-            onFieldChange={onFieldChange}
-            t={t}
-          />
+          <RaffleConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitButton label={t('generate_groups')} />
+          <SubmitButton label={t('generate_results')} />
         </ValidatedForm>
-        <div ref={resultsRef}>
+        <div ref={resultsRef} style={{ 'text-align': 'center' }}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
             <>
-              <GroupsGeneratorResult result={quickResult} />
+              <WinnersList winners={quickResult} />
               <ShareDrawModal
                 publicDrawUrl={publicDrawUrl}
                 trackingData={{
@@ -109,26 +105,26 @@ const GroupsGeneratorQuickPage = props => {
   );
 };
 
-GroupsGeneratorQuickPage.propTypes = {
-  apiError: PropTypes.bool,
+RafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
   }).isRequired,
+  quickResult: PropTypes.instanceOf(RaffleResult),
+  apiError: PropTypes.bool,
   loadingResult: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
-  quickResult: PropTypes.instanceOf(GroupsResult),
   t: PropTypes.func.isRequired,
 };
 
-GroupsGeneratorQuickPage.defaultProps = {
+RafflePage.defaultProps = {
   quickResult: null,
   loadingResult: false,
   apiError: false,
 };
 
-export default withTranslation('GroupsGenerator')(GroupsGeneratorQuickPage);
+export default withTranslation('Raffle')(RafflePage);

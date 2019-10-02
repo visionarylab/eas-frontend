@@ -7,11 +7,7 @@ describe.skip('FacebookRaffle', () => {
   describe('Creation page', () => {
     it('Google Analytics pageview event is sent', () => {
       cy.mockGA();
-      cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
-      cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
       cy.visit('/facebook');
-      cy.wait('@startMixpanel');
-      cy.wait('@trackMixpanel');
 
       cy.get('@ga')
         .should('be.calledWith', 'create', 'UA-XXXXX-Y')

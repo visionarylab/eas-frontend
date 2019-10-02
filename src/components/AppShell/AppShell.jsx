@@ -6,7 +6,7 @@ import HomePage from '../Pages/HomePage/HomePage.jsx';
 // import AboutPage from '../Pages/AboutPage/AboutPage.jsx';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
-// import Typographies from '../Pages/Typographies/Typographies.jsx';
+import Typographies from '../Pages/Typographies/Typographies.jsx';
 import STYLES from './AppShell.scss';
 // import config from '../../config/config';
 
@@ -46,7 +46,7 @@ const AppShell = () => (
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
-      <Route exact path="/raffle" component={RafflePageContainer} />
+      <Route exact path="/raffle/:isPublic(public)?" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route exact path="/recent" component={RecentDraws} />
@@ -65,11 +65,11 @@ const AppShell = () => (
       {/* <Route exact path="/facebook_photo" component={FacebookPhotoRafflePageContainer} />
       <Route path="/facebook_photo/:drawId" component={PublishedFacebookPhotoRafflePageContainer} />
       <Route exact path="/letter" component={LetterDrawPageContainer} /> */}
-      {/* <Route exact path="/about" component={AboutPage} />
+      {/* <Route exact path="/about" component={AboutPage} /> */}
 
-      {config.environment === 'local' && (
-        <Route exact path="/typography" component={Typographies} />
-      )} */}
+      {/* {config.environment === 'local' && ( */}
+      <Route exact path="/typography" component={Typographies} />
+      {/* )} */}
       <Route component={NotFoundPage} />
     </Switch>
     <Footer />

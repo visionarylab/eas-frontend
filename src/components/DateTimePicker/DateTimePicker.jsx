@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-
-import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
+import { MuiPickersUtilsProvider, DateTimePicker as MuiDateTimePicker } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import { default as MuiDateTimePicker } from 'material-ui-pickers/DateTimePicker'; // eslint-disable-line import/no-named-default
 import moment from 'moment';
 import 'moment/locale/es';
 
@@ -19,7 +17,6 @@ const DateTimePicker = ({ t, i18n, ...props }) => {
   };
   const currentLocale = localeMap[locale];
   moment.locale(currentLocale);
-
   return (
     <MuiPickersUtilsProvider utils={MomentUtils} locale={currentLocale} moment={moment}>
       <Typography htmlFor={id} component="label" variant="h3">

@@ -6,7 +6,8 @@
   ],
   "plugins": [
     "cypress",
-    "prettier"
+    "prettier",
+    "react-hooks"
   ],
   "parser": "babel-eslint",
   "env": {
@@ -22,6 +23,8 @@
     "import/extensions": ["error", "always", {
       "js": "never"
     }],
-    "no-warning-comments": ["error", { "terms": ["TODO"], "location": "start" }]
+    "no-warning-comments": ["error", { "terms": ["TODO"], "location": "start" }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

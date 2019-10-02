@@ -11,7 +11,7 @@ class FacebookLoginButton extends Component {
     if (window.FB) {
       // The FB login button is parsed and rendered by XFBML
       // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-      // window.FB.XFBML.parse();
+      window.FB.XFBML.parse();
     }
   }
 

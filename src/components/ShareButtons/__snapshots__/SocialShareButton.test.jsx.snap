@@ -13,6 +13,11 @@ exports[`SocialShareButton Email should render correctly 1`] = `
     url="the_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__email",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}
@@ -20,6 +25,11 @@ exports[`SocialShareButton Email should render correctly 1`] = `
       url="the_url"
     >
       <CreatedButton
+        additionalProps={
+          Object {
+            "data-testid": "SocialButton__email",
+          }
+        }
         beforeOnClick={[Function]}
         className="SocialShareButton"
         onClick={[Function]}
@@ -27,6 +37,11 @@ exports[`SocialShareButton Email should render correctly 1`] = `
         url="the_url"
       >
         <ShareButton
+          additionalProps={
+            Object {
+              "data-testid": "SocialButton__email",
+            }
+          }
           beforeOnClick={[Function]}
           className="SocialShareButton"
           disabledStyle={
@@ -50,6 +65,7 @@ exports[`SocialShareButton Email should render correctly 1`] = `
         >
           <div
             className="SocialMediaShareButton SocialMediaShareButton--email SocialShareButton"
+            data-testid="SocialButton__email"
             onClick={[Function]}
             onKeyPress={[Function]}
             role="button"
@@ -114,6 +130,11 @@ exports[`SocialShareButton Facebook should render correctly 1`] = `
     url="the_cool_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__facebook",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}
@@ -121,6 +142,11 @@ exports[`SocialShareButton Facebook should render correctly 1`] = `
       url="the_cool_url"
     >
       <CreatedButton
+        additionalProps={
+          Object {
+            "data-testid": "SocialButton__facebook",
+          }
+        }
         beforeOnClick={[Function]}
         className="SocialShareButton"
         url="the_cool_url"
@@ -128,6 +154,11 @@ exports[`SocialShareButton Facebook should render correctly 1`] = `
         windowWidth={550}
       >
         <ShareButton
+          additionalProps={
+            Object {
+              "data-testid": "SocialButton__facebook",
+            }
+          }
           beforeOnClick={[Function]}
           className="SocialShareButton"
           disabledStyle={
@@ -152,6 +183,7 @@ exports[`SocialShareButton Facebook should render correctly 1`] = `
         >
           <div
             className="SocialMediaShareButton SocialMediaShareButton--facebook SocialShareButton"
+            data-testid="SocialButton__facebook"
             onClick={[Function]}
             onKeyPress={[Function]}
             role="button"
@@ -216,6 +248,11 @@ exports[`SocialShareButton Telegram should render correctly 1`] = `
     url="the_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__telegram",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}
@@ -223,6 +260,11 @@ exports[`SocialShareButton Telegram should render correctly 1`] = `
       url="the_url"
     >
       <CreatedButton
+        additionalProps={
+          Object {
+            "data-testid": "SocialButton__telegram",
+          }
+        }
         beforeOnClick={[Function]}
         className="SocialShareButton"
         url="the_url"
@@ -230,6 +272,11 @@ exports[`SocialShareButton Telegram should render correctly 1`] = `
         windowWidth={550}
       >
         <ShareButton
+          additionalProps={
+            Object {
+              "data-testid": "SocialButton__telegram",
+            }
+          }
           beforeOnClick={[Function]}
           className="SocialShareButton"
           disabledStyle={
@@ -254,6 +301,7 @@ exports[`SocialShareButton Telegram should render correctly 1`] = `
         >
           <div
             className="SocialMediaShareButton SocialMediaShareButton--telegram SocialShareButton"
+            data-testid="SocialButton__telegram"
             onClick={[Function]}
             onKeyPress={[Function]}
             role="button"
@@ -318,6 +366,11 @@ exports[`SocialShareButton Twitter should render correctly 1`] = `
     url="the_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__twitter",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}
@@ -325,6 +378,11 @@ exports[`SocialShareButton Twitter should render correctly 1`] = `
       url="the_url"
     >
       <CreatedButton
+        additionalProps={
+          Object {
+            "data-testid": "SocialButton__twitter",
+          }
+        }
         beforeOnClick={[Function]}
         className="SocialShareButton"
         url="the_url"
@@ -332,6 +390,11 @@ exports[`SocialShareButton Twitter should render correctly 1`] = `
         windowWidth={550}
       >
         <ShareButton
+          additionalProps={
+            Object {
+              "data-testid": "SocialButton__twitter",
+            }
+          }
           beforeOnClick={[Function]}
           className="SocialShareButton"
           disabledStyle={
@@ -357,6 +420,7 @@ exports[`SocialShareButton Twitter should render correctly 1`] = `
         >
           <div
             className="SocialMediaShareButton SocialMediaShareButton--twitter SocialShareButton"
+            data-testid="SocialButton__twitter"
             onClick={[Function]}
             onKeyPress={[Function]}
             role="button"
@@ -421,6 +485,11 @@ exports[`SocialShareButton Whatsapp should render correctly 1`] = `
     url="the_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__whatsapp",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}
@@ -428,6 +497,11 @@ exports[`SocialShareButton Whatsapp should render correctly 1`] = `
       url="the_url"
     >
       <CreatedButton
+        additionalProps={
+          Object {
+            "data-testid": "SocialButton__whatsapp",
+          }
+        }
         beforeOnClick={[Function]}
         className="SocialShareButton"
         separator=" "
@@ -436,6 +510,11 @@ exports[`SocialShareButton Whatsapp should render correctly 1`] = `
         windowWidth={550}
       >
         <ShareButton
+          additionalProps={
+            Object {
+              "data-testid": "SocialButton__whatsapp",
+            }
+          }
           beforeOnClick={[Function]}
           className="SocialShareButton"
           disabledStyle={
@@ -461,6 +540,7 @@ exports[`SocialShareButton Whatsapp should render correctly 1`] = `
         >
           <div
             className="SocialMediaShareButton SocialMediaShareButton--whatsapp SocialShareButton"
+            data-testid="SocialButton__whatsapp"
             onClick={[Function]}
             onKeyPress={[Function]}
             role="button"
@@ -525,6 +605,11 @@ exports[`SocialShareButton should not be rendered if socialType not valid 1`] = 
     url="the_url"
   >
     <SocialButton
+      additionalProps={
+        Object {
+          "data-testid": "SocialButton__not_valid_type",
+        }
+      }
       beforeOnClick={[Function]}
       className="SocialShareButton"
       size={32}

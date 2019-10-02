@@ -8,8 +8,8 @@
     "learn_more": "Más información"
   },
   "Countdown": {
-    "results_published_on": "El resultado será publicado el",
     "reload_page": "Por favor, recarga la página",
+    "results_published_on": "El resultado será publicado el",
     "time_remaining": "Tiempo restante"
   },
   "DateTimePicker": {
@@ -53,11 +53,11 @@
     "share_result": "Comparte este resultado",
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
+    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
     "step_title_general_details": "Detalles generales",
     "step_title_prizes": "Añade los premios",
     "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
-    "when_to_toss": "Cuándo quieres que se generen los resultados?",
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "winners": "Ganadores del sorteo"
   },
   "FlipCoinPage": {
@@ -80,6 +80,7 @@
     "create_certificated_draw": "Genera grupos publicamente",
     "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
     "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
+    "field_default_title": "Generación de grupos aleatorios",
     "field_help_separate_participants_commas": "Separa los participantes por comas",
     "field_label_list_of_participants": "Lista de participantes",
     "field_label_number_of_groups": "Número de grupos",
@@ -106,7 +107,7 @@
     "share_result_dialog_title": "Genera los grupos publicamente",
     "step_label_configure": "Configura los grupos",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?"
+    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte",
@@ -137,7 +138,7 @@
     "letter_draw_title": "Generar letras aleatorias",
     "number_of_letters": "Número de letras",
     "publish_draw": "Publicar tidada",
-    "when_to_toss": "Cuándo quieres mostrar los resultados?"
+    "when_to_toss": "¿Cuándo quieres mostrar los resultados?"
   },
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
@@ -158,7 +159,10 @@
     "winners": "Ganadores del sorteo"
   },
   "Raffle": {
+    "create_certificated_draw": "Crear un sorteo publicamente",
     "draw_subheading": "Crea un sorteo online con premios y comprate el resultado.",
+    "error_form_not_enough_participants": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participante. Añade más participantes",
+    "error_form_not_enough_participants_plural": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participantes. Añade más participantes",
     "field_default_title": "Sorteo público",
     "field_help_separate_participants_commas": "Separa los participantes por comas",
     "field_help_separate_prizes_commas": "Separa los premios por comas",
@@ -169,13 +173,14 @@
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
     "field_placeholder_participants": "Ana, David, ...",
     "field_placeholder_prizes": "Crucero a Bali, ...",
+    "generate_results": "Sortear premios",
     "html_description": "Organiza sorteos online. Deja que la suerte decida quién sera el ganador de un premio.",
     "html_keywords": "sorteo, lotería, bombo, elegir ganador, premios",
     "html_title": "Organizar sorteo",
     "label_number_of_participants": "Numero de participantes:",
     "label_prizes": "Premios:",
     "learn_more_content": "En este tipo de sorteo tú decides quienes serán los participantes.",
-    "learn_more_title": "Cuáles son las ventajas de este tipo de sorteo?",
+    "learn_more_title": "¿Cuáles son las ventajas de este tipo de sorteo?",
     "message_no_participants_added": "No ha añadido ningún participante",
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
@@ -183,9 +188,13 @@
     "published_draw_details": "Detalles del sorteo",
     "share_draw": "Compartir sorteo",
     "share_result": "Compartir resultados",
+    "share_result_dialog_body": "La mejor manera de asegurar a los participantes que el sorteo es justo es crearlo públicamente.\nPodrás programar el sorteo para que se realize a la hora que quieras y compartir un link con los participantes para que puedan ver los resultados en directo.",
+    "share_result_dialog_cancel": "Cancelar",
+    "share_result_dialog_ok": "Crear sorteo publico",
+    "share_result_dialog_title": "Crea el sorteo públicamente para compartirlo",
     "step_label_configure": "Configura el sorteo",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?"
+    "step_label_when_to_toss": "¿Cuándo se realizará el sorteo?"
   },
   "RandomNumber": {
     "create_certificated_draw": "Crea una tirada certificada",
@@ -207,10 +216,10 @@
     "published_draw_details": "Detalles del sorteo",
     "step_label_configuration": "Configura la tirada",
     "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_when_to_toss": "Cuándo quieres generar los números?",
+    "step_label_when_to_toss": "¿Cuándo quieres generar los números?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "Cuando quieres que se generen los resultados?"
+    "step_title_when_to_toss": "¿Cuando quieres que se generen los resultados?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancelar",
@@ -230,8 +239,8 @@
     "html_description": "¿Necesitas decidir quién será el elegido? Gira la flecha para tomar la decisión",
     "html_keywords": "girar flecha online, ruleta, juego, elegir aleatoriamente",
     "html_title": "Girar una flecha online",
-    "learn_more_title": "¿Para qué puedes usar esta flecha?",
     "learn_more_content": "Esta flecha funciona muy bien con el teléfono móvil, puedes ponerla en el centro de un grupo y tocar la flecha para hacerla girar. La persona seleccionada sera la ganadora. También puedes usarla com ouna búrjula aleatoria para decir que dirección tomar",
+    "learn_more_title": "¿Para qué puedes usar esta flecha?",
     "page_title": "Girar una flecha online",
     "touch_to_toss": "Toca la flecha para hacerla girar"
   },
