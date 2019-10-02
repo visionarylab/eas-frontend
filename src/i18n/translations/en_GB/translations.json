@@ -69,7 +69,7 @@
     "share_draw": "Share this raffle",
     "share_result": "Share this result",
     "share_result_dialog_body": "If you want to ensure that the groups were created fair and randomly you need to create them publicly.\nYou will be able to schedule when the results will be made public and share a link with the participants so they can see the results live.",
-    "share_result_dialog_cancel": "Cancelar",
+    "share_result_dialog_cancel": "Cancel",
     "share_result_dialog_ok": "Generate groups publicly",
     "share_result_dialog_title": "Generate the groups publicly to share the results",
     "step_label_configure": "Set up the groups",

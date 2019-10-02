@@ -53,11 +53,11 @@
     "share_result": "Comparte este resultado",
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?",
+    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
     "step_title_general_details": "Detalles generales",
     "step_title_prizes": "Añade los premios",
     "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
-    "when_to_toss": "Cuándo quieres que se generen los resultados?",
+    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "winners": "Ganadores del sorteo"
   },
   "FlipCoinPage": {
@@ -107,7 +107,7 @@
     "share_result_dialog_title": "Genera los grupos publicamente",
     "step_label_configure": "Configura los grupos",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?"
+    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte",
@@ -138,7 +138,7 @@
     "letter_draw_title": "Generar letras aleatorias",
     "number_of_letters": "Número de letras",
     "publish_draw": "Publicar tidada",
-    "when_to_toss": "Cuándo quieres mostrar los resultados?"
+    "when_to_toss": "¿Cuándo quieres mostrar los resultados?"
   },
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
@@ -180,7 +180,7 @@
     "label_number_of_participants": "Numero de participantes:",
     "label_prizes": "Premios:",
     "learn_more_content": "En este tipo de sorteo tú decides quienes serán los participantes.",
-    "learn_more_title": "Cuáles son las ventajas de este tipo de sorteo?",
+    "learn_more_title": "¿Cuáles son las ventajas de este tipo de sorteo?",
     "message_no_participants_added": "No ha añadido ningún participante",
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
@@ -188,9 +188,13 @@
     "published_draw_details": "Detalles del sorteo",
     "share_draw": "Compartir sorteo",
     "share_result": "Compartir resultados",
+    "share_result_dialog_body": "La mejor manera de asegurar a los participantes que el sorteo es justo es crearlo públicamente.\nPodrás programar el sorteo para que se realize a la hora que quieras y compartir un link con los participantes para que puedan ver los resultados en directo.",
+    "share_result_dialog_cancel": "Cancelar",
+    "share_result_dialog_ok": "Crear sorteo publico",
+    "share_result_dialog_title": "Crea el sorteo públicamente para compartirlo",
     "step_label_configure": "Configura el sorteo",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Cuándo se realizara el sorteo?"
+    "step_label_when_to_toss": "¿Cuándo se realizará el sorteo?"
   },
   "RandomNumber": {
     "create_certificated_draw": "Crea una tirada certificada",
@@ -212,10 +216,10 @@
     "published_draw_details": "Detalles del sorteo",
     "step_label_configuration": "Configura la tirada",
     "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_when_to_toss": "Cuándo quieres generar los números?",
+    "step_label_when_to_toss": "¿Cuándo quieres generar los números?",
     "step_title_draw_configuration": "Configura la tirada",
     "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "Cuando quieres que se generen los resultados?"
+    "step_title_when_to_toss": "¿Cuando quieres que se generen los resultados?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancelar",

@@ -95,7 +95,7 @@ const RafflePage = ({
                     label: 'From Quick Result',
                   },
                 }}
-                t={t} // TODO We are missing a bunch of translations here
+                t={t}
               />
             </>
           )}
