@@ -7,7 +7,113 @@ describe('Groups Generator Page', () => {
         cy.mockGA();
         cy.viewport(device);
       });
-      describe('Public Raffle', () => {});
+      describe('Public Draw', () => {
+        describe('Analytics', () => {
+          it('Events sent on pageview', () => {
+            cy.visit('/groups/public');
+
+            cy.get('@ga')
+              .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+              .and('be.calledWith', 'send', { hitType: 'pageview', page: '/groups/public' });
+          });
+
+          it('Events sent on publish', () => {
+            cy.visit('/groups/public');
+            cy.getComponent('Raffle__prizes-field-input').type('prize1,');
+            cy.getComponent('Raffle__participants-field-input').type('one, two,');
+            cy.getComponent('WizardForm__next-button').click();
+            cy.getComponent('WizardForm__next-button').click();
+            cy.getComponent('WizardForm__next-button').click();
+            cy.get('@ga').should('be.calledWith', 'send', {
+              hitType: 'event',
+              eventCategory: 'Groups',
+              eventAction: 'Publish',
+              eventLabel: 'af52a47d-98fd-4685-8510-26d342e16f9b',
+            });
+          });
+        });
+
+        it.only('Create', () => {
+          cy.mockGA();
+          cy.visit('/groups/public');
+
+          cy.get('@ga')
+            .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+            .and('be.calledWith', 'send', { hitType: 'pageview', page: '/groups/public' });
+
+          // Make required errors show up
+          cy.getComponent('WizardForm__next-button').click();
+
+          // It should error if prizes is empty
+          cy.getComponent('GroupsGenerator__participants-field').shouldHaveError();
+          cy.getComponent('GroupsGenerator__participants-field-input').type('you,');
+          cy.getComponent('GroupsGenerator__participants-field').shouldNotHaveError();
+
+          // It should error if there are less participants than groups to make
+          cy.getComponent('WizardForm__next-button').click();
+          cy.getComponent('ErrorFeedback').should('be.visible');
+          cy.getComponent('GroupsGenerator__participants-field-input').type('me,');
+          cy.getComponent('ErrorFeedback').should('not.exist');
+
+          // Go to second step
+          cy.getComponent('WizardForm__next-button').click();
+
+          // The title field should have a default value
+          cy.getComponent('PublicDetails__title-field-input').should('not.have.value', '');
+
+          // Fill title and description and submit the step
+          cy.getComponent('PublicDetails__title-field-input')
+            .clear()
+            .type('The title');
+          cy.getComponent('PublicDetails__description-field-input').type('A cool description');
+          cy.getComponent('WizardForm__next-button').click();
+
+          // Submit the draw
+          cy.getComponent('WizardForm__next-button').click();
+
+          cy.mockedRequestWait('POST', '/api/groups')
+            .its('requestBody')
+            .should('deep.eq', {
+              description: 'A cool description',
+              number_of_groups: 2,
+              participants: [{ name: 'you' }, { name: 'me' }],
+              title: 'The title',
+            });
+
+          cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss');
+          cy.get('@ga').should('be.calledWith', 'send', {
+            hitType: 'event',
+            eventCategory: 'Groups',
+            eventAction: 'Publish',
+            eventLabel: 'af52a47d-98fd-4685-8510-26d342e16f9b',
+          });
+
+          // Redirect to draw with the public id
+          cy.location('pathname').should('eq', '/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+        });
+
+        it('Should show feedback if there are server errors', () => {
+          cy.visit('/raffle/public');
+          cy.route({
+            method: 'POST',
+            url: '/api/raffle/',
+            status: 503,
+            response: {},
+          }).as('failedRequest');
+          cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
+          cy.getComponent('Raffle__participants-field-input').type('one, two,');
+          cy.getComponent('WizardForm__next-button').click();
+          cy.getComponent('WizardForm__next-button').click();
+          cy.getComponent('WizardForm__next-button').click();
+          cy.wait('@failedRequest');
+          cy.getComponent('ErrorFeedback').should('be.visible');
+
+          // It should recover form the error
+          cy.mockFixture('Raffle'); // Reset the mock with the 200 response
+          cy.getComponent('WizardForm__next-button').click();
+          cy.getComponent('ErrorFeedback').should('not.exist');
+        });
+      });
 
       // TODO Quick draw is good to go
       describe('Quick Draw', () => {
@@ -96,7 +202,7 @@ describe('Groups Generator Page', () => {
             });
           });
 
-          it('Fields have the right default values', () => {
+          it('Should have the right default values', () => {
             cy.visit('/groups');
 
             cy.getComponent('GroupsGenerator__participants-field-input').should('have.value', '');
@@ -159,6 +265,7 @@ describe('Groups Generator Page', () => {
         });
       });
 
+      // TODO published is good to go
       describe('Published page', () => {
         it('Analytics events sent on pageview', () => {
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
@@ -216,6 +323,19 @@ describe('Groups Generator Page', () => {
           cy.getComponent('GroupsGeneratorResult__group')
             .eq(1)
             .contains('participant1');
+        });
+
+        it('Should show share buttons', () => {
+          cy.mockWindowOpen();
+          cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+          cy.getComponent('SocialButton__whatsapp').click();
+          cy.get('@ga').and('be.calledWith', 'send', {
+            hitType: 'event',
+            eventCategory: 'Groups',
+            eventAction: 'Social Share Draw',
+            eventLabel: 'whatsapp',
+          });
+          cy.get('@winOpen').and('be.calledOnce');
         });
       });
     });

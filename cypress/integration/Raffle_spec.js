@@ -8,7 +8,7 @@ describe('Raffle Page', () => {
         cy.viewport(device);
       });
 
-      describe('Public Raffle', () => {
+      describe('Public Draw', () => {
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/raffle/public');
