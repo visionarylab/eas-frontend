@@ -49,7 +49,7 @@ RaffleConfigurationSection.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.string,
+    prizes: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

@@ -98,7 +98,7 @@ Page.propTypes = {
   pageType: PropTypes.string.isRequired,
   enableHotjar: PropTypes.bool,
   className: PropTypes.string,
-  mixpanel: PropTypes.shape({}),
+  mixpanel: PropTypes.shape({ track: PropTypes.func.isRequired }),
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,

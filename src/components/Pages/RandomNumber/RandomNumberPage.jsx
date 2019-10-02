@@ -89,6 +89,7 @@ RandomNumberPage.propTypes = {
     rangeMin: PropTypes.string.isRequired,
     numberOfResults: PropTypes.string.isRequired,
     allowRepeated: PropTypes.bool.isRequired,
+    dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
