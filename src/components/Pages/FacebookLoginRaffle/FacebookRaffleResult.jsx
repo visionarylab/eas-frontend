@@ -10,6 +10,7 @@ const c = classnames.bind(STYLES);
 const FacebookRaffleResult = ({ result }) => (
   <div className={c('FacebookRaffleResult')}>
     <div className={c('FacebookRaffleResult__container')}>
+      {result}
       {/* {result.value.map(winner => (
         <WinnerChip key={winner.prize.id} winner={winner} />
       ))} */}

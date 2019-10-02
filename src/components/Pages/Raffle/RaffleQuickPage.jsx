@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { RaffleResult } from 'echaloasuerte-js-sdk';
@@ -14,7 +14,7 @@ import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import WinnersList from './WinnersList.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
-import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
+// import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import raffleOgImage from './raffle_og_image.png';
 
 const analyticsDrawType = 'Raffle';

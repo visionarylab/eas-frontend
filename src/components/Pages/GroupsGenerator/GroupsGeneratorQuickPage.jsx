@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
@@ -84,7 +84,7 @@ const GroupsGeneratorQuickPage = props => {
         <div ref={resultsRef}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
-            <Fragment>
+            <>
               <GroupsGeneratorResult result={quickResult} />
               <ShareDrawModal
                 publicDrawUrl={publicDrawUrl}
@@ -101,7 +101,7 @@ const GroupsGeneratorQuickPage = props => {
                 }}
                 t={t}
               />
-            </Fragment>
+            </>
           )}
         </div>
       </DrawLayout>
