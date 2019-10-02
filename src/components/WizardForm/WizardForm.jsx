@@ -122,6 +122,7 @@ WizardForm.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
+      validate: PropTypes.func.isRequired,
     }),
   ).isRequired,
   apiError: PropTypes.bool,

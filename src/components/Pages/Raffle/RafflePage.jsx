@@ -90,7 +90,7 @@ RafflePage.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.string,
+    dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
