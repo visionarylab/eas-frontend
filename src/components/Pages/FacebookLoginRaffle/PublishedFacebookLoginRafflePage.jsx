@@ -9,6 +9,8 @@ import Link from '@material-ui/core/Link';
 import classnames from 'classnames/bind';
 import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import FacebookRaffleResult from './FacebookRaffleResult.jsx';
 import Page from '../../Page/Page.jsx';
@@ -51,14 +53,10 @@ const PublishedFacebookLoginRafflePage = props => {
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
       noIndex
-      pageType="groups_published_draw"
-      // className={c('PublishedGroupsGeneratorPage')}
+      pageType="facebook_raffle_published_draw"
     >
       <DrawLayout>
-        <Typography align="center" variant="h1" data-testid="PublishedGroupsGeneratorPage__Title">
-          {title || t('page_title')}
-        </Typography>
-        {description && <Typography variant="body2">{description}</Typography>}
+        <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
           <Fragment>
             <ResultsBox title={t('winners')}>
