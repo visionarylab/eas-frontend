@@ -50,26 +50,26 @@ const onRegisterInRaffle = async () => {
   // this.setState({ userRegisteredInRaffle: true });
 };
 
-const checkIfUserRegistered = async () => {
-  const { userID } = this.props.facebookContext.getUserDetails();
-  const { participants } = this.state;
-  console.log('participants', participants);
-  console.log('userID', userID);
-  const participant = participants.find(p => p.facebook_id === userID);
-  if (participant) {
-    console.log('YES');
-    this.setState({ userRegisteredInRaffle: true });
-  } else {
-    console.log('NO');
-  }
-};
+// const checkIfUserRegistered = async () => {
+//   const { userID } = this.props.facebookContext.getUserDetails();
+//   const { participants } = this.state;
+//   console.log('participants', participants);
+//   console.log('userID', userID);
+//   const participant = participants.find(p => p.facebook_id === userID);
+//   if (participant) {
+//     console.log('YES');
+//     this.setState({ userRegisteredInRaffle: true });
+//   } else {
+//     console.log('NO');
+//   }
+// };
 
 const PublishedFacebookLoginRafflePageContainer = props => {
   const { draw, match, t, hostname } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
 
-  const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
+  const [userRegisteredInRaffle /* , setUserRegisteredInRaffle */] = useState(false);
 
   useLoadDataAfterCountdown(result, () => loadData(props));
 
@@ -77,9 +77,9 @@ const PublishedFacebookLoginRafflePageContainer = props => {
     return <LoadingSpinner fullpage />;
   }
 
-  const ShareButtonsList = () => (
-    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
-  );
+  // const ShareButtonsList = () => (
+  //   <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
+  // );
 
   // componentDidUpdate(prevProps) {
   //   const { userID } = this.props.facebookContext;
@@ -210,6 +210,7 @@ const PublishedFacebookLoginRafflePageContainer = props => {
                         {t('participate_as', { username: userName })}
                       </Button>
                       <Typography variant="caption" gutterBottom>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <Link component="button" variant="caption" onClick={logout}>
                           O accede como otra persona
                         </Link>
@@ -222,6 +223,14 @@ const PublishedFacebookLoginRafflePageContainer = props => {
                       </Typography>
                       <br />
                       <FacebookLoginButton />
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        data-testid="FacebookRaffle__participat-button"
+                        onClick={onRegisterInRaffle}
+                      >
+                        login
+                      </Button>
                     </div>
                   )}
                 </>
@@ -249,6 +258,11 @@ PublishedFacebookLoginRafflePageContainer.propTypes = {
     result: PropTypes.instanceOf(RaffleResult),
     isOwner: PropTypes.bool,
     isLoading: PropTypes.bool,
+  }).isRequired,
+  facebookContext: PropTypes.shape({
+    isLoggedInFB: PropTypes.bool.isRequired,
+    getUserDetails: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   }).isRequired,
   hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,

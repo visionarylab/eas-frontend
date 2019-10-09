@@ -27,7 +27,6 @@ class FacebookProvider extends Component {
     const updateLoginStatus = response => this.setState({ isLoggedInFB: !!response.authResponse });
     fbAsyncInit(updateLoginStatus);
 
-    // TODO check if this is all right
     const locale = i18n.language.replace('-', '_');
     injectScript(locale);
   }
