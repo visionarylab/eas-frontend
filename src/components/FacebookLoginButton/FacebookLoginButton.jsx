@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import Typography from '@material-ui/core/Typography';
 
 import STYLES from './FacebookLoginButton.scss';
 
@@ -25,23 +26,26 @@ class FacebookLoginButton extends Component {
   // };
 
   render() {
-    const { /* onLogin, */ permissions } = this.props;
+    const { sideLabel, /* onLogin, */ permissions } = this.props;
     return (
       // <button onClick={this.handleLogin} data-testid="FacebookLoginButton">
       //   login
       // </button>
-      <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
-        <div
-          className="fb-login-button"
-          data-max-rows="1"
-          data-size="large"
-          data-button-type="continue_with"
-          data-show-faces="false"
-          data-auto-logout-link="true"
-          data-use-continue-as="false"
-          data-scope={permissions}
-        />
-      </div>
+      <>
+        <Typography variant="body2">{sideLabel}</Typography>
+        <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
+          <div
+            className="fb-login-button"
+            data-max-rows="1"
+            data-size="large"
+            data-button-type="continue_with"
+            data-show-faces="false"
+            data-auto-logout-link="true"
+            data-use-continue-as="false"
+            data-scope={permissions}
+          />
+        </div>
+      </>
     );
   }
 }
@@ -49,11 +53,13 @@ class FacebookLoginButton extends Component {
 FacebookLoginButton.propTypes = {
   // onUserLoggedIn: PropTypes.func,
   permissions: PropTypes.string,
+  sideLabel: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
   // onUserLoggedIn: () => {},
   permissions: '',
+  sideLabel: '',
 };
 
 export default FacebookLoginButton;

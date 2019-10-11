@@ -17,7 +17,7 @@ import PublishedGroupsGeneratorPage from '../Pages/GroupsGenerator/PublishedGrou
 // import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer.jsx';
 import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer.jsx';
-import PublishedFacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePageContainer.jsx';
+import PublishedFacebookLoginRafflePage from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePage.jsx';
 // import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer.jsx';
 // import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer.jsx';
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer.jsx';
@@ -45,7 +45,7 @@ const AppShell = () => (
       <Route exact path="/coin" component={FlipCoinPageContainer} />
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
-      <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePageContainer} />
+      <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePage} />
       <Route exact path="/raffle/:isPublic(public)?" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />

@@ -1,50 +1,70 @@
-/* eslint-disable jsx-a11y/anchor-is-valid, no-alert */
+/* eslint-disable react/destructuring-assignment */
+import React, { useState, useEffect } from 'react';
+import { frontloadConnect } from 'react-frontload';
+import { connect } from 'react-redux';
 
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
+
+import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import { withTranslation } from 'react-i18next';
-import Link from '@material-ui/core/Link';
-import classnames from 'classnames/bind';
-import { Participant, Prize, RaffleResult } from 'echaloasuerte-js-sdk';
+
+// import moment from 'moment';
+import { RaffleApi, RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
+import Page from '../../Page/Page.jsx';
+import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-
-import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import FacebookRaffleResult from './FacebookRaffleResult.jsx';
-import Page from '../../Page/Page.jsx';
-import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
-import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
+import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './PublishedFacebookRafflePage.scss';
+import ParticipateWithFbPanel from './ParticipateWithFbPanel.jsx';
 
-const c = classnames.bind(STYLES);
+import { fetchRaffleDraw } from '../../../actions/drawActions';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
-const analyticsDrawType = 'Facebook';
+const c = classNames.bind(STYLES);
+const raffleApi = new RaffleApi();
+const analyticsDrawType = 'Raffle';
+
+const loadData = async props => {
+  const { drawId } = props.match.params;
+  await props.fetchRaffleDraw(drawId);
+};
 
 const PublishedFacebookLoginRafflePage = props => {
-  const {
-    title,
-    result,
-    prizes,
-    // isOwner,
-    isLoggedInFB,
-    userName,
-    participants,
-    shareUrl,
-    onRegisterInRaffle,
-    onFacebookLogout,
-    userRegisteredInRaffle,
-    description,
-    isLoading,
-    t,
-  } = props;
+  const { draw, match, t, hostname } = props;
+  const { drawId, url } = match.params;
+  const { title, description, participants, prizes, result, isLoading } = draw;
+  const shareUrl = hostname + url;
+  const { isLoggedInFB, loadingFbStatus, logout, userName, userId } = props.facebookContext;
+  const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
+
+  useEffect(() => {
+    const participant = participants.find(p => p.facebook_id === userId);
+    if (participant) {
+      setUserRegisteredInRaffle(true);
+    } else {
+      setUserRegisteredInRaffle(false);
+    }
+  }, [participants, userId]);
+
+  useLoadDataAfterCountdown(result, () => loadData(props));
+
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+
+  const onRegisterInRaffle = async () => {
+    const participant = Participant.constructFromObject({ name: userName, facebook_id: userId });
+    /* const response = */ await raffleApi.raffleParticipantsAdd(drawId, participant);
+    loadData(props);
+  };
   return (
     <Page
       className={c('PublishedFacebookRafflePage')}
@@ -58,7 +78,7 @@ const PublishedFacebookLoginRafflePage = props => {
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
-          <Fragment>
+          <>
             <ResultsBox title={t('winners')}>
               <FacebookRaffleResult result={result} />
               <br />
@@ -81,49 +101,25 @@ const PublishedFacebookLoginRafflePage = props => {
                 </Typography>
               </div>
             </section>
-          </Fragment>
+          </>
         ) : (
-          <Fragment>
+          <>
             <PrizesOverview prizes={prizes} />
+            <Typography variant="body2">
+              {participants.length > 0 &&
+                t('people_registered_already', { count: participants.length })}
+              <br />
+            </Typography>
             <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
-              {userRegisteredInRaffle ? (
-                <Typography variant="body1" data-testid="FacebookRaffle__participat-registered">
-                  You are registered in the raffle as {userName}
-                </Typography>
-              ) : (
-                <Fragment>
-                  <Typography variant="body2">
-                    {participants.length > 0 &&
-                      t('people_registered_already', { count: participants.length })}
-                    <br />
-                  </Typography>
-                  {isLoggedInFB ? (
-                    <Fragment>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        data-testid="FacebookRaffle__participat-button"
-                        onClick={onRegisterInRaffle}
-                      >
-                        {t('participate_as', { username: userName })}
-                      </Button>
-                      <Typography variant="caption" gutterBottom>
-                        <Link component="button" variant="caption" onClick={onFacebookLogout}>
-                          O accede como otra persona
-                        </Link>
-                      </Typography>
-                    </Fragment>
-                  ) : (
-                    <div>
-                      <Typography variant="body2">
-                        {t('login_with_facebook_to_participate')}
-                      </Typography>
-                      <br />
-                      <FacebookLoginButton />
-                    </div>
-                  )}
-                </Fragment>
-              )}
+              <ParticipateWithFbPanel
+                userRegisteredInRaffle={userRegisteredInRaffle}
+                loadingFbStatus={loadingFbStatus}
+                isLoggedInFB={isLoggedInFB}
+                userName={userName}
+                onRegisterInRaffle={onRegisterInRaffle}
+                logout={logout}
+                t={t}
+              />
             </div>
             <Countdown date={result.schedule_date} />
             <ShareButtons
@@ -131,7 +127,7 @@ const PublishedFacebookLoginRafflePage = props => {
               sectionTitle={t('share_draw')}
               url={shareUrl}
             />
-          </Fragment>
+          </>
         )}
       </DrawLayout>
     </Page>
@@ -139,28 +135,43 @@ const PublishedFacebookLoginRafflePage = props => {
 };
 
 PublishedFacebookLoginRafflePage.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
-  prizes: PropTypes.arrayOf(PropTypes.instanceOf(Prize)).isRequired,
-  result: PropTypes.instanceOf(RaffleResult),
-  isLoggedInFB: PropTypes.bool.isRequired,
-  userName: PropTypes.string,
-  userRegisteredInRaffle: PropTypes.bool.isRequired,
-  onRegisterInRaffle: PropTypes.func.isRequired,
-  onFacebookLogout: PropTypes.func.isRequired,
-  shareUrl: PropTypes.string.isRequired,
-  // onUserLoggedIn: PropTypes.func,
-  isLoading: PropTypes.func,
+  draw: PropTypes.shape({
+    title: PropTypes.string,
+    participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.instanceOf(Prize)),
+    description: PropTypes.string,
+    result: PropTypes.instanceOf(RaffleResult),
+    isOwner: PropTypes.bool,
+    isLoading: PropTypes.bool,
+  }).isRequired,
+  facebookContext: PropTypes.shape({
+    isLoggedInFB: PropTypes.bool.isRequired,
+    loadingFbStatus: PropTypes.bool.isRequired,
+    queryUserDetails: PropTypes.func.isRequired,
+    userName: PropTypes.string,
+    userId: PropTypes.string,
+    logout: PropTypes.func.isRequired,
+  }).isRequired,
+  hostname: PropTypes.string.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-PublishedFacebookLoginRafflePage.defaultProps = {
-  isLoading: false,
-  description: '',
-  result: null,
-  userName: null,
-  // onUserLoggedIn: () => {},
-};
+const TranslatedPage = withFacebookSDK(
+  withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage),
+);
 
-export default withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage);
+const mapsStateToProps = state => ({
+  draw: state.draws.draw,
+  hostname: state.userRequest.hostname,
+});
+
+export default connect(
+  mapsStateToProps,
+  { fetchRaffleDraw },
+)(
+  frontloadConnect(loadData, {
+    onMount: true,
+    onUpdate: false,
+  })(TranslatedPage),
+);

@@ -6,7 +6,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import FacebookPhotoRafflePage from './FacebookPhotoRafflePage.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
-import { getObjectIdFromUrl, logout, whoAmI } from '../../../services/FacebookAPI/FacebookAPI';
+import { getObjectIdFromUrl, logout } from '../../../services/FacebookAPI/FacebookAPI';
 
 class FacebookPhotoRafflePageContainer extends Component {
   constructor(props) {
@@ -67,7 +67,6 @@ class FacebookPhotoRafflePageContainer extends Component {
 
   handleFaceebookLogout = () => {
     logout();
-    whoAmI();
   };
 
   handlePublish = async () => {
@@ -98,7 +97,6 @@ class FacebookPhotoRafflePageContainer extends Component {
 FacebookPhotoRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
-    getUserDetails: PropTypes.func.isRequired,
     queryUserPages: PropTypes.func.isRequired,
     queryLikesOnObject: PropTypes.func.isRequired,
     userPages: PropTypes.arrayOf(

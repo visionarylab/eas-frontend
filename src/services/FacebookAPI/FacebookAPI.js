@@ -1,5 +1,5 @@
 // eslint-disable-line no-console
-const DEBUG = true;
+const DEBUG = false;
 const log = message => DEBUG && console.log(message);
 
 /**
@@ -8,10 +8,6 @@ const log = message => DEBUG && console.log(message);
  * @return {undefined}
  */
 export const fbAsyncInit = async onStatusChange => {
-  // const rezult = test_async(21, console.log);
-  // const rezult2 = await test_wrapper(21);
-  // console.log('rezult', rezult);
-  // console.log('rezult2', rezult2);
   window.cypressEas = { statusChange: onStatusChange }; // This is only used for integration tests
   window.fbAsyncInit = () => {
     log('init FB');
@@ -50,8 +46,6 @@ export const injectScript = locale => {
   })(document, 'script', 'facebook-jssdk');
 };
 
-export const onStatusChange = callback => window.FB.Event.subscribe('auth.statusChange', callback);
-
 const promisifiedApi = (apiEndpoint, options) =>
   new Promise(resolve => {
     window.FB.api(apiEndpoint, options, response => resolve(response));
@@ -74,19 +68,21 @@ export const apiCall = async (endpoint, accessToken = null) =>
     return reject(response);
   });
 
-// /**
-//  * Get the current user's name and id
-//  * @return {string} - Facebook pages names their AccessTokens
-//  * @throws {Exception}
-//  */
-// export const getUserDetails = async () => {
-//   const response = await apiCall('/me');
-//   console.log('response', response);
-//   if (response && !response.error) {
-//     return { userID: response.id, userName: response.name };
-//   }
-//   return 'error';
-// };
+/**
+ * Get the current user's name and id
+ * @return {object} - Contains the userName and userId
+ * @throws {Exception}
+ */
+export const queryUserDetails = async () => {
+  const response = await apiCall('/me');
+  if (!response || response.error) {
+    throw Error('Unable to get user details', response.error);
+  }
+  return {
+    userName: response.name,
+    userId: response.id,
+  };
+};
 
 /**
  * Get the people who liked a given facebook object
@@ -136,31 +132,9 @@ export const getObjectIdFromUrl = urlString => {
   return `${pageId}_${parcialObjectId}`;
 };
 
-export const whoAmI = async () => {
-  // const response = await apiCall('/me');
-  // console.log('response', response);
-
-  const asd = new Promise((accept, reject) => {
-    const callback = response => {
-      console.log(`Good to see you, ${response.name}.`);
-      console.log('response', response);
-      if (response && !response.error) {
-        accept('cool');
-      } else {
-        reject(Error('not cool'));
-      }
-    };
-    window.FB.api('/me', callback);
-  });
-
-  const response = await asd;
-  console.log(response);
-};
-
 export const logout = () => {
   console.log('logging out');
   window.FB.logout(() => {
-    window.FB.Auth.setAuthResponse(null, 'unknown');
     console.log('FB: logged out');
   });
 };

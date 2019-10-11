@@ -6,6 +6,7 @@ import {
   fbAsyncInit,
   injectScript,
   getLikesOnObject,
+  queryUserDetails,
   logout,
 } from '../../services/FacebookAPI/FacebookAPI';
 
@@ -16,28 +17,45 @@ class FacebookProvider extends Component {
     super(props);
 
     this.state = {
+      loadingFbStatus: true,
+      loadingFbDetails: true,
       isLoggedInFB: false,
-      userID: null,
+      userId: null,
       userName: null,
       userPages: null,
     };
   }
 
   componentDidMount() {
-    const updateLoginStatus = response => this.setState({ isLoggedInFB: !!response.authResponse });
+    const updateLoginStatus = async response => {
+      const isLoggedInFB = !!response.authResponse;
+      if (!isLoggedInFB) {
+        this.setState({
+          isLoggedInFB: false,
+          loadingFbStatus: false,
+        });
+      } else {
+        try {
+          const userDetails = await queryUserDetails();
+          this.setState({
+            isLoggedInFB: true,
+            loadingFbStatus: false,
+            userId: userDetails.userId,
+            userName: userDetails.userName,
+          });
+        } catch (e) {
+          this.setState({
+            isLoggedInFB: false,
+            loadingFbStatus: false,
+          });
+        }
+      }
+    };
     fbAsyncInit(updateLoginStatus);
 
     const locale = i18n.language.replace('-', '_');
     injectScript(locale);
   }
-
-  getUserDetails = () => {
-    const { userID, userName } = this.state;
-    if (!userID) {
-      this.queryUserDetails();
-    }
-    return { userID, userName };
-  };
 
   queryUserPages = async () => {
     const response = await apiCall('/me/accounts');
@@ -67,17 +85,10 @@ class FacebookProvider extends Component {
     // });
   };
 
-  queryUserDetails = async () => {
-    const response = await apiCall('/me');
-    if (response && !response.error) {
-      this.setState({ userID: response.id, userName: response.name });
-    }
-  };
-
   render() {
     const context = {
       ...this.state,
-      getUserDetails: this.getUserDetails,
+      queryUserDetails: this.queryUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
       logout,
