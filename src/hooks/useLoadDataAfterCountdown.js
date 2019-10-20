@@ -7,7 +7,8 @@ export default function useLoadDataAfterCountdown(result, loadData) {
       // Fetch the results once the countdown is over
       const missingSeconds = new Date(result.schedule_date).getTime() - new Date().getTime();
       const timer = setTimeout(() => loadData(), missingSeconds);
+      console.log('useLoadDataAfterCountdown');
       return () => clearTimeout(timer);
     }
-  }, [result]);
+  }, [loadData, result]);
 }

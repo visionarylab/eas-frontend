@@ -52,7 +52,6 @@ class FacebookProvider extends Component {
       }
     };
     fbAsyncInit(updateLoginStatus);
-
     const locale = i18n.language.replace('-', '_');
     injectScript(locale);
   }
@@ -88,7 +87,7 @@ class FacebookProvider extends Component {
   render() {
     const context = {
       ...this.state,
-      queryUserDetails: this.queryUserDetails,
+      queryUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
       logout,

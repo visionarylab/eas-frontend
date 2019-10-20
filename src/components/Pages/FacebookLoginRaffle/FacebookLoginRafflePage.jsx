@@ -1,6 +1,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
@@ -15,7 +16,7 @@ import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 
 const PrizesSection = ({ prizes, onFieldChange, t }) => (
-  <SectionPanel title={t('step_title_prizes')}>
+  <SectionPanel>
     <ValidatedMultiValueInput
       name="prizes"
       label={t('field_label_prizes')}
@@ -25,8 +26,8 @@ const PrizesSection = ({ prizes, onFieldChange, t }) => (
       value={prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
-      data-testid="Raffle__prizes-field"
-      inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
+      data-testid="FacebookRaffle__prizes-field"
+      inputProps={{ 'data-testid': 'FacebookRaffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}
     />
   </SectionPanel>
@@ -42,7 +43,7 @@ const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const FacebookLoginRafflePage = props => {
-  const { values, apiError, onFieldChange, handlePublish, t } = props;
+  const { values, isMobile, apiError, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
       label: t('step_label_prizes'),
@@ -73,6 +74,7 @@ const FacebookLoginRafflePage = props => {
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
+          label={t('field_label_when_to_toss')}
           sectionTitle={t('step_title_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
@@ -88,6 +90,7 @@ const FacebookLoginRafflePage = props => {
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
       pageType="groups_public_draw"
+      showAdvert={!isMobile}
     >
       <DrawLayout isPublic>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
@@ -96,6 +99,7 @@ const FacebookLoginRafflePage = props => {
           onSubmit={handlePublish}
           submitButtonLabel={t('publish_draw')}
           apiError={apiError}
+          isMobile={isMobile}
         />
       </DrawLayout>
     </Page>
@@ -111,6 +115,7 @@ FacebookLoginRafflePage.propTypes = {
     numberOfWinners: PropTypes.string,
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
+  isMobile: PropTypes.bool.isRequired,
   apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
@@ -121,4 +126,6 @@ FacebookLoginRafflePage.defaultProps = {
   apiError: false,
 };
 
-export default withTranslation('FacebookRaffle')(FacebookLoginRafflePage);
+const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });
+
+export default withTranslation('FacebookRaffle')(connect(mapStateToProps)(FacebookLoginRafflePage));
