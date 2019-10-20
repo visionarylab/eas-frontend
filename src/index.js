@@ -23,7 +23,6 @@ const userRequestData = {
   hostname: window.location.hostname,
 };
 const { store, history } = createStore('/', userRequestData);
-console.log('store', store);
 
 // Sentry Browser Sentry
 Sentry.init({

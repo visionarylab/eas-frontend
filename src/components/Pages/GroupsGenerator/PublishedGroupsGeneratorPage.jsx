@@ -60,6 +60,7 @@ const PublishedGroupsGeneratorPage = props => {
             <ResultsBox title={t('generated_groups')}>
               <GroupsGeneratorResult result={result} />
             </ResultsBox>
+            {/* TODO is this necessary to be duplicated? */}
             <ShareButtonsList />
           </>
         ) : (

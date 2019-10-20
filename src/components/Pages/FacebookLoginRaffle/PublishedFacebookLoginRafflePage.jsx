@@ -16,7 +16,6 @@ import Page from '../../Page/Page.jsx';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import FacebookRaffleResult from './FacebookRaffleResult.jsx';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
@@ -24,6 +23,7 @@ import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './PublishedFacebookRafflePage.scss';
 import ParticipateWithFbPanel from './ParticipateWithFbPanel.jsx';
+import WinnersList from '../../WinnersList/WinnersList.jsx';
 
 import { fetchRaffleDraw } from '../../../actions/drawActions';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
@@ -83,7 +83,7 @@ const PublishedFacebookLoginRafflePage = props => {
         {result.value ? (
           <>
             <ResultsBox title={t('winners')}>
-              <FacebookRaffleResult result={result} />
+              <WinnersList winners={result.value} />
               <br />
               <ShareButtons
                 drawType={analyticsDrawType}

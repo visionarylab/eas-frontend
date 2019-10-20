@@ -16,21 +16,9 @@ class FacebookLoginButton extends Component {
     }
   }
 
-  // handleLogin = () => {
-  //   const { onUserLoggedIn } = this.props;
-  //   window.FB.login(response => {
-  //     // Handle the response object, like in statusChangeCallback() in our demo
-  //     // code.
-  //     onUserLoggedIn();
-  //   });
-  // };
-
   render() {
     const { sideLabel, /* onLogin, */ permissions } = this.props;
     return (
-      // <button onClick={this.handleLogin} data-testid="FacebookLoginButton">
-      //   login
-      // </button>
       <>
         <Typography variant="body2">{sideLabel}</Typography>
         <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
@@ -51,13 +39,11 @@ class FacebookLoginButton extends Component {
 }
 
 FacebookLoginButton.propTypes = {
-  // onUserLoggedIn: PropTypes.func,
   permissions: PropTypes.string,
   sideLabel: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
-  // onUserLoggedIn: () => {},
   permissions: '',
   sideLabel: '',
 };

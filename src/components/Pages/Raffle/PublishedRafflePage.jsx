@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import Page from '../../Page/Page.jsx';
-import WinnersList from './WinnersList.jsx';
+import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -58,7 +58,7 @@ const PublishedRafflePage = props => {
         {result.value ? (
           <>
             <ResultsBox title={t('winners')}>
-              <WinnersList winners={result} />
+              <WinnersList winners={result.value} />
             </ResultsBox>
             <ShareButtonsList />
           </>

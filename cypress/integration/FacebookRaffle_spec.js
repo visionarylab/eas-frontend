@@ -252,7 +252,7 @@ describe('FacebookRaffle', () => {
         });
 
         describe('After results published', () => {
-          it('Should show results and the raffle details', () => {
+          it.only('Should show results and the raffle details', () => {
             cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
             cy.mockedRequestWait('GET', '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
             cy.getComponent('DrawHeading__title').contains('This is the title');
