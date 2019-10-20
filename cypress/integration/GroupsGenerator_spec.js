@@ -294,6 +294,9 @@ describe('Groups Generator Page', () => {
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
           cy.wait('@LoadDataResultsPending');
           cy.getComponent('Countdown').should('be.visible');
+
+          // TODO is this thing necessary, can we just do  the following?
+          // cy.mockedRequestWait('POST', '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
           cy.fixture('GroupsGenerator').then(fixtures => {
             const fixtureGetDraw = fixtures.find(
               fixture => fixture.path === '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b',

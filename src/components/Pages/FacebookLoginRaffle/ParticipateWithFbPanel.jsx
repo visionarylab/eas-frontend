@@ -25,7 +25,7 @@ const ParticipateWithFbPanel = ({
 
   if (userRegisteredInRaffle) {
     return (
-      <Typography variant="body1" data-testid="FacebookRaffle__participat-registered">
+      <Typography variant="body1" data-testid="FacebookRaffle__participant-registered">
         You are registered in the raffle as {userName}
       </Typography>
     );
@@ -36,7 +36,7 @@ const ParticipateWithFbPanel = ({
       <Button
         variant="contained"
         color="primary"
-        data-testid="FacebookRaffle__participat-button"
+        data-testid="FacebookRaffle__participant-button"
         onClick={onRegisterInRaffle}
       >
         {t('participate_as', { username: userName })}

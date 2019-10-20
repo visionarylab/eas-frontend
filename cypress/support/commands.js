@@ -75,6 +75,7 @@ Cypress.Commands.add('mockFB', () => {
     // eslint-disable-next-line no-param-reassign
     win.FB = {
       login: cy.stub().as('FbLogin'),
+      XFBML: { parse: cy.stub().as('FbParse') },
     };
   });
 });

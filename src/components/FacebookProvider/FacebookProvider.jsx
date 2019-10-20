@@ -28,7 +28,9 @@ class FacebookProvider extends Component {
 
   componentDidMount() {
     const updateLoginStatus = async response => {
-      const isLoggedInFB = !!response.authResponse;
+      // status: connected == logged in
+      // status: unknown == logged out
+      const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
       if (!isLoggedInFB) {
         this.setState({
           isLoggedInFB: false,

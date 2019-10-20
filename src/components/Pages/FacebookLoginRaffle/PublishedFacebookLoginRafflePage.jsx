@@ -30,7 +30,7 @@ import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
 const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
-const analyticsDrawType = 'Raffle';
+const analyticsDrawType = 'FacebookRaffle';
 
 const loadData = async props => {
   const { drawId } = props.match.params;
@@ -46,11 +46,13 @@ const PublishedFacebookLoginRafflePage = props => {
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
 
   useEffect(() => {
-    const participant = participants.find(p => p.facebook_id === userId);
-    if (participant) {
-      setUserRegisteredInRaffle(true);
-    } else {
-      setUserRegisteredInRaffle(false);
+    if (userId) {
+      const participant = participants.find(p => p.facebook_id === userId);
+      if (participant) {
+        setUserRegisteredInRaffle(true);
+      } else {
+        setUserRegisteredInRaffle(false);
+      }
     }
   }, [participants, userId]);
 
@@ -63,6 +65,7 @@ const PublishedFacebookLoginRafflePage = props => {
   const onRegisterInRaffle = async () => {
     const participant = Participant.constructFromObject({ name: userName, facebook_id: userId });
     /* const response = */ await raffleApi.raffleParticipantsAdd(drawId, participant);
+    // TODO handle possible error responses from the API here
     loadData(props);
   };
   return (
@@ -96,7 +99,7 @@ const PublishedFacebookLoginRafflePage = props => {
                 </Typography>
               </div>
               <div>
-                <Typography variant="body2">
+                <Typography variant="body2" data-testid="FacebookRaffle__number-of-participants">
                   {t('field_label_number_of_participants')}: {participants.length}
                 </Typography>
               </div>

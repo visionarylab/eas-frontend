@@ -75,6 +75,7 @@ export const apiCall = async (endpoint, accessToken = null) =>
  */
 export const queryUserDetails = async () => {
   const response = await apiCall('/me');
+  console.log('response', response);
   if (!response || response.error) {
     throw Error('Unable to get user details', response.error);
   }
