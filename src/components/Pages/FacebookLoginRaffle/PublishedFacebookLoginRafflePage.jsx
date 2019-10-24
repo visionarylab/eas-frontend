@@ -42,8 +42,10 @@ const PublishedFacebookLoginRafflePage = props => {
   const { drawId, url } = match.params;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + url;
-  const { isLoggedInFB, loadingFbStatus, logout, userName, userId } = props.facebookContext;
+  const { userName, userId } = props.facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
+
+  const loadData2 = () => loadData(props);
 
   useEffect(() => {
     if (userId) {
@@ -56,7 +58,7 @@ const PublishedFacebookLoginRafflePage = props => {
     }
   }, [participants, userId]);
 
-  useLoadDataAfterCountdown(result, () => loadData(props));
+  useLoadDataAfterCountdown(result, loadData2);
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
@@ -116,11 +118,7 @@ const PublishedFacebookLoginRafflePage = props => {
             <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
               <ParticipateWithFbPanel
                 userRegisteredInRaffle={userRegisteredInRaffle}
-                loadingFbStatus={loadingFbStatus}
-                isLoggedInFB={isLoggedInFB}
-                userName={userName}
                 onRegisterInRaffle={onRegisterInRaffle}
-                logout={logout}
                 t={t}
               />
             </div>
@@ -148,12 +146,8 @@ PublishedFacebookLoginRafflePage.propTypes = {
     isLoading: PropTypes.bool,
   }).isRequired,
   facebookContext: PropTypes.shape({
-    isLoggedInFB: PropTypes.bool.isRequired,
-    loadingFbStatus: PropTypes.bool.isRequired,
-    queryUserDetails: PropTypes.func.isRequired,
     userName: PropTypes.string,
     userId: PropTypes.string,
-    logout: PropTypes.func.isRequired,
   }).isRequired,
   hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,

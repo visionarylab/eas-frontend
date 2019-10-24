@@ -119,6 +119,12 @@
     "title_label": "Title",
     "title_placeholder": "Christmas raffle"
   },
+  "PublishedFacebookLoginRafflePage": {
+    "login_with_facebook_to_participate": "Login with Facebook to participate",
+    "participate_as": "Participate as {{username}}",
+    "registration_is_open": "Registration is open",
+    "winners": "Winners of the raffle"
+  },
   "Raffle": {
     "create_certificated_draw": "Create a raffle publicly",
     "draw_subheading": "Create an online raffle with prizes and share the results.",
@@ -207,6 +213,9 @@
   },
   "TranslationsSwitch": {
     "change_language": "Change language"
+  },
+  "WinnersList": {
+    "prize": "Prize"
   },
   "WithFieldValidation": {
     "default_message_min": "It must be lower than {{min}}",

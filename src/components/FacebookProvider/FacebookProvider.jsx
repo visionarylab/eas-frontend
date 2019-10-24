@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import {
   apiCall,
@@ -20,6 +21,7 @@ class FacebookProvider extends Component {
       loadingFbStatus: true,
       loadingFbDetails: true,
       isLoggedInFB: false,
+      errorMessage: null,
       userId: null,
       userName: null,
       userPages: null,
@@ -27,6 +29,7 @@ class FacebookProvider extends Component {
   }
 
   componentDidMount() {
+    const { t } = this.props;
     const updateLoginStatus = async response => {
       // status: connected == logged in
       // status: unknown == logged out
@@ -45,8 +48,17 @@ class FacebookProvider extends Component {
             userId: userDetails.userId,
             userName: userDetails.userName,
           });
-        } catch (e) {
+        } catch (ex) {
+          let errorMessage;
+          switch (ex.error.code) {
+            case 1:
+              errorMessage = t('error_message_possibly_blocked');
+              break;
+            default:
+              errorMessage = t('error_message_impossible_to_log_in');
+          }
           this.setState({
+            errorMessage,
             isLoggedInFB: false,
             loadingFbStatus: false,
           });
@@ -75,7 +87,6 @@ class FacebookProvider extends Component {
     const response = await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );
-    console.log('queryLikesOnObject___response', response);
 
     // accessTokens.forEach(async pageAccessToken => {
     //   const likers = await getLikesOnObject(objectId, pageAccessToken);
@@ -89,7 +100,6 @@ class FacebookProvider extends Component {
   render() {
     const context = {
       ...this.state,
-      queryUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
       logout,
@@ -100,6 +110,7 @@ class FacebookProvider extends Component {
 }
 FacebookProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default FacebookProvider;
+export default withTranslation('FacebookProvider')(FacebookProvider);

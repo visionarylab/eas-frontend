@@ -29,6 +29,10 @@
     "step_label_login_with_facebook": "Acceder con Facebook",
     "step_title_login_with_facebook": "Acceder con Facebook"
   },
+  "FacebookProvider": {
+    "error_message_impossible_to_log_in": "Ha ocurrido un error al intentar acceder con Facebook.",
+    "error_message_possibly_blocked": "Ha ocurrido un error al intentar acceder con Facebook. Puede que alguna extensión de tu navegador este bloqueando la conexion."
+  },
   "FacebookRaffle": {
     "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
     "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
@@ -247,6 +251,9 @@
   },
   "TranslationsSwitch": {
     "change_language": "Cambiar idioma"
+  },
+  "WinnersList": {
+    "prize": "Premio"
   },
   "WithFieldValidation": {
     "default_message_min": "Tiene que ser mayor o igual que {{min}}",

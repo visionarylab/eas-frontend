@@ -44,7 +44,6 @@ const WhenToTossForm = withFormValidation(WhenToTossSection);
 
 const FacebookLoginRafflePage = props => {
   const { values, isMobile, apiError, onFieldChange, handlePublish, t } = props;
-  console.log('isMobile', isMobile);
   const steps = [
     {
       label: t('step_label_prizes'),

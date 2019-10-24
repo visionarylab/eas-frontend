@@ -3,24 +3,29 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
+import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 
 const ParticipateWithFbPanel = ({
   userRegisteredInRaffle,
-  loadingFbStatus,
-  isLoggedInFB,
   onRegisterInRaffle,
-  userName,
-  logout,
+  facebookContext,
   t,
 }) => {
+  const { loadingFbStatus, isLoggedInFB, userName, logout, errorMessage } = facebookContext;
   if (loadingFbStatus) {
     return <LoadingSpinner />;
   }
 
   if (!isLoggedInFB) {
-    return <FacebookLoginButton sideLabel={t('login_with_facebook_to_participate')} />;
+    return (
+      <>
+        <FacebookLoginButton sideLabel={t('login_with_facebook_to_participate')} />
+        {errorMessage && <ErrorFeedback error={errorMessage} />}
+      </>
+    );
   }
 
   if (userRegisteredInRaffle) {
@@ -53,17 +58,18 @@ const ParticipateWithFbPanel = ({
 };
 
 ParticipateWithFbPanel.propTypes = {
-  loadingFbStatus: PropTypes.bool.isRequired,
   userRegisteredInRaffle: PropTypes.bool.isRequired,
-  isLoggedInFB: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
-  userName: PropTypes.string,
-  logout: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  facebookContext: PropTypes.shape({
+    isLoggedInFB: PropTypes.bool.isRequired,
+    loadingFbStatus: PropTypes.bool.isRequired,
+    userName: PropTypes.string,
+    logout: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+  }).isRequired,
 };
 
-ParticipateWithFbPanel.defaultProps = {
-  userName: null,
-};
+ParticipateWithFbPanel.defaultProps = {};
 
-export default ParticipateWithFbPanel;
+export default withFacebookSDK(ParticipateWithFbPanel);

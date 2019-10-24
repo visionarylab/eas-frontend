@@ -75,7 +75,6 @@ export const apiCall = async (endpoint, accessToken = null) =>
  */
 export const queryUserDetails = async () => {
   const response = await apiCall('/me');
-  console.log('response', response);
   if (!response || response.error) {
     throw Error('Unable to get user details', response.error);
   }
@@ -134,8 +133,5 @@ export const getObjectIdFromUrl = urlString => {
 };
 
 export const logout = () => {
-  console.log('logging out');
-  window.FB.logout(() => {
-    console.log('FB: logged out');
-  });
+  window.FB.logout(() => {});
 };
