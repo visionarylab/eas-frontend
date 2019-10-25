@@ -56,20 +56,13 @@ const PublishedGroupsGeneratorPage = props => {
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
-          <>
-            <ResultsBox title={t('generated_groups')}>
-              <GroupsGeneratorResult result={result} />
-            </ResultsBox>
-            {/* TODO ShareButtonsList: is this necessary to be duplicated? */}
-            <ShareButtonsList />
-          </>
+          <ResultsBox title={t('generated_groups')}>
+            <GroupsGeneratorResult result={result} />
+          </ResultsBox>
         ) : (
-          <>
-            <Countdown date={result.schedule_date} />
-            <ShareButtonsList />
-          </>
+          <Countdown date={result.schedule_date} />
         )}
-
+        <ShareButtonsList />
         <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
           <Typography component="div" variant="body2">
             {t('label_number_of_groups')} {numberOfGroups}
