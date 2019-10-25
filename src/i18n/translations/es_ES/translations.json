@@ -26,8 +26,7 @@
     "html_title": "Sorteo de likes en Facebook",
     "page_title": "Sorteo de 'likes' en Facebook",
     "step_choose_post": "Elegir publicación",
-    "step_label_login_with_facebook": "Acceder con Facebook",
-    "step_title_login_with_facebook": "Acceder con Facebook"
+    "step_label_login_with_facebook": "Acceder con Facebook"
   },
   "FacebookProvider": {
     "error_message_impossible_to_log_in": "Ha ocurrido un error al intentar acceder con Facebook.",
@@ -35,6 +34,7 @@
   },
   "FacebookRaffle": {
     "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
+    "facebook_draw_html_title": "Sorte en Facebook",
     "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
     "field_label_list_of_prizes": "Lista de premios",
     "field_label_number_of_participants": "Número de participantes",
@@ -42,27 +42,22 @@
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
     "general_details_raffle": "Detalles generales sobre el sorteo",
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
-    "info_about_winners": "Información sobre los ganadores",
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo entre usuarios de Facebook",
     "participate_as": "Participar como {{username}}",
-    "people_registered_already": "Ya hay {{count}} persona inscrita",
+    "people_registered_already": "Hay {{count}} persona inscrita",
+    "people_registered_already_plural": "Hay {{count}} personas inscritas",
     "publish_draw": "Publicar sorteo",
     "publish_raffle": "Publicar sorteo",
     "published_raffle_details": "Detalles del sorteo",
     "raffle_explanation": "Los usuarios se registrarán en el sorteo con su cuenta de Facebook, de esta manera te asegurarás de que cada usuario solo se regista una vez.",
-    "raffle_when_to_toss_explanation": "El sorteo sera público en el momento en que hagas click en \"{{toss_button_label}}\". Los resultados sin embargo se generarán mas tarde, a continuación puedes elegir cuándo y cómo quieres que eso suceda.",
     "registration_is_open": "El registro en el sorteo esta abierto!",
     "share_draw": "Comparte este sorteo",
     "share_result": "Comparte este resultado",
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
     "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
-    "step_title_general_details": "Detalles generales",
-    "step_title_prizes": "Añade los premios",
-    "step_title_when_to_toss": "Elige la fecha en la que se generarán los resultados",
-    "when_to_toss": "¿Cuándo quieres que se generen los resultados?",
     "winners": "Ganadores del sorteo"
   },
   "FlipCoinPage": {
@@ -142,8 +137,7 @@
     "letter_draw_html_title": "Generar letras aleatorias",
     "letter_draw_title": "Generar letras aleatorias",
     "number_of_letters": "Número de letras",
-    "publish_draw": "Publicar tidada",
-    "when_to_toss": "¿Cuándo quieres mostrar los resultados?"
+    "publish_draw": "Publicar tidada"
   },
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
@@ -156,12 +150,6 @@
     "description_placeholder": "Descripción del sorteo, bases del concurso, etc.",
     "title_label": "Título",
     "title_placeholder": "Sorteo de Navidad"
-  },
-  "PublishedFacebookLoginRafflePage": {
-    "login_with_facebook_to_participate": "Accede con Facebook para participar",
-    "participate_as": "Participar como {{username}}",
-    "registration_is_open": "El registro en el sorteo esta abierto!",
-    "winners": "Ganadores del sorteo"
   },
   "Raffle": {
     "create_certificated_draw": "Crear un sorteo publicamente",
@@ -221,10 +209,7 @@
     "published_draw_details": "Detalles del sorteo",
     "step_label_configuration": "Configura la tirada",
     "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_when_to_toss": "¿Cuándo quieres generar los números?",
-    "step_title_draw_configuration": "Configura la tirada",
-    "step_title_general_details": "Detalles generales",
-    "step_title_when_to_toss": "¿Cuando quieres que se generen los resultados?"
+    "step_label_when_to_toss": "¿Cuándo quieres generar los números?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancelar",

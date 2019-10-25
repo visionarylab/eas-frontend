@@ -20,7 +20,7 @@ const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
   <Fragment>
-    <SectionPanel title={t('step_title_login_with_facebook')}>
+    <SectionPanel>
       {isLoggedInFB ? (
         <Fragment>
           You are logged in. These are the pages were we got access:
@@ -65,7 +65,7 @@ const ChoosePostSection = ({
   onGetLikes,
   t,
 }) => (
-  <SectionPanel title={t('step_title_choose_post')}>
+  <SectionPanel>
     Now paste here the link to the post you want to check
     <TextField
       label={t('post_or_photo_url')}

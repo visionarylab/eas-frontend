@@ -17,7 +17,7 @@ const ValidatedCheckbox = withFieldValidation(Checkbox);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
-  <SectionPanel title={t('step_title_draw_configuration')}>
+  <SectionPanel>
     <Grid container spacing={16}>
       <Grid item xs={6}>
         <ValidatedTextField

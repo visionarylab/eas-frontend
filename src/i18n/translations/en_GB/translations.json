@@ -19,13 +19,37 @@
     "only_future_date_valid": "You have to choose a date in the future",
     "today": "Now"
   },
-  "FacebookDraw": {
-    "check_participants": "Get participants",
+  "FacebookProvider": {
+    "error_message_impossible_to_log_in": "There was an error when trying to log with Facebook.",
+    "error_message_possibly_blocked": "There was an error when trying to log with Facebook, You may have some extenion in your browser that is blocking the connexion."
+  },
+  "FacebookRaffle": {
+    "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
     "facebook_draw_html_title": "Facebook Raffle",
-    "facebook_draw_seo_description": "Organise a raffle in Facebook",
-    "number_of_winners": "Number of winners",
-    "post_or_photo_url": "URL of the post or photo",
-    "publish_draw": "Publish raffle"
+    "facebook_login_page_title": "Raffle among Facebook users",
+    "field_label_list_of_prizes": "List of prizes",
+    "field_label_number_of_participants": "Number of participants",
+    "field_label_prizes": "Prizes",
+    "field_label_when_to_toss": "Choose when results will be published",
+    "general_details_raffle": "General details of the raffle",
+    "how_to_participate": "Once the raffle is published you will get a link to share in social networks. Participants will be able to access the raffle through this link and register with their Facebook accoutn.",
+    "login_with_facebook_to_participate": "Login with Facebook to participate",
+    "message_no_prizes_added": "You haven't added any prize yet",
+    "page_title": "Raffle among Facebook users",
+    "participate_as": "Participate as {{username}}",
+    "people_registered_already": "There is {{count}} person registered",
+    "people_registered_already_plural": "There are {{count}} people registered",
+    "publish_draw": "Publish raffle",
+    "publish_raffle": "Publish raffle",
+    "published_raffle_details": "Details of the raffle",
+    "raffle_explanation": "Users will be able to participate in the raffle using their Facebook account. That way you will be sure that every person can only register once.",
+    "registration_is_open": "Registration is open",
+    "share_draw": "Share this raffle",
+    "share_result": "Share these results",
+    "step_label_general_details": "General details",
+    "step_label_prizes": "Add the prizes",
+    "step_label_when_to_toss": "When the results will be published?",
+    "winners": "Winners of the raffle"
   },
   "FlipCoinPage": {
     "draw_subheading": "Flip a coin",
@@ -104,8 +128,7 @@
     "letter_draw_html_title": "Generate random letters",
     "letter_draw_title": "Generate random letters",
     "number_of_letters": "Number of letters",
-    "publish_draw": "Publish draw",
-    "when_to_toss": "When do you want to show the results?"
+    "publish_draw": "Publish draw"
   },
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
@@ -118,12 +141,6 @@
     "description_placeholder": "Raffle description, rules, etc.",
     "title_label": "Title",
     "title_placeholder": "Christmas raffle"
-  },
-  "PublishedFacebookLoginRafflePage": {
-    "login_with_facebook_to_participate": "Login with Facebook to participate",
-    "participate_as": "Participate as {{username}}",
-    "registration_is_open": "Registration is open",
-    "winners": "Winners of the raffle"
   },
   "Raffle": {
     "create_certificated_draw": "Create a raffle publicly",
@@ -183,10 +200,7 @@
     "published_draw_details": "Draw details",
     "step_label_configuration": "Configure the draw",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When do you want to generate the results?",
-    "step_title_draw_configuration": "Configure the toss",
-    "step_title_general_details": "General details",
-    "step_title_when_to_toss": "When do you want to generate the results?"
+    "step_label_when_to_toss": "When do you want to generate the results?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancel",

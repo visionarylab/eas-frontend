@@ -41,7 +41,6 @@ const RafflePage = ({
       label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
-          sectionTitle={t('section_title_general_details')}
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
