@@ -45,8 +45,6 @@ const PublishedFacebookLoginRafflePage = props => {
   const { userName, userId } = props.facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
 
-  const loadData2 = () => loadData(props);
-
   useEffect(() => {
     if (userId) {
       const participant = participants.find(p => p.facebook_id === userId);
@@ -58,7 +56,7 @@ const PublishedFacebookLoginRafflePage = props => {
     }
   }, [participants, userId]);
 
-  useLoadDataAfterCountdown(result, loadData2);
+  useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
