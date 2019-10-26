@@ -28,6 +28,7 @@ export const fbAsyncInit = async onStatusChange => {
         log('logged out');
       }
     });
+    window.FB.getLoginStatus(onStatusChange);
   };
 };
 
