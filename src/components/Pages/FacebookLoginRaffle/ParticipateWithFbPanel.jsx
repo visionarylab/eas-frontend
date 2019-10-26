@@ -14,7 +14,7 @@ const ParticipateWithFbPanel = ({
   facebookContext,
   t,
 }) => {
-  const { loadingFbStatus, isLoggedInFB, userName, logout, errorMessage } = facebookContext;
+  const { loadingFbStatus, isLoggedInFB, username, logout, errorMessage } = facebookContext;
   if (loadingFbStatus) {
     return <LoadingSpinner />;
   }
@@ -31,7 +31,7 @@ const ParticipateWithFbPanel = ({
   if (userRegisteredInRaffle) {
     return (
       <Typography variant="body1" data-testid="FacebookRaffle__participant-registered">
-        You are registered in the raffle as {userName}
+        {t('you_are_registered_as_username', { username })}
       </Typography>
     );
   }
@@ -44,13 +44,13 @@ const ParticipateWithFbPanel = ({
         data-testid="FacebookRaffle__participant-button"
         onClick={onRegisterInRaffle}
       >
-        {t('participate_as', { username: userName })}
+        {t('participate_as', { username })}
       </Button>
       <Typography variant="caption" gutterBottom>
         <br />
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link component="button" variant="caption" onClick={logout}>
-          O accede como otra persona
+          {t('or_access_as_someone_else')}
         </Link>
       </Typography>
     </>
@@ -64,7 +64,7 @@ ParticipateWithFbPanel.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     loadingFbStatus: PropTypes.bool.isRequired,
-    userName: PropTypes.string,
+    username: PropTypes.string,
     logout: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
   }).isRequired,

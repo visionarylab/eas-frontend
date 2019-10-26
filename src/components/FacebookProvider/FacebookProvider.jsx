@@ -23,7 +23,7 @@ class FacebookProvider extends Component {
       isLoggedInFB: false,
       errorMessage: null,
       userId: null,
-      userName: null,
+      username: null,
       userPages: null,
     };
   }
@@ -46,7 +46,7 @@ class FacebookProvider extends Component {
             isLoggedInFB: true,
             loadingFbStatus: false,
             userId: userDetails.userId,
-            userName: userDetails.userName,
+            username: userDetails.username,
           });
         } catch (ex) {
           let errorMessage;

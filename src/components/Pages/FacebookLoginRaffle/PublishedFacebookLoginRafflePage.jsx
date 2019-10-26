@@ -42,7 +42,7 @@ const PublishedFacebookLoginRafflePage = props => {
   const { drawId, url } = match.params;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + url;
-  const { userName, userId } = props.facebookContext;
+  const { username, userId } = props.facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const PublishedFacebookLoginRafflePage = props => {
   }
 
   const onRegisterInRaffle = async () => {
-    const participant = Participant.constructFromObject({ name: userName, facebook_id: userId });
+    const participant = Participant.constructFromObject({ name: username, facebook_id: userId });
     /* const response = */ await raffleApi.raffleParticipantsAdd(drawId, participant);
     // TODO handle possible error responses from the API here
     loadData(props);
@@ -144,7 +144,7 @@ PublishedFacebookLoginRafflePage.propTypes = {
     isLoading: PropTypes.bool,
   }).isRequired,
   facebookContext: PropTypes.shape({
-    userName: PropTypes.string,
+    username: PropTypes.string,
     userId: PropTypes.string,
   }).isRequired,
   hostname: PropTypes.string.isRequired,

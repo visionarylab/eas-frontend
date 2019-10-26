@@ -45,6 +45,7 @@
     "how_to_participate": "Cuando publiques el sorteo se mostrará un link que podrás compartir en las redes sociales. Los participantes deberán acceder a al sorteo e inscribirse con su cuenta de Facebook.",
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
     "message_no_prizes_added": "No has añadido ningún premio",
+    "or_access_as_someone_else": "O accede como otra persona",
     "page_title": "Sorteo entre usuarios de Facebook",
     "participate_as": "Participar como {{username}}",
     "people_registered_already": "Hay {{count}} persona inscrita",
@@ -59,7 +60,8 @@
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
     "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
-    "winners": "Ganadores del sorteo"
+    "winners": "Ganadores del sorteo",
+    "you_are_registered_as_username": "Estas registrado en el sorteo como {{username}}"
   },
   "FlipCoinPage": {
     "draw_subheading": "Lanza una moneda al aire",

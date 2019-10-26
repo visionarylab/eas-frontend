@@ -36,6 +36,7 @@
     "how_to_participate": "Once the raffle is published you will get a link to share in social networks. Participants will be able to access the raffle through this link and register with their Facebook accoutn.",
     "login_with_facebook_to_participate": "Login with Facebook to participate",
     "message_no_prizes_added": "You haven't added any prize yet",
+    "or_access_as_someone_else": "Or access as someone else",
     "page_title": "Raffle among Facebook users",
     "participate_as": "Participate as {{username}}",
     "people_registered_already": "There is {{count}} person registered",
@@ -50,7 +51,8 @@
     "step_label_general_details": "General details",
     "step_label_prizes": "Add the prizes",
     "step_label_when_to_toss": "When the results will be published?",
-    "winners": "Winners of the raffle"
+    "winners": "Winners of the raffle",
+    "you_are_registered_as_username": "You are registered in the raffle as {{username}}"
   },
   "FlipCoinPage": {
     "draw_subheading": "Flip a coin",
