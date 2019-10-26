@@ -36,6 +36,7 @@
     "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
     "facebook_draw_html_title": "Sorte en Facebook",
     "facebook_login_page_title": "Sorteo entre usuarios de Facebook",
+    "field_default_title": "Sorteo en Facebook",
     "field_label_list_of_prizes": "Lista de premios",
     "field_label_number_of_participants": "Número de participantes",
     "field_label_prizes": "Premios",

@@ -22,13 +22,24 @@ class FacebookLoginRafflePageContainer extends Component {
     this.state = {
       APIError: false,
       values: {
-        title: 'Sorteo en Facebook',
+        title: '', // Default title is set in CDM
         description: '',
         participants: [],
         prizes: [],
         dateScheduled,
       },
     };
+  }
+
+  componentDidMount() {
+    const { t } = this.props;
+    const defaultTitle = t('field_default_title');
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        title: defaultTitle,
+      },
+    }));
   }
 
   onFieldChange = (fieldName, value) => {
@@ -100,9 +111,9 @@ class FacebookLoginRafflePageContainer extends Component {
 }
 
 FacebookLoginRafflePageContainer.propTypes = {
+  t: PropTypes.func.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
-  // match: ReactRouterPropTypes.match.isRequired,
   track: PropTypes.func.isRequired,
 };
 

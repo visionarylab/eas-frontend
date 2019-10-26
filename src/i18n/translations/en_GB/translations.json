@@ -27,6 +27,7 @@
     "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
     "facebook_draw_html_title": "Facebook Raffle",
     "facebook_login_page_title": "Raffle among Facebook users",
+    "field_default_title": "Facebook raffle",
     "field_label_list_of_prizes": "List of prizes",
     "field_label_number_of_participants": "Number of participants",
     "field_label_prizes": "Prizes",
