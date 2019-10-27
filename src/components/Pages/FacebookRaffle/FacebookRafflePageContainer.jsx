@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -54,7 +53,8 @@ class FacebookRafflePageContainer extends Component {
   };
 
   handlePublish = async () => {
-    this.props.history.push(`${this.props.location.pathname}/3`);
+    const { location, history } = this.props;
+    history.push(`${location.pathname}/3`);
   };
 
   createDraw = () => {

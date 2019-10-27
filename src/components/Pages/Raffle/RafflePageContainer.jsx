@@ -94,8 +94,6 @@ class RafflePageContainer extends Component {
         ga: { action: 'Toss', category: analyticsDrawType },
       });
       this.setState({ quickResult: tossResponse, APIError: false });
-      console.log(this.state);
-      console.log(JSON.stringify(this.state));
     } catch (err) {
       this.setState({ APIError: true });
     }

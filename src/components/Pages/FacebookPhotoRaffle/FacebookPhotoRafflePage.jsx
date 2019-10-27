@@ -18,7 +18,7 @@ import STYLES from './FacebookPhotoRafflePage.scss';
 const c = classnames.bind(STYLES);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
-const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
+const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
   <Fragment>
     <SectionPanel>
       {isLoggedInFB ? (
@@ -54,7 +54,7 @@ GrantAccessSection.propTypes = {
       accessToken: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  t: PropTypes.func.isRequired,
+  // t: PropTypes.func.isRequired,
 };
 
 const ChoosePostSection = ({

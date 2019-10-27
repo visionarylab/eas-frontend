@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
@@ -38,11 +37,11 @@ const loadData = async props => {
 };
 
 const PublishedFacebookRafflePage = props => {
-  const { draw, match, t, track, hostname } = props;
+  const { draw, match, t, track, hostname, facebookContext } = props;
   const { drawId, url } = match.params;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + url;
-  const { username, userId } = props.facebookContext;
+  const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
 

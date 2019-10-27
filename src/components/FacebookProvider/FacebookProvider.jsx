@@ -89,7 +89,7 @@ class FacebookProvider extends Component {
   queryLikesOnObject = async objectId => {
     const { userPages } = this.state;
     const accessTokens = userPages.map(page => page.accessToken);
-    const response = await Promise.all(
+    /* const response = */ await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );
 
