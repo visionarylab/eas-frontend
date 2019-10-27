@@ -288,27 +288,18 @@ describe('Groups Generator Page', () => {
             fixtureGetDraw.response.results[0].schedule_date = dateInFuture;
             fixtureGetDraw.response.results[0].value = null;
             cy.route(fixtureGetDraw.method, fixtureGetDraw.path, fixtureGetDraw.response).as(
-              'LoadDataResultsPending',
+              'LoadData',
             );
           });
           cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
-          cy.wait('@LoadDataResultsPending');
+          cy.wait('@LoadData');
           cy.getComponent('Countdown').should('be.visible');
 
-          // TODO is this thing necessary, can we just do  the following?
-          // cy.mockedRequestWait('POST', '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
-          cy.fixture('GroupsGenerator').then(fixtures => {
-            const fixtureGetDraw = fixtures.find(
-              fixture => fixture.path === '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b',
-            );
-            cy.route(fixtureGetDraw.method, fixtureGetDraw.path, fixtureGetDraw.response).as(
-              'LoadDataResultsPublished',
-            );
-          });
-          cy.tick((missingSeconds + 1) * 1000); // Fast forward the countdown
+          // Fast forward the countdown
+          cy.tick((missingSeconds + 1) * 1000);
 
           // Once the countdown is over, the the api should be called again
-          cy.wait('@LoadDataResultsPublished');
+          cy.wait('@LoadData');
         });
 
         it('Should show results and the groups draw details', () => {
