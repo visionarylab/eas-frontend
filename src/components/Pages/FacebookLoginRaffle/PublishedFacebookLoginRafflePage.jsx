@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
-
+import * as Sentry from '@sentry/browser';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -37,6 +37,7 @@ const loadData = async props => {
   await props.fetchRaffleDraw(drawId);
 };
 
+// TODO Rename PublishedFacebookLoginRafflePage to PublishedFacebookRafflePage
 const PublishedFacebookLoginRafflePage = props => {
   const { draw, match, t, hostname } = props;
   const { drawId, url } = match.params;
@@ -44,6 +45,7 @@ const PublishedFacebookLoginRafflePage = props => {
   const shareUrl = hostname + url;
   const { username, userId } = props.facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
+  const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
 
   useEffect(() => {
     if (userId) {
@@ -64,8 +66,19 @@ const PublishedFacebookLoginRafflePage = props => {
 
   const onRegisterInRaffle = async () => {
     const participant = Participant.constructFromObject({ name: username, facebook_id: userId });
-    /* const response = */ await raffleApi.raffleParticipantsAdd(drawId, participant);
-    // TODO handle possible error responses from the API here
+    try {
+      await raffleApi.raffleParticipantsAdd(drawId, participant);
+    } catch (error) {
+      setRegisterFailedErrorMessage(t('unable_to_register_in_raffle'));
+      Sentry.withScope(scope => {
+        scope.setExtra(
+          'message',
+          'There was an error when trying to participate a Facebook raffle',
+        );
+        scope.setExtra('drawId', drawId);
+        Sentry.captureException(error);
+      });
+    }
     loadData(props);
   };
   return (
@@ -117,6 +130,7 @@ const PublishedFacebookLoginRafflePage = props => {
               <ParticipateWithFbPanel
                 userRegisteredInRaffle={userRegisteredInRaffle}
                 onRegisterInRaffle={onRegisterInRaffle}
+                registerFailedErrorMessage={registerFailedErrorMessage}
                 t={t}
               />
             </div>

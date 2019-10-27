@@ -21,7 +21,7 @@ class FacebookProvider extends Component {
       loadingFbStatus: true,
       loadingFbDetails: true,
       isLoggedInFB: false,
-      errorMessage: null,
+      fbErrorMessage: null,
       userId: null,
       username: null,
       userPages: null,
@@ -49,16 +49,16 @@ class FacebookProvider extends Component {
             username: userDetails.username,
           });
         } catch (ex) {
-          let errorMessage;
+          let fbErrorMessage;
           switch (ex.error.code) {
             case 1:
-              errorMessage = t('error_message_possibly_blocked');
+              fbErrorMessage = t('error_message_possibly_blocked');
               break;
             default:
-              errorMessage = t('error_message_impossible_to_log_in');
+              fbErrorMessage = t('error_message_impossible_to_log_in');
           }
           this.setState({
-            errorMessage,
+            fbErrorMessage,
             isLoggedInFB: false,
             loadingFbStatus: false,
           });

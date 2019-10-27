@@ -60,6 +60,7 @@
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
     "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
+    "unable_to_register_in_raffle": "Ha habido un error al realizar el registro en el sorteo. Por favor inténtelo de nuevo más tarde",
     "winners": "Ganadores del sorteo",
     "you_are_registered_as_username": "Estas registrado en el sorteo como {{username}}"
   },

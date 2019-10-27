@@ -11,10 +11,11 @@ import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 const ParticipateWithFbPanel = ({
   userRegisteredInRaffle,
   onRegisterInRaffle,
+  registerFailedErrorMessage,
   facebookContext,
   t,
 }) => {
-  const { loadingFbStatus, isLoggedInFB, username, logout, errorMessage } = facebookContext;
+  const { loadingFbStatus, isLoggedInFB, username, logout, fbErrorMessage } = facebookContext;
   if (loadingFbStatus) {
     return <LoadingSpinner />;
   }
@@ -23,7 +24,7 @@ const ParticipateWithFbPanel = ({
     return (
       <>
         <FacebookLoginButton sideLabel={t('login_with_facebook_to_participate')} />
-        {errorMessage && <ErrorFeedback error={errorMessage} />}
+        {fbErrorMessage && <ErrorFeedback error={fbErrorMessage} />}
       </>
     );
   }
@@ -53,6 +54,7 @@ const ParticipateWithFbPanel = ({
           {t('or_access_as_someone_else')}
         </Link>
       </Typography>
+      {registerFailedErrorMessage && <ErrorFeedback error={registerFailedErrorMessage} />}
     </>
   );
 };
@@ -61,12 +63,13 @@ ParticipateWithFbPanel.propTypes = {
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  registerFailedErrorMessage: PropTypes.bool.isRequired,
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     loadingFbStatus: PropTypes.bool.isRequired,
     username: PropTypes.string,
     logout: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
+    fbErrorMessage: PropTypes.string,
   }).isRequired,
 };
 

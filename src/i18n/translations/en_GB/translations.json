@@ -51,6 +51,7 @@
     "step_label_general_details": "General details",
     "step_label_prizes": "Add the prizes",
     "step_label_when_to_toss": "When the results will be published?",
+    "unable_to_register_in_raffle": "There was an error when trying to register in the raffle. Please try again later",
     "winners": "Winners of the raffle",
     "you_are_registered_as_username": "You are registered in the raffle as {{username}}"
   },
