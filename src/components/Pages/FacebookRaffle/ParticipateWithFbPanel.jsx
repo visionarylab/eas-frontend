@@ -63,7 +63,7 @@ ParticipateWithFbPanel.propTypes = {
   userRegisteredInRaffle: PropTypes.bool.isRequired,
   onRegisterInRaffle: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  registerFailedErrorMessage: PropTypes.bool.isRequired,
+  registerFailedErrorMessage: PropTypes.string,
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
     loadingFbStatus: PropTypes.bool.isRequired,
@@ -73,6 +73,8 @@ ParticipateWithFbPanel.propTypes = {
   }).isRequired,
 };
 
-ParticipateWithFbPanel.defaultProps = {};
+ParticipateWithFbPanel.defaultProps = {
+  registerFailedErrorMessage: '',
+};
 
 export default withFacebookSDK(ParticipateWithFbPanel);

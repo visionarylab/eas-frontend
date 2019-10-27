@@ -24,7 +24,7 @@ import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './PublishedFacebookRafflePage.scss';
 import ParticipateWithFbPanel from './ParticipateWithFbPanel.jsx';
 import WinnersList from '../../WinnersList/WinnersList.jsx';
-
+import withTracking from '../../withTracking/withTracking.jsx';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
@@ -38,7 +38,7 @@ const loadData = async props => {
 };
 
 const PublishedFacebookRafflePage = props => {
-  const { draw, match, t, hostname } = props;
+  const { draw, match, t, track, hostname } = props;
   const { drawId, url } = match.params;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + url;
@@ -67,6 +67,13 @@ const PublishedFacebookRafflePage = props => {
     const participant = Participant.constructFromObject({ name: username, facebook_id: userId });
     try {
       await raffleApi.raffleParticipantsAdd(drawId, participant);
+      track({
+        mp: {
+          name: `Participate - ${analyticsDrawType}`,
+          properties: { drawType: analyticsDrawType },
+        },
+        ga: { action: 'Participate', category: analyticsDrawType },
+      });
     } catch (error) {
       setRegisterFailedErrorMessage(t('unable_to_register_in_raffle'));
       Sentry.withScope(scope => {
@@ -162,11 +169,12 @@ PublishedFacebookRafflePage.propTypes = {
   }).isRequired,
   hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
+  track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-const TranslatedPage = withFacebookSDK(
-  withTranslation('FacebookRaffle')(PublishedFacebookRafflePage),
+const TranslatedPage = withTracking(
+  withFacebookSDK(withTranslation('FacebookRaffle')(PublishedFacebookRafflePage)),
 );
 
 const mapsStateToProps = state => ({

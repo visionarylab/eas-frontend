@@ -11,7 +11,7 @@ import recentDraws from '../../../services/recentDraws';
 import withTracking from '../../withTracking/withTracking.jsx';
 
 const raffleApi = new RaffleApi();
-const analyticsDrawType = 'Facebook';
+const analyticsDrawType = 'FacebookRaffle';
 
 class FacebookRafflePageContainer extends Component {
   constructor(props) {

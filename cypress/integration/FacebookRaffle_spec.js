@@ -26,7 +26,7 @@ describe('FacebookRaffle', () => {
             cy.getComponent('WizardForm__next-button').click();
             cy.get('@ga').should('be.calledWith', 'send', {
               hitType: 'event',
-              eventCategory: 'Facebook',
+              eventCategory: 'FacebookRaffle',
               eventAction: 'Publish',
               eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
             });
@@ -73,7 +73,7 @@ describe('FacebookRaffle', () => {
 
             cy.get('@ga').should('be.calledWith', 'send', {
               hitType: 'event',
-              eventCategory: 'Facebook',
+              eventCategory: 'FacebookRaffle',
               eventAction: 'Publish',
               eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
             });
@@ -89,7 +89,7 @@ describe('FacebookRaffle', () => {
             cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss');
             cy.get('@ga').should('be.calledWith', 'send', {
               hitType: 'event',
-              eventCategory: 'Facebook',
+              eventCategory: 'FacebookRaffle',
               eventAction: 'Publish',
               eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
             });
@@ -177,7 +177,7 @@ describe('FacebookRaffle', () => {
             cy.getComponent('FacebookLoginButton').should('exist');
           });
 
-          it('should have button to participate if the user is already logged in Facebook', () => {
+          it.only('should have button to participate if the user is already logged in Facebook', () => {
             cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
             cy.window().then(win => {
               // eslint-disable-next-line no-param-reassign
@@ -208,6 +208,13 @@ describe('FacebookRaffle', () => {
                 name: 'Mr Nobody',
                 facebook_id: '000000',
               });
+
+            // Should send analytics event
+            cy.get('@ga').should('be.calledWith', 'send', {
+              hitType: 'event',
+              eventCategory: 'FacebookRaffle',
+              eventAction: 'Participate',
+            });
             cy.wait('@LoadData');
           });
 

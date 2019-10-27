@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
+import * as Sentry from '@sentry/browser';
 import i18n from 'i18next';
 import {
   apiCall,
@@ -57,6 +58,10 @@ class FacebookProvider extends Component {
             default:
               fbErrorMessage = t('error_message_impossible_to_log_in');
           }
+          Sentry.withScope(scope => {
+            scope.setExtra('message', fbErrorMessage);
+            Sentry.captureException(ex);
+          });
           this.setState({
             fbErrorMessage,
             isLoggedInFB: false,
