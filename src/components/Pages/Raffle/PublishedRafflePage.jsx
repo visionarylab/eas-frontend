@@ -51,7 +51,6 @@ const PublishedRafflePage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="raffle_published_draw"
-      className={c('PublishedRafflePage')}
     >
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />

@@ -88,7 +88,6 @@ const PublishedFacebookRafflePage = props => {
   };
   return (
     <Page
-      className={c('PublishedFacebookRafflePage')}
       // ogImage={groupsOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
