@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-import classNames from 'classnames/bind';
 import { RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
@@ -19,9 +18,7 @@ import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
-import STYLES from './PublishedRafflePage.scss';
 
-const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Raffle';
 
 const loadData = async props => {

@@ -13,6 +13,8 @@ class FacebookLoginButton extends Component {
       // The FB login button is parsed and rendered by XFBML
       // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
       window.FB.XFBML.parse();
+      // TODO This re-parse is doing a very weird thing when loading the page. I think it's
+      // better to just render our own button and handle the login with FB.login()
     }
   }
 
@@ -20,7 +22,9 @@ class FacebookLoginButton extends Component {
     const { sideLabel, /* onLogin, */ permissions } = this.props;
     return (
       <>
-        <Typography variant="body2">{sideLabel}</Typography>
+        <Typography variant="body2" align="center">
+          {sideLabel}
+        </Typography>
         <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
           <div
             className="fb-login-button"
