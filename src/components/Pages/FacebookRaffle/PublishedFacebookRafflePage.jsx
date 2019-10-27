@@ -94,7 +94,7 @@ const PublishedFacebookRafflePage = props => {
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
       noIndex
-      pageType="facebook_raffle_published_draw"
+      pageType="Facebook Raffle Published"
     >
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
