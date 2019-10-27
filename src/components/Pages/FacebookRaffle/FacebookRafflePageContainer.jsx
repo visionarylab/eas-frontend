@@ -6,14 +6,14 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import moment from 'moment';
 import { RaffleApi, Raffle, Prize, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
-import FacebookLoginRafflePage from './FacebookLoginRafflePage.jsx';
+import FacebookRafflePage from './FacebookRafflePage.jsx';
 import recentDraws from '../../../services/recentDraws';
 import withTracking from '../../withTracking/withTracking.jsx';
 
 const raffleApi = new RaffleApi();
 const analyticsDrawType = 'Facebook';
 
-class FacebookLoginRafflePageContainer extends Component {
+class FacebookRafflePageContainer extends Component {
   constructor(props) {
     super(props);
     const dateScheduled = new Date();
@@ -100,7 +100,7 @@ class FacebookLoginRafflePageContainer extends Component {
   render() {
     const { values, APIError } = this.state;
     return (
-      <FacebookLoginRafflePage
+      <FacebookRafflePage
         apiError={APIError}
         values={values}
         onFieldChange={this.onFieldChange}
@@ -110,11 +110,11 @@ class FacebookLoginRafflePageContainer extends Component {
   }
 }
 
-FacebookLoginRafflePageContainer.propTypes = {
+FacebookRafflePageContainer.propTypes = {
   t: PropTypes.func.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
   track: PropTypes.func.isRequired,
 };
 
-export default withTracking(withTranslation('FacebookRaffle')(FacebookLoginRafflePageContainer));
+export default withTracking(withTranslation('FacebookRaffle')(FacebookRafflePageContainer));

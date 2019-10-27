@@ -37,8 +37,7 @@ const loadData = async props => {
   await props.fetchRaffleDraw(drawId);
 };
 
-// TODO Rename PublishedFacebookLoginRafflePage to PublishedFacebookRafflePage
-const PublishedFacebookLoginRafflePage = props => {
+const PublishedFacebookRafflePage = props => {
   const { draw, match, t, hostname } = props;
   const { drawId, url } = match.params;
   const { title, description, participants, prizes, result, isLoading } = draw;
@@ -147,7 +146,7 @@ const PublishedFacebookLoginRafflePage = props => {
   );
 };
 
-PublishedFacebookLoginRafflePage.propTypes = {
+PublishedFacebookRafflePage.propTypes = {
   draw: PropTypes.shape({
     title: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.instanceOf(Participant)).isRequired,
@@ -167,7 +166,7 @@ PublishedFacebookLoginRafflePage.propTypes = {
 };
 
 const TranslatedPage = withFacebookSDK(
-  withTranslation('FacebookRaffle')(PublishedFacebookLoginRafflePage),
+  withTranslation('FacebookRaffle')(PublishedFacebookRafflePage),
 );
 
 const mapsStateToProps = state => ({

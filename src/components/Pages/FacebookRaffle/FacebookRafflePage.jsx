@@ -42,7 +42,7 @@ const PrizesForm = withFormValidation(PrizesSection);
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
-const FacebookLoginRafflePage = props => {
+const FacebookRafflePage = props => {
   const { values, isMobile, apiError, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
@@ -104,7 +104,7 @@ const FacebookLoginRafflePage = props => {
   );
 };
 
-FacebookLoginRafflePage.propTypes = {
+FacebookRafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -120,10 +120,10 @@ FacebookLoginRafflePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-FacebookLoginRafflePage.defaultProps = {
+FacebookRafflePage.defaultProps = {
   apiError: false,
 };
 
 const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });
 
-export default withTranslation('FacebookRaffle')(connect(mapStateToProps)(FacebookLoginRafflePage));
+export default withTranslation('FacebookRaffle')(connect(mapStateToProps)(FacebookRafflePage));
