@@ -23,7 +23,7 @@ const ParticipateWithFbPanel = ({
   if (!isLoggedInFB) {
     return (
       <>
-        <FacebookLoginButton sideLabel={t('login_with_facebook_to_participate')} />
+        <FacebookLoginButton label={t('login_with_facebook_to_participate')} />
         {fbErrorMessage && <ErrorFeedback error={fbErrorMessage} />}
       </>
     );

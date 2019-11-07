@@ -1,55 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Typography from '@material-ui/core/Typography';
 
 import STYLES from './FacebookLoginButton.scss';
 
 const c = classNames.bind(STYLES);
 
-class FacebookLoginButton extends Component {
-  componentDidMount() {
-    if (window.FB) {
-      // The FB login button is parsed and rendered by XFBML
-      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-      window.FB.XFBML.parse();
-      // TODO This re-parse is doing a very weird thing when loading the page. I think it's
-      // better to just render our own button and handle the login with FB.login()
-    }
-  }
-
-  render() {
-    const { sideLabel, /* onLogin, */ permissions } = this.props;
-    return (
-      <>
-        <Typography variant="body2" align="center">
-          {sideLabel}
-        </Typography>
-        <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
-          <div
-            className="fb-login-button"
-            data-max-rows="1"
-            data-size="large"
-            data-button-type="continue_with"
-            data-show-faces="false"
-            data-auto-logout-link="true"
-            data-use-continue-as="false"
-            data-scope={permissions}
-          />
-        </div>
-      </>
-    );
-  }
-}
+const FacebookLoginButton = ({ label }) => (
+  <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
+    <button
+      type="button"
+      onClick={() => window.FB.login()}
+      className={c('FacebookLoginButton__button')}
+    >
+      {label}
+    </button>
+  </div>
+);
 
 FacebookLoginButton.propTypes = {
-  permissions: PropTypes.string,
-  sideLabel: PropTypes.string,
+  label: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
-  permissions: '',
-  sideLabel: '',
+  label: '',
 };
 
 export default FacebookLoginButton;
