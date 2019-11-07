@@ -31,7 +31,7 @@ const ParticipateWithFbPanel = ({
 
   if (userRegisteredInRaffle) {
     return (
-      <Typography variant="body1" data-testid="FacebookRaffle__participant-registered">
+      <Typography variant="body2" data-testid="FacebookRaffle__participant-registered">
         {t('you_are_registered_as_username', { username })}
       </Typography>
     );

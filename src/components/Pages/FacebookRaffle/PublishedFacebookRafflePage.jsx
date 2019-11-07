@@ -125,11 +125,6 @@ const PublishedFacebookRafflePage = props => {
         ) : (
           <>
             <PrizesOverview prizes={prizes} />
-            <Typography variant="body2">
-              {participants.length > 0 &&
-                t('people_registered_already', { count: participants.length })}
-              <br />
-            </Typography>
             <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
               <ParticipateWithFbPanel
                 userRegisteredInRaffle={userRegisteredInRaffle}
@@ -138,6 +133,11 @@ const PublishedFacebookRafflePage = props => {
                 t={t}
               />
             </div>
+            <Typography variant="body2" align="center">
+              {participants.length > 0 &&
+                t('people_registered_already', { count: participants.length })}
+              <br />
+            </Typography>
             <Countdown date={result.schedule_date} />
             <ShareButtons
               drawType={analyticsDrawType}
