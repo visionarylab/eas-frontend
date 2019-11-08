@@ -2,9 +2,9 @@
 
 .RafflesPage {
   &__container {
-    padding-bottom: $spacing-lg;
     max-width: 30rem;
     margin: auto;
+    padding-bottom: $spacing-lg;
   }
 
   & &__title {
