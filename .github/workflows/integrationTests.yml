@@ -12,4 +12,4 @@ jobs:
           node-version: 12
       - run: npm run test:integration:ci
         env:
-        REACT_APP_ENV: test
+          REACT_APP_ENV: test
