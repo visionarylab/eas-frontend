@@ -1,0 +1,17 @@
+@import '../../variables';
+
+.RafflesPage {
+  &__container {
+    padding-bottom: $spacing-lg;
+    max-width: 30rem;
+    margin: auto;
+  }
+
+  & &__title {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__draw-chips-group {
+    margin-bottom: 3rem;
+  }
+}

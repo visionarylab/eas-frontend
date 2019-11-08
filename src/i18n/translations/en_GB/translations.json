@@ -25,14 +25,15 @@
   },
   "FacebookRaffle": {
     "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
-    "html_title": "Facebook Raffle",
-    "html_description": "Create a public raffle where participants will be able to join by login with the Facebook accounts.",
-    "html_keywords": "raffle in facebook, assign prizes, countdown, join raffle, public results",
     "field_default_title": "Facebook raffle",
+    "field_help_separate_prizes_commas": "Separate prizes by commas",
     "field_label_list_of_prizes": "List of prizes",
     "field_label_number_of_participants": "Number of participants",
     "field_label_prizes": "Prizes",
     "field_label_when_to_toss": "Choose when results will be published",
+    "html_description": "Create a public raffle where participants will be able to join by login with the Facebook accounts.",
+    "html_keywords": "raffle in facebook, assign prizes, countdown, join raffle, public results",
+    "html_title": "Facebook Raffle",
     "login_with_facebook_to_participate": "Login with Facebook to participate",
     "message_no_prizes_added": "You haven't added any prize yet",
     "or_access_as_someone_else": "Or access as someone else",
@@ -106,8 +107,8 @@
     "recent_draws": "Recent Raffles"
   },
   "HomePage": {
-    "draw_title_facebook_login": "Raffle among Facebook users",
     "draw_title_facebook_photo": "Raffle among 'likes' in Facebook",
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
     "draw_title_flip_coin": "Flip a coin",
     "draw_title_groups_generator": "Generate groups randomly",
     "draw_title_pick_card": "Pick a card",
@@ -180,6 +181,13 @@
     "step_label_configure": "Configure the raffle",
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be generated?"
+  },
+  "RafflesPage": {
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
+    "draw_title_raffle": "Raffle with a list of participants",
+    "html_description": "Create online raffles, flip a coin, make teams... Take any decision randomly",
+    "html_title": "Take decisions randomly online - ChooseRandom",
+    "section_title_raffles": "Raffles"
   },
   "RandomNumber": {
     "create_certificated_draw": "Create a public draw",
