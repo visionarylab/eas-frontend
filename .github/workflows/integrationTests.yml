@@ -10,6 +10,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm run test:integration:ci
+      - run: |
+          npm ci
+          npm run build
+          npm run lint
+          npm test
+          npm run test:integration:ci
         env:
           REACT_APP_ENV: test
