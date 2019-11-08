@@ -57,7 +57,8 @@
     "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
     "unable_to_register_in_raffle": "Ha habido un error al realizar el registro en el sorteo. Por favor inténtelo de nuevo más tarde",
     "winners": "Ganadores del sorteo",
-    "you_are_registered_as_username": "Estas registrado en el sorteo como {{username}}"
+    "you_are_registered_as_username": "Estas registrado en el sorteo como {{username}}",
+    "field_help_separate_prizes_commas": "Separa los premios por comas"
   },
   "FlipCoinPage": {
     "draw_subheading": "Lanza una moneda al aire",
@@ -152,7 +153,7 @@
   },
   "Raffle": {
     "create_certificated_draw": "Crear un sorteo publicamente",
-    "draw_subheading": "Crea un sorteo online con premios y comprate el resultado.",
+    "draw_subheading": "Crea un sorteo online con premios y comparte el resultado.",
     "error_form_not_enough_participants": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participante. Añade más participantes",
     "error_form_not_enough_participants_plural": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participantes. Añade más participantes",
     "field_default_title": "Sorteo público",

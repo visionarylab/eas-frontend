@@ -29,6 +29,7 @@ const PrizesSection = ({ prizes, onFieldChange, t }) => (
       data-testid="FacebookRaffle__prizes-field"
       inputProps={{ 'data-testid': 'FacebookRaffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}
+      helperText={t('field_help_separate_prizes_commas')}
     />
   </SectionPanel>
 );
