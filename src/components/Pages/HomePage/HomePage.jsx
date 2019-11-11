@@ -31,7 +31,7 @@ const HomePage = ({ t }) => (
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
       {/* <div className={c('HomePage__draw-chips-group')}> */}
-      <DrawCard icon={raffleIcon} to="/raffles">
+      <DrawCard icon={raffleIcon} to="/draw/new/raffle">
         {t('draw_title_raffle')}
       </DrawCard>
       <DrawCard icon={groupsIcon} to="/groups">

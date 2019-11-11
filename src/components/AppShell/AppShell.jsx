@@ -47,7 +47,7 @@ const AppShell = () => (
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/facebook" component={FacebookRafflePageContainer} />
       <Route path="/facebook/:drawId" component={PublishedFacebookRafflePage} />
-      <Route path="/raffles" component={RafflesPage} />
+      <Route path="/draw/new/raffle" component={RafflesPage} />
       <Route exact path="/raffle/:isPublic(public)?" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
