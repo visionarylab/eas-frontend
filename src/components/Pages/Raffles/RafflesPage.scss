@@ -3,8 +3,7 @@
 .RafflesPage {
   &__container {
     max-width: 30rem;
-    margin: auto;
-    padding-bottom: $spacing-lg;
+    margin: $spacing-lg auto;
   }
 
   & &__title {
