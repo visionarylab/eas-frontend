@@ -177,7 +177,7 @@ describe('FacebookRaffle', () => {
             cy.getComponent('FacebookLoginButton').should('exist');
           });
 
-          it.only('should have button to participate if the user is already logged in Facebook', () => {
+          it('should have button to participate if the user is already logged in Facebook', () => {
             cy.visit('/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
             cy.window().then(win => {
               // eslint-disable-next-line no-param-reassign
