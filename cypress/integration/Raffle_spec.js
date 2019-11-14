@@ -304,24 +304,18 @@ describe('Raffle Page', () => {
             fixtureGetRaffle.response.results[0].schedule_date = dateInFuture;
             fixtureGetRaffle.response.results[0].value = null;
             cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
-              'LoadDataResultsPending',
+              'LoadData',
             );
           });
           cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
-          cy.wait('@LoadDataResultsPending');
+          cy.wait('@LoadData');
           cy.getComponent('Countdown').should('be.visible');
-          cy.fixture('Raffle').then(fixtures => {
-            const fixtureGetRaffle = fixtures.find(
-              fixture => fixture.path === '/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
-            );
-            cy.route(fixtureGetRaffle.method, fixtureGetRaffle.path, fixtureGetRaffle.response).as(
-              'LoadDataResultsPublished',
-            );
-          });
-          cy.tick((missingSeconds + 1) * 1000); // Fast forward the countdown
+
+          // Fast forward the countdown
+          cy.tick((missingSeconds + 1) * 1000);
 
           // Once the countdown is over, the the api should be called again
-          cy.wait('@LoadDataResultsPublished');
+          cy.wait('@LoadData');
         });
 
         it('Should show results and the raffle details', () => {

@@ -18,9 +18,9 @@ import STYLES from './FacebookPhotoRafflePage.scss';
 const c = classnames.bind(STYLES);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
-const GrantAccessSection = ({ isLoggedInFB, userPages, t }) => (
+const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
   <Fragment>
-    <SectionPanel title={t('step_title_login_with_facebook')}>
+    <SectionPanel>
       {isLoggedInFB ? (
         <Fragment>
           You are logged in. These are the pages were we got access:
@@ -54,7 +54,7 @@ GrantAccessSection.propTypes = {
       accessToken: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  t: PropTypes.func.isRequired,
+  // t: PropTypes.func.isRequired,
 };
 
 const ChoosePostSection = ({
@@ -65,7 +65,7 @@ const ChoosePostSection = ({
   onGetLikes,
   t,
 }) => (
-  <SectionPanel title={t('step_title_choose_post')}>
+  <SectionPanel>
     Now paste here the link to the post you want to check
     <TextField
       label={t('post_or_photo_url')}

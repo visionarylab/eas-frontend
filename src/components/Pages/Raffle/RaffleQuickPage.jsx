@@ -12,7 +12,7 @@ import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDr
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
-import WinnersList from './WinnersList.jsx';
+import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import raffleOgImage from './raffle_og_image.png';
@@ -81,7 +81,7 @@ const RafflePage = ({
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
             <>
-              <WinnersList winners={quickResult} />
+              <WinnersList winners={quickResult.value} />
               <ShareDrawModal
                 publicDrawUrl={publicDrawUrl}
                 trackingData={{

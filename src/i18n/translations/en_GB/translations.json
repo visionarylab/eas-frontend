@@ -19,13 +19,39 @@
     "only_future_date_valid": "You have to choose a date in the future",
     "today": "Now"
   },
-  "FacebookDraw": {
-    "check_participants": "Get participants",
-    "facebook_draw_html_title": "Facebook Raffle",
-    "facebook_draw_seo_description": "Organise a raffle in Facebook",
-    "number_of_winners": "Number of winners",
-    "post_or_photo_url": "URL of the post or photo",
-    "publish_draw": "Publish raffle"
+  "FacebookProvider": {
+    "error_message_impossible_to_log_in": "There was an error when trying to log with Facebook.",
+    "error_message_possibly_blocked": "There was an error when trying to log with Facebook, You may have some extenion in your browser that is blocking the connexion."
+  },
+  "FacebookRaffle": {
+    "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
+    "field_default_title": "Facebook raffle",
+    "field_help_separate_prizes_commas": "Separate prizes by commas",
+    "field_label_list_of_prizes": "List of prizes",
+    "field_label_number_of_participants": "Number of participants",
+    "field_label_prizes": "Prizes",
+    "field_label_when_to_toss": "Choose when results will be published",
+    "html_description": "Create a public raffle where participants will be able to join by login with the Facebook accounts.",
+    "html_keywords": "raffle in facebook, assign prizes, countdown, join raffle, public results",
+    "html_title": "Facebook Raffle",
+    "login_with_facebook_to_participate": "Login with Facebook to participate",
+    "message_no_prizes_added": "You haven't added any prize yet",
+    "or_access_as_someone_else": "Or access as someone else",
+    "page_title": "Raffle among Facebook users",
+    "participate_as": "Participate as {{username}}",
+    "people_registered_already": "There is {{count}} person registered",
+    "people_registered_already_plural": "There are {{count}} people registered",
+    "publish_draw": "Publish raffle",
+    "publish_raffle": "Publish raffle",
+    "published_raffle_details": "Details of the raffle",
+    "share_draw": "Share this raffle",
+    "share_result": "Share these results",
+    "step_label_general_details": "General details",
+    "step_label_prizes": "Add the prizes",
+    "step_label_when_to_toss": "When the results will be published?",
+    "unable_to_register_in_raffle": "There was an error when trying to register in the raffle. Please try again later",
+    "winners": "Winners of the raffle",
+    "you_are_registered_as_username": "You are registered in the raffle as {{username}}"
   },
   "FlipCoinPage": {
     "draw_subheading": "Flip a coin",
@@ -81,8 +107,8 @@
     "recent_draws": "Recent Raffles"
   },
   "HomePage": {
-    "draw_title_facebook_login": "Raffle among Facebook users",
     "draw_title_facebook_photo": "Raffle among 'likes' in Facebook",
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
     "draw_title_flip_coin": "Flip a coin",
     "draw_title_groups_generator": "Generate groups randomly",
     "draw_title_pick_card": "Pick a card",
@@ -104,8 +130,7 @@
     "letter_draw_html_title": "Generate random letters",
     "letter_draw_title": "Generate random letters",
     "number_of_letters": "Number of letters",
-    "publish_draw": "Publish draw",
-    "when_to_toss": "When do you want to show the results?"
+    "publish_draw": "Publish draw"
   },
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
@@ -131,7 +156,7 @@
     "field_label_list_of_prizes": "List of prizes",
     "field_label_participants": "Add participants",
     "field_label_prizes": "Add prizes",
-    "field_label_when_to_toss": "Choose when the to publish the winners",
+    "field_label_when_to_toss": "Choose when to publish the winners",
     "field_placeholder_participants": "Ana, David, ...",
     "field_placeholder_prizes": "Cruise to Bali, ...",
     "generate_results": "Raffle prizes",
@@ -157,6 +182,13 @@
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be generated?"
   },
+  "RafflesPage": {
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
+    "draw_title_raffle": "Raffle with a list of participants",
+    "html_description": "Create online raffles, flip a coin, make teams... Take any decision randomly",
+    "html_title": "Take decisions randomly online - ChooseRandom",
+    "section_title_raffles": "Raffles"
+  },
   "RandomNumber": {
     "create_certificated_draw": "Create a public draw",
     "draw_subheading": "Simple random number generator. Simply choose the range and the amount of numbers to generate.",
@@ -177,10 +209,7 @@
     "published_draw_details": "Draw details",
     "step_label_configuration": "Configure the draw",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When do you want to generate the results?",
-    "step_title_draw_configuration": "Configure the toss",
-    "step_title_general_details": "General details",
-    "step_title_when_to_toss": "When do you want to generate the results?"
+    "step_label_when_to_toss": "When do you want to generate the results?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancel",
@@ -207,6 +236,9 @@
   },
   "TranslationsSwitch": {
     "change_language": "Change language"
+  },
+  "WinnersList": {
+    "prize": "Prize"
   },
   "WithFieldValidation": {
     "default_message_min": "It must be lower than {{min}}",

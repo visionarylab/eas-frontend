@@ -108,8 +108,8 @@
               },
               "participant": {
                 "id": "c5d7a176-411e-4fe1-ad56-49dff423c6cd",
-                "name": "Participant 2",
-                "facebook_id": null
+                "name": "Mr Someone",
+                "facebook_id": "000001"
               }
             }
           ],
@@ -130,8 +130,8 @@
         {
           "id": "7ac11a97-909a-4a8f-b2f2-90fda6785669",
           "created_at": "2018-10-28T12:36:12.509557Z",
-          "name": "Participant 1",
-          "facebook_id": null
+          "name": "Mr Someone",
+          "facebook_id": "000001"
         },
         {
           "id": "c5d7a176-411e-4fe1-ad56-49dff423c6cd",

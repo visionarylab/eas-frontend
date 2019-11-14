@@ -31,14 +31,14 @@ const HomePage = ({ t }) => (
     <div className={c('HomePage__container')}>
       <Typography variant="h1">{t('section_title_online_raffles')}</Typography>
       {/* <div className={c('HomePage__draw-chips-group')}> */}
-      <DrawCard icon={raffleIcon} to="/raffle">
+      <DrawCard icon={raffleIcon} to="/draw/new/raffle">
         {t('draw_title_raffle')}
       </DrawCard>
       <DrawCard icon={groupsIcon} to="/groups">
         {t('draw_title_groups_generator')}
       </DrawCard>
       <DrawCard icon={facebookIcon} to="/facebook">
-        {t('draw_title_facebook_login')}
+        {t('draw_title_facebook_raffle')}
       </DrawCard>
       <DrawCard icon={coinIcon} to="coin/">
         {t('draw_title_flip_coin')}

@@ -55,7 +55,7 @@ describe('MultiValueInput', () => {
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should trimm values', () => {
+  it('Should trim values', () => {
     const onChangeMock = jest.fn();
     const wrapper = mount(
       <MultiValueInput

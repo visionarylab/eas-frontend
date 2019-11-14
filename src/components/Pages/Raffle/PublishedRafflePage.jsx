@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-import classNames from 'classnames/bind';
 import { RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import Page from '../../Page/Page.jsx';
-import WinnersList from './WinnersList.jsx';
+import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -19,9 +18,7 @@ import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
-import STYLES from './PublishedRafflePage.scss';
 
-const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Raffle';
 
 const loadData = async props => {
@@ -51,14 +48,13 @@ const PublishedRafflePage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="raffle_published_draw"
-      className={c('PublishedRafflePage')}
     >
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
           <>
             <ResultsBox title={t('winners')}>
-              <WinnersList winners={result} />
+              <WinnersList winners={result.value} />
             </ResultsBox>
             <ShareButtonsList />
           </>

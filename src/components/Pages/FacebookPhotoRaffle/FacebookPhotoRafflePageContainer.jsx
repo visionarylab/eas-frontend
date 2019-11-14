@@ -41,10 +41,10 @@ class FacebookPhotoRafflePageContainer extends Component {
       try {
         getObjectIdFromUrl(values.url);
       } catch (error) {
-        console.log('INVALID URL');
+        // console.log('INVALID URL');
       }
     }
-    console.log('onfliedChange', fieldName, value);
+    // console.log('onfliedChange', fieldName, value);
     this.setState(previousState => ({
       values: {
         ...previousState.values,
@@ -61,7 +61,7 @@ class FacebookPhotoRafflePageContainer extends Component {
     // const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
     const likes = await this.props.facebookContext.queryLikesOnObject(objectId);
-    console.log(likes);
+    // console.log(likes);
     return likes;
   };
 

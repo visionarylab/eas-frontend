@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
@@ -19,9 +18,7 @@ import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetail
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
-import STYLES from './PublishedGroupsGeneratorPage.scss';
 
-const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Groups';
 
 const loadData = async props => {
@@ -51,24 +48,17 @@ const PublishedGroupsGeneratorPage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="Groups Published Draw"
-      className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
-          <>
-            <ResultsBox title={t('generated_groups')}>
-              <GroupsGeneratorResult result={result} />
-            </ResultsBox>
-            <ShareButtonsList />
-          </>
+          <ResultsBox title={t('generated_groups')}>
+            <GroupsGeneratorResult result={result} />
+          </ResultsBox>
         ) : (
-          <>
-            <Countdown date={result.schedule_date} />
-            <ShareButtonsList />
-          </>
+          <Countdown date={result.schedule_date} />
         )}
-
+        <ShareButtonsList />
         <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
           <Typography component="div" variant="body2">
             {t('label_number_of_groups')} {numberOfGroups}

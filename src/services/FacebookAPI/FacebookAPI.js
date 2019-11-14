@@ -28,6 +28,7 @@ export const fbAsyncInit = async onStatusChange => {
         log('logged out');
       }
     });
+    window.FB.getLoginStatus(onStatusChange);
   };
 };
 
@@ -70,7 +71,7 @@ export const apiCall = async (endpoint, accessToken = null) =>
 
 /**
  * Get the current user's name and id
- * @return {object} - Contains the userName and userId
+ * @return {object} - Contains the username and userId
  * @throws {Exception}
  */
 export const queryUserDetails = async () => {
@@ -79,7 +80,7 @@ export const queryUserDetails = async () => {
     throw Error('Unable to get user details', response.error);
   }
   return {
-    userName: response.name,
+    username: response.name,
     userId: response.id,
   };
 };
@@ -133,8 +134,5 @@ export const getObjectIdFromUrl = urlString => {
 };
 
 export const logout = () => {
-  console.log('logging out');
-  window.FB.logout(() => {
-    console.log('FB: logged out');
-  });
+  window.FB.logout(() => {});
 };

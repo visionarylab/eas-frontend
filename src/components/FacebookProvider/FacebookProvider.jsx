@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
+import * as Sentry from '@sentry/browser';
 import i18n from 'i18next';
 import {
   apiCall,
@@ -20,15 +22,19 @@ class FacebookProvider extends Component {
       loadingFbStatus: true,
       loadingFbDetails: true,
       isLoggedInFB: false,
+      fbErrorMessage: null,
       userId: null,
-      userName: null,
+      username: null,
       userPages: null,
     };
   }
 
   componentDidMount() {
+    const { t } = this.props;
     const updateLoginStatus = async response => {
-      const isLoggedInFB = !!response.authResponse;
+      // status: connected == logged in
+      // status: unknown == logged out
+      const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
       if (!isLoggedInFB) {
         this.setState({
           isLoggedInFB: false,
@@ -41,10 +47,23 @@ class FacebookProvider extends Component {
             isLoggedInFB: true,
             loadingFbStatus: false,
             userId: userDetails.userId,
-            userName: userDetails.userName,
+            username: userDetails.username,
           });
-        } catch (e) {
+        } catch (ex) {
+          let fbErrorMessage;
+          switch (ex.error.code) {
+            case 1:
+              fbErrorMessage = t('error_message_possibly_blocked');
+              break;
+            default:
+              fbErrorMessage = t('error_message_impossible_to_log_in');
+          }
+          Sentry.withScope(scope => {
+            scope.setExtra('message', fbErrorMessage);
+            Sentry.captureException(ex);
+          });
           this.setState({
+            fbErrorMessage,
             isLoggedInFB: false,
             loadingFbStatus: false,
           });
@@ -52,7 +71,6 @@ class FacebookProvider extends Component {
       }
     };
     fbAsyncInit(updateLoginStatus);
-
     const locale = i18n.language.replace('-', '_');
     injectScript(locale);
   }
@@ -71,10 +89,9 @@ class FacebookProvider extends Component {
   queryLikesOnObject = async objectId => {
     const { userPages } = this.state;
     const accessTokens = userPages.map(page => page.accessToken);
-    const response = await Promise.all(
+    /* const response = */ await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );
-    console.log('queryLikesOnObject___response', response);
 
     // accessTokens.forEach(async pageAccessToken => {
     //   const likers = await getLikesOnObject(objectId, pageAccessToken);
@@ -88,7 +105,6 @@ class FacebookProvider extends Component {
   render() {
     const context = {
       ...this.state,
-      queryUserDetails: this.queryUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
       logout,
@@ -99,6 +115,7 @@ class FacebookProvider extends Component {
 }
 FacebookProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default FacebookProvider;
+export default withTranslation('FacebookProvider')(FacebookProvider);

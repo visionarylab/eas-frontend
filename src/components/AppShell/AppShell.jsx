@@ -16,8 +16,8 @@ import RecentDraws from '../Pages/RecentDraws/RecentDrawsPage.jsx';
 import PublishedGroupsGeneratorPage from '../Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';
 // import RandomNumberPageContainer from '../Pages/RandomNumber/RandomNumberPageContainer.jsx';
 import GroupsGeneratorPageContainer from '../Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
-import FacebookLoginRafflePageContainer from '../Pages/FacebookLoginRaffle/FacebookLoginRafflePageContainer.jsx';
-import PublishedFacebookLoginRafflePage from '../Pages/FacebookLoginRaffle/PublishedFacebookLoginRafflePage.jsx';
+import FacebookRafflePageContainer from '../Pages/FacebookRaffle/FacebookRafflePageContainer.jsx';
+import PublishedFacebookRafflePage from '../Pages/FacebookRaffle/PublishedFacebookRafflePage.jsx';
 // import FacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/FacebookPhotoRafflePageContainer.jsx';
 // import PublishedFacebookPhotoRafflePageContainer from '../Pages/FacebookPhotoRaffle/PublishedFacebookPhotoRafflePageContainer.jsx';
 // import LetterDrawPageContainer from '../Pages/LetterDrawPage/LetterDrawPageContainer.jsx';
@@ -25,6 +25,7 @@ import SpinArrowPageContainer from '../Pages/SpinArrowPage/SpinArrowPageContaine
 import FlipCoinPageContainer from '../Pages/FlipCoinPage/FlipCoinPageContainer.jsx';
 import RafflePageContainer from '../Pages/Raffle/RafflePageContainer.jsx';
 import PublishedRafflePageContainer from '../Pages/Raffle/PublishedRafflePage.jsx';
+import RafflesPage from '../Pages/Raffles/RafflesPage.jsx';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage.jsx';
 
 const c = classnames.bind(STYLES);
@@ -44,8 +45,9 @@ const AppShell = () => (
       />
       <Route exact path="/coin" component={FlipCoinPageContainer} />
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
-      <Route exact path="/facebook" component={FacebookLoginRafflePageContainer} />
-      <Route path="/facebook/:drawId" component={PublishedFacebookLoginRafflePage} />
+      <Route exact path="/facebook" component={FacebookRafflePageContainer} />
+      <Route path="/facebook/:drawId" component={PublishedFacebookRafflePage} />
+      <Route path="/draw/new/raffle" component={RafflesPage} />
       <Route exact path="/raffle/:isPublic(public)?" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />

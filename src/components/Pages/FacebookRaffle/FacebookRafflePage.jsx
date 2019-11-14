@@ -1,6 +1,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
@@ -15,7 +16,7 @@ import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 
 const PrizesSection = ({ prizes, onFieldChange, t }) => (
-  <SectionPanel title={t('step_title_prizes')}>
+  <SectionPanel>
     <ValidatedMultiValueInput
       name="prizes"
       label={t('field_label_prizes')}
@@ -25,9 +26,10 @@ const PrizesSection = ({ prizes, onFieldChange, t }) => (
       value={prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
-      data-testid="Raffle__prizes-field"
-      inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
+      data-testid="FacebookRaffle__prizes-field"
+      inputProps={{ 'data-testid': 'FacebookRaffle__prizes-field-input' }}
       validators={[{ rule: 'required' }]}
+      helperText={t('field_help_separate_prizes_commas')}
     />
   </SectionPanel>
 );
@@ -41,8 +43,8 @@ const PrizesForm = withFormValidation(PrizesSection);
 const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
 const WhenToTossForm = withFormValidation(WhenToTossSection);
 
-const FacebookLoginRafflePage = props => {
-  const { values, apiError, onFieldChange, handlePublish, t } = props;
+const FacebookRafflePage = props => {
+  const { values, isMobile, apiError, onFieldChange, handlePublish, t } = props;
   const steps = [
     {
       label: t('step_label_prizes'),
@@ -60,7 +62,6 @@ const FacebookLoginRafflePage = props => {
       label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
-          sectionTitle={t('step_title_general_details')}
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
@@ -73,7 +74,7 @@ const FacebookLoginRafflePage = props => {
       label: t('step_label_when_to_toss'),
       render: wizardProps => (
         <WhenToTossForm
-          sectionTitle={t('step_title_when_to_toss')}
+          label={t('field_label_when_to_toss')}
           dateScheduled={values.dateScheduled}
           onFieldChange={onFieldChange}
           t={t}
@@ -87,7 +88,8 @@ const FacebookLoginRafflePage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
-      pageType="groups_public_draw"
+      pageType="Facebook Raffle"
+      showAdvert={!isMobile}
     >
       <DrawLayout isPublic>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
@@ -96,13 +98,14 @@ const FacebookLoginRafflePage = props => {
           onSubmit={handlePublish}
           submitButtonLabel={t('publish_draw')}
           apiError={apiError}
+          isMobile={isMobile}
         />
       </DrawLayout>
     </Page>
   );
 };
 
-FacebookLoginRafflePage.propTypes = {
+FacebookRafflePage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -111,14 +114,17 @@ FacebookLoginRafflePage.propTypes = {
     numberOfWinners: PropTypes.string,
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
+  isMobile: PropTypes.bool.isRequired,
   apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-FacebookLoginRafflePage.defaultProps = {
+FacebookRafflePage.defaultProps = {
   apiError: false,
 };
 
-export default withTranslation('FacebookRaffle')(FacebookLoginRafflePage);
+const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });
+
+export default withTranslation('FacebookRaffle')(connect(mapStateToProps)(FacebookRafflePage));

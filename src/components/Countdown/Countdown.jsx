@@ -25,7 +25,7 @@ const Countdown = ({ date, t, i18n }) => {
         zeroPadLength={0}
         renderer={({ days, hours, minutes, seconds, completed }) => {
           if (completed) {
-            return t('reload_page');
+            return <Typography variant="subtitle2">{t('reload_page')}</Typography>;
           }
 
           let countdownMessage = '';

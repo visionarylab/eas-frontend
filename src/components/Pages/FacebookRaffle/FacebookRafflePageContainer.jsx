@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
@@ -6,14 +5,14 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import moment from 'moment';
 import { RaffleApi, Raffle, Prize, DrawTossPayload } from 'echaloasuerte-js-sdk';
 
-import FacebookLoginRafflePage from './FacebookLoginRafflePage.jsx';
+import FacebookRafflePage from './FacebookRafflePage.jsx';
 import recentDraws from '../../../services/recentDraws';
 import withTracking from '../../withTracking/withTracking.jsx';
 
 const raffleApi = new RaffleApi();
-const analyticsDrawType = 'Facebook';
+const analyticsDrawType = 'FacebookRaffle';
 
-class FacebookLoginRafflePageContainer extends Component {
+class FacebookRafflePageContainer extends Component {
   constructor(props) {
     super(props);
     const dateScheduled = new Date();
@@ -22,13 +21,24 @@ class FacebookLoginRafflePageContainer extends Component {
     this.state = {
       APIError: false,
       values: {
-        title: 'Sorteo en Facebook',
+        title: '', // Default title is set in CDM
         description: '',
         participants: [],
         prizes: [],
         dateScheduled,
       },
     };
+  }
+
+  componentDidMount() {
+    const { t } = this.props;
+    const defaultTitle = t('field_default_title');
+    this.setState(previousState => ({
+      values: {
+        ...previousState.values,
+        title: defaultTitle,
+      },
+    }));
   }
 
   onFieldChange = (fieldName, value) => {
@@ -43,7 +53,8 @@ class FacebookLoginRafflePageContainer extends Component {
   };
 
   handlePublish = async () => {
-    this.props.history.push(`${this.props.location.pathname}/3`);
+    const { location, history } = this.props;
+    history.push(`${location.pathname}/3`);
   };
 
   createDraw = () => {
@@ -89,7 +100,7 @@ class FacebookLoginRafflePageContainer extends Component {
   render() {
     const { values, APIError } = this.state;
     return (
-      <FacebookLoginRafflePage
+      <FacebookRafflePage
         apiError={APIError}
         values={values}
         onFieldChange={this.onFieldChange}
@@ -99,11 +110,11 @@ class FacebookLoginRafflePageContainer extends Component {
   }
 }
 
-FacebookLoginRafflePageContainer.propTypes = {
+FacebookRafflePageContainer.propTypes = {
+  t: PropTypes.func.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
-  // match: ReactRouterPropTypes.match.isRequired,
   track: PropTypes.func.isRequired,
 };
 
-export default withTracking(withTranslation('FacebookRaffle')(FacebookLoginRafflePageContainer));
+export default withTracking(withTranslation('FacebookRaffle')(FacebookRafflePageContainer));
