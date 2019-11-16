@@ -101,7 +101,7 @@ const withFormValidation = WrappedComponent => {
 
     render() {
       const { onSubmit, onFieldDeregister, onValidationChange, checkErrors, ...props } = this.props;
-      return <WrappedComponent {...props} onSubmit={this.onSubmit} />;
+      return <WrappedComponent autoComplete="off" {...props} onSubmit={this.onSubmit} />;
     }
   }
 
