@@ -1,7 +1,17 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { render, fireEvent } from '@testing-library/react';
 import MultiValueInput from './MultiValueInput.jsx';
+
+jest.mock('@material-ui/core/IconButton', () => {
+  const ActualIcon = jest.requireActual('@material-ui/core/IconButton');
+  return props => (
+    <div data-testid="AddValueIcon" {...props}>
+      <ActualIcon.default />
+    </div>
+  );
+});
 
 describe('MultiValueInput', () => {
   beforeEach(() => {
@@ -118,5 +128,28 @@ describe('MultiValueInput', () => {
     const expectedEvent = { target: { name: 'field1', value: [] } };
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
     expect(initialValue).toEqual(['Value 1']);
+  });
+
+  it('Should have a button to add the current value', () => {
+    const onChangeMock = jest.fn();
+    const initialValue = [];
+    const { queryByTestId } = render(
+      <MultiValueInput
+        label="Input label"
+        name="field1"
+        labelDisplayList="Selected Items"
+        messageEmpty="No items selected"
+        value={initialValue}
+        onChange={onChangeMock}
+        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+      />,
+    );
+
+    const event = { target: { name: 'field1', value: 'David' } };
+    fireEvent.change(queryByTestId('MultiValueInput__field-input'), event);
+
+    expect(queryByTestId('AddValueIcon')).toBeTruthy();
+    fireEvent.click(queryByTestId('AddValueIcon'));
+    expect(onChangeMock).toHaveBeenCalledWith({ target: { name: 'field1', value: ['David'] } });
   });
 });

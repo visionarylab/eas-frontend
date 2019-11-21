@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '../TextField/TextField.jsx';
 
 import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay.jsx';
@@ -29,6 +32,19 @@ class MultiValueInput extends Component {
     }
   };
 
+  addInputValue = () => {
+    const { currentValue } = this.state;
+    if (currentValue) {
+      const { delimiters } = this.props;
+      const regexFromMyArray = new RegExp(delimiters.join('|\\'), 'gi');
+      const values = currentValue
+        .split(regexFromMyArray)
+        .map(val => val.trim())
+        .filter(Boolean);
+      this.addValues(values);
+    }
+  };
+
   onValueDelete = valueToDelete => {
     const { value: values, name, onChange } = this.props;
     const indexToDelete = values.indexOf(valueToDelete);
@@ -53,7 +69,7 @@ class MultiValueInput extends Component {
       'data-testid': dataComponent,
       ...rest
     } = this.props;
-    const { delimiters, onChange, ...extra } = rest;
+    const { delimiters, onChange, InputProps, ...extra } = rest;
     const { currentValue } = this.state;
     return (
       <div data-testid={dataComponent}>
@@ -63,6 +79,19 @@ class MultiValueInput extends Component {
           margin="normal"
           value={currentValue}
           {...extra}
+          InputProps={{
+            ...InputProps,
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="add" // TODO translate this
+                  onClick={this.addInputValue}
+                >
+                  <AddCircleIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <MultiValueDisplay
           label={labelDisplayList}
