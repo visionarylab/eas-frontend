@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+
 import TextField from '../TextField/TextField.jsx';
 
 import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay.jsx';
@@ -65,6 +67,7 @@ class MultiValueInput extends Component {
     const {
       value: values,
       labelDisplayList,
+      tooltipAddValue,
       messageEmpty,
       'data-testid': dataComponent,
       ...rest
@@ -81,14 +84,13 @@ class MultiValueInput extends Component {
           {...extra}
           InputProps={{
             ...InputProps,
-            endAdornment: (
+            endAdornment: currentValue && (
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="add" // TODO translate this
-                  onClick={this.addInputValue}
-                >
-                  <AddCircleIcon />
-                </IconButton>
+                <Tooltip title={tooltipAddValue} aria-label={tooltipAddValue} placement="top">
+                  <IconButton onClick={this.addInputValue}>
+                    <AddCircleIcon />
+                  </IconButton>
+                </Tooltip>
               </InputAdornment>
             ),
           }}
@@ -108,6 +110,7 @@ class MultiValueInput extends Component {
 MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
   labelDisplayList: PropTypes.string.isRequired,
+  tooltipAddValue: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
   value: PropTypes.arrayOf(PropTypes.string),

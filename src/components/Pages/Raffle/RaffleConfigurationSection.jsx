@@ -4,27 +4,24 @@ import PropTypes from 'prop-types';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
+import ParticipantsInput from '../../ParticipantsInput/ParticipantsInput.jsx';
 import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 
 const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
+const ValidatedParticipantsInput = withFieldValidation(ParticipantsInput);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
-    <ValidatedMultiValueInput
+    <ValidatedParticipantsInput
       name="participants"
-      label={t('field_label_participants')}
-      labelDisplayList={t('field_label_list_of_participants')}
-      placeholder={t('field_placeholder_participants')}
-      messageEmpty={t('message_no_participants_added')}
       value={values.participants}
       fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
       data-testid="Raffle__participants-field"
       inputProps={{ 'data-testid': 'Raffle__participants-field-input' }}
-      helperText={t('field_help_separate_participants_commas')}
     />
     <ValidatedMultiValueInput
       name="prizes"

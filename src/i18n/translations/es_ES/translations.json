@@ -83,12 +83,8 @@
     "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
     "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
     "field_default_title": "Generación de grupos aleatorios",
-    "field_help_separate_participants_commas": "Separa los participantes por comas",
-    "field_label_list_of_participants": "Lista de participantes",
     "field_label_number_of_groups": "Número de grupos",
-    "field_label_participants": "Participantes",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
-    "field_placeholder_participants": "Ana, David...",
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
     "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
@@ -96,7 +92,6 @@
     "html_title": "Grupos Aleatorios | Echalo A Suerte",
     "label_number_of_groups": "Número de grupos:",
     "label_participants": "Participantes:",
-    "message_no_participants_added": "No ha añadido ningún participante",
     "page_title": "Grupos Aleatorios",
     "publish_draw": "Publicar tirada",
     "published_draw_details": "Detalles del sorteo",
@@ -159,14 +154,10 @@
     "error_form_not_enough_participants": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participante. Añade más participantes",
     "error_form_not_enough_participants_plural": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participantes. Añade más participantes",
     "field_default_title": "Sorteo público",
-    "field_help_separate_participants_commas": "Separa los participantes por comas",
     "field_help_separate_prizes_commas": "Separa los premios por comas",
-    "field_label_list_of_participants": "Lista de participantes",
     "field_label_list_of_prizes": "Lista de premios",
-    "field_label_participants": "Participantes",
     "field_label_prizes": "Premios",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
-    "field_placeholder_participants": "Ana, David, ...",
     "field_placeholder_prizes": "Crucero a Bali, ...",
     "generate_results": "Sortear premios",
     "html_description": "Organiza sorteos online. Deja que la suerte decida quién sera el ganador de un premio.",
@@ -176,7 +167,6 @@
     "label_prizes": "Premios:",
     "learn_more_content": "En este tipo de sorteo tú decides quienes serán los participantes.",
     "learn_more_title": "¿Cuáles son las ventajas de este tipo de sorteo?",
-    "message_no_participants_added": "No ha añadido ningún participante",
     "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
     "publish_draw": "Publicar sorteo",
@@ -256,5 +246,13 @@
   "WizardForm": {
     "back": "Atrás",
     "next": "Siguiente"
+  },
+  "ParticipantsInput": {
+    "field_label": "Participantes",
+    "field_placeholder": "Ana, David...",
+    "box_label": "Lista de participantes",
+    "message_no_participants_added": "No ha añadido ningún participante",
+    "field_help_separate_participants_commas": "Separa los participantes por comas",
+    "tooltip_add_value": "Añadir participante"
   }
 }

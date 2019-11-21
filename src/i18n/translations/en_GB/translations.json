@@ -74,12 +74,8 @@
     "draw_subheading": "Create groups online",
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
     "field_default_title": "Random groups generator",
-    "field_help_separate_participants_commas": "Separate participants by commas",
-    "field_label_list_of_participants": "List of participants",
     "field_label_number_of_groups": "Number of groups",
-    "field_label_participants": "Add participants",
     "field_label_when_to_toss": "Choose when to publish the results",
-    "field_placeholder_participants": "Ana, David...",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
@@ -87,7 +83,6 @@
     "html_title": "Generate groups online",
     "label_number_of_groups": "Number of groups:",
     "label_participants": "Participants:",
-    "message_no_participants_added": "You haven't added any participants",
     "page_title": "Generate groups",
     "publish_draw": "Publish draw",
     "published_draw_details": "Raffle details",
@@ -150,14 +145,10 @@
     "error_form_not_enough_participants": "There are {{numberOfPrizes}} prizes but only {{count}} participant. Add more participants",
     "error_form_not_enough_participants_plural": "There are {{numberOfPrizes}} prizes but only {{count}} participants. Add more participants",
     "field_default_title": "Public raffle",
-    "field_help_separate_participants_commas": "Separate participants by commas",
     "field_help_separate_prizes_commas": "Separate prizes by commas",
-    "field_label_list_of_participants": "List of participants",
     "field_label_list_of_prizes": "List of prizes",
-    "field_label_participants": "Add participants",
     "field_label_prizes": "Add prizes",
     "field_label_when_to_toss": "Choose when to publish the winners",
-    "field_placeholder_participants": "Ana, David, ...",
     "field_placeholder_prizes": "Cruise to Bali, ...",
     "generate_results": "Raffle prizes",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
@@ -167,7 +158,6 @@
     "label_prizes": "Prizes:",
     "learn_more_content": "With this raffle you will be able to choose a list of participants and decide when the results will be published",
     "learn_more_title": "What are the advantages of this raffle?",
-    "message_no_participants_added": "You haven't added any participants",
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
     "publish_draw": "Publish raffle",
@@ -247,5 +237,13 @@
   "WizardForm": {
     "back": "Back",
     "next": "Next"
+  },
+  "ParticipantsInput": {
+    "field_label": "Participants",
+    "field_placeholder": "Ana, David...",
+    "box_label": "List of participants",
+    "message_no_participants_added": "You haven't added any participants",
+    "field_help_separate_participants_commas": "Separate participants by commas",
+    "tooltip_add_value": "Add participant"
   }
 }

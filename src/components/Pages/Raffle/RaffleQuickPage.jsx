@@ -77,6 +77,7 @@ const RafflePage = ({
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_results')} />
         </ValidatedForm>
+        {/* TODO Why do we need to use inline styles here? */}
         <div ref={resultsRef} style={{ 'text-align': 'center' }}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
