@@ -6,7 +6,7 @@ import classnames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import TextField from '../../TextField/TextField.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay.jsx';
+// import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay.jsx';
 import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
 import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
@@ -59,8 +59,8 @@ GrantAccessSection.propTypes = {
 
 const ChoosePostSection = ({
   url,
-  participants,
-  participantsFetched,
+  // participants,
+  // participantsFetched,
   onFieldChange,
   onGetLikes,
   t,
@@ -78,21 +78,21 @@ const ChoosePostSection = ({
     <Button variant="contained" color="primary" onClick={onGetLikes}>
       {t('check_participants')}
     </Button>
-    {participantsFetched && (
+    {/* {participantsFetched && (
       <MultiValueDisplay
         name="participants"
         label={t('participants')}
         values={participants}
         placeholder="David"
       />
-    )}
+    )} */}
   </SectionPanel>
 );
 
 ChoosePostSection.propTypes = {
   url: PropTypes.string.isRequired,
-  participants: PropTypes.string.isRequired,
-  participantsFetched: PropTypes.bool.isRequired,
+  // participants: PropTypes.string.isRequired,
+  // participantsFetched: PropTypes.bool.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   onGetLikes: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

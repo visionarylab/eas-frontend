@@ -20,8 +20,6 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       // fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-testid="GroupsGenerator__participants-field"
-      inputProps={{ 'data-testid': 'GroupsGenerator__participants-field-input' }}
     />
     <ValidatedTextField
       name="numberOfGroups"
@@ -34,6 +32,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       validators={[{ rule: 'required' }, { rule: 'min', value: 2 }]}
       data-testid="GroupsGenerator__number-of-groups-field"
       inputProps={{ 'data-testid': 'GroupsGenerator__number-of-groups-field-input' }}
+      // variant="outlined"
     />
     <ValidationFeedback />
   </SectionPanel>

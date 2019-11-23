@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import { withTheme, styled } from '@material-ui/core/styles';
+
 import classNames from 'classnames';
+import Chip from '@material-ui/core/Chip';
+
+// import ChipInput from 'material-ui-chip-input';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import classnames from 'classnames/bind';
 import STYLES from './MultiValueInput.module.scss';
 
-import TextField from '../TextField/TextField.jsx';
-
-import MultiValueDisplay from '../MultiValueDisplay/MultiValueDisplay.jsx';
+const c = classnames.bind(STYLES);
 
 class MultiValueInput extends Component {
   constructor(props) {
@@ -65,69 +70,120 @@ class MultiValueInput extends Component {
     this.setState({ currentValue: '' });
   };
 
+  handleKeyPress = e => {
+    const code = e.keyCode || e.which;
+    if (code === 13) {
+      this.addInputValue();
+      e.preventDefault();
+    }
+  };
+
   render() {
     const {
+      id,
       value: values,
+      label,
       labelDisplayList,
       tooltipAddValue,
       messageEmpty,
-      'data-testid': dataComponent,
+      placeholder,
+      helperText,
+      fullWidth,
+      theme,
+      error,
+      'data-testid': dataTestId,
+      className,
+      InputProps,
+      FormHelperTextProps,
       ...rest
     } = this.props;
-    const { delimiters, onChange, InputProps, className, ...extra } = rest;
+    const { delimiters, onChange, ...extra } = rest;
     const { currentValue } = this.state;
+    const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+    const inputLabelId = label && id ? `${id}-label` : undefined;
+    const MyInputLabel = styled(InputLabel)({
+      ...theme.typography.h3,
+      top: 0,
+      left: 0,
+      position: 'relative',
+      transform: 'initial',
+    });
     return (
-      <div data-testid={dataComponent}>
-        <TextField
-          onChange={this.onCurrentValueChange}
-          type="text"
-          margin="normal"
-          value={currentValue}
-          className={classNames(STYLES.Input, className)}
-          {...extra}
-          InputProps={{
-            ...InputProps,
-            endAdornment: currentValue && (
-              <InputAdornment position="end">
-                <Tooltip title={tooltipAddValue} aria-label={tooltipAddValue} placement="top">
-                  <IconButton onClick={this.addInputValue}>
-                    <AddCircleIcon />
-                  </IconButton>
-                </Tooltip>
-              </InputAdornment>
-            ),
-          }}
-        />
-        <MultiValueDisplay
-          label={labelDisplayList}
-          values={values}
-          messageEmpty={messageEmpty}
-          allowDelete
-          onDelete={this.onValueDelete}
-        />
-      </div>
+      <FormControl error={error} fullWidth={fullWidth} data-testid={dataTestId}>
+        <MyInputLabel htmlFor={id} id={inputLabelId} className={STYLES.Label}>
+          {label}
+        </MyInputLabel>
+        <div className={c('Border', { Border__error: error })} data-testid="MultiValueDisplay">
+          {labelDisplayList && (
+            <Typography color="textSecondary" variant="caption">
+              {labelDisplayList}
+            </Typography>
+          )}
+          <div className={STYLES.ItemsList}>
+            {values.map(value => (
+              <Chip key={Math.random()} label={value} onDelete={this.onValueDelete} />
+            ))}{' '}
+            <Input
+              onChange={this.onCurrentValueChange}
+              type="text"
+              value={currentValue}
+              placeholder={!values.length ? placeholder : null}
+              className={classNames(STYLES.Input, className)}
+              disableUnderline
+              onKeyDown={this.handleKeyPress}
+              {...InputProps}
+              {...extra}
+            />
+          </div>
+        </div>
+        {helperText && (
+          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+            {helperText}
+          </FormHelperText>
+        )}
+        <Typography color="textSecondary" variant="caption" />
+      </FormControl>
     );
   }
 }
 
 MultiValueInput.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string.isRequired,
+  helperText: PropTypes.string,
+  placeholder: PropTypes.string,
   labelDisplayList: PropTypes.string.isRequired,
   tooltipAddValue: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
   value: PropTypes.arrayOf(PropTypes.string),
+  fullWidth: PropTypes.bool,
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
   'data-testid': PropTypes.string,
+  error: PropTypes.bool,
+  InputProps: PropTypes.shape({}),
+  FormHelperTextProps: PropTypes.shape({}),
+  theme: PropTypes.shape({
+    typography: PropTypes.shape({
+      h3: PropTypes.shape({}).isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 MultiValueInput.defaultProps = {
-  delimiters: ['Enter', ','],
+  id: null,
+  delimiters: [','],
+  placeholder: null,
+  helperText: null,
+  fullWidth: false,
   value: [],
   className: '',
   'data-testid': '',
+  InputProps: {},
+  FormHelperTextProps: {},
+  error: false,
 };
 
-export default MultiValueInput;
+export default withTheme(MultiValueInput);

@@ -1,3 +1,24 @@
-.Input {
-  width: 20rem;
+@import '../variables';
+
+$border-radius: 4 * $one-pixel-rem;
+
+.Border {
+  margin-top: $spacing-md;
+  padding: $spacing-xs;
+  border-width: $one-pixel-rem;
+  border-style: solid;
+  border-radius: $border-radius;
+  border-color: $color-gray;
+
+  &__error {
+    border-color: $color-red;
+  }
+}
+
+.ItemsList {
+  padding: $spacing-sm;
+}
+
+.Label {
+  color: $color-primary;
 }

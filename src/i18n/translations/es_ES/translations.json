@@ -249,7 +249,7 @@
   },
   "ParticipantsInput": {
     "field_label": "Participantes",
-    "field_placeholder": "Ana, David...",
+    "field_placeholder": "Añade participantes",
     "box_label": "Lista de participantes",
     "message_no_participants_added": "No has añadido ningún participante",
     "field_help_separate_participants_commas": "Separa los participantes por comas",

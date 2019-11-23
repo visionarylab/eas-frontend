@@ -1,6 +1,4 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import { render, fireEvent } from '@testing-library/react';
 import MultiValueInput from './MultiValueInput.jsx';
 
@@ -14,130 +12,138 @@ jest.mock('@material-ui/core/IconButton', () => {
   ));
 });
 
-const translation = {
+jest.mock('@material-ui/core/Chip', () => {
+  const ActualChip = jest.requireActual('@material-ui/core/Chip');
+  return props => (
+    <div data-testid="Chip">
+      <ActualChip.default {...props} />
+    </div>
+  );
+});
+
+jest.mock('@material-ui/core/Input', () => {
+  const ActualInput = jest.requireActual('@material-ui/core/Input');
+  return props => (
+    <div data-testid="Input">
+      <ActualInput.default {...props} inputProps={{ 'data-testid': 'Input__input-field' }} />
+    </div>
+  );
+});
+
+const translations = {
   label: 'Input label',
   labelDisplayList: 'Selected Items',
   messageEmpty: 'No items selected',
   tooltipAddValue: 'Add item',
+  placeholder: 'Add items',
 };
 
 describe('MultiValueInput', () => {
-  beforeEach(() => {
-    Math.random = jest.fn(() => 1);
+  it('Should show placeholder when there are no values', () => {
+    const { getByPlaceholderText } = render(
+      <MultiValueInput name="field1" onChange={() => {}} {...translations} />,
+    );
+    expect(getByPlaceholderText(translations.placeholder)).toBeTruthy();
   });
 
-  it('Should render correctly without values', () => {
-    const wrapper = shallow(<MultiValueInput name="field1" onChange={() => {}} {...translation} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('Should render correctly with values', () => {
-    const wrapper = shallow(
+  it('Should correctly render values using chips', () => {
+    const { getByText, getAllByTestId } = render(
       <MultiValueInput
         name="field1"
         value={['value 1', 'value 2']}
         onChange={() => {}}
-        {...translation}
+        {...translations}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(getByText('value 1')).toBeTruthy();
+    expect(getByText('value 2')).toBeTruthy();
+    expect(getAllByTestId('Chip').length).toEqual(2);
   });
 
-  it('Pasting a comma separated list of values should return trimmed values', () => {
+  it('Should add value when it contains a comma', () => {
     const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <MultiValueInput
-        name="field1"
-        onChange={onChangeMock}
-        data-testid="MultiValueInput__field"
-        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
-        {...translation}
-      />,
+    const values = [];
+    const { queryByTestId } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
-    const input = wrapper.find('input');
-    const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
-    input.simulate('change', event);
-    const expectedEvent = { target: { name: 'field1', value: ['Value 1', 'Value 2'] } };
+
+    const event = { target: { name: 'field1', value: 'Value 1,' } };
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
+    fireEvent.change(queryByTestId('Input__input-field'), event);
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should trim values', () => {
+  it('Should trim values before adding them', () => {
     const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <MultiValueInput
-        name="field1"
-        onChange={onChangeMock}
-        data-testid="MultiValueInput__field"
-        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
-        {...translation}
-      />,
+    const values = [];
+    const { queryByTestId } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
-    const input = wrapper.find('input');
-    const event = { target: { name: 'field1', value: ' Value 1, Value 2   ,   ,,' } };
-    input.simulate('change', event);
-    const expectedEvent = { target: { name: 'field1', value: ['Value 1', 'Value 2'] } };
+
+    const event = { target: { name: 'field1', value: '    Value 1,' } };
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
+    fireEvent.change(queryByTestId('Input__input-field'), event);
+    expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
+  });
+
+  it('Should add value when the ENTER key is hit', () => {
+    const onChangeMock = jest.fn();
+    const values = [];
+    const { queryByTestId } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
+    );
+
+    const event = { target: { name: 'field1', value: 'Value 1' } };
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
+    const input = queryByTestId('Input__input-field');
+    fireEvent.change(input, event);
+    fireEvent.keyDown(input, { key: 'Enter', keyCode: 13 });
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
   it('Should not mutate the original value when values are added', () => {
     const onChangeMock = jest.fn();
-    const initialValue = [];
-    const wrapper = mount(
-      <MultiValueInput
-        name="field1"
-        value={initialValue}
-        onChange={onChangeMock}
-        data-testid="MultiValueInput__field"
-        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
-        {...translation}
-      />,
+    const values = [];
+    const { queryByTestId } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
-    const input = wrapper.find('input');
-    const event = { target: { name: 'field1', value: ' Value 1,' } };
-    input.simulate('change', event);
-    const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
+
+    const event = { target: { name: 'field1', value: 'Value 1,' } };
+    fireEvent.change(queryByTestId('Input__input-field'), event);
+    expect(values).toEqual([]);
+  });
+
+  it('Show process the input when a comma-separated list of values is pasted', () => {
+    const onChangeMock = jest.fn();
+    const { queryByTestId } = render(
+      <MultiValueInput name="field1" onChange={onChangeMock} {...translations} />,
+    );
+
+    const event = { target: { name: 'field1', value: ' Value ok 1, Value ok 2   ,   ,,' } };
+    fireEvent.change(queryByTestId('Input__input-field'), event);
+
+    const expectedEvent = { target: { name: 'field1', value: ['Value ok 1', 'Value ok 2'] } };
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
-    expect(initialValue).toEqual([]);
+  });
+
+  it('Should be possible to remove items', () => {
+    const onChangeMock = jest.fn();
+    const values = ['Value 1'];
+    const { container } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
+    );
+    fireEvent.click(container.querySelector('svg'));
+    const expectedEvent = { target: { name: 'field1', value: [] } };
+    expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
   it('Should not mutate the original value when values are removed', () => {
     const onChangeMock = jest.fn();
-    const initialValue = ['Value 1'];
-    const wrapper = mount(
-      <MultiValueInput
-        name="field1"
-        value={initialValue}
-        onChange={onChangeMock}
-        data-testid="MultiValueInput__field"
-        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
-        {...translation}
-      />,
+    const values = ['Value 1'];
+    const { container } = render(
+      <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
-    wrapper.find('svg').simulate('click');
-    const expectedEvent = { target: { name: 'field1', value: [] } };
-    expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
-    expect(initialValue).toEqual(['Value 1']);
-  });
-
-  it('Should have a button to add the current value', () => {
-    const onChangeMock = jest.fn();
-    const initialValue = [];
-    const { queryByTestId } = render(
-      <MultiValueInput
-        name="field1"
-        value={initialValue}
-        onChange={onChangeMock}
-        inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
-        {...translation}
-      />,
-    );
-
-    const event = { target: { name: 'field1', value: 'David' } };
-    fireEvent.change(queryByTestId('MultiValueInput__field-input'), event);
-
-    expect(queryByTestId('AddValueIcon')).toBeTruthy();
-    fireEvent.click(queryByTestId('AddValueIcon'));
-    expect(onChangeMock).toHaveBeenCalledWith({ target: { name: 'field1', value: ['David'] } });
+    fireEvent.click(container.querySelector('svg'));
+    expect(values).toEqual(['Value 1']);
   });
 });

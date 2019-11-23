@@ -231,7 +231,7 @@
     "prize": "Prize"
   },
   "WithFieldValidation": {
-    "default_message_min": "It must be lower than {{min}}",
+    "default_message_min": "It must be at least {{min}}",
     "default_message_required_field": "This field is required"
   },
   "WizardForm": {
@@ -240,7 +240,7 @@
   },
   "ParticipantsInput": {
     "field_label": "Participants",
-    "field_placeholder": "Ana, David...",
+    "field_placeholder": "Add participants",
     "box_label": "List of participants",
     "message_no_participants_added": "You haven't added any participants",
     "field_help_separate_participants_commas": "Separate participants by commas",

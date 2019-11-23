@@ -19,7 +19,7 @@ describe('Groups Generator Page', () => {
 
           it('Events sent on publish', () => {
             cy.visit('/groups/public');
-            cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+            cy.getComponent('ParticipantsInput__inputField').type('one, two,');
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
@@ -44,14 +44,14 @@ describe('Groups Generator Page', () => {
           cy.getComponent('WizardForm__next-button').click();
 
           // It should error if prizes is empty
-          cy.getComponent('GroupsGenerator__participants-field').shouldHaveError();
-          cy.getComponent('GroupsGenerator__participants-field-input').type('you,');
-          cy.getComponent('GroupsGenerator__participants-field').shouldNotHaveError();
+          cy.getComponent('ParticipantsInput').shouldHaveError();
+          cy.getComponent('ParticipantsInput__inputField').type('you,');
+          cy.getComponent('ParticipantsInput').shouldNotHaveError();
 
           // It should error if there are less participants than groups to make
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('ErrorFeedback').should('be.visible');
-          cy.getComponent('GroupsGenerator__participants-field-input').type('me,');
+          cy.getComponent('ParticipantsInput__inputField').type('me,');
           cy.getComponent('ErrorFeedback').should('not.exist');
 
           // Go to second step
@@ -99,7 +99,7 @@ describe('Groups Generator Page', () => {
             status: 503,
             response: {},
           }).as('failedRequest');
-          cy.getComponent('GroupsGenerator__participants-field-input').type('you, me,');
+          cy.getComponent('ParticipantsInput__inputField').type('you, me,');
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
@@ -125,7 +125,7 @@ describe('Groups Generator Page', () => {
         it('Should have a share button that takes the user to the public draw', () => {
           cy.visit('/groups');
           cy.clock();
-          cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
+          cy.getComponent('ParticipantsInput__inputField').type('you, me, him, her,');
           cy.getComponent('SubmitDrawButton').click();
           cy.tick(4000); // Fast forward the loading animation
           cy.getComponent('ShareDrawButton').click();
@@ -161,7 +161,7 @@ describe('Groups Generator Page', () => {
                 status: 503,
                 response: {},
               }).as('failedRequest');
-              cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+              cy.getComponent('ParticipantsInput__inputField').type('one, two,');
               cy.getComponent('SubmitDrawButton').click();
               cy.wait('@failedRequest');
               cy.getComponent('ErrorFeedback').should('be.visible');
@@ -179,9 +179,9 @@ describe('Groups Generator Page', () => {
               cy.getComponent('SubmitDrawButton').click();
 
               // It should error if participants is empty
-              cy.getComponent('GroupsGenerator__participants-field').shouldHaveError();
-              cy.getComponent('GroupsGenerator__participants-field-input').type('you, me,');
-              cy.getComponent('GroupsGenerator__participants-field').shouldNotHaveError();
+              cy.getComponent('ParticipantsInput').shouldHaveError();
+              cy.getComponent('ParticipantsInput__inputField').type('you, me,');
+              cy.getComponent('ParticipantsInput').shouldNotHaveError();
 
               // It should error if number of groups is empty
               cy.getComponent('GroupsGenerator__number-of-groups-field-input').clear();
@@ -194,7 +194,7 @@ describe('Groups Generator Page', () => {
               cy.visit('/groups');
               cy.getComponent('SubmitDrawButton').click();
               cy.getComponent('ErrorFeedback').should('be.visible');
-              cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+              cy.getComponent('ParticipantsInput__inputField').type('one, two,');
               cy.getComponent('ErrorFeedback').should('not.exist');
             });
           });
@@ -202,7 +202,7 @@ describe('Groups Generator Page', () => {
           it('Should have the right default values', () => {
             cy.visit('/groups');
 
-            cy.getComponent('GroupsGenerator__participants-field-input').should('have.value', '');
+            cy.getComponent('ParticipantsInput__inputField').should('have.value', '');
             cy.getComponent('GroupsGenerator__number-of-groups-field-input').should(
               'have.value',
               '2',
@@ -213,7 +213,7 @@ describe('Groups Generator Page', () => {
           it('Request contains the data, results are shown and analytics events sent', () => {
             cy.visit('/groups');
             cy.clock();
-            cy.getComponent('GroupsGenerator__participants-field-input').type('you, me, him, her,');
+            cy.getComponent('ParticipantsInput__inputField').type('you, me, him, her,');
             cy.getComponent('GroupsGenerator__number-of-groups-field-input')
               .clear()
               .type(4);
@@ -242,7 +242,7 @@ describe('Groups Generator Page', () => {
           it('Changing data after toss should create a new draw', () => {
             cy.visit('/groups');
             cy.clock();
-            cy.getComponent('GroupsGenerator__participants-field-input').type('one, two,');
+            cy.getComponent('ParticipantsInput__inputField').type('one, two,');
             cy.getComponent('SubmitDrawButton').click();
             cy.mockedRequestWait('POST', '/api/groups')
               .its('requestBody.participants')
@@ -250,7 +250,7 @@ describe('Groups Generator Page', () => {
             cy.tick(4000); // Fast forward the loading animation
             cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss');
             cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
-            cy.getComponent('GroupsGenerator__participants-field-input').type('three,');
+            cy.getComponent('ParticipantsInput__inputField').type('three,');
             cy.getComponent('SubmitDrawButton').click();
 
             // A new draw should be created and tossed
