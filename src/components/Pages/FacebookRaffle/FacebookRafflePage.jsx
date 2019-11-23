@@ -10,33 +10,27 @@ import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
+import PrizesInput from '../../PrizesInput/PrizesInput.jsx';
 import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
 
-const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
+const ValidatedPrizesInput = withFieldValidation(PrizesInput);
 
-const PrizesSection = ({ prizes, onFieldChange, t }) => (
+const PrizesSection = ({ prizes, onFieldChange }) => (
   <SectionPanel>
-    <ValidatedMultiValueInput
+    <ValidatedPrizesInput
       name="prizes"
-      label={t('field_label_prizes')}
-      labelDisplayList={t('field_label_list_of_prizes')}
-      placeholder="PS4"
-      messageEmpty={t('message_no_prizes_added')}
       value={prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
+      validators={[{ rule: 'required' }]}
       data-testid="FacebookRaffle__prizes-field"
       inputProps={{ 'data-testid': 'FacebookRaffle__prizes-field-input' }}
-      validators={[{ rule: 'required' }]}
-      helperText={t('field_help_separate_prizes_commas')}
     />
   </SectionPanel>
 );
 PrizesSection.propTypes = {
   prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
 const PrizesForm = withFormValidation(PrizesSection);

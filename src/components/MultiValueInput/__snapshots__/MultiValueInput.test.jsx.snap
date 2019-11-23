@@ -2,6 +2,7 @@
 
 exports[`MultiValueInput Should not mutate the original value when values are removed 1`] = `
 <MultiValueInput
+  className=""
   data-testid="MultiValueInput__field"
   delimiters={
     Array [
@@ -19,6 +20,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
   messageEmpty="No items selected"
   name="field1"
   onChange={[MockFunction]}
+  tooltipAddValue="Add item"
   value={
     Array [
       "Value 1",
@@ -31,18 +33,10 @@ exports[`MultiValueInput Should not mutate the original value when values are re
     <WithStyles(ForwardRef)
       InputProps={
         Object {
-          "endAdornment": <ForwardRef(WithStyles)
-            position="end"
-          >
-            <Unknown
-              aria-label="add"
-              onClick={[Function]}
-            >
-              <pure(AddCircle) />
-            </Unknown>
-          </ForwardRef(WithStyles)>,
+          "endAdornment": "",
         }
       }
+      className="Input"
       inputProps={
         Object {
           "data-testid": "MultiValueInput__field-input",
@@ -58,18 +52,10 @@ exports[`MultiValueInput Should not mutate the original value when values are re
       <ForwardRef
         InputProps={
           Object {
-            "endAdornment": <ForwardRef(WithStyles)
-              position="end"
-            >
-              <Unknown
-                aria-label="add"
-                onClick={[Function]}
-              >
-                <pure(AddCircle) />
-              </Unknown>
-            </ForwardRef(WithStyles)>,
+            "endAdornment": "",
           }
         }
+        className="Input"
         classes={
           Object {
             "root": "MuiTextField-root",
@@ -88,7 +74,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
         value=""
       >
         <WithStyles(ForwardRef(FormControl))
-          className="MuiTextField-root"
+          className="MuiTextField-root Input"
           color="primary"
           disabled={false}
           error={false}
@@ -98,7 +84,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
           variant="standard"
         >
           <ForwardRef(FormControl)
-            className="MuiTextField-root"
+            className="MuiTextField-root Input"
             classes={
               Object {
                 "fullWidth": "MuiFormControl-fullWidth",
@@ -116,7 +102,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
             variant="standard"
           >
             <div
-              className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal"
+              className="MuiFormControl-root MuiTextField-root Input MuiFormControl-marginNormal"
             >
               <WithStyles(ForwardRef(Typography))
                 component="label"
@@ -169,18 +155,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Input))
                 autoFocus={false}
-                endAdornment={
-                  <ForwardRef(WithStyles)
-                    position="end"
-                  >
-                    <Unknown
-                      aria-label="add"
-                      onClick={[Function]}
-                    >
-                      <pure(AddCircle) />
-                    </Unknown>
-                  </ForwardRef(WithStyles)>
-                }
+                endAdornment=""
                 fullWidth={false}
                 inputProps={
                   Object {
@@ -213,18 +188,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                       "underline": "MuiInput-underline",
                     }
                   }
-                  endAdornment={
-                    <ForwardRef(WithStyles)
-                      position="end"
-                    >
-                      <Unknown
-                        aria-label="add"
-                        onClick={[Function]}
-                      >
-                        <pure(AddCircle) />
-                      </Unknown>
-                    </ForwardRef(WithStyles)>
-                  }
+                  endAdornment=""
                   fullWidth={false}
                   inputProps={
                     Object {
@@ -257,18 +221,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                         "underline": null,
                       }
                     }
-                    endAdornment={
-                      <ForwardRef(WithStyles)
-                        position="end"
-                      >
-                        <Unknown
-                          aria-label="add"
-                          onClick={[Function]}
-                        >
-                          <pure(AddCircle) />
-                        </Unknown>
-                      </ForwardRef(WithStyles)>
-                    }
+                    endAdornment=""
                     fullWidth={false}
                     inputComponent="input"
                     inputProps={
@@ -308,18 +261,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                           "root": "MuiInputBase-root MuiInput-root MuiInput-underline",
                         }
                       }
-                      endAdornment={
-                        <ForwardRef(WithStyles)
-                          position="end"
-                        >
-                          <Unknown
-                            aria-label="add"
-                            onClick={[Function]}
-                          >
-                            <pure(AddCircle) />
-                          </Unknown>
-                        </ForwardRef(WithStyles)>
-                      }
+                      endAdornment=""
                       fullWidth={false}
                       inputComponent="input"
                       inputProps={
@@ -335,13 +277,13 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                       value=""
                     >
                       <div
-                        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl MuiInputBase-adornedEnd"
+                        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
                         onClick={[Function]}
                       >
                         <input
                           aria-invalid={false}
                           autoFocus={false}
-                          className="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedEnd"
+                          className="MuiInputBase-input MuiInput-input"
                           data-hj-whitelist={true}
                           data-testid="MultiValueInput__field-input"
                           disabled={false}
@@ -354,130 +296,6 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                           type="text"
                           value=""
                         />
-                        <WithStyles(ForwardRef(InputAdornment))
-                          position="end"
-                        >
-                          <ForwardRef(InputAdornment)
-                            classes={
-                              Object {
-                                "disablePointerEvents": "MuiInputAdornment-disablePointerEvents",
-                                "filled": "MuiInputAdornment-filled",
-                                "hiddenLabel": "MuiInputAdornment-hiddenLabel",
-                                "marginDense": "MuiInputAdornment-marginDense",
-                                "positionEnd": "MuiInputAdornment-positionEnd",
-                                "positionStart": "MuiInputAdornment-positionStart",
-                                "root": "MuiInputAdornment-root",
-                              }
-                            }
-                            position="end"
-                          >
-                            <div
-                              className="MuiInputAdornment-root MuiInputAdornment-positionEnd"
-                            >
-                              <Component
-                                aria-label="add"
-                                onClick={[Function]}
-                              >
-                                <div
-                                  aria-label="add"
-                                  data-testid="AddValueIcon"
-                                  onClick={[Function]}
-                                >
-                                  <WithStyles(ForwardRef(IconButton))>
-                                    <ForwardRef(IconButton)
-                                      classes={
-                                        Object {
-                                          "colorInherit": "MuiIconButton-colorInherit",
-                                          "colorPrimary": "MuiIconButton-colorPrimary",
-                                          "colorSecondary": "MuiIconButton-colorSecondary",
-                                          "disabled": "Mui-disabled",
-                                          "edgeEnd": "MuiIconButton-edgeEnd",
-                                          "edgeStart": "MuiIconButton-edgeStart",
-                                          "label": "MuiIconButton-label",
-                                          "root": "MuiIconButton-root",
-                                          "sizeSmall": "MuiIconButton-sizeSmall",
-                                        }
-                                      }
-                                    >
-                                      <WithStyles(ForwardRef(ButtonBase))
-                                        centerRipple={true}
-                                        className="MuiIconButton-root"
-                                        disabled={false}
-                                        focusRipple={true}
-                                      >
-                                        <ForwardRef(ButtonBase)
-                                          centerRipple={true}
-                                          className="MuiIconButton-root"
-                                          classes={
-                                            Object {
-                                              "disabled": "Mui-disabled",
-                                              "focusVisible": "Mui-focusVisible",
-                                              "root": "MuiButtonBase-root",
-                                            }
-                                          }
-                                          disabled={false}
-                                          focusRipple={true}
-                                        >
-                                          <button
-                                            className="MuiButtonBase-root MuiIconButton-root"
-                                            disabled={false}
-                                            onBlur={[Function]}
-                                            onDragLeave={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            onKeyUp={[Function]}
-                                            onMouseDown={[Function]}
-                                            onMouseLeave={[Function]}
-                                            onMouseUp={[Function]}
-                                            onTouchEnd={[Function]}
-                                            onTouchMove={[Function]}
-                                            onTouchStart={[Function]}
-                                            tabIndex={0}
-                                            type="button"
-                                          >
-                                            <span
-                                              className="MuiIconButton-label"
-                                            />
-                                            <NoSsr>
-                                              <WithStyles(undefined)
-                                                center={true}
-                                              >
-                                                <ForwardRef(TouchRipple)
-                                                  center={true}
-                                                  classes={
-                                                    Object {
-                                                      "child": "MuiTouchRipple-child",
-                                                      "childLeaving": "MuiTouchRipple-childLeaving",
-                                                      "childPulsate": "MuiTouchRipple-childPulsate",
-                                                      "ripple": "MuiTouchRipple-ripple",
-                                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                      "root": "MuiTouchRipple-root",
-                                                    }
-                                                  }
-                                                >
-                                                  <span
-                                                    className="MuiTouchRipple-root"
-                                                  >
-                                                    <TransitionGroup
-                                                      childFactory={[Function]}
-                                                      component={null}
-                                                      exit={true}
-                                                    />
-                                                  </span>
-                                                </ForwardRef(TouchRipple)>
-                                              </WithStyles(undefined)>
-                                            </NoSsr>
-                                          </button>
-                                        </ForwardRef(ButtonBase)>
-                                      </WithStyles(ForwardRef(ButtonBase))>
-                                    </ForwardRef(IconButton)>
-                                  </WithStyles(ForwardRef(IconButton))>
-                                </div>
-                              </Component>
-                            </div>
-                          </ForwardRef(InputAdornment)>
-                        </WithStyles(ForwardRef(InputAdornment))>
                       </div>
                     </ForwardRef(InputBase)>
                   </WithStyles(ForwardRef(InputBase))>
@@ -670,18 +488,10 @@ exports[`MultiValueInput Should render correctly with values 1`] = `
   <WithStyles(ForwardRef)
     InputProps={
       Object {
-        "endAdornment": <ForwardRef(WithStyles)
-          position="end"
-        >
-          <Unknown
-            aria-label="add"
-            onClick={[Function]}
-          >
-            <pure(AddCircle) />
-          </Unknown>
-        </ForwardRef(WithStyles)>,
+        "endAdornment": "",
       }
     }
+    className="Input"
     label="Input label"
     margin="normal"
     name="field1"
@@ -711,18 +521,10 @@ exports[`MultiValueInput Should render correctly without values 1`] = `
   <WithStyles(ForwardRef)
     InputProps={
       Object {
-        "endAdornment": <ForwardRef(WithStyles)
-          position="end"
-        >
-          <Unknown
-            aria-label="add"
-            onClick={[Function]}
-          >
-            <pure(AddCircle) />
-          </Unknown>
-        </ForwardRef(WithStyles)>,
+        "endAdornment": "",
       }
     }
+    className="Input"
     label="Input label"
     margin="normal"
     name="field1"

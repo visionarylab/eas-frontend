@@ -16,6 +16,7 @@ import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import raffleOgImage from './raffle_og_image.png';
+import STYLES from './RaffleQuickPage.module.scss';
 
 const analyticsDrawType = 'Raffle';
 const ValidatedForm = withFormValidation(props => <form {...props} />);
@@ -77,8 +78,7 @@ const RafflePage = ({
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitButton label={t('generate_results')} />
         </ValidatedForm>
-        {/* TODO Why do we need to use inline styles here? */}
-        <div ref={resultsRef} style={{ 'text-align': 'center' }}>
+        <div ref={resultsRef} className={STYLES.QuickResults}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
             <>

@@ -1,18 +1,17 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
 import ParticipantsInput from '../../ParticipantsInput/ParticipantsInput.jsx';
+import PrizesInput from '../../PrizesInput/PrizesInput.jsx';
 import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 
-const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
 const ValidatedParticipantsInput = withFieldValidation(ParticipantsInput);
+const ValidatedPrizesInput = withFieldValidation(PrizesInput);
 const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
-const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
+const RaffleConfigurationSection = ({ values, onFieldChange }) => (
   <SectionPanel>
     <ValidatedParticipantsInput
       name="participants"
@@ -23,19 +22,14 @@ const RaffleConfigurationSection = ({ values, onFieldChange, t }) => (
       data-testid="Raffle__participants-field"
       inputProps={{ 'data-testid': 'Raffle__participants-field-input' }}
     />
-    <ValidatedMultiValueInput
+    <ValidatedPrizesInput
       name="prizes"
-      label={t('field_label_prizes')}
-      labelDisplayList={t('field_label_list_of_prizes')}
-      placeholder={t('field_placeholder_prizes')}
-      messageEmpty={t('message_no_prizes_added')}
       value={values.prizes}
       fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
+      validators={[{ rule: 'required' }]}
       data-testid="Raffle__prizes-field"
       inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
-      validators={[{ rule: 'required' }]}
-      helperText={t('field_help_separate_prizes_commas')}
     />
     <ValidationFeedback />
   </SectionPanel>
@@ -49,7 +43,6 @@ RaffleConfigurationSection.propTypes = {
     prizes: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 };
 
-export default withTranslation('Raffle')(RaffleConfigurationSection);
+export default RaffleConfigurationSection;

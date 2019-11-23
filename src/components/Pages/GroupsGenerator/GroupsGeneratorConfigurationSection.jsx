@@ -17,7 +17,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
     <ValidatedParticipantsInput
       name="participants"
       value={values.participants}
-      fullWidth
+      // fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
       data-testid="GroupsGenerator__participants-field"

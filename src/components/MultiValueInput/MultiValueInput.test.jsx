@@ -6,12 +6,20 @@ import MultiValueInput from './MultiValueInput.jsx';
 
 jest.mock('@material-ui/core/IconButton', () => {
   const ActualIcon = jest.requireActual('@material-ui/core/IconButton');
-  return props => (
-    <div data-testid="AddValueIcon" {...props}>
+  const ActualReact = jest.requireActual('React');
+  return ActualReact.forwardRef((props, ref) => (
+    <div data-testid="AddValueIcon" {...props} ref={ref}>
       <ActualIcon.default />
     </div>
-  );
+  ));
 });
+
+const translation = {
+  label: 'Input label',
+  labelDisplayList: 'Selected Items',
+  messageEmpty: 'No items selected',
+  tooltipAddValue: 'Add item',
+};
 
 describe('MultiValueInput', () => {
   beforeEach(() => {
@@ -19,27 +27,17 @@ describe('MultiValueInput', () => {
   });
 
   it('Should render correctly without values', () => {
-    const wrapper = shallow(
-      <MultiValueInput
-        name="field1"
-        label="Input label"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
-        onChange={() => {}}
-      />,
-    );
+    const wrapper = shallow(<MultiValueInput name="field1" onChange={() => {}} {...translation} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it('Should render correctly with values', () => {
     const wrapper = shallow(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         value={['value 1', 'value 2']}
         onChange={() => {}}
+        {...translation}
       />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -49,13 +47,11 @@ describe('MultiValueInput', () => {
     const onChangeMock = jest.fn();
     const wrapper = mount(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         onChange={onChangeMock}
         data-testid="MultiValueInput__field"
         inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+        {...translation}
       />,
     );
     const input = wrapper.find('input');
@@ -69,13 +65,11 @@ describe('MultiValueInput', () => {
     const onChangeMock = jest.fn();
     const wrapper = mount(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         onChange={onChangeMock}
         data-testid="MultiValueInput__field"
         inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+        {...translation}
       />,
     );
     const input = wrapper.find('input');
@@ -90,14 +84,12 @@ describe('MultiValueInput', () => {
     const initialValue = [];
     const wrapper = mount(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         value={initialValue}
         onChange={onChangeMock}
         data-testid="MultiValueInput__field"
         inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+        {...translation}
       />,
     );
     const input = wrapper.find('input');
@@ -113,14 +105,12 @@ describe('MultiValueInput', () => {
     const initialValue = ['Value 1'];
     const wrapper = mount(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         value={initialValue}
         onChange={onChangeMock}
         data-testid="MultiValueInput__field"
         inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+        {...translation}
       />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -135,13 +125,11 @@ describe('MultiValueInput', () => {
     const initialValue = [];
     const { queryByTestId } = render(
       <MultiValueInput
-        label="Input label"
         name="field1"
-        labelDisplayList="Selected Items"
-        messageEmpty="No items selected"
         value={initialValue}
         onChange={onChangeMock}
         inputProps={{ 'data-testid': 'MultiValueInput__field-input' }}
+        {...translation}
       />,
     );
 

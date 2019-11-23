@@ -4,6 +4,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import classNames from 'classnames';
+import STYLES from './MultiValueInput.module.scss';
 
 import TextField from '../TextField/TextField.jsx';
 
@@ -72,7 +74,7 @@ class MultiValueInput extends Component {
       'data-testid': dataComponent,
       ...rest
     } = this.props;
-    const { delimiters, onChange, InputProps, ...extra } = rest;
+    const { delimiters, onChange, InputProps, className, ...extra } = rest;
     const { currentValue } = this.state;
     return (
       <div data-testid={dataComponent}>
@@ -81,6 +83,7 @@ class MultiValueInput extends Component {
           type="text"
           margin="normal"
           value={currentValue}
+          className={classNames(STYLES.Input, className)}
           {...extra}
           InputProps={{
             ...InputProps,
@@ -116,12 +119,14 @@ MultiValueInput.propTypes = {
   value: PropTypes.arrayOf(PropTypes.string),
   delimiters: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
   'data-testid': PropTypes.string,
 };
 
 MultiValueInput.defaultProps = {
   delimiters: ['Enter', ','],
   value: [],
+  className: '',
   'data-testid': '',
 };
 
