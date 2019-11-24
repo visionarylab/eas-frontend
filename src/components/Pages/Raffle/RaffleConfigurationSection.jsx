@@ -16,20 +16,14 @@ const RaffleConfigurationSection = ({ values, onFieldChange }) => (
     <ValidatedParticipantsInput
       name="participants"
       value={values.participants}
-      fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-testid="Raffle__participants-field"
-      inputProps={{ 'data-testid': 'Raffle__participants-field-input' }}
     />
     <ValidatedPrizesInput
       name="prizes"
       value={values.prizes}
-      fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-testid="Raffle__prizes-field"
-      inputProps={{ 'data-testid': 'Raffle__prizes-field-input' }}
     />
     <ValidationFeedback />
   </SectionPanel>

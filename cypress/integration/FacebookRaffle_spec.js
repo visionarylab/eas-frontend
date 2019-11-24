@@ -20,7 +20,7 @@ describe('FacebookRaffle', () => {
 
           it('Events sent on publish', () => {
             cy.visit('/facebook');
-            cy.getComponent('FacebookRaffle__prizes-field-input').type('prize1, prize2');
+            cy.getComponent('PrizesInput__inputField').type('prize1, prize2');
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
@@ -49,9 +49,9 @@ describe('FacebookRaffle', () => {
             cy.getComponent('WizardForm__next-button').click();
 
             // It should error if prizes is empty
-            cy.getComponent('FacebookRaffle__prizes-field').shouldHaveError();
-            cy.getComponent('FacebookRaffle__prizes-field-input').type('Prize 1,');
-            cy.getComponent('FacebookRaffle__prizes-field').shouldNotHaveError();
+            cy.getComponent('PrizesInput').shouldHaveError();
+            cy.getComponent('PrizesInput__inputField').type('Prize 1,');
+            cy.getComponent('PrizesInput').shouldNotHaveError();
 
             // Go to second step
             cy.getComponent('WizardForm__next-button').click();
@@ -107,7 +107,7 @@ describe('FacebookRaffle', () => {
             status: 503,
             response: {},
           }).as('failedRequest');
-          cy.getComponent('FacebookRaffle__prizes-field-input').type('prize1, prize2,');
+          cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();

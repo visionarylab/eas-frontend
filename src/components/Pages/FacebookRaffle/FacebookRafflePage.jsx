@@ -20,11 +20,8 @@ const PrizesSection = ({ prizes, onFieldChange }) => (
     <ValidatedPrizesInput
       name="prizes"
       value={prizes}
-      fullWidth
       onChange={e => onFieldChange('prizes', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-testid="FacebookRaffle__prizes-field"
-      inputProps={{ 'data-testid': 'FacebookRaffle__prizes-field-input' }}
     />
   </SectionPanel>
 );

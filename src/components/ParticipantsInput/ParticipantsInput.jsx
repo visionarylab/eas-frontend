@@ -6,7 +6,6 @@ import MultiValueInput from '../MultiValueInput/MultiValueInput.jsx';
 const ParticipantsInput = ({ t, ...rest }) => (
   <MultiValueInput
     label={t('field_label')}
-    // labelDisplayList={t('box_label')}
     placeholder={t('field_placeholder')}
     messageEmpty={t('message_no_participants_added')}
     helperText={t('field_help_separate_participants_commas')}

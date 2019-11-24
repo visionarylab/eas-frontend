@@ -20,8 +20,8 @@ describe('Raffle Page', () => {
 
           it('Events sent on publish', () => {
             cy.visit('/raffle/public');
-            cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-            cy.getComponent('Raffle__participants-field-input').type('one, two,');
+            cy.getComponent('PrizesInput__inputField').type('prize1,');
+            cy.getComponent('ParticipantsInput__inputField').type('one, two,');
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
             cy.getComponent('WizardForm__next-button').click();
@@ -46,19 +46,19 @@ describe('Raffle Page', () => {
           cy.getComponent('WizardForm__next-button').click();
 
           // It should error if participants is empty
-          cy.getComponent('Raffle__prizes-field').shouldHaveError();
-          cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
-          cy.getComponent('Raffle__prizes-field').shouldNotHaveError();
+          cy.getComponent('PrizesInput').shouldHaveError();
+          cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
+          cy.getComponent('PrizesInput').shouldNotHaveError();
 
           // It should error if prizes is empty
-          cy.getComponent('Raffle__participants-field').shouldHaveError();
-          cy.getComponent('Raffle__participants-field-input').type('one,');
-          cy.getComponent('Raffle__participants-field').shouldNotHaveError();
+          cy.getComponent('ParticipantsInput').shouldHaveError();
+          cy.getComponent('ParticipantsInput__inputField').type('one,');
+          cy.getComponent('ParticipantsInput').shouldNotHaveError();
 
           // It should error if there are less participants than prizes
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('ErrorFeedback').should('be.visible');
-          cy.getComponent('Raffle__participants-field-input').type('two,');
+          cy.getComponent('ParticipantsInput__inputField').type('two,');
           cy.getComponent('ErrorFeedback').should('not.exist');
 
           // Go to second step
@@ -116,8 +116,8 @@ describe('Raffle Page', () => {
             status: 503,
             response: {},
           }).as('failedRequest');
-          cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
-          cy.getComponent('Raffle__participants-field-input').type('one, two,');
+          cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
+          cy.getComponent('ParticipantsInput__inputField').type('one, two,');
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
           cy.getComponent('WizardForm__next-button').click();
@@ -143,8 +143,8 @@ describe('Raffle Page', () => {
         it('Should have a share button that takes the user to the public draw', () => {
           cy.visit('/raffle');
           cy.clock();
-          cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-          cy.getComponent('Raffle__participants-field-input').type('you, I,');
+          cy.getComponent('PrizesInput__inputField').type('prize1,');
+          cy.getComponent('ParticipantsInput__inputField').type('you, I,');
           cy.getComponent('SubmitDrawButton').click();
           cy.tick(4000); // Fast forward the loading animation
           cy.getComponent('ShareDrawButton').click();
@@ -180,8 +180,8 @@ describe('Raffle Page', () => {
                 status: 503,
                 response: {},
               }).as('failedRequest');
-              cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-              cy.getComponent('Raffle__participants-field-input').type('one, two,');
+              cy.getComponent('PrizesInput__inputField').type('prize1,');
+              cy.getComponent('ParticipantsInput__inputField').type('one, two,');
               cy.getComponent('SubmitDrawButton').click();
               cy.wait('@failedRequest');
               cy.getComponent('ErrorFeedback').should('be.visible');
@@ -198,23 +198,23 @@ describe('Raffle Page', () => {
               cy.getComponent('SubmitDrawButton').click();
 
               // It should error if participants is empty
-              cy.getComponent('Raffle__prizes-field').shouldHaveError();
-              cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
-              cy.getComponent('Raffle__prizes-field').shouldNotHaveError();
+              cy.getComponent('PrizesInput').shouldHaveError();
+              cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
+              cy.getComponent('PrizesInput').shouldNotHaveError();
 
               // It should error if prizes is empty
-              cy.getComponent('Raffle__participants-field').shouldHaveError();
-              cy.getComponent('Raffle__participants-field-input').type('one,');
-              cy.getComponent('Raffle__participants-field').shouldNotHaveError();
+              cy.getComponent('ParticipantsInput').shouldHaveError();
+              cy.getComponent('ParticipantsInput__inputField').type('one,');
+              cy.getComponent('ParticipantsInput').shouldNotHaveError();
             });
 
             it('Should recover from not enough participants for N groups', () => {
               cy.visit('/raffle');
-              cy.getComponent('Raffle__prizes-field-input').type('prize1, prize2,');
-              cy.getComponent('Raffle__participants-field-input').type('you,');
+              cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
+              cy.getComponent('ParticipantsInput__inputField').type('you,');
               cy.getComponent('SubmitDrawButton').click();
               cy.getComponent('ErrorFeedback').should('be.visible');
-              cy.getComponent('Raffle__participants-field-input').type('me, him,');
+              cy.getComponent('ParticipantsInput__inputField').type('me, him,');
               cy.getComponent('ErrorFeedback').should('not.exist');
             });
           });
@@ -222,16 +222,16 @@ describe('Raffle Page', () => {
           it('Should have the right default values', () => {
             cy.visit('/raffle');
 
-            cy.getComponent('Raffle__prizes-field-input').should('have.value', '');
-            cy.getComponent('Raffle__participants-field-input').should('have.value', '');
+            cy.getComponent('PrizesInput__inputField').should('have.value', '');
+            cy.getComponent('ParticipantsInput__inputField').should('have.value', '');
             cy.getComponent('MultiValueDisplay__chip').should('not.exist');
           });
 
           it('Request contains the data, results are shown and analytics events sent', () => {
             cy.visit('/raffle');
             cy.clock();
-            cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-            cy.getComponent('Raffle__participants-field-input').type('you, I,');
+            cy.getComponent('PrizesInput__inputField').type('prize1,');
+            cy.getComponent('ParticipantsInput__inputField').type('you, I,');
             cy.getComponent('SubmitDrawButton').click();
 
             cy.get('@ga').should('be.calledWith', 'send', {
@@ -257,8 +257,8 @@ describe('Raffle Page', () => {
           it('Changing data after toss should create a new draw', () => {
             cy.visit('/raffle');
             cy.clock();
-            cy.getComponent('Raffle__prizes-field-input').type('prize1,');
-            cy.getComponent('Raffle__participants-field-input').type('you, I,');
+            cy.getComponent('PrizesInput__inputField').type('prize1,');
+            cy.getComponent('ParticipantsInput__inputField').type('you, I,');
             cy.getComponent('SubmitDrawButton').click();
             cy.mockedRequestWait('POST', '/api/raffle')
               .its('requestBody.participants')
@@ -266,7 +266,7 @@ describe('Raffle Page', () => {
             cy.tick(4000); // Fast forward the loading animation
             cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss');
             cy.getComponent('WinnersList__result').should('be.visible');
-            cy.getComponent('Raffle__participants-field-input').type('she,');
+            cy.getComponent('ParticipantsInput__inputField').type('she,');
             cy.getComponent('SubmitDrawButton').click();
 
             // A new draw should be created and tossed

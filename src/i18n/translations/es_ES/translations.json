@@ -250,7 +250,6 @@
   "ParticipantsInput": {
     "field_label": "Participantes",
     "field_placeholder": "Añade participantes",
-    "box_label": "Lista de participantes",
     "message_no_participants_added": "No has añadido ningún participante",
     "field_help_separate_participants_commas": "Separa los participantes por comas",
     "tooltip_add_value": "Añadir participante"
@@ -258,7 +257,6 @@
   "PrizesInput": {
     "field_label": "Premios",
     "field_placeholder": "Crucero a Bali, ...",
-    "box_label": "Lista de premios",
     "message_no_values_added": "No has añadido ningún premio",
     "field_help_separate_values_commas": "Separa los premios por comas",
     "tooltip_add_value": "Añadir premio"
