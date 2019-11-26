@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
 import ParticipantsInput from '../../ParticipantsInput/ParticipantsInput.jsx';
 import PrizesInput from '../../PrizesInput/PrizesInput.jsx';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import FormValidationFeedback from '../../FormValidation/FormValidationFeedback.jsx';
 
 const ValidatedParticipantsInput = withFieldValidation(ParticipantsInput);
 const ValidatedPrizesInput = withFieldValidation(PrizesInput);
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RaffleConfigurationSection = ({ values, onFieldChange }) => (
   <SectionPanel>
@@ -25,7 +23,7 @@ const RaffleConfigurationSection = ({ values, onFieldChange }) => (
       onChange={e => onFieldChange('prizes', e.target.value)}
       validators={[{ rule: 'required' }]}
     />
-    <ValidationFeedback />
+    <FormValidationFeedback />
   </SectionPanel>
 );
 

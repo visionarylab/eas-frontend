@@ -7,16 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '../../TextField/TextField.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 // import MultiValueDisplay from '../../MultiValueDisplay/MultiValueDisplay.jsx';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import FormValidationFeedback from '../../FormValidation/FormValidationFeedback.jsx';
 import Page from '../../Page/Page.jsx';
 import FacebookLoginButton from '../../FacebookLoginButton/FacebookLoginButton.jsx';
 import STYLES from './FacebookPhotoRafflePage.scss';
 
 const c = classnames.bind(STYLES);
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
   <Fragment>
@@ -41,7 +39,7 @@ const GrantAccessSection = ({ isLoggedInFB, userPages }) => (
       )}
       <FacebookLoginButton permissions="manage_pages" />
       <br />
-      <ValidationFeedback />
+      <FormValidationFeedback />
     </SectionPanel>
   </Fragment>
 );
@@ -98,8 +96,8 @@ ChoosePostSection.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-const GrantAccessForm = withFormValidation(GrantAccessSection);
-const ChoosePostForm = withFormValidation(ChoosePostSection);
+const GrantAccessForm = withValidationProvider(GrantAccessSection);
+const ChoosePostForm = withValidationProvider(ChoosePostSection);
 
 const FacebookPhotoRafflePage = props => {
   const {
@@ -120,7 +118,7 @@ const FacebookPhotoRafflePage = props => {
         <GrantAccessForm
           isLoggedInFB={isLoggedInFB}
           userPages={userPages}
-          checkErrors={() => {
+          onFormErrorsCheck={() => {
             if (!isLoggedInFB) {
               return t('error_form_need_to_login_facebook');
             }

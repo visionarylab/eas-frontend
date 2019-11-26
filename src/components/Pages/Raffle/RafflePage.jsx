@@ -1,7 +1,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
@@ -10,11 +9,13 @@ import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
+
 // import groupsOgImage from './groups_og_image.png';
 
-const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
-const ConfigurationForm = withFormValidation(RaffleConfigurationSection);
-const WhenToTossForm = withFormValidation(WhenToTossSection);
+const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
+const ConfigurationForm = withValidationProvider(RaffleConfigurationSection);
+const WhenToTossForm = withValidationProvider(WhenToTossSection);
 
 const RafflePage = ({
   values,
@@ -32,7 +33,7 @@ const RafflePage = ({
           values={values}
           onFieldChange={onFieldChange}
           t={t}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
           {...wizardProps}
         />
       ),

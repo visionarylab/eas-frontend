@@ -3,8 +3,8 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
@@ -13,7 +13,7 @@ import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 
-const ValidatedForm = withFormValidation(props => <form {...props} />);
+const ValidatedForm = withValidationProvider(props => <form {...props} />);
 
 const RandomNumberQuickPage = props => {
   const {
@@ -46,11 +46,11 @@ const RandomNumberQuickPage = props => {
             e.preventDefault();
             handleToss();
           }}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
         >
           <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitButton label={t('generate_numbers')} />
+          <SubmitFormButton label={t('generate_numbers')} />
         </ValidatedForm>
 
         {quickResult && (

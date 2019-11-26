@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-
 import PropTypes from 'prop-types';
+import { ValidationContext } from './ValidationProvider.jsx';
 
 const withFieldValidation = WrappedComponent => {
   class WithFieldValidation extends Component {
@@ -19,8 +19,9 @@ const withFieldValidation = WrappedComponent => {
       const errors = this.getErrors(value);
       const newState = { error: errors };
       const valid = !errors;
-      const isEmptyAtRegister = (Array.isArray(value) && !value.length) || value === '';
-      if (!isEmptyAtRegister) {
+      const isEmpty = (Array.isArray(value) && !value.length) || value === '';
+      if (!isEmpty) {
+        // If the field is initialised with any value we mark it as 'changed' so it will be validated
         newState.changed = true;
       }
 
@@ -100,7 +101,6 @@ const withFieldValidation = WrappedComponent => {
   }
 
   WithFieldValidation.propTypes = {
-    onChange: PropTypes.func,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -118,17 +118,11 @@ const withFieldValidation = WrappedComponent => {
   };
 
   WithFieldValidation.defaultProps = {
-    onChange: null,
     validators: [],
     value: '',
   };
 
-  WithFieldValidation.contextTypes = {
-    registerValidatedField: PropTypes.func.isRequired,
-    deregisterValidatedField: PropTypes.func.isRequired,
-    updateFieldValidationState: PropTypes.func.isRequired,
-    isFormSubmitted: PropTypes.func.isRequired,
-  };
+  WithFieldValidation.contextType = ValidationContext;
 
   return withTranslation('WithFieldValidation')(WithFieldValidation);
 };

@@ -2,15 +2,13 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
 import ParticipantsInput from '../../ParticipantsInput/ParticipantsInput.jsx';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import TextField from '../../TextField/TextField.jsx';
+import FormValidationFeedback from '../../FormValidation/FormValidationFeedback.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedParticipantsInput = withFieldValidation(ParticipantsInput);
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
@@ -32,7 +30,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       data-testid="GroupsGenerator__number-of-groups-field"
       inputProps={{ 'data-testid': 'GroupsGenerator__number-of-groups-field-input' }}
     />
-    <ValidationFeedback />
+    <FormValidationFeedback />
   </SectionPanel>
 );
 

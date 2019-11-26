@@ -30,7 +30,7 @@ describe.skip('Number Draw Page', () => {
         status: 503,
         response: {},
       }).as('failedRequest');
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
       cy.wait('@failedRequest');
       cy.getComponent('ErrorFeedback').should('be.visible');
     });
@@ -38,7 +38,7 @@ describe.skip('Number Draw Page', () => {
     it('Should send GA event on toss', function() {
       cy.mockGA();
       cy.visit('/number');
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
       cy.get('@ga').should('be.calledWith', 'send', {
         hitType: 'event',
         eventCategory: 'Toss',
@@ -49,7 +49,7 @@ describe.skip('Number Draw Page', () => {
 
     it('Results are shown', function() {
       cy.visit('/number');
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
       cy.mockedRequestWait('POST', '/api/random_number');
       cy.mockedRequestWait('POST', '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss');
       cy.getComponent('RandomNumberResult__result').should('be.visible');
@@ -74,7 +74,7 @@ describe.skip('Number Draw Page', () => {
       cy.getComponent('RandomNumber__number-of-results-field-input')
         .clear()
         .type(2);
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
 
       cy.mockedRequestWait('POST', '/api/random_number')
         .its('requestBody')
@@ -88,7 +88,7 @@ describe.skip('Number Draw Page', () => {
 
     it('Changing data after toss should create a new draw', function() {
       cy.visit('/number');
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
       cy.mockedRequestWait('POST', '/api/random_number')
         .its('requestBody')
         .should('contain', {
@@ -99,7 +99,7 @@ describe.skip('Number Draw Page', () => {
       cy.getComponent('RandomNumber__number-of-results-field-input')
         .clear()
         .type(3);
-      cy.getComponent('SubmitDrawButton').click();
+      cy.getComponent('SubmitFormButton').click();
       cy.mockedRequestWait('POST', '/api/random_number')
         .its('requestBody')
         .should('contain', {
@@ -138,7 +138,7 @@ describe.skip('Number Draw Page', () => {
         cy.getComponent('RandomNumber__from-field-input')
           .clear()
           .type(12);
-        cy.getComponent('SubmitDrawButton').click();
+        cy.getComponent('SubmitFormButton').click();
         cy.getComponent('ErrorFeedback').should('be.visible');
       });
 
@@ -147,7 +147,7 @@ describe.skip('Number Draw Page', () => {
         cy.getComponent('RandomNumber__number-of-results-field-input')
           .clear()
           .type(12);
-        cy.getComponent('SubmitDrawButton').click();
+        cy.getComponent('SubmitFormButton').click();
         cy.getComponent('ErrorFeedback').should('be.visible');
         cy.getComponent('RandomNumber__allow-repeated-field-input').check();
         cy.getComponent('ErrorFeedback').should('not.exist');

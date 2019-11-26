@@ -3,7 +3,7 @@ import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
@@ -13,9 +13,9 @@ import STYLES from './RandomNumberPage.scss';
 
 const c = classNames.bind(STYLES);
 
-const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
-const ConfigurationForm = withFormValidation(RandomNumberConfigurationSection);
-const WhenToTossForm = withFormValidation(WhenToTossSection);
+const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
+const ConfigurationForm = withValidationProvider(RandomNumberConfigurationSection);
+const WhenToTossForm = withValidationProvider(WhenToTossSection);
 
 const RandomNumberPage = props => {
   const {
@@ -45,7 +45,7 @@ const RandomNumberPage = props => {
           values={values}
           onFieldChange={onFieldChange}
           t={t}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
           {...wizardProps}
         />
       ),

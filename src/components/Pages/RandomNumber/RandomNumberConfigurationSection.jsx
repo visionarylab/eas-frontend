@@ -8,13 +8,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '../../TextField/TextField.jsx';
 
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
+import FormValidationFeedback from '../../FormValidation/FormValidationFeedback.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
 const ValidatedCheckbox = withFieldValidation(Checkbox);
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
 
 const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
@@ -83,7 +81,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
         </FormGroup>
       )}
     </div>
-    <ValidationFeedback />
+    <FormValidationFeedback />
   </SectionPanel>
 );
 
