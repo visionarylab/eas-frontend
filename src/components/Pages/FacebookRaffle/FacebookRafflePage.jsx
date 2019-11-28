@@ -2,7 +2,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
@@ -11,7 +11,7 @@ import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import PrizesInput from '../../PrizesInput/PrizesInput.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
+import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
 
 const ValidatedPrizesInput = withFieldValidation(PrizesInput);
 
@@ -30,9 +30,9 @@ PrizesSection.propTypes = {
   onFieldChange: PropTypes.func.isRequired,
 };
 
-const PrizesForm = withFormValidation(PrizesSection);
-const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
-const WhenToTossForm = withFormValidation(WhenToTossSection);
+const PrizesForm = withValidationProvider(PrizesSection);
+const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
+const WhenToTossForm = withValidationProvider(WhenToTossSection);
 
 const FacebookRafflePage = props => {
   const { values, isMobile, apiError, onFieldChange, handlePublish, t } = props;

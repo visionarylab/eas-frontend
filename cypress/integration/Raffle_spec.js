@@ -145,7 +145,7 @@ describe('Raffle Page', () => {
           cy.clock();
           cy.getComponent('PrizesInput__inputField').type('prize1,');
           cy.getComponent('ParticipantsInput__inputField').type('you, I,');
-          cy.getComponent('SubmitDrawButton').click();
+          cy.getComponent('SubmitFormButton').click();
           cy.tick(4000); // Fast forward the loading animation
           cy.getComponent('ShareDrawButton').click();
           cy.getComponent('ShareDrawButton__confirm').click();
@@ -182,20 +182,20 @@ describe('Raffle Page', () => {
               }).as('failedRequest');
               cy.getComponent('PrizesInput__inputField').type('prize1,');
               cy.getComponent('ParticipantsInput__inputField').type('one, two,');
-              cy.getComponent('SubmitDrawButton').click();
+              cy.getComponent('SubmitFormButton').click();
               cy.wait('@failedRequest');
               cy.getComponent('ErrorFeedback').should('be.visible');
 
               // It should recover form the error
               cy.mockFixture('Raffle'); // Reset the mock with the 200 response
-              cy.getComponent('SubmitDrawButton').click();
+              cy.getComponent('SubmitFormButton').click();
               cy.getComponent('ErrorFeedback').should('not.exist');
             });
 
             it('Should show error when any required field is empty', () => {
               cy.visit('/raffle');
               // Make required errors show up
-              cy.getComponent('SubmitDrawButton').click();
+              cy.getComponent('SubmitFormButton').click();
 
               // It should error if participants is empty
               cy.getComponent('PrizesInput').shouldHaveError();
@@ -212,7 +212,7 @@ describe('Raffle Page', () => {
               cy.visit('/raffle');
               cy.getComponent('PrizesInput__inputField').type('prize1, prize2,');
               cy.getComponent('ParticipantsInput__inputField').type('you,');
-              cy.getComponent('SubmitDrawButton').click();
+              cy.getComponent('SubmitFormButton').click();
               cy.getComponent('ErrorFeedback').should('be.visible');
               cy.getComponent('ParticipantsInput__inputField').type('me, him,');
               cy.getComponent('ErrorFeedback').should('not.exist');
@@ -232,7 +232,7 @@ describe('Raffle Page', () => {
             cy.clock();
             cy.getComponent('PrizesInput__inputField').type('prize1,');
             cy.getComponent('ParticipantsInput__inputField').type('you, I,');
-            cy.getComponent('SubmitDrawButton').click();
+            cy.getComponent('SubmitFormButton').click();
 
             cy.get('@ga').should('be.calledWith', 'send', {
               hitType: 'event',
@@ -259,7 +259,7 @@ describe('Raffle Page', () => {
             cy.clock();
             cy.getComponent('PrizesInput__inputField').type('prize1,');
             cy.getComponent('ParticipantsInput__inputField').type('you, I,');
-            cy.getComponent('SubmitDrawButton').click();
+            cy.getComponent('SubmitFormButton').click();
             cy.mockedRequestWait('POST', '/api/raffle')
               .its('requestBody.participants')
               .should('deep.eq', [{ name: 'you' }, { name: 'I' }]);
@@ -267,7 +267,7 @@ describe('Raffle Page', () => {
             cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss');
             cy.getComponent('WinnersList__result').should('be.visible');
             cy.getComponent('ParticipantsInput__inputField').type('she,');
-            cy.getComponent('SubmitDrawButton').click();
+            cy.getComponent('SubmitFormButton').click();
 
             // A new draw should be created and tossed
             cy.mockedRequestWait('POST', '/api/raffle')

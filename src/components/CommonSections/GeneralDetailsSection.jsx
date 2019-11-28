@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import TextField from '../TextField/TextField.jsx';
-import withFieldValidation from '../withValidation/withFieldValidation.jsx';
+import withFieldValidation from '../FormValidation/withFieldValidation.jsx';
 import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);

@@ -2,9 +2,8 @@ import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { RaffleResult } from 'echaloasuerte-js-sdk';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -15,11 +14,11 @@ import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
+import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import raffleOgImage from './raffle_og_image.png';
 import STYLES from './RaffleQuickPage.module.scss';
 
 const analyticsDrawType = 'Raffle';
-const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const RafflePage = ({
   values,
@@ -67,17 +66,17 @@ const RafflePage = ({
         }
       >
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <ValidatedForm
+        <ValidationProvider
           onSubmit={e => {
             e.preventDefault();
             handleToss();
           }}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
         >
           <RaffleConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitButton label={t('generate_results')} />
-        </ValidatedForm>
+          <SubmitFormButton label={t('generate_results')} />
+        </ValidationProvider>
         <div ref={resultsRef} className={STYLES.QuickResults}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (

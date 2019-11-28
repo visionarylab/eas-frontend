@@ -3,10 +3,10 @@ import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
@@ -17,7 +17,6 @@ import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import groupsOgImage from './groups_og_image.png';
 
 const analyticsDrawType = 'Groups';
-const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const GroupsGeneratorQuickPage = props => {
   const {
@@ -66,12 +65,12 @@ const GroupsGeneratorQuickPage = props => {
         }
       >
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <ValidatedForm
+        <ValidationProvider
           onSubmit={e => {
             e.preventDefault();
             handleToss();
           }}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
         >
           <GroupsGeneratorConfigurationSection
             values={values}
@@ -79,8 +78,8 @@ const GroupsGeneratorQuickPage = props => {
             t={t}
           />
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitButton label={t('generate_groups')} />
-        </ValidatedForm>
+          <SubmitFormButton label={t('generate_groups')} />
+        </ValidationProvider>
         <div ref={resultsRef}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
