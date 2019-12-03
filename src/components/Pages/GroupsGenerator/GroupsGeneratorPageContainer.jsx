@@ -25,7 +25,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       values: {
         title: '', // Default title is set in CDM
         description: '',
-        participants: [],
+        participants: ['one'],
         numberOfGroups: '2',
         dateScheduled,
       },

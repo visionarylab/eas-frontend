@@ -22,6 +22,7 @@ class MultiValueInput extends Component {
     this.state = {
       currentValue: '',
     };
+    this.inputRef = React.createRef();
   }
 
   onCurrentValueChange = e => {
@@ -78,12 +79,17 @@ class MultiValueInput extends Component {
     }
   };
 
+  handleDivClick = () => {
+    // The input is in reality quite small and doesn't have visual boundaries
+    // For that reason we will focus the input as soon as the div is clicked
+    this.inputRef.current.focus();
+  };
+
   render() {
     const {
       id,
       value: values,
       label,
-      labelDisplayList,
       tooltipAddValue,
       messageEmpty,
       placeholder,
@@ -93,6 +99,7 @@ class MultiValueInput extends Component {
       error,
       'data-testid': dataTestId,
       className,
+      inputProps,
       InputProps,
       FormHelperTextProps,
       ...rest
@@ -113,15 +120,21 @@ class MultiValueInput extends Component {
         <MyInputLabel htmlFor={id} id={inputLabelId} className={STYLES.Label}>
           {label}
         </MyInputLabel>
-        <div className={c('Border', { Border__error: error })} data-testid="MultiValueDisplay">
-          {labelDisplayList && (
-            <Typography color="textSecondary" variant="caption">
-              {labelDisplayList}
-            </Typography>
-          )}
+        {/* TODO remove these two eslint disables */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        <div className={c('Border', { Border__error: error })} onClick={this.handleDivClick}>
           <div className={STYLES.ItemsList}>
             {values.map(value => (
-              <Chip key={Math.random()} label={value} onDelete={this.onValueDelete} />
+              <Chip
+                onClick={e => {
+                  // Stop the input from being focused when a Chip is clicked
+                  e.stopPropagation();
+                }}
+                key={Math.random()}
+                label={value}
+                onDelete={this.onValueDelete}
+              />
             ))}{' '}
             <Input
               onChange={this.onCurrentValueChange}
@@ -131,6 +144,10 @@ class MultiValueInput extends Component {
               className={classNames(STYLES.Input, className)}
               disableUnderline
               onKeyDown={this.handleKeyPress}
+              inputProps={{
+                ...inputProps,
+                ref: this.inputRef,
+              }}
               {...InputProps}
               {...extra}
             />
@@ -152,7 +169,6 @@ MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   placeholder: PropTypes.string,
-  labelDisplayList: PropTypes.string.isRequired,
   tooltipAddValue: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
@@ -163,6 +179,7 @@ MultiValueInput.propTypes = {
   className: PropTypes.string,
   'data-testid': PropTypes.string,
   error: PropTypes.bool,
+  inputProps: PropTypes.shape({}),
   InputProps: PropTypes.shape({}),
   FormHelperTextProps: PropTypes.shape({}),
   theme: PropTypes.shape({
@@ -181,6 +198,7 @@ MultiValueInput.defaultProps = {
   value: [],
   className: '',
   'data-testid': '',
+  inputProps: {},
   InputProps: {},
   FormHelperTextProps: {},
   error: false,

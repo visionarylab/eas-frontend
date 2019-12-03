@@ -1,6 +1,7 @@
 @import '../variables';
 
 $border-radius: 4 * $one-pixel-rem;
+$input-width: 40 * $one-pixel-rem;
 
 .Border {
   margin-top: $spacing-md;
@@ -17,8 +18,13 @@ $border-radius: 4 * $one-pixel-rem;
 
 .ItemsList {
   padding: $spacing-sm;
+  overflow: hidden;
 }
 
 .Label {
   color: $color-primary;
+}
+
+.Input {
+  min-width: $input-width;
 }
