@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import values from 'object.values';
+import { shouldUseNewForm } from '../../services/abtest';
 
 export const ValidationContext = React.createContext();
 
@@ -99,7 +100,12 @@ class ValidationProvider extends Component {
       getFormErrorFeedback: this.getFormErrorFeedback,
     };
     const { children } = this.props;
-    return <ValidationContext.Provider value={context}>{children}</ValidationContext.Provider>;
+    const useNewForm = shouldUseNewForm();
+    return (
+      <ValidationContext.Provider value={context}>
+        {useNewForm ? <form>{children}</form> : children}
+      </ValidationContext.Provider>
+    );
   }
 }
 

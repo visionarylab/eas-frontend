@@ -33,7 +33,6 @@ jest.mock('@material-ui/core/Input', () => {
 const translations = {
   label: 'Input label',
   messageEmpty: 'No items selected',
-  tooltipAddValue: 'Add item',
   placeholder: 'Add items',
 };
 

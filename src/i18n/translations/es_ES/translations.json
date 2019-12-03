@@ -252,13 +252,15 @@
     "field_placeholder": "Añade participantes",
     "message_no_participants_added": "No has añadido ningún participante",
     "field_help_separate_participants_commas": "Separa los participantes por comas",
-    "tooltip_add_value": "Añadir participante"
+    "tooltip_add_value": "Añadir participante",
+    "box_label_list_of_items": "Lista de participantes"
   },
   "PrizesInput": {
     "field_label": "Premios",
     "field_placeholder": "Crucero a Bali, ...",
     "message_no_values_added": "No has añadido ningún premio",
     "field_help_separate_values_commas": "Separa los premios por comas",
-    "tooltip_add_value": "Añadir premio"
+    "tooltip_add_value": "Añadir premio",
+    "box_label_list_of_items": "Lista de premios"
   }
 }

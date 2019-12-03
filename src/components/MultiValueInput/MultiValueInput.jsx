@@ -90,7 +90,6 @@ class MultiValueInput extends Component {
       id,
       value: values,
       label,
-      tooltipAddValue,
       messageEmpty,
       placeholder,
       helperText,
@@ -120,10 +119,11 @@ class MultiValueInput extends Component {
         <MyInputLabel htmlFor={id} id={inputLabelId} className={STYLES.Label}>
           {label}
         </MyInputLabel>
-        {/* TODO remove these two eslint disables */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        <div className={c('Border', { Border__error: error })} onClick={this.handleDivClick}>
+        <div
+          role="presentation"
+          className={c('Border', { Border__error: error })}
+          onClick={this.handleDivClick}
+        >
           <div className={STYLES.ItemsList}>
             {values.map(value => (
               <Chip
@@ -169,7 +169,6 @@ MultiValueInput.propTypes = {
   label: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   placeholder: PropTypes.string,
-  tooltipAddValue: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   messageEmpty: PropTypes.string.isRequired,
   value: PropTypes.arrayOf(PropTypes.string),

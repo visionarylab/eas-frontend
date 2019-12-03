@@ -1,0 +1,26 @@
+@import '../variables';
+
+$border-radius: .2rem;
+
+.MultiValueDisplay {
+  margin-top: $spacing-md;
+  padding: $spacing-xs;
+  border-width: $one-pixel-rem;
+  border-style: solid;
+  border-radius: $border-radius;
+  border-color: $color-gray;
+
+  &__label {
+    margin-top: $spacing-xs;
+    margin-left: $spacing-xs;
+    color: $color-gray;
+  }
+
+  &__values-list {
+    padding: $spacing-sm;
+  }
+
+  &__empty-message {
+    color: $color-gray;
+  }
+}

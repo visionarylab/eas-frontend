@@ -243,13 +243,15 @@
     "field_placeholder": "Add participants",
     "message_no_participants_added": "You haven't added any participants",
     "field_help_separate_participants_commas": "Separate participants by commas",
-    "tooltip_add_value": "Add participant"
+    "tooltip_add_value": "Add participant",
+    "box_label_list_of_items": "List of participants"
   },
   "PrizesInput": {
     "field_label": "Prizes",
     "field_placeholder": "Cruise to Bali, ...",
     "message_no_values_added": "You haven't added any prizes",
     "field_help_separate_values_commas": "Separate prizes by commas",
-    "tooltip_add_value": "Add prize"
+    "tooltip_add_value": "Add prize",
+    "box_label_list_of_items": "List of prizes"
   }
 }

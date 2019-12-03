@@ -7,9 +7,9 @@ const PrizesInput = ({ t, ...rest }) => (
   <MultiValueInput
     label={t('field_label')}
     placeholder={t('field_placeholder')}
+    labelDisplayList={t('box_label_list_of_items')}
     messageEmpty={t('message_no_values_added')}
     helperText={t('field_help_separate_values_commas')}
-    tooltipAddValue={t('tooltip_add_value')}
     fullWidth
     data-testid="PrizesInput"
     inputProps={{ 'data-testid': 'PrizesInput__inputField' }}
