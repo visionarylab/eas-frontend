@@ -10,7 +10,7 @@ import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
 import { hotjar } from '../../services/hotjar';
-
+import { getExperimentsAllocation } from '../../services/abtest';
 import config from '../../config/config';
 import defaultOgImage from './logo_og.png';
 import STYLES from './Page.scss';
@@ -25,7 +25,10 @@ class Page extends Component {
       ReactGA.pageview(page);
     }
     if (config.mixpanelEnabled) {
-      mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
+      mixpanel.track(`Page Loaded - ${pageType}`, {
+        ...getExperimentsAllocation(),
+        pageType,
+      });
     }
     if (config.hotjarEnabled && enableHotjar) {
       hotjar.initialize(1051921, 6);

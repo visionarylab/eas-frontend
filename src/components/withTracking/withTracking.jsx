@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import config from '../../config/config';
+import { getExperimentsAllocation } from '../../services/abtest';
 
 const withTracking = WrappedComponent => {
   const WithTracking = props => {
@@ -14,7 +15,11 @@ const withTracking = WrappedComponent => {
       }
       if (config.mixpanelEnabled && mp) {
         const { name, properties } = mp;
-        mixpanel.track(name, properties);
+        const data = {
+          ...getExperimentsAllocation(),
+          ...properties,
+        };
+        mixpanel.track(name, data);
       }
     };
     return <WrappedComponent track={track} {...props} />;
