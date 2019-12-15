@@ -103,7 +103,7 @@ class ValidationProvider extends Component {
     const useNewForm = shouldUseNewForm();
     return (
       <ValidationContext.Provider value={context}>
-        {useNewForm ? <form>{children}</form> : children}
+        {useNewForm ? children : <form>{children}</form>}
       </ValidationContext.Provider>
     );
   }
