@@ -30,7 +30,7 @@
   },
   "FacebookProvider": {
     "error_message_impossible_to_log_in": "Ha ocurrido un error al intentar acceder con Facebook.",
-    "error_message_possibly_blocked": "Ha ocurrido un error al intentar acceder con Facebook. Puede que alguna extensión de tu navegador este bloqueando la conexion."
+    "error_message_possibly_blocked": "Ha ocurrido un error al intentar acceder con Facebook. Puede que alguna extensión de tu navegador este bloqueando la conexión."
   },
   "FacebookRaffle": {
     "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
@@ -40,7 +40,7 @@
     "field_label_number_of_participants": "Número de participantes",
     "field_label_prizes": "Premios",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
-    "html_description": "Crea un sorteo público en el que los participantes podrán unise con su cuenta de Facebook.",
+    "html_description": "Crea un sorteo público en el que los participantes podrán unirse con su cuenta de Facebook.",
     "html_keywords": "Sorteo en Facebook, regalar premios, cuenta atrás, sorteo público, unirse a un sorteo",
     "html_title": "Sorte en Facebook",
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
@@ -67,7 +67,7 @@
     "html_description": "¿Necesitas tomar una decisión? Lanza una moneda online. Cara o cruz, deja que la suerte decida.",
     "html_keywords": "tirar moneda, lanzar una moneda, moneda al aire, suerte, decidir, cara o cruz, pares, nones, si, no, 50 por ciento, moneda virtual",
     "html_title": "Cara o cruz",
-    "learn_more_content": "El cara o cruz es un juego de azar en el que se emplea una moneda. Los participates tienen que elegir un lado de la moneda y lanzarla. Gana quien acierte qué lado de la moneda caerá cara arriba. Este juego recibe diferentes nombres en otros paises, como cara o escudo, cara o ceca, cara o sello, volado o águila o sol.",
+    "learn_more_content": "El cara o cruz es un juego de azar en el que se emplea una moneda. Los participantes tienen que elegir un lado de la moneda y lanzarla. Gana quien acierte qué lado de la moneda caerá cara arriba. Este juego recibe diferentes nombres en otros países, como cara o escudo, cara o ceca, cara o sello, volado o águila o sol.",
     "learn_more_title": "¿Qué es \"Cara o Cruz\"?",
     "page_title": "Cara o cruz",
     "result_heads": "Cara",
@@ -75,20 +75,20 @@
     "touch_to_toss": "Toca la moneda para lanzarla"
   },
   "Footer": {
-    "privacy_policy": "Politica de privacidad"
+    "privacy_policy": "Política de privacidad"
   },
   "GroupsGenerator": {
-    "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una eleccion imparcial del resultado, te recomendamos que hagas un sorteo público.",
-    "create_certificated_draw": "Genera grupos publicamente",
+    "certified_draw_description": "Si quieres hacer un sorteo público para asegurar a los participantes una elección imparcial del resultado, te recomendamos que hagas un sorteo público.",
+    "create_certificated_draw": "Genera grupos públicamente",
     "draw_subheading": "Simple generador de grupos aleatorios. Sólo pega la lista de participantes y la cantidad de grupos a generar",
     "error_form_not_enough_participants": "No hay suficientes participantes para hacer {{numberOfGroups}} grupos",
     "field_default_title": "Generación de grupos aleatorios",
-    "field_label_number_of_groups": "Número de grupos",
+    "field_label_number_of_groups": "¿Cuántos grupos quieres hacer?",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
     "generate_groups": "Generar grupos",
     "generated_groups": "Grupos generados",
-    "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o trios.",
-    "html_keywords": "grupos al azar, equipos aleatorios, dividir grupos, sorteo equipos, parejas, trios, emparejar personas",
+    "html_description": "Crea equipos online. Divide un grupo de personas en grupos mas pequeños. Crea parejas o tríos.",
+    "html_keywords": "grupos al azar, equipos aleatorios, dividir grupos, sorteo equipos, parejas, tríos, emparejar personas",
     "html_title": "Grupos Aleatorios | Echalo A Suerte",
     "label_number_of_groups": "Número de grupos:",
     "label_participants": "Participantes:",
@@ -98,10 +98,10 @@
     "result_label_group": "Grupo {{groupNumber}}",
     "share_draw": "Comparte este sorteo",
     "share_result": "Comparte este resultado",
-    "share_result_dialog_body": "Si quieres asegurar a tus participantes que el sorteo ha sido aleatorio y justo tendrás que crear un sorteo público.\nPodrás especificar una fecha en la que el resultado se hara público y compartir un link para que los participantes puedan ver el resultado en directo.",
+    "share_result_dialog_body": "Si quieres asegurar a tus participantes que el sorteo ha sido aleatorio y justo tendrás que crear un sorteo público.\nPodrás especificar una fecha en la que el resultado se hará público y compartir un link para que los participantes puedan ver el resultado en directo.",
     "share_result_dialog_cancel": "Cancelar",
-    "share_result_dialog_ok": "Generar grupos publicamente",
-    "share_result_dialog_title": "Genera los grupos publicamente",
+    "share_result_dialog_ok": "Generar grupos públicamente",
+    "share_result_dialog_title": "Genera los grupos públicamente",
     "step_label_configure": "Configura los grupos",
     "step_label_general_details": "Detalles generales",
     "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?"

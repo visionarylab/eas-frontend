@@ -74,7 +74,7 @@
     "draw_subheading": "Create groups online",
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
     "field_default_title": "Random groups generator",
-    "field_label_number_of_groups": "Number of groups",
+    "field_label_number_of_groups": "How many groups do you want to make?",
     "field_label_when_to_toss": "Choose when to publish the results",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
