@@ -7,8 +7,8 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment';
 import 'moment/locale/es';
 
-const DateTimePicker = ({ t, i18n, ...props }) => {
-  const { id, label, defaultNS, reportNS, i18nOptions, tReady, ...rest } = props; // eslint-disable-line react/prop-types
+const DateTimePicker = ({ id, label, t, i18n, ...props }) => {
+  const { tReady, ...rest } = props; // eslint-disable-line react/prop-types
   const locale = i18n.language;
 
   const localeMap = {
@@ -39,7 +39,11 @@ const DateTimePicker = ({ t, i18n, ...props }) => {
 };
 
 DateTimePicker.propTypes = {
-  i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  i18n: PropTypes.shape({
+    language: PropTypes.string.isRequired,
+  }).isRequired,
   t: PropTypes.func.isRequired,
 };
 

@@ -81,7 +81,7 @@ const withFieldValidation = WrappedComponent => {
 
     render() {
       // eslint-disable-next-line react/prop-types
-      const { validators, t, defaultNS, reportNS, i18nOptions, tReady, ...rest } = this.props;
+      const { validators, t, tReady, ...rest } = this.props;
       let errorProps = {};
       const error = this.getErrorsToShow();
       if (error) {
