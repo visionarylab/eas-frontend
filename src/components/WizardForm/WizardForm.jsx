@@ -78,7 +78,6 @@ class WizardForm extends Component {
   }
 
   submitStepForm(stepIndex) {
-    debugger; // eslint-disable-line no-debugger
     this.stepRefs[stepIndex].current.handleFormSubmit(new Event('submit'));
   }
 

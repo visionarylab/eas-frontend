@@ -12,4 +12,11 @@
   &__buttons-row &__step-button {
     margin: $spacing-md;
   }
+
+  &__content {
+    @media (min-width: $media-desktop) {
+      width: 35rem;
+      margin: auto;
+    }
+  }
 }

@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router';
-import STYLES from './DrawLayout.scss';
+import STYLES from './DrawLayout.module.scss';
 
 const c = classNames.bind(STYLES);
 const DrawLayout = ({ sidePanel, children, isMobile }) =>
+  // eslint-disable-next-line no-nested-ternary
   isMobile ? (
     <>
       {children}
       {sidePanel && <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>}
     </>
-  ) : (
-    <div className={c('DrawLayout')}>
-      <div className={c(`DrawLayout__content`)}>{children}</div>
-      <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>
+  ) : sidePanel ? (
+    <div className={STYLES.ExtraContent}>
+      <div className={STYLES.CentralColumn}>{children}</div>
+      <div className={STYLES.RightColumn}>{sidePanel}</div>
     </div>
+  ) : (
+    <div className={STYLES.ContentOnly}>{children}</div>
   );
 
 DrawLayout.propTypes = {

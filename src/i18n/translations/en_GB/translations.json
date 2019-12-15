@@ -75,7 +75,7 @@
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
     "field_default_title": "Random groups generator",
     "field_label_number_of_groups": "How many groups do you want to make?",
-    "field_label_when_to_toss": "Choose when to publish the results",
+    "field_label_when_to_toss": "When do you want to publish the results?",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
@@ -93,7 +93,7 @@
     "share_result_dialog_cancel": "Cancel",
     "share_result_dialog_ok": "Generate groups publicly",
     "share_result_dialog_title": "Generate the groups publicly to share the results",
-    "step_label_configure": "Set up the groups",
+    "step_label_configure": "Add the participants",
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be published?"
   },
