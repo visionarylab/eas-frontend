@@ -23,6 +23,8 @@ const DateTimePicker = ({ id, label, t, i18n, ...props }) => {
         {label}
       </Typography>
       <MuiDateTimePicker
+        hideTabs
+        variant="inline"
         id={id}
         minDateMessage={t('only_future_date_valid')}
         cancelLabel={t('cancel')}
