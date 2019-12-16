@@ -2,31 +2,21 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
-import withFieldValidation from '../../withValidation/withFieldValidation.jsx';
-import MultiValueInput from '../../MultiValueInput/MultiValueInput.jsx';
-import withFeedbackValidation from '../../withValidation/withFeedbackValidation.jsx';
-import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
+import ParticipantsInput from '../../ParticipantsInput/ParticipantsInput.jsx';
 import TextField from '../../TextField/TextField.jsx';
+import FormValidationFeedback from '../../FormValidation/FormValidationFeedback.jsx';
 
 const ValidatedTextField = withFieldValidation(TextField);
-const ValidatedMultiValueInput = withFieldValidation(MultiValueInput);
-const ValidationFeedback = withFeedbackValidation(ErrorFeedback);
+const ValidatedParticipantsInput = withFieldValidation(ParticipantsInput);
 
 const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
   <SectionPanel>
-    <ValidatedMultiValueInput
+    <ValidatedParticipantsInput
       name="participants"
-      label={t('field_label_participants')}
-      labelDisplayList={t('field_label_list_of_participants')}
-      placeholder={t('field_placeholder_participants')}
-      messageEmpty={t('message_no_participants_added')}
       value={values.participants}
-      fullWidth
       onChange={e => onFieldChange('participants', e.target.value)}
       validators={[{ rule: 'required' }]}
-      data-testid="GroupsGenerator__participants-field"
-      inputProps={{ 'data-testid': 'GroupsGenerator__participants-field-input' }}
-      helperText={t('field_help_separate_participants_commas')}
     />
     <ValidatedTextField
       name="numberOfGroups"
@@ -40,7 +30,7 @@ const GroupsGeneratorConfigurationSection = ({ values, onFieldChange, t }) => (
       data-testid="GroupsGenerator__number-of-groups-field"
       inputProps={{ 'data-testid': 'GroupsGenerator__number-of-groups-field-input' }}
     />
-    <ValidationFeedback />
+    <FormValidationFeedback />
   </SectionPanel>
 );
 

@@ -1,22 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import classNames from 'classnames/bind';
+import Typography from '@material-ui/core/Typography';
+import getOrdinal from '../../i18n/ordinals';
 
-import WinnerChip from '../WinnerChip/WinnerChip.jsx';
 import STYLES from './WinnersList.scss';
 
 const c = classNames.bind(STYLES);
-
-const WinnersList = ({ winners }) => (
+const WinnersList = ({ winners, t }) => (
   <div className={c('WinnersList')}>
-    {winners.value.map(winner => (
-      <WinnerChip key={winner.prize.id} winner={winner} />
+    {winners.map((winner, index) => (
+      <div key={winner.prize.id} data-testid="WinnersList__result">
+        <Typography variant="h5" display="inline">
+          {getOrdinal(index + 1)} {t('prize')} (
+        </Typography>
+        <Typography variant="h2" display="inline">
+          {winner.prize.name}
+        </Typography>
+        <Typography variant="h5" display="inline">
+          ): {winner.participant.name}
+        </Typography>
+      </div>
     ))}
   </div>
 );
 
 WinnersList.propTypes = {
   winners: PropTypes.arrayOf(Object).isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default WinnersList;
+export default withTranslation('WinnerList')(WinnersList);

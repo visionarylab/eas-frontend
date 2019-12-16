@@ -5,7 +5,6 @@ import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Cookies from 'js-cookie';
 // import showCookieBanner from '../../services/cookieConsent';
 import initI18n from '../../i18n';
 import AppShell from '../AppShell/AppShell.jsx';
@@ -18,11 +17,11 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
-    if (config.analiticsEnabled) {
-      mixpanel.init(config.mixpanelID, { debug: config.mixpanelDebug, track_pageview: false });
+    if (config.googleAnalyticsEnabled) {
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
-      const ABTestArrow = Cookies.get('spinner_split_test_version');
-      ReactGA.set({ dimension2: ABTestArrow });
+    }
+    if (config.mixpanelEnabled) {
+      mixpanel.init(config.mixpanelID, { debug: config.mixpanelDebug, track_pageview: false });
     }
     initI18n(props.hostname);
   }
@@ -42,11 +41,15 @@ class App extends Component {
           <ErrorPage>Something went bad, but we are working very hard to fix it</ErrorPage>
         )}
       >
-        <MixpanelProvider mixpanel={mixpanel}>
-          <FacebookProvider>
+        <FacebookProvider>
+          {config.mixpanelEnabled ? (
+            <MixpanelProvider mixpanel={mixpanel}>
+              <AppShell />
+            </MixpanelProvider>
+          ) : (
             <AppShell />
-          </FacebookProvider>
-        </MixpanelProvider>
+          )}
+        </FacebookProvider>
       </ErrorBoundary>
     );
   }

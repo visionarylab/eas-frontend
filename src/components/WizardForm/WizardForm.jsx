@@ -78,7 +78,7 @@ class WizardForm extends Component {
   }
 
   submitStepForm(stepIndex) {
-    this.stepRefs[stepIndex].current.onSubmit(new Event('submit'));
+    this.stepRefs[stepIndex].current.handleFormSubmit(new Event('submit'));
   }
 
   render() {
@@ -122,6 +122,7 @@ WizardForm.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       render: PropTypes.func.isRequired,
+      validate: PropTypes.bool,
     }),
   ).isRequired,
   apiError: PropTypes.bool,

@@ -10,11 +10,7 @@ describe('Spin Arrow Page', () => {
 
       it('Analytics pageview and event on toss', function() {
         cy.mockGA();
-        cy.route('GET', 'https://api.mixpanel.com/track/*').as('startMixpanel');
-        cy.route('GET', 'https://api.mixpanel.com/decide/*').as('trackMixpanel');
         cy.visit('/spinner');
-        cy.wait('@startMixpanel');
-        cy.wait('@trackMixpanel');
 
         cy.get('@ga')
           .should('be.calledWith', 'create', 'UA-XXXXX-Y')

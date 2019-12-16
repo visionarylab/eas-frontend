@@ -51,9 +51,8 @@ app.use((error, req, res, next) => {
   res.statusCode = 500;
   winston.error('Error 500', { error: error.toString(), sentryErrorId: res.sentry });
   res.end(
-    `Something went bad, but we are working very hard to fix it.\n\nAh! if someone ask you for a number, this is the one: ${
-      res.sentry
-    }`,
+    `Something went bad, but we are working very hard to fix it.\n\n
+    Ah! if someone ask you for a number, this is the one: ${res.sentry}`,
   );
 });
 

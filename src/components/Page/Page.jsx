@@ -10,7 +10,7 @@ import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
 import { hotjar } from '../../services/hotjar';
-
+import { getExperimentsAllocation } from '../../services/abtest';
 import config from '../../config/config';
 import defaultOgImage from './logo_og.png';
 import STYLES from './Page.scss';
@@ -20,10 +20,15 @@ const c = classNames.bind(STYLES);
 class Page extends Component {
   componentDidMount() {
     const { mixpanel, pageType, location, enableHotjar } = this.props;
-    if (config.analiticsEnabled) {
+    if (config.googleAnalyticsEnabled) {
       const page = location.pathname;
       ReactGA.pageview(page);
-      mixpanel.track(`Page Loaded - ${pageType}`, { pageType });
+    }
+    if (config.mixpanelEnabled) {
+      mixpanel.track(`Page Loaded - ${pageType}`, {
+        ...getExperimentsAllocation(),
+        pageType,
+      });
     }
     if (config.hotjarEnabled && enableHotjar) {
       hotjar.initialize(1051921, 6);
@@ -96,7 +101,7 @@ Page.propTypes = {
   pageType: PropTypes.string.isRequired,
   enableHotjar: PropTypes.bool,
   className: PropTypes.string,
-  mixpanel: PropTypes.shape({}).isRequired,
+  mixpanel: PropTypes.shape({ track: PropTypes.func.isRequired }),
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
@@ -113,6 +118,7 @@ Page.defaultProps = {
   htmlDescription: '',
   enableHotjar: false,
   showAdvert: true,
+  mixpanel: null,
 };
 
 const mapsStateToProps = state => ({

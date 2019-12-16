@@ -1,35 +1,45 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-import classNames from 'classnames/bind';
 import { RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
+import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import Page from '../../Page/Page.jsx';
 import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
+import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
-import STYLES from './PublishedRafflePage.scss';
 
-const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Raffle';
+
+const loadData = async props => {
+  const { drawId } = props.match.params;
+  await props.fetchRaffleDraw(drawId);
+};
 
 const PublishedRafflePage = props => {
   const { draw, match, t, hostname } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
 
+  useLoadDataAfterCountdown(result, () => loadData(props));
+
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+
+  const ShareButtonsList = () => (
+    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
+  );
   return (
     <Page
       ogImage={raffleOgImage}
@@ -38,32 +48,21 @@ const PublishedRafflePage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="raffle_published_draw"
-      className={c('PublishedRafflePage')}
     >
       <DrawLayout>
-        <Typography align="center" variant="h1" data-testid="PublishedRafflePage__Title">
-          {title || t('page_title')}
-        </Typography>
-        {description && <Typography variant="body2">{description}</Typography>}
+        <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
-          <ResultsBox title={t('winners')}>
-            <WinnersList winners={result} />
-            <br />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_result')}
-              url={shareUrl}
-            />
-          </ResultsBox>
+          <>
+            <ResultsBox title={t('winners')}>
+              <WinnersList winners={result.value} />
+            </ResultsBox>
+            <ShareButtonsList />
+          </>
         ) : (
-          <Fragment>
+          <>
             <Countdown date={result.schedule_date} />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_draw')}
-              url={shareUrl}
-            />
-          </Fragment>
+            <ShareButtonsList />
+          </>
         )}
         <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
           <Typography component="div" variant="body2">
@@ -101,16 +100,9 @@ const mapsStateToProps = state => ({
   draw: state.draws.draw,
   hostname: state.userRequest.hostname,
 });
-const frontload = async props => {
-  const { drawId } = props.match.params;
-  await props.fetchRaffleDraw(drawId);
-};
 
-export default connect(
-  mapsStateToProps,
-  { fetchRaffleDraw },
-)(
-  frontloadConnect(frontload, {
+export default connect(mapsStateToProps, { fetchRaffleDraw })(
+  frontloadConnect(loadData, {
     onMount: true,
     onUpdate: false,
   })(TranslatedPage),

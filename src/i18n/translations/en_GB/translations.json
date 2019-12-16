@@ -8,10 +8,9 @@
     "learn_more": "Learn more"
   },
   "Countdown": {
-    "results_published_on": "Results will be published on",
     "reload_page": "Please reload the page",
+    "results_published_on": "Results will be published on",
     "time_remaining": "Time remaining"
-
   },
   "DateTimePicker": {
     "cancel": "Cancel",
@@ -20,13 +19,39 @@
     "only_future_date_valid": "You have to choose a date in the future",
     "today": "Now"
   },
-  "FacebookDraw": {
-    "check_participants": "Get participants",
-    "facebook_draw_html_title": "Facebook Raffle",
-    "facebook_draw_seo_description": "Organise a raffle in Facebook",
-    "number_of_winners": "Number of winners",
-    "post_or_photo_url": "URL of the post or photo",
-    "publish_draw": "Publish raffle"
+  "FacebookProvider": {
+    "error_message_impossible_to_log_in": "There was an error when trying to log with Facebook.",
+    "error_message_possibly_blocked": "There was an error when trying to log with Facebook, You may have some extenion in your browser that is blocking the connexion."
+  },
+  "FacebookRaffle": {
+    "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
+    "field_default_title": "Facebook raffle",
+    "field_help_separate_prizes_commas": "Separate prizes by commas",
+    "field_label_list_of_prizes": "List of prizes",
+    "field_label_number_of_participants": "Number of participants",
+    "field_label_prizes": "Prizes",
+    "field_label_when_to_toss": "Choose when results will be published",
+    "html_description": "Create a public raffle where participants will be able to join by login with the Facebook accounts.",
+    "html_keywords": "raffle in facebook, assign prizes, countdown, join raffle, public results",
+    "html_title": "Facebook Raffle",
+    "login_with_facebook_to_participate": "Login with Facebook to participate",
+    "message_no_prizes_added": "You haven't added any prize yet",
+    "or_access_as_someone_else": "Or access as someone else",
+    "page_title": "Raffle among Facebook users",
+    "participate_as": "Participate as {{username}}",
+    "people_registered_already": "There is {{count}} person registered",
+    "people_registered_already_plural": "There are {{count}} people registered",
+    "publish_draw": "Publish raffle",
+    "publish_raffle": "Publish raffle",
+    "published_raffle_details": "Details of the raffle",
+    "share_draw": "Share this raffle",
+    "share_result": "Share these results",
+    "step_label_general_details": "General details",
+    "step_label_prizes": "Add the prizes",
+    "step_label_when_to_toss": "When the results will be published?",
+    "unable_to_register_in_raffle": "There was an error when trying to register in the raffle. Please try again later",
+    "winners": "Winners of the raffle",
+    "you_are_registered_as_username": "You are registered in the raffle as {{username}}"
   },
   "FlipCoinPage": {
     "draw_subheading": "Flip a coin",
@@ -48,12 +73,9 @@
     "create_certificated_draw": "Generate groups publicly",
     "draw_subheading": "Create groups online",
     "error_form_not_enough_participants": "There are not enough participants to make {{numberOfGroups}} groups",
-    "field_help_separate_participants_commas": "Separate participants by commas",
-    "field_label_list_of_participants": "List of participants",
-    "field_label_number_of_groups": "Number of groups",
-    "field_label_participants": "Add participants",
-    "field_label_when_to_toss": "Choose when to publish the results",
-    "field_placeholder_participants": "Ana, David...",
+    "field_default_title": "Random groups generator",
+    "field_label_number_of_groups": "How many groups do you want to make?",
+    "field_label_when_to_toss": "When do you want to publish the results?",
     "generate_groups": "Generate groups",
     "generated_groups": "Generated groups",
     "html_description": "Create teams online. Split a group of people into smaller groups. Pair people from a group.",
@@ -61,7 +83,6 @@
     "html_title": "Generate groups online",
     "label_number_of_groups": "Number of groups:",
     "label_participants": "Participants:",
-    "message_no_participants_added": "You haven't added any participants",
     "page_title": "Generate groups",
     "publish_draw": "Publish draw",
     "published_draw_details": "Raffle details",
@@ -69,10 +90,10 @@
     "share_draw": "Share this raffle",
     "share_result": "Share this result",
     "share_result_dialog_body": "If you want to ensure that the groups were created fair and randomly you need to create them publicly.\nYou will be able to schedule when the results will be made public and share a link with the participants so they can see the results live.",
-    "share_result_dialog_cancel": "Cancelar",
+    "share_result_dialog_cancel": "Cancel",
     "share_result_dialog_ok": "Generate groups publicly",
     "share_result_dialog_title": "Generate the groups publicly to share the results",
-    "step_label_configure": "Set up the groups",
+    "step_label_configure": "Add the participants",
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be published?"
   },
@@ -81,12 +102,12 @@
     "recent_draws": "Recent Raffles"
   },
   "HomePage": {
-    "draw_title_facebook_login": "Raffle among Facebook users",
     "draw_title_facebook_photo": "Raffle among 'likes' in Facebook",
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
     "draw_title_flip_coin": "Flip a coin",
     "draw_title_groups_generator": "Generate groups randomly",
     "draw_title_pick_card": "Pick a card",
-    "draw_title_raffle": "Organize raffle with prizes",
+    "draw_title_raffle": "Organize raffles",
     "draw_title_random_letter": "Generate random letters",
     "draw_title_random_number": "Generate random numbers",
     "draw_title_roll_dice": "Roll a dice",
@@ -104,8 +125,7 @@
     "letter_draw_html_title": "Generate random letters",
     "letter_draw_title": "Generate random letters",
     "number_of_letters": "Number of letters",
-    "publish_draw": "Publish draw",
-    "when_to_toss": "When do you want to show the results?"
+    "publish_draw": "Publish draw"
   },
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
@@ -120,17 +140,17 @@
     "title_placeholder": "Christmas raffle"
   },
   "Raffle": {
+    "create_certificated_draw": "Create a raffle publicly",
     "draw_subheading": "Create an online raffle with prizes and share the results.",
+    "error_form_not_enough_participants": "There are {{numberOfPrizes}} prizes but only {{count}} participant. Add more participants",
+    "error_form_not_enough_participants_plural": "There are {{numberOfPrizes}} prizes but only {{count}} participants. Add more participants",
     "field_default_title": "Public raffle",
-    "field_help_separate_participants_commas": "Separate participants by commas",
     "field_help_separate_prizes_commas": "Separate prizes by commas",
-    "field_label_list_of_participants": "List of participants",
     "field_label_list_of_prizes": "List of prizes",
-    "field_label_participants": "Add participants",
     "field_label_prizes": "Add prizes",
-    "field_label_when_to_toss": "Choose when the to publish the winners",
-    "field_placeholder_participants": "Ana, David, ...",
+    "field_label_when_to_toss": "Choose when to publish the winners",
     "field_placeholder_prizes": "Cruise to Bali, ...",
+    "generate_results": "Raffle prizes",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
     "html_keywords": "raffle, lottery, pool, choose winner, prizes",
     "html_title": "Organize raffle",
@@ -138,16 +158,26 @@
     "label_prizes": "Prizes:",
     "learn_more_content": "With this raffle you will be able to choose a list of participants and decide when the results will be published",
     "learn_more_title": "What are the advantages of this raffle?",
-    "message_no_participants_added": "You haven't added any participants",
     "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
     "publish_draw": "Publish raffle",
     "published_draw_details": "Raffle details",
     "share_draw": "Share this raffle",
     "share_result": "Share this result",
+    "share_result_dialog_body": "If you want to ensure that the raffle was fair you should create it publicly.\nYou will be able to schedule when the results will be made public and share a link with the participants so they can see the results live.",
+    "share_result_dialog_cancel": "Cancel",
+    "share_result_dialog_ok": "Create raffle publicly",
+    "share_result_dialog_title": "Create raffle publicly to share the results",
     "step_label_configure": "Configure the raffle",
     "step_label_general_details": "General details",
     "step_label_when_to_toss": "When will the results be generated?"
+  },
+  "RafflesPage": {
+    "draw_title_facebook_raffle": "Raffle among Facebook users",
+    "draw_title_raffle": "Raffle with a list of participants",
+    "html_description": "Create online raffles, flip a coin, make teams... Take any decision randomly",
+    "html_title": "Take decisions randomly online - ChooseRandom",
+    "section_title_raffles": "Raffles"
   },
   "RandomNumber": {
     "create_certificated_draw": "Create a public draw",
@@ -169,10 +199,7 @@
     "published_draw_details": "Draw details",
     "step_label_configuration": "Configure the draw",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When do you want to generate the results?",
-    "step_title_draw_configuration": "Configure the toss",
-    "step_title_general_details": "General details",
-    "step_title_when_to_toss": "When do you want to generate the results?"
+    "step_label_when_to_toss": "When do you want to generate the results?"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancel",
@@ -192,20 +219,39 @@
     "html_description": "Do you need to decide who wil be the chosen one? Spin an arrow online",
     "html_keywords": "spin arrow online, spinner, game, choose randomly",
     "html_title": "Spin an arrow online",
-    "learn_more_title": "What can an arrow be used for?",
     "learn_more_content": "This arrow works best in mobile devices. Place it in the middle of a group, touch it to make it spin and the pointed person will be the winner. You can also use it as a random compass when you need to know where to go",
+    "learn_more_title": "What can an arrow be used for?",
     "page_title": "Spin an arrow",
     "touch_to_toss": "Hit the arrow to make it spin"
   },
   "TranslationsSwitch": {
     "change_language": "Change language"
   },
+  "WinnersList": {
+    "prize": "Prize"
+  },
   "WithFieldValidation": {
-    "default_message_min": "It must be lower than {{min}}",
+    "default_message_min": "It must be at least {{min}}",
     "default_message_required_field": "This field is required"
   },
   "WizardForm": {
     "back": "Back",
     "next": "Next"
+  },
+  "ParticipantsInput": {
+    "field_label": "Participants",
+    "field_placeholder": "Add participants",
+    "message_no_participants_added": "You haven't added any participants",
+    "field_help_separate_participants_commas": "Separate participants by commas",
+    "tooltip_add_value": "Add participant",
+    "box_label_list_of_items": "List of participants"
+  },
+  "PrizesInput": {
+    "field_label": "Prizes",
+    "field_placeholder": "Cruise to Bali, ...",
+    "message_no_values_added": "You haven't added any prizes",
+    "field_help_separate_values_commas": "Separate prizes by commas",
+    "tooltip_add_value": "Add prize",
+    "box_label_list_of_items": "List of prizes"
   }
 }

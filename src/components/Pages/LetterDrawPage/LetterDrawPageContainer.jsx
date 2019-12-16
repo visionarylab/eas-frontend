@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -71,8 +70,9 @@ class LetterDrawPageContainer extends Component {
 
   async handlePublish() {
     const draw = await this.createDraw();
+    const { location, history } = this.props;
     // await drawApi.putRandomNumber(draw.private_id);
-    this.props.history.push(`${this.props.location.pathname}/${draw.private_id}`);
+    history.push(`${location.pathname}/${draw.private_id}`);
   }
 
   handleMakeDrawPublic() {
@@ -86,9 +86,10 @@ class LetterDrawPageContainer extends Component {
   }
 
   render() {
+    const { values } = this.state;
     return (
       <LetterDrawPage
-        values={this.state.values}
+        values={values}
         onFieldChange={this.onFieldChange}
         handleToss={this.handleToss}
         handlePublish={this.handlePublish}

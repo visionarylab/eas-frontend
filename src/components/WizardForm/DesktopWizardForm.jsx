@@ -24,7 +24,7 @@ const DesktopWizard = ({
   children,
 }) => (
   <div className={c('WizardForm')}>
-    <Stepper className={c('WizardForm__stepper')} activeStep={activeStep}>
+    <Stepper className={c('WizardForm__stepper')} activeStep={activeStep} alternativeLabel>
       {stepLabels.map((label, index) => {
         const props = {};
         const labelProps = {};
@@ -38,7 +38,7 @@ const DesktopWizard = ({
         );
       })}
     </Stepper>
-    {children}
+    <div className={c('WizardForm__content')}>{children}</div>
     {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
     <div className={c('WizardForm__buttons-row')}>
       <Button

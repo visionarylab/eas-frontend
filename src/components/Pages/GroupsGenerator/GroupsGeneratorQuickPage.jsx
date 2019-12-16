@@ -1,12 +1,13 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import SubmitButton from '../../SubmitButton/SubmitButton.jsx';
+import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
+import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
@@ -16,7 +17,6 @@ import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import groupsOgImage from './groups_og_image.png';
 
 const analyticsDrawType = 'Groups';
-const ValidatedForm = withFormValidation(props => <form {...props} />);
 
 const GroupsGeneratorQuickPage = props => {
   const {
@@ -32,15 +32,7 @@ const GroupsGeneratorQuickPage = props => {
   const publicDrawUrl = '/groups/public';
   const resultsRef = React.createRef();
 
-  useEffect(() => {
-    if (quickResult) {
-      try {
-        window.scroll({ left: 0, top: resultsRef.current.offsetTop, behavior: 'smooth' });
-      } catch (error) {
-        window.scrollTo(0, resultsRef.current.offsetTop);
-      }
-    }
-  }, [quickResult, resultsRef]);
+  useScrollToResults(quickResult, resultsRef);
 
   return (
     <Page
@@ -73,12 +65,12 @@ const GroupsGeneratorQuickPage = props => {
         }
       >
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <ValidatedForm
+        <ValidationProvider
           onSubmit={e => {
             e.preventDefault();
             handleToss();
           }}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
         >
           <GroupsGeneratorConfigurationSection
             values={values}
@@ -86,12 +78,12 @@ const GroupsGeneratorQuickPage = props => {
             t={t}
           />
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitButton label={t('generate_groups')} />
-        </ValidatedForm>
+          <SubmitFormButton label={t('generate_groups')} />
+        </ValidationProvider>
         <div ref={resultsRef}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
-            <Fragment>
+            <>
               <GroupsGeneratorResult result={quickResult} />
               <ShareDrawModal
                 publicDrawUrl={publicDrawUrl}
@@ -108,7 +100,7 @@ const GroupsGeneratorQuickPage = props => {
                 }}
                 t={t}
               />
-            </Fragment>
+            </>
           )}
         </div>
       </DrawLayout>

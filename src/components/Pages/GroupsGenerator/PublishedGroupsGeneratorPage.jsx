@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-import classNames from 'classnames/bind';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
 import { frontloadConnect } from 'react-frontload';
 import { connect } from 'react-redux';
+import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import { fetchDraw } from '../../../actions/drawActions';
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
@@ -14,12 +14,11 @@ import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
+import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
-import STYLES from './PublishedGroupsGeneratorPage.scss';
 
-const c = classNames.bind(STYLES);
 const analyticsDrawType = 'Groups';
 
 const loadData = async props => {
@@ -32,19 +31,15 @@ const PublishedGroupsGeneratorPage = props => {
   const { title, description, participants, numberOfGroups, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
 
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    if (result && !result.value) {
-      // Fetch the results once the countdown is over
-      const missingSeconds = new Date(result.schedule_date).getTime() - new Date().getTime();
-      const timer = setTimeout(() => loadData(props), missingSeconds);
-      return () => clearTimeout(timer);
-    }
-  }, [result]);
+  useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {
     return <LoadingSpinner fullpage />;
   }
+
+  const ShareButtonsList = () => (
+    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
+  );
   return (
     <Page
       ogImage={groupsOgImage}
@@ -53,44 +48,25 @@ const PublishedGroupsGeneratorPage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="Groups Published Draw"
-      className={c('PublishedGroupsGeneratorPage')}
     >
       <DrawLayout>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
           <ResultsBox title={t('generated_groups')}>
             <GroupsGeneratorResult result={result} />
-            <br />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_result')}
-              url={shareUrl}
-            />
           </ResultsBox>
         ) : (
-          <Fragment>
-            <Countdown date={result.schedule_date} />
-            <ShareButtons
-              drawType={analyticsDrawType}
-              sectionTitle={t('share_draw')}
-              url={shareUrl}
-            />
-          </Fragment>
+          <Countdown date={result.schedule_date} />
         )}
-
-        <section className={c('PublishedGroupsGeneratorPage__details')}>
-          <Typography variant="h5">{t('published_draw_details')}</Typography>
-          <div>
-            <Typography variant="body2">
-              {t('label_number_of_groups')} {numberOfGroups}
-            </Typography>
-          </div>
-          <div>
-            <Typography variant="body2">
-              {t('label_participants')} {participants.map(p => p.name).join(', ')}
-            </Typography>
-          </div>
-        </section>
+        <ShareButtonsList />
+        <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
+          <Typography component="div" variant="body2">
+            {t('label_number_of_groups')} {numberOfGroups}
+          </Typography>
+          <Typography component="div" variant="body2">
+            {t('label_participants')} {participants.map(p => p.name).join(', ')}
+          </Typography>
+        </PublishedDrawDetails>
       </DrawLayout>
     </Page>
   );
@@ -120,10 +96,7 @@ const mapsStateToProps = state => ({
   hostname: state.userRequest.hostname,
 });
 
-export default connect(
-  mapsStateToProps,
-  { fetchDraw },
-)(
+export default connect(mapsStateToProps, { fetchDraw })(
   frontloadConnect(loadData, {
     onMount: true,
     onUpdate: false,

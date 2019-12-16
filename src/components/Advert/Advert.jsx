@@ -13,13 +13,13 @@ const Advert = props => {
 
   const { isMobile } = props;
 
+  const style = { display: 'inline-block', width: '728px', height: '90px' };
+
   return (
     <div className={c('Advert')}>
       <ins
-        className={c('adsbygoogle', {
-          'Advert__frame--desktop': !isMobile,
-          'Advert__frame--mobile': isMobile,
-        })}
+        className={c('adsbygoogle')}
+        style={style}
         data-ad-client="ca-pub-1409219619115807"
         data-ad-slot={isMobile ? '1221986757' : '2400047490'}
       />

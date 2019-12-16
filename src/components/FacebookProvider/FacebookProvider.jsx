@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { withTranslation } from 'react-i18next';
+import * as Sentry from '@sentry/browser';
+import i18n from 'i18next';
 import {
   apiCall,
   fbAsyncInit,
-  // injectScript,
+  injectScript,
   getLikesOnObject,
+  queryUserDetails,
   logout,
 } from '../../services/FacebookAPI/FacebookAPI';
-// import i18n from '../../i18n/i18n';
 
 export const FacebookContext = React.createContext();
 
@@ -17,29 +19,61 @@ class FacebookProvider extends Component {
     super(props);
 
     this.state = {
+      loadingFbStatus: true,
+      loadingFbDetails: true,
       isLoggedInFB: false,
-      userID: null,
-      userName: null,
+      fbErrorMessage: null,
+      userId: null,
+      username: null,
       userPages: null,
     };
   }
 
   componentDidMount() {
-    const updateLoginStatus = response => this.setState({ isLoggedInFB: !!response.authResponse });
+    const { t } = this.props;
+    const updateLoginStatus = async response => {
+      // status: connected == logged in
+      // status: unknown == logged out
+      const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
+      if (!isLoggedInFB) {
+        this.setState({
+          isLoggedInFB: false,
+          loadingFbStatus: false,
+        });
+      } else {
+        try {
+          const userDetails = await queryUserDetails();
+          this.setState({
+            isLoggedInFB: true,
+            loadingFbStatus: false,
+            userId: userDetails.userId,
+            username: userDetails.username,
+          });
+        } catch (ex) {
+          let fbErrorMessage;
+          switch (ex.error.code) {
+            case 1:
+              fbErrorMessage = t('error_message_possibly_blocked');
+              break;
+            default:
+              fbErrorMessage = t('error_message_impossible_to_log_in');
+          }
+          Sentry.withScope(scope => {
+            scope.setExtra('message', fbErrorMessage);
+            Sentry.captureException(ex);
+          });
+          this.setState({
+            fbErrorMessage,
+            isLoggedInFB: false,
+            loadingFbStatus: false,
+          });
+        }
+      }
+    };
     fbAsyncInit(updateLoginStatus);
-
-    // Commenting this as while trying to reolve a different problem
-    // const locale = i18n.language.replace('-', '_');
-    // injectScript(locale);
+    const locale = i18n.language.replace('-', '_');
+    injectScript(locale);
   }
-
-  getUserDetails = () => {
-    const { userID, userName } = this.state;
-    if (!userID) {
-      this.queryUserDetails();
-    }
-    return { userID, userName };
-  };
 
   queryUserPages = async () => {
     const response = await apiCall('/me/accounts');
@@ -55,10 +89,9 @@ class FacebookProvider extends Component {
   queryLikesOnObject = async objectId => {
     const { userPages } = this.state;
     const accessTokens = userPages.map(page => page.accessToken);
-    const response = await Promise.all(
+    /* const response = */ await Promise.all(
       accessTokens.map(token => getLikesOnObject(objectId, token)),
     );
-    console.log('queryLikesOnObject___response', response);
 
     // accessTokens.forEach(async pageAccessToken => {
     //   const likers = await getLikesOnObject(objectId, pageAccessToken);
@@ -69,17 +102,9 @@ class FacebookProvider extends Component {
     // });
   };
 
-  queryUserDetails = async () => {
-    const response = await apiCall('/me');
-    if (response && !response.error) {
-      this.setState({ userID: response.id, userName: response.name });
-    }
-  };
-
   render() {
     const context = {
       ...this.state,
-      getUserDetails: this.getUserDetails,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
       logout,
@@ -90,6 +115,7 @@ class FacebookProvider extends Component {
 }
 FacebookProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default FacebookProvider;
+export default withTranslation('FacebookProvider')(FacebookProvider);

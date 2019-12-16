@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
@@ -6,54 +6,24 @@ import STYLES from './FacebookLoginButton.scss';
 
 const c = classNames.bind(STYLES);
 
-class FacebookLoginButton extends Component {
-  componentDidMount() {
-    if (window.FB) {
-      // The FB login button is parsed and rendered by XFBML
-      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-      // window.FB.XFBML.parse();
-    }
-  }
-
-  // handleLogin = () => {
-  //   const { onUserLoggedIn } = this.props;
-  //   window.FB.login(response => {
-  //     // Handle the response object, like in statusChangeCallback() in our demo
-  //     // code.
-  //     onUserLoggedIn();
-  //   });
-  // };
-
-  render() {
-    const { /* onLogin, */ permissions } = this.props;
-    return (
-      // <button onClick={this.handleLogin} data-testid="FacebookLoginButton">
-      //   login
-      // </button>
-      <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
-        <div
-          className="fb-login-button"
-          data-max-rows="1"
-          data-size="large"
-          data-button-type="continue_with"
-          data-show-faces="false"
-          data-auto-logout-link="true"
-          data-use-continue-as="false"
-          data-scope={permissions}
-        />
-      </div>
-    );
-  }
-}
+const FacebookLoginButton = ({ label }) => (
+  <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
+    <button
+      type="button"
+      onClick={() => window.FB.login()}
+      className={c('FacebookLoginButton__button')}
+    >
+      {label}
+    </button>
+  </div>
+);
 
 FacebookLoginButton.propTypes = {
-  // onUserLoggedIn: PropTypes.func,
-  permissions: PropTypes.string,
+  label: PropTypes.string,
 };
 
 FacebookLoginButton.defaultProps = {
-  // onUserLoggedIn: () => {},
-  permissions: '',
+  label: '',
 };
 
 export default FacebookLoginButton;

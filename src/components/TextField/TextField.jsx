@@ -3,32 +3,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
 import Typography from '@material-ui/core/Typography';
+// import InputLabel from '@material-ui/core/InputLabel'; // EAS Adjust - code commented out
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import ReactDOM from 'react-dom';
+import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
+import Select from '@material-ui/core/Select';
+import { withStyles } from '@material-ui/core/styles';
+
+const variantComponent = {
+  standard: Input,
+  filled: FilledInput,
+  outlined: OutlinedInput,
+};
+
+export const styles = {
+  /* Styles applied to the root element. */
+  root: {},
+};
 
 /**
  * We are building our own TextField based on Material UI's one (link below) to have our own static branded labels
+ * Changes are marked as "EAS Adjust"
  * https://github.com/mui-org/material-ui/blob/d183b449df71b84ecc54c225ea0ba681432ce13e/packages/material-ui/src/TextField/TextField.js
- */
+ * */
 const TextField = React.forwardRef((props, ref) => {
   const {
     autoComplete,
-    autoFocus,
+    autoFocus = false,
     children,
-    className: classNameProp,
+    classes,
+    className,
+    color = 'primary',
     defaultValue,
-    error,
+    disabled = false,
+    error = false,
     FormHelperTextProps,
-    fullWidth,
+    fullWidth = false,
     helperText,
+    hiddenLabel,
     id,
     InputLabelProps,
     inputProps,
     InputProps,
     inputRef,
     label,
-    multiline,
+    multiline = false,
     name,
     onBlur,
     onChange,
@@ -37,6 +61,7 @@ const TextField = React.forwardRef((props, ref) => {
     required = false,
     rows,
     rowsMax,
+    select = false,
     SelectProps,
     type,
     value,
@@ -44,45 +69,110 @@ const TextField = React.forwardRef((props, ref) => {
     ...other
   } = props;
 
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  const labelRef = React.useRef(null);
+  React.useEffect(() => {
+    if (variant === 'outlined') {
+      // #StrictMode ready
+      // eslint-disable-next-line react/no-find-dom-node
+      const labelNode = ReactDOM.findDOMNode(labelRef.current);
+      setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
+    }
+  }, [variant, required, label]);
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (select && !children) {
+      console.error(
+        'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+      );
+    }
+  }
+
+  const InputMore = {};
+
+  if (variant === 'outlined') {
+    if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
+      InputMore.notched = InputLabelProps.shrink;
+    }
+
+    InputMore.labelWidth = labelWidth;
+  }
+  if (select) {
+    // unset defaults from textbox inputs
+    if (!SelectProps || !SelectProps.native) {
+      InputMore.id = undefined;
+    }
+    InputMore['aria-describedby'] = undefined;
+  }
+
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+  const inputLabelId = label && id ? `${id}-label` : undefined;
+  const InputComponent = variantComponent[variant];
+  const InputElement = (
+    <InputComponent
+      aria-describedby={helperTextId}
+      autoComplete={autoComplete}
+      autoFocus={autoFocus}
+      defaultValue={defaultValue}
+      fullWidth={fullWidth}
+      multiline={multiline}
+      name={name}
+      rows={rows}
+      rowsMax={rowsMax}
+      type={type}
+      value={value}
+      id={id}
+      inputRef={inputRef}
+      onBlur={onBlur}
+      onChange={onChange}
+      onFocus={onFocus}
+      placeholder={placeholder}
+      // EAS Adjust - Adding data-hj-whitelist to whitelist these fields in Hotjar
+      // https://help.hotjar.com/hc/en-us/articles/115015563287-Whitelisting-input-fields
+      inputProps={{ ...inputProps, 'data-hj-whitelist': true }}
+      {...InputMore}
+      {...InputProps}
+    />
+  );
 
   return (
     <FormControl
+      className={clsx(classes.root, className)}
+      disabled={disabled}
       error={error}
       fullWidth={fullWidth}
+      hiddenLabel={hiddenLabel}
       ref={ref}
       required={required}
+      color={color}
       variant={variant}
       {...other}
     >
+      {/* EAS Adjust - We are using a custom - bigger and static - label */}
       {label && (
         <Typography htmlFor={id} component="label" variant="h3">
           {label}
         </Typography>
       )}
-      <Input
-        aria-describedby={helperTextId}
-        autoComplete={autoComplete}
-        autoFocus={autoFocus}
-        defaultValue={defaultValue}
-        fullWidth={fullWidth}
-        multiline={multiline}
-        name={name}
-        rows={rows}
-        rowsMax={rowsMax}
-        type={type}
-        value={value}
-        id={id}
-        inputRef={inputRef}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        placeholder={placeholder}
-        // Adding data-hj-whitelist to whitelist these fields in Hotjar
-        // https://help.hotjar.com/hc/en-us/articles/115015563287-Whitelisting-input-fields
-        inputProps={{ ...inputProps, 'data-hj-whitelist': true }}
-        {...InputProps}
-      />
+      {/* {label && (
+        <InputLabel htmlFor={id} ref={labelRef} id={inputLabelId} {...InputLabelProps}>
+          {label}
+        </InputLabel>
+      )} */}
+      {select ? (
+        <Select
+          aria-describedby={helperTextId}
+          id={id}
+          labelId={inputLabelId}
+          value={value}
+          input={InputElement}
+          {...SelectProps}
+        >
+          {children}
+        </Select>
+      ) : (
+        InputElement
+      )}
       {helperText && (
         <FormHelperText id={helperTextId} {...FormHelperTextProps}>
           {helperText}
@@ -94,7 +184,7 @@ const TextField = React.forwardRef((props, ref) => {
 
 TextField.propTypes = {
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -108,9 +198,18 @@ TextField.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default value of the `input` element.
    */
@@ -124,7 +223,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -136,16 +235,20 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
+   * @ignore
+   */
+  hiddenLabel: PropTypes.bool,
+  /**
    * The id of the `input` element.
-   * Use this property to make `label` and `helperText` accessible for screen readers.
+   * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the Input element.
+   * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
    * component depending on the `variant` prop value.
@@ -156,9 +259,9 @@ TextField.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * Pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * The label content.
    */
@@ -183,7 +286,7 @@ TextField.propTypes = {
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
@@ -212,7 +315,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**
@@ -229,4 +332,4 @@ TextField.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default TextField;
+export default withStyles(styles, { name: 'MuiTextField' })(TextField);

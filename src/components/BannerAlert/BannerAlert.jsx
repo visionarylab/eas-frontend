@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import Info from '@material-ui/icons/Info';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Warning from '@material-ui/icons/Warning';
+import Typography from '@material-ui/core/Typography';
 
 import STYLES from './BannerAlert.scss';
 
@@ -33,7 +34,7 @@ const BannerAlert = props => {
     <section className={c('BannerAlert', `BannerAlert--${type}`)}>
       {getIconForType(type)}
       &nbsp;
-      <span>{title}</span>
+      <Typography variant="body2">{title}</Typography>
       &nbsp;
     </section>
   );

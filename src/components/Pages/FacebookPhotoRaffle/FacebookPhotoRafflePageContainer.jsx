@@ -6,7 +6,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import FacebookPhotoRafflePage from './FacebookPhotoRafflePage.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
-import { getObjectIdFromUrl, logout, whoAmI } from '../../../services/FacebookAPI/FacebookAPI';
+import { getObjectIdFromUrl, logout } from '../../../services/FacebookAPI/FacebookAPI';
 
 class FacebookPhotoRafflePageContainer extends Component {
   constructor(props) {
@@ -41,10 +41,10 @@ class FacebookPhotoRafflePageContainer extends Component {
       try {
         getObjectIdFromUrl(values.url);
       } catch (error) {
-        console.log('INVALID URL');
+        // console.log('INVALID URL');
       }
     }
-    console.log('onfliedChange', fieldName, value);
+    // console.log('onfliedChange', fieldName, value);
     this.setState(previousState => ({
       values: {
         ...previousState.values,
@@ -61,13 +61,12 @@ class FacebookPhotoRafflePageContainer extends Component {
     // const objectId = getObjectIdFromUrl(this.state.values.url);
     // The following could be improved
     const likes = await this.props.facebookContext.queryLikesOnObject(objectId);
-    console.log(likes);
+    // console.log(likes);
     return likes;
   };
 
   handleFaceebookLogout = () => {
     logout();
-    whoAmI();
   };
 
   handlePublish = async () => {
@@ -98,7 +97,6 @@ class FacebookPhotoRafflePageContainer extends Component {
 FacebookPhotoRafflePageContainer.propTypes = {
   facebookContext: PropTypes.shape({
     isLoggedInFB: PropTypes.bool.isRequired,
-    getUserDetails: PropTypes.func.isRequired,
     queryUserPages: PropTypes.func.isRequired,
     queryLikesOnObject: PropTypes.func.isRequired,
     userPages: PropTypes.arrayOf(

@@ -31,10 +31,7 @@ export default (url = '/', userRequestData) => {
   }
 
   const middleware = [thunk, routerMiddleware(history)];
-  const composedEnhancers = compose(
-    applyMiddleware(...middleware),
-    ...enhancers,
-  );
+  const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
   const { userAgent } = userRequestData;
   const deviceType = parserUA(userAgent).device.type;

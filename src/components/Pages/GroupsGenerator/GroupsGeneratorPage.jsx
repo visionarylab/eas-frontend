@@ -2,7 +2,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import withFormValidation from '../../withValidation/withFormValidation.jsx';
+import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
@@ -12,9 +12,9 @@ import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationS
 import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import groupsOgImage from './groups_og_image.png';
 
-const GeneralDetailsForm = withFormValidation(GeneralDetailsSection);
-const ConfigurationForm = withFormValidation(GroupsGeneratorConfigurationSection);
-const WhenToTossForm = withFormValidation(WhenToTossSection);
+const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
+const ConfigurationForm = withValidationProvider(GroupsGeneratorConfigurationSection);
+const WhenToTossForm = withValidationProvider(WhenToTossSection);
 
 const GroupsGeneratorPage = props => {
   const {
@@ -31,10 +31,10 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_configure'),
       render: wizardProps => (
         <ConfigurationForm
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
           values={values}
           onFieldChange={onFieldChange}
           t={t}
-          checkErrors={() => handleCheckErrorsInConfiguration(t)}
           {...wizardProps}
         />
       ),
@@ -43,7 +43,6 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_general_details'),
       render: wizardProps => (
         <GeneralDetailsForm
-          sectionTitle={t('section_title_general_details')}
           title={values.title}
           description={values.description}
           onFieldChange={onFieldChange}
@@ -94,6 +93,7 @@ GroupsGeneratorPage.propTypes = {
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
+    dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
