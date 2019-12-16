@@ -168,6 +168,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                       "inputMarginDense": "MuiInput-inputMarginDense",
                       "inputMultiline": "MuiInput-inputMultiline",
                       "inputTypeSearch": "MuiInput-inputTypeSearch",
+                      "marginDense": "MuiInput-marginDense",
                       "multiline": "MuiInput-multiline",
                       "root": "MuiInput-root",
                       "underline": "MuiInput-underline",
@@ -200,6 +201,7 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                         "inputMarginDense": "MuiInput-inputMarginDense",
                         "inputMultiline": "MuiInput-inputMultiline",
                         "inputTypeSearch": "MuiInput-inputTypeSearch",
+                        "marginDense": "MuiInput-marginDense",
                         "multiline": "MuiInput-multiline",
                         "root": "MuiInput-root MuiInput-underline",
                         "underline": null,
@@ -237,9 +239,8 @@ exports[`MultiValueInput Should not mutate the original value when values are re
                           "inputHiddenLabel": "MuiInputBase-inputHiddenLabel",
                           "inputMarginDense": "MuiInputBase-inputMarginDense MuiInput-inputMarginDense",
                           "inputMultiline": "MuiInputBase-inputMultiline MuiInput-inputMultiline",
-                          "inputSelect": "MuiInputBase-inputSelect",
                           "inputTypeSearch": "MuiInputBase-inputTypeSearch MuiInput-inputTypeSearch",
-                          "marginDense": "MuiInputBase-marginDense",
+                          "marginDense": "MuiInputBase-marginDense MuiInput-marginDense",
                           "multiline": "MuiInputBase-multiline MuiInput-multiline",
                           "root": "MuiInputBase-root MuiInput-root MuiInput-underline",
                         }
@@ -403,7 +404,6 @@ exports[`MultiValueInput Should not mutate the original value when values are re
               <div
                 className="MuiChip-root MuiChip-deletable"
                 data-testid="MultiValueDisplay__chip"
-                onKeyDown={[Function]}
                 onKeyUp={[Function]}
                 role="button"
                 tabIndex={0}

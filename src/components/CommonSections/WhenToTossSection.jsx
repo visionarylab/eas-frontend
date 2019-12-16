@@ -6,6 +6,7 @@ import SectionPanel from '../SectionPanel/SectionPanel.jsx';
 const WhenToTossSection = ({ label, dateScheduled, onFieldChange }) => (
   <SectionPanel>
     <DateTimePicker
+      id="whenToToss"
       label={label}
       value={dateScheduled}
       onChange={datetime => {

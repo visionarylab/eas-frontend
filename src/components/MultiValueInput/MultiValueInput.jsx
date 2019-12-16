@@ -146,7 +146,7 @@ class MultiValueInput extends Component {
               onKeyDown={this.handleKeyPress}
               inputProps={{
                 ...inputProps,
-                autocomplete: 'off',
+                autoComplete: 'off',
                 ref: this.inputRef,
               }}
               {...InputProps}

@@ -11,7 +11,6 @@ const ParticipantsInput = ({ t, ...extra }) => {
   const props = {
     label: t('field_label'),
     placeholder: t('field_placeholder'),
-    labelDisplayList: useNewForm ? undefined : t('box_label_list_of_items'),
     messageEmpty: t('message_no_participants_added'),
     helperText: t('field_help_separate_participants_commas'),
     fullWidth: true,
@@ -19,6 +18,10 @@ const ParticipantsInput = ({ t, ...extra }) => {
     inputProps: { 'data-testid': 'ParticipantsInput__inputField' },
     ...rest,
   };
+
+  if (!useNewForm) {
+    props.labelDisplayList = t('box_label_list_of_items');
+  }
 
   const Component = useNewForm ? MultiValueInput : MultiValueInputOld;
 
