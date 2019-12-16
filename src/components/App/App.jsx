@@ -5,7 +5,6 @@ import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Cookies from 'js-cookie';
 // import showCookieBanner from '../../services/cookieConsent';
 import initI18n from '../../i18n';
 import AppShell from '../AppShell/AppShell.jsx';
@@ -19,9 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     if (config.googleAnalyticsEnabled) {
-      const ABTestArrow = Cookies.get('spinner_split_test_version');
       ReactGA.initialize(config.googleAnalyticsID, { titleCase: false });
-      ReactGA.set({ dimension2: ABTestArrow });
     }
     if (config.mixpanelEnabled) {
       mixpanel.init(config.mixpanelID, { debug: config.mixpanelDebug, track_pageview: false });

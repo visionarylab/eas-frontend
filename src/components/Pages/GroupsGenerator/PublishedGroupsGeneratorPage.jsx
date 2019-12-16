@@ -96,10 +96,7 @@ const mapsStateToProps = state => ({
   hostname: state.userRequest.hostname,
 });
 
-export default connect(
-  mapsStateToProps,
-  { fetchDraw },
-)(
+export default connect(mapsStateToProps, { fetchDraw })(
   frontloadConnect(loadData, {
     onMount: true,
     onUpdate: false,
