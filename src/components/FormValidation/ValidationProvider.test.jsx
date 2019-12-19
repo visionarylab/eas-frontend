@@ -15,6 +15,8 @@ jest.mock('@material-ui/core/Input', () => {
   );
 });
 
+jest.mock('../../services/abtest', () => ({ shouldUseNewForm: jest.fn(() => true) }));
+
 const ValidatedTextField = withFieldValidation(TextField);
 const mockOnSubmit = jest.fn();
 
