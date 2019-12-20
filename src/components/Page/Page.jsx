@@ -74,6 +74,7 @@ class Page extends Component {
             href: window.location.origin + location.pathname,
           },
         ];
+    console.log('Page', STYLES.Page);
     return (
       <Fragment>
         <Helmet

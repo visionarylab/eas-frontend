@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import { withTheme, styled } from '@material-ui/core/styles';
-
-import classNames from 'classnames';
 import Chip from '@material-ui/core/Chip';
-
-// import ChipInput from 'material-ui-chip-input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import classnames from 'classnames/bind';
-import STYLES from './MultiValueInput.module.scss';
+import STYLES from './MultiValueInput.scss';
 
 const c = classnames.bind(STYLES);
 
@@ -115,16 +111,16 @@ class MultiValueInput extends Component {
       transform: 'initial',
     });
     return (
-      <FormControl error={error} fullWidth={fullWidth} data-testid={dataTestId}>
-        <MyInputLabel htmlFor={id} id={inputLabelId} className={STYLES.Label}>
+      <FormControl error={error} fullWidth={fullWidth} data-testid={dataTestId} margin="normal">
+        <MyInputLabel htmlFor={id} id={inputLabelId} className={c('MultiValueInput__label')}>
           {label}
         </MyInputLabel>
         <div
           role="presentation"
-          className={c('Border', { Border__error: error })}
+          className={c('MultiValueInput__border', { 'MultiValueInput__border--error': error })}
           onClick={this.handleDivClick}
         >
-          <div className={STYLES.ItemsList}>
+          <div className={c('MultiValueInput__itemsList')}>
             {values.map(value => (
               <Chip
                 onClick={e => {
@@ -141,7 +137,7 @@ class MultiValueInput extends Component {
               type="text"
               value={currentValue}
               placeholder={!values.length ? placeholder : null}
-              className={classNames(STYLES.Input, className)}
+              className={c('MultiValueInput__input', className)}
               disableUnderline
               onKeyDown={this.handleKeyPress}
               inputProps={{

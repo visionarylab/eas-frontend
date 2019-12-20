@@ -2,6 +2,7 @@ import React from 'react';
 import { withTranslation, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { RaffleResult } from 'echaloasuerte-js-sdk';
+import classnames from 'classnames/bind';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
@@ -16,7 +17,9 @@ import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import raffleOgImage from './raffle_og_image.png';
-import STYLES from './RaffleQuickPage.module.scss';
+import STYLES from './RaffleQuickPage.scss';
+
+const c = classnames.bind(STYLES);
 
 const analyticsDrawType = 'Raffle';
 
@@ -77,7 +80,7 @@ const RafflePage = ({
           {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
           <SubmitFormButton label={t('generate_results')} />
         </ValidationProvider>
-        <div ref={resultsRef} className={STYLES.QuickResults}>
+        <div ref={resultsRef} className={c('RaffleQuickPage__quickResults')}>
           {loadingResult && <LoadingCoin />}
           {!loadingResult && quickResult && (
             <>

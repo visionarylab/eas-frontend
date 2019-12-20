@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { withRouter } from 'react-router';
-import STYLES from './DrawLayout.module.scss';
+import STYLES from './DrawLayout.scss';
 
 const c = classNames.bind(STYLES);
 const DrawLayout = ({ sidePanel, children, isMobile }) =>
@@ -11,15 +11,15 @@ const DrawLayout = ({ sidePanel, children, isMobile }) =>
   isMobile ? (
     <>
       {children}
-      {sidePanel && <div className={c('DrawLayout__side-panel')}>{sidePanel}</div>}
+      {sidePanel}
     </>
   ) : sidePanel ? (
-    <div className={STYLES.ExtraContent}>
-      <div className={STYLES.CentralColumn}>{children}</div>
-      <div className={STYLES.RightColumn}>{sidePanel}</div>
+    <div className={c('DrawLayout__extraContent')}>
+      <div className={c('DrawLayout__centralColumn')}>{children}</div>
+      <div className={c('DrawLayout__rightColumn')}>{sidePanel}</div>
     </div>
   ) : (
-    <div className={STYLES.ContentOnly}>{children}</div>
+    <div className={c('DrawLayout__contentOnly')}>{children}</div>
   );
 
 DrawLayout.propTypes = {
