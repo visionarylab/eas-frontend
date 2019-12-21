@@ -1,4 +1,6 @@
 // eslint-disable-line no-console
+import config from '../../config/config';
+
 const DEBUG = false;
 const log = message => DEBUG && console.log(message);
 
@@ -12,7 +14,7 @@ export const fbAsyncInit = async onStatusChange => {
   window.fbAsyncInit = () => {
     log('init FB');
     window.FB.init({
-      appId: '239321593490183',
+      appId: config.facebookApiId,
       autoLogAppEvents: true,
       xfbml: true,
       status: true,
