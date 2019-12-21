@@ -18,7 +18,7 @@ export const fbAsyncInit = async onStatusChange => {
       autoLogAppEvents: true,
       xfbml: true,
       status: true,
-      version: 'v3.1',
+      version: 'v5.0',
     });
     window.FB.Event.subscribe('auth.statusChange', onStatusChange);
 
