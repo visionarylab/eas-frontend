@@ -4,12 +4,9 @@ import { connect } from 'react-redux';
 import * as Sentry from '@sentry/browser';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
-
-// import moment from 'moment';
 import { RaffleApi, RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import Page from '../../Page/Page.jsx';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
@@ -25,6 +22,7 @@ import ParticipateWithFbPanel from './ParticipateWithFbPanel.jsx';
 import WinnersList from '../../WinnersList/WinnersList.jsx';
 import withTracking from '../../withTracking/withTracking.jsx';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
+import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 
 const c = classNames.bind(STYLES);
@@ -108,19 +106,14 @@ const PublishedFacebookRafflePage = props => {
                 url={shareUrl}
               />
             </ResultsBox>
-            <section /* className={c('PublishedFacebookRafflePage__details')} */>
-              <Typography variant="h5">{t('published_raffle_details')}</Typography>
-              <div>
-                <Typography variant="body2">
-                  {t('field_label_prizes')}: {prizes.map(p => p.name).join(', ')}
-                </Typography>
-              </div>
-              <div>
-                <Typography variant="body2" data-testid="FacebookRaffle__number-of-participants">
-                  {t('field_label_number_of_participants')}: {participants.length}
-                </Typography>
-              </div>
-            </section>
+            <PublishedDrawDetails sectionTitle={t('published_raffle_details')}>
+              <Typography variant="body2">
+                {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
+              </Typography>
+              <Typography variant="body2" data-testid="FacebookRaffle__number-of-participants">
+                {t('label_number_of_participants')} {participants.length}
+              </Typography>
+            </PublishedDrawDetails>
           </>
         ) : (
           <>
