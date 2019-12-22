@@ -30,7 +30,6 @@ const PublishedRafflePage = props => {
   const { draw, match, t, hostname } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
   const shareUrl = hostname + match.url;
-
   useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {

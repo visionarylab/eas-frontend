@@ -5,6 +5,7 @@ const initialState = {
     title: '',
     description: '',
     participants: [],
+    prizes: [],
     numberOfGroups: null,
     result: null,
     isOwner: false,
