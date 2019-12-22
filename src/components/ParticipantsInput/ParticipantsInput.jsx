@@ -5,9 +5,9 @@ import MultiValueInput from '../MultiValueInput/MultiValueInput.jsx';
 import MultiValueInputOld from '../MultiValueInputOld/MultiValueInput.jsx';
 import { shouldUseNewForm } from '../../services/abtest';
 
-const ParticipantsInput = ({ t, ...extra }) => {
+const ParticipantsInput = ({ t, ...other }) => {
   const useNewForm = shouldUseNewForm();
-  const { tReady, i18n, ...rest } = extra;
+  const { tReady, i18n, ...rest } = other;
   const props = {
     label: t('field_label'),
     placeholder: t('field_placeholder'),
