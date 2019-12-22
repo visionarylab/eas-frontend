@@ -26,8 +26,6 @@
   "FacebookRaffle": {
     "draw_subheading": "People will be able to participate by logging in with the Facebook accounts",
     "field_default_title": "Facebook raffle",
-    "field_help_separate_prizes_commas": "Separate prizes by commas",
-    "field_label_list_of_prizes": "List of prizes",
     "field_label_when_to_toss": "Choose when results will be published",
     "html_description": "Create a public raffle where participants will be able to join by login with the Facebook accounts.",
     "html_keywords": "raffle in facebook, assign prizes, countdown, join raffle, public results",
@@ -35,14 +33,11 @@
     "label_number_of_participants": "Number of participants:",
     "label_prizes": "Prizes:",
     "login_with_facebook_to_participate": "Login with Facebook to participate",
-    "message_no_prizes_added": "You haven't added any prize yet",
     "or_access_as_someone_else": "Or access as someone else",
     "page_title": "Raffle among Facebook users",
     "participate_as": "Participate as {{username}}",
     "people_registered_already": "There is {{count}} person registered",
-    "people_registered_already_plural": "There are {{count}} people registered",
     "publish_draw": "Publish raffle",
-    "publish_raffle": "Publish raffle",
     "published_raffle_details": "Details of the raffle",
     "share_draw": "Share this raffle",
     "share_result": "Share these results",
@@ -118,15 +113,7 @@
     "section_title_online_raffles": "Online raffles",
     "section_title_simple_draws": "Simple choices"
   },
-  "LetterDrawPage": {
-    "draw_configuration": "Draw configuration",
-    "general_details_draw": "General draw details",
-    "generate_letters": "Generate letters",
-    "letter_draw_html_title": "Generate random letters",
-    "letter_draw_title": "Generate random letters",
-    "number_of_letters": "Number of letters",
-    "publish_draw": "Publish draw"
-  },
+  "LetterDrawPage": {},
   "PrivacyPolicy": {
     "html_title": "Privacy Policy"
   },
@@ -143,13 +130,9 @@
     "create_certificated_draw": "Create a raffle publicly",
     "draw_subheading": "Create an online raffle with prizes and share the results.",
     "error_form_not_enough_participants": "There are {{numberOfPrizes}} prizes but only {{count}} participant. Add more participants",
-    "error_form_not_enough_participants_plural": "There are {{numberOfPrizes}} prizes but only {{count}} participants. Add more participants",
     "field_default_title": "Public raffle",
-    "field_help_separate_prizes_commas": "Separate prizes by commas",
-    "field_label_list_of_prizes": "List of prizes",
     "field_label_prizes": "Add prizes",
     "field_label_when_to_toss": "Choose when to publish the winners",
-    "field_placeholder_prizes": "Cruise to Bali, ...",
     "generate_results": "Raffle prizes",
     "html_description": "Create online raffles. Let the luck decide who will be the winner of a prize.",
     "html_keywords": "raffle, lottery, pool, choose winner, prizes",
@@ -158,7 +141,6 @@
     "label_prizes": "Prizes:",
     "learn_more_content": "With this raffle you will be able to choose a list of participants and decide when the results will be published",
     "learn_more_title": "What are the advantages of this raffle?",
-    "message_no_prizes_added": "You haven't added any prizes",
     "page_title": "Raffle with a closed list of participants",
     "publish_draw": "Publish raffle",
     "published_draw_details": "Raffle details",
@@ -170,7 +152,8 @@
     "share_result_dialog_title": "Create raffle publicly to share the results",
     "step_label_configure": "Configure the raffle",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When will the results be generated?"
+    "step_label_when_to_toss": "When will the results be generated?",
+    "winners": "Winners of the raffle"
   },
   "RafflesPage": {
     "draw_title_facebook_raffle": "Raffle among Facebook users",
@@ -243,7 +226,6 @@
     "field_placeholder": "Add participants",
     "message_no_participants_added": "You haven't added any participants",
     "field_help_separate_participants_commas": "Separate participants by commas",
-    "tooltip_add_value": "Add participant",
     "box_label_list_of_items": "List of participants"
   },
   "PrizesInput": {
@@ -251,7 +233,6 @@
     "field_placeholder": "Cruise to Bali, ...",
     "message_no_values_added": "You haven't added any prizes",
     "field_help_separate_values_commas": "Separate prizes by commas",
-    "tooltip_add_value": "Add prize",
     "box_label_list_of_items": "List of prizes"
   }
 }

@@ -25,7 +25,6 @@
     "error_no_user_pages": "No nos has dado acceso a ninguna página de Facebook",
     "html_title": "Sorteo de likes en Facebook",
     "page_title": "Sorteo de 'likes' en Facebook",
-    "step_choose_post": "Elegir publicación",
     "step_label_login_with_facebook": "Acceder con Facebook"
   },
   "FacebookProvider": {
@@ -35,10 +34,6 @@
   "FacebookRaffle": {
     "draw_subheading": "Los usuarios podrán inscribirse ellos mismo usando su cuenta de Facebook",
     "field_default_title": "Sorteo en Facebook",
-    "field_help_separate_prizes_commas": "Separa los premios por comas",
-    "field_label_list_of_prizes": "Lista de premios",
-    "field_label_number_of_participants": "Número de participantes",
-    "field_label_prizes": "Premios",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
     "html_description": "Crea un sorteo público en el que los participantes podrán unirse con su cuenta de Facebook.",
     "html_keywords": "Sorteo en Facebook, regalar premios, cuenta atrás, sorteo público, unirse a un sorteo",
@@ -46,14 +41,11 @@
     "label_number_of_participants": "Número de participantes:",
     "label_prizes": "Premios:",
     "login_with_facebook_to_participate": "Accede con Facebook para participar",
-    "message_no_prizes_added": "No has añadido ningún premio",
     "or_access_as_someone_else": "O accede como otra persona",
     "page_title": "Sorteo entre usuarios de Facebook",
     "participate_as": "Participar como {{username}}",
     "people_registered_already": "Hay {{count}} persona inscrita",
-    "people_registered_already_plural": "Hay {{count}} personas inscritas",
     "publish_draw": "Publicar sorteo",
-    "publish_raffle": "Publicar sorteo",
     "published_raffle_details": "Detalles del sorteo",
     "share_draw": "Comparte este sorteo",
     "share_result": "Comparte este resultado",
@@ -129,15 +121,7 @@
     "section_title_online_raffles": "Sorteos online",
     "section_title_simple_draws": "Sorteos simples"
   },
-  "LetterDrawPage": {
-    "draw_configuration": "Configuración de la tirada",
-    "general_details_draw": "Detalles generales de la tirada",
-    "generate_letters": "Generar letras",
-    "letter_draw_html_title": "Generar letras aleatorias",
-    "letter_draw_title": "Generar letras aleatorias",
-    "number_of_letters": "Número de letras",
-    "publish_draw": "Publicar tidada"
-  },
+  "LetterDrawPage": {},
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
   },
@@ -154,13 +138,8 @@
     "create_certificated_draw": "Crear un sorteo publicamente",
     "draw_subheading": "Crea un sorteo online con premios y comparte el resultado.",
     "error_form_not_enough_participants": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participante. Añade más participantes",
-    "error_form_not_enough_participants_plural": "Hay {{numberOfPrizes}} premios pero sólo {{count}} participantes. Añade más participantes",
     "field_default_title": "Sorteo público",
-    "field_help_separate_prizes_commas": "Separa los premios por comas",
-    "field_label_list_of_prizes": "Lista de premios",
-    "field_label_prizes": "Premios",
     "field_label_when_to_toss": "Elige cúando se generarán los resultados",
-    "field_placeholder_prizes": "Crucero a Bali, ...",
     "generate_results": "Sortear premios",
     "html_description": "Organiza sorteos online. Deja que la suerte decida quién sera el ganador de un premio.",
     "html_keywords": "sorteo, lotería, bombo, elegir ganador, premios",
@@ -169,7 +148,6 @@
     "label_prizes": "Premios:",
     "learn_more_content": "En este tipo de sorteo tú decides quienes serán los participantes.",
     "learn_more_title": "¿Cuáles son las ventajas de este tipo de sorteo?",
-    "message_no_prizes_added": "No has añadido ningún premio",
     "page_title": "Sorteo con lista de participantes cerrada",
     "publish_draw": "Publicar sorteo",
     "published_draw_details": "Detalles del sorteo",
@@ -254,7 +232,6 @@
     "field_placeholder": "Añade participantes",
     "message_no_participants_added": "No has añadido ningún participante",
     "field_help_separate_participants_commas": "Separa los participantes por comas",
-    "tooltip_add_value": "Añadir participante",
     "box_label_list_of_items": "Lista de participantes"
   },
   "PrizesInput": {
@@ -262,7 +239,6 @@
     "field_placeholder": "Crucero a Bali, ...",
     "message_no_values_added": "No has añadido ningún premio",
     "field_help_separate_values_commas": "Separa los premios por comas",
-    "tooltip_add_value": "Añadir premio",
     "box_label_list_of_items": "Lista de premios"
   }
 }
