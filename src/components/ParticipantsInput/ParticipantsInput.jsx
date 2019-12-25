@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import MultiValueInput from '../MultiValueInput/MultiValueInput.jsx';
-import MultiValueInputOld from '../MultiValueInputOld/MultiValueInput.jsx';
-import { shouldUseNewForm } from '../../services/abtest';
 
 const ParticipantsInput = ({ t, ...other }) => {
-  const useNewForm = shouldUseNewForm();
   const { tReady, i18n, ...rest } = other;
   const props = {
     label: t('field_label'),
@@ -19,13 +16,7 @@ const ParticipantsInput = ({ t, ...other }) => {
     ...rest,
   };
 
-  if (!useNewForm) {
-    props.labelDisplayList = t('box_label_list_of_items');
-  }
-
-  const Component = useNewForm ? MultiValueInput : MultiValueInputOld;
-
-  return <Component {...props} />;
+  return <MultiValueInput {...props} />;
 };
 
 ParticipantsInput.propTypes = {
