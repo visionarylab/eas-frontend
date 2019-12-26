@@ -7,7 +7,7 @@ const getLanguageBasedOnHostname = hostname => {
   const hostnameRegex = /(chooserandom|echaloasuerte)\.com/;
   const match = hostname.match(hostnameRegex);
   const hostnameMatch = match ? match[1] : null;
-  const defaultLanguage = 'en-GB';
+  const defaultLanguage = 'es-ES';
 
   switch (hostnameMatch) {
     case 'chooserandom':
