@@ -43,7 +43,7 @@
     "share_result": "Share these results",
     "step_label_general_details": "General details",
     "step_label_prizes": "Add the prizes",
-    "step_label_when_to_toss": "When the results will be published?",
+    "step_label_when_to_toss": "Date of the raffle",
     "unable_to_register_in_raffle": "There was an error when trying to register in the raffle. Please try again later",
     "winners": "Winners of the raffle",
     "you_are_registered_as_username": "You are registered in the raffle as {{username}}"
@@ -90,7 +90,7 @@
     "share_result_dialog_title": "Generate the groups publicly to share the results",
     "step_label_configure": "Add the participants",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When will the results be published?"
+    "step_label_when_to_toss": "Date of the raffle"
   },
   "Header": {
     "brand_name": "ChooseRandom",
@@ -123,7 +123,7 @@
   "PublicDetails": {
     "description_label": "Description",
     "description_placeholder": "Raffle description, rules, etc.",
-    "title_label": "Title",
+    "title_label": "Title of the raffle",
     "title_placeholder": "Christmas raffle"
   },
   "Raffle": {
@@ -152,7 +152,7 @@
     "share_result_dialog_title": "Create raffle publicly to share the results",
     "step_label_configure": "Configure the raffle",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When will the results be generated?",
+    "step_label_when_to_toss": "Date of the raffle",
     "winners": "Winners of the raffle"
   },
   "RafflesPage": {
@@ -182,7 +182,7 @@
     "published_draw_details": "Draw details",
     "step_label_configuration": "Configure the draw",
     "step_label_general_details": "General details",
-    "step_label_when_to_toss": "When do you want to generate the results?"
+    "step_label_when_to_toss": "Date of the raffle"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancel",
@@ -229,7 +229,7 @@
     "box_label_list_of_items": "List of participants"
   },
   "PrizesInput": {
-    "field_label": "Prizes",
+    "field_label": "What are the prizes you are giving away?",
     "field_placeholder": "Cruise to Bali, ...",
     "message_no_values_added": "You haven't added any prizes",
     "field_help_separate_values_commas": "Separate prizes by commas",

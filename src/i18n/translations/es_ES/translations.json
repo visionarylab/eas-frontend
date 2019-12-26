@@ -51,7 +51,7 @@
     "share_result": "Comparte este resultado",
     "step_label_general_details": "Detalles generales",
     "step_label_prizes": "Añade los premios",
-    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?",
+    "step_label_when_to_toss": "Fecha del sorteo",
     "unable_to_register_in_raffle": "Ha habido un error al realizar el registro en el sorteo. Por favor inténtelo de nuevo más tarde",
     "winners": "Ganadores del sorteo",
     "you_are_registered_as_username": "Estas registrado en el sorteo como {{username}}"
@@ -98,7 +98,7 @@
     "share_result_dialog_title": "Genera los grupos públicamente",
     "step_label_configure": "Añade los participantes",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "¿Cuándo se realizara el sorteo?"
+    "step_label_when_to_toss": "Fecha del sorteo"
   },
   "Header": {
     "brand_name": "ÉchaloASuerte",
@@ -131,7 +131,7 @@
   "PublicDetails": {
     "description_label": "Descripción",
     "description_placeholder": "Descripción del sorteo, bases del concurso, etc.",
-    "title_label": "Título",
+    "title_label": "Título del sorteo",
     "title_placeholder": "Sorteo de Navidad"
   },
   "Raffle": {
@@ -159,7 +159,7 @@
     "share_result_dialog_title": "Crea el sorteo públicamente para compartirlo",
     "step_label_configure": "Configura el sorteo",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "¿Cuándo se realizará el sorteo?"
+    "step_label_when_to_toss": "Fecha del sorteo"
   },
   "RafflesPage": {
     "draw_title_facebook_raffle": "Sorteo entre usuarios de Facebook",
@@ -188,7 +188,7 @@
     "published_draw_details": "Detalles del sorteo",
     "step_label_configuration": "Configura la tirada",
     "step_label_general_details": "Detalles generales de la tirada",
-    "step_label_when_to_toss": "¿Cuándo quieres generar los números?"
+    "step_label_when_to_toss": "Fecha del sorteo"
   },
   "RecentDrawsPage": {
     "delete_all_recent_draws_modal_cancel": "Cancelar",
@@ -235,7 +235,7 @@
     "box_label_list_of_items": "Lista de participantes"
   },
   "PrizesInput": {
-    "field_label": "Premios",
+    "field_label": "¿Qué premios quieres regalar?",
     "field_placeholder": "Crucero a Bali, ...",
     "message_no_values_added": "No has añadido ningún premio",
     "field_help_separate_values_commas": "Separa los premios por comas",
