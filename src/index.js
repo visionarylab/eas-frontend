@@ -6,10 +6,8 @@ import ReactDOM from 'react-dom';
 import { Frontload } from 'react-frontload';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-ui/core/styles';
 import * as Sentry from '@sentry/browser';
 import App from './components/App/App.jsx';
-import theme from './EasTheme.jsx';
 import setupApi from './setupApi';
 import createStore from './store';
 import { initWinstonLogging } from './logging';
@@ -45,9 +43,7 @@ class Application extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Frontload noServerRender>
-            <ThemeProvider theme={theme}>
-              <App />
-            </ThemeProvider>
+            <App />
           </Frontload>
         </ConnectedRouter>
       </Provider>
