@@ -104,7 +104,7 @@ class RecentDrawsPage extends Component {
             </List>
             <Button
               variant="contained"
-              onClick={() => this.handleClickOpen()}
+              onClick={this.handleClickOpen}
               data-testid="RecentDraws__clear-history"
             >
               {t('delete_recent_raffles_button_label')}
