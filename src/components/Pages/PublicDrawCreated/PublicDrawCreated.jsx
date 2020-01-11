@@ -9,13 +9,14 @@ import Page from '../../Page/Page.jsx';
 import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import ShareUrl from '../../ShareUrl/ShareUrl.jsx';
+import STYLES from './PublicDrawCreated.module.scss';
 
 // import STYLES from './PublicDrawCreated.scss';
 // import headsIcon from './heads.png';
 // import tailsIcon from './tails.png';
 // import coinOgImage from './coin_og_image.png';
 
-// const c = classnames.bind(STYLES);
+const c = classnames.bind(STYLES);
 
 const analyticsDrawTypeMap = {
   groups: 'Groups',
@@ -34,7 +35,7 @@ const PublicDrawCreated = ({ t, match }) => {
       // ogImage={coinOgImage}
       // className={c('PublicDrawCreated')}
     >
-      <Typography align="center" variant="h1">
+      <Typography align="center" variant="h1" className={STYLES.Title}>
         Enhorabuena!
         <br />
         Tu sorteo ha sido creado correctamente

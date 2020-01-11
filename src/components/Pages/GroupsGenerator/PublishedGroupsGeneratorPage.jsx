@@ -15,7 +15,6 @@ import Countdown from '../../Countdown/Countdown.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
 
@@ -49,25 +48,23 @@ const PublishedGroupsGeneratorPage = props => {
       noIndex
       pageType="Groups Published Draw"
     >
-      <DrawLayout>
-        <DrawHeading title={title || t('page_title')} subtitle={description} />
-        {result.value ? (
-          <ResultsBox title={t('generated_groups')}>
-            <GroupsGeneratorResult result={result} />
-          </ResultsBox>
-        ) : (
-          <Countdown date={result.schedule_date} />
-        )}
-        <ShareButtonsList />
-        <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
-          <Typography component="div" variant="body2">
-            {t('label_number_of_groups')} {numberOfGroups}
-          </Typography>
-          <Typography component="div" variant="body2">
-            {t('label_participants')} {participants.map(p => p.name).join(', ')}
-          </Typography>
-        </PublishedDrawDetails>
-      </DrawLayout>
+      <DrawHeading title={title || t('page_title')} subtitle={description} />
+      {result.value ? (
+        <ResultsBox title={t('generated_groups')}>
+          <GroupsGeneratorResult result={result} />
+        </ResultsBox>
+      ) : (
+        <Countdown date={result.schedule_date} />
+      )}
+      <ShareButtonsList />
+      <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
+        <Typography component="div" variant="body2">
+          {t('label_number_of_groups')} {numberOfGroups}
+        </Typography>
+        <Typography component="div" variant="body2">
+          {t('label_participants')} {participants.map(p => p.name).join(', ')}
+        </Typography>
+      </PublishedDrawDetails>
     </Page>
   );
 };

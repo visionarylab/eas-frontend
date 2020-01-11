@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
+import PageLayout from './PageLayout.jsx';
 import { hotjar } from '../../services/hotjar';
 import { getExperimentsAllocation } from '../../services/abtest';
 import config from '../../config/config';
@@ -65,7 +66,7 @@ class Page extends Component {
   }
 
   render() {
-    const { htmlTitle, className, location, children, showAdvert } = this.props;
+    const { htmlTitle, className, location, children, showAdvert, sidePanel } = this.props;
     const canonicalLinks = config.isServer
       ? []
       : [
@@ -86,7 +87,7 @@ class Page extends Component {
           meta={this.getMetaTags()}
         />
         <div className={c('Page', className)}>
-          {children}
+          <PageLayout sidePanel={sidePanel}>{children}</PageLayout>
           {showAdvert && <Advert />}
         </div>
       </Fragment>
@@ -108,6 +109,7 @@ Page.propTypes = {
   ogImage: PropTypes.node,
   hostname: PropTypes.string.isRequired,
   showAdvert: PropTypes.bool,
+  sidePanel: PropTypes.node,
 };
 
 Page.defaultProps = {
@@ -119,6 +121,7 @@ Page.defaultProps = {
   enableHotjar: false,
   showAdvert: true,
   mixpanel: null,
+  sidePanel: null,
 };
 
 const mapsStateToProps = state => ({

@@ -7,7 +7,6 @@ import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 
@@ -71,16 +70,15 @@ const RafflePage = ({
       pageType="groups_public_draw"
       // ogImage={groupsOgImage}
     >
-      <DrawLayout>
-        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_draw')}
-          apiError={apiError}
-        />
-        <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
-      </DrawLayout>
+      >
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+      <WizardForm
+        steps={steps}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_draw')}
+        apiError={apiError}
+      />
+      <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
     </Page>
   );
 };
