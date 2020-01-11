@@ -130,7 +130,9 @@ const PublishedFacebookRafflePage = props => {
             </div>
             <Typography variant="body2" align="center">
               {participants.length > 0 &&
-                t('people_registered_already', { count: participants.length })}
+                t('people_registered_already', {
+                  count: participants.length,
+                })}
               <br />
             </Typography>
             <Countdown date={result.schedule_date} />

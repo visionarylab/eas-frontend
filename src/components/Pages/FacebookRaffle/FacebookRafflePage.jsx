@@ -82,7 +82,7 @@ const FacebookRafflePage = props => {
       pageType="Facebook Raffle"
       showAdvert={!isMobile}
     >
-      <DrawLayout isPublic>
+      <DrawLayout>
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
         <WizardForm
           steps={steps}
