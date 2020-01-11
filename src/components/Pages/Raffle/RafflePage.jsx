@@ -70,7 +70,6 @@ const RafflePage = ({
       pageType="groups_public_draw"
       // ogImage={groupsOgImage}
     >
-      >
       <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
       <WizardForm
         steps={steps}

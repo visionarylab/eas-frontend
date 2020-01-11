@@ -47,7 +47,6 @@ const PublishedRafflePage = props => {
       noIndex
       pageType="raffle_published_draw"
     >
-      >
       <DrawHeading title={title || t('page_title')} subtitle={description} />
       {result.value ? (
         <>

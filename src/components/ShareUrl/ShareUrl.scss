@@ -1,8 +1,8 @@
 .ShareUrl {
   display: flex;
   width: 550px;
-  align-items: 'center';
   margin: auto;
+  align-items: 'center';
 
   & &__divider {
     height: 48px;
@@ -10,10 +10,10 @@
   }
 
   & &__input {
-    flex: 1;
-    font-size: 0.75rem;
     display: flex;
     padding: 5px;
+    flex: 1;
+    font-size: .75rem;
   }
 
   & &__input input {

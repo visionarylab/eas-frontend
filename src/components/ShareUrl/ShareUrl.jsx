@@ -1,11 +1,9 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { withTranslation } from 'react-i18next';
 import Button from '@material-ui/core/Button';
@@ -21,14 +19,12 @@ const SNACK_CLOSE_DELAY = 2000;
 
 const copyInputContent = input => {
   input.select();
-  let success;
 
   try {
     const successful = document.execCommand('copy');
     if (!successful) {
       throw new Error('copy command was unsuccessful');
     }
-    success = true;
   } catch (err) {
     console.error('unable to copy using execCommand: ', err);
     // console.warn('trying IE specific stuff');
@@ -98,6 +94,7 @@ const ShareUrl = ({ url, t }) => {
 };
 
 ShareUrl.propTypes = {
+  url: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
 };
 
