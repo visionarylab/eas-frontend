@@ -32,8 +32,8 @@ const PublicDrawCreated = ({ t, match }) => {
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
       pageType="Public Draw Successfully Created"
+      contentClassName={STYLES.Page}
       // ogImage={coinOgImage}
-      // className={c('PublicDrawCreated')}
     >
       <Typography align="center" variant="h1" className={STYLES.Title}>
         Enhorabuena!
@@ -43,12 +43,13 @@ const PublicDrawCreated = ({ t, match }) => {
       <Typography align="center" variant="body1">
         Comparte este link con quien quieras y podrán ver el resultado en directo
       </Typography>
+      <br />
       <ShareButtons
         drawType={analyticsDrawTypeMap[drawType]}
         url={shareUrl}
         types={['facebook', 'twitter', 'telegram', 'whatsapp', 'url']}
       />
-      <RouterButton variant="contained" color="primary" to={pathUrl} style={{ margin: '0 auto' }}>
+      <RouterButton variant="contained" color="primary" to={pathUrl} className={STYLES.Cta}>
         Ir al sorteo
       </RouterButton>
     </Page>

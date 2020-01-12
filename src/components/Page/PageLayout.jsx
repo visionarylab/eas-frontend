@@ -24,12 +24,14 @@ const PageLayout = ({ sidePanel, children, contentClassName, isMobile }) =>
 
 PageLayout.propTypes = {
   sidePanel: PropTypes.node,
+  contentClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   isMobile: PropTypes.bool.isRequired,
 };
 
 PageLayout.defaultProps = {
   sidePanel: null,
+  contentClassName: null,
 };
 
 const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });

@@ -115,7 +115,7 @@ Page.propTypes = {
 };
 
 Page.defaultProps = {
-  className: null,
+  contentClassName: null,
   noIndex: false,
   ogImage: defaultOgImage,
   htmlKeywords: '',
