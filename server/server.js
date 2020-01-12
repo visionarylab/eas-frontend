@@ -39,7 +39,6 @@ app.use(express.Router().get('/', loader));
 app.use(express.static(path.resolve(__dirname, '../build')));
 app.use(loader);
 
-winston.error('Error test');
 winston.info('App started');
 app.listen(PORT, console.log(`App listening on port ${PORT}!`));
 
