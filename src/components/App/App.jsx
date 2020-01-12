@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 // import showCookieBanner from '../../services/cookieConsent';
@@ -12,6 +13,8 @@ import FacebookProvider from '../FacebookProvider/FacebookProvider.jsx';
 import config from '../../config/config';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.jsx';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage.jsx';
+import theme from '../../EasTheme.jsx';
+
 // import { hotjar } from '../../services/hotjar';
 
 class App extends Component {
@@ -42,13 +45,15 @@ class App extends Component {
         )}
       >
         <FacebookProvider>
-          {config.mixpanelEnabled ? (
-            <MixpanelProvider mixpanel={mixpanel}>
+          <ThemeProvider theme={theme}>
+            {config.mixpanelEnabled ? (
+              <MixpanelProvider mixpanel={mixpanel}>
+                <AppShell />
+              </MixpanelProvider>
+            ) : (
               <AppShell />
-            </MixpanelProvider>
-          ) : (
-            <AppShell />
-          )}
+            )}
+          </ThemeProvider>
         </FacebookProvider>
       </ErrorBoundary>
     );

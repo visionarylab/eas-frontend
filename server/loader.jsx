@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React from 'react';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
@@ -10,7 +10,6 @@ import { Frontload, frontloadServerRender } from 'react-frontload';
 import setupApi from '../src/setupApi';
 import createStore from '../src/store';
 import App from '../src/components/App/App.jsx';
-import theme from '../src/EasTheme.jsx';
 
 export default (req, res) => {
   /*
@@ -61,11 +60,9 @@ export default (req, res) => {
         sheets.collect(
           <Provider store={store}>
             <StaticRouter location={req.url} context={context}>
-              <ThemeProvider theme={theme}>
-                <Frontload isServer>
-                  <App />
-                </Frontload>
-              </ThemeProvider>
+              <Frontload>
+                <App />
+              </Frontload>
             </StaticRouter>
           </Provider>,
         ),
