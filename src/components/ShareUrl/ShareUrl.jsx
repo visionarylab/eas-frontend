@@ -8,12 +8,9 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { withTranslation } from 'react-i18next';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
-import classnames from 'classnames/bind';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
-import STYLES from './ShareUrl.scss';
-
-const c = classnames.bind(STYLES);
+import STYLES from './ShareUrl.module.scss';
 
 const SNACK_CLOSE_DELAY = 2000;
 
@@ -59,17 +56,13 @@ const ShareUrl = ({ url, t }) => {
   const vertical = 'top';
   const horizontal = 'center';
   return (
-    <Paper className={c('ShareUrl')}>
+    <Paper className={STYLES.Container}>
       <InputBase
-        className={c('ShareUrl__input')}
-        // placeholder="Search Google Maps"
-        inputProps={{ 'aria-label': 'Copy Url', ref: inputEl }}
+        className={STYLES.Url}
+        inputProps={{ 'aria-label': 'Copy Url', ref: inputEl, className: STYLES.Input }}
         value={url}
       />
-      <Divider className={c('ShareUrl__divider')} orientation="vertical" />
-      {/* <IconButton aria-label="copy">
-      <FileCopyIcon />
-    </IconButton> */}
+      <Divider className={STYLES.Divider} orientation="vertical" />
       <Button onClick={onButtonClick} startIcon={<FileCopyIcon />}>
         {t('copy')}
       </Button>

@@ -48,7 +48,7 @@ const PublicDrawCreated = ({ t, match }) => {
         url={shareUrl}
         types={['facebook', 'twitter', 'telegram', 'whatsapp', 'url']}
       />
-      <RouterButton variant="contained" color="primary" to={pathUrl}>
+      <RouterButton variant="contained" color="primary" to={pathUrl} style={{ margin: '0 auto' }}>
         Ir al sorteo
       </RouterButton>
     </Page>
