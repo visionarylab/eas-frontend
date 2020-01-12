@@ -29,7 +29,10 @@ const RandomNumberQuickPage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       sidePanel={
-        <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
+        <MakeCertifiedDrawPanel
+          buttonLabel={t('create_certificated_draw')}
+          // analyticsDrawType={analyticsDrawType} add this
+        >
           Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
           imparcial del resultado, te recomendamos que hagas un sorteo certificado
         </MakeCertifiedDrawPanel>
@@ -56,7 +59,9 @@ const RandomNumberQuickPage = props => {
       {quickResult && (
         <Fragment>
           <RandomNumberResult result={quickResult} />
-          <ShareDrawModal />
+          <ShareDrawModal
+          // analyticsDrawType={analyticsDrawType} add this
+          />
         </Fragment>
       )}
     </Page>

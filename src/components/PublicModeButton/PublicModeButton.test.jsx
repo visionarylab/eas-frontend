@@ -13,7 +13,9 @@ describe('PublicModeButton', () => {
     const trackingData = { something: 'yes' };
     const wrapper = mount(
       <MemoryRouter>
-        <PublicModeButton to="/somewhere" label="click here" trackingData={trackingData} />
+        <PublicModeButton to="/somewhere" trackingData={trackingData}>
+          click here
+        </PublicModeButton>
       </MemoryRouter>,
     );
     wrapper.find('a').simulate('click');

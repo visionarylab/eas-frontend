@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import RouterButton from '../../RouterButton/RouterButton.jsx';
 // import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import Page from '../../Page/Page.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
@@ -24,7 +24,8 @@ const analyticsDrawTypeMap = {
 
 const PublicDrawCreated = ({ t, match }) => {
   const { drawType, drawId } = match.params;
-  const shareUrl = `${window.location.origin}/${drawType}/${drawId}`;
+  const pathUrl = `/${drawType}/${drawId}`;
+  const shareUrl = `${window.location.origin}${pathUrl}`;
   return (
     <Page
       htmlTitle={t('html_title')}
@@ -47,9 +48,9 @@ const PublicDrawCreated = ({ t, match }) => {
         url={shareUrl}
         types={['facebook', 'twitter', 'telegram', 'whatsapp', 'url']}
       />
-      <Button variant="contained" color="primary" component={} href={shareUrl}>
+      <RouterButton variant="contained" color="primary" to={pathUrl}>
         Ir al sorteo
-      </Button>
+      </RouterButton>
     </Page>
   );
 };

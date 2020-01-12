@@ -44,13 +44,7 @@ const GroupsGeneratorQuickPage = props => {
         <MakeCertifiedDrawPanel
           buttonLabel={t('create_certificated_draw')}
           publicDrawUrl={publicDrawUrl}
-          trackingData={{
-            mp: {
-              name: `Start Public Draw - ${analyticsDrawType}`,
-              properties: { drawType: analyticsDrawType, source: 'From Scratch' },
-            },
-            ga: { category: analyticsDrawType, action: 'Start Public', label: 'From Scratch' },
-          }}
+          analyticsDrawType={analyticsDrawType}
         >
           <span>
             <Trans i18nKey="certified_draw_description">
@@ -80,17 +74,7 @@ const GroupsGeneratorQuickPage = props => {
             <GroupsGeneratorResult result={quickResult} />
             <ShareDrawModal
               publicDrawUrl={publicDrawUrl}
-              trackingData={{
-                mp: {
-                  name: `Start Public Draw - ${analyticsDrawType}`,
-                  properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
-                },
-                ga: {
-                  category: analyticsDrawType,
-                  action: 'Start Public',
-                  label: 'From Quick Result',
-                },
-              }}
+              analyticsDrawType={analyticsDrawType}
               t={t}
             />
           </>
