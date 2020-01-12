@@ -61,7 +61,7 @@ class RecentDrawsPage extends Component {
         noIndex
         htmlTitle={t('html_title')}
         pageType="Recent draws"
-        className={c('RecentDrawsPage')}
+        contentClassName={c('RecentDrawsPage')}
       >
         <Typography variant="h1">{t('page_title')}</Typography>
         {listEmpty ? (

@@ -6,20 +6,20 @@ import { withRouter } from 'react-router';
 import STYLES from './PageLayout.scss';
 
 const c = classNames.bind(STYLES);
-const PageLayout = ({ sidePanel, children, isMobile }) =>
+const PageLayout = ({ sidePanel, children, contentClassName, isMobile }) =>
   // eslint-disable-next-line no-nested-ternary
   isMobile ? (
     <>
-      {children}
+      <div className={contentClassName}>{children}</div>
       {sidePanel}
     </>
   ) : sidePanel ? (
     <div className={c('PageLayout__extraContent')}>
-      <div className={c('PageLayout__centralColumn')}>{children}</div>
+      <div className={c('PageLayout__centralColumn', contentClassName)}>{children}</div>
       <div className={c('PageLayout__rightColumn')}>{sidePanel}</div>
     </div>
   ) : (
-    <div className={c('PageLayout__contentOnly')}>{children}</div>
+    <div className={c('PageLayout__contentOnly', contentClassName)}>{children}</div>
   );
 
 PageLayout.propTypes = {

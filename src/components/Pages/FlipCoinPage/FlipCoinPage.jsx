@@ -40,7 +40,7 @@ class FlipCoinPage extends Component {
         htmlKeywords={t('html_keywords')}
         pageType="Flip a Coin"
         ogImage={coinOgImage}
-        className={c('FlipCoinPage')}
+        contentClassName={c('FlipCoinPage')}
       >
         <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
 

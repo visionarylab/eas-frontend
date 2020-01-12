@@ -66,7 +66,7 @@ class Page extends Component {
   }
 
   render() {
-    const { htmlTitle, className, location, children, showAdvert, sidePanel } = this.props;
+    const { htmlTitle, contentClassName, location, children, showAdvert, sidePanel } = this.props;
     const canonicalLinks = config.isServer
       ? []
       : [
@@ -86,8 +86,10 @@ class Page extends Component {
           link={canonicalLinks}
           meta={this.getMetaTags()}
         />
-        <div className={c('Page', className)}>
-          <PageLayout sidePanel={sidePanel}>{children}</PageLayout>
+        <div className={c('Page')}>
+          <PageLayout sidePanel={sidePanel} contentClassName={contentClassName}>
+            {children}
+          </PageLayout>
           {showAdvert && <Advert />}
         </div>
       </Fragment>
@@ -101,7 +103,7 @@ Page.propTypes = {
   htmlKeywords: PropTypes.string,
   pageType: PropTypes.string.isRequired,
   enableHotjar: PropTypes.bool,
-  className: PropTypes.string,
+  contentClassName: PropTypes.string,
   mixpanel: PropTypes.shape({ track: PropTypes.func.isRequired }),
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
