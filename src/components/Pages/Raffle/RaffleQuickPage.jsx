@@ -25,7 +25,7 @@ const analyticsDrawType = 'Raffle';
 const RafflePage = ({
   values,
   apiError,
-  loadingResult,
+  loading,
   onFieldChange,
   quickResult,
   handleToss,
@@ -72,8 +72,8 @@ const RafflePage = ({
         <SubmitFormButton label={t('generate_results')} />
       </ValidationProvider>
       <div ref={resultsRef} className={c('RaffleQuickPage__quickResults')}>
-        {loadingResult && <LoadingCoin />}
-        {!loadingResult && quickResult && (
+        {loading && <LoadingCoin />}
+        {!loading && quickResult && (
           <>
             <WinnersList winners={quickResult.value} />
             <ShareDrawModal
@@ -107,7 +107,7 @@ RafflePage.propTypes = {
   }).isRequired,
   quickResult: PropTypes.instanceOf(RaffleResult),
   apiError: PropTypes.bool,
-  loadingResult: PropTypes.bool,
+  loading: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -116,7 +116,7 @@ RafflePage.propTypes = {
 
 RafflePage.defaultProps = {
   quickResult: null,
-  loadingResult: false,
+  loading: false,
   apiError: false,
 };
 

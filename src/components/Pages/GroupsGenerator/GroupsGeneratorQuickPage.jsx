@@ -65,7 +65,7 @@ const GroupsGeneratorQuickPage = props => {
       >
         <GroupsGeneratorConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
         {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-        <SubmitFormButton label={t('generate_groups')} />
+        <SubmitFormButton label={t('generate_groups')} disabled={loadingResult} />
       </ValidationProvider>
       <div ref={resultsRef}>
         {loadingResult && <LoadingCoin />}

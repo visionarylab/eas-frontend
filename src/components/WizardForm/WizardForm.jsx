@@ -82,7 +82,7 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { steps, apiError, submitButtonLabel, isMobile, t } = this.props;
+    const { steps, apiError, loading, submitButtonLabel, isMobile, t } = this.props;
     const stepLabels = steps.map(step => step.label);
     const { activeStep, stepValidations, submittedSteps } = this.state;
 
@@ -96,6 +96,7 @@ class WizardForm extends Component {
       activeStep,
       submitButtonLabel,
       apiError,
+      loading,
       handleNext: this.handleNext,
       handleBack: this.handleBack,
       t,

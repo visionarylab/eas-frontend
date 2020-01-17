@@ -19,6 +19,7 @@ const WhenToTossForm = withValidationProvider(WhenToTossSection);
 const RafflePage = ({
   values,
   apiError,
+  loading,
   onFieldChange,
   handlePublish,
   handleCheckErrorsInConfiguration,
@@ -76,6 +77,7 @@ const RafflePage = ({
         onSubmit={handlePublish}
         submitButtonLabel={t('publish_draw')}
         apiError={apiError}
+        loading={loading}
       />
       <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
     </Page>
@@ -90,6 +92,7 @@ RafflePage.propTypes = {
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,

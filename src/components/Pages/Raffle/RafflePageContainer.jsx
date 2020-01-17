@@ -21,7 +21,8 @@ class RafflePageContainer extends Component {
 
     this.state = {
       APIError: false,
-      loadingResult: false,
+      loadingDelayCompleted: true,
+      loadingReqest: false,
       quickResult: null,
       privateId: null,
       values: {
@@ -74,10 +75,13 @@ class RafflePageContainer extends Component {
   };
 
   handleToss = async () => {
-    this.setState({ loadingResult: true });
+    this.setState({
+      loadingReqest: true,
+      loadingDelayCompleted: false,
+    });
 
     const randomNumberOfSeconds = Math.floor(Math.random() * 2.5) + 1.5;
-    setTimeout(() => this.setState({ loadingResult: false }), randomNumberOfSeconds * 1000);
+    setTimeout(() => this.setState({ loadingDelayCompleted: true }), randomNumberOfSeconds * 1000);
     let { privateId } = this.state;
     try {
       // Create the draw only if it wasn't created in a previous toss
@@ -93,9 +97,16 @@ class RafflePageContainer extends Component {
         mp: { name: `Toss - ${analyticsDrawType}`, properties: { drawType: analyticsDrawType } },
         ga: { action: 'Toss', category: analyticsDrawType },
       });
-      this.setState({ quickResult: tossResponse, APIError: false });
+      this.setState({
+        quickResult: tossResponse,
+        APIError: false,
+        loadingReqest: true,
+      });
     } catch (err) {
-      this.setState({ APIError: true });
+      this.setState({
+        APIError: true,
+        loadingReqest: true,
+      });
     }
   };
 
@@ -137,12 +148,13 @@ class RafflePageContainer extends Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingResult } = this.state;
+    const { APIError, values, quickResult, loadingDelayCompleted, loadingReqest } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
     return isPublic ? (
       <RafflePage
         apiError={APIError}
+        loading={loadingReqest}
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -153,7 +165,7 @@ class RafflePageContainer extends Component {
         apiError={APIError}
         values={values}
         quickResult={quickResult}
-        loadingResult={loadingResult}
+        loading={!loadingDelayCompleted || loadingReqest}
         handleToss={this.handleToss}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}

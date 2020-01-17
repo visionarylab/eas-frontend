@@ -20,6 +20,7 @@ const DesktopWizard = ({
   stepValidations,
   apiError,
   submitButtonLabel,
+  loading,
   t,
   children,
 }) => (
@@ -43,7 +44,7 @@ const DesktopWizard = ({
     <div className={c('WizardForm__buttons-row')}>
       <Button
         className={c('WizardForm__step-button')}
-        disabled={activeStep === 0}
+        disabled={loading || activeStep === 0}
         onClick={handleBack}
       >
         {t('back')}
@@ -54,6 +55,7 @@ const DesktopWizard = ({
         className={c('WizardForm__step-button')}
         data-testid="WizardForm__next-button"
         onClick={handleNext}
+        disabled={loading}
       >
         {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
       </Button>
@@ -70,12 +72,14 @@ DesktopWizard.propTypes = {
   stepValidations: PropTypes.arrayOf(PropTypes.bool).isRequired,
   handleNext: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
   children: PropTypes.node.isRequired,
   t: PropTypes.func.isRequired,
 };
 
 DesktopWizard.defaultProps = {
   apiError: false,
+  loading: false,
 };
 
 export default DesktopWizard;

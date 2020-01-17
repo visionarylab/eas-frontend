@@ -14,6 +14,7 @@ const MobileWizardForm = ({
   numSteps,
   submitButtonLabel,
   activeStep,
+  loading,
   apiError,
   handleNext,
   handleBack,
@@ -29,15 +30,15 @@ const MobileWizardForm = ({
       activeStep={activeStep}
       className={c('MobileWizardForm__stepper')}
       nextButton={
-        <Button size="small" onClick={handleNext}>
+        <Button size="small" onClick={handleNext} disabled={loading}>
           {activeStep === numSteps - 1 ? submitButtonLabel : t('next')}
           <KeyboardArrowRight />
         </Button>
       }
       backButton={
-        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+        <Button size="small" onClick={handleBack} disabled={loading || activeStep === 0}>
           <KeyboardArrowLeft />
-          Back
+          {t('back')}
         </Button>
       }
     />
@@ -48,6 +49,7 @@ MobileWizardForm.propTypes = {
   numSteps: PropTypes.number.isRequired,
   activeStep: PropTypes.number.isRequired,
   apiError: PropTypes.bool,
+  loading: PropTypes.bool,
   submitButtonLabel: PropTypes.string.isRequired,
   handleNext: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
@@ -57,6 +59,7 @@ MobileWizardForm.propTypes = {
 
 MobileWizardForm.defaultProps = {
   apiError: false,
+  loading: false,
 };
 
 export default MobileWizardForm;
