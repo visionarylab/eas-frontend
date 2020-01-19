@@ -23,7 +23,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       quickResult: null,
       APIError: false,
       loadingDelayCompleted: true,
-      loadingReqest: false,
+      loadingRequest: false,
       values: {
         title: '', // Default title is set in CDM
         description: '',
@@ -80,7 +80,7 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   handleToss = async () => {
     this.setState({
-      loadingReqest: true,
+      loadingRequest: true,
       loadingDelayCompleted: false,
     });
 
@@ -104,18 +104,18 @@ class GroupsGeneratorPageContainer extends React.Component {
       this.setState({
         quickResult: tossResponse,
         APIError: false,
-        loadingReqest: false,
+        loadingRequest: false,
       });
     } catch (err) {
       this.setState({
         APIError: true,
-        loadingReqest: false,
+        loadingRequest: false,
       });
     }
   };
 
   handlePublish = async () => {
-    this.setState({ loadingReqest: true });
+    this.setState({ loadingRequest: true });
 
     const { history } = this.props;
     const { values } = this.state;
@@ -140,7 +140,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       recentDraws.add(draw, drawPath, scheduleDate);
       history.push(drawPath);
     } catch (err) {
-      this.setState({ APIError: true, loadingReqest: false });
+      this.setState({ APIError: true, loadingRequest: false });
     }
   };
 
@@ -154,14 +154,14 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingDelayCompleted, loadingReqest } = this.state;
+    const { APIError, values, quickResult, loadingDelayCompleted, loadingRequest } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
 
     return isPublic ? (
       <GroupsGeneratorPage
         apiError={APIError}
-        loading={loadingReqest}
+        loading={loadingRequest}
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -170,7 +170,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     ) : (
       <GroupsGeneratorQuickPage
         apiError={APIError}
-        loadingResult={!loadingDelayCompleted || loadingReqest}
+        loadingResult={!loadingDelayCompleted || loadingRequest}
         values={values}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}

@@ -22,7 +22,7 @@ class RafflePageContainer extends Component {
     this.state = {
       APIError: false,
       loadingDelayCompleted: true,
-      loadingReqest: false,
+      loadingRequest: false,
       quickResult: null,
       privateId: null,
       values: {
@@ -76,7 +76,7 @@ class RafflePageContainer extends Component {
 
   handleToss = async () => {
     this.setState({
-      loadingReqest: true,
+      loadingRequest: true,
       loadingDelayCompleted: false,
     });
 
@@ -100,12 +100,12 @@ class RafflePageContainer extends Component {
       this.setState({
         quickResult: tossResponse,
         APIError: false,
-        loadingReqest: true,
+        loadingRequest: true,
       });
     } catch (err) {
       this.setState({
         APIError: true,
-        loadingReqest: true,
+        loadingRequest: true,
       });
     }
   };
@@ -148,13 +148,13 @@ class RafflePageContainer extends Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingDelayCompleted, loadingReqest } = this.state;
+    const { APIError, values, quickResult, loadingDelayCompleted, loadingRequest } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
     return isPublic ? (
       <RafflePage
         apiError={APIError}
-        loading={loadingReqest}
+        loading={loadingRequest}
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -165,7 +165,7 @@ class RafflePageContainer extends Component {
         apiError={APIError}
         values={values}
         quickResult={quickResult}
-        loading={!loadingDelayCompleted || loadingReqest}
+        loading={!loadingDelayCompleted || loadingRequest}
         handleToss={this.handleToss}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
