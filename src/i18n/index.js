@@ -36,6 +36,7 @@ const init = hostname => {
       interpolation: {
         formatSeparator: ',',
       },
+      transSupportBasicHtmlNodes: true,
     });
 };
 

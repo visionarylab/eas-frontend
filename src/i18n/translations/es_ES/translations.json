@@ -147,6 +147,13 @@
     "title_label": "Título del sorteo",
     "title_placeholder": "Sorteo de Navidad"
   },
+  "PublicDrawCreated": {
+    "congratulations": "Enhorabuena!",
+    "draw_created": "Has creado tu sorteo",
+    "go_to_the_raffle": "Go to the raffle",
+    "html_title": "Sorteo creado correctamente",
+    "share_link": "Comparte este link con quién quieras y podrán ver el resultado en directo"
+  },
   "Raffle": {
     "create_certificated_draw": "Crear un sorteo publicamente",
     "draw_subheading": "Crea un sorteo online con premios y comparte el resultado.",

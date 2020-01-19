@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -45,12 +45,7 @@ const GroupsGeneratorQuickPage = props => {
           publicDrawUrl={publicDrawUrl}
           analyticsDrawType={analyticsDrawType}
         >
-          <span>
-            <Trans i18nKey="certified_draw_description">
-              Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
-              imparcial del resultado, te recomendamos que hagas un sorteo certificado
-            </Trans>
-          </span>
+          {t('certified_draw_description')}
         </MakeCertifiedDrawPanel>
       }
     >

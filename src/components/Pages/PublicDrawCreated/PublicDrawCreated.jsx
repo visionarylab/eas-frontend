@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import classnames from 'classnames/bind';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { withTranslation } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
 import RouterButton from '../../RouterButton/RouterButton.jsx';
 // import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -29,19 +29,18 @@ const PublicDrawCreated = ({ t, match }) => {
   return (
     <Page
       htmlTitle={t('html_title')}
-      htmlDescription={t('html_description')}
-      htmlKeywords={t('html_keywords')}
       pageType="Public Draw Successfully Created"
+      noIndex
       contentClassName={STYLES.Page}
-      // ogImage={coinOgImage}
+      // TODO if this URL is copied but it's not in the recent draws, should redirect to the draw (strip the /success)
+      // It would be great to do that server side
     >
       <Typography align="center" variant="h1" className={STYLES.Title}>
-        Enhorabuena!
-        <br />
-        Tu sorteo ha sido creado correctamente
+        {t('congratulations')} <br />
+        {t('draw_created')}
       </Typography>
       <Typography align="center" variant="body1">
-        Comparte este link con quien quieras y podrán ver el resultado en directo
+        {t('share_link')}
       </Typography>
       <br />
       <ShareButtons
@@ -50,7 +49,7 @@ const PublicDrawCreated = ({ t, match }) => {
         types={['facebook', 'twitter', 'telegram', 'whatsapp', 'url']}
       />
       <RouterButton variant="contained" color="primary" to={pathUrl} className={STYLES.Cta}>
-        Ir al sorteo
+        {t('go_to_the_raffle')}
       </RouterButton>
     </Page>
   );
