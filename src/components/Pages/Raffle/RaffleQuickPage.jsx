@@ -78,17 +78,7 @@ const RafflePage = ({
             <WinnersList winners={quickResult.value} />
             <ShareDrawModal
               publicDrawUrl={publicDrawUrl}
-              trackingData={{
-                mp: {
-                  name: `Start Public Draw - ${analyticsDrawType}`,
-                  properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
-                },
-                ga: {
-                  category: analyticsDrawType,
-                  action: 'Start Public',
-                  label: 'From Quick Result',
-                },
-              }}
+              analyticsDrawType={analyticsDrawType}
               t={t}
             />
           </>

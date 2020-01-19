@@ -1,3 +1,5 @@
+import config from '../config/config';
+
 const MINIMUM_TIME = 1500;
 const VARIABLE_TIME = 1000;
 
@@ -12,7 +14,12 @@ async function throttle(request, tsStart) {
   const tsEnd = new Date().getTime();
   const randomDelay = Math.floor(Math.random() * VARIABLE_TIME + MINIMUM_TIME);
   const tsDelta = tsEnd - tsStart;
-  setTimeout(request, randomDelay - tsDelta);
+  if (config.environment === 'test') {
+    // Do not throttle requests in integration tests
+    request();
+  } else {
+    setTimeout(request, randomDelay - tsDelta);
+  }
 }
 
 export default throttle;
