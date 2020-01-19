@@ -1,4 +1,4 @@
-describe('RecentRaffles', () => {
+describe.skip('RecentRaffles', () => {
   beforeEach(() => {
     cy.server();
     const mockRecentDraws = [

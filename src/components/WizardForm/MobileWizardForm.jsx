@@ -6,6 +6,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Button from '@material-ui/core/Button';
 import classnames from 'classnames/bind';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
+import LoadingButton from '../LoadingButton/LoadingButton.jsx';
 import STYLES from './MobileWizardForm.scss';
 
 const c = classnames.bind(STYLES);
@@ -14,6 +15,7 @@ const MobileWizardForm = ({
   numSteps,
   submitButtonLabel,
   activeStep,
+  loading,
   apiError,
   handleNext,
   handleBack,
@@ -29,15 +31,15 @@ const MobileWizardForm = ({
       activeStep={activeStep}
       className={c('MobileWizardForm__stepper')}
       nextButton={
-        <Button size="small" onClick={handleNext}>
+        <LoadingButton size="small" onClick={handleNext} loading={loading}>
           {activeStep === numSteps - 1 ? submitButtonLabel : t('next')}
           <KeyboardArrowRight />
-        </Button>
+        </LoadingButton>
       }
       backButton={
-        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+        <Button size="small" onClick={handleBack} disabled={loading || activeStep === 0}>
           <KeyboardArrowLeft />
-          Back
+          {t('back')}
         </Button>
       }
     />
@@ -48,6 +50,7 @@ MobileWizardForm.propTypes = {
   numSteps: PropTypes.number.isRequired,
   activeStep: PropTypes.number.isRequired,
   apiError: PropTypes.bool,
+  loading: PropTypes.bool,
   submitButtonLabel: PropTypes.string.isRequired,
   handleNext: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
@@ -57,6 +60,7 @@ MobileWizardForm.propTypes = {
 
 MobileWizardForm.defaultProps = {
   apiError: false,
+  loading: false,
 };
 
 export default MobileWizardForm;

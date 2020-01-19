@@ -146,7 +146,6 @@ describe('Raffle Page', () => {
           cy.getComponent('PrizesInput__inputField').type('prize1,');
           cy.getComponent('ParticipantsInput__inputField').type('you, I,');
           cy.getComponent('SubmitFormButton').click();
-          cy.tick(4000); // Fast forward the loading animation
           cy.getComponent('ShareDrawButton').click();
           cy.getComponent('ShareDrawButton__confirm').click();
           cy.get('@ga').should('be.calledWith', 'send', {

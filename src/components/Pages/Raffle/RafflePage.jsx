@@ -1,17 +1,16 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import GeneralDetailsSection from '../../CommonSections/GeneralDetailsSection.jsx';
 import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
-
-// import groupsOgImage from './groups_og_image.png';
+import raffleOgImage from './raffle_og_image.png';
 
 const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
 const ConfigurationForm = withValidationProvider(RaffleConfigurationSection);
@@ -20,6 +19,8 @@ const WhenToTossForm = withValidationProvider(WhenToTossSection);
 const RafflePage = ({
   values,
   apiError,
+  isMobile,
+  loading,
   onFieldChange,
   handlePublish,
   handleCheckErrorsInConfiguration,
@@ -69,18 +70,19 @@ const RafflePage = ({
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
       pageType="groups_public_draw"
-      // ogImage={groupsOgImage}
+      showAdvert={!isMobile}
+      ogImage={raffleOgImage}
     >
-      <DrawLayout isPublic>
-        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_draw')}
-          apiError={apiError}
-        />
-        <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
-      </DrawLayout>
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+      <WizardForm
+        steps={steps}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_draw')}
+        apiError={apiError}
+        loading={loading}
+        isMobile={isMobile}
+      />
+      <LearnMoreSection title={t('learn_more_title')} content={t('learn_more_content')} />
     </Page>
   );
 };
@@ -93,6 +95,8 @@ RafflePage.propTypes = {
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
+  isMobile: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -103,4 +107,6 @@ RafflePage.defaultProps = {
   apiError: false,
 };
 
-export default withTranslation('Raffle')(RafflePage);
+const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });
+
+export default withTranslation('Raffle')(connect(mapStateToProps)(RafflePage));

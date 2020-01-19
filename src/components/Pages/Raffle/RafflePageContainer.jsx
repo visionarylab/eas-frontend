@@ -6,6 +6,7 @@ import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
 import moment from 'moment';
 import withTracking from '../../withTracking/withTracking.jsx';
 import recentDraws from '../../../services/recentDraws';
+import throttle from '../../../services/throttle';
 import RafflePage from './RafflePage.jsx';
 import RaffleQuickPage from './RaffleQuickPage.jsx';
 
@@ -21,7 +22,7 @@ class RafflePageContainer extends Component {
 
     this.state = {
       APIError: false,
-      loadingResult: false,
+      loadingRequest: false,
       quickResult: null,
       privateId: null,
       values: {
@@ -74,10 +75,11 @@ class RafflePageContainer extends Component {
   };
 
   handleToss = async () => {
-    this.setState({ loadingResult: true });
+    const tsStart = new Date().getTime();
+    this.setState({
+      loadingRequest: true,
+    });
 
-    const randomNumberOfSeconds = Math.floor(Math.random() * 2.5) + 1.5;
-    setTimeout(() => this.setState({ loadingResult: false }), randomNumberOfSeconds * 1000);
     let { privateId } = this.state;
     try {
       // Create the draw only if it wasn't created in a previous toss
@@ -93,9 +95,18 @@ class RafflePageContainer extends Component {
         mp: { name: `Toss - ${analyticsDrawType}`, properties: { drawType: analyticsDrawType } },
         ga: { action: 'Toss', category: analyticsDrawType },
       });
-      this.setState({ quickResult: tossResponse, APIError: false });
+      throttle(() => {
+        this.setState({
+          quickResult: tossResponse,
+          APIError: false,
+          loadingRequest: false,
+        });
+      }, tsStart);
     } catch (err) {
-      this.setState({ APIError: true });
+      this.setState({
+        APIError: true,
+        loadingRequest: false,
+      });
     }
   };
 
@@ -137,12 +148,13 @@ class RafflePageContainer extends Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingResult } = this.state;
+    const { APIError, values, quickResult, loadingRequest } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
     return isPublic ? (
       <RafflePage
         apiError={APIError}
+        loading={loadingRequest}
         values={values}
         onFieldChange={this.onFieldChange}
         handlePublish={this.handlePublish}
@@ -153,7 +165,7 @@ class RafflePageContainer extends Component {
         apiError={APIError}
         values={values}
         quickResult={quickResult}
-        loadingResult={loadingResult}
+        loading={loadingRequest}
         handleToss={this.handleToss}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}

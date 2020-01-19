@@ -27,7 +27,7 @@ const HomePage = ({ t }) => (
   <Page
     htmlTitle={t('html_title')}
     htmlDescription={t('html_description')}
-    className={c('HomePage')}
+    contentClassName={c('HomePage')}
     pageType="Homepage"
   >
     <div className={c('HomePage__container')}>

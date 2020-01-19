@@ -121,9 +121,22 @@
     "section_title_online_raffles": "Sorteos online",
     "section_title_simple_draws": "Sorteos simples"
   },
-  "LetterDrawPage": {},
+  "ParticipantsInput": {
+    "box_label_list_of_items": "Lista de participantes",
+    "field_help_separate_participants_commas": "Separa los participantes por comas",
+    "field_label": "Participantes",
+    "field_placeholder": "Añade participantes",
+    "message_no_participants_added": "No has añadido ningún participante"
+  },
   "PrivacyPolicy": {
     "html_title": "Politica de privacidad"
+  },
+  "PrizesInput": {
+    "box_label_list_of_items": "Lista de premios",
+    "field_help_separate_values_commas": "Separa los premios por comas",
+    "field_label": "¿Qué premios quieres regalar?",
+    "field_placeholder": "Crucero a Bali, ...",
+    "message_no_values_added": "No has añadido ningún premio"
   },
   "PrizesOverview": {
     "prizes": "Premios"
@@ -159,7 +172,8 @@
     "share_result_dialog_title": "Crea el sorteo públicamente para compartirlo",
     "step_label_configure": "Configura el sorteo",
     "step_label_general_details": "Detalles generales",
-    "step_label_when_to_toss": "Fecha del sorteo"
+    "step_label_when_to_toss": "Fecha del sorteo",
+    "winners": "Ganadores del sorteo"
   },
   "RafflesPage": {
     "draw_title_facebook_raffle": "Sorteo entre usuarios de Facebook",
@@ -203,6 +217,10 @@
     "html_title": "Sorteos recientes",
     "page_title": "Sorteos recientes"
   },
+  "ShareUrl": {
+    "copy": "Copiar",
+    "url_copied": "El enlace se ha copiado al portapapeles"
+  },
   "SpinArrow": {
     "draw_subheading": "Apunta a una dirección aleatoriamente",
     "html_description": "¿Necesitas decidir quién será el elegido? Gira la flecha para tomar la decisión",
@@ -226,19 +244,5 @@
   "WizardForm": {
     "back": "Atrás",
     "next": "Siguiente"
-  },
-  "ParticipantsInput": {
-    "field_label": "Participantes",
-    "field_placeholder": "Añade participantes",
-    "message_no_participants_added": "No has añadido ningún participante",
-    "field_help_separate_participants_commas": "Separa los participantes por comas",
-    "box_label_list_of_items": "Lista de participantes"
-  },
-  "PrizesInput": {
-    "field_label": "¿Qué premios quieres regalar?",
-    "field_placeholder": "Crucero a Bali, ...",
-    "message_no_values_added": "No has añadido ningún premio",
-    "field_help_separate_values_commas": "Separa los premios por comas",
-    "box_label_list_of_items": "Lista de premios"
   }
 }

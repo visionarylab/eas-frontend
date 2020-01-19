@@ -8,7 +8,6 @@ import WhenToTossSection from '../../CommonSections/WhenToTossSection.jsx';
 import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import PrizesInput from '../../PrizesInput/PrizesInput.jsx';
 import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
@@ -82,16 +81,14 @@ const FacebookRafflePage = props => {
       pageType="Facebook Raffle"
       showAdvert={!isMobile}
     >
-      <DrawLayout isPublic>
-        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_draw')}
-          apiError={apiError}
-          isMobile={isMobile}
-        />
-      </DrawLayout>
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+      <WizardForm
+        steps={steps}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_draw')}
+        apiError={apiError}
+        isMobile={isMobile}
+      />
     </Page>
   );
 };

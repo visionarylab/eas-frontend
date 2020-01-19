@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames/bind';
 import SocialShareButton from './SocialShareButton.jsx';
+import ShareUrl from '../ShareUrl/ShareUrl.jsx';
 import STYLES from './ShareButtons.scss';
 
 const c = classnames.bind(STYLES);
 
-const availableShareButtons = ['facebook', 'twitter', 'telegram', 'whatsapp', 'email'];
+const availableShareButtons = ['facebook', 'twitter', 'telegram', 'whatsapp', 'email', 'url'];
 
 const ShareButtons = ({ sectionTitle, drawType, url, types }) => (
   <div className={c('ShareButtons')}>
@@ -18,9 +19,13 @@ const ShareButtons = ({ sectionTitle, drawType, url, types }) => (
     )}
     {types
       .filter(type => availableShareButtons.indexOf(type) >= 0)
-      .map(type => (
-        <SocialShareButton key={type} url={url} drawType={drawType} socialType={type} />
-      ))}
+      .map(type =>
+        type === 'url' ? (
+          <ShareUrl url={url} />
+        ) : (
+          <SocialShareButton key={type} url={url} drawType={drawType} socialType={type} />
+        ),
+      )}
   </div>
 );
 

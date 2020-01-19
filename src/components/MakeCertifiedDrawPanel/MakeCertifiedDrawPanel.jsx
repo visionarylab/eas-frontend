@@ -11,7 +11,7 @@ import STYLES from './MakeCertifiedDrawPanel.scss';
 
 const c = classnames.bind(STYLES);
 
-const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, children }) => (
+const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, analyticsDrawType, children }) => (
   <Card className={c('MakeCertifiedDrawPanel')}>
     <CardContent>
       <Typography variant="body2" component="p">
@@ -21,10 +21,17 @@ const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, chil
     <CardActions className={c('MakeCertifiedDrawPanel__actions')}>
       <PublicModeButton
         to={publicDrawUrl}
-        label={buttonLabel}
-        dataTestId="MakeCertifiedDrawPanel__button"
-        trackingData={trackingData}
-      />
+        data-testid="MakeCertifiedDrawPanel__button"
+        trackingData={{
+          mp: {
+            name: `Start Public Draw - ${analyticsDrawType}`,
+            properties: { drawType: analyticsDrawType, source: 'From Scratch' },
+          },
+          ga: { category: analyticsDrawType, action: 'Start Public', label: 'From Scratch' },
+        }}
+      >
+        {buttonLabel}
+      </PublicModeButton>
     </CardActions>
   </Card>
 );
@@ -32,7 +39,7 @@ const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, trackingData, chil
 MakeCertifiedDrawPanel.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   publicDrawUrl: PropTypes.string.isRequired,
-  trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  analyticsDrawType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node.isRequired,
 };
 

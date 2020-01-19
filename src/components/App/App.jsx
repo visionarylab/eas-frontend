@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 // import showCookieBanner from '../../services/cookieConsent';
@@ -45,15 +45,17 @@ class App extends Component {
         )}
       >
         <FacebookProvider>
-          <ThemeProvider theme={theme}>
-            {config.mixpanelEnabled ? (
-              <MixpanelProvider mixpanel={mixpanel}>
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              {config.mixpanelEnabled ? (
+                <MixpanelProvider mixpanel={mixpanel}>
+                  <AppShell />
+                </MixpanelProvider>
+              ) : (
                 <AppShell />
-              </MixpanelProvider>
-            ) : (
-              <AppShell />
-            )}
-          </ThemeProvider>
+              )}
+            </ThemeProvider>
+          </StylesProvider>
         </FacebookProvider>
       </ErrorBoundary>
     );

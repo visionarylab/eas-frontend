@@ -15,7 +15,6 @@ import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
 
@@ -48,30 +47,28 @@ const PublishedRafflePage = props => {
       noIndex
       pageType="raffle_published_draw"
     >
-      <DrawLayout>
-        <DrawHeading title={title || t('page_title')} subtitle={description} />
-        {result.value ? (
-          <>
-            <ResultsBox title={t('winners')}>
-              <WinnersList winners={result.value} />
-            </ResultsBox>
-            <ShareButtonsList />
-          </>
-        ) : (
-          <>
-            <Countdown date={result.schedule_date} />
-            <ShareButtonsList />
-          </>
-        )}
-        <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
-          <Typography component="div" variant="body2">
-            {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
-          </Typography>
-          <Typography component="div" variant="body2">
-            {t('label_number_of_participants')} {participants.length}
-          </Typography>
-        </PublishedDrawDetails>
-      </DrawLayout>
+      <DrawHeading title={title || t('page_title')} subtitle={description} />
+      {result.value ? (
+        <>
+          <ResultsBox title={t('winners')}>
+            <WinnersList winners={result.value} />
+          </ResultsBox>
+          <ShareButtonsList />
+        </>
+      ) : (
+        <>
+          <Countdown date={result.schedule_date} />
+          <ShareButtonsList />
+        </>
+      )}
+      <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
+        <Typography component="div" variant="body2">
+          {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
+        </Typography>
+        <Typography component="div" variant="body2">
+          {t('label_number_of_participants')} {participants.length}
+        </Typography>
+      </PublishedDrawDetails>
     </Page>
   );
 };

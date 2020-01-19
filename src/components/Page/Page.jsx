@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 import i18n from 'i18next';
 import withMixpanel from '../withMixpanel/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
+import PageLayout from './PageLayout.jsx';
 import { hotjar } from '../../services/hotjar';
 import { getExperimentsAllocation } from '../../services/abtest';
 import config from '../../config/config';
@@ -65,7 +66,7 @@ class Page extends Component {
   }
 
   render() {
-    const { htmlTitle, className, location, children, showAdvert } = this.props;
+    const { htmlTitle, contentClassName, location, children, showAdvert, sidePanel } = this.props;
     const canonicalLinks = config.isServer
       ? []
       : [
@@ -85,8 +86,10 @@ class Page extends Component {
           link={canonicalLinks}
           meta={this.getMetaTags()}
         />
-        <div className={c('Page', className)}>
-          {children}
+        <div className={c('Page')}>
+          <PageLayout sidePanel={sidePanel} contentClassName={contentClassName}>
+            {children}
+          </PageLayout>
           {showAdvert && <Advert />}
         </div>
       </Fragment>
@@ -100,7 +103,7 @@ Page.propTypes = {
   htmlKeywords: PropTypes.string,
   pageType: PropTypes.string.isRequired,
   enableHotjar: PropTypes.bool,
-  className: PropTypes.string,
+  contentClassName: PropTypes.string,
   mixpanel: PropTypes.shape({ track: PropTypes.func.isRequired }),
   children: PropTypes.node.isRequired,
   noIndex: PropTypes.bool,
@@ -108,10 +111,11 @@ Page.propTypes = {
   ogImage: PropTypes.node,
   hostname: PropTypes.string.isRequired,
   showAdvert: PropTypes.bool,
+  sidePanel: PropTypes.node,
 };
 
 Page.defaultProps = {
-  className: null,
+  contentClassName: null,
   noIndex: false,
   ogImage: defaultOgImage,
   htmlKeywords: '',
@@ -119,6 +123,7 @@ Page.defaultProps = {
   enableHotjar: false,
   showAdvert: true,
   mixpanel: null,
+  sidePanel: null,
 };
 
 const mapsStateToProps = state => ({

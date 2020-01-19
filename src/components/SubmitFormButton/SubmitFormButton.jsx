@@ -6,7 +6,7 @@ import STYLES from './SubmitFormButton.scss';
 import { ValidationContext } from '../FormValidation/ValidationProvider.jsx';
 
 const c = classNames.bind(STYLES);
-const SubmitFormButton = ({ label, onClick: handleSubmitButtonClick }) => {
+const SubmitFormButton = ({ label, onClick: handleSubmitButtonClick, ...rest }) => {
   const { handleFormSubmit } = useContext(ValidationContext);
   const handleSubmitClick = event => {
     handleSubmitButtonClick(event);
@@ -20,6 +20,7 @@ const SubmitFormButton = ({ label, onClick: handleSubmitButtonClick }) => {
         color="primary"
         onClick={handleSubmitClick}
         data-testid="SubmitFormButton"
+        {...rest}
       >
         {label}
       </Button>
