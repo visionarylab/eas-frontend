@@ -1,11 +1,11 @@
 import React from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import PropTypes from 'prop-types';
-
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import classnames from 'classnames/bind';
+import LoadingButton from '../LoadingButton/LoadingButton.jsx';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
 import STYLES from './WizardForm.scss';
 
@@ -49,16 +49,16 @@ const DesktopWizard = ({
       >
         {t('back')}
       </Button>
-      <Button
+      <LoadingButton
         variant="contained"
         color="primary"
         className={c('WizardForm__step-button')}
         data-testid="WizardForm__next-button"
         onClick={handleNext}
-        disabled={loading}
+        loading={loading}
       >
         {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
-      </Button>
+      </LoadingButton>
     </div>
   </div>
 );

@@ -6,6 +6,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Button from '@material-ui/core/Button';
 import classnames from 'classnames/bind';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
+import LoadingButton from '../LoadingButton/LoadingButton.jsx';
 import STYLES from './MobileWizardForm.scss';
 
 const c = classnames.bind(STYLES);
@@ -30,10 +31,10 @@ const MobileWizardForm = ({
       activeStep={activeStep}
       className={c('MobileWizardForm__stepper')}
       nextButton={
-        <Button size="small" onClick={handleNext} disabled={loading}>
+        <LoadingButton size="small" onClick={handleNext} loading={loading}>
           {activeStep === numSteps - 1 ? submitButtonLabel : t('next')}
           <KeyboardArrowRight />
-        </Button>
+        </LoadingButton>
       }
       backButton={
         <Button size="small" onClick={handleBack} disabled={loading || activeStep === 0}>

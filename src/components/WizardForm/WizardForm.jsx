@@ -126,6 +126,7 @@ WizardForm.propTypes = {
       validate: PropTypes.bool,
     }),
   ).isRequired,
+  loading: PropTypes.bool,
   apiError: PropTypes.bool,
   initialStep: PropTypes.number,
   submitButtonLabel: PropTypes.string.isRequired,
@@ -136,6 +137,7 @@ WizardForm.propTypes = {
 
 WizardForm.defaultProps = {
   initialStep: 0,
+  loading: false,
   apiError: false,
 };
 
