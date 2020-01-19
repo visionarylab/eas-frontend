@@ -8,6 +8,7 @@ import GroupsGeneratorPage from './GroupsGeneratorPage.jsx';
 import GroupsGeneratorQuickPage from './GroupsGeneratorQuickPage.jsx';
 import withTracking from '../../withTracking/withTracking.jsx';
 import recentDraws from '../../../services/recentDraws';
+import throttle from '../../../services/throttle';
 
 const groupsApi = new GroupsApi();
 const analyticsDrawType = 'Groups';
@@ -22,7 +23,6 @@ class GroupsGeneratorPageContainer extends React.Component {
       privateId: null,
       quickResult: null,
       APIError: false,
-      loadingDelayCompleted: true,
       loadingRequest: false,
       values: {
         title: '', // Default title is set in CDM
@@ -73,19 +73,12 @@ class GroupsGeneratorPageContainer extends React.Component {
     return groupsApi.groupsCreate(groupGeneratorDraw);
   };
 
-  isLoading = () => {
-    const { loadingDelayCompleted, quickResult } = this.state;
-    return loadingDelayCompleted && quickResult;
-  };
-
   handleToss = async () => {
+    const tsStart = new Date().getTime();
     this.setState({
       loadingRequest: true,
-      loadingDelayCompleted: false,
     });
 
-    const randomNumberOfSeconds = Math.floor(Math.random() * 2.5) + 1.5;
-    setTimeout(() => this.setState({ loadingDelayCompleted: true }), randomNumberOfSeconds * 1000);
     let { privateId } = this.state;
     try {
       // Create the draw only if it wasn't created in a previous toss
@@ -101,11 +94,13 @@ class GroupsGeneratorPageContainer extends React.Component {
         mp: { name: `Toss - ${analyticsDrawType}`, properties: { drawType: analyticsDrawType } },
         ga: { action: 'Toss', category: analyticsDrawType },
       });
-      this.setState({
-        quickResult: tossResponse,
-        APIError: false,
-        loadingRequest: false,
-      });
+      throttle(() => {
+        this.setState({
+          quickResult: tossResponse,
+          APIError: false,
+          loadingRequest: false,
+        });
+      }, tsStart);
     } catch (err) {
       this.setState({
         APIError: true,
@@ -154,7 +149,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingDelayCompleted, loadingRequest } = this.state;
+    const { APIError, values, quickResult, loadingRequest } = this.state;
     const { match } = this.props;
     const { isPublic } = match.params;
 
@@ -170,7 +165,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     ) : (
       <GroupsGeneratorQuickPage
         apiError={APIError}
-        loadingResult={!loadingDelayCompleted || loadingRequest}
+        loadingResult={loadingRequest}
         values={values}
         onFieldChange={this.onFieldChange}
         handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
