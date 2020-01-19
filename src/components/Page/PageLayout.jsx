@@ -10,7 +10,11 @@ const PageLayout = ({ sidePanel, children, contentClassName, isMobile }) =>
   // eslint-disable-next-line no-nested-ternary
   isMobile ? (
     <>
-      <div className={contentClassName}>{children}</div>
+      {contentClassName ? (
+        <div className={c('PageLayout__mobileContent', contentClassName)}>{children}</div>
+      ) : (
+        children
+      )}
       {sidePanel}
     </>
   ) : sidePanel ? (

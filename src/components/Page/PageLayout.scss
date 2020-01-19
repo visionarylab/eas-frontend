@@ -9,6 +9,12 @@ $side-panel-total-width: $side-panel-width + 2 * $side-panel-padding;
 $side-panel-total-width-small: $side-panel-width-small + 2 * $side-panel-padding-small;
 
 .PageLayout {
+  &__mobileContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+  }
+
   &__extraContent {
     display: flex;
     height: 100%;
