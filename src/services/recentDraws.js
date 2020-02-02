@@ -18,6 +18,11 @@ const add = (draw, url, scheduleDate) => {
   localStorage.setItem(recentDrawsKey, JSON.stringify(data));
 };
 
+const exists = drawId => {
+  const recentDraws = getAll();
+  return recentDraws.find(draw => draw.id === drawId);
+};
+
 const removeDraw = drawId => {
   const recentDraws = getAll();
   const data = recentDraws.filter(draw => draw.id !== drawId);
@@ -28,4 +33,4 @@ const clear = () => {
   localStorage.clear();
 };
 
-export default { getAll, add, removeDraw, clear };
+export default { getAll, add, removeDraw, clear, exists };
