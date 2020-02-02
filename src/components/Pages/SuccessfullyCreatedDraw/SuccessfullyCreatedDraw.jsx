@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 // import classnames from 'classnames/bind';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withTranslation } from 'react-i18next';
@@ -24,7 +25,7 @@ const analyticsDrawTypeMap = {
   facebook: 'FacebookRaffle', // complete this list
 };
 
-const SuccessfullyCreatedDraw = ({ t, match }) => {
+const SuccessfullyCreatedDraw = ({ hostname, t, match }) => {
   const { drawType, drawId } = match.params;
   const isOwnedByUser = RecentDraws.exists(drawId);
   if (!isOwnedByUser) {
@@ -32,7 +33,7 @@ const SuccessfullyCreatedDraw = ({ t, match }) => {
     return <Redirect to={drawUrl} />;
   }
   const pathUrl = `/${drawType}/${drawId}`;
-  const shareUrl = `${window.location.origin}${pathUrl}`;
+  const shareUrl = `${hostname}${pathUrl}`;
   return (
     <Page
       htmlTitle={t('html_title')}
@@ -66,9 +67,16 @@ const SuccessfullyCreatedDraw = ({ t, match }) => {
   );
 };
 
+const mapsStateToProps = state => ({
+  hostname: state.userRequest.hostname,
+});
+
 SuccessfullyCreatedDraw.propTypes = {
+  hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-export default withTranslation('SuccessfullyCreatedDraw')(SuccessfullyCreatedDraw);
+export default withTranslation('SuccessfullyCreatedDraw')(
+  connect(mapsStateToProps)(SuccessfullyCreatedDraw),
+);
