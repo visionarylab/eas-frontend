@@ -85,10 +85,6 @@ const PublishedFacebookRafflePage = props => {
     loadData(props);
   };
 
-  const ShareButtonsList = () => (
-    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
-  );
-
   return (
     <Page
       // ogImage={groupsOgImage}
@@ -104,7 +100,11 @@ const PublishedFacebookRafflePage = props => {
           <ResultsBox title={t('winners')}>
             <WinnersList winners={result.value} />
             <br />
-            <ShareButtonsList />
+            <ShareButtons
+              drawType={analyticsDrawType}
+              sectionTitle={t('share_result')}
+              url={shareUrl}
+            />
           </ResultsBox>
           <PublishedDrawDetails sectionTitle={t('published_raffle_details')}>
             <Typography variant="body2">
@@ -134,7 +134,11 @@ const PublishedFacebookRafflePage = props => {
             <br />
           </Typography>
           <Countdown date={result.schedule_date} />
-          <ShareButtonsList />
+          <ShareButtons
+            drawType={analyticsDrawType}
+            sectionTitle={t('share_draw')}
+            url={shareUrl}
+          />
         </>
       )}
     </Page>

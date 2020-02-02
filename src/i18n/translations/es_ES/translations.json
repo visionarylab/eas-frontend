@@ -147,10 +147,10 @@
     "title_label": "Título del sorteo",
     "title_placeholder": "Sorteo de Navidad"
   },
-  "PublicDrawCreated": {
+  "SuccessfullyCreatedDraw": {
     "congratulations": "Enhorabuena!",
     "draw_created": "Has creado tu sorteo",
-    "go_to_the_raffle": "Go to the raffle",
+    "go_to_the_raffle": "Ir al sorteo",
     "html_title": "Sorteo creado correctamente",
     "share_link": "Comparte este link con quién quieras y podrán ver el resultado en directo"
   },

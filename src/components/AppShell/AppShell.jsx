@@ -27,7 +27,7 @@ import RafflePageContainer from '../Pages/Raffle/RafflePageContainer.jsx';
 import PublishedRafflePageContainer from '../Pages/Raffle/PublishedRafflePage.jsx';
 import RafflesPage from '../Pages/Raffles/RafflesPage.jsx';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage.jsx';
-import PublicDrawCreated from '../Pages/PublicDrawCreated/PublicDrawCreated.jsx';
+import SuccessfullyCreatedDraw from '../Pages/SuccessfullyCreatedDraw/SuccessfullyCreatedDraw.jsx';
 
 const c = classnames.bind(STYLES);
 
@@ -56,7 +56,7 @@ const AppShell = () => (
       <Route
         exact
         path={`/:drawType(groups|facebook)/:drawId(${guidRegex})/success`}
-        component={PublicDrawCreated}
+        component={SuccessfullyCreatedDraw}
       />
       {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route

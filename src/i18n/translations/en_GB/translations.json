@@ -139,7 +139,7 @@
     "title_label": "Title of the raffle",
     "title_placeholder": "Christmas raffle"
   },
-  "PublicDrawCreated": {
+  "SuccessfullyCreatedDraw": {
     "congratulations": "Congratulations!",
     "draw_created": "You have created you raffle",
     "go_to_the_raffle": "Go to the raffle",

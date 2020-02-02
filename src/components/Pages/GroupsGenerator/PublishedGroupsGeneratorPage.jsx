@@ -36,9 +36,6 @@ const PublishedGroupsGeneratorPage = props => {
     return <LoadingSpinner fullpage />;
   }
 
-  const ShareButtonsList = () => (
-    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
-  );
   return (
     <Page
       ogImage={groupsOgImage}
@@ -56,7 +53,11 @@ const PublishedGroupsGeneratorPage = props => {
       ) : (
         <Countdown date={result.schedule_date} />
       )}
-      <ShareButtonsList />
+      <ShareButtons
+        drawType={analyticsDrawType}
+        sectionTitle={result.value ? t('share_result') : t('share_draw')}
+        url={shareUrl}
+      />
       <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
         <Typography component="div" variant="body2">
           {t('label_number_of_groups')} {numberOfGroups}

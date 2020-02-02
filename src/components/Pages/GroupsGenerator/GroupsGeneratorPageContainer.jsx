@@ -131,7 +131,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         ga: { action: 'Publish', category: analyticsDrawType, label: draw.id },
       });
 
-      const drawPath = `/groups/${draw.id}`;
+      const drawPath = `/groups/${draw.id}/success`;
       recentDraws.add(draw, drawPath, scheduleDate);
       history.push(drawPath);
     } catch (err) {
