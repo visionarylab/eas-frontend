@@ -9,7 +9,7 @@ const LoadingButton = ({ loading, children, ...rest }) => (
     <Button disabled={loading} {...rest}>
       {children}
     </Button>
-    {loading && <CircularProgress size={36} className={STYLES.Progress} />}
+    {loading && <CircularProgress size={24} className={STYLES.Progress} />}
   </span>
 );
 
