@@ -67,6 +67,7 @@ class Page extends Component {
 
   render() {
     const { htmlTitle, contentClassName, location, children, showAdvert, sidePanel } = this.props;
+    // TODO we should add canonical links in server side also
     const canonicalLinks = config.isServer
       ? []
       : [

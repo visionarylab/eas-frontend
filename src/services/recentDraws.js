@@ -1,3 +1,6 @@
+import config from '../config/config';
+
+const { isServer } = config;
 const recentDrawsKey = 'recentDraws';
 const maxLength = 20;
 const buildData = (draw, url, scheduleDate) => ({
@@ -6,7 +9,7 @@ const buildData = (draw, url, scheduleDate) => ({
   url,
   scheduleDate,
 });
-const getAll = () => JSON.parse(localStorage.getItem(recentDrawsKey) || '[]');
+const getAll = () => (isServer ? [] : JSON.parse(localStorage.getItem(recentDrawsKey) || '[]'));
 
 const add = (draw, url, scheduleDate) => {
   const recentDraws = getAll();

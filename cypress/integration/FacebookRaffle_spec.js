@@ -95,7 +95,10 @@ describe('FacebookRaffle', () => {
             });
 
             // Redirect to draw with the public id
-            cy.location('pathname').should('eq', '/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad');
+            cy.location('pathname').should(
+              'eq',
+              '/facebook/b29f44c2-1022-408a-925f-63e5f77a12ad/success',
+            );
           });
         });
 

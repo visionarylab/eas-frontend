@@ -89,7 +89,7 @@ class FacebookRafflePageContainer extends Component {
         ga: { action: 'Publish', category: analyticsDrawType, label: draw.id },
       });
 
-      const drawPath = `/facebook/${draw.id}`;
+      const drawPath = `/facebook/${draw.id}/success`;
       recentDraws.add(draw, drawPath, scheduleDate);
       history.push(drawPath);
     } catch (err) {
