@@ -10,7 +10,6 @@ import { withTranslation } from 'react-i18next';
 import { RaffleApi, RaffleResult, Participant, Prize } from 'echaloasuerte-js-sdk';
 import Page from '../../Page/Page.jsx';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
@@ -86,10 +85,6 @@ const PublishedFacebookRafflePage = props => {
     loadData(props);
   };
 
-  const ShareButtonsList = () => (
-    <ShareButtons drawType={analyticsDrawType} sectionTitle={t('share_result')} url={shareUrl} />
-  );
-
   return (
     <Page
       // ogImage={groupsOgImage}
@@ -99,45 +94,53 @@ const PublishedFacebookRafflePage = props => {
       noIndex
       pageType="Facebook Raffle Published"
     >
-      <DrawLayout>
-        <DrawHeading title={title || t('page_title')} subtitle={description} />
-        {result.value ? (
-          <>
-            <ResultsBox title={t('winners')}>
-              <WinnersList winners={result.value} />
-              <br />
-              <ShareButtonsList />
-            </ResultsBox>
-            <PublishedDrawDetails sectionTitle={t('published_raffle_details')}>
-              <Typography variant="body2">
-                {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
-              </Typography>
-              <Typography variant="body2" data-testid="FacebookRaffle__number-of-participants">
-                {t('label_number_of_participants')} {participants.length}
-              </Typography>
-            </PublishedDrawDetails>
-          </>
-        ) : (
-          <>
-            <PrizesOverview prizes={prizes} />
-            <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
-              <ParticipateWithFbPanel
-                userRegisteredInRaffle={userRegisteredInRaffle}
-                onRegisterInRaffle={onRegisterInRaffle}
-                registerFailedErrorMessage={registerFailedErrorMessage}
-                t={t}
-              />
-            </div>
-            <Typography variant="body2" align="center">
-              {participants.length > 0 &&
-                t('people_registered_already', { count: participants.length })}
-              <br />
+      <DrawHeading title={title || t('page_title')} subtitle={description} />
+      {result.value ? (
+        <>
+          <ResultsBox title={t('winners')}>
+            <WinnersList winners={result.value} />
+            <br />
+            <ShareButtons
+              drawType={analyticsDrawType}
+              sectionTitle={t('share_result')}
+              url={shareUrl}
+            />
+          </ResultsBox>
+          <PublishedDrawDetails sectionTitle={t('published_raffle_details')}>
+            <Typography variant="body2">
+              {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
             </Typography>
-            <Countdown date={result.schedule_date} />
-            <ShareButtonsList />
-          </>
-        )}
-      </DrawLayout>
+            <Typography variant="body2" data-testid="FacebookRaffle__number-of-participants">
+              {t('label_number_of_participants')} {participants.length}
+            </Typography>
+          </PublishedDrawDetails>
+        </>
+      ) : (
+        <>
+          <PrizesOverview prizes={prizes} />
+          <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
+            <ParticipateWithFbPanel
+              userRegisteredInRaffle={userRegisteredInRaffle}
+              onRegisterInRaffle={onRegisterInRaffle}
+              registerFailedErrorMessage={registerFailedErrorMessage}
+              t={t}
+            />
+          </div>
+          <Typography variant="body2" align="center">
+            {participants.length > 0 &&
+              t('people_registered_already', {
+                count: participants.length,
+              })}
+            <br />
+          </Typography>
+          <Countdown date={result.schedule_date} />
+          <ShareButtons
+            drawType={analyticsDrawType}
+            sectionTitle={t('share_draw')}
+            url={shareUrl}
+          />
+        </>
+      )}
     </Page>
   );
 };

@@ -27,6 +27,7 @@ import RafflePageContainer from '../Pages/Raffle/RafflePageContainer.jsx';
 import PublishedRafflePageContainer from '../Pages/Raffle/PublishedRafflePage.jsx';
 import RafflesPage from '../Pages/Raffles/RafflesPage.jsx';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage.jsx';
+import SuccessfullyCreatedDraw from '../Pages/SuccessfullyCreatedDraw/SuccessfullyCreatedDraw.jsx';
 
 const c = classnames.bind(STYLES);
 
@@ -46,12 +47,17 @@ const AppShell = () => (
       <Route exact path="/coin" component={FlipCoinPageContainer} />
       <Route exact path="/spinner" component={SpinArrowPageContainer} />
       <Route exact path="/facebook" component={FacebookRafflePageContainer} />
-      <Route path="/facebook/:drawId" component={PublishedFacebookRafflePage} />
+      <Route path={`/facebook/:drawId(${guidRegex})`} component={PublishedFacebookRafflePage} />
       <Route path="/draw/new/raffle" component={RafflesPage} />
       <Route exact path="/raffle/:isPublic(public)?" component={RafflePageContainer} />
       <Route path="/raffle/:drawId" component={PublishedRafflePageContainer} />
       <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route exact path="/recent" component={RecentDraws} />
+      <Route
+        exact
+        path={`/:drawType(groups|facebook)/:drawId(${guidRegex})/success`}
+        component={SuccessfullyCreatedDraw}
+      />
       {/* <Route exact path="/number" component={RandomNumberPageContainer} />
       <Route
         exact

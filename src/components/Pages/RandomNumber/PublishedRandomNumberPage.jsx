@@ -32,7 +32,7 @@ const PublishedRandomNumberPage = props => {
     return <LoadingSpinner fullpage />;
   }
   return (
-    <Page htmlTitle={title} noIndex className={c('PublishedRandomNumberPage')}>
+    <Page htmlTitle={title} noIndex contentClassName={c('PublishedRandomNumberPage')}>
       <div>
         <Typography variant="h1" align="center" data-testid="PublishedRandomNumberPage__Title">
           {title}

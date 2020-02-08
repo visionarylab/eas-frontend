@@ -6,7 +6,6 @@ import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import withValidationProvider from '../../FormValidation/withValidationProvider.jsx';
 import Page from '../../Page/Page.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
 import RandomNumberResult from './RandomNumberResult.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
@@ -26,40 +25,45 @@ const RandomNumberQuickPage = props => {
     t,
   } = props;
   return (
-    <Page htmlTitle={t('html_title')} htmlDescription={t('html_description')}>
-      <DrawLayout
-        sidePanel={
-          <MakeCertifiedDrawPanel buttonLabel={t('create_certificated_draw')}>
-            Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
-            imparcial del resultado, te recomendamos que hagas un sorteo certificado
-          </MakeCertifiedDrawPanel>
-        }
-      >
-        <Typography variant="h1" align="center">
-          {t('page_title_quick')}
-        </Typography>
-        <Typography variant="subtitle1" align="center">
-          {t('draw_subheading')}
-        </Typography>
-        <ValidatedForm
-          onSubmit={e => {
-            e.preventDefault();
-            handleToss();
-          }}
-          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+    <Page
+      htmlTitle={t('html_title')}
+      htmlDescription={t('html_description')}
+      sidePanel={
+        <MakeCertifiedDrawPanel
+          buttonLabel={t('create_certificated_draw')}
+          // analyticsDrawType={analyticsDrawType} add this
         >
-          <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
-          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitFormButton label={t('generate_numbers')} />
-        </ValidatedForm>
+          Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
+          imparcial del resultado, te recomendamos que hagas un sorteo certificado
+        </MakeCertifiedDrawPanel>
+      }
+    >
+      <Typography variant="h1" align="center">
+        {t('page_title_quick')}
+      </Typography>
+      <Typography variant="subtitle1" align="center">
+        {t('draw_subheading')}
+      </Typography>
+      <ValidatedForm
+        onSubmit={e => {
+          e.preventDefault();
+          handleToss();
+        }}
+        onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+      >
+        <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
+        {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
+        <SubmitFormButton label={t('generate_numbers')} />
+      </ValidatedForm>
 
-        {quickResult && (
-          <Fragment>
-            <RandomNumberResult result={quickResult} />
-            <ShareDrawModal />
-          </Fragment>
-        )}
-      </DrawLayout>
+      {quickResult && (
+        <Fragment>
+          <RandomNumberResult result={quickResult} />
+          <ShareDrawModal
+          // analyticsDrawType={analyticsDrawType} add this
+          />
+        </Fragment>
+      )}
     </Page>
   );
 };

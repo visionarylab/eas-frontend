@@ -9,7 +9,6 @@ import WizardForm from '../../WizardForm/WizardForm.jsx';
 import Page from '../../Page/Page.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import groupsOgImage from './groups_og_image.png';
 
 const GeneralDetailsForm = withValidationProvider(GeneralDetailsSection);
@@ -19,6 +18,7 @@ const WhenToTossForm = withValidationProvider(WhenToTossSection);
 const GroupsGeneratorPage = props => {
   const {
     values,
+    loading,
     apiError,
     handleCheckErrorsInConfiguration,
     onFieldChange,
@@ -73,16 +73,15 @@ const GroupsGeneratorPage = props => {
       enableHotjar
       showAdvert={!isMobile}
     >
-      <DrawLayout>
-        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <WizardForm
-          steps={steps}
-          onSubmit={handlePublish}
-          submitButtonLabel={t('publish_draw')}
-          apiError={apiError}
-          isMobile={isMobile}
-        />
-      </DrawLayout>
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+      <WizardForm
+        steps={steps}
+        onSubmit={handlePublish}
+        submitButtonLabel={t('publish_draw')}
+        apiError={apiError}
+        isMobile={isMobile}
+        loading={loading}
+      />
     </Page>
   );
 };
@@ -96,6 +95,7 @@ GroupsGeneratorPage.propTypes = {
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handlePublish: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,

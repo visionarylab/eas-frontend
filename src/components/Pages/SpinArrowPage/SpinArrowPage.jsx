@@ -27,7 +27,6 @@ const SpinArrowPage = ({ angle, showTossHelp, animate, handleToss, t }) => {
       htmlKeywords={t('html_keywords')}
       pageType="Spin Arrow"
       ogImage={arrowOgImage}
-      className={c('SpinArrowPage')}
     >
       <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
       <div className={c('SpinArrowPage__container')}>

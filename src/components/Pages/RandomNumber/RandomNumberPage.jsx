@@ -66,7 +66,7 @@ const RandomNumberPage = props => {
     <Page
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
-      className={c('RandomNumberPage')}
+      contentClassName={c('RandomNumberPage')}
     >
       <Typography variant="h1">{t('page_title_public')}</Typography>
       <WizardForm

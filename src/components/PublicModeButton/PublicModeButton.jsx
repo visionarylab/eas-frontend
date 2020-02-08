@@ -1,33 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import RouterButton from '../RouterButton/RouterButton.jsx';
 import withTracking from '../withTracking/withTracking.jsx';
 
-const PublicModeButton = ({ to, label, trackingData, dataTestId, inputProps, track }) => {
-  const CollisionLink = React.forwardRef((props, ref) => (
-    <Link innerRef={ref} to={to} {...props} onClick={() => track(trackingData)} />
-  ));
-
-  return (
-    <Button component={CollisionLink} data-testid={dataTestId} variant="contained" {...inputProps}>
-      {label}
-    </Button>
-  );
-};
+const PublicModeButton = ({ children, trackingData, track, ...rest }) => (
+  <RouterButton variant="contained" onClick={() => track(trackingData)} {...rest}>
+    {children}
+  </RouterButton>
+);
 
 PublicModeButton.propTypes = {
-  to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  track: PropTypes.func.isRequired,
-  dataTestId: PropTypes.string,
-  inputProps: PropTypes.shape(),
+  children: PropTypes.node.isRequired,
   trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
-PublicModeButton.defaultProps = {
-  inputProps: {},
-  dataTestId: '',
+  track: PropTypes.func.isRequired,
 };
 
 export default withTracking(PublicModeButton);

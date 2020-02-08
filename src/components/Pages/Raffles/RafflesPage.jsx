@@ -16,7 +16,7 @@ const RafflesPage = ({ t }) => (
   <Page
     htmlTitle={t('html_title')}
     htmlDescription={t('html_description')}
-    className={c('RafflesPage')}
+    contentClassName={c('RafflesPage')}
     pageType="Raffles"
   >
     <div className={c('RafflesPage__container')}>

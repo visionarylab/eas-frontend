@@ -1,11 +1,11 @@
 import React from 'react';
 import Stepper from '@material-ui/core/Stepper';
 import PropTypes from 'prop-types';
-
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import classnames from 'classnames/bind';
+import LoadingButton from '../LoadingButton/LoadingButton.jsx';
 import ErrorFeedback from '../ErrorFeedback/ErrorFeedback.jsx';
 import STYLES from './WizardForm.scss';
 
@@ -20,6 +20,7 @@ const DesktopWizard = ({
   stepValidations,
   apiError,
   submitButtonLabel,
+  loading,
   t,
   children,
 }) => (
@@ -43,20 +44,21 @@ const DesktopWizard = ({
     <div className={c('WizardForm__buttons-row')}>
       <Button
         className={c('WizardForm__step-button')}
-        disabled={activeStep === 0}
+        disabled={loading || activeStep === 0}
         onClick={handleBack}
       >
         {t('back')}
       </Button>
-      <Button
+      <LoadingButton
         variant="contained"
         color="primary"
         className={c('WizardForm__step-button')}
         data-testid="WizardForm__next-button"
         onClick={handleNext}
+        loading={loading}
       >
         {activeStep === stepLabels.length - 1 ? submitButtonLabel : t('next')}
-      </Button>
+      </LoadingButton>
     </div>
   </div>
 );
@@ -70,12 +72,14 @@ DesktopWizard.propTypes = {
   stepValidations: PropTypes.arrayOf(PropTypes.bool).isRequired,
   handleNext: PropTypes.func.isRequired,
   handleBack: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
   children: PropTypes.node.isRequired,
   t: PropTypes.func.isRequired,
 };
 
 DesktopWizard.defaultProps = {
   apiError: false,
+  loading: false,
 };
 
 export default DesktopWizard;

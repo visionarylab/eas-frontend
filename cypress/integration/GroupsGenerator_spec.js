@@ -88,7 +88,10 @@ describe('Groups Generator Page', () => {
           });
 
           // Redirect to draw with the public id
-          cy.location('pathname').should('eq', '/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+          cy.location('pathname').should(
+            'eq',
+            '/groups/af52a47d-98fd-4685-8510-26d342e16f9b/success',
+          );
         });
 
         it('Should show feedback if there are server errors', () => {

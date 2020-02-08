@@ -31,7 +31,7 @@ class ShareDrawModal extends Component {
 
   render() {
     const { open } = this.state;
-    const { publicDrawUrl, trackingData, t } = this.props;
+    const { publicDrawUrl, analyticsDrawType, t } = this.props;
     return (
       <div className={c('ShareDrawModal__button-row')}>
         <Button onClick={this.handleClickOpen} data-testid="ShareDrawButton">
@@ -56,12 +56,23 @@ class ShareDrawModal extends Component {
               {t('share_result_dialog_cancel')}
             </Button>
             <PublicModeButton
-              label={t('share_result_dialog_ok')}
               to={publicDrawUrl}
-              trackingData={trackingData}
-              dataTestId="ShareDrawButton__confirm"
-              inputProps={{ color: 'primary' }}
-            />
+              trackingData={{
+                mp: {
+                  name: `Start Public Draw - ${analyticsDrawType}`,
+                  properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
+                },
+                ga: {
+                  category: analyticsDrawType,
+                  action: 'Start Public',
+                  label: 'From Quick Result',
+                },
+              }}
+              data-testid="ShareDrawButton__confirm"
+              color="primary"
+            >
+              {t('share_result_dialog_ok')}
+            </PublicModeButton>
           </DialogActions>
         </Dialog>
       </div>
@@ -71,7 +82,7 @@ class ShareDrawModal extends Component {
 
 ShareDrawModal.propTypes = {
   publicDrawUrl: PropTypes.string.isRequired,
-  trackingData: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  analyticsDrawType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   t: PropTypes.func.isRequired,
 };
 

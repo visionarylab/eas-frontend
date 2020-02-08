@@ -7,8 +7,8 @@ import STYLES from './NotFoundPage.scss';
 
 const c = classnames.bind(STYLES);
 const NotFoundPage = ({ message }) => (
-  <Page htmlTitle="Not found" htmlDescription="Not found" className={c('NotFoundPage')}>
-    <div>{message}</div>
+  <Page htmlTitle="Not found" htmlDescription="Not found" contentClassName={c('NotFoundPage')}>
+    {message}
   </Page>
 );
 

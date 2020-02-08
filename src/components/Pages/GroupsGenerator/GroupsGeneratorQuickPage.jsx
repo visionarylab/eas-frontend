@@ -1,5 +1,5 @@
-import React from 'react';
-import { withTranslation, Trans } from 'react-i18next';
+import React, { useRef } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GroupsResult } from 'echaloasuerte-js-sdk';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -9,7 +9,6 @@ import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
-import DrawLayout from '../../DrawLayout/DrawLayout.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
 import GroupsGeneratorResult from './GroupsGeneratorResult.jsx';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
@@ -30,8 +29,7 @@ const GroupsGeneratorQuickPage = props => {
     t,
   } = props;
   const publicDrawUrl = '/groups/public';
-  const resultsRef = React.createRef();
-
+  const resultsRef = useRef(null);
   useScrollToResults(quickResult, resultsRef);
 
   return (
@@ -41,69 +39,41 @@ const GroupsGeneratorQuickPage = props => {
       htmlKeywords={t('html_keywords')}
       ogImage={groupsOgImage}
       pageType="Groups Quick Draw"
-    >
-      <DrawLayout
-        sidePanel={
-          <MakeCertifiedDrawPanel
-            buttonLabel={t('create_certificated_draw')}
-            publicDrawUrl={publicDrawUrl}
-            trackingData={{
-              mp: {
-                name: `Start Public Draw - ${analyticsDrawType}`,
-                properties: { drawType: analyticsDrawType, source: 'From Scratch' },
-              },
-              ga: { category: analyticsDrawType, action: 'Start Public', label: 'From Scratch' },
-            }}
-          >
-            <span>
-              <Trans i18nKey="certified_draw_description">
-                Si quieres hacer un sorteo público para asegurar a los participantes una eleccion
-                imparcial del resultado, te recomendamos que hagas un sorteo certificado
-              </Trans>
-            </span>
-          </MakeCertifiedDrawPanel>
-        }
-      >
-        <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
-        <ValidationProvider
-          onSubmit={e => {
-            e.preventDefault();
-            handleToss();
-          }}
-          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+      sidePanel={
+        <MakeCertifiedDrawPanel
+          buttonLabel={t('create_certificated_draw')}
+          publicDrawUrl={publicDrawUrl}
+          analyticsDrawType={analyticsDrawType}
         >
-          <GroupsGeneratorConfigurationSection
-            values={values}
-            onFieldChange={onFieldChange}
-            t={t}
-          />
-          {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
-          <SubmitFormButton label={t('generate_groups')} />
-        </ValidationProvider>
-        <div ref={resultsRef}>
-          {loadingResult && <LoadingCoin />}
-          {!loadingResult && quickResult && (
-            <>
-              <GroupsGeneratorResult result={quickResult} />
-              <ShareDrawModal
-                publicDrawUrl={publicDrawUrl}
-                trackingData={{
-                  mp: {
-                    name: `Start Public Draw - ${analyticsDrawType}`,
-                    properties: { drawType: analyticsDrawType, source: 'From Quick Result' },
-                  },
-                  ga: {
-                    category: analyticsDrawType,
-                    action: 'Start Public',
-                    label: 'From Quick Result',
-                  },
-                }}
-                t={t}
-              />
-            </>
-          )}
-        </div>
-      </DrawLayout>
+          {t('certified_draw_description')}
+        </MakeCertifiedDrawPanel>
+      }
+    >
+      <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
+      <ValidationProvider
+        onSubmit={e => {
+          e.preventDefault();
+          handleToss();
+        }}
+        onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+      >
+        <GroupsGeneratorConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
+        {apiError && <ErrorFeedback error={t('ApiError:api_error')} />}
+        <SubmitFormButton label={t('generate_groups')} disabled={loadingResult} />
+      </ValidationProvider>
+      <div ref={resultsRef}>
+        {loadingResult && <LoadingCoin />}
+        {!loadingResult && quickResult && (
+          <>
+            <GroupsGeneratorResult result={quickResult} />
+            <ShareDrawModal
+              publicDrawUrl={publicDrawUrl}
+              analyticsDrawType={analyticsDrawType}
+              t={t}
+            />
+          </>
+        )}
+      </div>
     </Page>
   );
 };
