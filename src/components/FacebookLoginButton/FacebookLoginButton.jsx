@@ -6,11 +6,11 @@ import STYLES from './FacebookLoginButton.scss';
 
 const c = classNames.bind(STYLES);
 
-const FacebookLoginButton = ({ label }) => (
+const FacebookLoginButton = ({ label, onLogin }) => (
   <div className={c('FacebookLoginButton')} data-testid="FacebookLoginButton">
     <button
       type="button"
-      onClick={() => window.FB.login()}
+      onClick={() => window.FB.login(onLogin)}
       className={c('FacebookLoginButton__button')}
     >
       {label}
@@ -20,10 +20,12 @@ const FacebookLoginButton = ({ label }) => (
 
 FacebookLoginButton.propTypes = {
   label: PropTypes.string,
+  onLogin: PropTypes.func,
 };
 
 FacebookLoginButton.defaultProps = {
   label: '',
+  onLogin: null,
 };
 
 export default FacebookLoginButton;

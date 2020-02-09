@@ -43,6 +43,7 @@ const PublishedFacebookRafflePage = props => {
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
+  const [registeringInRaffle, setRegisteringInRaffle] = useState(false);
 
   useEffect(() => {
     if (userId) {
@@ -61,8 +62,25 @@ const PublishedFacebookRafflePage = props => {
     return <LoadingSpinner fullpage />;
   }
 
-  const onRegisterInRaffle = async () => {
-    const participant = Participant.constructFromObject({ name: username, facebook_id: userId });
+  /**
+   * Register the urse in the current raffle
+   *
+   * @param {*} userDetails This param will only
+   * be passed when the function is called as callback after login
+   * @returns {undefined}
+   */
+  const registerUserInRaffle = async userDetails => {
+    setRegisteringInRaffle(true);
+    let name;
+    let facebookId;
+    if (userDetails) {
+      name = userDetails.username;
+      facebookId = userDetails.userId;
+    } else {
+      name = username;
+      facebookId = userId;
+    }
+    const participant = Participant.constructFromObject({ name, facebook_id: facebookId });
     try {
       await raffleApi.raffleParticipantsAdd(drawId, participant);
       track({
@@ -83,6 +101,7 @@ const PublishedFacebookRafflePage = props => {
         Sentry.captureException(error);
       });
     }
+    setRegisteringInRaffle(false);
     loadData(props);
   };
 
@@ -122,8 +141,9 @@ const PublishedFacebookRafflePage = props => {
           <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
             <ParticipateWithFbPanel
               userRegisteredInRaffle={userRegisteredInRaffle}
-              onRegisterInRaffle={onRegisterInRaffle}
+              registerUserInRaffle={registerUserInRaffle}
               registerFailedErrorMessage={registerFailedErrorMessage}
+              registeringInRaffle={registeringInRaffle}
               t={t}
             />
           </div>
