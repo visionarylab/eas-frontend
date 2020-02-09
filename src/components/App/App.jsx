@@ -5,7 +5,6 @@ import mixpanel from 'mixpanel-browser';
 import { MixpanelProvider } from 'react-mixpanel';
 import { ThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 // import showCookieBanner from '../../services/cookieConsent';
 import initI18n from '../../i18n';
 import AppShell from '../AppShell/AppShell.jsx';
@@ -68,4 +67,4 @@ App.propTypes = {
 
 const mapsStateToProps = state => ({ hostname: state.userRequest.hostname });
 
-export default withRouter(connect(mapsStateToProps)(App));
+export default connect(mapsStateToProps)(App);
