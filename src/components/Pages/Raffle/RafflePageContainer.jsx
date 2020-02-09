@@ -127,7 +127,7 @@ class RafflePageContainer extends Component {
         },
         ga: { action: 'Publish', category: analyticsDrawType, label: draw.id },
       });
-      const drawPath = `/raffle/${draw.id}`;
+      const drawPath = `/raffle/${draw.id}/success`;
       recentDraws.add(draw, drawPath, scheduleDate);
       history.push(drawPath);
     } catch (err) {

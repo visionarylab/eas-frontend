@@ -23,6 +23,7 @@ import withTracking from '../../withTracking/withTracking.jsx';
 import { fetchRaffleDraw } from '../../../actions/drawActions';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
+import facebookRaffleOgImage from './facebook_raffle_og_image.png';
 
 const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
@@ -35,10 +36,10 @@ const loadData = async props => {
 
 const PublishedFacebookRafflePage = props => {
   const { draw, match, t, track, hostname, facebookContext } = props;
-  const { url, params } = match;
-  const { drawId } = params;
   const { title, description, participants, prizes, result, isLoading } = draw;
+  const { url, params } = match;
   const shareUrl = hostname + url;
+  const { drawId } = params;
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
@@ -87,7 +88,7 @@ const PublishedFacebookRafflePage = props => {
 
   return (
     <Page
-      // ogImage={groupsOgImage}
+      ogImage={facebookRaffleOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}

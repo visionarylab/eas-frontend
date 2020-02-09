@@ -125,7 +125,7 @@
   },
   "PrizesInput": {
     "box_label_list_of_items": "List of prizes",
-    "field_help_separate_values_commas": "Separate prizes by commas",
+    "field_help_separate_values_commas": "Separate prizes by commas or press Enter",
     "field_label": "What are the prizes you are giving away?",
     "field_placeholder": "Cruise to Bali, ...",
     "message_no_values_added": "You haven't added any prizes"
@@ -147,6 +147,7 @@
     "share_link": "Share this link with everyone and they will be able to see the results live"
   },
   "Raffle": {
+    "certified_draw_description": "If you want to make a public raffle to ensure an impartial result you should create a public raffle.",
     "create_certificated_draw": "Create a raffle publicly",
     "draw_subheading": "Create an online raffle with prizes and share the results.",
     "error_form_not_enough_participants": "There are {{numberOfPrizes}} prizes but only {{count}} participant. Add more participants",

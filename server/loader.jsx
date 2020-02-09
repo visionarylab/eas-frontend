@@ -19,11 +19,11 @@ export default (req, res) => {
       - Preloaded state (for Redux) depending on the current route
       - Code-split script tags depending on the current route
   */
-  const injectHTML = (data, { html, title, meta, body, state, css }) => {
+  const injectHTML = (data, { html, title, meta, link, body, state, css }) => {
     let content = data;
     content = content.replace('<html>', `<html ${html}>`);
     content = content.replace(/<title>.*?<\/title>/g, title);
-    content = content.replace('</head>', `${meta}</head>`);
+    content = content.replace('</head>', `${meta}${link}</head>`);
     content = content.replace(
       '<div id="root"></div>',
       `<div id="root">${body}</div><script>window.__PRELOADED_STATE__ = ${state}</script>`,
@@ -79,6 +79,7 @@ export default (req, res) => {
         html: helmet.htmlAttributes.toString(),
         title: helmet.title.toString(),
         meta: helmet.meta.toString(),
+        link: helmet.link.toString(),
         body: routeMarkup,
         state: JSON.stringify(store.getState()).replace(/</g, '\\u003c'),
         css,

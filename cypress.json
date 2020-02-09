@@ -1,5 +1,5 @@
 {
-  "viewportWidth": 1100,
-  "viewportHeight": 660,
-  "blacklistHosts": "www.google-analytics.com"
+  "blacklistHosts": "www.google-analytics.com",
+  "video": false,
+  "baseUrl": "http://localhost:3005"
 }

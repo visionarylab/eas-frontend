@@ -1,14 +1,6 @@
 {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "cypress",
-    "prettier",
-    "react-hooks"
-  ],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["cypress", "prettier", "react-hooks"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -16,13 +8,17 @@
     "cypress/globals": true
   },
   "rules": {
-    "prefer-destructuring": ["error", {"object": true, "array": false}],
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
     "prettier/prettier": "error",
     "import/no-extraneous-dependencies": [0],
     "valid-jsdoc": ["error"],
-    "import/extensions": ["error", "always", {
-      "js": "never"
-    }],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never"
+      }
+    ],
     "no-warning-comments": ["error", { "terms": ["TODO"], "location": "start" }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
