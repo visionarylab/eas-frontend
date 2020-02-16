@@ -19,7 +19,6 @@ const ParticipateWithFbPanel = ({
   const handleFbLogin = async response => {
     const { handleStatusChange } = facebookContext;
     const userDetails = await handleStatusChange(response);
-    // TODO fix: user can register twice in the raffle
     registerUserInRaffle(userDetails);
   };
 

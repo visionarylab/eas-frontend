@@ -24,7 +24,7 @@ import { fetchRaffleDraw } from '../../../actions/drawActions';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 import facebookRaffleOgImage from './facebook_raffle_og_image.png';
-import useCurrentUrl from '../../../hooks/useCurrentUrl.js';
+import useCurrentUrl from '../../../hooks/useCurrentUrl';
 
 const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
