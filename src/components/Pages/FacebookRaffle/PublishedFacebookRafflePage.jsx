@@ -64,14 +64,13 @@ const PublishedFacebookRafflePage = props => {
   }
 
   /**
-   * Register the urse in the current raffle
+   * Register the user in the current raffle
    *
    * @param {*} userDetails This param will only
    * be passed when the function is called as callback after login
    * @returns {undefined}
    */
   const registerUserInRaffle = async userDetails => {
-    setRegisteringInRaffle(true);
     let name;
     let facebookId;
     if (userDetails) {
@@ -81,6 +80,13 @@ const PublishedFacebookRafflePage = props => {
       name = username;
       facebookId = userId;
     }
+
+    const userIsRegistered = participants.find(p => p.facebook_id === facebookId);
+    if (userIsRegistered) {
+      return;
+    }
+
+    setRegisteringInRaffle(true);
     const participant = Participant.constructFromObject({ name, facebook_id: facebookId });
     try {
       await raffleApi.raffleParticipantsAdd(drawId, participant);

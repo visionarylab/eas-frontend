@@ -19,6 +19,7 @@ const ParticipateWithFbPanel = ({
   const handleFbLogin = async response => {
     const { handleStatusChange } = facebookContext;
     const userDetails = await handleStatusChange(response);
+    // TODO fix: user can register twice in the raffle
     registerUserInRaffle(userDetails);
   };
 
@@ -53,7 +54,7 @@ const ParticipateWithFbPanel = ({
         variant="contained"
         color="primary"
         data-testid="FacebookRaffle__participant-button"
-        onClick={registerUserInRaffle}
+        onClick={() => registerUserInRaffle()} // Intentionally avoiding to pass the click event as param
         loading={registeringInRaffle}
       >
         {t('participate_as', { username })}
