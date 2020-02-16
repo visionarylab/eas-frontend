@@ -17,6 +17,7 @@ import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
+import useCurrentUrl from '../../../hooks/useCurrentUrl';
 
 const analyticsDrawType = 'Raffle';
 
@@ -26,9 +27,9 @@ const loadData = async props => {
 };
 
 const PublishedRafflePage = props => {
-  const { draw, match, t, hostname } = props;
+  const { draw, t } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
-  const shareUrl = hostname + match.url;
+  const shareUrl = useCurrentUrl();
   useLoadDataAfterCountdown(result, () => loadData(props));
 
   if (isLoading) {
@@ -83,8 +84,6 @@ PublishedRafflePage.propTypes = {
     isOwner: PropTypes.bool,
     isLoading: PropTypes.bool,
   }).isRequired,
-  hostname: PropTypes.string.isRequired,
-  match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
 
@@ -94,7 +93,6 @@ const TranslatedPage = withTranslation('Raffle')(PublishedRafflePage);
 
 const mapsStateToProps = state => ({
   draw: state.draws.draw,
-  hostname: state.userRequest.hostname,
 });
 
 export default connect(mapsStateToProps, { fetchRaffleDraw })(

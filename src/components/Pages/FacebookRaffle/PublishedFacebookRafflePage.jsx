@@ -24,6 +24,7 @@ import { fetchRaffleDraw } from '../../../actions/drawActions';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 import facebookRaffleOgImage from './facebook_raffle_og_image.png';
+import useCurrentUrl from '../../../hooks/useCurrentUrl.js';
 
 const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
@@ -35,15 +36,15 @@ const loadData = async props => {
 };
 
 const PublishedFacebookRafflePage = props => {
-  const { draw, match, t, track, hostname, facebookContext } = props;
+  const { draw, match, t, track, facebookContext } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
-  const { url, params } = match;
-  const shareUrl = hostname + url;
+  const { params } = match;
   const { drawId } = params;
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
   const [registeringInRaffle, setRegisteringInRaffle] = useState(false);
+  const shareUrl = useCurrentUrl();
 
   useEffect(() => {
     if (userId) {
@@ -180,7 +181,6 @@ PublishedFacebookRafflePage.propTypes = {
     username: PropTypes.string,
     userId: PropTypes.string,
   }).isRequired,
-  hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -192,7 +192,6 @@ const TranslatedPage = withTracking(
 
 const mapsStateToProps = state => ({
   draw: state.draws.draw,
-  hostname: state.userRequest.hostname,
 });
 
 export default connect(mapsStateToProps, { fetchRaffleDraw })(
