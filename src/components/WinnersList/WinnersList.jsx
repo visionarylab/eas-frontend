@@ -31,4 +31,4 @@ WinnersList.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default withTranslation('WinnerList')(WinnersList);
+export default withTranslation('WinnersList')(WinnersList);

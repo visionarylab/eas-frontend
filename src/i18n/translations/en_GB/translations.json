@@ -235,7 +235,7 @@
     "change_language": "Change language"
   },
   "WinnersList": {
-    "prize": "Prize"
+    "prize": "prize"
   },
   "WithFieldValidation": {
     "default_message_min": "It must be at least {{min}}",
