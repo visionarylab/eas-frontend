@@ -30,50 +30,56 @@ class FacebookProvider extends Component {
   }
 
   componentDidMount() {
-    const { t } = this.props;
-    const updateLoginStatus = async response => {
-      // status: connected == logged in
-      // status: unknown == logged out
-      const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
-      if (!isLoggedInFB) {
-        this.setState({
-          isLoggedInFB: false,
-          loadingFbStatus: false,
-        });
-      } else {
-        try {
-          const userDetails = await queryUserDetails();
-          this.setState({
-            isLoggedInFB: true,
-            loadingFbStatus: false,
-            userId: userDetails.userId,
-            username: userDetails.username,
-          });
-        } catch (ex) {
-          let fbErrorMessage;
-          switch (ex.error.code) {
-            case 1:
-              fbErrorMessage = t('error_message_possibly_blocked');
-              break;
-            default:
-              fbErrorMessage = t('error_message_impossible_to_log_in');
-          }
-          Sentry.withScope(scope => {
-            scope.setExtra('message', fbErrorMessage);
-            Sentry.captureException(ex);
-          });
-          this.setState({
-            fbErrorMessage,
-            isLoggedInFB: false,
-            loadingFbStatus: false,
-          });
-        }
-      }
-    };
-    fbAsyncInit(updateLoginStatus);
+    fbAsyncInit(this.handleStatusChange);
     const locale = i18n.language.replace('-', '_');
     injectScript(locale);
   }
+
+  handleStatusChange = async response => {
+    const { t } = this.props;
+    // status: connected == logged in
+    // status: unknown == logged out
+    const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
+    if (!isLoggedInFB) {
+      this.setState({
+        isLoggedInFB: false,
+        loadingFbStatus: false,
+      });
+      return undefined;
+    }
+    try {
+      const { userId, username } = await queryUserDetails();
+      this.setState({
+        isLoggedInFB: true,
+        loadingFbStatus: false,
+        userId,
+        username,
+      });
+      return {
+        userId,
+        username,
+      };
+    } catch (ex) {
+      let fbErrorMessage;
+      switch (ex.error.code) {
+        case 1:
+          fbErrorMessage = t('error_message_possibly_blocked');
+          break;
+        default:
+          fbErrorMessage = t('error_message_impossible_to_log_in');
+      }
+      Sentry.withScope(scope => {
+        scope.setExtra('message', fbErrorMessage);
+        Sentry.captureException(ex);
+      });
+      this.setState({
+        fbErrorMessage,
+        isLoggedInFB: false,
+        loadingFbStatus: false,
+      });
+      return undefined;
+    }
+  };
 
   queryUserPages = async () => {
     const response = await apiCall('/me/accounts');
@@ -107,6 +113,7 @@ class FacebookProvider extends Component {
       ...this.state,
       queryUserPages: this.queryUserPages,
       queryLikesOnObject: this.queryLikesOnObject,
+      handleStatusChange: this.handleStatusChange,
       logout,
     };
     const { children } = this.props;

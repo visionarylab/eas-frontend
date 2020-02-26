@@ -37,6 +37,7 @@
     "page_title": "Raffle among Facebook users",
     "participate_as": "Participate as {{username}}",
     "people_registered_already": "There is {{count}} person registered",
+    "people_registered_already_plural": "There are {{count}} people registered",
     "publish_draw": "Publish raffle",
     "published_raffle_details": "Details of the raffle",
     "share_draw": "Share this raffle",
@@ -235,7 +236,7 @@
     "change_language": "Change language"
   },
   "WinnersList": {
-    "prize": "Prize"
+    "prize": "prize"
   },
   "WithFieldValidation": {
     "default_message_min": "It must be at least {{min}}",

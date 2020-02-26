@@ -24,6 +24,7 @@ import { fetchRaffleDraw } from '../../../actions/drawActions';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import withFacebookSDK from '../../withFacebookSDK/withFacebookSDK.jsx';
 import facebookRaffleOgImage from './facebook_raffle_og_image.png';
+import useCurrentUrl from '../../../hooks/useCurrentUrl';
 
 const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
@@ -35,14 +36,15 @@ const loadData = async props => {
 };
 
 const PublishedFacebookRafflePage = props => {
-  const { draw, match, t, track, hostname, facebookContext } = props;
+  const { draw, match, t, track, facebookContext } = props;
   const { title, description, participants, prizes, result, isLoading } = draw;
-  const { url, params } = match;
-  const shareUrl = hostname + url;
+  const { params } = match;
   const { drawId } = params;
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
+  const [registeringInRaffle, setRegisteringInRaffle] = useState(false);
+  const shareUrl = useCurrentUrl();
 
   useEffect(() => {
     if (userId) {
@@ -61,8 +63,31 @@ const PublishedFacebookRafflePage = props => {
     return <LoadingSpinner fullpage />;
   }
 
-  const onRegisterInRaffle = async () => {
-    const participant = Participant.constructFromObject({ name: username, facebook_id: userId });
+  /**
+   * Register the user in the current raffle
+   *
+   * @param {*} userDetails This param will only
+   * be passed when the function is called as callback after login
+   * @returns {undefined}
+   */
+  const registerUserInRaffle = async userDetails => {
+    let name;
+    let facebookId;
+    if (userDetails) {
+      name = userDetails.username;
+      facebookId = userDetails.userId;
+    } else {
+      name = username;
+      facebookId = userId;
+    }
+
+    const userIsRegistered = participants.find(p => p.facebook_id === facebookId);
+    if (userIsRegistered) {
+      return;
+    }
+
+    setRegisteringInRaffle(true);
+    const participant = Participant.constructFromObject({ name, facebook_id: facebookId });
     try {
       await raffleApi.raffleParticipantsAdd(drawId, participant);
       track({
@@ -83,6 +108,7 @@ const PublishedFacebookRafflePage = props => {
         Sentry.captureException(error);
       });
     }
+    setRegisteringInRaffle(false);
     loadData(props);
   };
 
@@ -122,8 +148,9 @@ const PublishedFacebookRafflePage = props => {
           <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
             <ParticipateWithFbPanel
               userRegisteredInRaffle={userRegisteredInRaffle}
-              onRegisterInRaffle={onRegisterInRaffle}
+              registerUserInRaffle={registerUserInRaffle}
               registerFailedErrorMessage={registerFailedErrorMessage}
+              registeringInRaffle={registeringInRaffle}
               t={t}
             />
           </div>
@@ -160,7 +187,6 @@ PublishedFacebookRafflePage.propTypes = {
     username: PropTypes.string,
     userId: PropTypes.string,
   }).isRequired,
-  hostname: PropTypes.string.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
@@ -172,7 +198,6 @@ const TranslatedPage = withTracking(
 
 const mapsStateToProps = state => ({
   draw: state.draws.draw,
-  hostname: state.userRequest.hostname,
 });
 
 export default connect(mapsStateToProps, { fetchRaffleDraw })(

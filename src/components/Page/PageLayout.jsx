@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { withRouter } from 'react-router';
 import STYLES from './PageLayout.scss';
 
 const c = classNames.bind(STYLES);
@@ -39,4 +38,4 @@ PageLayout.defaultProps = {
 };
 
 const mapStateToProps = state => ({ isMobile: state.userRequest.isMobile });
-export default withRouter(connect(mapStateToProps)(PageLayout));
+export default connect(mapStateToProps)(PageLayout);

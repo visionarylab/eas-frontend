@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from 'react-i18next';
 import { GroupsResult, Participant } from 'echaloasuerte-js-sdk';
@@ -17,6 +16,7 @@ import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import groupsOgImage from './groups_og_image.png';
+import useCurrentUrl from '../../../hooks/useCurrentUrl';
 
 const analyticsDrawType = 'Groups';
 
@@ -26,9 +26,9 @@ const loadData = async props => {
 };
 
 const PublishedGroupsGeneratorPage = props => {
-  const { draw, match, t, hostname } = props;
+  const { draw, t } = props;
   const { title, description, participants, numberOfGroups, result, isLoading } = draw;
-  const shareUrl = hostname + match.url;
+  const shareUrl = useCurrentUrl();
 
   useLoadDataAfterCountdown(result, () => loadData(props));
 
@@ -80,8 +80,6 @@ PublishedGroupsGeneratorPage.propTypes = {
     isOwner: PropTypes.bool,
     isLoading: PropTypes.bool,
   }).isRequired,
-  hostname: PropTypes.string.isRequired,
-  match: ReactRouterPropTypes.match.isRequired,
   t: PropTypes.func.isRequired,
 };
 
@@ -91,7 +89,6 @@ const TranslatedPage = withTranslation('GroupsGenerator')(PublishedGroupsGenerat
 
 const mapsStateToProps = state => ({
   draw: state.draws.draw,
-  hostname: state.userRequest.hostname,
 });
 
 export default connect(mapsStateToProps, { fetchDraw })(
