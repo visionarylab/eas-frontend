@@ -54,6 +54,7 @@ class Page extends Component {
       { property: 'og:image', content: config.OGImagesFullDomain + ogImage },
       { property: 'og:description', content: pageDescription },
       { property: 'og:url', content: absoluteUrl },
+      { property: 'fb:app_id', content: config.facebookAppId },
     ];
 
     if (!shouldIndexPage) {
