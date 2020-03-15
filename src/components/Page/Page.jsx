@@ -55,7 +55,7 @@ class Page extends Component {
       { property: 'og:title', content: pageTitle },
       { property: 'og:image', content: config.OGImagesFullDomain + ogImage },
       { property: 'og:description', content: pageDescription },
-      { property: 'og:url', content: hostname + location.pathname },
+      { property: 'og:url', content: `https://${hostname}${location.pathname}` },
     ];
 
     if (!shouldIndexPage) {
