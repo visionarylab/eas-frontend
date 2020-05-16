@@ -21,7 +21,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     const dateScheduled = new Date();
     dateScheduled.setHours(dateScheduled.getHours() + 1);
 
-    this.state = {
+    const initialState = {
       privateId: null,
       quickResult: null,
       APIError: false,
@@ -34,6 +34,24 @@ class GroupsGeneratorPageContainer extends React.Component {
         dateScheduled,
       },
     };
+
+    const { draw } = props;
+    if (draw) {
+      const { quickResult, privateId, participants, numberOfGroups } = props.draw;
+      initialState.quickResult = quickResult;
+      this.state = {
+        ...initialState,
+        quickResult,
+        privateId,
+        values: {
+          ...initialState.values,
+          participants: participants.map(p => p.name),
+          numberOfGroups,
+        },
+      };
+    } else {
+      this.state = initialState;
+    }
   }
 
   componentDidMount() {
@@ -74,6 +92,7 @@ class GroupsGeneratorPageContainer extends React.Component {
       number_of_groups: numberOfGroups,
       title: isPublic && title ? title : null,
       description: isPublic && description ? description : null,
+      metadata: [{ client: 'web', key: 'isQuickDraw', value: !isPublic }],
     };
     const groupGeneratorDraw = Groups.constructFromObject(drawData);
     return groupsApi.groupsCreate(groupGeneratorDraw);
@@ -86,12 +105,15 @@ class GroupsGeneratorPageContainer extends React.Component {
     });
 
     let { privateId } = this.state;
+    let drawJustCreated;
     try {
       // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
         const draw = await this.createDraw();
+
+        drawJustCreated = true;
+
         privateId = draw.private_id;
-        this.setState({ privateId });
       }
 
       const tossResponse = await groupsApi.groupsToss(privateId, {});
@@ -104,11 +126,16 @@ class GroupsGeneratorPageContainer extends React.Component {
         ga: { action: 'Toss', category: ANALYTICS_TYPE_GROUPS },
       });
       throttle(() => {
-        this.setState({
-          quickResult: tossResponse,
-          APIError: false,
-          loadingRequest: false,
-        });
+        if (drawJustCreated) {
+          Router.push('/groups/[id]', `/groups/${privateId}`);
+        } else {
+          this.setState({
+            privateId,
+            quickResult: tossResponse,
+            APIError: false,
+            loadingRequest: false,
+          });
+        }
       }, tsStart);
     } catch (error) {
       logApiError(error, ANALYTICS_TYPE_GROUPS);
@@ -157,7 +184,6 @@ class GroupsGeneratorPageContainer extends React.Component {
 
   render() {
     const { APIError, values, quickResult, loadingRequest } = this.state;
-
     return this.isPublic() ? (
       <GroupsGeneratorPage
         apiError={APIError}
@@ -182,6 +208,23 @@ class GroupsGeneratorPageContainer extends React.Component {
 }
 
 GroupsGeneratorPageContainer.propTypes = {
+  draw: PropTypes.shape({
+    privateId: PropTypes.string.isRequired,
+    participants: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+        facebook_id: PropTypes.string,
+      }),
+    ).isRequired,
+    numberOfGroups: PropTypes.number,
+    quickResult: PropTypes.shape({
+      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+      value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+    }),
+  }).isRequired,
   track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   router: PropTypes.shape({
