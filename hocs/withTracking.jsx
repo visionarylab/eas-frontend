@@ -7,7 +7,7 @@ import { getExperimentsAllocation } from '../services/abtest';
 
 const withTracking = WrappedComponent => {
   const WithTracking = props => {
-    const { mixpanel } = props;
+    const { mixpanel, ...rest } = props;
     const track = ({ mp, ga }) => {
       if (config.googleAnalyticsEnabled && ga) {
         const { category, action, label } = ga;
@@ -22,7 +22,7 @@ const withTracking = WrappedComponent => {
         mixpanel.track(name, data);
       }
     };
-    return <WrappedComponent track={track} {...props} />;
+    return <WrappedComponent track={track} {...rest} />;
   };
 
   WithTracking.propTypes = {

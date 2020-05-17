@@ -84,13 +84,15 @@ GroupsGeneratorQuickPage.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.string,
+    numberOfGroups: PropTypes.number,
   }).isRequired,
   loadingRequest: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
-  quickResult: PropTypes.instanceOf(GroupsResult),
+  quickResult: PropTypes.shape({
+    value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+  }),
   t: PropTypes.func.isRequired,
 };
 

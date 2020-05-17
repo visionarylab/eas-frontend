@@ -37,7 +37,7 @@ const loadData = async drawId => {
   } = draw;
   const lastToss = results[0];
   const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
-  const isQuickDraw = isQuickDrawData ? isQuickDrawData.value : false;
+  const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
 
   if (isQuickDraw) {
     return {
@@ -66,8 +66,15 @@ Groups.getInitialProps = async ctx => {
   const { id: drawId } = ctx.query;
   try {
     const draw = await loadData(drawId);
+    const commonNamespaces = ['DrawGroups', 'Common'];
+    let namespacesRequired;
+    if (draw.isQuickDraw) {
+      namespacesRequired = [...commonNamespaces, 'ParticipantsInput', 'CommonCreateDraw'];
+    } else {
+      namespacesRequired = [...commonNamespaces, 'CommonPublishedDraw'];
+    }
     return {
-      namespacesRequired: ['DrawGroups', 'CommonPublishedDraw', 'Common'],
+      namespacesRequired,
       draw,
     };
   } catch (error) {

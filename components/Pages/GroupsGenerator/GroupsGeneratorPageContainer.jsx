@@ -30,7 +30,7 @@ class GroupsGeneratorPageContainer extends React.Component {
         title: '', // Default title is set in CDM
         description: '',
         participants: [],
-        numberOfGroups: '2',
+        numberOfGroups: 2,
         dateScheduled,
       },
     };
@@ -220,18 +220,18 @@ GroupsGeneratorPageContainer.propTypes = {
     ).isRequired,
     numberOfGroups: PropTypes.number,
     quickResult: PropTypes.shape({
-      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
       value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
     }),
-  }).isRequired,
+  }),
   track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   router: PropTypes.shape({
     asPath: PropTypes.string.isRequired,
   }).isRequired,
 };
-GroupsGeneratorPageContainer.defaultProps = {};
+GroupsGeneratorPageContainer.defaultProps = {
+  draw: null,
+};
 
 export default withRouter(
   withTracking(withTranslation('DrawGroups')(GroupsGeneratorPageContainer)),
