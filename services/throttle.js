@@ -1,8 +1,8 @@
 import { environment } from '../utils';
-import { TYPE_APP_ENV_TEST, TYPE_APP_ENV_LOCAL } from '../constants/environment';
+import { TYPE_APP_ENV_TEST } from '../constants/environment';
 
-const MINIMUM_TIME = 500;
-const VARIABLE_TIME = 400;
+const MINIMUM_TIME = 1000;
+const VARIABLE_TIME = 500;
 
 /**
  * This function delays the execution of `request` by a random amount of milliseconds
@@ -15,10 +15,9 @@ const throttle = async (request, tsStart) => {
   const tsEnd = new Date().getTime();
   const randomDelay = Math.floor(Math.random() * VARIABLE_TIME + MINIMUM_TIME);
   const tsDelta = tsEnd - tsStart;
-  if ([TYPE_APP_ENV_TEST, TYPE_APP_ENV_LOCAL].includes(environment)) {
+  if ([TYPE_APP_ENV_TEST].includes(environment)) {
     // Do not throttle requests in integration tests
     request();
-    console.log('request', request);
   } else {
     setTimeout(request, randomDelay - tsDelta);
   }

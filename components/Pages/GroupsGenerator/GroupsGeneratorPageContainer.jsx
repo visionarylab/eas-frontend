@@ -99,7 +99,6 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handleToss = async () => {
-    const { router } = this.props;
     const tsStart = new Date().getTime();
     this.setState({
       loadingRequest: true,
@@ -131,10 +130,10 @@ class GroupsGeneratorPageContainer extends React.Component {
         },
         ga: { action: 'Toss', category: ANALYTICS_TYPE_GROUPS },
       });
+      if (shouldRedirect) {
+        Router.push('/groups/[id]', `/groups/${privateId}`);
+      }
       throttle(() => {
-        if (shouldRedirect) {
-          Router.push('/groups/[id]', `/groups/${privateId}`);
-        }
         this.setState({
           quickResult: tossResponse,
           APIError: false,

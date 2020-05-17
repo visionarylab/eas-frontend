@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import { withTheme, styled } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';

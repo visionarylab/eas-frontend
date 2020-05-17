@@ -166,7 +166,7 @@ describe('Groups Generator Page', () => {
             cy.location('pathname').should('eq', '/groups/public');
           });
 
-          it.only('Changing data after toss should create a new draw', () => {
+          it('Changing data after toss should create a new draw', () => {
             cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
             cy.getComponent('ParticipantsInput__inputField').type('peter,');
             cy.getComponent('SubmitFormButton').click();
