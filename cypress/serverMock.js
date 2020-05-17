@@ -10,8 +10,10 @@ const numberJson = require('./fixtures/RandomNumber.json');
 
 function getGroupsFixtures() {
   const callToMock = [
-    // A draw with results
-    '/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b/',
+    // A quick draw
+    '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/',
+    // A public draw with results
+    '/api/groups/43c357b7-91ec-448a-1111-111111111111/',
     // A request of a schedule draw which doesn't have results yet
     '/api/groups/af52a47d-98fd-4685-8510-aaaaaaaaaaaa/',
   ];

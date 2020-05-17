@@ -10,6 +10,20 @@ describe('Groups Generator Page', () => {
         cy.viewport(device);
       });
       describe('Public Draw', () => {
+        beforeEach(() => {
+          cy.fixture('GroupsGenerator').then(fixtures => {
+            const fixtureCreateGroups = fixtures.find(fixture => fixture.path === '/api/groups/');
+            const newResponse = {
+              ...fixtureCreateGroups.response,
+              private_id: '43c357b7-91ec-448a-1111-000000000000',
+              id: '43c357b7-91ec-448a-1111-111111111111',
+            };
+
+            cy.route(fixtureCreateGroups.method, fixtureCreateGroups.path, newResponse).as(
+              `wait${fixtureCreateGroups.method}${fixtureCreateGroups.path}`,
+            );
+          });
+        });
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/groups/public');
@@ -29,7 +43,7 @@ describe('Groups Generator Page', () => {
               hitType: 'event',
               eventCategory: 'Groups',
               eventAction: 'Publish',
-              eventLabel: 'af52a47d-98fd-4685-8510-26d342e16f9b',
+              eventLabel: '43c357b7-91ec-448a-1111-111111111111',
             });
           });
         });
@@ -76,20 +90,21 @@ describe('Groups Generator Page', () => {
               number_of_groups: 2,
               participants: [{ name: 'you' }, { name: 'me' }],
               title: 'The title',
+              metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
             });
 
-          cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss/');
+          cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-1111-000000000000/toss/');
           cy.get('@ga').should('be.calledWith', 'send', {
             hitType: 'event',
             eventCategory: 'Groups',
             eventAction: 'Publish',
-            eventLabel: 'af52a47d-98fd-4685-8510-26d342e16f9b',
+            eventLabel: '43c357b7-91ec-448a-1111-111111111111',
           });
 
           // Redirect to draw with the public id
           cy.location('pathname').should(
             'eq',
-            '/groups/af52a47d-98fd-4685-8510-26d342e16f9b/success',
+            '/groups/43c357b7-91ec-448a-1111-111111111111/success',
           );
         });
 
@@ -124,20 +139,32 @@ describe('Groups Generator Page', () => {
             .and('be.calledWith', 'send', { hitType: 'pageview', page: '/groups' });
         });
 
-        it('Should have a share button that takes the user to the public draw', () => {
-          cy.visit('/groups');
-          // cy.clock();
-          cy.getComponent('ParticipantsInput__inputField').type('you, me, him, her,');
-          cy.getComponent('SubmitFormButton').click();
-          cy.getComponent('ShareDrawButton').click();
-          cy.getComponent('ShareDrawButton__confirm').click();
-          cy.get('@ga').should('be.calledWith', 'send', {
-            hitType: 'event',
-            eventCategory: 'Groups',
-            eventAction: 'Start Public',
-            eventLabel: 'From Quick Result',
+        describe('Access a quick draw', () => {
+          it('The configuration is pre loaded', () => {
+            cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
+
+            cy.contains('david').should('be.visible');
+            cy.contains('pepa').should('be.visible');
+            cy.contains('pepito').should('be.visible');
+            cy.contains('maria').should('be.visible');
+            cy.getComponent('GroupsGenerator__number-of-groups-field-input').should(
+              'have.value',
+              '2',
+            );
           });
-          cy.location('pathname').should('eq', '/groups/public');
+
+          it('Should have a share button that takes the user to the public draw', () => {
+            cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
+            cy.getComponent('ShareDrawButton').click();
+            cy.getComponent('ShareDrawButton__confirm').click();
+            cy.get('@ga').should('be.calledWith', 'send', {
+              hitType: 'event',
+              eventCategory: 'Groups',
+              eventAction: 'Start Public',
+              eventLabel: 'From Quick Result',
+            });
+            cy.location('pathname').should('eq', '/groups/public');
+          });
         });
 
         it('Should contain a working link to the public draw', () => {
@@ -231,43 +258,56 @@ describe('Groups Generator Page', () => {
                 number_of_groups: 4,
                 title: null,
                 description: null,
+                metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
               });
 
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss/');
+            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
             cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
           });
 
           it('Changing data after toss should create a new draw', () => {
             cy.visit('/groups');
             // cy.clock();
-            cy.getComponent('ParticipantsInput__inputField').type('one, two,');
+            cy.getComponent('ParticipantsInput__inputField').type('david,pepito,maria,pepa,peter');
             cy.getComponent('SubmitFormButton').click();
             cy.mockedRequestWait('POST', '/api/groups/')
               .its('requestBody.participants')
-              .should('deep.eq', [{ name: 'one' }, { name: 'two' }]);
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss/');
+              .should('deep.eq', [
+                { name: 'david' },
+                { name: 'pepito' },
+                { name: 'maria' },
+                { name: 'pepa' },
+                { name: 'peter' },
+              ]);
+            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
             cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
-            cy.getComponent('ParticipantsInput__inputField').type('three,');
+            cy.getComponent('ParticipantsInput__inputField').type('peter,');
             cy.getComponent('SubmitFormButton').click();
 
             // A new draw should be created and tossed
             cy.mockedRequestWait('POST', '/api/groups/')
               .its('requestBody.participants')
-              .should('deep.eq', [{ name: 'one' }, { name: 'two' }, { name: 'three' }]);
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss/');
+              .should('deep.eq', [
+                { name: 'david' },
+                { name: 'pepito' },
+                { name: 'maria' },
+                { name: 'pepa' },
+                { name: 'peter' },
+              ]);
+            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
           });
         });
       });
 
       describe('Published page', () => {
         it('Analytics events sent on pageview', () => {
-          cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+          cy.visit('/groups/43c357b7-91ec-448a-1111-111111111111');
 
           cy.get('@ga')
             .should('be.calledWith', 'create', 'UA-XXXXX-Y')
             .and('be.calledWith', 'send', {
               hitType: 'pageview',
-              page: '/groups/af52a47d-98fd-4685-8510-26d342e16f9b',
+              page: '/groups/43c357b7-91ec-448a-1111-111111111111',
             });
         });
 
@@ -296,7 +336,7 @@ describe('Groups Generator Page', () => {
         });
 
         it('Should show results and the groups draw details', () => {
-          cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+          cy.visit('/groups/43c357b7-91ec-448a-1111-111111111111');
           cy.getComponent('DrawHeading__title').contains('Sorteo de grupos aleatorios');
           cy.getComponent('GroupsGeneratorResult__group').should('have.length', 2);
           cy.getComponent('GroupsGeneratorResult__group').eq(0).contains('participant2');
@@ -305,7 +345,7 @@ describe('Groups Generator Page', () => {
 
         it('Should show share buttons', () => {
           cy.mockWindowOpen();
-          cy.visit('/groups/af52a47d-98fd-4685-8510-26d342e16f9b');
+          cy.visit('/groups/43c357b7-91ec-448a-1111-111111111111');
           cy.getComponent('SocialButton__whatsapp').click();
           cy.get('@ga').and('be.calledWith', 'send', {
             hitType: 'event',

@@ -3,37 +3,43 @@
     "path": "/api/groups/",
     "method": "POST",
     "response": {
-      "id": "af52a47d-98fd-4685-8510-26d342e16f9b",
-      "created_at": "2018-09-19T17:02:53.335760Z",
-      "updated_at": "2018-09-19T17:02:53.335809Z",
+      "id": "272f615f-6e54-4d02-98c5-55a3bb4a246c",
+      "created_at": "2020-05-17T10:52:41.763269Z",
+      "updated_at": "2020-05-17T10:52:41.763325Z",
       "title": null,
       "description": null,
       "results": [],
-      "metadata": [],
-      "private_id": "43c357b7-91ec-448a-a4bf-ac059cc3a374",
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "43c357b7-91ec-448a-0000-ac059cc3a374",
       "number_of_groups": 2,
       "participants": [
         {
-          "id": "b9960d28-0888-4458-a152-e58e81357fa0",
-          "created_at": "2018-09-19T17:02:53.343354Z",
+          "id": "ebace8c5-1e4a-4968-8ba5-86df9bc279c9",
+          "created_at": "2020-05-17T10:52:41.774288Z",
           "name": "david",
           "facebook_id": null
         },
         {
-          "id": "d9ee50dd-8b0e-450e-bc82-6bd3b136c5b0",
-          "created_at": "2018-09-19T17:02:53.346071Z",
+          "id": "ab026211-4b82-49ca-b175-8f1fe2af3809",
+          "created_at": "2020-05-17T10:52:41.777468Z",
           "name": "pepito",
           "facebook_id": null
         },
         {
-          "id": "23d9bf15-2281-435d-9db4-8c6d18f35b48",
-          "created_at": "2018-09-19T17:02:53.348381Z",
+          "id": "316d0845-3c63-40db-894e-de1c429fb892",
+          "created_at": "2020-05-17T10:52:41.780756Z",
           "name": "maria",
           "facebook_id": null
         },
         {
-          "id": "2711c5a3-778e-451d-b3f0-23fc1c7a5c65",
-          "created_at": "2018-09-19T17:02:53.350590Z",
+          "id": "c61b01fe-20c3-46f3-829a-82cf53d11ed8",
+          "created_at": "2020-05-17T10:52:41.783512Z",
           "name": "pepa",
           "facebook_id": null
         }
@@ -41,7 +47,122 @@
     }
   },
   {
-    "path": "/api/groups/43c357b7-91ec-448a-a4bf-ac059cc3a374/toss/",
+    "path": "/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/",
+    "fixture_description": "Toss quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-05-17T10:52:41.828368Z",
+      "value": [
+        [
+          {
+            "id": "ebace8c5-1e4a-4968-8ba5-86df9bc279c9",
+            "name": "david",
+            "facebook_id": null
+          },
+          {
+            "id": "c61b01fe-20c3-46f3-829a-82cf53d11ed8",
+            "name": "pepa",
+            "facebook_id": null
+          }
+        ],
+        [
+          {
+            "id": "ab026211-4b82-49ca-b175-8f1fe2af3809",
+            "name": "pepito",
+            "facebook_id": null
+          },
+          {
+            "id": "316d0845-3c63-40db-894e-de1c429fb892",
+            "name": "maria",
+            "facebook_id": null
+          }
+        ]
+      ],
+      "schedule_date": null
+    }
+  },
+  {
+    "path": "/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/",
+    "fixture_description": "Get quick draw",
+    "method": "GET",
+    "response": {
+      "id": "272f615f-6e54-4d02-98c5-55a3bb4a246c",
+      "created_at": "2020-05-17T10:52:41.763269Z",
+      "updated_at": "2020-05-17T10:52:41.763325Z",
+      "title": null,
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-05-17T10:52:41.828368Z",
+          "value": [
+            [
+              {
+                "id": "ebace8c5-1e4a-4968-8ba5-86df9bc279c9",
+                "name": "david",
+                "facebook_id": null
+              },
+              {
+                "id": "c61b01fe-20c3-46f3-829a-82cf53d11ed8",
+                "name": "pepa",
+                "facebook_id": null
+              }
+            ],
+            [
+              {
+                "id": "ab026211-4b82-49ca-b175-8f1fe2af3809",
+                "name": "pepito",
+                "facebook_id": null
+              },
+              {
+                "id": "316d0845-3c63-40db-894e-de1c429fb892",
+                "name": "maria",
+                "facebook_id": null
+              }
+            ]
+          ],
+          "schedule_date": null
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "43c357b7-91ec-448a-0000-ac059cc3a374",
+      "number_of_groups": 2,
+      "participants": [
+        {
+          "id": "ebace8c5-1e4a-4968-8ba5-86df9bc279c9",
+          "created_at": "2020-05-17T10:52:41.774288Z",
+          "name": "david",
+          "facebook_id": null
+        },
+        {
+          "id": "ab026211-4b82-49ca-b175-8f1fe2af3809",
+          "created_at": "2020-05-17T10:52:41.777468Z",
+          "name": "pepito",
+          "facebook_id": null
+        },
+        {
+          "id": "316d0845-3c63-40db-894e-de1c429fb892",
+          "created_at": "2020-05-17T10:52:41.780756Z",
+          "name": "maria",
+          "facebook_id": null
+        },
+        {
+          "id": "c61b01fe-20c3-46f3-829a-82cf53d11ed8",
+          "created_at": "2020-05-17T10:52:41.783512Z",
+          "name": "pepa",
+          "facebook_id": null
+        }
+      ]
+    }
+  },
+  {
+    "path": "/api/groups/43c357b7-91ec-448a-1111-000000000000/toss/",
+    "fixture_description": "Toss public draw",
     "method": "POST",
     "response": {
       "created_at": "2018-09-19T17:02:53.411812Z",
@@ -75,10 +196,11 @@
     }
   },
   {
-    "path": "/api/groups/af52a47d-98fd-4685-8510-26d342e16f9b/",
+    "path": "/api/groups/43c357b7-91ec-448a-1111-111111111111/",
+    "fixture_description": "Get public draw",
     "method": "GET",
     "response": {
-      "id": "af52a47d-98fd-4685-8510-26d342e16f9b",
+      "id": "43c357b7-91ec-448a-1111-111111111111",
       "created_at": "2019-05-30T17:23:16.306889Z",
       "updated_at": "2019-05-30T17:23:16.306926Z",
       "title": "Sorteo de grupos aleatorios",
@@ -105,7 +227,13 @@
           "schedule_date": "2019-05-30T17:23:14Z"
         }
       ],
-      "metadata": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
       "number_of_groups": 2,
       "participants": [
         {
@@ -125,6 +253,7 @@
   },
   {
     "path": "/api/groups/af52a47d-98fd-4685-8510-aaaaaaaaaaaa/",
+    "fixture_description": "Get public draw without results",
     "method": "GET",
     "response": {
       "id": "af52a47d-98fd-4685-8510-aaaaaaaaaaaa",
@@ -139,7 +268,13 @@
           "schedule_date": "2019-05-30T17:23:14Z"
         }
       ],
-      "metadata": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
       "number_of_groups": 2,
       "participants": [
         {
