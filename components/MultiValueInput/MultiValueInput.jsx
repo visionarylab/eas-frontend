@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import classnames from 'classnames/bind';
 import STYLES from './MultiValueInput.module.scss';
+import ValuesList from './ValuesList.jsx';
 
 const c = classnames.bind(STYLES);
 
@@ -128,17 +129,7 @@ class MultiValueInput extends Component {
           onClick={this.handleDivClick}
         >
           <div className={c('MultiValueInput__itemsList')}>
-            {values.map(value => (
-              <Chip
-                onClick={e => {
-                  // Stop the input from being focused when a Chip is clicked
-                  e.stopPropagation();
-                }}
-                key={Math.random()}
-                label={value}
-                onDelete={this.onValueDelete}
-              />
-            ))}{' '}
+            <ValuesList values={values} onValueDelete={this.onValueDelete} />{' '}
             <Input
               id={id}
               onChange={this.onCurrentValueChange}
