@@ -165,6 +165,24 @@ describe('Groups Generator Page', () => {
             });
             cy.location('pathname').should('eq', '/groups/public');
           });
+
+          it.only('Changing data after toss should create a new draw', () => {
+            cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
+            cy.getComponent('ParticipantsInput__inputField').type('peter,');
+            cy.getComponent('SubmitFormButton').click();
+
+            // A new draw should be created and tossed
+            cy.mockedRequestWait('POST', '/api/groups/')
+              .its('requestBody.participants')
+              .should('deep.eq', [
+                { name: 'david' },
+                { name: 'pepito' },
+                { name: 'maria' },
+                { name: 'pepa' },
+                { name: 'peter' },
+              ]);
+            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
+          });
         });
 
         it('Should contain a working link to the public draw', () => {
@@ -263,38 +281,6 @@ describe('Groups Generator Page', () => {
 
             cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
             cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
-          });
-
-          it('Changing data after toss should create a new draw', () => {
-            cy.visit('/groups');
-            // cy.clock();
-            cy.getComponent('ParticipantsInput__inputField').type('david,pepito,maria,pepa,peter');
-            cy.getComponent('SubmitFormButton').click();
-            cy.mockedRequestWait('POST', '/api/groups/')
-              .its('requestBody.participants')
-              .should('deep.eq', [
-                { name: 'david' },
-                { name: 'pepito' },
-                { name: 'maria' },
-                { name: 'pepa' },
-                { name: 'peter' },
-              ]);
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
-            cy.getComponent('GroupsGeneratorResult__result').should('be.visible');
-            cy.getComponent('ParticipantsInput__inputField').type('peter,');
-            cy.getComponent('SubmitFormButton').click();
-
-            // A new draw should be created and tossed
-            cy.mockedRequestWait('POST', '/api/groups/')
-              .its('requestBody.participants')
-              .should('deep.eq', [
-                { name: 'david' },
-                { name: 'pepito' },
-                { name: 'maria' },
-                { name: 'pepa' },
-                { name: 'peter' },
-              ]);
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
           });
         });
       });

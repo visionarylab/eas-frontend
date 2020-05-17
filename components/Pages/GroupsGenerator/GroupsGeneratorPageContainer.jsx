@@ -99,19 +99,25 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   handleToss = async () => {
+    const { router } = this.props;
     const tsStart = new Date().getTime();
     this.setState({
       loadingRequest: true,
     });
 
+    // await Promise(res => setTimeout(res, 1000));
+
     let { privateId } = this.state;
-    let drawJustCreated;
+    let shouldRedirect;
     try {
       // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
         const draw = await this.createDraw();
+        this.setState({
+          privateId,
+        });
 
-        drawJustCreated = true;
+        shouldRedirect = true;
 
         privateId = draw.private_id;
       }
@@ -126,16 +132,14 @@ class GroupsGeneratorPageContainer extends React.Component {
         ga: { action: 'Toss', category: ANALYTICS_TYPE_GROUPS },
       });
       throttle(() => {
-        if (drawJustCreated) {
+        if (shouldRedirect) {
           Router.push('/groups/[id]', `/groups/${privateId}`);
-        } else {
-          this.setState({
-            privateId,
-            quickResult: tossResponse,
-            APIError: false,
-            loadingRequest: false,
-          });
         }
+        this.setState({
+          quickResult: tossResponse,
+          APIError: false,
+          loadingRequest: false,
+        });
       }, tsStart);
     } catch (error) {
       logApiError(error, ANALYTICS_TYPE_GROUPS);

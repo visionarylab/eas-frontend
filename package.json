@@ -11,6 +11,8 @@
     "export": "next export",
     "test": "jest --watch --testPathIgnorePatterns config/test.js",
     "test:ci": "jest --ci --testPathIgnorePatterns config/test.js",
+    "test:int1": "cypress open",
+    "test:int2": "npm run start:integration:dev",
     "test:integration:dev": "cypress open & npm run start:integration:dev",
     "test:integration": "cypress open & npm run start:integration",
     "test:integration:ci": "npm run start:integration & wait-on http://localhost:3005 && cypress run",
