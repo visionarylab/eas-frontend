@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { GroupsResult } from 'echaloasuerte-js-sdk';
 import { withTranslation } from '../../../i18n';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
