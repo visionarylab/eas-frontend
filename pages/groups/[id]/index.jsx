@@ -5,8 +5,12 @@ import { logApiError } from '../../../utils/logger';
 import GroupsGeneratorPageContainer from '../../../components/Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 import PublishedGroupsGeneratorPage from '../../../components/Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';
 import { ANALYTICS_TYPE_GROUPS } from '../../../constants/analyticsTypes';
+import ErrorPage from '../../../components/Pages/ErrorPage/ErrorPage.jsx';
 
-const Groups = ({ draw }) => {
+const Groups = ({ draw, error }) => {
+  if (error) {
+    return <ErrorPage {...error} />;
+  }
   const { isQuickDraw } = draw;
   return isQuickDraw ? (
     <GroupsGeneratorPageContainer draw={draw} />
@@ -19,6 +23,11 @@ Groups.propTypes = {
   draw: PropTypes.shape({
     isQuickDraw: PropTypes.bool.isRequired,
   }).isRequired,
+  error: PropTypes.shape({}),
+};
+
+Groups.defaultProps = {
+  error: null,
 };
 
 const groupsApi = new GroupsApi();
