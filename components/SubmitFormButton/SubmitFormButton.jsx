@@ -9,7 +9,6 @@ const c = classNames.bind(STYLES);
 const SubmitFormButton = ({ label, onClick: handleSubmitButtonClick, ...rest }) => {
   const { handleFormSubmit } = useContext(ValidationContext);
   const handleSubmitClick = event => {
-    console.log('handleSubmitClick');
     handleSubmitButtonClick(event);
     handleFormSubmit(event);
   };

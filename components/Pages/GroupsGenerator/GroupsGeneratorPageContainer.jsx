@@ -112,13 +112,11 @@ class GroupsGeneratorPageContainer extends React.Component {
       // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
         const draw = await this.createDraw();
+        shouldRedirect = true;
+        privateId = draw.private_id;
         this.setState({
           privateId,
         });
-
-        shouldRedirect = true;
-
-        privateId = draw.private_id;
       }
 
       const tossResponse = await groupsApi.groupsToss(privateId, {});
