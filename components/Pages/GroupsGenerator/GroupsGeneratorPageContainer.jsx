@@ -37,32 +37,35 @@ class GroupsGeneratorPageContainer extends React.Component {
     };
 
     const { draw } = props;
-    if (draw) {
-      const { quickResult, privateId, participants, numberOfGroups } = props.draw;
-      initialState.quickResult = quickResult;
-      this.state = {
-        ...initialState,
-        quickResult,
-        privateId,
-        values: {
-          ...initialState.values,
-          participants: participants.map(p => p.name),
-          numberOfGroups,
-        },
-      };
-    } else {
-      this.state = initialState;
-    }
+    // if (draw) {
+    //   const { quickResult, privateId, participants, numberOfGroups } = props.draw;
+    //   initialState.quickResult = quickResult;
+    //   this.state = {
+    //     ...initialState,
+    //     quickResult,
+    //     privateId,
+    //     values: {
+    //       ...initialState.values,
+    //       participants: participants.map(p => p.name),
+    //       numberOfGroups,
+    //     },
+    //   };
+    // } else {
+    this.state = initialState;
+    // }
   }
 
   componentDidMount() {
     console.log('componentDidMount');
     const { t } = this.props;
     const defaultTitle = t('field_default_title');
+    const { quickResult, privateId, participants, numberOfGroups } = this.props.draw;
     this.setState(previousState => ({
       values: {
         ...previousState.values,
         title: defaultTitle,
+        participants: participants.map(p => p.name),
+        numberOfGroups,
       },
     }));
   }
@@ -70,7 +73,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const prevPrivateId = prevProps.draw?.privateId;
     const currPrivateId = this.props.draw?.privateId;
-    if (currPrivateId !== prevPrivateId) {
+    if (this.props.draw && currPrivateId !== prevPrivateId) {
       console.log('WE GOT A NEW DRAW');
       const { quickResult, privateId, participants, numberOfGroups } = this.props.draw;
       // eslint-disable-next-line react/no-did-update-set-state
@@ -89,6 +92,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   }
 
   onFieldChange = (fieldName, value) => {
+    console.log('onFieldChange', fieldName, value);
     this.setState(previousState => ({
       privateId: null,
       modified: true,
@@ -214,19 +218,36 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   render() {
+    let { quickResult } = this.state;
     let values;
-    let quickResult;
     const { modified } = this.state;
-    if (!modified) {
+
+    if (modified) {
+      console.log('values from state', values);
+      ({ quickResult, values } = this.state);
+    } else if (this.props.draw) {
+      console.log('values from props', values);
       const { participants, numberOfGroups } = this.props.draw;
       ({ quickResult } = this.props.draw);
       values = {
         participants: participants.map(p => p.name),
         numberOfGroups,
       };
-    } else {
-      ({ values, quickResult } = this.state);
     }
+
+    // if (!quickResult) {
+    //   console.log('result from state', values);
+    //   ({ quickResult, values } = this.state);
+    // } else if (this.props.draw) {
+    //   console.log('result from props', values);
+    //   const { participants, numberOfGroups } = this.props.draw;
+    //   ({ quickResult } = this.props.draw);
+    //   values = {
+    //     participants: participants.map(p => p.name),
+    //     numberOfGroups,
+    //   };
+    // }
+
     const { APIError, loadingRequest } = this.state;
     return this.isPublic() ? (
       <GroupsGeneratorPage
