@@ -22,6 +22,7 @@ class GroupsGeneratorPageContainer extends React.Component {
     dateScheduled.setHours(dateScheduled.getHours() + 1);
 
     const initialState = {
+      modified: false,
       privateId: null,
       quickResult: null,
       APIError: false,
@@ -55,6 +56,7 @@ class GroupsGeneratorPageContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount');
     const { t } = this.props;
     const defaultTitle = t('field_default_title');
     this.setState(previousState => ({
@@ -65,9 +67,31 @@ class GroupsGeneratorPageContainer extends React.Component {
     }));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const prevPrivateId = prevProps.draw?.privateId;
+    const currPrivateId = this.props.draw?.privateId;
+    if (currPrivateId !== prevPrivateId) {
+      console.log('WE GOT A NEW DRAW');
+      const { quickResult, privateId, participants, numberOfGroups } = this.props.draw;
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        quickResult,
+        modified: false,
+        loadingRequest: false,
+        values: {
+          participants: participants.map(p => p.name),
+          numberOfGroups,
+        },
+      });
+    }
+    // console.log('prevPrivateId', prevPrivateId);
+    // console.log('currPrivateId', currPrivateId);
+  }
+
   onFieldChange = (fieldName, value) => {
     this.setState(previousState => ({
       privateId: null,
+      modified: true,
       quickResult: null,
       values: {
         ...previousState.values,
@@ -106,17 +130,21 @@ class GroupsGeneratorPageContainer extends React.Component {
 
     // await Promise(res => setTimeout(res, 1000));
 
-    let { privateId } = this.state;
+    const { draw: initialDraw } = this.props;
+    const { modified } = this.state;
+    let privateId;
+
     let shouldRedirect;
     try {
-      // Create the draw only if it wasn't created in a previous toss
-      if (!privateId) {
-        const draw = await this.createDraw();
+      // Create a draw if there is not a previous one, or if there is but was edited
+      if (initialDraw && !modified) {
+        console.log('Not Created:', privateId);
+        ({ privateId } = initialDraw);
+      } else {
+        const newDraw = await this.createDraw();
+        console.log('Created:', newDraw);
+        privateId = newDraw.private_id;
         shouldRedirect = true;
-        privateId = draw.private_id;
-        this.setState({
-          privateId,
-        });
       }
 
       const tossResponse = await groupsApi.groupsToss(privateId, {});
@@ -130,15 +158,17 @@ class GroupsGeneratorPageContainer extends React.Component {
       });
       if (shouldRedirect) {
         Router.push('/groups/[id]', `/groups/${privateId}`);
+      } else {
+        throttle(() => {
+          this.setState({
+            quickResult: tossResponse,
+            APIError: false,
+            loadingRequest: false,
+          });
+        }, tsStart);
       }
-      throttle(() => {
-        this.setState({
-          quickResult: tossResponse,
-          APIError: false,
-          loadingRequest: false,
-        });
-      }, tsStart);
     } catch (error) {
+      console.log('error', error);
       logApiError(error, ANALYTICS_TYPE_GROUPS);
       this.setState({
         APIError: true,
@@ -184,7 +214,20 @@ class GroupsGeneratorPageContainer extends React.Component {
   };
 
   render() {
-    const { APIError, values, quickResult, loadingRequest } = this.state;
+    let values;
+    let quickResult;
+    const { modified } = this.state;
+    if (!modified) {
+      const { participants, numberOfGroups } = this.props.draw;
+      ({ quickResult } = this.props.draw);
+      values = {
+        participants: participants.map(p => p.name),
+        numberOfGroups,
+      };
+    } else {
+      ({ values, quickResult } = this.state);
+    }
+    const { APIError, loadingRequest } = this.state;
     return this.isPublic() ? (
       <GroupsGeneratorPage
         apiError={APIError}
