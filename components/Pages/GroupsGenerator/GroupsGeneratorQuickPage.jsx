@@ -54,7 +54,7 @@ const GroupsGeneratorQuickPage = props => {
           e.preventDefault();
           handleToss();
         }}
-        onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+        onFormErrorsCheck={() => handleCheckErrorsInConfiguration()}
       >
         <GroupsGeneratorConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
         {apiError && <ErrorFeedback error={t('CommonCreateDraw:api_error')} />}

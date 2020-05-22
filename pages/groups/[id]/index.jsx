@@ -39,21 +39,22 @@ const loadData = async drawId => {
     private_id: privateId,
     title,
     description,
-    participants,
+    participants: participantsObjects,
     number_of_groups: numberOfGroups,
     results,
     metadata,
   } = draw;
-  const lastToss = results[0];
+  const lastResult = results[0];
   const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
   const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
+  const participants = participantsObjects.map(p => p.name);
 
   if (isQuickDraw) {
     return {
       privateId,
       participants,
       numberOfGroups,
-      quickResult: lastToss,
+      lastResult,
       isQuickDraw,
     };
   }
@@ -65,7 +66,7 @@ const loadData = async drawId => {
     description,
     participants,
     numberOfGroups,
-    result: lastToss,
+    result: lastResult,
     isOwner: Boolean(privateId),
     isQuickDraw,
   };

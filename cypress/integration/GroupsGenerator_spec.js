@@ -140,7 +140,7 @@ describe('Groups Generator Page', () => {
         });
 
         describe('Access a quick draw', () => {
-          it('The configuration is pre loaded', () => {
+          it('The configuration is pre loaded and the latest result is shown', () => {
             cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
 
             cy.contains('david').should('be.visible');
@@ -151,6 +151,10 @@ describe('Groups Generator Page', () => {
               'have.value',
               '2',
             );
+
+            // Latest result is visible
+            cy.contains('Grupo 1').should('be.visible');
+            cy.contains('Grupo 2').should('be.visible');
           });
 
           it('Should have a share button that takes the user to the public draw', () => {
@@ -167,12 +171,23 @@ describe('Groups Generator Page', () => {
           });
 
           it('Changing data after toss should create a new draw', () => {
+            cy.fixture('GroupsGenerator').then(fixtures => {
+              const fixtureCreateGroups = fixtures.find(fixture => fixture.path === '/api/groups/');
+              const newResponse = {
+                ...fixtureCreateGroups.response,
+                private_id: '43c357b7-91ec-448a-0000-ac059cc3a555',
+              };
+
+              cy.route(fixtureCreateGroups.method, fixtureCreateGroups.path, newResponse).as(
+                `newDrawCreated`,
+              );
+            });
             cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
             cy.getComponent('ParticipantsInput__inputField').type('peter,');
             cy.getComponent('SubmitFormButton').click();
 
             // A new draw should be created and tossed
-            cy.mockedRequestWait('POST', '/api/groups/')
+            cy.wait('@newDrawCreated')
               .its('requestBody.participants')
               .should('deep.eq', [
                 { name: 'david' },
@@ -181,7 +196,7 @@ describe('Groups Generator Page', () => {
                 { name: 'pepa' },
                 { name: 'peter' },
               ]);
-            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a374/toss/');
+            cy.mockedRequestWait('POST', '/api/groups/43c357b7-91ec-448a-0000-ac059cc3a555/toss/');
           });
         });
 

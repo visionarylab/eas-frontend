@@ -161,6 +161,41 @@
     }
   },
   {
+    "path": "/api/groups/43c357b7-91ec-448a-0000-ac059cc3a555/toss/",
+    "fixture_description": "Toss edited quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-05-17T10:52:41.828368Z",
+      "value": [
+        [
+          {
+            "id": "ebace8c5-1e4a-4968-8ba5-86df9bc279c9",
+            "name": "david",
+            "facebook_id": null
+          },
+          {
+            "id": "c61b01fe-20c3-46f3-829a-82cf53d11ed8",
+            "name": "pepa",
+            "facebook_id": null
+          }
+        ],
+        [
+          {
+            "id": "ab026211-4b82-49ca-b175-8f1fe2af3809",
+            "name": "pepito",
+            "facebook_id": null
+          },
+          {
+            "id": "316d0845-3c63-40db-894e-de1c429fb892",
+            "name": "maria",
+            "facebook_id": null
+          }
+        ]
+      ],
+      "schedule_date": null
+    }
+  },
+  {
     "path": "/api/groups/43c357b7-91ec-448a-1111-000000000000/toss/",
     "fixture_description": "Toss public draw",
     "method": "POST",

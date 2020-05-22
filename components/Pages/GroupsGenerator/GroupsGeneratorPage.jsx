@@ -31,7 +31,7 @@ const GroupsGeneratorPage = props => {
       label: t('step_label_configure'),
       render: wizardProps => (
         <ConfigurationForm
-          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration()}
           values={values}
           onFieldChange={onFieldChange}
           t={t}
