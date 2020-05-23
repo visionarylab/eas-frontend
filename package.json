@@ -29,6 +29,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/pickers": "^3.2.8",
     "@material-ui/utils": "^4.5.2",
+    "@next/bundle-analyzer": "^9.4.2",
     "@sentry/browser": "^5.10.2",
     "@sentry/node": "^5.10.2",
     "@sentry/webpack-plugin": "^1.11.1",
@@ -63,7 +64,6 @@
     "ua-parser-js": "^0.7.19"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.4.2",
     "@testing-library/cypress": "^6.0.0",
     "@testing-library/react": "^9.3.2",
     "babel-eslint": "^10.1.0",
