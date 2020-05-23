@@ -50,7 +50,7 @@ const PublishedGroupsGeneratorPage = props => {
           {t('label_number_of_groups')} {numberOfGroups}
         </Typography>
         <Typography component="div" variant="body2">
-          {t('label_participants')} {participants.map(p => p.name).join(', ')}
+          {t('label_participants')} {participants.join(', ')}
         </Typography>
       </PublishedDrawDetails>
     </Page>
@@ -61,14 +61,7 @@ PublishedGroupsGeneratorPage.propTypes = {
   draw: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
-    participants: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-        facebook_id: PropTypes.string,
-      }),
-    ).isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
     numberOfGroups: PropTypes.number,
     description: PropTypes.string,
     result: PropTypes.shape({

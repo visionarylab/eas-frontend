@@ -5,7 +5,6 @@ import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
-import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import Page from '../../Page/Page.jsx';
 import GroupsGeneratorConfigurationSection from './GroupsGeneratorConfigurationSection.jsx';
@@ -62,16 +61,7 @@ const GroupsGeneratorQuickPage = props => {
       </ValidationProvider>
       <div ref={resultsRef}>
         {loadingRequest && <LoadingCoin />}
-        {!loadingRequest && quickResult && (
-          <>
-            <GroupsGeneratorResult result={quickResult} />
-            <ShareDrawModal
-              publicDrawUrl={publicDrawUrl}
-              analyticsDrawType={ANALYTICS_TYPE_GROUPS}
-              t={t}
-            />
-          </>
-        )}
+        {!loadingRequest && quickResult && <GroupsGeneratorResult result={quickResult} />}
       </div>
     </Page>
   );

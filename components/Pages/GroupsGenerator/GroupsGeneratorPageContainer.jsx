@@ -15,12 +15,14 @@ import { ANALYTICS_TYPE_GROUPS } from '../../../constants/analyticsTypes';
 const groupsApi = new GroupsApi();
 
 const getInitialValues = (previousDraw, t) => {
+  const dateScheduled = new Date();
+  dateScheduled.setHours(dateScheduled.getHours() + 1);
   const initialValues = {
     title: t('field_default_title'),
     description: '',
     participants: previousDraw?.participants || [],
     numberOfGroups: previousDraw?.numberOfGroups || 2,
-    dateScheduled: new Date().setHours(new Date().getHours() + 1),
+    dateScheduled,
   };
   return initialValues;
 };
@@ -147,7 +149,6 @@ const GroupsGeneratorPageContainer = props => {
     }
     return undefined;
   };
-
   return isPublic ? (
     <GroupsGeneratorPage
       apiError={APIError}

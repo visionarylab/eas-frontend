@@ -157,19 +157,6 @@ describe('Groups Generator Page', () => {
             cy.contains('Grupo 2').should('be.visible');
           });
 
-          it('Should have a share button that takes the user to the public draw', () => {
-            cy.visit('/groups/43c357b7-91ec-448a-0000-ac059cc3a374');
-            cy.getComponent('ShareDrawButton').click();
-            cy.getComponent('ShareDrawButton__confirm').click();
-            cy.get('@ga').should('be.calledWith', 'send', {
-              hitType: 'event',
-              eventCategory: 'Groups',
-              eventAction: 'Start Public',
-              eventLabel: 'From Quick Result',
-            });
-            cy.location('pathname').should('eq', '/groups/public');
-          });
-
           it('Changing data after toss should create a new draw', () => {
             cy.fixture('GroupsGenerator').then(fixtures => {
               const fixtureCreateGroups = fixtures.find(fixture => fixture.path === '/api/groups/');

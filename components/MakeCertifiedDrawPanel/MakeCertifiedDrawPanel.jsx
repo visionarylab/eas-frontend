@@ -21,6 +21,7 @@ const MakeCertifiedDrawPanel = ({ buttonLabel, publicDrawUrl, analyticsDrawType,
     <CardActions className={c('MakeCertifiedDrawPanel__actions')}>
       <PublicModeButton
         href={publicDrawUrl}
+        hrefAs={publicDrawUrl}
         data-testid="MakeCertifiedDrawPanel__button"
         trackingData={{
           mp: {
