@@ -20,7 +20,7 @@ describe('Raffle Page', () => {
         });
 
         describe('Access a quick draw', () => {
-          it.only('The configuration is pre loaded and the latest result is shown', () => {
+          it('The configuration is pre loaded and the latest result is shown', () => {
             cy.visit('/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4');
 
             cy.contains('David').should('be.visible');
