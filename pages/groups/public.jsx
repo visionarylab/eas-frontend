@@ -1,7 +1,10 @@
+import React from 'react';
 import GroupsGeneratorPageContainer from '../../components/Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 
-GroupsGeneratorPageContainer.getInitialProps = () => ({
+const GroupsPublicLandingPage = props => <GroupsGeneratorPageContainer {...props} />;
+
+GroupsPublicLandingPage.getInitialProps = () => ({
   namespacesRequired: ['DrawGroups', 'ParticipantsInput', 'CommonCreateDraw', 'Common'],
 });
 
-export default GroupsGeneratorPageContainer;
+export default GroupsPublicLandingPage;
