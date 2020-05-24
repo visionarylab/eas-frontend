@@ -20,7 +20,7 @@ function getGroupsFixtures() {
 
   return groupsJson.filter(fixture => callToMock.includes(fixture.path));
 }
-
+// TODO replace here individual links and filter by GET instead
 function getRaffleFixtures() {
   const callToMock = [
     // A draw with results
@@ -28,7 +28,7 @@ function getRaffleFixtures() {
     // A request of a schedule draw which doesn't have results yet
     '/api/raffle/b29f44c2-1022-408a-925f-aaaaaaaaaaaa/',
   ];
-  return raffleJson.filter(fixture => callToMock.includes(fixture.path));
+  return raffleJson.filter(fixture => fixture.method === 'GET');
 }
 
 function getFacebookRaffleFixtures() {

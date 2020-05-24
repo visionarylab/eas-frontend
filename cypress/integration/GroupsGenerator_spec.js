@@ -260,7 +260,6 @@ describe('Groups Generator Page', () => {
 
           it('Request contains the data, results are shown and analytics events sent', () => {
             cy.visit('/groups');
-            // cy.clock();
             cy.getComponent('ParticipantsInput__inputField').type('you, me, him, her,');
             cy.getComponent('GroupsGenerator__number-of-groups-field-input').clear().type(4);
             cy.getComponent('SubmitFormButton').click();

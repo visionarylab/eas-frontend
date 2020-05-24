@@ -22,7 +22,6 @@ const PublishedRafflePage = props => {
 
   const { title, description, participants, prizes, result } = draw;
   const shareUrl = getCurrentUrlFromWindow();
-
   return (
     <Page
       ogImage={raffleOgImage}
@@ -69,27 +68,13 @@ const PublishedRafflePage = props => {
 PublishedRafflePage.propTypes = {
   draw: PropTypes.shape({
     title: PropTypes.string,
-    participants: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        created_at: PropTypes.string.isRequired,
-        facebook_id: PropTypes.string,
-      }),
-    ).isRequired,
-    prizes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        created_at: PropTypes.string.isRequired,
-        facebook_id: PropTypes.string,
-      }),
-    ).isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
     description: PropTypes.string,
     result: PropTypes.shape({
-      created_at: PropTypes.string.isRequired,
-      schedule_date: PropTypes.string,
-      value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+      value: PropTypes.arrayOf(PropTypes.shape({})),
     }),
     isOwner: PropTypes.bool,
   }).isRequired,

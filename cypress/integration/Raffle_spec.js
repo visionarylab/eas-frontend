@@ -19,6 +19,51 @@ describe('Raffle Page', () => {
             .and('be.calledWith', 'send', { hitType: 'pageview', page: '/raffle' });
         });
 
+        describe('Access a quick draw', () => {
+          it.only('The configuration is pre loaded and the latest result is shown', () => {
+            cy.visit('/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4');
+
+            cy.contains('David').should('be.visible');
+            cy.contains('Pedro').should('be.visible');
+            cy.contains('Mario').should('be.visible');
+            cy.contains('Cristina').should('be.visible');
+            cy.contains('PS4').should('be.visible');
+            cy.contains('400€').should('be.visible');
+
+            // Latest result is visible
+            cy.contains('1er premio').should('be.visible');
+          });
+
+          it('Changing data after toss should create a new draw', () => {
+            cy.fixture('Raffle').then(fixtures => {
+              const fixtureCreateRaffle = fixtures.find(fixture => fixture.path === '/api/raffle/');
+              const newResponse = {
+                ...fixtureCreateRaffle.response,
+                private_id: 'd0e3b3c0-413e-4b5f-9cfd-e8f03eb69a6e',
+              };
+
+              cy.route(fixtureCreateRaffle.method, fixtureCreateRaffle.path, newResponse).as(
+                `newDrawCreated`,
+              );
+            });
+            cy.visit('/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4');
+            cy.getComponent('ParticipantsInput__inputField').type('Someone,');
+            cy.getComponent('SubmitFormButton').click();
+
+            // A new draw should be created and tossed
+            cy.wait('@newDrawCreated')
+              .its('requestBody.participants')
+              .should('deep.eq', [
+                { name: 'David' },
+                { name: 'Pedro' },
+                { name: 'Mario' },
+                { name: 'Cristina' },
+                { name: 'Someone' },
+              ]);
+            cy.mockedRequestWait('POST', '/api/raffle/d0e3b3c0-413e-4b5f-9cfd-e8f03eb69a6e/toss/');
+          });
+        });
+
         it('Should contain a working link to the public draw', () => {
           cy.visit('/raffle');
           cy.getComponent('MakeCertifiedDrawPanel__button').click();
@@ -27,23 +72,6 @@ describe('Raffle Page', () => {
             eventCategory: 'Raffle',
             eventAction: 'Start Public',
             eventLabel: 'From Scratch',
-          });
-          cy.location('pathname').should('eq', '/raffle/public');
-        });
-
-        it('Should have a share button that takes the user to the public draw', () => {
-          cy.visit('/raffle');
-          cy.clock();
-          cy.getComponent('PrizesInput__inputField').type('prize1,');
-          cy.getComponent('ParticipantsInput__inputField').type('you, I,');
-          cy.getComponent('SubmitFormButton').click();
-          cy.getComponent('ShareDrawButton').click();
-          cy.getComponent('ShareDrawButton__confirm').click();
-          cy.get('@ga').should('be.calledWith', 'send', {
-            hitType: 'event',
-            eventCategory: 'Raffle',
-            eventAction: 'Start Public',
-            eventLabel: 'From Quick Result',
           });
           cy.location('pathname').should('eq', '/raffle/public');
         });
@@ -107,7 +135,6 @@ describe('Raffle Page', () => {
 
           it('Request contains the data, results are shown and analytics events sent', () => {
             cy.visit('/raffle');
-            cy.clock();
             cy.getComponent('PrizesInput__inputField').type('prize1,');
             cy.getComponent('ParticipantsInput__inputField').type('you, I,');
             cy.getComponent('SubmitFormButton').click();
@@ -125,31 +152,11 @@ describe('Raffle Page', () => {
                 prizes: [{ name: 'prize1' }],
                 title: null,
                 description: null,
+                metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
               });
 
-            cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/');
+            cy.mockedRequestWait('POST', '/api/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4/toss/');
             cy.getComponent('WinnersList__result').should('be.visible');
-          });
-
-          it('Changing data after toss should create a new draw', () => {
-            cy.visit('/raffle');
-            cy.clock();
-            cy.getComponent('PrizesInput__inputField').type('prize1,');
-            cy.getComponent('ParticipantsInput__inputField').type('you, I,');
-            cy.getComponent('SubmitFormButton').click();
-            cy.mockedRequestWait('POST', '/api/raffle/')
-              .its('requestBody.participants')
-              .should('deep.eq', [{ name: 'you' }, { name: 'I' }]);
-            cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/');
-            cy.getComponent('WinnersList__result').should('be.visible');
-            cy.getComponent('ParticipantsInput__inputField').type('she,');
-            cy.getComponent('SubmitFormButton').click();
-
-            // A new draw should be created and tossed
-            cy.mockedRequestWait('POST', '/api/raffle/')
-              .its('requestBody.participants')
-              .should('deep.eq', [{ name: 'you' }, { name: 'I' }, { name: 'she' }]);
-            cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/');
           });
         });
       });
@@ -175,7 +182,7 @@ describe('Raffle Page', () => {
               hitType: 'event',
               eventCategory: 'Raffle',
               eventAction: 'Publish',
-              eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
+              eventLabel: 'b8985af9-f458-44d2-9b56-4a80ceefecf3',
             });
           });
         });
@@ -239,20 +246,21 @@ describe('Raffle Page', () => {
               prizes: [{ name: 'prize1' }, { name: 'prize2' }],
               participants: [{ name: 'one' }, { name: 'two' }],
               title: 'The title',
+              metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
             });
 
-          cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/');
+          cy.mockedRequestWait('POST', '/api/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4/toss/');
           cy.get('@ga').should('be.calledWith', 'send', {
             hitType: 'event',
             eventCategory: 'Raffle',
             eventAction: 'Publish',
-            eventLabel: 'b29f44c2-1022-408a-925f-63e5f77a12ad',
+            eventLabel: 'b8985af9-f458-44d2-9b56-4a80ceefecf3',
           });
 
           // Redirect to draw with the public id
           cy.location('pathname').should(
             'eq',
-            '/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad/success',
+            '/raffle/b8985af9-f458-44d2-9b56-4a80ceefecf3/success',
           );
         });
 
@@ -281,13 +289,13 @@ describe('Raffle Page', () => {
 
       describe('Published page', () => {
         it('Analytics events sent on pageview', () => {
-          cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
+          cy.visit('/raffle/b8985af9-f458-44d2-9b56-4a80ceefecf3');
 
           cy.get('@ga')
             .should('be.calledWith', 'create', 'UA-XXXXX-Y')
             .and('be.calledWith', 'send', {
               hitType: 'pageview',
-              page: '/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
+              page: '/raffle/b8985af9-f458-44d2-9b56-4a80ceefecf3',
             });
         });
 

@@ -3,83 +3,217 @@
     "path": "/api/raffle/",
     "method": "POST",
     "response": {
-      "id": "b29f44c2-1022-408a-925f-63e5f77a12ad",
-      "created_at": "2018-09-08T11:45:10.535354Z",
-      "updated_at": "2018-09-08T11:45:10.535397Z",
-      "title": "The title",
-      "description": "A nice description",
+      "id": "b8985af9-f458-44d2-9b56-4a80ceefecf3",
+      "created_at": "2020-05-24T10:04:03.498513Z",
+      "updated_at": "2020-05-24T10:04:03.498617Z",
+      "title": null,
+      "description": null,
       "results": [],
-      "metadata": [],
-      "private_id": "29080f6b-b3e4-412c-8008-7e26081ea17c",
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "7debcd1a-d7ce-44e8-abf1-12c30ab373d4",
       "prizes": [
         {
-          "id": "8e406d78-0ac5-40b1-b3c5-99a93d09c340",
-          "created_at": "2018-09-08T11:45:10.538766Z",
+          "id": "7e5ecdd1-aeb0-4df1-86b4-ec5710d5c0e9",
+          "created_at": "2020-05-24T10:04:03.506399Z",
           "name": "PS4",
           "url": null
         },
         {
-          "id": "b72c5aff-35c3-405e-bcc7-6e029a8d5b04",
-          "created_at": "2018-09-08T11:45:10.541719Z",
-          "name": "300€",
+          "id": "d4461f66-2178-4304-ae35-e1b403733987",
+          "created_at": "2020-05-24T10:04:03.509576Z",
+          "name": "400€",
           "url": null
         }
       ],
       "participants": [
         {
-          "id": "da105926-523e-4efb-8ee4-fb8cb146d9d2",
-          "created_at": "2018-09-08T11:45:10.543749Z",
+          "id": "294e4f64-837e-46f6-9ea9-8c0c2eb1c7df",
+          "created_at": "2020-05-24T10:04:03.513009Z",
           "name": "David",
           "facebook_id": null
         },
         {
-          "id": "279ceb30-ece8-47ec-ae4a-a258aae0942d",
-          "created_at": "2018-09-08T11:45:10.545792Z",
-          "name": "Peter",
+          "id": "82d9de0f-ed24-4a60-9083-66129ccaa1d2",
+          "created_at": "2020-05-24T10:04:03.516178Z",
+          "name": "Pedro",
           "facebook_id": null
         },
         {
-          "id": "7c400f07-6fa2-414a-8952-5bffb6064860",
-          "created_at": "2018-09-08T11:45:10.547499Z",
-          "name": "Cristina",
-          "facebook_id": null
-        },
-        {
-          "id": "ff715fab-79dc-4e5a-9959-62952c1ddd31",
-          "created_at": "2018-09-08T11:45:10.549027Z",
+          "id": "16c08fda-e7a6-40f5-81b9-077492dcdeb8",
+          "created_at": "2020-05-24T10:04:03.519630Z",
           "name": "Mario",
+          "facebook_id": null
+        },
+        {
+          "id": "91d699ea-75f9-4acc-a9da-50a17bd4cf6a",
+          "created_at": "2020-05-24T10:04:03.523593Z",
+          "name": "Cristina",
           "facebook_id": null
         }
       ]
     }
   },
   {
-    "path": "/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/",
+    "path": "/api/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4/toss/",
+    "fixture_description": "Toss quick draw",
     "method": "POST",
     "response": {
-      "created_at": "2018-09-08T11:45:10.578964Z",
+      "created_at": "2020-05-24T10:04:03.564377Z",
       "value": [
         {
           "prize": {
-            "id": "8e406d78-0ac5-40b1-b3c5-99a93d09c340",
+            "id": "7e5ecdd1-aeb0-4df1-86b4-ec5710d5c0e9",
             "name": "PS4",
             "url": null
           },
           "participant": {
-            "id": "7c400f07-6fa2-414a-8952-5bffb6064860",
-            "name": "Cristina",
+            "id": "82d9de0f-ed24-4a60-9083-66129ccaa1d2",
+            "name": "Pedro",
             "facebook_id": null
           }
         },
         {
           "prize": {
-            "id": "b72c5aff-35c3-405e-bcc7-6e029a8d5b04",
-            "name": "300€",
+            "id": "d4461f66-2178-4304-ae35-e1b403733987",
+            "name": "400€",
             "url": null
           },
           "participant": {
-            "id": "ff715fab-79dc-4e5a-9959-62952c1ddd31",
+            "id": "16c08fda-e7a6-40f5-81b9-077492dcdeb8",
             "name": "Mario",
+            "facebook_id": null
+          }
+        }
+      ],
+      "schedule_date": null
+    }
+  },
+  {
+    "path": "/api/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4/",
+    "fixture_description": "Get quick draw",
+    "method": "GET",
+    "response": {
+      "id": "b8985af9-f458-44d2-9b56-4a80ceefecf3",
+      "created_at": "2020-05-24T10:04:03.498513Z",
+      "updated_at": "2020-05-24T10:04:03.498617Z",
+      "title": null,
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-05-24T10:04:03.564377Z",
+          "value": [
+            {
+              "prize": {
+                "id": "7e5ecdd1-aeb0-4df1-86b4-ec5710d5c0e9",
+                "name": "PS4",
+                "url": null
+              },
+              "participant": {
+                "id": "82d9de0f-ed24-4a60-9083-66129ccaa1d2",
+                "name": "Pedro",
+                "facebook_id": null
+              }
+            },
+            {
+              "prize": {
+                "id": "d4461f66-2178-4304-ae35-e1b403733987",
+                "name": "400€",
+                "url": null
+              },
+              "participant": {
+                "id": "16c08fda-e7a6-40f5-81b9-077492dcdeb8",
+                "name": "Mario",
+                "facebook_id": null
+              }
+            }
+          ],
+          "schedule_date": null
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "7debcd1a-d7ce-44e8-abf1-12c30ab373d4",
+      "prizes": [
+        {
+          "id": "7e5ecdd1-aeb0-4df1-86b4-ec5710d5c0e9",
+          "created_at": "2020-05-24T10:04:03.506399Z",
+          "name": "PS4",
+          "url": null
+        },
+        {
+          "id": "d4461f66-2178-4304-ae35-e1b403733987",
+          "created_at": "2020-05-24T10:04:03.509576Z",
+          "name": "400€",
+          "url": null
+        }
+      ],
+      "participants": [
+        {
+          "id": "294e4f64-837e-46f6-9ea9-8c0c2eb1c7df",
+          "created_at": "2020-05-24T10:04:03.513009Z",
+          "name": "David",
+          "facebook_id": null
+        },
+        {
+          "id": "82d9de0f-ed24-4a60-9083-66129ccaa1d2",
+          "created_at": "2020-05-24T10:04:03.516178Z",
+          "name": "Pedro",
+          "facebook_id": null
+        },
+        {
+          "id": "16c08fda-e7a6-40f5-81b9-077492dcdeb8",
+          "created_at": "2020-05-24T10:04:03.519630Z",
+          "name": "Mario",
+          "facebook_id": null
+        },
+        {
+          "id": "91d699ea-75f9-4acc-a9da-50a17bd4cf6a",
+          "created_at": "2020-05-24T10:04:03.523593Z",
+          "name": "Cristina",
+          "facebook_id": null
+        }
+      ]
+    }
+  },
+  {
+    "path": "/api/raffle/d0e3b3c0-413e-4b5f-9cfd-e8f03eb69a6e/toss/",
+    "fixture_description": "Toss edited quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-05-24T10:28:30.717440Z",
+      "value": [
+        {
+          "prize": {
+            "id": "846b129c-29b4-4588-aaff-b15104396190",
+            "name": "PS4",
+            "url": null
+          },
+          "participant": {
+            "id": "2c6ad05c-a790-4bd5-80e7-43d0eb895999",
+            "name": "Pedro",
+            "facebook_id": null
+          }
+        },
+        {
+          "prize": {
+            "id": "53b44078-41d4-4dd0-8557-06e34b98093e",
+            "name": "400€",
+            "url": null
+          },
+          "participant": {
+            "id": "57f09bea-fc4c-4b2a-aa47-9613fdefeb7d",
+            "name": "Cristina",
             "facebook_id": null
           }
         }
@@ -90,6 +224,7 @@
   {
     "path": "/api/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad/",
     "method": "GET",
+    "fixture_description": "Get public draw",
     "response": {
       "id": "b29f44c2-1022-408a-925f-63e5f77a12ad",
       "created_at": "2018-10-28T12:36:12.499046Z",
@@ -145,6 +280,7 @@
   {
     "path": "/api/raffle/b29f44c2-1022-408a-925f-aaaaaaaaaaaa/",
     "method": "GET",
+    "fixture_description": "Get public draw without results",
     "response": {
       "id": "b29f44c2-1022-408a-925f-aaaaaaaaaaaa",
       "created_at": "2018-10-28T12:36:12.499046Z",

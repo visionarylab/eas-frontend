@@ -20,7 +20,7 @@ import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
 
 const c = classnames.bind(STYLES);
 
-const RafflePage = ({
+const RaffleQuickPage = ({
   values,
   apiError,
   loadingRequest,
@@ -72,14 +72,16 @@ const RafflePage = ({
   );
 };
 
-RafflePage.propTypes = {
+RaffleQuickPage.propTypes = {
   values: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
     numberOfGroups: PropTypes.string,
   }).isRequired,
-  quickResult: PropTypes.instanceOf(RaffleResult),
+  quickResult: PropTypes.shape({
+    value: PropTypes.arrayOf(PropTypes.shape()),
+  }),
   apiError: PropTypes.bool,
   loadingRequest: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,
@@ -88,10 +90,10 @@ RafflePage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-RafflePage.defaultProps = {
+RaffleQuickPage.defaultProps = {
   quickResult: null,
   loadingRequest: false,
   apiError: false,
 };
 
-export default withTranslation('DrawRaffle')(RafflePage);
+export default withTranslation('DrawRaffle')(RaffleQuickPage);

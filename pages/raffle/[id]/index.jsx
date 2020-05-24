@@ -75,7 +75,12 @@ Raffle.getInitialProps = async ctx => {
     const commonNamespaces = ['DrawRaffle', 'Common'];
     let namespacesRequired;
     if (draw.isQuickDraw) {
-      namespacesRequired = [...commonNamespaces, 'ParticipantsInput', 'CommonCreateDraw'];
+      namespacesRequired = [
+        ...commonNamespaces,
+        'ParticipantsInput',
+        'PrizesInput',
+        'CommonCreateDraw',
+      ];
     } else {
       namespacesRequired = [...commonNamespaces, 'CommonPublishedDraw'];
     }

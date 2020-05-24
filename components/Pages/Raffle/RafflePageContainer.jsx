@@ -152,6 +152,8 @@ const RafflePageContainer = props => {
     return undefined;
   };
 
+  console.log('isPublic', isPublic);
+
   return isPublic ? (
     <RafflePage
       apiError={APIError}
