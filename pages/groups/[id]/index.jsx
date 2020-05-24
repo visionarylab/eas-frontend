@@ -61,7 +61,6 @@ const loadData = async drawId => {
 
   return {
     id,
-    privateId,
     title,
     description,
     participants,
@@ -90,7 +89,7 @@ Groups.getInitialProps = async ctx => {
   } catch (error) {
     logApiError(error, ANALYTICS_TYPE_GROUPS);
     return {
-      namespacesRequired: [],
+      namespacesRequired: ['Common'],
       error: {
         statusCode: error.status || 500,
       },

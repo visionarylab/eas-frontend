@@ -149,6 +149,7 @@ const GroupsGeneratorPageContainer = props => {
     }
     return undefined;
   };
+
   return isPublic ? (
     <GroupsGeneratorPage
       apiError={APIError}
