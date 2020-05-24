@@ -1,6 +1,9 @@
+import React from 'react';
 import RafflePageContainer from '../../components/Pages/Raffle/RafflePageContainer.jsx';
 
-RafflePageContainer.getInitialProps = () => ({
+const RafflePage = props => <RafflePageContainer {...props} />;
+
+RafflePage.getInitialProps = () => ({
   namespacesRequired: [
     'DrawRaffle',
     'ParticipantsInput',
@@ -10,4 +13,4 @@ RafflePageContainer.getInitialProps = () => ({
   ],
 });
 
-export default RafflePageContainer;
+export default RafflePage;

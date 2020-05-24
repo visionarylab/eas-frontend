@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
 import moment from 'moment';
-import Router, { withRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { withTranslation } from '../../../i18n';
 import withTracking from '../../../hocs/withTracking.jsx';
+import { logApiError } from '../../../utils/logger';
 import recentDraws from '../../../services/recentDraws';
 import throttle from '../../../services/throttle';
 import RafflePage from './RafflePage.jsx';
@@ -13,88 +14,85 @@ import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
 
 const raffleApi = new RaffleApi();
 
-class RafflePageContainer extends React.Component {
-  constructor(props) {
-    super(props);
+const getInitialValues = (previousDraw, t) => {
+  const dateScheduled = new Date();
+  dateScheduled.setHours(dateScheduled.getHours() + 1);
+  const initialValues = {
+    title: t('field_default_title'),
+    description: '',
+    participants: previousDraw?.participants || [],
+    prizes: previousDraw?.prizes || [],
+    dateScheduled,
+  };
+  return initialValues;
+};
+const getInitialPrivateId = previousDraw => previousDraw?.privateId;
+const getInitialQuickResult = previousDraw => previousDraw?.lastResult;
+const initialLoadingRequest = false;
+const initialApiError = false;
 
-    const dateScheduled = new Date();
-    dateScheduled.setHours(dateScheduled.getHours() + 1);
+const RafflePageContainer = props => {
+  const { draw: previousDraw, t } = props;
 
-    this.state = {
-      privateId: null,
-      quickResult: null,
-      APIError: false,
-      loadingRequest: false,
-      values: {
-        title: '', // Default title is set in CDM
-        description: '',
-        participants: [],
-        prizes: [],
-        dateScheduled,
-      },
-    };
-  }
+  const [privateId, setPrivateId] = useState(getInitialPrivateId(previousDraw));
+  const [values, setValues] = useState(getInitialValues(previousDraw, t));
+  const [quickResult, setQuickResult] = useState(getInitialQuickResult(previousDraw));
+  const [APIError, setAPIError] = useState(initialApiError);
+  const [loadingRequest, setLoadingRequest] = useState(initialLoadingRequest);
+  const router = useRouter();
 
-  componentDidMount() {
-    const { t } = this.props;
-    const defaultTitle = t('field_default_title');
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        title: defaultTitle,
-      },
-    }));
-  }
+  const isPublic = router.asPath.includes('public');
 
-  onFieldChange = (fieldName, value) => {
-    this.setState(previousState => ({
-      privateId: null,
-      quickResult: null,
-      values: {
-        ...previousState.values,
-        ...{
-          [fieldName]: value,
-        },
-      },
+  // When the users toss multiple times they get redirected but we can not rely on `useState`
+  // setting the initial value there
+  useEffect(() => {
+    setQuickResult(getInitialQuickResult(previousDraw));
+    setPrivateId(getInitialPrivateId(previousDraw));
+    setLoadingRequest(initialLoadingRequest);
+    setAPIError(initialApiError);
+    setValues(getInitialValues(previousDraw, t));
+  }, [previousDraw, t]);
+
+  const onFieldChange = (fieldName, value) => {
+    setQuickResult(null);
+    setPrivateId(null);
+    setValues(previousState => ({
+      ...previousState,
+      [fieldName]: value,
     }));
   };
 
-  isPublic = () => {
-    const { router } = this.props;
-    return router.asPath.indexOf('public') >= 0;
-  };
-
-  createDraw = () => {
-    const { values } = this.state;
-    const isPublic = this.isPublic();
+  const createDraw = () => {
     const { title, description, participants, prizes } = values;
     const drawData = {
       prizes: prizes.map(prize => ({ name: prize })),
       participants: participants.map(participant => ({ name: participant })),
       title: isPublic && title ? title : null,
       description: isPublic && description ? description : null,
+      metadata: [{ client: 'web', key: 'isQuickDraw', value: !isPublic }],
     };
     const raffleDraw = Raffle.constructFromObject(drawData);
     return raffleApi.raffleCreate(raffleDraw);
   };
 
-  handleToss = async () => {
+  const handleToss = async () => {
     const tsStart = new Date().getTime();
-    this.setState({
-      loadingRequest: true,
-    });
+    setLoadingRequest(true);
 
-    let { privateId } = this.state;
+    let shouldRedirect;
+    let privateIdToToss;
     try {
       // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
-        const draw = await this.createDraw();
-        privateId = draw.private_id;
-        this.setState({ privateId });
+        const newDraw = await createDraw();
+        shouldRedirect = true;
+        privateIdToToss = newDraw.private_id;
+      } else {
+        privateIdToToss = privateId;
       }
 
-      const tossResponse = await raffleApi.raffleToss(privateId, {});
-      const { track } = this.props;
+      const tossResponse = await raffleApi.raffleToss(privateIdToToss, {});
+      const { track } = props;
       track({
         mp: {
           name: `Toss - ${ANALYTICS_TYPE_RAFFLE}`,
@@ -103,49 +101,48 @@ class RafflePageContainer extends React.Component {
         ga: { action: 'Toss', category: ANALYTICS_TYPE_RAFFLE },
       });
       throttle(() => {
-        this.setState({
-          quickResult: tossResponse,
-          APIError: false,
-          loadingRequest: false,
-        });
+        if (shouldRedirect) {
+          Router.push('/raffle/[id]', `/raffle/${privateIdToToss}`);
+        } else {
+          setAPIError(false);
+          setLoadingRequest(false);
+          setQuickResult(tossResponse);
+        }
       }, tsStart);
-    } catch (err) {
-      this.setState({
-        APIError: true,
-        loadingRequest: false,
-      });
+    } catch (error) {
+      logApiError(error, ANALYTICS_TYPE_RAFFLE);
+      setAPIError(true);
+      setLoadingRequest(false);
     }
   };
 
-  handlePublish = async () => {
-    this.setState({ loadingRequest: true });
+  const handlePublish = async () => {
+    setLoadingRequest(true);
 
-    const { values } = this.state;
     try {
-      const draw = await this.createDraw();
+      const newDraw = await createDraw();
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
-      const tossResponse = await raffleApi.raffleToss(draw.private_id, drawTossPayload);
+      const tossResponse = await raffleApi.raffleToss(newDraw.private_id, drawTossPayload);
       const scheduleDate = moment(tossResponse.schedule_date).unix();
-      const { track } = this.props;
+      const { track } = props;
       track({
         mp: {
           name: `Publish - ${ANALYTICS_TYPE_RAFFLE}`,
-          properties: { drawType: ANALYTICS_TYPE_RAFFLE, drawId: draw.id },
+          properties: { drawType: ANALYTICS_TYPE_RAFFLE, drawId: newDraw.id },
         },
-        ga: { action: 'Publish', category: ANALYTICS_TYPE_RAFFLE, label: draw.id },
+        ga: { action: 'Publish', category: ANALYTICS_TYPE_RAFFLE, label: newDraw.id },
       });
-      const drawPath = `/raffle/${draw.id}/success`;
-      recentDraws.add(draw, drawPath, scheduleDate);
+      const drawPath = `/raffle/${newDraw.id}/success`;
+      recentDraws.add(newDraw, drawPath, scheduleDate);
       Router.push(`/raffle/[id]/success`, drawPath);
     } catch (err) {
-      this.setState({ APIError: true, loadingRequest: false });
+      setAPIError(true);
+      setLoadingRequest(false);
     }
   };
 
-  handleCheckErrorsInConfiguration = () => {
-    const { t } = this.props;
-    const { values } = this.state;
+  const handleCheckErrorsInConfiguration = () => {
     const { participants, prizes } = values;
     const numberOfPrizes = prizes.length;
     const numOfParticipants = participants.length;
@@ -155,37 +152,43 @@ class RafflePageContainer extends React.Component {
     return undefined;
   };
 
-  render() {
-    const { APIError, values, quickResult, loadingRequest } = this.state;
-    return this.isPublic() ? (
-      <RafflePage
-        apiError={APIError}
-        loadingRequest={loadingRequest}
-        values={values}
-        onFieldChange={this.onFieldChange}
-        handlePublish={this.handlePublish}
-        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
-      />
-    ) : (
-      <RaffleQuickPage
-        apiError={APIError}
-        values={values}
-        quickResult={quickResult}
-        loadingRequest={loadingRequest}
-        handleToss={this.handleToss}
-        onFieldChange={this.onFieldChange}
-        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
-      />
-    );
-  }
-}
-
-RafflePageContainer.propTypes = {
-  t: PropTypes.func.isRequired,
-  track: PropTypes.func.isRequired,
-  router: PropTypes.shape({
-    asPath: PropTypes.string.isRequired,
-  }).isRequired,
+  return isPublic ? (
+    <RafflePage
+      apiError={APIError}
+      loadingRequest={loadingRequest}
+      values={values}
+      onFieldChange={onFieldChange}
+      handlePublish={handlePublish}
+      handleCheckErrorsInConfiguration={handleCheckErrorsInConfiguration}
+    />
+  ) : (
+    <RaffleQuickPage
+      apiError={APIError}
+      values={values}
+      quickResult={quickResult}
+      loadingRequest={loadingRequest}
+      handleToss={handleToss}
+      onFieldChange={onFieldChange}
+      handleCheckErrorsInConfiguration={handleCheckErrorsInConfiguration}
+    />
+  );
 };
 
-export default withRouter(withTracking(withTranslation('DrawRaffle')(RafflePageContainer)));
+RafflePageContainer.propTypes = {
+  draw: PropTypes.shape({
+    privateId: PropTypes.string.isRequired,
+    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    quickResult: PropTypes.shape({
+      value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+    }),
+  }),
+  t: PropTypes.func.isRequired,
+  track: PropTypes.func.isRequired,
+};
+
+RafflePageContainer.defaultProps = {
+  draw: null,
+};
+
+export default withTracking(withTranslation('DrawRaffle')(RafflePageContainer));

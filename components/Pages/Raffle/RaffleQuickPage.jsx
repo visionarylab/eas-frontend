@@ -12,7 +12,6 @@ import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDr
 import RaffleConfigurationSection from './RaffleConfigurationSection.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import WinnersList from '../../WinnersList/WinnersList.jsx';
-import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 // import LearnMoreSection from '../../LearnMoreSection/LearnMoreSection.jsx';
 import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import raffleOgImage from './raffle_og_image.png';
@@ -67,15 +66,7 @@ const RafflePage = ({
       </ValidationProvider>
       <div ref={resultsRef} className={c('RaffleQuickPage__quickResults')}>
         {loadingRequest && <LoadingCoin />}
-        {!loadingRequest && quickResult && (
-          <>
-            <WinnersList winners={quickResult.value} />
-            <ShareDrawModal
-              publicDrawUrl={publicDrawUrl}
-              analyticsDrawType={ANALYTICS_TYPE_RAFFLE}
-            />
-          </>
-        )}
+        {!loadingRequest && quickResult && <WinnersList winners={quickResult.value} />}
       </div>
     </Page>
   );

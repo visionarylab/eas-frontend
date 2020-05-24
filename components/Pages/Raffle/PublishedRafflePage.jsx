@@ -16,38 +16,12 @@ import raffleOgImage from './raffle_og_image.png';
 import { getCurrentUrlFromWindow } from '../../../utils';
 import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
 
-const raffleApi = new RaffleApi();
-
-const loadData = async drawId => {
-  try {
-    const draw = await raffleApi.raffleRead(drawId);
-    const { id, private_id: privateId, title, description, participants, prizes, results } = draw;
-    const lastToss = results[0];
-    return {
-      id,
-      title,
-      description,
-      participants,
-      prizes,
-      result: lastToss,
-      isOwner: Boolean(privateId),
-    };
-  } catch (error) {
-    Sentry.withScope(scope => {
-      scope.setExtra('message', 'API Error');
-      scope.setExtra('Action', 'raffleRead');
-      scope.setExtra('drawId', drawId);
-      Sentry.captureException(error);
-    });
-    throw error;
-  }
-};
-
 const PublishedRafflePage = props => {
   const { draw, t } = props;
+  useLoadDataAfterCountdown(draw);
+
   const { title, description, participants, prizes, result } = draw;
   const shareUrl = getCurrentUrlFromWindow();
-  useLoadDataAfterCountdown(draw);
 
   return (
     <Page
@@ -82,7 +56,7 @@ const PublishedRafflePage = props => {
       )}
       <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
         <Typography component="div" variant="body2">
-          {t('label_prizes')} {prizes.map(p => p.name).join(', ')}
+          {t('label_prizes')} {prizes.join(', ')}
         </Typography>
         <Typography component="div" variant="body2">
           {t('label_number_of_participants')} {participants.length}
@@ -123,14 +97,5 @@ PublishedRafflePage.propTypes = {
 };
 
 PublishedRafflePage.defaultProps = {};
-
-PublishedRafflePage.getInitialProps = async ctx => {
-  const { id: drawId } = ctx.query;
-  const draw = await loadData(drawId);
-  return {
-    draw,
-    namespacesRequired: ['DrawRaffle', 'CommonPublishedDraw'],
-  };
-};
 
 export default withTranslation('DrawRaffle')(PublishedRafflePage);
