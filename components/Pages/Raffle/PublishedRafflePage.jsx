@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { RaffleApi } from 'echaloasuerte-js-sdk';
-import * as Sentry from '@sentry/node';
 import { withTranslation } from '../../../i18n';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import Page from '../../Page/Page.jsx';

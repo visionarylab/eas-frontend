@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RaffleResult } from 'echaloasuerte-js-sdk';
 import classnames from 'classnames/bind';
 import { withTranslation } from '../../../i18n';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
