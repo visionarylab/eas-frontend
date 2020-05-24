@@ -8,6 +8,7 @@ import WinnersList from '../../WinnersList/WinnersList.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import PublishedDrawDetails from '../../PublishedDrawDetails/PublishedDrawDetails.jsx';
 import raffleOgImage from './raffle_og_image.png';
@@ -43,6 +44,7 @@ const PublishedRafflePage = props => {
         </>
       ) : (
         <>
+          <PrizesOverview prizes={prizes} />
           <Countdown date={result.schedule_date} />
           <ShareButtons
             drawType={ANALYTICS_TYPE_RAFFLE}
@@ -52,9 +54,6 @@ const PublishedRafflePage = props => {
         </>
       )}
       <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
-        <Typography component="div" variant="body2">
-          {t('label_prizes')} {prizes.join(', ')}
-        </Typography>
         <Typography component="div" variant="body2">
           {t('label_number_of_participants')} {participants.length}
         </Typography>
@@ -66,8 +65,8 @@ const PublishedRafflePage = props => {
 PublishedRafflePage.propTypes = {
   draw: PropTypes.shape({
     title: PropTypes.string,
-    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    participants: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     description: PropTypes.string,
     result: PropTypes.shape({
       created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,

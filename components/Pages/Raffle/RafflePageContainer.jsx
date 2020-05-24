@@ -20,8 +20,8 @@ const getInitialValues = (previousDraw, t) => {
   const initialValues = {
     title: t('field_default_title'),
     description: '',
-    participants: previousDraw?.participants || [],
-    prizes: previousDraw?.prizes || [],
+    participants: previousDraw?.participants.map(p => p.name) || [],
+    prizes: previousDraw?.prizes.map(p => p.name) || [],
     dateScheduled,
   };
   return initialValues;
@@ -177,8 +177,8 @@ const RafflePageContainer = props => {
 RafflePageContainer.propTypes = {
   draw: PropTypes.shape({
     privateId: PropTypes.string.isRequired,
-    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    participants: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    prizes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     quickResult: PropTypes.shape({
       value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
     }),

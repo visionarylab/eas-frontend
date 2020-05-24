@@ -9,7 +9,7 @@ import { withTranslation } from '../../../i18n';
 import Page from '../../Page/Page.jsx';
 import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import PrizesOverview from './PrizesOverview.jsx';
+import PrizesOverview from '../../PrizesOverview/PrizesOverview.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
@@ -131,7 +131,7 @@ const PublishedFacebookRafflePage = ({ draw, t, track, facebookContext }) => {
         </>
       ) : (
         <>
-          <PrizesOverview prizes={prizes} title={t('label_prizes')} />
+          <PrizesOverview prizes={prizes} />
           <div className={c('PublishedFacebookRafflePage__participate-with-facebook')}>
             <ParticipateWithFbPanel
               userRegisteredInRaffle={userRegisteredInRaffle}

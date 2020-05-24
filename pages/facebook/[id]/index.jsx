@@ -43,7 +43,7 @@ PublishedFacebookPage.getInitialProps = async ctx => {
   }
   return {
     draw,
-    namespacesRequired: ['DrawFacebook', 'CommonPublishedDraw', 'Common'],
+    namespacesRequired: ['DrawFacebook', 'CommonDrawRaffle', 'CommonPublishedDraw', 'Common'],
   };
 };
 export default PublishedFacebookPage;

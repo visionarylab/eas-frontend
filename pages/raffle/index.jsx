@@ -6,6 +6,7 @@ const RafflePage = props => <RafflePageContainer {...props} />;
 RafflePage.getInitialProps = () => ({
   namespacesRequired: [
     'DrawRaffle',
+    'CommonDrawRaffle',
     'ParticipantsInput',
     'PrizesInput',
     'CommonCreateDraw',

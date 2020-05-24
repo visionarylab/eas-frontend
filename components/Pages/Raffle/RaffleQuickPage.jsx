@@ -72,12 +72,7 @@ const RaffleQuickPage = ({
 };
 
 RaffleQuickPage.propTypes = {
-  values: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.string,
-  }).isRequired,
+  values: PropTypes.shape({}).isRequired,
   quickResult: PropTypes.shape({
     value: PropTypes.arrayOf(PropTypes.shape()),
   }),

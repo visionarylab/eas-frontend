@@ -30,8 +30,14 @@ describe('Raffle Page', () => {
             cy.contains('PS4').should('be.visible');
             cy.contains('400€').should('be.visible');
 
-            // Latest result is visible
-            cy.contains('1er premio').should('be.visible');
+            cy.getComponent('WinnersList').within(() => {
+              cy.contains('Pedro');
+              cy.contains('Mario');
+              cy.contains('PS4');
+              cy.contains('400€');
+              cy.contains('Cristina').should('not.exist');
+              cy.contains('David').should('not.exist');
+            });
           });
 
           it('Changing data after toss should create a new draw', () => {
@@ -156,7 +162,10 @@ describe('Raffle Page', () => {
               });
 
             cy.mockedRequestWait('POST', '/api/raffle/7debcd1a-d7ce-44e8-abf1-12c30ab373d4/toss/');
-            cy.getComponent('WinnersList__result').should('be.visible');
+            cy.getComponent('WinnersList').contains('Pedro');
+            cy.getComponent('WinnersList').contains('Mario');
+            cy.getComponent('WinnersList').contains('PS4');
+            cy.getComponent('WinnersList').contains('400€');
           });
         });
       });
@@ -325,7 +334,8 @@ describe('Raffle Page', () => {
         it('Should show results and the raffle details', () => {
           cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
           cy.getComponent('DrawHeading__title').contains('This is the title');
-          cy.getComponent('WinnersList__result').should('have.length', 1);
+          cy.getComponent('WinnersList').contains('Prize one');
+          cy.getComponent('WinnersList').contains('Participant 2');
 
           // Non winners should not be shown
           // TODO we are only checking `#__next` cause we are actually returning the non-winner participants

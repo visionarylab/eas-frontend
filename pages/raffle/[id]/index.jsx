@@ -35,16 +35,14 @@ const loadData = async drawId => {
     private_id: privateId,
     title,
     description,
-    participants: participantsObjects,
-    prizes: prizesObjects,
+    participants,
+    prizes,
     results,
     metadata,
   } = draw;
   const lastResult = results[0];
   const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
   const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
-  const participants = participantsObjects.map(participant => participant.name);
-  const prizes = prizesObjects.map(prize => prize.name);
 
   if (isQuickDraw) {
     return {
@@ -72,7 +70,7 @@ Raffle.getInitialProps = async ctx => {
   const { id: drawId } = ctx.query;
   try {
     const draw = await loadData(drawId);
-    const commonNamespaces = ['DrawRaffle', 'Common'];
+    const commonNamespaces = ['DrawRaffle', 'CommonDrawRaffle', 'Common'];
     let namespacesRequired;
     if (draw.isQuickDraw) {
       namespacesRequired = [

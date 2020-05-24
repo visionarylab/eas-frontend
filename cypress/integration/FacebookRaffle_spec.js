@@ -245,7 +245,7 @@ describe('FacebookRaffle', () => {
           it('Should show results and the raffle details', () => {
             cy.visit('/facebook/11111111-1022-408a-925f-63e5f77a12ad');
             cy.getComponent('DrawHeading__title').contains('This is the title');
-            cy.getComponent('WinnersList__result').should('have.length', 1);
+            cy.getComponent('WinnersList').contains('Mr Someone');
             cy.getComponent('FacebookRaffle__number-of-participants').should('contain', 2);
 
             // Non winners should not be shown
