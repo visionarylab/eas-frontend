@@ -197,7 +197,7 @@
   },
   {
     "path": "/api/groups/43c357b7-91ec-448a-1111-000000000000/toss/",
-    "fixture_description": "Toss public draw",
+    "fixture_description": "Toss (publish) public draw",
     "method": "POST",
     "response": {
       "created_at": "2018-09-19T17:02:53.411812Z",

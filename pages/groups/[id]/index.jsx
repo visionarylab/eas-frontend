@@ -22,11 +22,12 @@ const Groups = ({ draw, error }) => {
 Groups.propTypes = {
   draw: PropTypes.shape({
     isQuickDraw: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
   error: PropTypes.shape({}),
 };
 
 Groups.defaultProps = {
+  draw: null,
   error: null,
 };
 

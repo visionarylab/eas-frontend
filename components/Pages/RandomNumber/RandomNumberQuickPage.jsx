@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { RandomNumberResult as RandomNumberResultClass } from 'echaloasuerte-js-sdk';
 import { withTranslation } from '../../../i18n';
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';

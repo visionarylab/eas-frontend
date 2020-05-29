@@ -1,29 +1,122 @@
 [
   {
-    "path": "/api/random_number",
+    "path": "/api/random_number/",
     "method": "POST",
     "response": {
-      "allow_repeated_results": true,
-      "created_at": "2018-08-26T00:54:09.331846Z",
-      "description": "Nice description",
-      "id": "ebdb2628-9fef-438d-9395-de1a4d7bc789",
-      "metadata": [],
-      "number_of_results": 1,
-      "private_id": "6ce5042f-f931-4a79-a716-dfadccc978d0",
-      "range_max": 10,
-      "range_min": 1,
+      "id": "409f9e34-45f4-4885-a5dd-9c2f30eadbe7",
+      "created_at": "2020-05-29T12:59:57.821973Z",
+      "updated_at": "2020-05-29T12:59:57.822011Z",
+      "title": null,
+      "description": null,
       "results": [],
-      "title": "Cool title",
-      "updated_at": "2018-08-26T00:54:09.331883Z"
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "03df4731-66ee-4f69-ab5e-d91e7f2e9f7c",
+      "range_min": 3,
+      "range_max": 8,
+      "number_of_results": 2,
+      "allow_repeated_results": true
     }
   },
   {
-    "path": "/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss",
+    "path": "/api/random_number/03df4731-66ee-4f69-ab5e-d91e7f2e9f7c/toss/",
+    "fixture_description": "Toss quick draw",
     "method": "POST",
+    "response": {
+      "id": "409f9e34-45f4-4885-a5dd-9c2f30eadbe7",
+      "created_at": "2020-05-29T12:59:57.821973Z",
+      "updated_at": "2020-05-29T12:59:57.822011Z",
+      "title": null,
+      "description": null,
+      "results": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "03df4731-66ee-4f69-ab5e-d91e7f2e9f7c",
+      "range_min": 3,
+      "range_max": 8,
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/random_number/43c357b7-91ec-448a-0000-ac059cc3a555/toss/",
+    "fixture_description": "Toss edited quick draw",
+    "method": "POST",
+    "response": {
+      "id": "409f9e34-45f4-4885-a5dd-9c2f30eadbe7",
+      "created_at": "2020-05-29T12:59:57.821973Z",
+      "updated_at": "2020-05-29T12:59:57.822011Z",
+      "title": null,
+      "description": null,
+      "results": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "03df4731-66ee-4f69-ab5e-d91e7f2e9f7c",
+      "range_min": 5,
+      "range_max": 8,
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/random_number/03df4731-66ee-4f69-ab5e-d91e7f2e9f7c/",
+    "fixture_description": "Get quick draw",
+    "method": "GET",
+    "response": {
+      "id": "409f9e34-45f4-4885-a5dd-9c2f30eadbe7",
+      "created_at": "2020-05-29T12:59:57.821973Z",
+      "updated_at": "2020-05-29T12:59:57.822011Z",
+      "title": null,
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-05-29T12:59:57.864400Z",
+          "value": [
+            7,
+            8
+          ],
+          "schedule_date": null
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "03df4731-66ee-4f69-ab5e-d91e7f2e9f7c",
+      "range_min": 3,
+      "range_max": 8,
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/random_number/43c357b7-91ec-448a-1111-000000000000/toss/",
+    "method": "POST",
+    "fixture_description": "Toss (publish) public draw",
     "response": {
       "created_at": "2018-08-26T00:54:09.374848Z",
       "schedule_date": null,
-      "value": [7]
+      "value": [
+        7
+      ]
     }
   },
   {
@@ -38,7 +131,9 @@
       "results": [
         {
           "created_at": "2020-05-08T17:07:44.770406Z",
-          "value": [10],
+          "value": [
+            10
+          ],
           "schedule_date": "2020-05-08T18:07:42Z"
         }
       ],

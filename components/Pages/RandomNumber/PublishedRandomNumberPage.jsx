@@ -73,9 +73,9 @@ const PublishedRandomNumberPage = props => {
 PublishedRandomNumberPage.propTypes = {
   draw: PropTypes.shape({
     title: PropTypes.string,
-    rangeMin: PropTypes.number,
-    rangeMax: PropTypes.number,
-    numberOfResults: PropTypes.number,
+    rangeMin: PropTypes.string,
+    rangeMax: PropTypes.string,
+    numberOfResults: PropTypes.string,
     allowRepeated: PropTypes.bool,
     description: PropTypes.string,
     result: PropTypes.shape({

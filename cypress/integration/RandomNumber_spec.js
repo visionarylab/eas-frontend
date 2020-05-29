@@ -18,6 +18,49 @@ describe('Random Number Page', () => {
             .and('be.calledWith', 'send', { hitType: 'pageview', page: '/number' });
         });
 
+        describe('Access a quick draw', () => {
+          it('The configuration is pre loaded and the latest result is shown', () => {
+            cy.visit('/number/03df4731-66ee-4f69-ab5e-d91e7f2e9f7c');
+
+            cy.findByRole('spinbutton', { name: /Desde/ }).should('have.value', '3');
+            cy.findByRole('spinbutton', { name: /Hasta/ }).should('have.value', '8');
+            cy.findByRole('spinbutton', { name: /Número de resultados/ }).should('have.value', '2');
+            cy.findByRole('checkbox', { name: /Permitir números repetidos/ }).should('be.checked');
+
+            // Latest result is visible
+            cy.getComponent('RandomNumberResult').within(() => {
+              cy.contains('7');
+              cy.contains('8');
+            });
+          });
+
+          it('Changing data after toss should create a new draw', () => {
+            cy.fixture('RandomNumber').then(fixtures => {
+              const fixtureCreateGroups = fixtures.find(
+                fixture => fixture.path === '/api/random_number/',
+              );
+              const newResponse = {
+                ...fixtureCreateGroups.response,
+                private_id: '43c357b7-91ec-448a-0000-ac059cc3a555',
+              };
+
+              cy.route(fixtureCreateGroups.method, fixtureCreateGroups.path, newResponse).as(
+                `newDrawCreated`,
+              );
+            });
+            cy.visit('/number/03df4731-66ee-4f69-ab5e-d91e7f2e9f7c');
+            cy.findByRole('spinbutton', { name: /Desde/ }).clear().type('5');
+            cy.getComponent('SubmitFormButton').click();
+
+            // A new draw should be created and tossed
+            cy.wait('@newDrawCreated').its('requestBody.range_min').should('eq', 5);
+            cy.mockedRequestWait(
+              'POST',
+              '/api/random_number/43c357b7-91ec-448a-0000-ac059cc3a555/toss/',
+            );
+          });
+        });
+
         it('Should contain a working link to the public draw', () => {
           cy.visit('/number');
           cy.getComponent('MakeCertifiedDrawPanel__button').click();
@@ -26,20 +69,6 @@ describe('Random Number Page', () => {
             eventCategory: 'Number',
             eventAction: 'Start Public',
             eventLabel: 'From Scratch',
-          });
-          cy.location('pathname').should('eq', '/number/public');
-        });
-
-        it('Should have a share button that takes the user to the public draw', () => {
-          cy.visit('/number');
-          cy.getComponent('SubmitFormButton').click();
-          cy.getComponent('ShareDrawButton').click();
-          cy.getComponent('ShareDrawButton__confirm').click();
-          cy.get('@ga').should('be.calledWith', 'send', {
-            hitType: 'event',
-            eventCategory: 'Number',
-            eventAction: 'Start Public',
-            eventLabel: 'From Quick Result',
           });
           cy.location('pathname').should('eq', '/number/public');
         });
@@ -125,7 +154,7 @@ describe('Random Number Page', () => {
             cy.getComponent('RandomNumber__number-of-results-field-input').clear().type(2);
             cy.getComponent('SubmitFormButton').click();
 
-            cy.mockedRequestWait('POST', '/api/random_number')
+            cy.mockedRequestWait('POST', '/api/random_number/')
               .its('requestBody')
               .should('deep.eq', {
                 allow_repeated_results: false,
@@ -134,6 +163,7 @@ describe('Random Number Page', () => {
                 range_min: 3,
                 title: null,
                 description: null,
+                metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
               });
           });
 
@@ -150,57 +180,48 @@ describe('Random Number Page', () => {
           it('Results are shown', function () {
             cy.visit('/number');
             cy.getComponent('SubmitFormButton').click();
-            cy.mockedRequestWait('POST', '/api/random_number');
-            cy.mockedRequestWait(
-              'POST',
-              '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
-            );
-            cy.getComponent('RandomNumberResult__result').should('be.visible');
+            cy.getComponent('RandomNumberResult').should('be.visible');
           });
-        });
-
-        it('Changing data after toss should create a new draw', function () {
-          cy.visit('/number');
-          cy.getComponent('SubmitFormButton').click();
-          cy.mockedRequestWait('POST', '/api/random_number').its('requestBody').should('contain', {
-            number_of_results: 1,
-          });
-          cy.mockedRequestWait(
-            'POST',
-            '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
-          );
-          cy.getComponent('RandomNumberResult__result').should('be.visible');
-          cy.getComponent('RandomNumber__number-of-results-field-input').clear().type(3);
-          cy.getComponent('SubmitFormButton').click();
-          cy.mockedRequestWait('POST', '/api/random_number').its('requestBody').should('contain', {
-            number_of_results: 3,
-          });
-          cy.mockedRequestWait(
-            'POST',
-            '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
-          );
         });
       });
 
       describe('Public Draw', () => {
-        it('Events sent on pageview', () => {
-          cy.visit('/number/public');
+        beforeEach(() => {
+          cy.fixture('RandomNumber').then(fixtures => {
+            const fixtureCreateGroups = fixtures.find(
+              fixture => fixture.path === '/api/random_number/',
+            );
+            const newResponse = {
+              ...fixtureCreateGroups.response,
+              private_id: '43c357b7-91ec-448a-1111-000000000000',
+              id: '43c357b7-91ec-448a-1111-111111111111',
+            };
 
-          cy.get('@ga')
-            .should('be.calledWith', 'create', 'UA-XXXXX-Y')
-            .and('be.calledWith', 'send', { hitType: 'pageview', page: '/number/public' });
+            cy.route(fixtureCreateGroups.method, fixtureCreateGroups.path, newResponse).as(
+              `wait${fixtureCreateGroups.method}${fixtureCreateGroups.path}`,
+            );
+          });
         });
+        describe('Analytics', () => {
+          it('Events sent on pageview', () => {
+            cy.visit('/number/public');
 
-        it('Events sent on publish', () => {
-          cy.visit('/number/public');
-          cy.getComponent('WizardForm__next-button').click();
-          cy.getComponent('WizardForm__next-button').click();
-          cy.getComponent('WizardForm__next-button').click();
-          cy.get('@ga').should('be.calledWith', 'send', {
-            hitType: 'event',
-            eventCategory: 'Number',
-            eventAction: 'Publish',
-            eventLabel: 'ebdb2628-9fef-438d-9395-de1a4d7bc789',
+            cy.get('@ga')
+              .should('be.calledWith', 'create', 'UA-XXXXX-Y')
+              .and('be.calledWith', 'send', { hitType: 'pageview', page: '/number/public' });
+          });
+
+          it('Events sent on publish', () => {
+            cy.visit('/number/public');
+            cy.getComponent('WizardForm__next-button').click();
+            cy.getComponent('WizardForm__next-button').click();
+            cy.getComponent('WizardForm__next-button').click();
+            cy.get('@ga').should('be.calledWith', 'send', {
+              hitType: 'event',
+              eventCategory: 'Number',
+              eventAction: 'Publish',
+              eventLabel: '43c357b7-91ec-448a-1111-111111111111',
+            });
           });
         });
 
@@ -220,21 +241,24 @@ describe('Random Number Page', () => {
           // // Go to third step
           cy.getComponent('WizardForm__next-button').click();
 
-          cy.mockedRequestWait('POST', '/api/random_number').its('requestBody').should('deep.eq', {
-            allow_repeated_results: false,
-            description: 'A cool description',
-            number_of_results: 1,
-            range_max: 10,
-            range_min: 1,
-            title: 'The title',
-          });
+          cy.mockedRequestWait('POST', '/api/random_number/')
+            .its('requestBody')
+            .should('deep.eq', {
+              allow_repeated_results: false,
+              description: 'A cool description',
+              number_of_results: 1,
+              range_max: 10,
+              range_min: 1,
+              title: 'The title',
+              metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
+            });
           cy.mockedRequestWait(
             'POST',
-            '/api/random_number/6ce5042f-f931-4a79-a716-dfadccc978d0/toss',
+            '/api/random_number/43c357b7-91ec-448a-1111-000000000000/toss/',
           );
           cy.location('pathname').should(
             'eq',
-            '/number/ebdb2628-9fef-438d-9395-de1a4d7bc789/success',
+            '/number/43c357b7-91ec-448a-1111-111111111111/success',
           );
         });
       });
@@ -268,7 +292,7 @@ describe('Random Number Page', () => {
         it('Should show results and the raffle details', () => {
           cy.visit('/number/ebdb2628-9fef-438d-9395-de1a4d7bc789');
           cy.getComponent('DrawHeading__title').contains('Cool title');
-          cy.getComponent('RandomNumberResult__result').should('be.visible');
+          cy.getComponent('RandomNumberResult').should('be.visible');
 
           cy.findAllByText('Desde 1').should('exist');
           cy.findAllByText('Hasta 10').should('exist');

@@ -22,11 +22,12 @@ const NumbersReadPage = ({ draw, error }) => {
 NumbersReadPage.propTypes = {
   draw: PropTypes.shape({
     isQuickDraw: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
   error: PropTypes.shape({}),
 };
 
 NumbersReadPage.defaultProps = {
+  draw: null,
   error: null,
 };
 
@@ -38,16 +39,16 @@ const loadData = async drawId => {
     private_id: privateId,
     title,
     description,
-    range_min,
-    range_max,
-    number_of_results,
+    range_min: rangeMinDirty,
+    range_max: rangeMaxDirty,
+    number_of_results: numberOfResultsDirty,
     allow_repeated_results: allowRepeated,
     results,
     metadata,
   } = draw;
-  const rangeMin = range_min.toString();
-  const rangeMax = range_max.toString();
-  const numberOfResults = number_of_results.toString();
+  const rangeMin = rangeMinDirty.toString();
+  const rangeMax = rangeMaxDirty.toString();
+  const numberOfResults = numberOfResultsDirty.toString();
   const lastResult = results[0];
   const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
   const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
