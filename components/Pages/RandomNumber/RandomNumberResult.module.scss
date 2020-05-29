@@ -1,8 +1,12 @@
+@import '../../variables.module';
 $results-font-size: 5rem;
 
-.RandomNumberResult {
-  & &__results {
-    font-size: $results-font-size;
-    line-height: $results-font-size;
-  }
+.Number {
+  font-size: $results-font-size;
+  line-height: $results-font-size;
+}
+
+.Card {
+  display: inline-block;
+  padding: $spacing-sm;
 }

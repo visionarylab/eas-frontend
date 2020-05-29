@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Router, { withRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { RandomNumberApi, RandomNumber, DrawTossPayload } from 'echaloasuerte-js-sdk';
 import moment from 'moment';
 import { withTranslation } from '../../../i18n';
 import RandomNumberPage from './RandomNumberPage.jsx';
+import { logApiError } from '../../../utils/logger';
 import RandomNumberQuickPage from './RandomNumberQuickPage.jsx';
 import throttle from '../../../services/throttle';
 import withTracking from '../../../hocs/withTracking.jsx';
@@ -13,64 +14,56 @@ import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
 
 const randomNumberApi = new RandomNumberApi();
 
-class RandomNumberPageContainer extends React.Component {
-  constructor(props) {
-    super(props);
+const getInitialValues = (previousDraw, t) => {
+  const dateScheduled = new Date();
+  dateScheduled.setHours(dateScheduled.getHours() + 1);
+  const initialValues = {
+    title: t('field_default_title'),
+    description: '',
+    rangeMin: previousDraw?.rangeMin || '1',
+    rangeMax: previousDraw?.rangeMax || '10',
+    numberOfResults: previousDraw?.numberOfResults || '1',
+    allowRepeated: previousDraw?.allowRepeated || false,
+    dateScheduled,
+  };
+  return initialValues;
+};
+const getInitialPrivateId = previousDraw => previousDraw?.privateId;
+const getInitialQuickResult = previousDraw => previousDraw?.lastResult;
+const initialLoadingRequest = false;
+const initialApiError = false;
 
-    const dateScheduled = new Date();
-    dateScheduled.setHours(dateScheduled.getHours() + 1);
+const RandomNumberPageContainer = props => {
+  const { draw: previousDraw, track, t } = props;
 
-    this.state = {
-      privateId: null,
-      quickResult: null,
-      APIError: false,
-      loadingRequest: false,
-      values: {
-        title: '', // Default title is set in CDM
-        description: '',
-        rangeMin: '1',
-        rangeMax: '10',
-        numberOfResults: '1',
-        allowRepeated: false,
-        dateScheduled,
-      },
-    };
-  }
+  const [privateId, setPrivateId] = useState(getInitialPrivateId(previousDraw));
+  const [values, setValues] = useState(getInitialValues(previousDraw, t));
+  const [quickResult, setQuickResult] = useState(getInitialQuickResult(previousDraw));
+  const [APIError, setAPIError] = useState(initialApiError);
+  const [loadingRequest, setLoadingRequest] = useState(initialLoadingRequest);
+  const router = useRouter();
 
-  componentDidMount() {
-    const { t } = this.props;
-    const defaultTitle = t('field_default_title');
-    this.setState(previousState => ({
-      values: {
-        ...previousState.values,
-        title: defaultTitle,
-      },
-    }));
-  }
+  const isPublic = router.asPath.includes('public');
 
-  onFieldChange = (fieldName, value) => {
-    this.setState(previousState => ({
-      privateId: null,
-      quickResult: null,
-      values: {
-        ...previousState.values,
-        ...{
-          [fieldName]: value,
-        },
-      },
+  useEffect(() => {
+    setQuickResult(getInitialQuickResult(previousDraw));
+    setPrivateId(getInitialPrivateId(previousDraw));
+    setLoadingRequest(initialLoadingRequest);
+    setAPIError(initialApiError);
+    setValues(getInitialValues(previousDraw, t));
+  }, [previousDraw, t]);
+
+  const onFieldChange = (fieldName, value) => {
+    setQuickResult(null);
+    setPrivateId(null);
+    setValues(previousState => ({
+      ...previousState,
+      [fieldName]: value,
     }));
   };
 
-  isPublic = () => {
-    const { router } = this.props;
-    return router.asPath.indexOf('public') >= 0;
-  };
-
-  createDraw = () => {
-    const { values } = this.state;
+  const createDraw = () => {
     const { title, description, rangeMin, rangeMax, numberOfResults, allowRepeated } = values;
-    const isPublic = this.isPublic();
-
     const drawData = {
       range_min: rangeMin,
       range_max: rangeMax,
@@ -78,27 +71,28 @@ class RandomNumberPageContainer extends React.Component {
       allow_repeated_results: allowRepeated,
       title: isPublic && title ? title : null,
       description: isPublic && description ? description : null,
+      metadata: [{ client: 'web', key: 'isQuickDraw', value: !isPublic }],
     };
     const randomNumberDraw = RandomNumber.constructFromObject(drawData);
     return randomNumberApi.randomNumberCreate(randomNumberDraw);
   };
 
-  handleToss = async () => {
+  const handleToss = async () => {
     const tsStart = new Date().getTime();
-    this.setState({
-      loadingRequest: true,
-    });
+    setLoadingRequest(true);
 
-    let { privateId } = this.state;
+    let shouldRedirect;
+    let privateIdToToss;
     try {
-      // Create the draw only if it wasn't created in a previous toss
       if (!privateId) {
-        const draw = await this.createDraw();
-        privateId = draw.private_id;
-        this.setState({ privateId });
+        const newDraw = await createDraw();
+        shouldRedirect = true;
+        privateIdToToss = newDraw.private_id;
+      } else {
+        privateIdToToss = privateId;
       }
-      const tossResponse = await randomNumberApi.randomNumberToss(privateId, {});
-      const { track } = this.props;
+
+      const tossResponse = await randomNumberApi.randomNumberToss(privateIdToToss, {});
       track({
         mp: {
           name: `Toss - ${ANALYTICS_TYPE_NUMBER}`,
@@ -107,51 +101,51 @@ class RandomNumberPageContainer extends React.Component {
         ga: { action: 'Toss', category: ANALYTICS_TYPE_NUMBER },
       });
       throttle(() => {
-        this.setState({
-          quickResult: tossResponse,
-          APIError: false,
-          loadingRequest: false,
-        });
+        if (shouldRedirect) {
+          Router.push('/number/[id]', `/number/${privateIdToToss}`);
+        } else {
+          setAPIError(false);
+          setLoadingRequest(false);
+          setQuickResult(tossResponse);
+        }
       }, tsStart);
-    } catch (err) {
-      this.setState({
-        APIError: true,
-        loadingRequest: false,
-      });
+    } catch (error) {
+      logApiError(error, ANALYTICS_TYPE_NUMBER);
+      setAPIError(true);
+      setLoadingRequest(false);
     }
   };
 
-  handlePublish = async () => {
-    this.setState({ loadingRequest: true });
+  const handlePublish = async () => {
+    setLoadingRequest(true);
 
-    const { values } = this.state;
     try {
-      const draw = await this.createDraw();
-
+      const newDraw = await createDraw();
       const { dateScheduled } = values;
       const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
-      const tossResponse = await randomNumberApi.randomNumberToss(draw.private_id, drawTossPayload);
+      const tossResponse = await randomNumberApi.randomNumberToss(
+        newDraw.private_id,
+        drawTossPayload,
+      );
       const scheduleDate = moment(tossResponse.schedule_date).unix();
-
-      const { track } = this.props;
       track({
         mp: {
           name: `Publish - ${ANALYTICS_TYPE_NUMBER}`,
-          properties: { drawType: ANALYTICS_TYPE_NUMBER, drawId: draw.id },
+          properties: { drawType: ANALYTICS_TYPE_NUMBER, drawId: newDraw.id },
         },
-        ga: { action: 'Publish', category: ANALYTICS_TYPE_NUMBER, label: draw.id },
+        ga: { action: 'Publish', category: ANALYTICS_TYPE_NUMBER, label: newDraw.id },
       });
 
-      const drawPath = `/number/${draw.id}/success`;
-      recentDraws.add(draw, drawPath, scheduleDate);
+      const drawPath = `/number/${newDraw.id}/success`;
+      recentDraws.add(newDraw, drawPath, scheduleDate);
       Router.push('/number/[id]/success', drawPath);
     } catch (err) {
-      this.setState({ APIError: true });
+      setAPIError(true);
+      setLoadingRequest(false);
     }
   };
 
-  handleCheckErrorsInConfiguration = t => {
-    const { values } = this.state;
+  const handleCheckErrorsInConfiguration = () => {
     const rangeMin = parseInt(values.rangeMin, 10);
     const rangeMax = parseInt(values.rangeMax, 10);
     const numberOfResults = parseInt(values.numberOfResults, 10);
@@ -167,40 +161,43 @@ class RandomNumberPageContainer extends React.Component {
     return undefined;
   };
 
-  render() {
-    const { APIError, values, quickResult, loadingRequest } = this.state;
-
-    return this.isPublic() ? (
-      <RandomNumberPage
-        apiError={APIError}
-        loadingRequest={loadingRequest}
-        values={values}
-        onFieldChange={this.onFieldChange}
-        handlePublish={this.handlePublish}
-        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
-      />
-    ) : (
-      <RandomNumberQuickPage
-        apiError={APIError}
-        loadingRequest={loadingRequest}
-        values={values}
-        quickResult={quickResult}
-        onFieldChange={this.onFieldChange}
-        handleToss={this.handleToss}
-        handleCheckErrorsInConfiguration={this.handleCheckErrorsInConfiguration}
-      />
-    );
-  }
-}
-
-RandomNumberPageContainer.propTypes = {
-  track: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-  router: PropTypes.shape({
-    asPath: PropTypes.string.isRequired,
-  }).isRequired,
+  return isPublic ? (
+    <RandomNumberPage
+      apiError={APIError}
+      loadingRequest={loadingRequest}
+      values={values}
+      onFieldChange={onFieldChange}
+      handlePublish={handlePublish}
+      handleCheckErrorsInConfiguration={handleCheckErrorsInConfiguration}
+    />
+  ) : (
+    <RandomNumberQuickPage
+      apiError={APIError}
+      loadingRequest={loadingRequest}
+      values={values}
+      quickResult={quickResult}
+      onFieldChange={onFieldChange}
+      handleToss={handleToss}
+      handleCheckErrorsInConfiguration={handleCheckErrorsInConfiguration}
+    />
+  );
 };
 
-RandomNumberPageContainer.defaultProps = {};
+RandomNumberPageContainer.propTypes = {
+  draw: PropTypes.shape({
+    privateId: PropTypes.string.isRequired,
+    rangeMax: PropTypes.string.isRequired,
+    rangeMin: PropTypes.string.isRequired,
+    numberOfResults: PropTypes.string.isRequired,
+    allowRepeated: PropTypes.bool.isRequired,
+    quickResult: PropTypes.shape(),
+  }),
+  track: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+};
 
-export default withRouter(withTracking(withTranslation('RandomNumber')(RandomNumberPageContainer)));
+RandomNumberPageContainer.defaultProps = {
+  draw: null,
+};
+
+export default withTracking(withTranslation('DrawNumber')(RandomNumberPageContainer));

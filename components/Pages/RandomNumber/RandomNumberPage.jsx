@@ -35,7 +35,7 @@ const RandomNumberPage = props => {
           values={values}
           onFieldChange={onFieldChange}
           t={t}
-          onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+          onFormErrorsCheck={() => handleCheckErrorsInConfiguration()}
           {...wizardProps}
         />
       ),

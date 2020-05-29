@@ -1,7 +1,10 @@
+import React from 'react';
 import RandomNumberPageContainer from '../../components/Pages/RandomNumber/RandomNumberPageContainer.jsx';
 
-RandomNumberPageContainer.getInitialProps = () => ({
+const NumberPage = props => <RandomNumberPageContainer {...props} />;
+
+NumberPage.getInitialProps = () => ({
   namespacesRequired: ['DrawNumber', 'CommonCreateDraw', 'Common'],
 });
 
-export default RandomNumberPageContainer;
+export default NumberPage;

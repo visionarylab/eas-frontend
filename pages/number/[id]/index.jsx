@@ -1,6 +1,34 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { RandomNumberApi } from 'echaloasuerte-js-sdk';
-import * as Sentry from '@sentry/node';
+import { logApiError } from '../../../utils/logger';
+import RandomNumberPageContainer from '../../../components/Pages/RandomNumber/RandomNumberPageContainer.jsx';
 import PublishedRandomNumberPage from '../../../components/Pages/RandomNumber/PublishedRandomNumberPage.jsx';
+import ErrorPage from '../../../components/Pages/ErrorPage/ErrorPage.jsx';
+import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
+
+const NumbersReadPage = ({ draw, error }) => {
+  if (error) {
+    return <ErrorPage {...error} />;
+  }
+  const { isQuickDraw } = draw;
+  return isQuickDraw ? (
+    <RandomNumberPageContainer draw={draw} />
+  ) : (
+    <PublishedRandomNumberPage draw={draw} />
+  );
+};
+
+NumbersReadPage.propTypes = {
+  draw: PropTypes.shape({
+    isQuickDraw: PropTypes.bool.isRequired,
+  }).isRequired,
+  error: PropTypes.shape({}),
+};
+
+NumbersReadPage.defaultProps = {
+  error: null,
+};
 
 const randomNumberApi = new RandomNumberApi();
 
@@ -10,14 +38,30 @@ const loadData = async drawId => {
     private_id: privateId,
     title,
     description,
-    range_min: rangeMin,
-    range_max: rangeMax,
-    number_of_results: numberOfResults,
+    range_min,
+    range_max,
+    number_of_results,
     allow_repeated_results: allowRepeated,
+    results,
+    metadata,
   } = draw;
-  let lastToss;
-  if (draw.results.length) {
-    lastToss = draw.results[0];
+  const rangeMin = range_min.toString();
+  const rangeMax = range_max.toString();
+  const numberOfResults = number_of_results.toString();
+  const lastResult = results[0];
+  const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
+  const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
+
+  if (isQuickDraw) {
+    return {
+      privateId,
+      rangeMin,
+      rangeMax,
+      numberOfResults,
+      allowRepeated,
+      lastResult,
+      isQuickDraw,
+    };
   }
 
   return {
@@ -27,28 +71,36 @@ const loadData = async drawId => {
     rangeMax,
     numberOfResults,
     allowRepeated,
-    result: lastToss,
+    result: lastResult,
     isOwner: Boolean(privateId),
+    isQuickDraw,
   };
 };
 
-PublishedRandomNumberPage.getInitialProps = async ctx => {
+NumbersReadPage.getInitialProps = async ctx => {
   const { id: drawId } = ctx.query;
-  let draw;
   try {
-    draw = await loadData(drawId);
+    const draw = await loadData(drawId);
+    const commonNamespaces = ['DrawNumber', 'Common'];
+    let namespacesRequired;
+    if (draw.isQuickDraw) {
+      namespacesRequired = [...commonNamespaces];
+    } else {
+      namespacesRequired = [...commonNamespaces, 'CommonPublishedDraw'];
+    }
+    return {
+      namespacesRequired,
+      draw,
+    };
   } catch (error) {
-    Sentry.withScope(scope => {
-      scope.setExtra('message', 'API Error');
-      scope.setExtra('Action', 'numbersRead');
-      scope.setExtra('drawId', drawId);
-      Sentry.captureException(error);
-    });
+    logApiError(error, ANALYTICS_TYPE_NUMBER);
+    return {
+      namespacesRequired: ['Common'],
+      error: {
+        statusCode: error.status || 500,
+      },
+    };
   }
-  return {
-    namespacesRequired: ['DrawNumber', 'CommonPublishedDraw', 'Common'],
-    draw,
-  };
 };
 
-export default PublishedRandomNumberPage;
+export default NumbersReadPage;

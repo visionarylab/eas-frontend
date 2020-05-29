@@ -1,6 +1,6 @@
-import { GroupsApi } from 'echaloasuerte-js-sdk';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { GroupsApi } from 'echaloasuerte-js-sdk';
 import { logApiError } from '../../../utils/logger';
 import GroupsGeneratorPageContainer from '../../../components/Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 import PublishedGroupsGeneratorPage from '../../../components/Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';

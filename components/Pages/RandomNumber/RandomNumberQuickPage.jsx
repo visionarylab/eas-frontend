@@ -10,7 +10,6 @@ import RandomNumberResult from './RandomNumberResult.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
-import ShareDrawModal from '../../ShareDrawModal/ShareDrawModal.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import randomNumberOgImage from './random_number_og_image.png';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -54,7 +53,7 @@ const RandomNumberQuickPage = props => {
           e.preventDefault();
           handleToss();
         }}
-        onFormErrorsCheck={() => handleCheckErrorsInConfiguration(t)}
+        onFormErrorsCheck={() => handleCheckErrorsInConfiguration()}
       >
         <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
         {apiError && <ErrorFeedback error={t('CommonCreateDraw:api_error')} />}
@@ -63,15 +62,7 @@ const RandomNumberQuickPage = props => {
 
       <div ref={resultsRef}>
         {loadingRequest && <LoadingCoin />}
-        {!loadingRequest && quickResult && (
-          <>
-            <RandomNumberResult result={quickResult} />
-            <ShareDrawModal
-              publicDrawUrl={publicDrawUrl}
-              analyticsDrawType={ANALYTICS_TYPE_NUMBER}
-            />
-          </>
-        )}
+        {!loadingRequest && quickResult && <RandomNumberResult result={quickResult} />}
       </div>
     </Page>
   );
@@ -91,7 +82,7 @@ RandomNumberQuickPage.propTypes = {
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
-  quickResult: PropTypes.instanceOf(RandomNumberResultClass),
+  quickResult: PropTypes.shape(),
   t: PropTypes.func.isRequired,
 };
 
