@@ -1,6 +1,10 @@
 @import '../../variables.module';
 $results-font-size: 5rem;
 
+.Result {
+  display: flex;
+}
+
 .Number {
   font-size: $results-font-size;
   line-height: $results-font-size;
