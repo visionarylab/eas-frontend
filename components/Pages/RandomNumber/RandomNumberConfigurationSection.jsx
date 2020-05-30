@@ -70,6 +70,7 @@ const RandomNumberConfigurationSection = ({ values, onFieldChange, t }) => (
             control={
               <ValidatedCheckbox
                 error
+                color="primary"
                 name="allowRepeated"
                 checked={values.allowRepeated}
                 onChange={e => onFieldChange('allowRepeated', e.target.checked)}

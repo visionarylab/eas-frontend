@@ -3,6 +3,7 @@ $results-font-size: 5rem;
 
 .Result {
   display: flex;
+  justify-content: center;
 }
 
 .Number {
@@ -12,5 +13,6 @@ $results-font-size: 5rem;
 
 .Card {
   display: inline-block;
+  margin: $spacing-sm;
   padding: $spacing-sm;
 }
