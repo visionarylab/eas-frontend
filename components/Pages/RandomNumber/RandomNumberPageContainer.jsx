@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import { RandomNumberApi, RandomNumber, DrawTossPayload } from 'echaloasuerte-js-sdk';
-import moment from 'moment';
+import { useRouter } from 'next/router';
 import { withTranslation } from '../../../i18n';
 import RandomNumberPage from './RandomNumberPage.jsx';
-import { logApiError } from '../../../utils/logger';
 import RandomNumberQuickPage from './RandomNumberQuickPage.jsx';
-import throttle from '../../../services/throttle';
 import withTracking from '../../../hocs/withTracking.jsx';
-import recentDraws from '../../../services/recentDraws';
-import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
+import { toss, publish } from '../../../utils/api';
 
-const randomNumberApi = new RandomNumberApi();
+const URL_SLUG = 'number';
 
 const getInitialValues = (previousDraw, t) => {
   const dateScheduled = new Date();
@@ -62,87 +57,26 @@ const RandomNumberPageContainer = props => {
     }));
   };
 
-  const createDraw = () => {
-    const { title, description, rangeMin, rangeMax, numberOfResults, allowRepeated } = values;
-    const drawData = {
-      range_min: rangeMin,
-      range_max: rangeMax,
-      number_of_results: numberOfResults,
-      allow_repeated_results: allowRepeated,
-      title: isPublic && title ? title : null,
-      description: isPublic && description ? description : null,
-      metadata: [{ client: 'web', key: 'isQuickDraw', value: !isPublic }],
-    };
-    const randomNumberDraw = RandomNumber.constructFromObject(drawData);
-    return randomNumberApi.randomNumberCreate(randomNumberDraw);
+  const handleToss = () => {
+    toss({
+      values,
+      privateId,
+      urlSlug: URL_SLUG,
+      track,
+      setLoadingRequest,
+      setAPIError,
+      setQuickResult,
+    });
   };
 
-  const handleToss = async () => {
-    const tsStart = new Date().getTime();
-    setLoadingRequest(true);
-
-    let shouldRedirect;
-    let privateIdToToss;
-    try {
-      if (!privateId) {
-        const newDraw = await createDraw();
-        shouldRedirect = true;
-        privateIdToToss = newDraw.private_id;
-      } else {
-        privateIdToToss = privateId;
-      }
-
-      const tossResponse = await randomNumberApi.randomNumberToss(privateIdToToss, {});
-      track({
-        mp: {
-          name: `Toss - ${ANALYTICS_TYPE_NUMBER}`,
-          properties: { drawType: ANALYTICS_TYPE_NUMBER },
-        },
-        ga: { action: 'Toss', category: ANALYTICS_TYPE_NUMBER },
-      });
-      throttle(() => {
-        if (shouldRedirect) {
-          Router.push('/number/[id]', `/number/${privateIdToToss}`);
-        } else {
-          setAPIError(false);
-          setLoadingRequest(false);
-          setQuickResult(tossResponse);
-        }
-      }, tsStart);
-    } catch (error) {
-      logApiError(error, ANALYTICS_TYPE_NUMBER);
-      setAPIError(true);
-      setLoadingRequest(false);
-    }
-  };
-
-  const handlePublish = async () => {
-    setLoadingRequest(true);
-
-    try {
-      const newDraw = await createDraw();
-      const { dateScheduled } = values;
-      const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
-      const tossResponse = await randomNumberApi.randomNumberToss(
-        newDraw.private_id,
-        drawTossPayload,
-      );
-      const scheduleDate = moment(tossResponse.schedule_date).unix();
-      track({
-        mp: {
-          name: `Publish - ${ANALYTICS_TYPE_NUMBER}`,
-          properties: { drawType: ANALYTICS_TYPE_NUMBER, drawId: newDraw.id },
-        },
-        ga: { action: 'Publish', category: ANALYTICS_TYPE_NUMBER, label: newDraw.id },
-      });
-
-      const drawPath = `/number/${newDraw.id}/success`;
-      recentDraws.add(newDraw, drawPath, scheduleDate);
-      Router.push('/number/[id]/success', drawPath);
-    } catch (err) {
-      setAPIError(true);
-      setLoadingRequest(false);
-    }
+  const handlePublish = () => {
+    publish({
+      values,
+      urlSlug: URL_SLUG,
+      track,
+      setLoadingRequest,
+      setAPIError,
+    });
   };
 
   const handleCheckErrorsInConfiguration = () => {

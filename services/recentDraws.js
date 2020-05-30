@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { isServer } from '../utils';
 
 const recentDrawsKey = 'recentDraws';
@@ -11,8 +12,15 @@ const buildData = (draw, url, scheduleDate) => ({
 const getAll = () => (isServer ? [] : JSON.parse(localStorage.getItem(recentDrawsKey) || '[]'));
 
 const add = (draw, url, scheduleDate) => {
+  let unixDate;
+  if (typeof scheduleDate === 'number') {
+    unixDate = scheduleDate;
+  } else {
+    unixDate = moment(scheduleDate).unix();
+  }
+
   const recentDraws = getAll();
-  const newDraw = buildData(draw, url, scheduleDate);
+  const newDraw = buildData(draw, url, unixDate);
   const data = [newDraw].concat(recentDraws);
   if (data.length > maxLength) {
     data.pop();
