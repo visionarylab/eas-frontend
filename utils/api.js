@@ -3,7 +3,7 @@ import Router from 'next/router';
 import throttle from '../services/throttle';
 import { logApiError } from './logger';
 import recentDraws from '../services/recentDraws';
-import { getDrawDataFromValues } from './draw';
+import { getDrawDataFromValues, getValuesFromDraw } from './draw';
 
 import { analyticsTypesBySlug } from '../constants/analyticsTypes';
 
@@ -21,6 +21,16 @@ const apiCreate = (urlSlug, drawData) => {
     case 'number': {
       const randomNumberDraw = RandomNumber.constructFromObject(drawData);
       return new RandomNumberApi().randomNumberCreate(randomNumberDraw);
+    }
+    default:
+      return null;
+  }
+};
+
+const apiRead = ({ urlSlug, drawId }) => {
+  switch (urlSlug) {
+    case 'number': {
+      return new RandomNumberApi().randomNumberRead(drawId);
     }
     default:
       return null;
@@ -108,4 +118,9 @@ export const publish = async ({ values, urlSlug, track, setLoadingRequest, setAP
     setAPIError(true);
     setLoadingRequest(false);
   }
+};
+
+export const fetchDraw = async ({ urlSlug, drawId }) => {
+  const draw = await apiRead({ urlSlug, drawId });
+  return getValuesFromDraw({ urlSlug, draw });
 };

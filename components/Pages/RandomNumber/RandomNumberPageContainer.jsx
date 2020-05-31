@@ -15,16 +15,16 @@ const getInitialValues = (previousDraw, t) => {
   const initialValues = {
     title: t('field_default_title'),
     description: '',
-    rangeMin: previousDraw?.rangeMin || '1',
-    rangeMax: previousDraw?.rangeMax || '10',
-    numberOfResults: previousDraw?.numberOfResults || '1',
-    allowRepeated: previousDraw?.allowRepeated || false,
+    rangeMin: previousDraw?.values.rangeMin || '1',
+    rangeMax: previousDraw?.values.rangeMax || '10',
+    numberOfResults: previousDraw?.values.numberOfResults || '1',
+    allowRepeated: previousDraw?.values.allowRepeated || false,
     dateScheduled,
   };
   return initialValues;
 };
 const getInitialPrivateId = previousDraw => previousDraw?.privateId;
-const getInitialQuickResult = previousDraw => previousDraw?.lastResult;
+const getInitialQuickResult = previousDraw => previousDraw?.results[0];
 const initialLoadingRequest = false;
 const initialApiError = false;
 
@@ -119,11 +119,13 @@ const RandomNumberPageContainer = props => {
 
 RandomNumberPageContainer.propTypes = {
   draw: PropTypes.shape({
+    values: PropTypes.shape({
+      rangeMax: PropTypes.string.isRequired,
+      rangeMin: PropTypes.string.isRequired,
+      numberOfResults: PropTypes.string.isRequired,
+      allowRepeated: PropTypes.bool.isRequired,
+    }),
     privateId: PropTypes.string.isRequired,
-    rangeMax: PropTypes.string.isRequired,
-    rangeMin: PropTypes.string.isRequired,
-    numberOfResults: PropTypes.string.isRequired,
-    allowRepeated: PropTypes.bool.isRequired,
     quickResult: PropTypes.shape(),
   }),
   track: PropTypes.func.isRequired,

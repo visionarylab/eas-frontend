@@ -17,7 +17,9 @@ const PublishedRandomNumberPage = props => {
   const { draw, t } = props;
 
   const shareUrl = getCurrentUrlFromWindow();
-  const { title, result, rangeMin, rangeMax, numberOfResults, allowRepeated, description } = draw;
+  const { values, results } = draw;
+  const { title, rangeMin, rangeMax, numberOfResults, allowRepeated, description } = values;
+  const result = results[0];
 
   useLoadDataAfterCountdown(draw);
 
@@ -72,12 +74,14 @@ const PublishedRandomNumberPage = props => {
 
 PublishedRandomNumberPage.propTypes = {
   draw: PropTypes.shape({
-    title: PropTypes.string,
-    rangeMin: PropTypes.string,
-    rangeMax: PropTypes.string,
-    numberOfResults: PropTypes.string,
-    allowRepeated: PropTypes.bool,
-    description: PropTypes.string,
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      rangeMin: PropTypes.string,
+      rangeMax: PropTypes.string,
+      numberOfResults: PropTypes.string,
+      allowRepeated: PropTypes.bool,
+      description: PropTypes.string,
+    }),
     result: PropTypes.shape({
       created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
       schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,

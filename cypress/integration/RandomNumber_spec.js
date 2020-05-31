@@ -273,7 +273,7 @@ describe('Random Number Page', () => {
               page: '/number/ebdb2628-9fef-438d-9395-de1a4d7bc789',
             });
         });
-        it('Should show the countdown if there are not results', () => {
+        it.only('Should show the countdown if there are not results', () => {
           const missingSeconds = 10;
           cy.goBackInTime(
             'RandomNumber',
