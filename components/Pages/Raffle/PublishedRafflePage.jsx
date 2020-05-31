@@ -17,10 +17,10 @@ import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
 
 const PublishedRafflePage = props => {
   const { draw, t } = props;
-  useLoadDataAfterCountdown(draw);
-
   const { title, description, participants, prizes, result } = draw;
   const shareUrl = getCurrentUrlFromWindow();
+  useLoadDataAfterCountdown(result);
+
   return (
     <Page
       ogImage={raffleOgImage}

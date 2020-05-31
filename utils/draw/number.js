@@ -1,7 +1,6 @@
 import { getBaseProps, getBaseFields } from './base';
 
 export const getNumberValuesFromDraw = ({ draw }) => {
-  console.log('draw', draw);
   const baseProps = getBaseProps(draw);
   const {
     range_min: rangeMinDirty,

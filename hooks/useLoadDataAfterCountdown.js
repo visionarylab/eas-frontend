@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const MAX_RETRIES = 5;
 
-export default function useLoadDataAfterCountdown(draw) {
+export default function useLoadDataAfterCountdown(result) {
   const [retries, setRetries] = useState(MAX_RETRIES);
   const router = useRouter();
 
@@ -13,8 +13,8 @@ export default function useLoadDataAfterCountdown(draw) {
       router.push(router.pathname, router.asPath);
     };
 
-    if (draw?.result && !draw.result.value && retries > 0) {
-      const missingSeconds = new Date(draw.result.schedule_date).getTime() - Date.now();
+    if (result && !result.value && retries > 0) {
+      const missingSeconds = new Date(result.schedule_date).getTime() - Date.now();
       const countdownIsOver = missingSeconds < 0;
       if (countdownIsOver) {
         setRetries(retries - 1);
@@ -28,5 +28,5 @@ export default function useLoadDataAfterCountdown(draw) {
         };
       }
     }
-  }, [draw, retries, router]);
+  }, [result, retries, router]);
 }

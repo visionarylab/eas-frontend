@@ -16,10 +16,11 @@ import { ANALYTICS_TYPE_GROUPS } from '../../../constants/analyticsTypes';
 
 const PublishedGroupsGeneratorPage = props => {
   const { draw, t } = props;
-  useLoadDataAfterCountdown(draw);
 
   const { title, description, participants, numberOfGroups, result } = draw;
   const shareUrl = getCurrentUrlFromWindow();
+
+  useLoadDataAfterCountdown(result);
 
   return (
     <Page

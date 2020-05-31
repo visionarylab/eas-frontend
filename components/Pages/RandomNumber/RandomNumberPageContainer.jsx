@@ -126,7 +126,7 @@ RandomNumberPageContainer.propTypes = {
       allowRepeated: PropTypes.bool.isRequired,
     }),
     privateId: PropTypes.string.isRequired,
-    quickResult: PropTypes.shape(),
+    results: PropTypes.arrayOf(PropTypes.shape({})),
   }),
   track: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

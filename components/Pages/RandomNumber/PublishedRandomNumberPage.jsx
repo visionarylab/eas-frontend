@@ -21,7 +21,7 @@ const PublishedRandomNumberPage = props => {
   const { title, rangeMin, rangeMax, numberOfResults, allowRepeated, description } = values;
   const result = results[0];
 
-  useLoadDataAfterCountdown(draw);
+  useLoadDataAfterCountdown(result);
 
   return (
     <Page
@@ -82,11 +82,14 @@ PublishedRandomNumberPage.propTypes = {
       allowRepeated: PropTypes.bool,
       description: PropTypes.string,
     }),
-    result: PropTypes.shape({
-      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      value: PropTypes.arrayOf(PropTypes.number),
-    }),
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+        schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+          .isRequired,
+        value: PropTypes.arrayOf(PropTypes.number),
+      }),
+    ),
   }).isRequired,
   t: PropTypes.func.isRequired,
 };
