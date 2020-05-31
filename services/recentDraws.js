@@ -13,10 +13,12 @@ const getAll = () => (isServer ? [] : JSON.parse(localStorage.getItem(recentDraw
 
 const add = (draw, url, scheduleDate) => {
   let unixDate;
-  if (typeof scheduleDate === 'number') {
-    unixDate = scheduleDate;
-  } else {
-    unixDate = moment(scheduleDate).unix();
+  if (scheduleDate) {
+    if (typeof scheduleDate === 'number') {
+      unixDate = scheduleDate;
+    } else {
+      unixDate = moment(scheduleDate).unix();
+    }
   }
 
   const recentDraws = getAll();
