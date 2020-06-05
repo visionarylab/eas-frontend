@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import MultiValueInput from './MultiValueInput.jsx';
 
 jest.mock('@material-ui/core/IconButton', () => {
@@ -10,15 +11,6 @@ jest.mock('@material-ui/core/IconButton', () => {
       <ActualIcon />
     </div>
   ));
-});
-
-jest.mock('@material-ui/core/Chip', () => {
-  const ActualChip = jest.requireActual('@material-ui/core/Chip').default;
-  return props => (
-    <div data-testid="Chip">
-      <ActualChip {...props} />
-    </div>
-  );
 });
 
 jest.mock('@material-ui/core/Input', () => {
@@ -45,7 +37,7 @@ describe('MultiValueInput', () => {
   });
 
   it('Should correctly render values using chips', () => {
-    const { getByText, getAllByTestId } = render(
+    render(
       <MultiValueInput
         name="field1"
         value={['value 1', 'value 2']}
@@ -53,76 +45,76 @@ describe('MultiValueInput', () => {
         {...translations}
       />,
     );
-    expect(getByText('value 1')).toBeTruthy();
-    expect(getByText('value 2')).toBeTruthy();
-    expect(getAllByTestId('Chip').length).toEqual(2);
+
+    const chips = screen.getAllByRole('button');
+    expect(chips.length).toEqual(2);
+
+    expect(screen.getByText('value 1')).toBeTruthy();
+    expect(screen.getByText('value 2')).toBeTruthy();
   });
 
-  it('Should add value when it contains a comma', () => {
+  it('Should add value when it contains a comma', async () => {
     const onChangeMock = jest.fn();
     const values = [];
-    const { queryByTestId } = render(
+    render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
 
-    const event = { target: { name: 'field1', value: 'Value 1,' } };
+    await userEvent.type(screen.getByRole('textbox'), 'Value 1,');
+
     const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
-    fireEvent.change(queryByTestId('Input__input-field'), event);
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should trim values before adding them', () => {
+  it('Should trim values before adding them', async () => {
     const onChangeMock = jest.fn();
     const values = [];
-    const { queryByTestId } = render(
+    render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
 
-    const event = { target: { name: 'field1', value: '    Value 1,' } };
+    await userEvent.type(screen.getByRole('textbox'), '    Value 1,');
+
     const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
-    fireEvent.change(queryByTestId('Input__input-field'), event);
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should add value when the ENTER key is hit', () => {
+  it('Should add value when the ENTER key is hit', async () => {
     const onChangeMock = jest.fn();
     const values = [];
-    const { queryByTestId } = render(
+    render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
 
-    const event = { target: { name: 'field1', value: 'Value 1' } };
+    await userEvent.type(screen.getByRole('textbox'), 'Value 1{enter}');
+
     const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
-    const input = queryByTestId('Input__input-field');
-    fireEvent.change(input, event);
-    fireEvent.keyDown(input, { key: 'Enter', keyCode: 13 });
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should add value on input blur', () => {
+  it('Should add value on input blur', async () => {
     const onChangeMock = jest.fn();
     const values = [];
-    const { queryByTestId } = render(
+    render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
+    const input = screen.getByRole('textbox');
+    await userEvent.type(input, 'Value 1');
 
-    const event = { target: { name: 'field1', value: 'Value 1' } };
     const expectedEvent = { target: { name: 'field1', value: ['Value 1'] } };
-    const input = queryByTestId('Input__input-field');
-    fireEvent.change(input, event);
     fireEvent.blur(input);
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 
-  it('Should not mutate the original value when values are added', () => {
+  it('Should not mutate the original value when values are added', async () => {
     const onChangeMock = jest.fn();
     const values = [];
-    const { queryByTestId } = render(
+    render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
 
-    const event = { target: { name: 'field1', value: 'Value 1,' } };
-    fireEvent.change(queryByTestId('Input__input-field'), event);
+    await userEvent.type(screen.getByRole('textbox'), 'Value 1{enter}');
+
     expect(values).toEqual([]);
   });
 
@@ -141,12 +133,14 @@ describe('MultiValueInput', () => {
 
   it('Should be possible to remove items', () => {
     const onChangeMock = jest.fn();
-    const values = ['Value 1'];
+    const values = ['Value 1', 'Value 2', 'Value 3'];
     const { container } = render(
       <MultiValueInput name="field1" value={values} onChange={onChangeMock} {...translations} />,
     );
-    fireEvent.click(container.querySelector('svg'));
-    const expectedEvent = { target: { name: 'field1', value: [] } };
+
+    const secondChipDeleteButton = container.querySelector('.MuiChip-deletable:nth-child(2) svg');
+    userEvent.click(secondChipDeleteButton);
+    const expectedEvent = { target: { name: 'field1', value: ['Value 1', 'Value 3'] } };
     expect(onChangeMock).toHaveBeenCalledWith(expectedEvent);
   });
 

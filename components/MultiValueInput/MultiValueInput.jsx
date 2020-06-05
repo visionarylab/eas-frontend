@@ -51,9 +51,8 @@ class MultiValueInput extends Component {
     }
   };
 
-  onValueDelete = valueToDelete => {
+  onValueDelete = indexToDelete => {
     const { value: values, name, onChange } = this.props;
-    const indexToDelete = values.indexOf(valueToDelete);
     const clonedValues = values.slice();
     clonedValues.splice(indexToDelete, 1);
     const event = { target: { name, value: clonedValues } };

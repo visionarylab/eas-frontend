@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
 
 const ValuesList = React.memo(({ values, onValueDelete }) =>
-  values.map(value => (
-    <Chip
-      onClick={e => {
-        // Stop the input from being focused when a Chip is clicked
-        e.stopPropagation();
-      }}
-      key={Math.random()}
-      label={value}
-      onDelete={onValueDelete}
-    />
+  values.map((value, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <Chip key={`value-${i}`} label={value} onDelete={() => onValueDelete(i)} />
   )),
 );
 
