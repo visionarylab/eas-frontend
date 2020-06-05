@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { withTranslation } from '../../../i18n';
-import RandomNumberPage from './RandomNumberPage.jsx';
-import RandomNumberQuickPage from './RandomNumberQuickPage.jsx';
+import RandomLetterPage from './RandomLetterPage.jsx';
+import RandomLetterQuickPage from './RandomLetterQuickPage.jsx';
 import withTracking from '../../../hocs/withTracking.jsx';
 import { toss, publish } from '../../../utils/api';
-import { URL_SLUG_NUMBER } from '../../../constants/urlSlugs';
+import { URL_SLUG_LETTER } from '../../../constants/urlSlugs';
 
-const urlSlug = URL_SLUG_NUMBER;
+const urlSlug = URL_SLUG_LETTER;
 
 const getInitialValues = (previousDraw, t) => {
   const dateScheduled = new Date();
@@ -16,8 +16,6 @@ const getInitialValues = (previousDraw, t) => {
   const initialValues = {
     title: t('field_default_title'),
     description: '',
-    rangeMin: previousDraw?.values.rangeMin || '1',
-    rangeMax: previousDraw?.values.rangeMax || '10',
     numberOfResults: previousDraw?.values.numberOfResults || '1',
     allowRepeated: previousDraw?.values.allowRepeated || false,
     dateScheduled,
@@ -29,7 +27,7 @@ const getInitialQuickResult = previousDraw => previousDraw?.results[0];
 const initialLoadingRequest = false;
 const initialApiError = false;
 
-const RandomNumberPageContainer = props => {
+const RandomLetterPageContainer = props => {
   const { draw: previousDraw, track, t } = props;
 
   const [privateId, setPrivateId] = useState(getInitialPrivateId(previousDraw));
@@ -80,24 +78,10 @@ const RandomNumberPageContainer = props => {
     });
   };
 
-  const handleCheckErrorsInConfiguration = () => {
-    const rangeMin = parseInt(values.rangeMin, 10);
-    const rangeMax = parseInt(values.rangeMax, 10);
-    const numberOfResults = parseInt(values.numberOfResults, 10);
-    if (rangeMin >= rangeMax) {
-      return t('error_form_invalid_ranges', {
-        min: values.rangeMin,
-        max: values.rangeMax,
-      });
-    }
-    if (!values.allowRepeated && numberOfResults > rangeMax - rangeMin) {
-      return t('error_form_range_not_big_enough');
-    }
-    return undefined;
-  };
+  const handleCheckErrorsInConfiguration = () => undefined;
 
   return isPublic ? (
-    <RandomNumberPage
+    <RandomLetterPage
       apiError={APIError}
       loadingRequest={loadingRequest}
       values={values}
@@ -106,7 +90,7 @@ const RandomNumberPageContainer = props => {
       handleCheckErrorsInConfiguration={handleCheckErrorsInConfiguration}
     />
   ) : (
-    <RandomNumberQuickPage
+    <RandomLetterQuickPage
       apiError={APIError}
       loadingRequest={loadingRequest}
       values={values}
@@ -118,7 +102,7 @@ const RandomNumberPageContainer = props => {
   );
 };
 
-RandomNumberPageContainer.propTypes = {
+RandomLetterPageContainer.propTypes = {
   draw: PropTypes.shape({
     values: PropTypes.shape({
       rangeMax: PropTypes.string.isRequired,
@@ -133,8 +117,8 @@ RandomNumberPageContainer.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-RandomNumberPageContainer.defaultProps = {
+RandomLetterPageContainer.defaultProps = {
   draw: null,
 };
 
-export default withTracking(withTranslation('DrawNumber')(RandomNumberPageContainer));
+export default withTracking(withTranslation('DrawLetter')(RandomLetterPageContainer));

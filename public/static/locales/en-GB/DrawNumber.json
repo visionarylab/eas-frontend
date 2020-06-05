@@ -10,8 +10,8 @@
   "field_label_from": "From",
   "field_label_number_of_results": "Number of results",
   "field_label_to": "To",
-  "generate_numbers": "Generate numbers",
-  "generated_numbers": "Generated numbers",
+  "generate_results": "Generate numbers",
+  "generated_results": "Generated numbers",
   "html_description": "Generate random numbers between two numbers, with or without repetitions. ChooseRandom's random number generator is quick and simple.",
   "html_keywords": "random number, raffle, lottery",
   "html_title": "Generate random numbers",
@@ -23,4 +23,3 @@
   "step_label_general_details": "General details",
   "step_label_when_to_toss": "Date of the raffle"
 }
-

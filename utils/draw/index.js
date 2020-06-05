@@ -8,7 +8,7 @@ const getDrawByUrlSlug = {
 const getValuesByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberValuesFromDraw,
 };
-// eslint-disable-next-line import/prefer-default-export
+
 export const getDrawDataFromValues = ({ urlSlug, values, isPublic }) =>
   getDrawByUrlSlug[urlSlug]({ values, isPublic });
 

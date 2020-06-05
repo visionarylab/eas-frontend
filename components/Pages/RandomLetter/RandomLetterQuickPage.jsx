@@ -4,17 +4,18 @@ import { withTranslation } from '../../../i18n';
 import SubmitFormButton from '../../SubmitFormButton/SubmitFormButton.jsx';
 import ValidationProvider from '../../FormValidation/ValidationProvider.jsx';
 import Page from '../../Page/Page.jsx';
-import RandomNumberConfigurationSection from './RandomNumberConfigurationSection.jsx';
-import RandomNumberResult from './RandomNumberResult.jsx';
+import RandomLetterConfigurationSection from './RandomLetterConfigurationSection.jsx';
+import RandomLetterResult from './RandomLetterResult.jsx';
 import ErrorFeedback from '../../ErrorFeedback/ErrorFeedback.jsx';
 import useScrollToResults from '../../../hooks/useScrollToResults';
 import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDrawPanel.jsx';
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
-import randomNumberOgImage from './random_number_og_image.png';
+import randomLetterOgImage from './random_letter_og_image.png';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
+import { URL_SLUG_LETTER } from '../../../constants/urlSlugs';
 
-const RandomNumberQuickPage = props => {
+const RandomLetterQuickPage = props => {
   const {
     apiError,
     values,
@@ -25,7 +26,7 @@ const RandomNumberQuickPage = props => {
     loadingRequest,
     t,
   } = props;
-  const publicDrawUrl = '/number/public';
+  const publicDrawUrl = `/${URL_SLUG_LETTER}/public`;
   const resultsRef = useRef(null);
   useScrollToResults(quickResult, resultsRef);
 
@@ -34,8 +35,8 @@ const RandomNumberQuickPage = props => {
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
       htmlKeywords={t('html_keywords')}
-      ogImage={randomNumberOgImage}
-      pageType="Random Number Quick Draw"
+      ogImage={randomLetterOgImage}
+      pageType="Random Letter Quick Draw"
       sidePanel={
         <MakeCertifiedDrawPanel
           buttonLabel={t('create_certificated_draw')}
@@ -54,30 +55,23 @@ const RandomNumberQuickPage = props => {
         }}
         onFormErrorsCheck={() => handleCheckErrorsInConfiguration()}
       >
-        <RandomNumberConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
+        <RandomLetterConfigurationSection values={values} onFieldChange={onFieldChange} t={t} />
         {apiError && <ErrorFeedback error={t('CommonCreateDraw:api_error')} />}
         <SubmitFormButton label={t('generate_results')} disabled={loadingRequest} />
       </ValidationProvider>
 
       <div ref={resultsRef}>
         {loadingRequest && <LoadingCoin />}
-        {!loadingRequest && quickResult && <RandomNumberResult result={quickResult} />}
+        {!loadingRequest && quickResult && <RandomLetterResult result={quickResult} />}
       </div>
     </Page>
   );
 };
 
-RandomNumberQuickPage.propTypes = {
+RandomLetterQuickPage.propTypes = {
   apiError: PropTypes.bool,
   loadingRequest: PropTypes.bool.isRequired,
-  values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rangeMax: PropTypes.string.isRequired,
-    rangeMin: PropTypes.string.isRequired,
-    numberOfResults: PropTypes.string.isRequired,
-    allowRepeated: PropTypes.bool.isRequired,
-  }).isRequired,
+  values: PropTypes.shape({}).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   handleToss: PropTypes.func.isRequired,
   handleCheckErrorsInConfiguration: PropTypes.func.isRequired,
@@ -85,9 +79,9 @@ RandomNumberQuickPage.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-RandomNumberQuickPage.defaultProps = {
+RandomLetterQuickPage.defaultProps = {
   apiError: false,
   quickResult: null,
 };
 
-export default withTranslation('DrawNumber')(RandomNumberQuickPage);
+export default withTranslation('DrawLetter')(RandomLetterQuickPage);
