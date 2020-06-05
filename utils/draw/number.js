@@ -23,7 +23,7 @@ export const getNumberValuesFromDraw = ({ draw }) => {
   };
 };
 
-export const getNumberDrawFromValues = ({ values, isPublic }) => {
+export const getNumberDrawDataFromValues = ({ values, isPublic }) => {
   const baseFields = getBaseFields({ values, isPublic });
   const { rangeMin, rangeMax, numberOfResults, allowRepeated } = values;
   return {
@@ -35,7 +35,7 @@ export const getNumberDrawFromValues = ({ values, isPublic }) => {
   };
 };
 
-export const getTranslationFiles = isQuickDraw => {
+export const getNumberTranslationFiles = isQuickDraw => {
   const commonNamespaces = ['DrawNumber', 'Common'];
   if (isQuickDraw) {
     return [...commonNamespaces];

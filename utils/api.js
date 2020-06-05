@@ -1,4 +1,10 @@
-import { RandomNumberApi, RandomNumber, DrawTossPayload } from 'echaloasuerte-js-sdk';
+import {
+  RandomNumberApi,
+  LetterApi,
+  Letter,
+  RandomNumber,
+  DrawTossPayload,
+} from 'echaloasuerte-js-sdk';
 import Router from 'next/router';
 import throttle from '../services/throttle';
 import { logApiError } from './logger';
@@ -6,35 +12,40 @@ import recentDraws from '../services/recentDraws';
 import { getDrawDataFromValues, getValuesFromDraw } from './draw';
 
 import { analyticsTypesBySlug } from '../constants/analyticsTypes';
+import { URL_SLUG_NUMBER, URL_SLUG_LETTER } from '../constants/urlSlugs';
+
+const apisBySlug = {
+  [URL_SLUG_NUMBER]: RandomNumberApi,
+  [URL_SLUG_LETTER]: LetterApi,
+};
+
+const drawObjectBySlug = {
+  [URL_SLUG_NUMBER]: RandomNumber,
+  [URL_SLUG_LETTER]: Letter,
+};
+
+const apiDrawTypeBySlug = {
+  [URL_SLUG_NUMBER]: 'randomNumber',
+  [URL_SLUG_LETTER]: 'letter',
+};
 
 const apiToss = (urlSlug, privateId, payload = {}) => {
-  switch (urlSlug) {
-    case 'number':
-      return new RandomNumberApi().randomNumberToss(privateId, payload);
-    default:
-      return null;
-  }
+  const Api = apisBySlug[urlSlug];
+  const functionName = `${apiDrawTypeBySlug[urlSlug]}Toss`; // functionName ~= randomNumberToss
+  return new Api()[functionName](privateId, payload);
 };
 
 const apiCreate = (urlSlug, drawData) => {
-  switch (urlSlug) {
-    case 'number': {
-      const randomNumberDraw = RandomNumber.constructFromObject(drawData);
-      return new RandomNumberApi().randomNumberCreate(randomNumberDraw);
-    }
-    default:
-      return null;
-  }
+  const Api = apisBySlug[urlSlug];
+  const functionName = `${apiDrawTypeBySlug[urlSlug]}Create`; // functionName ~= randomNumberCreate
+  const drawObject = drawObjectBySlug[urlSlug].constructFromObject(drawData);
+  return new Api()[functionName](drawObject);
 };
 
 const apiRead = ({ urlSlug, drawId }) => {
-  switch (urlSlug) {
-    case 'number': {
-      return new RandomNumberApi().randomNumberRead(drawId);
-    }
-    default:
-      return null;
-  }
+  const Api = apisBySlug[urlSlug];
+  const functionName = `${apiDrawTypeBySlug[urlSlug]}Read`; // functionName ~= randomNumberRead
+  return new Api()[functionName](drawId);
 };
 
 // Publishing a draw is just tossing with a scheduledDate
@@ -93,6 +104,7 @@ export const toss = async ({
   }
 };
 
+// TODO need to fix this still
 export const publish = async ({ values, urlSlug, track, setLoadingRequest, setAPIError }) => {
   setLoadingRequest(true);
   const analyticsType = analyticsTypesBySlug[urlSlug];

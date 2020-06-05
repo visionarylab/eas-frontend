@@ -6,7 +6,7 @@ import useLoadDataAfterCountdown from '../../../hooks/useLoadDataAfterCountdown'
 import { withTranslation } from '../../../i18n';
 import Page from '../../Page/Page.jsx';
 import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
-import RandomNumberResult from './RandomNumberResult.jsx';
+import RandomLetterResult from './RandomLetterResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
@@ -35,7 +35,7 @@ const PublishedRandomNumberPage = props => {
         <DrawHeading title={title || t('page_title')} subtitle={description} />
         {result.value ? (
           <ResultsBox title={t('generated_results')}>
-            <RandomNumberResult result={result} />
+            <RandomLetterResult result={result} />
           </ResultsBox>
         ) : (
           <Countdown date={result.schedule_date} />
