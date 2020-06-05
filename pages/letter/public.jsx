@@ -1,10 +1,10 @@
 import React from 'react';
 import RandomLetterPageContainer from '../../components/Pages/RandomLetter/RandomLetterPageContainer.jsx';
 
-const LettersQuickCreatePage = props => <RandomLetterPageContainer {...props} />;
+const LettersCreatePage = props => <RandomLetterPageContainer {...props} />;
 
-LettersQuickCreatePage.getInitialProps = () => ({
+LettersCreatePage.getInitialProps = () => ({
   namespacesRequired: ['DrawLetter', 'CommonCreateDraw', 'Common'],
 });
 
-export default LettersQuickCreatePage;
+export default LettersCreatePage;

@@ -1,21 +1,80 @@
 // import { RandomNumberApi, LetterApi, Letter, DrawTossPayload } from 'echaloasuerte-js-sdk';
-import { fetchDraw, toss } from './api';
+import Router from 'next/router';
+import { fetchDraw, toss, publish } from './api';
 import { URL_SLUG_LETTER } from '../constants/urlSlugs';
-
-const mockCreate = jest.fn();
-const mockRead = jest.fn();
-jest.mock('echaloasuerte-js-sdk', () => ({
-  ...jest.requireActual('echaloasuerte-js-sdk'),
-  LetterApi: jest
-    .fn()
-    .mockImplementation(() => ({ letterCreate: mockCreate, letterRead: mockRead })),
-  // RandomNumber: { constructFromObject: jest.fn().mockReturnValue(4) },
-}));
 
 const mockDate = new Date('1995-12-17T03:24:00');
 
+const mockResponseCreate = {
+  id: 'd3ca7fd5-c632-45e5-a67f-ce237f7e72d4',
+  created_at: '2020-06-05T13:35:43.227037Z',
+  updated_at: '2020-06-05T13:35:43.227094Z',
+  title: null,
+  description: null,
+  results: [],
+  metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
+  private_id: 'ccf9f8d8-3524-48d5-81d3-d164226eadf8',
+  number_of_results: 1,
+  allow_repeated_results: false,
+};
+
+const mockResponseCreatePublic = {
+  ...mockResponseCreate,
+  title: 'Sorteo público',
+  description: 'and some subtitle',
+  metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
+};
+
+const mockResponseToss = {
+  created_at: '2020-06-05T14:18:44.498852Z',
+  value: ['K'],
+  schedule_date: null,
+};
+
+const mockFormValues = {
+  title: '',
+  description: '',
+  numberOfResults: '2',
+  allowRepeated: true,
+  dateScheduled: mockDate,
+};
+
+const mockBaseTossObject = {
+  values: mockFormValues,
+  privateId: null,
+  urlSlug: URL_SLUG_LETTER,
+  setLoadingRequest: jest.fn(),
+  track: jest.fn(),
+  setAPIError: jest.fn(),
+  setQuickResult: jest.fn(),
+};
+
+const mockCreate = jest.fn();
+const mockRead = jest.fn();
+const mockToss = jest.fn();
+
+const mockRouterPush = jest.spyOn(Router, 'push');
+
+jest.mock('next/router');
+
+jest.mock('echaloasuerte-js-sdk', () => ({
+  ...jest.requireActual('echaloasuerte-js-sdk'),
+  LetterApi: jest.fn().mockImplementation(() => ({
+    letterCreate: mockCreate,
+    letterRead: mockRead,
+    letterToss: mockToss,
+  })),
+  // RandomNumber: { constructFromObject: jest.fn().mockReturnValue(4) },
+}));
+
 // const { RandomNumber } = jest.requireActual('echaloasuerte-js-sdk');
 describe('Api', () => {
+  beforeEach(() => {
+    mockCreate.mockClear();
+    mockRead.mockClear();
+    mockToss.mockClear();
+    mockRouterPush.mockClear();
+  });
   it('Should fetch draw correctly', async () => {
     const mockResponse = {
       id: '728efbc2-4d54-4702-98dd-f2cd18cbaa52',
@@ -42,36 +101,179 @@ describe('Api', () => {
     await fetchDraw({ urlSlug, drawId });
     expect(mockRead).toHaveBeenCalledWith(drawId);
   });
+  describe('Toss', () => {
+    it('Should toss draw correctly', async () => {
+      mockCreate.mockResolvedValue(mockResponseCreate);
+      const mockSetAPIError = jest.fn();
 
-  it('Should toss draw correctly', async () => {
-    const mockValues = {
-      title: 'Sorteo público',
-      description: '',
-      numberOfResults: '2',
-      allowRepeated: true,
-      dateScheduled: new Date('1995-12-17T03:24:00'),
-    };
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        setAPIError: mockSetAPIError,
+      };
+      const expectedValue = {
+        allow_repeated_results: true,
+        description: null,
+        metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
+        number_of_results: 2,
+        title: null,
+      };
 
-    const tossObject = {
-      values: mockValues,
-      privateId: null,
-      urlSlug: URL_SLUG_LETTER,
-      setLoadingRequest: jest.fn(),
-      track: jest.fn(),
-      setAPIError: jest.fn(),
-      setQuickResult: jest.fn(),
-    };
+      await toss(mockTossObject);
+      expect(mockCreate).toHaveBeenCalledWith(expectedValue);
+      expect(mockToss).toHaveBeenCalledWith('ccf9f8d8-3524-48d5-81d3-d164226eadf8', {});
+      expect(mockSetAPIError).not.toHaveBeenCalled();
 
-    const expectedValue = {
-      allow_repeated_results: true,
-      description: null,
-      metadata: [{ client: 'web', key: 'isQuickDraw', value: 'true' }],
-      number_of_results: 2,
-      title: null,
-    };
+      expect(mockRouterPush).toHaveBeenCalledWith(
+        '/letter/[id]',
+        '/letter/ccf9f8d8-3524-48d5-81d3-d164226eadf8',
+      );
+    });
 
-    await toss(tossObject);
-    expect(mockCreate).toHaveBeenCalledWith(expectedValue);
-    // expect(tossSpy).toHaveBeenCalledWith(drawId);
+    describe('If the configuration did not change since the last toss', () => {
+      // If we have a private id it means that the configuration didn't change
+      it('should not create a new draw', async () => {
+        // If we have a privateId the draw wasn't modified to we can simply toss again
+        const mockSetQuickResult = jest.fn();
+
+        const mockTossObject = {
+          ...mockBaseTossObject,
+          privateId: '123456789',
+          setQuickResult: mockSetQuickResult,
+        };
+
+        await toss(mockTossObject);
+        expect(mockCreate).not.toHaveBeenCalled();
+      });
+
+      it('should update the quick result', async () => {
+        mockCreate.mockResolvedValue(mockResponseCreate);
+        mockToss.mockResolvedValue(mockResponseToss);
+        const mockSetQuickResult = jest.fn();
+
+        const mockTossObject = {
+          ...mockBaseTossObject,
+          privateId: '123456789',
+          setQuickResult: mockSetQuickResult,
+        };
+
+        await toss(mockTossObject);
+        expect(mockRouterPush).not.toHaveBeenCalled();
+        expect(mockSetQuickResult).toHaveBeenCalledWith({
+          created_at: '2020-06-05T14:18:44.498852Z',
+          schedule_date: null,
+          value: ['K'],
+        });
+      });
+    });
+
+    it('Should send analytics events when the toss was successful', async () => {
+      mockCreate.mockResolvedValue(mockResponseCreate);
+      const mockTrack = jest.fn();
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        track: mockTrack,
+      };
+
+      await toss(mockTossObject);
+      expect(mockTrack).toHaveBeenCalledWith({
+        ga: { action: 'Toss', category: 'Letter' },
+        mp: { name: 'Toss - Letter', properties: { drawType: 'Letter' } },
+      });
+    });
+
+    it('Should call the error function where there were errors', async () => {
+      /* eslint-disable no-console */
+      const originalError = console.log;
+
+      console.log = jest.fn();
+      mockCreate.mockResolvedValue(undefined);
+      const mockSetAPIError = jest.fn();
+
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        setAPIError: mockSetAPIError,
+      };
+
+      await toss(mockTossObject);
+      expect(mockSetAPIError).toHaveBeenCalledWith(true);
+      console.log = originalError;
+      /* eslint-enable no-console */
+    });
+  });
+  describe('Publish', () => {
+    it('Should toss draw correctly', async () => {
+      mockCreate.mockResolvedValue(mockResponseCreatePublic);
+      const mockSetAPIError = jest.fn();
+
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        values: {
+          ...mockBaseTossObject.values,
+          title: 'Sorteo público',
+          description: 'and some subtitle',
+        },
+        setAPIError: mockSetAPIError,
+      };
+      const expectedValue = {
+        allow_repeated_results: true,
+        description: 'and some subtitle',
+        metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
+        number_of_results: 2,
+        title: 'Sorteo público',
+      };
+
+      await publish(mockTossObject);
+      expect(mockCreate).toHaveBeenCalledWith(expectedValue);
+      expect(mockToss).toHaveBeenCalledWith('0198b5c8-5c45-4ab2-a7b4-64e6636525a9', {
+        schedule_date: mockDate,
+      });
+      expect(mockSetAPIError).not.toHaveBeenCalled();
+
+      expect(mockRouterPush).toHaveBeenCalledWith(
+        '/letter/[id]/success',
+        '/letter/f5dca372-0676-4d0d-9600-2cd6009898b4/success',
+      );
+    });
+
+    it('Should send analytics events when the toss was successful', async () => {
+      mockCreate.mockResolvedValue(mockResponseCreatePublic);
+      const mockTrack = jest.fn();
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        track: mockTrack,
+      };
+
+      await publish(mockTossObject);
+      expect(mockTrack).toHaveBeenCalledWith({
+        ga: {
+          action: 'Publish',
+          category: 'Letter',
+          label: 'f5dca372-0676-4d0d-9600-2cd6009898b4',
+        },
+        mp: {
+          name: 'Publish - Letter',
+          properties: { drawType: 'Letter', drawId: 'f5dca372-0676-4d0d-9600-2cd6009898b4' },
+        },
+      });
+    });
+
+    it('Should call the error function where there were errors', async () => {
+      /* eslint-disable no-console */
+      const originalError = console.log;
+
+      console.log = jest.fn();
+      mockCreate.mockResolvedValue(undefined);
+      const mockSetAPIError = jest.fn();
+
+      const mockTossObject = {
+        ...mockBaseTossObject,
+        setAPIError: mockSetAPIError,
+      };
+
+      await publish(mockTossObject);
+      expect(mockSetAPIError).toHaveBeenCalledWith(true);
+      console.log = originalError;
+      /* eslint-enable no-console */
+    });
   });
 });

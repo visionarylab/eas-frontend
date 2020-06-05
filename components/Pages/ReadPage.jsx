@@ -15,6 +15,8 @@ ReadPage.propTypes = {
     isQuickDraw: PropTypes.bool.isRequired,
   }),
   error: PropTypes.shape({}),
+  MainPage: PropTypes.elementType.isRequired,
+  PublishedPage: PropTypes.elementType.isRequired,
 };
 
 ReadPage.defaultProps = {

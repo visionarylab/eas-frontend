@@ -6,7 +6,7 @@ import {
   DrawTossPayload,
 } from 'echaloasuerte-js-sdk';
 import Router from 'next/router';
-import throttle from '../services/throttle';
+import { asyncThrottle } from '../services/throttle';
 import { logApiError } from './logger';
 import recentDraws from '../services/recentDraws';
 import { getDrawDataFromValues, getValuesFromDraw } from './draw';
@@ -88,15 +88,14 @@ export const toss = async ({
       },
       ga: { action: 'Toss', category: analyticsType },
     });
-    throttle(() => {
-      if (shouldRedirect) {
-        Router.push(`/${urlSlug}/[id]`, `/${urlSlug}/${privateIdToToss}`);
-      } else {
-        setAPIError(false);
-        setLoadingRequest(false);
-        setQuickResult(tossResponse);
-      }
-    }, tsStart);
+    await asyncThrottle(tsStart);
+    if (shouldRedirect) {
+      Router.push(`/${urlSlug}/[id]`, `/${urlSlug}/${privateIdToToss}`);
+    } else {
+      setAPIError(false);
+      setLoadingRequest(false);
+      setQuickResult(tossResponse);
+    }
   } catch (error) {
     logApiError(error, analyticsType);
     setAPIError(true);
@@ -104,7 +103,6 @@ export const toss = async ({
   }
 };
 
-// TODO need to fix this still
 export const publish = async ({ values, urlSlug, track, setLoadingRequest, setAPIError }) => {
   setLoadingRequest(true);
   const analyticsType = analyticsTypesBySlug[urlSlug];
@@ -122,9 +120,9 @@ export const publish = async ({ values, urlSlug, track, setLoadingRequest, setAP
       ga: { action: 'Publish', category: analyticsType, label: newDraw.id },
     });
 
-    const drawPath = `/number/${newDraw.id}/success`;
+    const drawPath = `/${urlSlug}/${newDraw.id}/success`;
     recentDraws.add(newDraw, drawPath, dateScheduled);
-    Router.push('/number/[id]/success', drawPath);
+    Router.push(`/${urlSlug}/[id]/success`, drawPath);
   } catch (error) {
     logApiError(error, analyticsType);
     setAPIError(true);

@@ -6,7 +6,7 @@ import { TYPE_APP_ENV_LOCAL } from '../constants/environment';
 export const logApiError = (error, drawType) => {
   if (environment === TYPE_APP_ENV_LOCAL) {
     // eslint-disable-next-line no-console
-    console.error(error);
+    console.log(error);
   }
   Sentry.withScope(scope => {
     scope.setTag('errorType', 'API error');

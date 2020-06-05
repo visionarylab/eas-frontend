@@ -10,11 +10,11 @@ import { URL_SLUG_LETTER } from '../../../constants/urlSlugs';
 
 const urlSlug = URL_SLUG_LETTER;
 
-const getInitialValues = (previousDraw, t) => {
+const getInitialValues = (previousDraw, t, isPublic) => {
   const dateScheduled = new Date();
   dateScheduled.setHours(dateScheduled.getHours() + 1);
   const initialValues = {
-    title: t('field_default_title'),
+    title: isPublic ? t('field_default_title') : '',
     description: '',
     numberOfResults: previousDraw?.values.numberOfResults || '1',
     allowRepeated: previousDraw?.values.allowRepeated || false,
@@ -30,22 +30,21 @@ const initialApiError = false;
 const RandomLetterPageContainer = props => {
   const { draw: previousDraw, track, t } = props;
 
+  const router = useRouter();
+  const isPublic = router.asPath.includes('public');
   const [privateId, setPrivateId] = useState(getInitialPrivateId(previousDraw));
-  const [values, setValues] = useState(getInitialValues(previousDraw, t));
+  const [values, setValues] = useState(getInitialValues(previousDraw, t, isPublic));
   const [quickResult, setQuickResult] = useState(getInitialQuickResult(previousDraw));
   const [APIError, setAPIError] = useState(initialApiError);
   const [loadingRequest, setLoadingRequest] = useState(initialLoadingRequest);
-  const router = useRouter();
-
-  const isPublic = router.asPath.includes('public');
 
   useEffect(() => {
     setQuickResult(getInitialQuickResult(previousDraw));
     setPrivateId(getInitialPrivateId(previousDraw));
     setLoadingRequest(initialLoadingRequest);
     setAPIError(initialApiError);
-    setValues(getInitialValues(previousDraw, t));
-  }, [previousDraw, t]);
+    setValues(getInitialValues(previousDraw, t, isPublic));
+  }, [previousDraw, t, isPublic]);
 
   const onFieldChange = (fieldName, value) => {
     setQuickResult(null);
@@ -105,8 +104,6 @@ const RandomLetterPageContainer = props => {
 RandomLetterPageContainer.propTypes = {
   draw: PropTypes.shape({
     values: PropTypes.shape({
-      rangeMax: PropTypes.string.isRequired,
-      rangeMin: PropTypes.string.isRequired,
       numberOfResults: PropTypes.string.isRequired,
       allowRepeated: PropTypes.bool.isRequired,
     }),
