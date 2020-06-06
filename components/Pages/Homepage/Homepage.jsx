@@ -5,12 +5,12 @@ import { withTranslation } from '../../../i18n';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
 import DrawGroup from './DrawGroup.jsx';
 import Page from '../../Page/Page.jsx';
-// import randomNumberIcon from './random_number.png';
+import randomNumberIcon from './random_number.png';
 // import randomItemIcon from './random_item.png';
 import arrowIcon from './arrow.svg';
 import groupsIcon from './groups.svg';
 import coinIcon from './coin.svg';
-import randomLetter from './random_letter.png';
+import randomLetterIcon from './random_letter.png';
 // import diceIcon from './dice.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
@@ -38,15 +38,16 @@ const HomePage = ({ t }) => (
         <DrawCard icon={groupsIcon} href="/groups">
           {t('draw_title_groups_generator')}
         </DrawCard>
-        {/* <DrawCard icon={randomNumber} href="/number">
-          {t('draw_title_random_number')}
-          </DrawCard>
+        {/*
           </div>
           <Typography variant="h1"> {t('section_title_simple_draws')}</Typography>
           <div className={c('HomePage__draw-chips-group')}>
 
         </div> */}
-        <DrawCard icon={randomLetter} href="/letter">
+        <DrawCard icon={randomNumberIcon} href="/number">
+          {t('draw_title_random_number')}
+        </DrawCard>
+        <DrawCard icon={randomLetterIcon} href="/letter">
           {t('draw_title_random_letter')}
         </DrawCard>
         {/* <DrawCard icon={tournamentIcon} href="https://echaloasuerte.com/draw/new/tournament/">
