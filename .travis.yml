@@ -20,7 +20,7 @@ script:
   - git clean -xdf
   - docker pull etcaterva/echaloasuerte:master
   - |
-    if [ "$TRAVIS_BRANCH" == "prod" ] || [ "$TRAVIS_BRANCH" == "prod-next" ] ; then
+    if [ "$TRAVIS_BRANCH" == "prod" ] ; then
         app_env=production
     else
         app_env=staging
@@ -30,16 +30,14 @@ script:
 branches:
   only:
     - development
-    - try-next
     - master
     - prod
-    - prod-next
 
 after_success:
   - |
     # Publish docker images on these branches, only if
     # this isn't a pull request
-    branches="prod master try-next prod-next"
+    branches="prod master"
     if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
         for branch in $branches; do
             if [ "$TRAVIS_BRANCH" == "$branch" ]; then
@@ -67,19 +65,9 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: cd eas-deployment &&  ansible-playbook -i hosts_dev config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend-b" --extra-vars "ansible_user=automation"
-    on:
-      branch: try-next
-
-  - provider: script
     script: cd eas-deployment &&  ansible-playbook -i hosts_dev config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend" --extra-vars "ansible_user=automation"
     on:
       branch: master
-
-  - provider: script
-    script: cd eas-deployment && git checkout prod && ansible-playbook -i hosts_prod config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend-b" --extra-vars "ansible_user=automation"
-    on:
-      branch: prod-next
 
   - provider: script
     script: cd eas-deployment && git checkout prod && ansible-playbook -i hosts_prod config-eas3.yml --vault-password-file=vault-pass --tags "cd-frontend" --extra-vars "ansible_user=automation"
