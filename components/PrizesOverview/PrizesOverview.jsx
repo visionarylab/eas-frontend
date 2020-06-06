@@ -3,17 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
-import classNames from 'classnames/bind';
 import { withTranslation } from '../../i18n';
 
 import STYLES from './PrizesOverview.module.scss';
 
-const c = classNames.bind(STYLES);
-
 const PrizesOverview = ({ prizes, t }) => (
-  <div className={c('PrizesOverview')}>
+  <div className={STYLES.container}>
     <Typography variant="h2">{t('prizes_label')}</Typography>
-    <ul className={c('PrizesOverview__prizes-list')}>
+    <ul className={STYLES.list}>
       {prizes.map((prize, i) => (
         <li key={`prize-${prize.id}-${i}`}>
           <Chip label={prize.name} />

@@ -2,13 +2,17 @@
 
 $prize-overview-background-color: white;
 
-.PrizesOverview {
+.container {
   margin-top: $spacing-lg;
   margin-bottom: $spacing-lg;
   text-align: center;
+}
 
-  &__prizes-list {
-    padding: 0;
-    list-style-type: none;
-  }
+.list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.list li {
+  padding-bottom: $spacing-xs;
 }
