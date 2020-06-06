@@ -224,14 +224,14 @@ describe('Api', () => {
 
       await publish(mockTossObject);
       expect(mockCreate).toHaveBeenCalledWith(expectedValue);
-      expect(mockToss).toHaveBeenCalledWith('0198b5c8-5c45-4ab2-a7b4-64e6636525a9', {
+      expect(mockToss).toHaveBeenCalledWith('ccf9f8d8-3524-48d5-81d3-d164226eadf8', {
         schedule_date: mockDate,
       });
       expect(mockSetAPIError).not.toHaveBeenCalled();
 
       expect(mockRouterPush).toHaveBeenCalledWith(
         '/letter/[id]/success',
-        '/letter/f5dca372-0676-4d0d-9600-2cd6009898b4/success',
+        '/letter/d3ca7fd5-c632-45e5-a67f-ce237f7e72d4/success',
       );
     });
 
@@ -248,11 +248,11 @@ describe('Api', () => {
         ga: {
           action: 'Publish',
           category: 'Letter',
-          label: 'f5dca372-0676-4d0d-9600-2cd6009898b4',
+          label: 'd3ca7fd5-c632-45e5-a67f-ce237f7e72d4',
         },
         mp: {
           name: 'Publish - Letter',
-          properties: { drawType: 'Letter', drawId: 'f5dca372-0676-4d0d-9600-2cd6009898b4' },
+          properties: { drawType: 'Letter', drawId: 'd3ca7fd5-c632-45e5-a67f-ce237f7e72d4' },
         },
       });
     });
