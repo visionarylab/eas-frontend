@@ -1,6 +1,6 @@
 [auth]
-token=46c7555ee6a44d0cb2ae42ae52a4a06b04a2a3d209c84bf98f954a1a75210f83
+token=e5baa5dceaaf46c2a381ac91a484a5a3a6a8aecf09af488b814f6be71416dc20
 
 [defaults]
-org=etcaterva
-project=echaloasuerte
+org=asdf-x4
+project=eas3
