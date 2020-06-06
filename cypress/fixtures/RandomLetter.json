@@ -1,0 +1,165 @@
+[
+  {
+    "path": "/api/letter/",
+    "method": "POST",
+    "response": {
+      "id": "cd5d530c-fd10-4525-a3b3-8bb0b9d35932",
+      "created_at": "2020-06-06T09:05:29.085412Z",
+      "updated_at": "2020-06-06T09:05:29.085440Z",
+      "title": null,
+      "description": null,
+      "results": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "4e331585-d8c8-4517-afb6-2e355a5f8493",
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/letter/4e331585-d8c8-4517-afb6-2e355a5f8493/toss/",
+    "fixture_description": "Toss quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-06-06T09:05:29.120294Z",
+      "value": [
+        "Z",
+        "Y"
+      ],
+      "schedule_date": null
+    }
+  },
+  {
+    "path": "/api/letter/43c357b7-91ec-448a-0000-ac059cc3a555/toss/",
+    "fixture_description": "Toss edited quick draw",
+    "method": "POST",
+    "response": {
+      "id": "409f9e34-45f4-4885-a5dd-9c2f30eadbe7",
+      "created_at": "2020-05-29T12:59:57.821973Z",
+      "updated_at": "2020-05-29T12:59:57.822011Z",
+      "title": null,
+      "description": null,
+      "results": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "03df4731-66ee-4f69-ab5e-d91e7f2e9f7c",
+      "range_min": 5,
+      "range_max": 8,
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/letter/4e331585-d8c8-4517-afb6-2e355a5f8493/",
+    "fixture_description": "Get quick draw",
+    "method": "GET",
+    "response": {
+      "id": "cd5d530c-fd10-4525-a3b3-8bb0b9d35932",
+      "created_at": "2020-06-06T09:05:29.085412Z",
+      "updated_at": "2020-06-06T09:05:29.085440Z",
+      "title": null,
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-06-06T09:05:29.120294Z",
+          "value": [
+            "Z",
+            "Y"
+          ],
+          "schedule_date": null
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "4e331585-d8c8-4517-afb6-2e355a5f8493",
+      "number_of_results": 2,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/letter/43c357b7-91ec-448a-1111-000000000000/toss/",
+    "method": "POST",
+    "fixture_description": "Toss (publish) public draw",
+    "response": {
+      "created_at": "2018-08-26T00:54:09.374848Z",
+      "schedule_date": null,
+      "value": [
+        "Z",
+        "Y"
+      ]
+    }
+  },
+  {
+    "path": "/api/letter/ebdb2628-9fef-438d-9395-de1a4d7bc789/",
+    "method": "GET",
+    "response": {
+      "id": "ebdb2628-9fef-438d-9395-de1a4d7bc789",
+      "created_at": "2020-05-08T17:07:44.742004Z",
+      "updated_at": "2020-05-08T17:07:44.742042Z",
+      "title": "Cool title",
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-05-08T17:07:44.770406Z",
+          "value": [
+            "Z",
+            "Y"
+          ],
+          "schedule_date": "2020-05-08T18:07:42Z"
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
+      "number_of_results": 1,
+      "allow_repeated_results": true
+    }
+  },
+  {
+    "path": "/api/letter/ebdb2628-9fef-438d-9395-aaaaaaaaaaaa/",
+    "method": "GET",
+    "response": {
+      "id": "ebdb2628-9fef-438d-9395-aaaaaaaaaaaa",
+      "created_at": "2018-10-28T22:45:37.180534Z",
+      "updated_at": "2018-10-28T22:45:37.180601Z",
+      "title": "The title",
+      "description": "A description",
+      "results": [
+        {
+          "created_at": "2020-05-08T17:07:44.770406Z",
+          "value": null,
+          "schedule_date": "2020-05-08T18:07:42Z"
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
+      "private_id": "6ce5042f-f931-4a79-a716-dfadccc978d0",
+      "number_of_results": 1,
+      "allow_repeated_results": false
+    }
+  }
+]

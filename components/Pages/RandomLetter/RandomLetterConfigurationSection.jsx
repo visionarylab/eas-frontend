@@ -23,7 +23,10 @@ const RandomLetterConfigurationSection = ({ values, onFieldChange, t }) => (
       value={values.numberOfResults}
       margin="normal"
       type="number"
-      validators={[{ rule: 'required', value: true }]}
+      validators={[
+        { rule: 'required', value: true },
+        { rule: 'min', value: 1, message: t('error_field_message_min_results', { min: 1 }) },
+      ]}
       data-testid="RandomLetter__number-of-results-field"
       inputProps={{ 'data-testid': 'RandomLetter__number-of-results-field-input' }}
     />

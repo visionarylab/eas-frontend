@@ -11,14 +11,14 @@ import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import { getCurrentUrlFromWindow } from '../../../utils';
-import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
+import { ANALYTICS_TYPE_LETTER } from '../../../constants/analyticsTypes';
 
-const PublishedRandomNumberPage = props => {
+const PublishedRandomLetterPage = props => {
   const { draw, t } = props;
 
   const shareUrl = getCurrentUrlFromWindow();
   const { values, results } = draw;
-  const { title, rangeMin, rangeMax, numberOfResults, allowRepeated, description } = values;
+  const { title, numberOfResults, allowRepeated, description } = values;
   const result = results[0];
 
   useLoadDataAfterCountdown(result);
@@ -29,7 +29,7 @@ const PublishedRandomNumberPage = props => {
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
       noIndex
-      pageType="Numbers Published Draw"
+      pageType="Letter Published Draw"
     >
       <div>
         <DrawHeading title={title || t('page_title')} subtitle={description} />
@@ -42,7 +42,7 @@ const PublishedRandomNumberPage = props => {
         )}
 
         <ShareButtons
-          drawType={ANALYTICS_TYPE_NUMBER}
+          drawType={ANALYTICS_TYPE_LETTER}
           sectionTitle={
             result.value
               ? t('CommonPublishedDraw:share_result')
@@ -52,12 +52,6 @@ const PublishedRandomNumberPage = props => {
         />
         <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
           {description && <Typography variant="body2">{description}</Typography>}
-          <Typography component="div" variant="body2">
-            {t('field_label_from')} {rangeMin}
-          </Typography>
-          <Typography component="div" variant="body2">
-            {t('field_label_to')} {rangeMax}
-          </Typography>
           <Typography component="div" variant="body2">
             {t('field_label_number_of_results')} {numberOfResults}
           </Typography>
@@ -72,12 +66,10 @@ const PublishedRandomNumberPage = props => {
   );
 };
 
-PublishedRandomNumberPage.propTypes = {
+PublishedRandomLetterPage.propTypes = {
   draw: PropTypes.shape({
     values: PropTypes.shape({
       title: PropTypes.string,
-      rangeMin: PropTypes.string,
-      rangeMax: PropTypes.string,
       numberOfResults: PropTypes.string,
       allowRepeated: PropTypes.bool,
       description: PropTypes.string,
@@ -87,13 +79,13 @@ PublishedRandomNumberPage.propTypes = {
         created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
         schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
           .isRequired,
-        value: PropTypes.arrayOf(PropTypes.number),
+        value: PropTypes.arrayOf(PropTypes.string),
       }),
     ),
   }).isRequired,
   t: PropTypes.func.isRequired,
 };
 
-PublishedRandomNumberPage.defaultProps = {};
+PublishedRandomLetterPage.defaultProps = {};
 
-export default withTranslation('DrawNumber')(PublishedRandomNumberPage);
+export default withTranslation('DrawLetter')(PublishedRandomLetterPage);

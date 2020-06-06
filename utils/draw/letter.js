@@ -27,7 +27,7 @@ export const getLetterDrawDataFromValues = ({ values, isPublic }) => {
   };
 };
 
-export const getLetterTranslationFiles = isQuickDraw => {
+export const getLetterTranslationFiles = ({ isQuickDraw }) => {
   const commonNamespaces = ['DrawLetter', 'Common'];
   if (isQuickDraw) {
     return [...commonNamespaces];

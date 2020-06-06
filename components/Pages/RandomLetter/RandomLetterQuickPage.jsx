@@ -12,8 +12,11 @@ import MakeCertifiedDrawPanel from '../../MakeCertifiedDrawPanel/MakeCertifiedDr
 import LoadingCoin from '../../LoadingCoin/LoadingCoin.jsx';
 import randomLetterOgImage from './random_letter_og_image.png';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
-import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
+import { analyticsTypesBySlug } from '../../../constants/analyticsTypes';
 import { URL_SLUG_LETTER } from '../../../constants/urlSlugs';
+
+const urlSlug = URL_SLUG_LETTER;
+const analyticsType = analyticsTypesBySlug[urlSlug];
 
 const RandomLetterQuickPage = props => {
   const {
@@ -26,7 +29,7 @@ const RandomLetterQuickPage = props => {
     loadingRequest,
     t,
   } = props;
-  const publicDrawUrl = `/${URL_SLUG_LETTER}/public`;
+  const publicDrawUrl = `/${urlSlug}/public`;
   const resultsRef = useRef(null);
   useScrollToResults(quickResult, resultsRef);
 
@@ -41,7 +44,7 @@ const RandomLetterQuickPage = props => {
         <MakeCertifiedDrawPanel
           buttonLabel={t('create_certificated_draw')}
           publicDrawUrl={publicDrawUrl}
-          analyticsDrawType={ANALYTICS_TYPE_NUMBER}
+          analyticsDrawType={analyticsType}
         >
           {t('certified_draw_description')}
         </MakeCertifiedDrawPanel>

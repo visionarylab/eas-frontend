@@ -7,9 +7,10 @@ const groupsJson = require('./fixtures/GroupsGenerator.json');
 const raffleJson = require('./fixtures/Raffle.json');
 const facebookJson = require('./fixtures/FacebookRaffle.json');
 const numberJson = require('./fixtures/RandomNumber.json');
+const letterJson = require('./fixtures/RandomLetter.json');
 
 function mockServerCalls() {
-  const fixturesSets = [groupsJson, raffleJson, facebookJson, numberJson];
+  const fixturesSets = [groupsJson, raffleJson, facebookJson, numberJson, letterJson];
   let fixtures = fixturesSets.map(fixturesSet =>
     fixturesSet.filter(fixture => fixture.method === 'GET'),
   );

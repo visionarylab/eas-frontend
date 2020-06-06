@@ -35,7 +35,7 @@ export const getNumberDrawDataFromValues = ({ values, isPublic }) => {
   };
 };
 
-export const getNumberTranslationFiles = isQuickDraw => {
+export const getNumberTranslationFiles = ({ isQuickDraw }) => {
   const commonNamespaces = ['DrawNumber', 'Common'];
   if (isQuickDraw) {
     return [...commonNamespaces];
