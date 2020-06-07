@@ -3,11 +3,6 @@
 let config = {};
 const environment = process.env.APP_ENV;
 
-if (process.env.REACT_APP_COMMIT) {
-  const deployedCommit = process.env.REACT_APP_COMMIT;
-  console.log(deployedCommit);
-}
-
 try {
   const baseConfig = {
     sentryDsn: 'https://31465bb4331a44fc9262616650942a64@o240694.ingest.sentry.io/1413974',

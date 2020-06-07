@@ -27,6 +27,7 @@ const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
 
 const PublishedFacebookRafflePage = ({ draw, t, track, facebookContext }) => {
+  console.log('draw', draw);
   const { id: drawId, title, description, participants, prizes, result } = draw;
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
