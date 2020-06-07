@@ -33,7 +33,7 @@ const fbInit = onStatusChange => {
 export const fbAsyncInit = async onStatusChange => {
   window.cypressEas = { statusChange: onStatusChange }; // This is only used for integration tests
   window.fbAsyncInit = () => {
-    fbInit();
+    fbInit(onStatusChange);
   };
 };
 
