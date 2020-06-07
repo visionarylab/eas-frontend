@@ -25,7 +25,3 @@ Cypress.Server.defaults({
   force404: true,
   enable: true,
 });
-
-beforeEach(() => {
-  cy.mockFB();
-});

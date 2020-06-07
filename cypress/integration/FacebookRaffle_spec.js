@@ -8,6 +8,7 @@ describe('FacebookRaffle', () => {
       beforeEach(() => {
         cy.server();
         cy.mockGA();
+        cy.mockFB();
         cy.mockFixture('FacebookRaffle');
         cy.viewport(device);
       });
@@ -151,6 +152,9 @@ describe('FacebookRaffle', () => {
               past.subtract(missingSeconds, 'seconds');
               cy.clock(past.valueOf(), ['Date', 'setTimeout', 'clearTimeout']);
             });
+            cy.on('window:before:load', win => {
+              cy.spy(win.console, 'log');
+            });
           });
 
           it('should have Facebook login button if the user is not logged in Facebook yet', () => {
@@ -164,7 +168,11 @@ describe('FacebookRaffle', () => {
                 .as('FbApi');
             });
 
-            cy.simulateFbStatusChange({ status: 'unknown' });
+            // Simulate FB status change
+            cy.window().its('cypressEas').should('exist');
+            cy.window().then(win => {
+              win.cypressEas.statusChange({ status: 'unknown' });
+            });
 
             cy.getComponent('FacebookLoginButton').should('exist');
           });
@@ -180,7 +188,11 @@ describe('FacebookRaffle', () => {
                 .as('FbApi');
             });
 
-            cy.simulateFbStatusChange({ status: 'connected', authResponse: true });
+            // Simulate FB status change
+            cy.window().its('cypressEas').should('not.be', undefined);
+            cy.window().then(win => {
+              win.cypressEas.statusChange({ status: 'connected', authResponse: true });
+            });
 
             cy.get('@FbApi').should('be.calledWith', '/me', {});
             cy.getComponent('FacebookRaffle__participant-button')
@@ -219,7 +231,11 @@ describe('FacebookRaffle', () => {
                 .as('FbApi');
             });
 
-            cy.simulateFbStatusChange({ status: 'connected', authResponse: true });
+            // Simulate FB status change
+            cy.window().its('cypressEas').should('not.be', undefined);
+            cy.window().then(win => {
+              win.cypressEas.statusChange({ status: 'connected', authResponse: true });
+            });
 
             cy.get('@FbApi').should('be.calledWith', '/me', {});
 

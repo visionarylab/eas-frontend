@@ -32,7 +32,7 @@ class FacebookProvider extends Component {
     const { i18n } = this.props;
     fbAsyncInit(this.handleStatusChange);
     const locale = i18n.language.replace('-', '_');
-    injectScript(locale);
+    injectScript(locale, this.handleStatusChange);
   }
 
   handleStatusChange = async response => {

@@ -4,6 +4,27 @@ import config from '../../config';
 const DEBUG = false;
 const log = message => DEBUG && console.log(message);
 
+const fbInit = onStatusChange => {
+  window.FB.init({
+    appId: config.facebookAppId,
+    autoLogAppEvents: true,
+    xfbml: true,
+    status: true,
+    version: 'v5.0',
+  });
+  window.FB.Event.subscribe('auth.statusChange', onStatusChange);
+
+  window.FB.Event.subscribe('auth.statusChange', response => {
+    log(response.authResponse);
+    if (response.authResponse) {
+      log('logged in');
+    } else {
+      log('logged out');
+    }
+  });
+  window.FB.getLoginStatus(onStatusChange);
+};
+
 /**
  * Set up the FB SDK
  * @param {function} onStatusChange - Login/logout callback.
@@ -12,33 +33,16 @@ const log = message => DEBUG && console.log(message);
 export const fbAsyncInit = async onStatusChange => {
   window.cypressEas = { statusChange: onStatusChange }; // This is only used for integration tests
   window.fbAsyncInit = () => {
-    log('init FB');
-    window.FB.init({
-      appId: config.facebookAppId,
-      autoLogAppEvents: true,
-      xfbml: true,
-      status: true,
-      version: 'v5.0',
-    });
-    window.FB.Event.subscribe('auth.statusChange', onStatusChange);
-
-    window.FB.Event.subscribe('auth.statusChange', response => {
-      log(response.authResponse);
-      if (response.authResponse) {
-        log('logged in');
-      } else {
-        log('logged out');
-      }
-    });
-    window.FB.getLoginStatus(onStatusChange);
+    fbInit();
   };
 };
 
-export const injectScript = locale => {
+export const injectScript = (locale, handleStatusChange) => {
   // eslint-disable-next-line func-names
   (function (d, s, id) {
     const fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {
+      fbInit(handleStatusChange);
       return;
     }
     const js = d.createElement(s);

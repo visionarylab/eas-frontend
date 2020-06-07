@@ -82,22 +82,6 @@ Cypress.Commands.add('mockFB', () => {
   });
 });
 
-Cypress.Commands.add('simulateFbStatusChange', newStatus => {
-  cy.window().then(win => {
-    const simulateStatusChange = missingAttempts => {
-      if (missingAttempts <= 0) {
-        throw new Error('fbAsyncInit did not run on time');
-      }
-      if (win.cypressEas) {
-        win.cypressEas.statusChange(newStatus);
-      } else {
-        setTimeout(() => simulateStatusChange(missingAttempts - 1), 200);
-      }
-    };
-    simulateStatusChange(3);
-  });
-});
-
 Cypress.Commands.add('goBackInTime', (fixtureFile, fixtureName, missingSeconds) => {
   // fixtureFile = FacebookRaffle
   cy.fixture(fixtureFile).then(fixtures => {
