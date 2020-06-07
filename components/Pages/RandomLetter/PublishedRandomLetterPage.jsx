@@ -10,6 +10,8 @@ import RandomLetterResult from './RandomLetterResult.jsx';
 import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
+import letterOgImage from './random_letter_og_image.png';
+
 import { getCurrentUrlFromWindow } from '../../../utils';
 import { ANALYTICS_TYPE_LETTER } from '../../../constants/analyticsTypes';
 
@@ -25,6 +27,7 @@ const PublishedRandomLetterPage = props => {
 
   return (
     <Page
+      ogImage={letterOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}

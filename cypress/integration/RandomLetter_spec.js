@@ -225,6 +225,15 @@ describe('Random Letter Page', () => {
       });
 
       describe('Published page', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/letter/ebdb2628-9fef-438d-9395-de1a4d7bc789')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_letter_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Cool title([^>]+)/);
+            });
+        });
+
         it('Google Analytics pageview event is sent', () => {
           cy.visit('/letter/ebdb2628-9fef-438d-9395-de1a4d7bc789');
           cy.get('@ga')
