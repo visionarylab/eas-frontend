@@ -157,7 +157,7 @@ describe('FacebookRaffle', () => {
             });
           });
 
-          it('should have Facebook login button if the user is not logged in Facebook yet', () => {
+          it.skip('should have Facebook login button if the user is not logged in Facebook yet', () => {
             cy.visit('/facebook/11111111-1022-408a-925f-aaaaaaaaaaaa');
             cy.window().then(win => {
               // eslint-disable-next-line no-param-reassign
@@ -177,7 +177,7 @@ describe('FacebookRaffle', () => {
             cy.getComponent('FacebookLoginButton').should('exist');
           });
 
-          it('should have button to participate if the user is already logged in Facebook', () => {
+          it.skip('should have button to participate if the user is already logged in Facebook', () => {
             cy.visit('/facebook/11111111-1022-408a-925f-aaaaaaaaaaaa');
             cy.window().then(win => {
               // eslint-disable-next-line no-param-reassign
@@ -220,7 +220,7 @@ describe('FacebookRaffle', () => {
             cy.mockedRequestWait('GET', '/api/raffle/11111111-1022-408a-925f-aaaaaaaaaaaa/');
           });
 
-          it('should indicate when the user is already a participant', () => {
+          it.skip('should indicate when the user is already a participant', () => {
             cy.visit('/facebook/11111111-1022-408a-925f-aaaaaaaaaaaa');
             cy.window().then(win => {
               // eslint-disable-next-line no-param-reassign
