@@ -11,6 +11,7 @@ import ResultsBox from '../../ResultsBox/ResultsBox.jsx';
 import Countdown from '../../Countdown/Countdown.jsx';
 import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import { getCurrentUrlFromWindow } from '../../../utils';
+import numberOgImage from './random_number_og_image.png';
 import { ANALYTICS_TYPE_NUMBER } from '../../../constants/analyticsTypes';
 
 const PublishedRandomNumberPage = props => {
@@ -30,6 +31,7 @@ const PublishedRandomNumberPage = props => {
       htmlKeywords={t('html_keywords')}
       noIndex
       pageType="Numbers Published Draw"
+      ogImage={numberOgImage}
     >
       <div>
         <DrawHeading title={title || t('page_title')} subtitle={description} />

@@ -10,6 +10,15 @@ describe('Random Number Page', () => {
       });
 
       describe('Quick Draw', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/number')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_number_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Generar números aleatorios([^>]+)/);
+            });
+        });
+
         it('Should send pageview events', () => {
           cy.visit('/number');
 
@@ -202,6 +211,16 @@ describe('Random Number Page', () => {
             );
           });
         });
+
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/number/public')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_number_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Generar números aleatorios([^>]+)/);
+            });
+        });
+
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/number/public');
@@ -264,6 +283,14 @@ describe('Random Number Page', () => {
       });
 
       describe('Published page', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/number/ebdb2628-9fef-438d-9395-de1a4d7bc789')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_number_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Cool title([^>]+)/);
+            });
+        });
         it('Google Analytics pageview event is sent', () => {
           cy.visit('/number/ebdb2628-9fef-438d-9395-de1a4d7bc789');
           cy.get('@ga')

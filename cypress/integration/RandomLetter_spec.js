@@ -10,6 +10,15 @@ describe('Random Letter Page', () => {
       });
 
       describe('Quick Draw', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/letter')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_letter_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Generar letras aleatorias([^>]+)/);
+            });
+        });
+
         it('Should send pageview events', () => {
           cy.visit('/letter');
 
@@ -168,6 +177,16 @@ describe('Random Letter Page', () => {
             );
           });
         });
+
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/letter/public')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*random_letter_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Generar letras aleatorias([^>]+)/);
+            });
+        });
+
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/letter/public');
@@ -234,7 +253,7 @@ describe('Random Letter Page', () => {
             });
         });
 
-        it('Google Analytics pageview event is sent', () => {
+        it('Analytics events sent on pageview', () => {
           cy.visit('/letter/ebdb2628-9fef-438d-9395-de1a4d7bc789');
           cy.get('@ga')
             .should('be.calledWith', 'create', 'UA-XXXXX-Y')

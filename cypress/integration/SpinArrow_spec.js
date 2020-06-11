@@ -6,6 +6,15 @@ describe('Spin Arrow Page', () => {
         cy.viewport(device);
       });
 
+      it('Should have the correct OG tags on SSR', () => {
+        cy.request('spinner')
+          .its('body')
+          .then(html => {
+            expect(html).to.match(/<meta property="og:image".*arrow_og_image([^>]+)/);
+            expect(html).to.match(/<meta property="og:title".*Girar una flecha([^>]+)/);
+          });
+      });
+
       it('Analytics pageview and event on toss', () => {
         cy.mockGA();
         cy.visit('/spinner');

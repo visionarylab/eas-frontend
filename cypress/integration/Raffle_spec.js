@@ -11,6 +11,15 @@ describe('Raffle Page', () => {
       });
 
       describe('Quick Raffle', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/raffle')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*raffle_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Organizar sorteo([^>]+)/);
+            });
+        });
+
         it('Should send pageview events', () => {
           cy.visit('/raffle');
 
@@ -171,6 +180,15 @@ describe('Raffle Page', () => {
       });
 
       describe('Public Draw', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/raffle/public')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*raffle_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Organizar sorteo([^>]+)/);
+            });
+        });
+
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/raffle/public');
@@ -297,14 +315,23 @@ describe('Raffle Page', () => {
       });
 
       describe('Published page', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*raffle_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*This is the title([^>]+)/);
+            });
+        });
+
         it('Analytics events sent on pageview', () => {
-          cy.visit('/raffle/b8985af9-f458-44d2-9b56-4a80ceefecf3');
+          cy.visit('/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad');
 
           cy.get('@ga')
             .should('be.calledWith', 'create', 'UA-XXXXX-Y')
             .and('be.calledWith', 'send', {
               hitType: 'pageview',
-              page: '/raffle/b8985af9-f458-44d2-9b56-4a80ceefecf3',
+              page: '/raffle/b29f44c2-1022-408a-925f-63e5f77a12ad',
             });
         });
 

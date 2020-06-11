@@ -5,6 +5,16 @@ describe('Flip a Coin Page', () => {
         cy.server();
         cy.viewport(device);
       });
+
+      it('Should have the correct OG tags on SSR', () => {
+        cy.request('coin')
+          .its('body')
+          .then(html => {
+            expect(html).to.match(/<meta property="og:image".*coin_og_image([^>]+)/);
+            expect(html).to.match(/<meta property="og:title".*Cara o cruz([^>]+)/);
+          });
+      });
+
       it('Should send GA pageview', () => {
         cy.mockGA();
         cy.visit('/coin');

@@ -14,6 +14,15 @@ describe('FacebookRaffle', () => {
       });
 
       describe('Public Draw', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('facebook')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*facebook_raffle_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*Sorteo en Facebook([^>]+)/);
+            });
+        });
+
         describe('Analytics', () => {
           it('Events sent on pageview', () => {
             cy.visit('/facebook');
@@ -128,6 +137,15 @@ describe('FacebookRaffle', () => {
       });
 
       describe('Published page', () => {
+        it('Should have the correct OG tags on SSR', () => {
+          cy.request('facebook/11111111-1022-408a-925f-63e5f77a12ad')
+            .its('body')
+            .then(html => {
+              expect(html).to.match(/<meta property="og:image".*facebook_raffle_og_image([^>]+)/);
+              expect(html).to.match(/<meta property="og:title".*This is the title([^>]+)/);
+            });
+        });
+
         it('Analytics events sent on pageview', () => {
           cy.visit('/facebook/11111111-1022-408a-925f-63e5f77a12ad');
 

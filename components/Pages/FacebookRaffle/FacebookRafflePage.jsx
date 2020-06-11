@@ -11,6 +11,7 @@ import DrawHeading from '../../DrawHeading/DrawHeading.jsx';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import PrizesInput from '../../PrizesInput.jsx';
 import withFieldValidation from '../../FormValidation/withFieldValidation.jsx';
+import facebookRaffleOgImage from './facebook_raffle_og_image.png';
 
 const ValidatedPrizesInput = withFieldValidation(PrizesInput);
 
@@ -80,6 +81,7 @@ const FacebookRafflePage = props => {
       htmlKeywords={t('html_keywords')}
       pageType="Facebook Raffle"
       showAdvert={!isMobile}
+      ogImage={facebookRaffleOgImage}
     >
       <DrawHeading title={t('page_title')} subtitle={t('draw_subheading')} />
       <WizardForm
