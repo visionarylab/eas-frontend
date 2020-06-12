@@ -11,7 +11,7 @@ import logo from './logo_vector.svg';
 
 const c = classNames.bind(STYLES);
 
-const showRecentDrawsEnabled = false;
+const showRecentDrawsEnabled = true;
 
 const Header = ({ t }) => {
   const router = useRouter();
