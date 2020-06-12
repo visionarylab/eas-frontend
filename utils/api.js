@@ -120,9 +120,10 @@ export const publish = async ({ values, urlSlug, track, setLoadingRequest, setAP
       ga: { action: 'Publish', category: analyticsType, label: newDraw.id },
     });
 
-    const drawPath = `/${urlSlug}/${newDraw.id}/success`;
+    const drawPath = `/${urlSlug}/${newDraw.id}`;
+    const drawPathSuccess = `${drawPath}/success`;
     recentDraws.add(newDraw, drawPath, dateScheduled);
-    Router.push(`/${urlSlug}/[id]/success`, drawPath);
+    Router.push(`/${urlSlug}/[id]/success`, drawPathSuccess);
   } catch (error) {
     logApiError(error, analyticsType);
     setAPIError(true);

@@ -48,6 +48,8 @@ const LinkCell = ({ children, ...props }) => (
   </Link>
 );
 
+const uutidRegex = /([0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12})/;
+
 LinkCell.propTypes = {
   children: PropTypes.node.isRequired,
 };
@@ -61,7 +63,11 @@ const RecentDrawsTable = ({ draws, handleClickRemove, handleDrawClick, t }) => (
           title: t('column_title_label'),
           field: 'title',
           render: rowData => (
-            <LinkCell href={rowData.url} onClick={handleDrawClick}>
+            <LinkCell
+              href={rowData.url.replace(uutidRegex, '[id]')}
+              as={rowData.url}
+              onClick={handleDrawClick}
+            >
               {rowData.title}
             </LinkCell>
           ),
@@ -69,7 +75,15 @@ const RecentDrawsTable = ({ draws, handleClickRemove, handleDrawClick, t }) => (
         {
           title: t('column_dateSchedule_label'),
           field: 'scheduleDate',
-          render: rowData => <LinkCell href={rowData.url}>{rowData.scheduleDate}</LinkCell>,
+          render: rowData => (
+            <LinkCell
+              href={rowData.url.replace(uutidRegex, '[id]')}
+              as={rowData.url}
+              onClick={handleDrawClick}
+            >
+              {rowData.scheduleDate}
+            </LinkCell>
+          ),
         },
       ]}
       data={draws}
@@ -97,11 +111,13 @@ const RecentDrawsTable = ({ draws, handleClickRemove, handleDrawClick, t }) => (
 );
 
 RecentDrawsTable.propTypes = {
-  draws: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    scheduleDate: PropTypes.string.isRequired,
-  }).isRequired,
+  draws: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      scheduleDate: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   handleClickRemove: PropTypes.func.isRequired,
   handleDrawClick: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

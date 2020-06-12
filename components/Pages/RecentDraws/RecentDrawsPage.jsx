@@ -69,9 +69,7 @@ const RecentDrawsPage = props => {
     >
       <DrawHeading title={t('page_title')} />
       {listEmpty ? (
-        <Typography variant="body2" data-testid="RecentDraws__list-empty">
-          {t('empty_list')}
-        </Typography>
+        <Typography variant="body2">{t('empty_list')}</Typography>
       ) : (
         <>
           <RecentDrawsTable
@@ -113,7 +111,6 @@ const RecentDrawsPage = props => {
                     : handleClearRecentDraws
                 }
                 color="primary"
-                data-testid="RecentDraws__modal-confirm"
               >
                 {selectedDrawId
                   ? t('delete_recent_draw_modal_confirm')
