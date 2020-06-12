@@ -4,6 +4,7 @@ $brand-font-size: 1.375rem;
 $links-line-height: 2rem;
 
 .Header {
+  min-height: $spacing-md + $spacing-lg;
   padding: $spacing-xs $spacing-lg;
   background-color: $color-primary;
 
