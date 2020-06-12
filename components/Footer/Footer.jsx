@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames/bind';
-import Typography from '@material-ui/core/Typography';
 import { withTranslation } from '../../i18n';
-import TranslationsSwitch from '../TranslationsSwitch.jsx';
+import TranslationsSwitch from './TranslationsSwitch.jsx';
 import STYLES from './Footer.module.scss';
 import { environment } from '../../utils';
 import { TYPE_APP_ENV_PRODUCTION, TYPE_APP_ENV_LOCAL } from '../../constants/environment';
 import Button from '../Button.jsx';
-
-const c = classnames.bind(STYLES);
 
 const availableLocales = ['es-ES', 'en-GB'];
 
@@ -42,11 +38,9 @@ const Footer = ({ t, i18n }) => {
   };
 
   return (
-    <footer className={c('Footer')}>
-      <Button href="/privacy-policy">
-        <Typography className={c('Footer__link')} variant="body2" component="span">
-          {t('privacy_policy')}
-        </Typography>
+    <footer className={STYLES.container}>
+      <Button className={STYLES.button} href="/privacy-policy">
+        {t('privacy_policy')}
       </Button>
       <TranslationsSwitch onChange={handleChangeLanguage} available={availableLocales} />
     </footer>

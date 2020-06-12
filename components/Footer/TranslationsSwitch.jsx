@@ -9,7 +9,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { withTranslation } from '../i18n';
+import { withTranslation } from '../../i18n';
+import STYLES from './TranslationsSwitch.module.scss';
 
 const localeMap = {
   'en-GB': 'English',
@@ -32,7 +33,7 @@ const TranslationsSwitch = ({ available, onChange, t, i18n }) => {
   }
   return (
     <>
-      <Button onClick={handleOpen}>
+      <Button onClick={handleOpen} className={STYLES.button}>
         <TranslateIcon fontSize="small" titleAccess={t('change_language')} />
         &nbsp;
         {localeMap[i18n.language]}
@@ -51,11 +52,11 @@ const TranslationsSwitch = ({ available, onChange, t, i18n }) => {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
+          <Button onClick={handleClose} variant="contained">
+            {t('cancel')}
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Ok
+          <Button onClick={handleClose} variant="contained" color="primary">
+            {t('save')}
           </Button>
         </DialogActions>
       </Dialog>

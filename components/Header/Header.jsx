@@ -11,7 +11,7 @@ import logo from './logo_vector.svg';
 
 const c = classNames.bind(STYLES);
 
-const showRecentDrawsEnabled = true;
+const showRecentDrawsEnabled = false;
 
 const Header = ({ t }) => {
   const router = useRouter();
@@ -24,11 +24,9 @@ const Header = ({ t }) => {
         </Typography>
       </a>
       {showRecentDrawsEnabled && router.pathname !== '/recent' && (
-        <span className={c('Header__links')}>
-          <Button href="/recent" color="textPrimary">
-            <Typography variant="body1" component="span" inline>
-              {t('recent_draws')}
-            </Typography>
+        <span className={STYLES.links}>
+          <Button href="/recent" className={STYLES.button}>
+            {t('recent_draws')}
           </Button>
         </span>
       )}

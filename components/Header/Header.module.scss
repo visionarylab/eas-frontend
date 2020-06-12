@@ -27,9 +27,14 @@ $links-line-height: 2rem;
     height: 2rem;
     vertical-align: middle;
   }
+}
 
-  &__links {
-    float: right;
-    line-height: $links-line-height;
-  }
+.links {
+  float: right;
+  line-height: $links-line-height;
+}
+
+.button {
+  color: $color-white;
+  font-weight: bold;
 }
