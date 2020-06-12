@@ -3,18 +3,5 @@
     "basic_info": "Usamos cookies para asegurar la mejor experiencia en nuestra página.",
     "got_it": "Entendido",
     "learn_more": "Más información"
-  },
-  "RecentDrawsPage": {
-    "delete_all_recent_draws_modal_cancel": "Cancelar",
-    "delete_all_recent_draws_modal_confirm": "Borrar historial",
-    "delete_all_recent_draws_modal_content": "Los sorteos sólamente serán eliminados de tu historial de tiradas recientes, los participantes podrán seguir accediendo a ellos sin tienen los links.",
-    "delete_all_recent_draws_modal_title": "¿Quieres borrar tu historial de sorteos?",
-    "delete_recent_draw_modal_confirm": "Eliminar sorteo",
-    "delete_recent_draw_modal_content": "El sorteo sólamente será eliminado de tu historial de sorteos recientes, los participantes que tengan el link podrán seguir accediendo si.",
-    "delete_recent_draw_modal_title": "Eliminar sorteo de tu historial",
-    "delete_recent_raffles_button_label": "Eliminar todos tus sorteos recientes",
-    "empty_list": "No has realizado ningún sorteo público",
-    "html_title": "Sorteos recientes",
-    "page_title": "Sorteos recientes"
   }
 }

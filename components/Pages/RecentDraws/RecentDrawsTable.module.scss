@@ -1,0 +1,12 @@
+@import '../../variables.module';
+
+.container {
+  width: 100%;
+  padding: 0 $spacing-md;
+}
+
+.cell {
+  display: block;
+  padding: $spacing-md;
+  text-decoration: none;
+}
