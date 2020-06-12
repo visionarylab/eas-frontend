@@ -6,7 +6,7 @@ import { releaseCommit } from '../utils';
 
 export default class MyDocument extends Document {
   render() {
-    const { language } = this.props;
+    const { language, materialUiStyles } = this.props;
 
     return (
       <Html lang={language} data-release-commit={releaseCommit}>
@@ -30,6 +30,7 @@ export default class MyDocument extends Document {
 
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          {materialUiStyles}
         </Head>
         <body>
           <style jsx>{`
@@ -108,7 +109,6 @@ MyDocument.getInitialProps = async ctx => {
   return {
     ...initialProps,
     ...additionalProps,
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+    materialUiStyles: sheets.getStyleElement(),
   };
 };
