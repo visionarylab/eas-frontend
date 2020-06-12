@@ -41,8 +41,8 @@ describe('RecentRaffles', () => {
 
       it('Should show all recent draws', () => {
         cy.visit('/recent');
-        cy.findByRole('row', { name: /A Raffle June 7, 2020 12:37 PM/ });
-        cy.findByRole('row', { name: /Sorteo de grupos aleatorios June 7, 2020 11:06 AM/ });
+        cy.findByRole('row', { name: /A Raffle June 7, 2020 6:37 AM/ });
+        cy.findByRole('row', { name: /Sorteo de grupos aleatorios June 7, 2020 5:06 AM/ });
       });
 
       it('Recent raffles should have working links', () => {
