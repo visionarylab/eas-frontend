@@ -5,10 +5,10 @@ $links-line-height: 2rem;
 
 .container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   min-height: $spacing-md + $spacing-lg;
   padding: 0 $spacing-lg;
+  justify-content: space-between;
+  align-items: center;
   background-color: $color-primary;
 
   @media (min-width: $media-phone) {
