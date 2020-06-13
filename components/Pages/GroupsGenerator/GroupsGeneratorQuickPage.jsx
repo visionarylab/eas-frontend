@@ -73,7 +73,7 @@ GroupsGeneratorQuickPage.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.number,
+    numberOfGroups: PropTypes.string,
   }).isRequired,
   loadingRequest: PropTypes.bool,
   onFieldChange: PropTypes.func.isRequired,

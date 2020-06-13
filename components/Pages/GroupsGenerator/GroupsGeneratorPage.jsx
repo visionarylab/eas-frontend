@@ -90,7 +90,7 @@ GroupsGeneratorPage.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.number,
+    numberOfGroups: PropTypes.string,
     dateScheduled: PropTypes.instanceOf(Date),
   }).isRequired,
   apiError: PropTypes.bool,

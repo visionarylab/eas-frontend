@@ -29,47 +29,43 @@ const PublishedRandomNumberPage = props => {
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
+      ogImage={numberOgImage}
       noIndex
       pageType="Numbers Published Draw"
-      ogImage={numberOgImage}
     >
-      <div>
-        <DrawHeading title={title || t('page_title')} subtitle={description} />
-        {result.value ? (
-          <ResultsBox title={t('generated_results')}>
-            <RandomNumberResult result={result} />
-          </ResultsBox>
-        ) : (
-          <Countdown date={result.schedule_date} />
-        )}
+      <DrawHeading title={title || t('page_title')} subtitle={description} />
+      {result.value ? (
+        <ResultsBox title={t('generated_results')}>
+          <RandomNumberResult result={result} />
+        </ResultsBox>
+      ) : (
+        <Countdown date={result.schedule_date} />
+      )}
 
-        <ShareButtons
-          drawType={ANALYTICS_TYPE_NUMBER}
-          sectionTitle={
-            result.value
-              ? t('CommonPublishedDraw:share_result')
-              : t('CommonPublishedDraw:share_draw')
-          }
-          url={shareUrl}
-        />
-        <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
-          {description && <Typography variant="body2">{description}</Typography>}
+      <ShareButtons
+        drawType={ANALYTICS_TYPE_NUMBER}
+        sectionTitle={
+          result.value ? t('CommonPublishedDraw:share_result') : t('CommonPublishedDraw:share_draw')
+        }
+        url={shareUrl}
+      />
+      <PublishedDrawDetails sectionTitle={t('published_draw_details')}>
+        {description && <Typography variant="body2">{description}</Typography>}
+        <Typography component="div" variant="body2">
+          {t('field_label_from')} {rangeMin}
+        </Typography>
+        <Typography component="div" variant="body2">
+          {t('field_label_to')} {rangeMax}
+        </Typography>
+        <Typography component="div" variant="body2">
+          {t('field_label_number_of_results')} {numberOfResults}
+        </Typography>
+        {numberOfResults > 1 && (
           <Typography component="div" variant="body2">
-            {t('field_label_from')} {rangeMin}
+            {t('field_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
           </Typography>
-          <Typography component="div" variant="body2">
-            {t('field_label_to')} {rangeMax}
-          </Typography>
-          <Typography component="div" variant="body2">
-            {t('field_label_number_of_results')} {numberOfResults}
-          </Typography>
-          {numberOfResults > 1 && (
-            <Typography component="div" variant="body2">
-              {t('field_label_allow_repeated')} {allowRepeated ? 'yes' : 'no'}
-            </Typography>
-          )}
-        </PublishedDrawDetails>
-      </div>
+        )}
+      </PublishedDrawDetails>
     </Page>
   );
 };

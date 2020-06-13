@@ -1,8 +1,10 @@
 import {
   RandomNumberApi,
+  RandomNumber,
   LetterApi,
   Letter,
-  RandomNumber,
+  GroupsApi,
+  Groups,
   DrawTossPayload,
 } from 'echaloasuerte-js-sdk';
 import Router from 'next/router';
@@ -12,21 +14,24 @@ import recentDraws from '../services/recentDraws';
 import { getDrawDataFromValues, getValuesFromDraw } from './draw';
 
 import { analyticsTypesBySlug } from '../constants/analyticsTypes';
-import { URL_SLUG_NUMBER, URL_SLUG_LETTER } from '../constants/urlSlugs';
+import { URL_SLUG_NUMBER, URL_SLUG_LETTER, URL_SLUG_GROUPS } from '../constants/urlSlugs';
 
 const apisBySlug = {
   [URL_SLUG_NUMBER]: RandomNumberApi,
   [URL_SLUG_LETTER]: LetterApi,
+  [URL_SLUG_GROUPS]: GroupsApi,
 };
 
 const drawObjectBySlug = {
   [URL_SLUG_NUMBER]: RandomNumber,
   [URL_SLUG_LETTER]: Letter,
+  [URL_SLUG_GROUPS]: Groups,
 };
 
 const apiDrawTypeBySlug = {
   [URL_SLUG_NUMBER]: 'randomNumber',
   [URL_SLUG_LETTER]: 'letter',
+  [URL_SLUG_GROUPS]: 'groups',
 };
 
 const apiToss = (urlSlug, privateId, payload = {}) => {

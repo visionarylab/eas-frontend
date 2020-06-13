@@ -40,7 +40,7 @@ GroupsGeneratorConfigurationSection.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     participants: PropTypes.arrayOf(PropTypes.string),
-    numberOfGroups: PropTypes.number,
+    numberOfGroups: PropTypes.string,
   }).isRequired,
   onFieldChange: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,

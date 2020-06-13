@@ -16,18 +16,19 @@ import { ANALYTICS_TYPE_GROUPS } from '../../../constants/analyticsTypes';
 
 const PublishedGroupsGeneratorPage = props => {
   const { draw, t } = props;
-
-  const { title, description, participants, numberOfGroups, result } = draw;
+  const { values, results } = draw;
+  const { title, description, participants, numberOfGroups } = values;
+  const result = results[0];
   const shareUrl = getCurrentUrlFromWindow();
 
   useLoadDataAfterCountdown(result);
 
   return (
     <Page
-      ogImage={groupsOgImage}
       htmlTitle={title || t('html_title')}
       htmlDescription={description || t('html_description')}
       htmlKeywords={t('html_keywords')}
+      ogImage={groupsOgImage}
       noIndex
       pageType="Groups Published Draw"
     >
@@ -60,17 +61,20 @@ const PublishedGroupsGeneratorPage = props => {
 
 PublishedGroupsGeneratorPage.propTypes = {
   draw: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string,
-    participants: PropTypes.arrayOf(PropTypes.string).isRequired,
-    numberOfGroups: PropTypes.number,
-    description: PropTypes.string,
-    result: PropTypes.shape({
-      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+      numberOfGroups: PropTypes.string,
+      description: PropTypes.string,
     }),
-    isOwner: PropTypes.bool,
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+        schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+          .isRequired,
+        value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+      }),
+    ),
   }).isRequired,
   t: PropTypes.func.isRequired,
 };

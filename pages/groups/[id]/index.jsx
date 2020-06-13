@@ -1,101 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { GroupsApi } from 'echaloasuerte-js-sdk';
-import { logApiError } from '../../../utils/logger';
 import GroupsGeneratorPageContainer from '../../../components/Pages/GroupsGenerator/GroupsGeneratorPageContainer.jsx';
 import PublishedGroupsGeneratorPage from '../../../components/Pages/GroupsGenerator/PublishedGroupsGeneratorPage.jsx';
-import { ANALYTICS_TYPE_GROUPS } from '../../../constants/analyticsTypes';
-import ErrorPage from '../../../components/Pages/ErrorPage/ErrorPage.jsx';
+import ReadPage from '../../../components/Pages/ReadPage.jsx';
+import getInitialProps from '../../../utils/getInitialProps';
+import { URL_SLUG_GROUPS } from '../../../constants/urlSlugs';
 
-const Groups = ({ draw, error }) => {
-  if (error) {
-    return <ErrorPage {...error} />;
-  }
-  const { isQuickDraw } = draw;
-  return isQuickDraw ? (
-    <GroupsGeneratorPageContainer draw={draw} />
-  ) : (
-    <PublishedGroupsGeneratorPage draw={draw} />
-  );
-};
+const GroupsReadPage = props => (
+  <ReadPage
+    {...props}
+    MainPage={GroupsGeneratorPageContainer}
+    PublishedPage={PublishedGroupsGeneratorPage}
+  />
+);
 
-Groups.propTypes = {
-  draw: PropTypes.shape({
-    isQuickDraw: PropTypes.bool.isRequired,
-  }),
-  error: PropTypes.shape({}),
-};
-
-Groups.defaultProps = {
-  draw: null,
-  error: null,
-};
-
-const groupsApi = new GroupsApi();
-
-const loadData = async drawId => {
-  const draw = await groupsApi.groupsRead(drawId);
-  const {
-    id,
-    private_id: privateId,
-    title,
-    description,
-    participants: participantsObjects,
-    number_of_groups: numberOfGroups,
-    results,
-    metadata,
-  } = draw;
-  const lastResult = results[0];
-  const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
-  const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
-  const participants = participantsObjects.map(p => p.name);
-
-  if (isQuickDraw) {
-    return {
-      privateId,
-      participants,
-      numberOfGroups,
-      lastResult,
-      isQuickDraw,
-    };
-  }
-
-  return {
-    id,
-    title,
-    description,
-    participants,
-    numberOfGroups,
-    result: lastResult,
-    isOwner: Boolean(privateId),
-    isQuickDraw,
-  };
-};
-
-Groups.getInitialProps = async ctx => {
+GroupsReadPage.getInitialProps = async ctx => {
   const { id: drawId } = ctx.query;
-  try {
-    const draw = await loadData(drawId);
-    const commonNamespaces = ['DrawGroups', 'Common'];
-    let namespacesRequired;
-    if (draw.isQuickDraw) {
-      namespacesRequired = [...commonNamespaces, 'ParticipantsInput', 'CommonCreateDraw'];
-    } else {
-      namespacesRequired = [...commonNamespaces, 'CommonPublishedDraw'];
-    }
-    return {
-      namespacesRequired,
-      draw,
-    };
-  } catch (error) {
-    logApiError(error, ANALYTICS_TYPE_GROUPS);
-    return {
-      namespacesRequired: ['Common'],
-      error: {
-        statusCode: error.status || 500,
-      },
-    };
-  }
+  return getInitialProps({ drawId, urlSlug: URL_SLUG_GROUPS });
 };
 
-export default Groups;
+export default GroupsReadPage;
