@@ -14,9 +14,9 @@ const getIsQuickDraw = draw => {
 };
 
 export const getBaseProps = draw => {
-  const { private_id: privateId, title, description, results } = draw;
+  const { private_id: privateId, id, title, description, results } = draw;
   const isQuickDraw = getIsQuickDraw(draw);
-  const commonValues = { results, isQuickDraw };
+  const commonValues = { id, results, isQuickDraw };
   if (isQuickDraw) {
     return { ...commonValues, privateId, values: {} };
   }

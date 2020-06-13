@@ -3,6 +3,7 @@ import {
   URL_SLUG_LETTER,
   URL_SLUG_GROUPS,
   URL_SLUG_RAFFLE,
+  URL_SLUG_FACEBOOK,
 } from '../../constants/urlSlugs';
 import {
   getNumberDrawDataFromValues,
@@ -25,12 +26,18 @@ import {
   getRaffleValuesFromDraw,
   getRaffleTranslationFiles,
 } from './raffle';
+import {
+  getFacebookRaffleDrawDataFromValues,
+  getFacebookRaffleValuesFromDraw,
+  getFacebookRaffleTranslationFiles,
+} from './facebookRaffle';
 
 const getDrawByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberDrawDataFromValues,
   [URL_SLUG_LETTER]: getLetterDrawDataFromValues,
   [URL_SLUG_GROUPS]: getGroupsDrawDataFromValues,
   [URL_SLUG_RAFFLE]: getRaffleDrawDataFromValues,
+  [URL_SLUG_FACEBOOK]: getFacebookRaffleDrawDataFromValues,
 };
 
 const getValuesByUrlSlug = {
@@ -38,12 +45,14 @@ const getValuesByUrlSlug = {
   [URL_SLUG_LETTER]: getLetterValuesFromDraw,
   [URL_SLUG_GROUPS]: getGroupsValuesFromDraw,
   [URL_SLUG_RAFFLE]: getRaffleValuesFromDraw,
+  [URL_SLUG_FACEBOOK]: getFacebookRaffleValuesFromDraw,
 };
 const getTranslationByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberTranslationFiles,
   [URL_SLUG_LETTER]: getLetterTranslationFiles,
   [URL_SLUG_GROUPS]: getGroupsTranslationFiles,
   [URL_SLUG_RAFFLE]: getRaffleTranslationFiles,
+  [URL_SLUG_FACEBOOK]: getFacebookRaffleTranslationFiles,
 };
 
 export const getDrawDataFromValues = ({ urlSlug, values, isPublic }) =>

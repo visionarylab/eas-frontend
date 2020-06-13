@@ -97,6 +97,7 @@ describe('FacebookRaffle', () => {
                 description: 'A cool description',
                 participants: [],
                 prizes: [{ name: 'Prize 1' }],
+                metadata: [{ client: 'web', key: 'isQuickDraw', value: 'false' }],
               });
             cy.mockedRequestWait('POST', '/api/raffle/29080f6b-b3e4-412c-8008-7e26081ea17c/toss/');
             cy.get('@ga').should('be.calledWith', 'send', {

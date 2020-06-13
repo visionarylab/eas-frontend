@@ -27,7 +27,9 @@ const c = classNames.bind(STYLES);
 const raffleApi = new RaffleApi();
 
 const PublishedFacebookRafflePage = ({ draw, t, track, facebookContext }) => {
-  const { id: drawId, title, description, participants, prizes, result } = draw;
+  const { id: drawId, values, results } = draw;
+  const { title, description, participants, prizes } = values;
+  const result = results[0];
   const { username, userId } = facebookContext;
   const [userRegisteredInRaffle, setUserRegisteredInRaffle] = useState(false);
   const [registerFailedErrorMessage, setRegisterFailedErrorMessage] = useState('');
@@ -162,30 +164,29 @@ const PublishedFacebookRafflePage = ({ draw, t, track, facebookContext }) => {
 
 PublishedFacebookRafflePage.propTypes = {
   draw: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    participants: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-        facebook_id: PropTypes.string,
-      }),
-    ).isRequired,
-    prizes: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-        facebook_id: PropTypes.string,
-      }),
-    ).isRequired,
-    description: PropTypes.string,
-    result: PropTypes.shape({
-      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      value: PropTypes.arrayOf(PropTypes.shape()),
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      participants: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          id: PropTypes.string.isRequired,
+          created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+            .isRequired,
+          facebook_id: PropTypes.string,
+        }),
+      ).isRequired,
+      prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
     }),
+    id: PropTypes.string,
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+        schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+          .isRequired,
+        value: PropTypes.arrayOf(PropTypes.shape()),
+      }),
+    ),
     isOwner: PropTypes.bool,
   }).isRequired,
   facebookContext: PropTypes.shape({
