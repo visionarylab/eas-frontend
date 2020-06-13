@@ -3,30 +3,37 @@
 $brand-font-size: 1.375rem;
 $links-line-height: 2rem;
 
-.Header {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   min-height: $spacing-md + $spacing-lg;
-  padding: $spacing-xs $spacing-lg;
+  padding: 0 $spacing-lg;
   background-color: $color-primary;
 
-  & &__title {
-    margin-left: $spacing-xs;
+  @media (min-width: $media-phone) {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.title {
+  margin-left: $spacing-xs;
+  color: $color-white;
+  font-size: $brand-font-size;
+  vertical-align: middle;
+}
+
+.link {
+  text-decoration: none;
+
+  &:visited {
     color: $color-white;
-    font-size: $brand-font-size;
-    vertical-align: middle;
   }
+}
 
-  &__link {
-    text-decoration: none;
-  }
-
-  &__link:visited {
-    color: $color-white;
-  }
-
-  &__logo {
-    height: 2rem;
-    vertical-align: middle;
-  }
+.logo {
+  height: 2rem;
+  vertical-align: middle;
 }
 
 .links {

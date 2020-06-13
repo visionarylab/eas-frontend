@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import MuiButton from '@material-ui/core/Button';
+import MuiIconButton from '@material-ui/core/IconButton';
 
 const ButtonLink = React.forwardRef(({ href, hrefAs, children, ...rest }, ref) => (
   <NextLink ref={ref} href={href} as={hrefAs}>
@@ -26,6 +27,15 @@ const Button = ({ children, ...rest }) => (
   </MuiButton>
 );
 Button.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export const IconButton = ({ children, ...rest }) => (
+  <MuiIconButton component={ButtonLink} {...rest}>
+    {children}
+  </MuiIconButton>
+);
+IconButton.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
