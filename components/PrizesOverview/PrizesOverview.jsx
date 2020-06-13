@@ -12,8 +12,8 @@ const PrizesOverview = ({ prizes, t }) => (
     <Typography variant="h2">{t('prizes_label')}</Typography>
     <ul className={STYLES.list}>
       {prizes.map((prize, i) => (
-        <li key={`prize-${prize.id}-${i}`}>
-          <Chip label={prize.name} />
+        <li key={`prize-${prize}-${i}`}>
+          <Chip label={prize} />
         </li>
       ))}
     </ul>
@@ -21,12 +21,7 @@ const PrizesOverview = ({ prizes, t }) => (
 );
 
 PrizesOverview.propTypes = {
-  prizes: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
   t: PropTypes.func.isRequired,
 };
 

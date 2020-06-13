@@ -17,7 +17,9 @@ import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
 
 const PublishedRafflePage = props => {
   const { draw, t } = props;
-  const { title, description, participants, prizes, result } = draw;
+  const { values, results } = draw;
+  const { title, description, participants, prizes } = values;
+  const result = results[0];
   const shareUrl = getCurrentUrlFromWindow();
   useLoadDataAfterCountdown(result);
 
@@ -64,16 +66,20 @@ const PublishedRafflePage = props => {
 
 PublishedRafflePage.propTypes = {
   draw: PropTypes.shape({
-    title: PropTypes.string,
-    participants: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    prizes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    description: PropTypes.string,
-    result: PropTypes.shape({
-      created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-      value: PropTypes.arrayOf(PropTypes.shape({})),
-    }),
-    isOwner: PropTypes.bool,
+    values: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+      prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        created_at: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+        schedule_date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+          .isRequired,
+        value: PropTypes.arrayOf(PropTypes.shape({})),
+      }),
+    ).isRequired,
   }).isRequired,
   t: PropTypes.func.isRequired,
 };

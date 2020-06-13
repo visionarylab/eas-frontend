@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { RaffleApi, Raffle, DrawTossPayload } from 'echaloasuerte-js-sdk';
-import moment from 'moment';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { withTranslation } from '../../../i18n';
 import withTracking from '../../../hocs/withTracking.jsx';
-import { logApiError } from '../../../utils/logger';
-import recentDraws from '../../../services/recentDraws';
-import throttle from '../../../services/throttle';
 import RafflePage from './RafflePage.jsx';
 import RaffleQuickPage from './RaffleQuickPage.jsx';
-import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
+import { toss, publish } from '../../../utils/api';
+import { URL_SLUG_RAFFLE } from '../../../constants/urlSlugs';
 
-const raffleApi = new RaffleApi();
+const urlSlug = URL_SLUG_RAFFLE;
 
 const getInitialValues = (previousDraw, t) => {
   const dateScheduled = new Date();
@@ -20,19 +16,19 @@ const getInitialValues = (previousDraw, t) => {
   const initialValues = {
     title: t('field_default_title'),
     description: '',
-    participants: previousDraw?.participants.map(p => p.name) || [],
-    prizes: previousDraw?.prizes.map(p => p.name) || [],
+    participants: previousDraw?.values.participants || [],
+    prizes: previousDraw?.values.prizes || [],
     dateScheduled,
   };
   return initialValues;
 };
 const getInitialPrivateId = previousDraw => previousDraw?.privateId;
-const getInitialQuickResult = previousDraw => previousDraw?.lastResult;
+const getInitialQuickResult = previousDraw => previousDraw?.results[0];
 const initialLoadingRequest = false;
 const initialApiError = false;
 
 const RafflePageContainer = props => {
-  const { draw: previousDraw, t } = props;
+  const { draw: previousDraw, t, track } = props;
 
   const [privateId, setPrivateId] = useState(getInitialPrivateId(previousDraw));
   const [values, setValues] = useState(getInitialValues(previousDraw, t));
@@ -62,84 +58,26 @@ const RafflePageContainer = props => {
     }));
   };
 
-  const createDraw = () => {
-    const { title, description, participants, prizes } = values;
-    const drawData = {
-      prizes: prizes.map(prize => ({ name: prize })),
-      participants: participants.map(participant => ({ name: participant })),
-      title: isPublic && title ? title : null,
-      description: isPublic && description ? description : null,
-      metadata: [{ client: 'web', key: 'isQuickDraw', value: !isPublic }],
-    };
-    const raffleDraw = Raffle.constructFromObject(drawData);
-    return raffleApi.raffleCreate(raffleDraw);
+  const handleToss = () => {
+    toss({
+      values,
+      privateId,
+      urlSlug,
+      track,
+      setLoadingRequest,
+      setAPIError,
+      setQuickResult,
+    });
   };
 
-  const handleToss = async () => {
-    const tsStart = new Date().getTime();
-    setLoadingRequest(true);
-
-    let shouldRedirect;
-    let privateIdToToss;
-    try {
-      // Create the draw only if it wasn't created in a previous toss
-      if (!privateId) {
-        const newDraw = await createDraw();
-        shouldRedirect = true;
-        privateIdToToss = newDraw.private_id;
-      } else {
-        privateIdToToss = privateId;
-      }
-
-      const tossResponse = await raffleApi.raffleToss(privateIdToToss, {});
-      const { track } = props;
-      track({
-        mp: {
-          name: `Toss - ${ANALYTICS_TYPE_RAFFLE}`,
-          properties: { drawType: ANALYTICS_TYPE_RAFFLE },
-        },
-        ga: { action: 'Toss', category: ANALYTICS_TYPE_RAFFLE },
-      });
-      throttle(() => {
-        if (shouldRedirect) {
-          Router.push('/raffle/[id]', `/raffle/${privateIdToToss}`);
-        } else {
-          setAPIError(false);
-          setLoadingRequest(false);
-          setQuickResult(tossResponse);
-        }
-      }, tsStart);
-    } catch (error) {
-      logApiError(error, ANALYTICS_TYPE_RAFFLE);
-      setAPIError(true);
-      setLoadingRequest(false);
-    }
-  };
-
-  const handlePublish = async () => {
-    setLoadingRequest(true);
-
-    try {
-      const newDraw = await createDraw();
-      const { dateScheduled } = values;
-      const drawTossPayload = DrawTossPayload.constructFromObject({ schedule_date: dateScheduled });
-      const tossResponse = await raffleApi.raffleToss(newDraw.private_id, drawTossPayload);
-      const scheduleDate = moment(tossResponse.schedule_date).unix();
-      const { track } = props;
-      track({
-        mp: {
-          name: `Publish - ${ANALYTICS_TYPE_RAFFLE}`,
-          properties: { drawType: ANALYTICS_TYPE_RAFFLE, drawId: newDraw.id },
-        },
-        ga: { action: 'Publish', category: ANALYTICS_TYPE_RAFFLE, label: newDraw.id },
-      });
-      const drawPath = `/raffle/${newDraw.id}/success`;
-      recentDraws.add(newDraw, drawPath, scheduleDate);
-      Router.push(`/raffle/[id]/success`, drawPath);
-    } catch (err) {
-      setAPIError(true);
-      setLoadingRequest(false);
-    }
+  const handlePublish = () => {
+    publish({
+      values,
+      urlSlug,
+      track,
+      setLoadingRequest,
+      setAPIError,
+    });
   };
 
   const handleCheckErrorsInConfiguration = () => {
@@ -176,12 +114,12 @@ const RafflePageContainer = props => {
 
 RafflePageContainer.propTypes = {
   draw: PropTypes.shape({
-    privateId: PropTypes.string.isRequired,
-    participants: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    prizes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    quickResult: PropTypes.shape({
-      value: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
+    values: PropTypes.shape({
+      participants: PropTypes.arrayOf(PropTypes.string).isRequired,
+      prizes: PropTypes.arrayOf(PropTypes.string).isRequired,
     }),
+    privateId: PropTypes.string.isRequired,
+    results: PropTypes.arrayOf(PropTypes.shape({})),
   }),
   t: PropTypes.func.isRequired,
   track: PropTypes.func.isRequired,

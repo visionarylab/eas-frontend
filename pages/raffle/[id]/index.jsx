@@ -1,100 +1,18 @@
-import { RaffleApi } from 'echaloasuerte-js-sdk';
 import React from 'react';
-import PropTypes from 'prop-types';
-import { ANALYTICS_TYPE_RAFFLE } from '../../../constants/analyticsTypes';
-import ErrorPage from '../../../components/Pages/ErrorPage/ErrorPage.jsx';
-import { logApiError } from '../../../utils/logger';
 import PublishedRafflePage from '../../../components/Pages/Raffle/PublishedRafflePage.jsx';
 import RafflePageContainer from '../../../components/Pages/Raffle/RafflePageContainer.jsx';
+import ReadPage from '../../../components/Pages/ReadPage.jsx';
+import getInitialProps from '../../../utils/getInitialProps';
 
-const raffleApi = new RaffleApi();
+import { URL_SLUG_RAFFLE } from '../../../constants/urlSlugs';
 
-const Raffle = ({ draw, error }) => {
-  if (error) {
-    return <ErrorPage {...error} />;
-  }
-  const { isQuickDraw } = draw;
-  return isQuickDraw ? <RafflePageContainer draw={draw} /> : <PublishedRafflePage draw={draw} />;
-};
+const RaffleReadPage = props => (
+  <ReadPage {...props} MainPage={RafflePageContainer} PublishedPage={PublishedRafflePage} />
+);
 
-Raffle.propTypes = {
-  draw: PropTypes.shape({
-    isQuickDraw: PropTypes.bool.isRequired,
-  }).isRequired,
-  error: PropTypes.shape({}),
-};
-
-Raffle.defaultProps = {
-  error: null,
-};
-
-const loadData = async drawId => {
-  const draw = await raffleApi.raffleRead(drawId);
-  const {
-    id,
-    private_id: privateId,
-    title,
-    description,
-    participants,
-    prizes,
-    results,
-    metadata,
-  } = draw;
-  const lastResult = results[0];
-  const isQuickDrawData = metadata.find(item => item.key === 'isQuickDraw');
-  const isQuickDraw = isQuickDrawData ? isQuickDrawData.value === 'true' : false;
-
-  if (isQuickDraw) {
-    return {
-      privateId,
-      participants,
-      prizes,
-      lastResult,
-      isQuickDraw,
-    };
-  }
-
-  return {
-    id,
-    title,
-    description,
-    participants,
-    prizes,
-    result: lastResult,
-    isOwner: Boolean(privateId),
-    isQuickDraw,
-  };
-};
-
-Raffle.getInitialProps = async ctx => {
+RaffleReadPage.getInitialProps = async ctx => {
   const { id: drawId } = ctx.query;
-  try {
-    const draw = await loadData(drawId);
-    const commonNamespaces = ['DrawRaffle', 'CommonDrawRaffle', 'Common'];
-    let namespacesRequired;
-    if (draw.isQuickDraw) {
-      namespacesRequired = [
-        ...commonNamespaces,
-        'ParticipantsInput',
-        'PrizesInput',
-        'CommonCreateDraw',
-      ];
-    } else {
-      namespacesRequired = [...commonNamespaces, 'CommonPublishedDraw'];
-    }
-    return {
-      namespacesRequired,
-      draw,
-    };
-  } catch (error) {
-    logApiError(error, ANALYTICS_TYPE_RAFFLE);
-    return {
-      namespacesRequired: ['Common'],
-      error: {
-        statusCode: error.status || 500,
-      },
-    };
-  }
+  return getInitialProps({ drawId, urlSlug: URL_SLUG_RAFFLE });
 };
 
-export default Raffle;
+export default RaffleReadPage;

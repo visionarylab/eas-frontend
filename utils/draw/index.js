@@ -1,4 +1,9 @@
-import { URL_SLUG_NUMBER, URL_SLUG_LETTER, URL_SLUG_GROUPS } from '../../constants/urlSlugs';
+import {
+  URL_SLUG_NUMBER,
+  URL_SLUG_LETTER,
+  URL_SLUG_GROUPS,
+  URL_SLUG_RAFFLE,
+} from '../../constants/urlSlugs';
 import {
   getNumberDrawDataFromValues,
   getNumberValuesFromDraw,
@@ -15,22 +20,30 @@ import {
   getGroupsValuesFromDraw,
   getGroupsTranslationFiles,
 } from './groups';
+import {
+  getRaffleDrawDataFromValues,
+  getRaffleValuesFromDraw,
+  getRaffleTranslationFiles,
+} from './raffle';
 
 const getDrawByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberDrawDataFromValues,
   [URL_SLUG_LETTER]: getLetterDrawDataFromValues,
   [URL_SLUG_GROUPS]: getGroupsDrawDataFromValues,
+  [URL_SLUG_RAFFLE]: getRaffleDrawDataFromValues,
 };
 
 const getValuesByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberValuesFromDraw,
   [URL_SLUG_LETTER]: getLetterValuesFromDraw,
   [URL_SLUG_GROUPS]: getGroupsValuesFromDraw,
+  [URL_SLUG_RAFFLE]: getRaffleValuesFromDraw,
 };
 const getTranslationByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberTranslationFiles,
   [URL_SLUG_LETTER]: getLetterTranslationFiles,
   [URL_SLUG_GROUPS]: getGroupsTranslationFiles,
+  [URL_SLUG_RAFFLE]: getRaffleTranslationFiles,
 };
 
 export const getDrawDataFromValues = ({ urlSlug, values, isPublic }) =>
