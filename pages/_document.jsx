@@ -28,6 +28,8 @@ export default class MyDocument extends Document {
 
           <link rel="icon" href="/favicon.ico" />
 
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           {materialUiStyles}
