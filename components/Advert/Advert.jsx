@@ -11,16 +11,23 @@ const Advert = () => {
   }, []);
   const isMobile = useSelector(state => state.userRequest.isMobile);
 
-  const style = { display: 'inline-block', width: '728px', height: '90px' };
-
   return (
-    <div className={c('Advert')}>
-      <ins
-        className={c('adsbygoogle')}
-        style={style}
-        data-ad-client="ca-pub-1409219619115807"
-        data-ad-slot={isMobile ? '1221986757' : '2400047490'}
-      />
+    <div className={STYLES.container}>
+      {isMobile ? (
+        <ins
+          className={c('adsbygoogle', 'advertMobile')}
+          data-ad-client="ca-pub-1409219619115807"
+          data-ad-slot="1221986757"
+          // data-adtest="on"
+        />
+      ) : (
+        <ins
+          className={c('adsbygoogle', 'advertDesktop')}
+          data-ad-client="ca-pub-1409219619115807"
+          data-ad-slot="2400047490"
+          // data-adtest="on"
+        />
+      )}
     </div>
   );
 };

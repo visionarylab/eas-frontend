@@ -1,5 +1,17 @@
-.Advert {
+.container {
   max-width: 100%;
   text-align: center;
   overflow: hidden;
+}
+
+.advertDesktop {
+  display: 'inline-block';
+  width: 728px; /* stylelint-disable-line unit-blacklist */
+  height: 90px; /* stylelint-disable-line unit-blacklist */
+}
+
+.advertMobile {
+  display: inline-block;
+  width: 320px; /* stylelint-disable-line unit-blacklist */
+  height: 50px; /* stylelint-disable-line unit-blacklist */
 }
