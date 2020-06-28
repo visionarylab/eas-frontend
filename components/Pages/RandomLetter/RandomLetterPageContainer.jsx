@@ -10,6 +10,8 @@ import { URL_SLUG_LETTER } from '../../../constants/urlSlugs';
 
 const urlSlug = URL_SLUG_LETTER;
 
+const MAX_NUMBER_LETTERS = 26;
+
 const getInitialValues = (previousDraw, t, isPublic) => {
   const dateScheduled = new Date();
   dateScheduled.setHours(dateScheduled.getHours() + 1);
@@ -77,8 +79,13 @@ const RandomLetterPageContainer = props => {
     });
   };
 
-  const handleCheckErrorsInConfiguration = () => undefined;
-
+  const handleCheckErrorsInConfiguration = () => {
+    const { allowRepeated, numberOfResults } = values;
+    if (!allowRepeated && numberOfResults > MAX_NUMBER_LETTERS) {
+      return t('error_form_too_many_letters', { max: MAX_NUMBER_LETTERS });
+    }
+    return undefined;
+  };
   return isPublic ? (
     <RandomLetterPage
       apiError={APIError}
