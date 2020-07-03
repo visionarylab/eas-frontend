@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { useLoader, useFrame } from 'react-three-fiber';
@@ -48,7 +48,6 @@ const getRotation = die => {
 
 const Die = ({ setupActions, onResult, active }) => {
   const { nodes } = useLoader(GLTFLoader, '/dice/scene.gltf');
-  const [rolling, setRolling] = useState(true);
 
   const {
     position: hiddenDiePosition,
@@ -89,9 +88,6 @@ const Die = ({ setupActions, onResult, active }) => {
     api.angularVelocity.set(...angularVelocity);
     api.rotation.set(...rotation);
     api.position.set(...position);
-    // We are setting some delay here to avoid reading the
-    // results before the die start rolling
-    setTimeout(() => setRolling(true), 200);
   };
 
   useEffect(
@@ -117,11 +113,10 @@ const Die = ({ setupActions, onResult, active }) => {
     if (active) {
       const moving = isMoving(velocityRef, angularVelocityRef);
 
-      if (rolling && !moving) {
+      if (!moving) {
         const rotation = getRotation(ref);
         const result = getResult(rotation);
         if (result) {
-          setRolling(false);
           onResult(result);
         }
       }
