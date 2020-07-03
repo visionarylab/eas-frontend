@@ -9,7 +9,7 @@ import { withTranslation } from '../../i18n';
 import STYLES from './Header.module.scss';
 import logo from './logo_vector.svg';
 
-const showRecentDrawsEnabled = false;
+const showRecentDrawsEnabled = true;
 
 const Header = ({ t }) => {
   const router = useRouter();
