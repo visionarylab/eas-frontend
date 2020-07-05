@@ -69,6 +69,9 @@ const Die = ({ setupActions, onResult, active }) => {
     material: {
       friction: 0,
     },
+    onCollide: () => {
+      setRolling(true);
+    },
   }));
   const velocityRef = useRef([1, 1, 1]);
   const angularVelocityRef = useRef([1, 1, 1]);
