@@ -6,6 +6,8 @@ import {
   URL_SLUG_ARROW,
   URL_SLUG_COIN,
   URL_SLUG_LETTER,
+  URL_SLUG_DICE,
+  URL_SLUG_ITEM,
 } from './urlSlugs';
 
 export const ANALYTICS_TYPE_GROUPS = 'Groups';
@@ -15,6 +17,8 @@ export const ANALYTICS_TYPE_FACEBOOK = 'FacebookRaffle';
 export const ANALYTICS_TYPE_ARROW = 'Spin Arrow';
 export const ANALYTICS_TYPE_COIN = 'Coin';
 export const ANALYTICS_TYPE_LETTER = 'Letter';
+export const ANALYTICS_TYPE_DICE = 'Dice';
+export const ANALYTICS_TYPE_ITEM = 'Item';
 
 export const analyticsTypesBySlug = {
   [URL_SLUG_GROUPS]: ANALYTICS_TYPE_GROUPS,
@@ -24,4 +28,6 @@ export const analyticsTypesBySlug = {
   [URL_SLUG_ARROW]: ANALYTICS_TYPE_ARROW,
   [URL_SLUG_COIN]: ANALYTICS_TYPE_COIN,
   [URL_SLUG_LETTER]: ANALYTICS_TYPE_LETTER,
+  [URL_SLUG_DICE]: ANALYTICS_TYPE_DICE,
+  [URL_SLUG_ITEM]: ANALYTICS_TYPE_ITEM,
 };

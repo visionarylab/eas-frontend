@@ -6,11 +6,12 @@ import DrawCard from '../../DrawCard/DrawCard.jsx';
 import DrawGroup from './DrawGroup.jsx';
 import Page from '../../Page/Page.jsx';
 import randomNumberIcon from './random_number.png';
-// import randomItemIcon from './random_item.png';
+import randomItemIcon from './random_item.png';
 import arrowIcon from './arrow.svg';
 import groupsIcon from './groups.svg';
 import coinIcon from './coin.svg';
 import randomLetterIcon from './random_letter.png';
+import diceIcon from './dice.svg';
 // import diceIcon from './dice.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
@@ -38,6 +39,9 @@ const HomePage = ({ t }) => (
         <DrawCard icon={groupsIcon} href="/groups">
           {t('draw_title_groups_generator')}
         </DrawCard>
+        <DrawCard icon={randomItemIcon} href="/item">
+          {t('draw_title_random_item')}
+        </DrawCard>
         {/*
           </div>
           <Typography variant="h1"> {t('section_title_simple_draws')}</Typography>
@@ -50,6 +54,9 @@ const HomePage = ({ t }) => (
         <DrawCard icon={randomLetterIcon} href="/letter">
           {t('draw_title_random_letter')}
         </DrawCard>
+        <DrawCard icon={randomItemIcon} href="https://echaloasuerte.com/draw/new/item/" legacy>
+          {t('draw_title_random_item')}
+        </DrawCard>
         {/* <DrawCard icon={tournamentIcon} href="https://echaloasuerte.com/draw/new/tournament/">
           {t('draw_title_tournament')}
         </DrawCard> */}
@@ -61,11 +68,11 @@ const HomePage = ({ t }) => (
         <DrawCard icon={arrowIcon} href="/spinner">
           {t('draw_title_spin_arrow')}
         </DrawCard>
+        <DrawCard icon={diceIcon} href="/dice">
+          {t('draw_title_roll_dice')}
+        </DrawCard>
         {/* <DrawCard icon={cardsIcon} href="https://echaloasuerte.com/draw/new/cards/">
           {t('draw_title_pick_card')}
-        </DrawCard>
-        <DrawCard icon={diceIcon} href="https://echaloasuerte.com/draw/new/dice/">
-          {t('draw_title_roll_dice')}
         </DrawCard>
         <DrawCard icon={randomNumberIcon} href="https://echaloasuerte.com/draw/new/number/">
           {t('draw_title_random_number')}
@@ -73,9 +80,7 @@ const HomePage = ({ t }) => (
         <DrawCard icon={associateItemsIcon} href="https://echaloasuerte.com/draw/new/link_sets/">
           {t('draw_title_associate_items')}
         </DrawCard>
-        <DrawCard icon={randomItemIcon} href="https://echaloasuerte.com/draw/new/item/">
-          {t('draw_title_associate_items')}
-        </DrawCard> */}
+*/}
       </DrawGroup>
       {/* <DrawCard icon={likeIcon} href="/facebook_photo">
         {t('draw_title_facebook_photo')}
