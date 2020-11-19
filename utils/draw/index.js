@@ -5,6 +5,7 @@ import {
   URL_SLUG_RAFFLE,
   URL_SLUG_FACEBOOK,
   URL_SLUG_ITEM,
+  URL_SLUG_SETS,
 } from '../../constants/urlSlugs';
 import {
   getNumberDrawDataFromValues,
@@ -37,6 +38,11 @@ import {
   getItemsValuesFromDraw,
   getItemsTranslationFiles,
 } from './item';
+import {
+  getLinkSetsDrawDataFromValues,
+  getLinkSetsValuesFromDraw,
+  getLinkSetsTranslationFiles,
+} from './linkSets';
 
 const getDrawByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberDrawDataFromValues,
@@ -45,6 +51,7 @@ const getDrawByUrlSlug = {
   [URL_SLUG_RAFFLE]: getRaffleDrawDataFromValues,
   [URL_SLUG_FACEBOOK]: getFacebookRaffleDrawDataFromValues,
   [URL_SLUG_ITEM]: getItemsDrawDataFromValues,
+  [URL_SLUG_SETS]: getLinkSetsDrawDataFromValues,
 };
 
 const getValuesByUrlSlug = {
@@ -54,6 +61,7 @@ const getValuesByUrlSlug = {
   [URL_SLUG_RAFFLE]: getRaffleValuesFromDraw,
   [URL_SLUG_FACEBOOK]: getFacebookRaffleValuesFromDraw,
   [URL_SLUG_ITEM]: getItemsValuesFromDraw,
+  [URL_SLUG_SETS]: getLinkSetsValuesFromDraw,
 };
 const getTranslationByUrlSlug = {
   [URL_SLUG_NUMBER]: getNumberTranslationFiles,
@@ -62,6 +70,7 @@ const getTranslationByUrlSlug = {
   [URL_SLUG_RAFFLE]: getRaffleTranslationFiles,
   [URL_SLUG_FACEBOOK]: getFacebookRaffleTranslationFiles,
   [URL_SLUG_ITEM]: getItemsTranslationFiles,
+  [URL_SLUG_SETS]: getLinkSetsTranslationFiles,
 };
 
 export const getDrawDataFromValues = ({ urlSlug, values, isPublic }) =>

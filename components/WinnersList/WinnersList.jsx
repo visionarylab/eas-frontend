@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from '../../i18n';
-import Winner from './Winner.jsx';
+import Pair from '../Pair/Pair.jsx';
 
 import STYLES from './WinnersList.module.scss';
 
@@ -19,7 +19,7 @@ const WinnersList = ({ winners, t }) => (
       </Typography>
     </div>
     {winners.map(winner => (
-      <Winner key={winner.prize.id} participant={winner.participant} prize={winner.prize} />
+      <Pair key={winner.prize.id} first={winner.participant} second={winner.prize} />
     ))}
   </div>
 );

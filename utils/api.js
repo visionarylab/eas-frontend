@@ -10,6 +10,8 @@ import {
   Lottery,
   LotteryApi,
   DrawTossPayload,
+  LinkApi,
+  Link,
 } from 'echaloasuerte-js-sdk';
 import Router from 'next/router';
 import { asyncThrottle } from '../services/throttle';
@@ -25,6 +27,7 @@ import {
   URL_SLUG_RAFFLE,
   URL_SLUG_FACEBOOK,
   URL_SLUG_ITEM,
+  URL_SLUG_SETS,
 } from '../constants/urlSlugs';
 
 const apisBySlug = {
@@ -34,6 +37,7 @@ const apisBySlug = {
   [URL_SLUG_RAFFLE]: RaffleApi,
   [URL_SLUG_FACEBOOK]: RaffleApi,
   [URL_SLUG_ITEM]: LotteryApi,
+  [URL_SLUG_SETS]: LinkApi,
 };
 
 const drawObjectBySlug = {
@@ -43,6 +47,7 @@ const drawObjectBySlug = {
   [URL_SLUG_RAFFLE]: Raffle,
   [URL_SLUG_FACEBOOK]: Raffle,
   [URL_SLUG_ITEM]: Lottery,
+  [URL_SLUG_SETS]: Link,
 };
 
 const apiDrawTypeBySlug = {
@@ -52,6 +57,7 @@ const apiDrawTypeBySlug = {
   [URL_SLUG_RAFFLE]: 'raffle',
   [URL_SLUG_FACEBOOK]: 'raffle',
   [URL_SLUG_ITEM]: 'lottery',
+  [URL_SLUG_SETS]: 'link',
 };
 
 const apiToss = (urlSlug, privateId, payload = {}) => {
