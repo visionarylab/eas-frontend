@@ -13,17 +13,29 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract branch name
-        uses: nelonoel/branch-name@v1.0.1
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+
+      - name: Set app_env var
+        id: setvars
+        run: |
+          if [[ "${{github.ref}}" == "refs/heads/prod" ]]; then
+              echo "APP_ENV=production" >> $GITHUB_ENV
+          else
+              echo "APP_ENV=staging" >> $GITHUB_ENV
+          fi
 
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: etcaterva/echaloasuerte:${BRANCH_NAME}
+          tags: etcaterva/echaloasuerte:${{ steps.extract_branch.outputs.branch }}
           build-args: |
-            arg1=value1
-            arg2=value2
+            commit_sha=${GITHUB_SHA}
+            app_env=$APP_ENV
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
