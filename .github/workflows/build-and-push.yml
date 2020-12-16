@@ -4,6 +4,26 @@ on:
   push:
 
 jobs:
+  npm-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - run: npm install
+
+      - name: Run lint tests
+        run: npm run lint
+
+      - name: Run ci tests
+        run: npm run test:ci
+
+      - name: Run integration tests
+        run: npm run test:integration:ci
+
   build-docker:
     runs-on: ubuntu-latest
     outputs:
@@ -52,7 +72,9 @@ jobs:
   push-docker:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/prod'
     runs-on: ubuntu-latest
-    needs: build-docker
+    needs:
+      - build-docker
+      - npm-ci
     steps:
       - name: Cache Docker layers
         uses: actions/cache@v2
