@@ -64,6 +64,7 @@ module.exports = withBundleAnalyzer(
                   include: '.next',
                   ignore: ['node_modules'],
                   urlPrefix: '~/_next',
+                  release: REACT_APP_COMMIT,
                 }),
               );
             }
