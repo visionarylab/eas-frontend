@@ -6,12 +6,15 @@ on:
 jobs:
   npm-ci:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [10, 12, 14]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 10.x
+      - name: Use Node.js {{ matrix.node }}
         uses: actions/setup-node@v1
         with:
-          node-version: 10.x
+          node-version: ${{ matrix.node }}
 
       - run: npm install
 
