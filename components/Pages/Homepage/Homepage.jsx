@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import { withTranslation } from '../../../i18n';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
 import DrawGroup from './DrawGroup.jsx';
@@ -13,25 +12,18 @@ import coinIcon from './coin.svg';
 import randomLetterIcon from './random_letter.png';
 import diceIcon from './dice.svg';
 import linkSetsIcon from './link_sets.png';
-// import diceIcon from './dice.svg';
-// import cardsIcon from './cards.svg';
-// import tournamentIcon from './tournament.png';
-
-// import likeIcon from './like.jpg';
 import raffleIcon from './raffle.svg';
 
 import STYLES from './Homepage.module.scss';
-
-const c = classNames.bind(STYLES);
 
 const HomePage = ({ t }) => (
   <Page
     htmlTitle={t('html_title')}
     htmlDescription={t('html_description')}
-    contentClassName={c('HomePage')}
+    contentClassName={STYLES.container}
     pageType="Homepage"
   >
-    <div className={c('HomePage__container')}>
+    <div>
       <DrawGroup title={t('section_title_online_raffles')}>
         <DrawCard icon={raffleIcon} href="/raffles">
           {t('draw_title_raffle')}
@@ -45,12 +37,6 @@ const HomePage = ({ t }) => (
         <DrawCard icon={linkSetsIcon} href="/sets">
           {t('draw_title_link_sets')}
         </DrawCard>
-        {/*
-          </div>
-          <Typography variant="h1"> {t('section_title_simple_draws')}</Typography>
-          <div className={c('HomePage__draw-chips-group')}>
-
-        </div> */}
         <DrawCard icon={randomNumberIcon} href="/number">
           {t('draw_title_random_number')}
         </DrawCard>
@@ -64,7 +50,9 @@ const HomePage = ({ t }) => (
           {t('draw_title_tournament')}
         </DrawCard> */}
       </DrawGroup>
-      <DrawGroup title={t('simple_draws')}>
+    </div>
+    <div>
+      <DrawGroup title={t('section_title_simple_draws')}>
         <DrawCard icon={coinIcon} href="coin/">
           {t('draw_title_flip_coin')}
         </DrawCard>
@@ -74,14 +62,7 @@ const HomePage = ({ t }) => (
         <DrawCard icon={diceIcon} href="/dice">
           {t('draw_title_roll_dice')}
         </DrawCard>
-        {/* <DrawCard icon={cardsIcon} href="https://echaloasuerte.com/draw/new/cards/">
-          {t('draw_title_pick_card')}
-        </DrawCard>
-        */}
       </DrawGroup>
-      {/* <DrawCard icon={likeIcon} href="/facebook_photo">
-        {t('draw_title_facebook_photo')}
-      </DrawCard> */}
     </div>
   </Page>
 );
