@@ -12,10 +12,10 @@ import groupsIcon from './groups.svg';
 import coinIcon from './coin.svg';
 import randomLetterIcon from './random_letter.png';
 import diceIcon from './dice.svg';
+import linkSetsIcon from './link_sets.png';
 // import diceIcon from './dice.svg';
 // import cardsIcon from './cards.svg';
 // import tournamentIcon from './tournament.png';
-// import associateItemsIcon from './associate_items.png';
 
 // import likeIcon from './like.jpg';
 import raffleIcon from './raffle.svg';
@@ -41,6 +41,9 @@ const HomePage = ({ t }) => (
         </DrawCard>
         <DrawCard icon={randomItemIcon} href="/item">
           {t('draw_title_random_item')}
+        </DrawCard>
+        <DrawCard icon={linkSetsIcon} href="/sets">
+          {t('draw_title_link_sets')}
         </DrawCard>
         {/*
           </div>
@@ -74,13 +77,7 @@ const HomePage = ({ t }) => (
         {/* <DrawCard icon={cardsIcon} href="https://echaloasuerte.com/draw/new/cards/">
           {t('draw_title_pick_card')}
         </DrawCard>
-        <DrawCard icon={randomNumberIcon} href="https://echaloasuerte.com/draw/new/number/">
-          {t('draw_title_random_number')}
-        </DrawCard>
-        <DrawCard icon={associateItemsIcon} href="https://echaloasuerte.com/draw/new/link_sets/">
-          {t('draw_title_associate_items')}
-        </DrawCard>
-*/}
+        */}
       </DrawGroup>
       {/* <DrawCard icon={likeIcon} href="/facebook_photo">
         {t('draw_title_facebook_photo')}
