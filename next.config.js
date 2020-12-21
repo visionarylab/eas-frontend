@@ -26,6 +26,9 @@ if (environment === TYPE_APP_ENV_TEST) {
 }
 
 module.exports = withBundleAnalyzer(
+  // The image optimisations because it automatically inlines small images (in base64)
+  // And that is not supported by the OG images (they need to be URLs). That's forcing us to use OG images
+  // heavier than this threshold
   withImages(
     withTM(
       withFonts(

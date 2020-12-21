@@ -19,7 +19,7 @@ const WinnersList = ({ winners, t }) => (
       </Typography>
     </div>
     {winners.map(winner => (
-      <Pair key={winner.prize.id} first={winner.participant} second={winner.prize} />
+      <Pair key={winner.prize.id} first={winner.participant.name} second={winner.prize.name} />
     ))}
   </div>
 );
