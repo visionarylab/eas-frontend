@@ -32,7 +32,6 @@ jobs:
       app_env: '${{steps.set_app_env.outputs.app_env}}'
       ansible_hosts: '${{steps.set_app_env.outputs.hosts_file}}'
     steps:
-
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -144,7 +143,7 @@ jobs:
       - name: Load ssh key
         uses: webfactory/ssh-agent@v0.4.1
         with:
-            ssh-private-key: ${{ secrets.AUTOMATION_SSH_KEY }}
+          ssh-private-key: ${{ secrets.AUTOMATION_SSH_KEY }}
 
       - name: run playbook
         run: |
@@ -153,4 +152,4 @@ jobs:
             --tags "cd-frontend" \
             --extra-vars "ansible_user=automation"
         env:
-          ANSIBLE_HOST_KEY_CHECKING: "False"
+          ANSIBLE_HOST_KEY_CHECKING: 'False'
