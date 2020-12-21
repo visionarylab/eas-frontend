@@ -3,13 +3,13 @@ import { Typography } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import STYLES from './Winner.module.scss';
+import STYLES from './Pair.module.scss';
 
-const Winner = ({ prize, participant }) => (
+const Pair = ({ first, second }) => (
   <div className={STYLES.Container}>
     <div className={STYLES.Item}>
       <Paper className={STYLES.Card} elevation={2}>
-        {prize.name}
+        {first}
       </Paper>
     </div>{' '}
     <Typography variant="h1" component="span">
@@ -17,19 +17,15 @@ const Winner = ({ prize, participant }) => (
     </Typography>{' '}
     <div className={STYLES.Item}>
       <Paper className={STYLES.Card} elevation={2}>
-        {participant.name}
+        {second}
       </Paper>
     </div>
   </div>
 );
 
-Winner.propTypes = {
-  prize: PropTypes.shape({
-    name: PropTypes.string,
-  }).isRequired,
-  participant: PropTypes.shape({
-    name: PropTypes.string,
-  }).isRequired,
+Pair.propTypes = {
+  first: PropTypes.string.isRequired,
+  second: PropTypes.string.isRequired,
 };
 
-export default Winner;
+export default Pair;

@@ -1,0 +1,193 @@
+[
+  {
+    "path": "/api/link/",
+    "method": "POST",
+    "response": {
+      "id": "456dd451-fa91-4abe-a17d-8186be187900",
+      "created_at": "2020-12-20T15:55:13.034250Z",
+      "updated_at": "2020-12-20T15:55:13.034344Z",
+      "title": null,
+      "description": null,
+      "results": [],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "a6bb82b7-4d22-46e0-92e9-4678f77150b5",
+      "items_set1": [
+        "item1",
+        "item2"
+      ],
+      "items_set2": [
+        "person1",
+        "person2"
+      ]
+    }
+  },
+  {
+    "path": "/api/link/a6bb82b7-4d22-46e0-92e9-4678f77150b5/toss/",
+    "fixture_description": "Toss quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-12-20T15:55:13.076266Z",
+      "value": [
+        {
+          "element1": "item2",
+          "element2": "person1"
+        },
+        {
+          "element1": "item1",
+          "element2": "person2"
+        }
+      ],
+      "schedule_date": null
+    }
+  },
+  {
+    "path": "/api/link/a6bb82b7-4d22-46e0-92e9-4678f77150b5/",
+    "fixture_description": "Get quick draw",
+    "method": "GET",
+    "response": {
+      "id": "456dd451-fa91-4abe-a17d-8186be187900",
+      "created_at": "2020-12-20T15:55:13.034250Z",
+      "updated_at": "2020-12-20T15:55:13.034344Z",
+      "title": null,
+      "description": null,
+      "results": [
+        {
+          "created_at": "2020-12-20T15:55:13.076266Z",
+          "value": [
+            {
+              "element1": "item2",
+              "element2": "person1"
+            },
+            {
+              "element1": "item1",
+              "element2": "person2"
+            }
+          ],
+          "schedule_date": null
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "true"
+        }
+      ],
+      "private_id": "a6bb82b7-4d22-46e0-92e9-4678f77150b5",
+      "items_set1": [
+        "item1",
+        "item2"
+      ],
+      "items_set2": [
+        "person1",
+        "person2"
+      ]
+    }
+  },
+  {
+    "path": "/api/link/d0e3b000-413e-4b5f-9cfd-e8f03eb69a6e/toss/",
+    "fixture_description": "Toss edited quick draw",
+    "method": "POST",
+    "response": {
+      "created_at": "2020-12-20T15:58:56.820659Z",
+      "value": [
+        {
+          "element1": "item2",
+          "element2": "person3"
+        },
+        {
+          "element1": "item3",
+          "element2": "person2"
+        },
+        {
+          "element1": "item1",
+          "element2": "person1"
+        }
+      ],
+      "schedule_date": null
+    }
+  },
+  {
+    "path": "/api/link/a7417c42-34cc-4f38-bae3-8dd5d34321e5/",
+    "method": "GET",
+    "fixture_description": "Get public draw",
+    "response": {
+      "id": "a7417c42-34cc-4f38-bae3-8dd5d34321e5",
+      "created_at": "2020-12-20T17:02:34.534793Z",
+      "updated_at": "2020-12-20T17:02:34.534856Z",
+      "title": "The title",
+      "description": "The description",
+      "results": [
+        {
+          "created_at": "2020-12-20T17:02:34.668672Z",
+          "value": [
+            {
+              "element1": "item1",
+              "element2": "me"
+            },
+            {
+              "element1": "item2",
+              "element2": "you"
+            }
+          ],
+          "schedule_date": "2020-12-20T17:05:29Z"
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
+      "items_set1": [
+        "item1",
+        "item2"
+      ],
+      "items_set2": [
+        "you",
+        "me"
+      ]
+    }
+  },
+  {
+    "path": "/api/link/b29f44c2-1022-408a-925f-aaaaaaaaaaaa/",
+    "method": "GET",
+    "fixture_description": "Get public draw without results",
+    "response": {
+      "id": "a7417c42-34cc-4f38-bae3-8dd5d34321e5",
+      "created_at": "2020-12-20T17:02:34.534793Z",
+      "updated_at": "2020-12-20T17:02:34.534856Z",
+      "title": "The title",
+      "description": "The description",
+      "results": [
+        {
+          "created_at": "2020-12-20T17:02:34.668672Z",
+          "value": null,
+          "schedule_date": "2020-12-20T17:05:29Z"
+        }
+      ],
+      "metadata": [
+        {
+          "client": "web",
+          "key": "isQuickDraw",
+          "value": "false"
+        }
+      ],
+      "items_set1": [
+        "item1",
+        "item2"
+      ],
+      "items_set2": [
+        "you",
+        "me"
+      ]
+    }
+  }
+]
