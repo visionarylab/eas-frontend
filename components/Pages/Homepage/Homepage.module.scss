@@ -1,4 +1,7 @@
-$font-size: 50rem;
-.example {
-  font-size: $font-size;
+@import '../../variables.module';
+
+.container {
+  display: flex;
+  padding-top: $spacing-xl;
+  justify-content: space-around;
 }
