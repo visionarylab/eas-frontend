@@ -24,7 +24,7 @@ const HomePage = () => {
       contentClassName={STYLES.container}
       pageType="Homepage"
     >
-      <Typography component="div" variant="h1" align="center">
+      <Typography variant="h1" align="center">
         {t('choose_raffle')}
       </Typography>
       <div className={STYLES.draws}>
