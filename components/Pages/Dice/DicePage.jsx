@@ -170,7 +170,7 @@ const DicePageContainer = ({ track }) => {
         ))}
         {activeDice.length > 1 && (
           <Typography className={STYLES.result} variant="body1" align="center">
-            {t('total')} {activeDice.reduce((acc, b) => acc + (b.result || 0), 0)}
+            {t('label_total')} {activeDice.reduce((acc, b) => acc + (b.result || 0), 0)}
           </Typography>
         )}
       </div>
