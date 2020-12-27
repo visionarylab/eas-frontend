@@ -38,11 +38,19 @@ module.exports = {
   },
   domains: [
     {
-      domain: 'local.echaloasuerte.com',
+      domain: 'echaloasuerte.com',
       defaultLocale: 'es-ES',
     },
     {
-      domain: 'local.chooserandom.com',
+      domain: 'dev.echaloasuerte.com',
+      defaultLocale: 'es-ES',
+    },
+    {
+      domain: 'chooserandom.com',
+      defaultLocale: 'en-GB',
+    },
+    {
+      domain: 'dev.chooserandom.com',
       defaultLocale: 'en-GB',
     },
   ],
