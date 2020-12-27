@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withTranslation } from '../../../i18n';
 import DrawCard from '../../DrawCard/DrawCard.jsx';
-import DrawGroup from './DrawGroup.jsx';
 import Page from '../../Page/Page.jsx';
 import randomNumberIcon from './random_number.png';
 import randomItemIcon from './random_item.png';
