@@ -64,7 +64,6 @@ const RafflePage = ({
       ),
     },
   ];
-  console.log('render1');
 
   return (
     <Page
