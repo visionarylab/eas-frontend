@@ -1,5 +1,6 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import MuiButton from '@material-ui/core/Button';
 import TranslationsSwitch from './TranslationsSwitch.jsx';
 import STYLES from './Footer.module.scss';
 import { environment } from '../../utils';
@@ -43,6 +44,9 @@ const Footer = () => {
       <Button className={STYLES.button} href="/privacy-policy">
         {t('privacy_policy')}
       </Button>
+      <MuiButton className={STYLES.button} href="mailto:echaloasuerte@gmail.com">
+        {t('contact')}
+      </MuiButton>
       <TranslationsSwitch onChange={handleChangeLanguage} available={availableLocales} />
     </footer>
   );
