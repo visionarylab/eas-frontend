@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next",
-    "start": "next start",
+    "start": "next start -p 80",
     "start:integration": "REACT_APP_ENV=test npm run build && REACT_APP_ENV=test HTTPS=false npm run start -- -p 3005",
     "start:integration:dev": "REACT_APP_ENV=test HTTPS=false npm run dev -- -p 3005",
     "build": "next build",
