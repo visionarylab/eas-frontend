@@ -64,6 +64,7 @@ module.exports = nextTranslate(
               // This is an alternative to manually uploading the source maps
               // I would still like to uncomment the code below to send the sourcemaps to Sentry
               // https://github.com/zeit/next.js/tree/c60511c76d8dc07a4738da5b1677f32dfa1dc52b/examples/with-sentry-simple
+              // Also, `SentryWebpackPlugin` uses `SENTRY_AUTH_TOKEN` to upload the sourcemaps to Sentry
               if (!isDevelopmentServer && environment !== TYPE_APP_ENV_TEST && SENTRY_AUTH_TOKEN) {
                 config.plugins.push(
                   new SentryWebpackPlugin({
