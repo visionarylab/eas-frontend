@@ -65,7 +65,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build container
-        uses: .github/actions/docker-build-push@v1
+        uses: ./.github/actions/docker-build-push
         with:
           push: false
           app_env: ${{ needs.build-docker.outputs.app_env }}
@@ -81,7 +81,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Push container
-        uses: .github/actions/docker-build-push@v1
+        uses: ./.github/actions/docker-build-push
         with:
           push: true
           app_env: ${{ needs.build-docker.outputs.app_env }}
