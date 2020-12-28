@@ -110,6 +110,7 @@ jobs:
           build-args: |
             commit_sha=${{ github.sha }}
             app_env=${{ needs.build-docker.outputs.app_env }}
+            sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
