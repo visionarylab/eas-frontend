@@ -63,7 +63,7 @@ jobs:
           fi
 
       - name: Build container
-        uses: .github/actions/docker-build-push
+        uses: .github/actions/docker-build-push@v1
         with:
           push: false
           app_env: ${{ needs.build-docker.outputs.app_env }}
@@ -77,7 +77,7 @@ jobs:
       - npm-ci
     steps:
       - name: Push container
-        uses: .github/actions/docker-build-push
+        uses: .github/actions/docker-build-push@v1
         with:
           push: true
           app_env: ${{ needs.build-docker.outputs.app_env }}
