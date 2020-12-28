@@ -14,7 +14,7 @@ const chalk = require('chalk');
 const { getEnvironmentAtBuildTime, isDevelopmentServer } = require('./utils/environment');
 const { TYPE_APP_ENV_TEST } = require('./constants/environment');
 
-const { REACT_APP_COMMIT, SENTRY_AUTH_TOKEN } = process.env;
+const { REACT_APP_COMMIT, SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT } = process.env;
 
 const environment = getEnvironmentAtBuildTime();
 // eslint-disable-next-line no-console
@@ -26,6 +26,8 @@ if (environment === TYPE_APP_ENV_TEST) {
   const setupServerMock = require('./cypress/serverMock');
   setupServerMock();
 }
+
+const basePath = '';
 
 module.exports = nextTranslate(
   withBundleAnalyzer(
@@ -40,9 +42,10 @@ module.exports = nextTranslate(
               APP_ENV: environment,
               RELEASE_COMMIT: REACT_APP_COMMIT,
             },
+            basePath,
             webpack: (config, options) => {
-              // In `pages/_app.js`, Sentry is imported from @sentry/node. While
-              // @sentry/browser will run in a Node.js environment, @sentry/node will use
+              // In `pages/_app.js`, Sentry is imported from @sentry/browser. While
+              // @sentry/node will run in a Node.js environment. @sentry/node will use
               // Node.js-only APIs to catch even more unhandled exceptions.
               //
               // This works well when Next.js is SSRing your page on a server with
@@ -51,26 +54,42 @@ module.exports = nextTranslate(
               //
               // Luckily, Next.js will call this webpack function twice, once for the
               // server and once for the client. Read more:
-              // https://nextjs.org/docs#customizing-webpack-config
+              // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
               //
               // So ask Webpack to replace @sentry/node imports with @sentry/browser when
               // building the browser's bundle
               if (!options.isServer) {
-                config.resolve.alias['@sentry/node'] = '@sentry/browser'; // eslint-disable-line no-param-reassign
+                // eslint-disable-next-line no-param-reassign
+                config.resolve.alias['@sentry/node'] = '@sentry/browser';
               }
+
+              // Define an environment variable so source code can check whether or not
+              // it's running on the server so we can correctly initialize Sentry
+              config.plugins.push(
+                new options.webpack.DefinePlugin({
+                  'process.env.NEXT_IS_SERVER': JSON.stringify(options.isServer.toString()),
+                }),
+              );
+
               // When all the Sentry configuration env variables are available/configured
               // The Sentry webpack plugin gets pushed to the webpack plugins to build
               // and upload the source maps to sentry.
               // This is an alternative to manually uploading the source maps
-              // I would still like to uncomment the code below to send the sourcemaps to Sentry
-              // https://github.com/zeit/next.js/tree/c60511c76d8dc07a4738da5b1677f32dfa1dc52b/examples/with-sentry-simple
-              // Also, `SentryWebpackPlugin` uses `SENTRY_AUTH_TOKEN` to upload the sourcemaps to Sentry
-              if (!isDevelopmentServer && environment !== TYPE_APP_ENV_TEST && SENTRY_AUTH_TOKEN) {
+              // Note: This is disabled in development mode.
+              if (
+                !isDevelopmentServer &&
+                environment !== TYPE_APP_ENV_TEST &&
+                SENTRY_AUTH_TOKEN &&
+                SENTRY_ORG &&
+                SENTRY_PROJECT &&
+                REACT_APP_COMMIT
+              ) {
                 config.plugins.push(
                   new SentryWebpackPlugin({
                     include: '.next',
                     ignore: ['node_modules'],
-                    urlPrefix: '~/_next',
+                    stripPrefix: ['webpack://_N_E/'],
+                    urlPrefix: `~${basePath}/_next`,
                     release: REACT_APP_COMMIT,
                   }),
                 );

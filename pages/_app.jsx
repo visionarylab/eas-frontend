@@ -6,11 +6,11 @@ import { MixpanelProvider } from 'react-mixpanel';
 import mixpanel from 'mixpanel-browser';
 import { ThemeProvider, StylesProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import * as Sentry from '@sentry/node';
 import theme from '../EasTheme.jsx';
 import '../components/styles.scss';
 import EasApi from '../services/EasApi';
-import { environment, isServer } from '../utils';
+import { isServer } from '../utils';
+import { initSentry } from '../utils/logger';
 
 // We need the `intl-pluralrules` polyfill as it's used by `next-translate`
 import 'intl-pluralrules';
@@ -26,11 +26,7 @@ if (config.googleAnalyticsEnabled) {
 }
 
 EasApi.init();
-Sentry.init({
-  enabled: config.sentryEnabled,
-  dsn: config.sentryDsn,
-  environment,
-});
+initSentry();
 
 class EasApp extends App {
   componentDidMount() {
