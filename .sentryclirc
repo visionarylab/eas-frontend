@@ -1,6 +1,3 @@
-[auth]
-token=e5baa5dceaaf46c2a381ac91a484a5a3a6a8aecf09af488b814f6be71416dc20
-
 [defaults]
-org=asdf-x4
-project=eas3
+org=et-caterva
+project=eas_frontend
