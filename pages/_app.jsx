@@ -12,6 +12,9 @@ import '../components/styles.scss';
 import EasApi from '../services/EasApi';
 import { environment, isServer } from '../utils';
 
+// We need the `intl-pluralrules` polyfill as it's used by `next-translate`
+import 'intl-pluralrules';
+
 import config from '../config';
 
 if (!isServer && config.mixpanelEnabled) {
