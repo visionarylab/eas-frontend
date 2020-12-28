@@ -73,10 +73,9 @@ jobs:
           build-args: |
             commit_sha=${{ github.sha }}
             app_env=${{ steps.set_app_vars.outputs.app_env }}
+            sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
   push-docker:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/prod'
