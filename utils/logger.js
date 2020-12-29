@@ -10,10 +10,19 @@ export const logApiError = (error, drawType) => {
     // eslint-disable-next-line no-console
     console.log(error);
   }
+
   Sentry.withScope(scope => {
     scope.setTag('errorType', 'API error');
     scope.setTag('drawType', drawType);
-    Sentry.captureException(error);
+    if (error instanceof Error) {
+      Sentry.captureException(error);
+    } else {
+      // For some reason our SDK seem to return plain objects instead of errors
+      // Sentry does not handle them properly so we need to convert them
+      const errorObject = new Error(error.error.message);
+      errorObject.stack = error.error.stack;
+      Sentry.captureException(errorObject);
+    }
   });
 };
 
