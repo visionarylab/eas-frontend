@@ -103,6 +103,12 @@ describe('Successfully created draw', () => {
           cy.getComponent('SuccessfullyCreatedDraw_GoToRaffleButton').click();
           cy.wait('@redirect');
         });
+        it('should contain absolute url in the share url box', () => {
+          cy.visit('/groups/b29f44c2-1022-408a-925f-63e5f77a12ad/success');
+          cy.findByDisplayValue(
+            'https://localhost:3005/groups/b29f44c2-1022-408a-925f-63e5f77a12ad',
+          );
+        });
       });
 
       it('When the user is not the owner should automatically redirect to the draw', () => {

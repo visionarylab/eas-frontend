@@ -9,11 +9,13 @@ import ShareButtons from '../../ShareButtons/ShareButtons.jsx';
 import STYLES from './SuccessfullyCreatedDraw.module.scss';
 import SectionPanel from '../../SectionPanel/SectionPanel.jsx';
 import { analyticsTypesBySlug } from '../../../constants/analyticsTypes';
+import { getCurrentUrlFromWindow } from '../../../utils';
 
 const SuccessfullyCreatedDraw = () => {
   const { t } = useTranslation('CommonCreateDraw');
   const router = useRouter();
-  const drawUrl = router.asPath.replace('/success', '');
+  const redirectPath = router.asPath.replace('/success', '');
+  const shareUrl = getCurrentUrlFromWindow().replace('/success', '');
   // Get the draw type from the url
   const drawType = router.pathname.match(/\/([a-zA-Z]+)\/\[id\]/)[1];
   const { id: drawId } = router.query;
@@ -25,7 +27,7 @@ const SuccessfullyCreatedDraw = () => {
   // so that it's shown when the user is owner, this page is show
   useEffect(() => {
     if (!isOwnedByUser) {
-      router.push(`${routerPath}/`, `${drawUrl}/`);
+      router.push(`${routerPath}/`, `${redirectPath}/`);
     }
   });
 
@@ -50,7 +52,7 @@ const SuccessfullyCreatedDraw = () => {
             <br />
             <ShareButtons
               drawType={analyticsTypesBySlug[drawType]}
-              url={drawUrl}
+              url={shareUrl}
               types={['facebook', 'twitter', 'telegram', 'whatsapp', 'url']}
             />
             <RouterButton
