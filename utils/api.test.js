@@ -3,6 +3,9 @@ import Router from 'next/router';
 import { fetchDraw, toss, publish } from './api';
 import { URL_SLUG_LETTER } from '../constants/urlSlugs';
 
+const mockLogApiError = jest.fn();
+jest.mock('./logger', () => ({ logApiError: (...args) => mockLogApiError(...args) }));
+
 const mockDate = new Date('1995-12-17T03:24:00');
 
 const mockResponseCreate = {
@@ -196,6 +199,10 @@ describe('Api', () => {
 
       await toss(mockTossObject);
       expect(mockSetAPIError).toHaveBeenCalledWith(true);
+      expect(mockLogApiError).toHaveBeenCalledWith(
+        new TypeError("Cannot read property 'private_id' of undefined"),
+        'Letter',
+      );
       console.log = originalError;
       /* eslint-enable no-console */
     });
