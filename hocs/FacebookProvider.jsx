@@ -36,7 +36,8 @@ class FacebookProvider extends Component {
   }
 
   handleStatusChange = async response => {
-    const { t } = this.props;
+    const { i18n } = this.props;
+    const { t } = i18n;
     // status: connected == logged in
     // status: unknown == logged out
     const isLoggedInFB = response.status === 'connected' && !!response.authResponse;
