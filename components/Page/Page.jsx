@@ -86,7 +86,7 @@ const Page = ({
         <title>{htmlTitle}</title>
         <link rel="canonical" href={canonicalUrl} />
         {allTranslatedPages.map(entry => (
-          <link rel="alternate" hrefLang={entry.lang} href={entry.href} />
+          <link key={entry.lang} rel="alternate" hrefLang={entry.lang} href={entry.href} />
         ))}
 
         {!shouldIndexPage && <meta name="robots" content="noindex" />}
