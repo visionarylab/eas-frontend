@@ -1,3 +1,5 @@
+const { prodDomains, devDomains } = require('./utils/domains');
+
 module.exports = {
   locales: ['en-GB', 'es-ES'],
   defaultLocale: 'es-ES',
@@ -36,22 +38,5 @@ module.exports = {
     '/spinner': ['DrawSpinner'],
     '/dice': ['DrawDice'],
   },
-  domains: [
-    {
-      domain: 'echaloasuerte.com',
-      defaultLocale: 'es-ES',
-    },
-    {
-      domain: 'dev.echaloasuerte.com',
-      defaultLocale: 'es-ES',
-    },
-    {
-      domain: 'chooserandom.com',
-      defaultLocale: 'en-GB',
-    },
-    {
-      domain: 'dev.chooserandom.com',
-      defaultLocale: 'en-GB',
-    },
-  ],
+  domains: [...prodDomains, ...devDomains],
 };

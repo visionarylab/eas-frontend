@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ReactGA from 'react-ga';
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 import { withRouter } from 'next/router';
 import withMixpanel from '../../hocs/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
@@ -12,6 +13,7 @@ import { getExperimentsAllocation } from '../../services/abtest';
 import config from '../../config';
 import defaultOgImage from './logo_og.png';
 import { isServer } from '../../utils';
+import { prodDomains } from '../../utils/domains';
 import STYLES from './Page.module.scss';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
@@ -25,10 +27,29 @@ function getDomain() {
   return window.location.origin;
 }
 
-const getCanonicalUrl = path => {
-  const domain = getDomain();
+const getAbsoluteUrl = (domain, path) => {
   const pathWithoutTrailingSlash = path.replace(/\/$/, '');
   return `${domain}${pathWithoutTrailingSlash}`;
+};
+
+const getCanonicalUrl = path => {
+  const domain = getDomain();
+  return getAbsoluteUrl(domain, path);
+};
+
+const getTranslatedPageUrls = (path, currentLang) => {
+  const restOfLocales = prodDomains
+    .filter(entry => entry.defaultLocale !== currentLang)
+    .map(entry => ({
+      lang: entry.defaultLocale,
+      href: getAbsoluteUrl(entry.domain, path),
+    }));
+
+  const currentPage = {
+    lang: currentLang,
+    href: getCanonicalUrl(path),
+  };
+  return [currentPage, ...restOfLocales];
 };
 
 const Page = ({
@@ -63,6 +84,8 @@ const Page = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const { lang } = useTranslation();
+  const allTranslatedPages = getTranslatedPageUrls(router.asPath, lang);
   const canonicalUrl = getCanonicalUrl(router.asPath);
   const shouldIndexPage = config.indexPages && !noIndex;
   const pageTitle = htmlTitle.substring(0, 60);
@@ -73,7 +96,10 @@ const Page = ({
       <Head>
         <title>{htmlTitle}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <link rel="canonical" hrefLang="" href={canonicalUrl} />
+        {allTranslatedPages.map(entry => (
+          <link rel="alternate" hrefLang={entry.lang} href={entry.href} />
+        ))}
+
         {!shouldIndexPage && <meta name="robots" content="noindex" />}
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={htmlKeywords} />
