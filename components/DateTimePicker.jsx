@@ -43,10 +43,6 @@ const DateTimePicker = ({ id, label, ...props }) => {
 DateTimePicker.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  i18n: PropTypes.shape({
-    language: PropTypes.string.isRequired,
-  }).isRequired,
-  t: PropTypes.func.isRequired,
 };
 
 export default DateTimePicker;
