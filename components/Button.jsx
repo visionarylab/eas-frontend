@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import MuiButton from '@material-ui/core/Button';
 import MuiIconButton from '@material-ui/core/IconButton';
 
-const ButtonLink = React.forwardRef(({ href, hrefAs, children, ...rest }, ref) => (
-  <NextLink ref={ref} href={href} as={hrefAs}>
-    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-    <a {...rest}>{children}</a>
-  </NextLink>
-));
+// For some reason, refs are not being passed down to this component
+// even when using `React.forwardRef`
+// eslint-disable-next-line react/prefer-stateless-function
+class ButtonLink extends Component {
+  render() {
+    const { href, hrefAs, children, ...rest } = this.props;
+    return (
+      <NextLink href={href} as={hrefAs}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a {...rest}>{children}</a>
+      </NextLink>
+    );
+  }
+}
 
 ButtonLink.propTypes = {
   href: PropTypes.string.isRequired,
