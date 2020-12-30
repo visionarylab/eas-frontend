@@ -42,7 +42,7 @@ const getTranslatedPageUrls = (path, currentLang) => {
     .filter(entry => entry.defaultLocale !== currentLang)
     .map(entry => ({
       lang: entry.defaultLocale,
-      href: getAbsoluteUrl(entry.domain, path),
+      href: getAbsoluteUrl(`https://${entry.domain}`, path),
     }));
 
   const currentPage = {
