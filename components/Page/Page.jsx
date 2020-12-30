@@ -22,7 +22,7 @@ function getDomain() {
   if (isServer) {
     return `https://echaloasuerte.com`;
   }
-  return window.location.host;
+  return window.location.origin;
 }
 
 class Page extends Component {
