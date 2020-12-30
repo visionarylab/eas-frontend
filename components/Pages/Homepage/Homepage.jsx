@@ -21,6 +21,7 @@ const HomePage = () => {
     <Page
       htmlTitle={t('html_title')}
       htmlDescription={t('html_description')}
+      htmlKeywords={t('html_keywords')}
       contentClassName={STYLES.container}
       pageType="Homepage"
     >
