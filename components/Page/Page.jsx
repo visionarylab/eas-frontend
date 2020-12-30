@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ReactGA from 'react-ga';
@@ -25,9 +25,28 @@ function getDomain() {
   return window.location.origin;
 }
 
-class Page extends Component {
-  componentDidMount() {
-    const { mixpanel, pageType, router, enableHotjar } = this.props;
+const getCanonicalUrl = path => {
+  const domain = getDomain();
+  const pathWithoutTrailingSlash = path.replace(/\/$/, '');
+  return `${domain}${pathWithoutTrailingSlash}`;
+};
+
+const Page = ({
+  htmlTitle,
+  contentClassName,
+  children,
+  showAdvert,
+  sidePanel,
+  htmlDescription,
+  htmlKeywords,
+  noIndex,
+  ogImage,
+  router,
+  enableHotjar,
+  pageType,
+  mixpanel,
+}) => {
+  useEffect(() => {
     if (config.googleAnalyticsEnabled) {
       const page = router.asPath;
       ReactGA.pageview(page);
@@ -41,59 +60,41 @@ class Page extends Component {
     if (config.hotjarEnabled && enableHotjar) {
       hotjar.initialize(1051921, 6);
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  getCanonicalUrl() {
-    const { router } = this.props;
-    const domain = getDomain();
-    const pathWithoutTrailingSlash = router.asPath.replace(/\/$/, '');
-    return `${domain}${pathWithoutTrailingSlash}`;
-  }
-
-  render() {
-    const {
-      htmlTitle,
-      contentClassName,
-      children,
-      showAdvert,
-      sidePanel,
-      htmlDescription,
-      htmlKeywords,
-      noIndex,
-      ogImage,
-    } = this.props;
-    const canonicalUrl = this.getCanonicalUrl();
-    const shouldIndexPage = config.indexPages && !noIndex;
-    const pageTitle = htmlTitle.substring(0, 60);
-    const pageDescription = htmlDescription.substring(0, 155);
-    const ogImageUrl = getDomain() + ogImage;
-    return (
-      <>
-        <Head>
-          <title>{htmlTitle}</title>
-          <link rel="canonical" href={canonicalUrl} />
-          {!shouldIndexPage && <meta name="robots" content="noindex" />}
-          <meta name="description" content={pageDescription} />
-          <meta name="keywords" content={htmlKeywords} />
-          <meta property="og:title" content={pageTitle} />
-          <meta property="og:image" content={ogImageUrl} />
-          <meta property="og:description" content={pageDescription} />
-          <meta property="og:url" content={canonicalUrl} />
-          <meta property="og:type" content="website" />
-          <meta property="fb:app_id" content={config.facebookAppId} />
-        </Head>
-        <Header />
-        <div className={c('Page')}>
-          <PageLayout sidePanel={sidePanel} contentClassName={contentClassName}>
-            {children}
-          </PageLayout>
-          {showAdvert && <Advert />}
-        </div>
-        <Footer />
-      </>
-    );
-  }
-}
+  const canonicalUrl = getCanonicalUrl(router.asPath);
+  const shouldIndexPage = config.indexPages && !noIndex;
+  const pageTitle = htmlTitle.substring(0, 60);
+  const pageDescription = htmlDescription.substring(0, 155);
+  const ogImageUrl = getDomain() + ogImage;
+  return (
+    <>
+      <Head>
+        <title>{htmlTitle}</title>
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" hrefLang="" href={canonicalUrl} />
+        {!shouldIndexPage && <meta name="robots" content="noindex" />}
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={htmlKeywords} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content={config.facebookAppId} />
+      </Head>
+      <Header />
+      <div className={c('Page')}>
+        <PageLayout sidePanel={sidePanel} contentClassName={contentClassName}>
+          {children}
+        </PageLayout>
+        {showAdvert && <Advert />}
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 Page.propTypes = {
   htmlTitle: PropTypes.string.isRequired,
