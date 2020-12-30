@@ -53,7 +53,7 @@ describe('useLoadDataAfterCountdown', () => {
 
   describe('when countdown is not over', () => {
     beforeEach(() => {
-      const someDate = new Date('2016-10-26T21:06:53.000Z');
+      const someDate = new Date('2019-10-24T21:06:53.000Z');
       Date.now = jest.fn(() => someDate);
     });
     it('should setTimeout to schedule the request', () => {
@@ -66,7 +66,7 @@ describe('useLoadDataAfterCountdown', () => {
         useLoadDataAfterCountdown(result, pushMock);
       });
       expect(pushMock).toHaveBeenCalledTimes(0);
-      expect(setTimeout).toHaveBeenCalledWith(expect.anything(), 94608000000);
+      expect(setTimeout).toHaveBeenCalledWith(expect.anything(), 172800000);
     });
   });
 });
