@@ -122,7 +122,6 @@ class FacebookProvider extends Component {
 }
 FacebookProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  t: PropTypes.func.isRequired,
   i18n: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
