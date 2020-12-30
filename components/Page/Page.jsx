@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ReactGA from 'react-ga';
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 import { withRouter } from 'next/router';
 import withMixpanel from '../../hocs/withMixpanel.jsx';
 import Advert from '../Advert/Advert.jsx';
@@ -37,20 +36,11 @@ const getCanonicalUrl = path => {
   return getAbsoluteUrl(domain, path);
 };
 
-const getTranslatedPageUrls = (path, currentLang) => {
-  const restOfLocales = prodDomains
-    .filter(entry => entry.defaultLocale !== currentLang)
-    .map(entry => ({
-      lang: entry.defaultLocale,
-      href: getAbsoluteUrl(`https://${entry.domain}`, path),
-    }));
-
-  const currentPage = {
-    lang: currentLang,
-    href: getCanonicalUrl(path),
-  };
-  return [currentPage, ...restOfLocales];
-};
+const getTranslatedPageUrls = path =>
+  prodDomains.map(entry => ({
+    lang: entry.defaultLocale,
+    href: getAbsoluteUrl(`https://${entry.domain}`, path),
+  }));
 
 const Page = ({
   htmlTitle,
@@ -84,8 +74,7 @@ const Page = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { lang } = useTranslation();
-  const allTranslatedPages = getTranslatedPageUrls(router.asPath, lang);
+  const allTranslatedPages = getTranslatedPageUrls(router.asPath);
   const canonicalUrl = getCanonicalUrl(router.asPath);
   const shouldIndexPage = config.indexPages && !noIndex;
   const pageTitle = htmlTitle.substring(0, 60);
