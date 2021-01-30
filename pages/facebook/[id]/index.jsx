@@ -11,9 +11,10 @@ const FacebookRaffleReadPage = props => (
   </FacebookProvider>
 );
 
-export const getServerSideProps = async ctx => {
-  const { id: drawId } = ctx.query;
-  const props = await fetchData({ drawId, urlSlug: URL_SLUG_FACEBOOK });
+export const getServerSideProps = async ({ req, query }) => {
+  const { id: drawId } = query;
+  console.log('req', req.headers);
+  const props = await fetchData({ drawId, urlSlug: URL_SLUG_FACEBOOK, req });
   return { props };
 };
 
