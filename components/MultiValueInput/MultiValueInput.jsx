@@ -186,7 +186,7 @@ MultiValueInput.propTypes = {
 
 MultiValueInput.defaultProps = {
   id: undefined,
-  delimiters: [','],
+  delimiters: [',', '\n', '\t'],
   placeholder: null,
   helperText: null,
   fullWidth: false,
