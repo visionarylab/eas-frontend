@@ -14,10 +14,10 @@ const WinnersList = ({ winners }) => {
     <div className={c('WinnersList')} data-testid="WinnersList">
       <div className={STYLES.Titles}>
         <Typography className={STYLES.Title} variant="h3">
-          {t('prize_label')}
+          {t('winner_label')}
         </Typography>
         <Typography className={STYLES.Title} variant="h3">
-          {t('winner_label')}
+          {t('prize_label')}
         </Typography>
       </div>
       {winners.map(winner => (
